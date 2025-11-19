@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NEXT.io × Stake | Strategic Partnership Proposal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        :root {
+            --yellow: #ffcf33;
+            --dark-gray: #242426;
+            --medium-gray: #bdbdbd;
+            --light-gray: #eeeeee;
+            --text-light: #f8f8f8;
+            --text-dark: #242426;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-gray);
+            color: var(--text-light);
+            height: 100dvh; /* Mobile viewport fix */
+        }
+
+        .deck-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100%;
+            height: 100dvh;
+            overflow: hidden;
+        }
+
+        /* Responsive Slide Structure */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Responsive Padding: 
+               Mobile: Top 5rem (clear header), Bottom 5rem (clear footer), Sides 1.5rem 
+               Desktop: Original padding */
+            padding: 5rem 1.5rem 5rem 1.5rem; 
+            display: flex;
+            flex-direction: column;
+            /* Center content on larger screens, allow scroll flow on mobile */
+            justify-content: flex-start; 
+            overflow-y: auto; 
+            overflow-x: hidden;
+            
+            /* Transitions */
+            opacity: 0;
+            transform: scale(0.98);
+            z-index: 1;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            
+            /* Hide scrollbar but allow scrolling */
+            -ms-overflow-style: none; 
+            scrollbar-width: none; 
+        }
+        
+        /* On larger screens, center vertically if content fits */
+        @media (min-width: 1024px) and (min-height: 800px) {
+            .slide {
+                justify-content: center;
+                padding: 4rem 5% 3rem;
+            }
+        }
+
+        .slide::-webkit-scrollbar { display: none; }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 10;
+        }
+
+        /* Constrain width on large screens for readability */
+        .slide-content {
+            width: 100%;
+            max-width: 80rem; /* 7xl */
+            margin: 0 auto;
+        }
+
+        /* Backgrounds */
+        .slide-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .dark-overlay { background-color: rgba(0, 0, 0, 0.75); }
+        .light-overlay { background-color: rgba(255, 255, 255, 0.9); color: var(--text-dark); }
+        .subtle-overlay { background-color: rgba(0, 0, 0, 0.2); }
+
+        /* UI Elements */
+        .deck-ui-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 20;
+            /* Removed gradient to fix grey box issue */
+            background: transparent;
+            pointer-events: none; /* Let clicks pass through */
+        }
+        .deck-logo { 
+            height: 28px; 
+            width: auto; 
+            pointer-events: auto; 
+            /* Add subtle shadow for visibility on light backgrounds since we removed the box */
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+
+        .deck-ui-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 20;
+            /* Subtle gradient for controls visibility */
+            background: linear-gradient(to top, rgba(36,36,38,0.8), transparent);
+            pointer-events: none;
+        }
+        
+        .nav-button {
+            pointer-events: auto;
+            background-color: var(--yellow);
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 99px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+        }
+        .nav-button:hover { transform: scale(1.05); }
+        .nav-button:disabled { background-color: #555; color: #888; cursor: default; transform: none; }
+
+        #nav-dots { display: none; pointer-events: auto; gap: 0.5rem; }
+        @media(min-width: 768px) { #nav-dots { display: flex; } }
+        
+        .dot { width: 10px; height: 10px; border-radius: 50%; background-color: rgba(255,255,255,0.3); cursor: pointer; }
+        .dot.active { background-color: var(--yellow); transform: scale(1.2); }
+        
+        #slide-counter { color: #888; font-size: 0.8rem; font-weight: 600; pointer-events: auto; }
+
+        /* Animations */
+        .anim { opacity: 0; transition: all 0.6s ease-out; }
+        .anim-up { transform: translateY(20px); }
+        .anim-fade { transform: scale(0.95); }
+        .slide.active .anim-up { opacity: 1; transform: translateY(0); }
+        .slide.active .anim-fade { opacity: 1; transform: scale(1); }
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+        .delay-500 { transition-delay: 0.5s; }
+        .delay-600 { transition-delay: 0.6s; }
+
+        /* Components */
+        .stat-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            text-align: center;
+        }
+        .impact-box {
+            background-color: var(--yellow);
+            color: var(--dark-gray);
+            border-radius: 0.75rem;
+            padding: 1rem; 
+        }
+        
+        /* Tables */
+        .table-wrapper { overflow-x: auto; }
+        .comparison-table {
+            width: 100%;
+            min-width: 600px; /* Ensures scrolling on mobile */
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background-color: rgba(255, 255, 255, 0.02);
+            border-radius: 0.75rem;
+        }
+        .comparison-table th, .comparison-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+        
+        /* Charts */
+        .chart-container { height: 250px; width: 100%; position: relative; }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+
+        /* Fluid Text Classes for Responsiveness */
+        /* Scales smoothly between mobile and desktop sizes */
+        .text-fluid-huge { font-size: clamp(3.5rem, 10vw, 9rem); line-height: 0.9; }
+        .text-fluid-h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; }
+        .text-fluid-h2 { font-size: clamp(1.5rem, 4vw, 3rem); line-height: 1.2; }
+        .text-fluid-p { font-size: clamp(1rem, 1.5vw, 1.5rem); }
+
+        /* Image Error Fallback - REMOVED background-color to fix transparency issue */
+        img { display: inline-block; border-radius: 0.5rem; }
+        
+        /* Print Styles */
+        @media print {
+            .deck-ui-header, .deck-ui-footer { display: none !important; }
+            html, body { overflow: visible !important; height: auto !important; background-color: white !important; }
+            .deck-container { position: static !important; height: auto !important; }
+            .slide { position: static !important; opacity: 1 !important; transform: none !important; display: block !important; overflow: visible !important; width: 100% !important; height: auto !important; page-break-after: always !important; background-color: var(--dark-gray) !important; color: var(--text-light) !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .slide-bg { z-index: -1; }
+            .video-responsive, #ahrefs-chart-canvas { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="deck-container">
+        
+        <header class="deck-ui-header" id="deck-header">
+            <img src="https://i.postimg.cc/7Z5btmkg/Logo.png" alt="NEXT.io Logo" class="deck-logo" id="deck-logo" crossorigin="anonymous" onerror="handleImgError(this)">
+        </header>
+
+        <main id="deck-slides">
+
+            <!-- SLIDE 1: Title -->
+            <section class="slide active" id="slide-1">
+                <img src="https://i.postimg.cc/nhXMS0Jg/Main.png" alt="Main Stage Background" class="slide-bg" crossorigin="anonymous" onerror="handleImgError(this)">
+                <div class="slide-overlay dark-overlay"></div>
+                
+                <div class="slide-content text-center">
+                    <h1 class="font-black text-fluid-huge text-[var(--yellow)] uppercase anim anim-up">
+                        ALL IN
+                    </h1>
+                    <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold text-white mt-4 anim anim-up delay-100">
+                        Strategic Partnership Proposal
+                    </h2>
+                    <p class="text-xl md:text-3xl text-gray-300 mt-4 anim anim-up delay-200">
+                        NEXT.io × Stake 2026
+                    </p>
+                    
+                    <!-- Original Text Box (Restored, Scaled) -->
+                    <div class="mt-8 md:mt-12 bg-[var(--dark-gray)] border border-gray-700 p-4 md:p-6 rounded-lg inline-block anim anim-up delay-300 max-w-3xl mx-auto">
+                        <p class="text-lg md:text-xl font-semibold">
+                            Building B2B & B2G (Business-to-Government) Leadership in Regulated iGaming
+                        </p>
+                    </div>
+                    
+                    <img src="https://i.postimg.cc/7Z5btmkg/Logo.png" alt="NEXT.io Logo" class="h-16 md:h-24 mx-auto mt-8 md:mt-12 anim anim-fade delay-400" crossorigin="anonymous" onerror="handleImgError(this)">
+                </div>
+            </section>
+
+            <!-- SLIDE 2: Challenge / Solution -->
+            <section class="slide" id="slide-2">
+                <div class="slide-content">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                        <div class="anim anim-up">
+                            <h3 class="text-sm md:text-lg font-semibold text-[var(--yellow)] uppercase mb-4 tracking-wider">THE CHALLENGE</h3>
+                            <p class="text-xl md:text-3xl font-semibold leading-snug">
+                                Stake enters B2B with a singular goal: establish unmatched credibility with regulators, operators, and industry leaders as the responsible, future-proof iGaming brand.
+                            </p>
+                        </div>
+                        <div class="anim anim-up delay-100">
+                            <h3 class="text-sm md:text-lg font-semibold text-[var(--yellow)] uppercase mb-4 tracking-wider">THE SOLUTION</h3>
+                            <p class="text-xl md:text-3xl font-semibold leading-snug">
+                                A 12-month strategic partnership across NEXT.io's premium platforms - delivering regulatory alignment, thought leadership, and direct access to decision-makers across three continents.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+                        <div class="stat-box anim anim-fade delay-200">
+                            <div class="text-3xl md:text-4xl font-extrabold text-[var(--yellow)]">4.5M+</div>
+                            <div class="mt-2 text-xs md:text-base text-gray-300">Annual Site Visitors</div>
+                        </div>
+                        <div class="stat-box anim anim-fade delay-300">
+                            <div class="text-3xl md:text-4xl font-extrabold text-[var(--yellow)]">54%</div>
+                            <div class="mt-2 text-xs md:text-base text-gray-300">C-Level Reach</div>
+                        </div>
+                        <div class="stat-box anim anim-fade delay-400">
+                            <div class="text-3xl md:text-4xl font-extrabold text-[var(--yellow)]">10,000+</div>
+                            <div class="mt-2 text-xs md:text-base text-gray-300">Event Delegates</div>
+                        </div>
+                        <div class="stat-box anim anim-fade delay-500">
+                            <div class="text-3xl md:text-4xl font-extrabold text-[var(--yellow)]">3</div>
+                            <div class="mt-2 text-xs md:text-base text-gray-300">Target Markets</div>
+                            <div class="text-[10px] md:text-xs text-gray-400 mt-1">Europe, North America, Latin America</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 3: Data -->
+            <section class="slide" id="slide-3">
+                <div class="slide-content">
+                    <h2 class="text-fluid-h1 font-extrabold text-center mb-2 anim anim-up">
+                        Competitive Organic Traffic Analysis
+                    </h2>
+                    <p class="text-lg md:text-2xl text-gray-300 text-center mb-8 anim anim-up delay-100">
+                        Ahrefs Organic Traffic: 6-Month Comparison (Jun 2025 - Nov 2025)
+                    </p>
+                    
+                    <div class="bg-gray-800 bg-opacity-40 p-4 md:p-6 rounded-xl anim anim-up delay-200 mb-6 chart-container">
+                        <canvas id="ahrefs-chart-canvas"></canvas>
+                    </div>
+                    
+                    <div class="table-wrapper anim anim-up delay-300">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Media Property</th>
+                                    <th>6-Month Growth</th>
+                                    <th>Traffic (Nov 2025)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold text-white">NEXT.io</td>
+                                    <td class="text-green-400 font-bold text-lg">+318.6%</td>
+                                    <td>452,214</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold text-white">iGaming Business</td>
+                                    <td class="text-red-400 font-bold text-lg">-30.7%</td>
+                                    <td>21,132</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold text-white">Gambling Insider</td>
+                                    <td class="text-red-400 font-bold text-lg">-24.3%</td>
+                                    <td>14,540</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold text-white">SiGMA</td>
+                                    <td class="text-red-400 font-bold text-lg">-7.8%</td>
+                                    <td>65,356</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold text-white">SBC News</td>
+                                    <td class="text-red-400 font-bold text-lg">-36.3%</td>
+                                    <td>4,390</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold text-white">EGR (Combined)</td>
+                                    <td class="text-red-400 font-bold text-lg">-55.6%</td>
+                                    <td>3,274</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 4: Strategic Position -->
+            <section class="slide" id="slide-4">
+                <img src="https://i.postimg.cc/4xYn2Bgr/Chess.png" alt="Chess Background" class="slide-bg opacity-5" crossorigin="anonymous" onerror="handleImgError(this)">
+                <div class="slide-overlay subtle-overlay"></div>
+                
+                <div class="slide-content">
+                    <div class="text-center mb-8 md:mb-12">
+                        <h2 class="text-fluid-h1 font-extrabold anim anim-up">From Scrutinized to Sustainable</h2>
+                        <p class="text-xl md:text-2xl text-gray-300 mt-2 anim anim-up delay-100">A New Strategic Position for Stake</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                        <div class="text-center p-6 anim anim-up delay-200">
+                            <svg class="h-12 w-12 mx-auto text-[var(--yellow)]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 0 1 2.166 5.061l.162.205c.17.215.315.44.433.682A11.95 11.95 0 0 0 3 9.167c0 4.887 3.201 9.27 7 10.43 3.799-1.16 7-5.543 7-10.43 0-1.273-.209-2.512-.613-3.66l-.162-.46c-.119-.32-.26-.628-.42-.914A11.954 11.954 0 0 1 10 1.944Z" clip-rule="evenodd"/></svg>
+                            <h3 class="text-2xl font-bold mt-4 mb-2">Regulatory Trust</h3>
+                            <p class="text-gray-300 mb-4">Direct engagement with regulators through exclusive B2G (Business-to-Government) events.</p>
+                            <div class="stat-box text-sm"><span class="font-bold text-lg text-white">3%</span> regulators at Valletta</div>
+                        </div>
+                        <div class="text-center p-6 anim anim-up delay-300">
+                            <svg class="h-12 w-12 mx-auto text-[var(--yellow)]" viewBox="0 0 20 20" fill="currentColor"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3.005 3.005 0 013.75-2.906z"/></svg>
+                            <h3 class="text-2xl font-bold mt-4 mb-2">Peer Recognition</h3>
+                            <p class="text-gray-300 mb-4">Thought leadership positioning among operators, suppliers, and investors.</p>
+                            <div class="stat-box text-sm"><span class="font-bold text-lg text-white">41%</span> operators, <span class="font-bold text-lg text-white">8%</span> investors</div>
+                        </div>
+                        <div class="text-center p-6 anim anim-up delay-400">
+                            <svg class="h-12 w-12 mx-auto text-[var(--yellow)]" viewBox="0 0 20 20" fill="currentColor"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
+                            <h3 class="text-2xl font-bold mt-4 mb-2">Market Intelligence</h3>
+                            <p class="text-gray-300 mb-4">Co-branded research establishing Stake as the voice on key industry topics.</p>
+                            <div class="stat-box text-sm"><span class="font-bold text-lg text-white">2,500+</span> readers per report</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 5: Framework -->
+            <section class="slide" id="slide-5">
+                <div class="slide-content">
+                    <h2 class="text-fluid-h1 font-extrabold text-center mb-8 md:mb-12 anim anim-up">
+                        The Stake x NEXT Partnership framework
+                        <span class="block text-xl md:text-3xl text-gray-300 font-semibold mt-2">Four Strategic Pillars</span>
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+                        <div class="bg-gray-800 bg-opacity-40 p-6 md:p-8 rounded-xl anim anim-up delay-100">
+                            <span class="text-xl font-bold text-[var(--yellow)]">01</span>
+                            <h3 class="text-2xl md:text-3xl font-bold mt-2 mb-3">Build Unmatched Credibility</h3>
+                            <p class="text-gray-300">Crisis management, PR distribution, journalist partnerships, and co-branded deep-dive reports.</p>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-40 p-6 md:p-8 rounded-xl anim anim-up delay-200">
+                            <span class="text-xl font-bold text-[var(--yellow)]">02</span>
+                            <h3 class="text-2xl md:text-3xl font-bold mt-2 mb-3">Lead the C-Level Conversation</h3>
+                            <p class="text-gray-300">Podcast episodes and year-round audio branding on the #1 industry show.</p>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-40 p-6 md:p-8 rounded-xl anim anim-up delay-300">
+                            <span class="text-xl font-bold text-[var(--yellow)]">03</span>
+                            <h3 class="text-2xl md:text-3xl font-bold mt-2 mb-3">Achieve Market-Wide Visibility</h3>
+                            <p class="text-gray-300">Mega banners, social campaigns, high-CTR pop-ups, and newsletter sponsorship.</p>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-40 p-6 md:p-8 rounded-xl anim anim-up delay-400">
+                            <span class="text-xl font-bold text-[var(--yellow)]">04</span>
+                            <h3 class="text-2xl md:text-3xl font-bold mt-2 mb-3">Gain Regulatory & Peer Access</h3>
+                            <p class="text-gray-300">Keynote partnerships, exclusive B2G (Business-to-Government) networking, C-level access, and premium exhibitions.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 6: Pillar 1 -->
+            <section class="slide" id="slide-6">
+                <div class="slide-content">
+                    <h2 class="text-fluid-h1 font-extrabold mb-2 anim anim-up">
+                        Pillar 01: Build Unmatched Credibility
+                    </h2>
+                    <p class="text-xl md:text-2xl text-gray-300 font-semibold mb-4 anim anim-up delay-100">
+                        Through NEXT.io Editorial
+                    </p>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                        <div class="stat-box anim anim-fade delay-100"><div class="text-2xl md:text-3xl font-extrabold text-[var(--yellow)]">1.1M</div><div class="mt-1 text-xs md:text-sm text-gray-300">Annual News Pageviews</div></div>
+                        <div class="stat-box anim anim-fade delay-200"><div class="text-2xl md:text-3xl font-extrabold text-[var(--yellow)]">Tier-1</div><div class="mt-1 text-xs md:text-sm text-gray-300">Media References (Bloomberg, FT, etc.)</div></div>
+                        <div class="stat-box anim anim-fade delay-300"><div class="text-2xl md:text-3xl font-extrabold text-[var(--yellow)]">25k+</div><div class="mt-1 text-xs md:text-sm text-gray-300">Newsletter Subscribers</div></div>
+                        <div class="stat-box anim anim-fade delay-400"><div class="text-2xl md:text-3xl font-extrabold text-[var(--yellow)]">100+</div><div class="mt-1 text-xs md:text-sm text-gray-300">Annual Exclusives and Scoops</div></div>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="anim anim-up delay-500">
+                            <h3 class="text-2xl font-bold mb-2">Deliverables</h3>
+                            
+                            <h4 class="text-lg font-semibold text-[var(--yellow)] mb-1">Strategic Counsel & PR</h4> 
+                            <ul class="list-disc list-inside space-y-1 text-gray-300 mb-2 text-sm md:text-base">
+                                <li><span class="font-bold text-white">Year-Round Editorial Alignment & Crisis Support:</span> Your direct line to trusted industry journalists.</li>
+                                <li><span class="font-bold text-white">PR Distribution:</span> Share your announcements with guaranteed coverage.</li>
+                            </ul>
+                
+                            <h4 class="text-lg font-semibold text-[var(--yellow)] mb-1">Authority Content</h4> 
+                            <ul class="list-disc list-inside space-y-1 text-gray-300 mb-2 text-sm md:text-base">
+                                <li><span class="font-bold text-white">4x Co-Branded Deep Dive Reports:</span> Position Stake as the authority on key topics (2,500+ readers each).</li>
+                                <li><span class="font-bold text-white">12x Journalist Content Pieces:</span> Build a portfolio of independent, high-integrity coverage.</li>
+                            </ul>
+                
+                            <h4 class="text-lg font-semibold text-[var(--yellow)] mb-1">Key Initiatives</h4> 
+                            <ul class="list-disc list-inside space-y-1 text-gray-300 text-sm md:text-base">
+                                <li><span class="font-bold text-white">Responsible Gambling Week Leadership:</span> Own the narrative on the industry's most critical topic.</li>
+                                <li><span class="font-bold text-white">4x Boosted Spin Chart Promotions:</span> Editorial support to amplify key data wins.</li>
+                            </ul>
+                        </div>
+                        <div class="space-y-4 anim anim-up delay-600"> 
+                            <div class="impact-box">
+                                <h3 class="text-xl font-bold mb-1">Establish Stake as the Industry’s Trusted Voice</h3>
+                                <p class="font-medium text-sm">Stake's brand and narrative will be amplified by the industry's most credible journalistic voice, earning trust with regulators, investors, and Tier-1 media outlets simultaneously.</p> 
+                            </div>
+                            <p class="text-base font-semibold text-gray-300 px-2"> 
+                                <span class="text-[var(--yellow)]">Highlight:</span> This pillar establishes Stake as a credible authority, validated by independent journalism.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 7: Pillar 2 -->
+            <section class="slide" id="slide-7"> 
+                <div class="slide-content">
+                    <h2 class="text-fluid-h1 font-extrabold mb-4 anim anim-up">
+                        Pillar 02: Lead the C-Level Conversation
+                    </h2>
+                    <p class="text-xl md:text-2xl text-gray-300 font-semibold mb-10 anim anim-up delay-100">
+                        Through the NEXT.io Podcast
+                    </p>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+                        <div class="stat-box anim anim-fade delay-100"><div class="text-2xl md:text-3xl font-extrabold text-[var(--yellow)]">1.3M</div><div class="mt-1 text-xs md:text-sm text-gray-300">Video Views in 2025</div></div>
+                        <div class="stat-box anim anim-fade delay-200"><div class="text-2xl md:text-3xl font-extrabold text-[var(--yellow)]">+97%</div><div class="mt-1 text-xs md:text-sm text-gray-300">Growth QoQ</div></div>
+                        <div class="stat-box anim anim-fade delay-300"><div class="text-2xl md:text-3xl font-extrabold text-[var(--yellow)]">30k+</div><div class="mt-1 text-xs md:text-sm text-gray-300">Hours Watched (or 3.5 years!)</div></div>
+                        <div class="stat-box anim anim-fade delay-400"><div class="text-2xl md:text-3xl font-extrabold text-[var(--yellow)]">#1</div><div class="mt-1 text-xs md:text-sm text-gray-300">Industry Podcast</div></div>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="anim anim-up delay-500">
+                            <h3 class="text-2xl font-bold mb-4">Deliverables</h3>
+                            <ul class="list-disc list-inside space-y-3 text-gray-300 text-sm md:text-base">
+                                <li><span class="font-bold text-white">4 episodes featuring Stake executives.</span></li>
+                                <li><span class="font-bold text-white">Approx. 52 episodes with permanent Stake branding</span> ("In partnership with Stake").</li>
+                                <li><span class="font-bold text-white">12-month headline sponsorship on a brand-new NEXT Weekly podcast</span> (Audio & visual branding).</li>
+                            </ul>
+                        </div>
+                        <div class="space-y-6 anim anim-up delay-600">
+                            <div class="impact-box">
+                                <h3 class="text-2xl font-bold mb-2">Exponential Growth</h3>
+                                <p class="font-medium">Video content is experiencing exponential growth. <span class="font-bold">Video views reached 1.3M in 2025 (+97% QoQ)</span>, positioning Stake at the forefront of this trend.</p>
+                            </div>
+                            <p class="text-lg font-semibold text-gray-300 px-2">
+                                <span class="text-[var(--yellow)]">Highlight:</span> Video is the best medium to create long-term brand authenticity and credibility
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SLIDE 8: Pillar 3 -->
+            <section class="slide" id="slide-8">
+                <div class="slide-content">
+                    <h2 class="text-fluid-h1 font-extrabold mb-2 anim anim-up">
+                        Pillar 03: Achieve Market-Wide Visibility
+                    </h2>
+                    <p class="text-xl md:text-2xl text-gray-300 font-semibold mb-4 anim anim-up delay-100">
+                        Through NEXT.io Digital Platforms
+                    </p>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                        <div class="stat-box anim anim-fade delay-100"><div class="text-2xl md:text-3xl font-extrabold text-[var(--yellow)]">21M</div><div class="mt-1 text-xs md:text-sm text-gray-300">Ad Impressions</div></div>
+                        <div class="stat-box anim anim-fade delay-200"><div class="text-2xl md:text-3xl font-extrabold text-[var(--yellow)]">2.34%</div><div class="mt-1 text-xs md:text-sm text-gray-300">Pop-Up CTR</div></div>
+                        <div class="stat-box anim anim-fade delay-300"><div class="text-2xl md:text-3xl font-extrabold text-[var(--yellow)]">40k+</div><div class="mt-1 text-xs md:text-sm text-gray-300">Social Media Followers</div></div>
+                        <div class="stat-box anim anim-fade delay-400"><div class="text-2xl md:text-3xl font-extrabold text-[var(--yellow)]">35%</div><div class="mt-1 text-xs md:text-sm text-gray-300">Newsletter Open Rate</div></div>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="anim anim-up delay-500">
+                            <h3 class="text-2xl font-bold mb-2">Deliverables</h3>
+                            <ul class="list-disc list-inside space-y-1 text-gray-300 text-sm md:text-base">
+                                <li><span class="font-bold text-white">12-month NEXT.io mega banner</span> (High CTR)</li>
+                                <li><span class="font-bold text-white">12-month NEXT.io pop-up banner</span> (2.34% CTR)</li>
+                                <li><span class="font-bold text-white">4 social campaigns</span> (Targeting 40k+ followers)</li>
+                                <li><span class="font-bold text-white">iGaming Digest headline sponsor</span> (7.2K C-Level subs)</li>
+                                <li><span class="font-bold text-white">4 co-branded special editions of iGaming Digest</span></li>
+                                <li><span class="font-bold text-white">9-12 month Brazil & LatAm mega banners</span></li>
+                            </ul>
+                            <p class="text-lg font-semibold text-gray-300 mt-4"> 
+                                <span class="text-[var(--yellow)]">Highlight:</span> Tier-1 exposure through the most credible news portal of the industry cements Stake as a sustainable and respected brand towards the iGaming industry
+                            </p>
+                        </div>
+                        <div class="space-y-4 anim anim-up delay-600 hidden md:block">
+                            <h3 class="text-2xl font-bold mb-4">Visual Examples</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <img src="https://i.postimg.cc/MpnX3dSP/Mega.png" alt="Mega Banner Example" class="w-full rounded-lg shadow-lg border-2 border-gray-700" crossorigin="anonymous" onerror="handleImgError(this)">
+                                <img src="https://i.postimg.cc/2S1392D9/Pop.png" alt="Pop-up Banner Example" class="w-full rounded-lg shadow-lg border-2 border-gray-700" crossorigin="anonymous" onerror="handleImgError(this)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SLIDE 9: Pillar 4 -->
+            <section class="slide" id="slide-9"> 
+                <div class="slide-content">
+                    <h2 class="text-fluid-h1 font-extrabold mb-2 anim anim-up">
+                        Pillar 04: Gain Regulatory & Peer Access
+                    </h2>
+                    <p class="text-xl md:text-2xl text-gray-300 font-semibold mb-4 anim anim-up delay-100">
+                        Through NEXT.io C-Level Events
+                    </p>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                        <div class="stat-box anim anim-fade delay-100"><div class="text-2xl md:text-3xl font-extrabold text-[var(--yellow)]">10,000+</div><div class="mt-1 text-xs md:text-sm text-gray-300">Delegates (Annually)</div></div>
+                        <div class="stat-box anim anim-fade delay-200"><div class="text-2xl md:text-3xl font-extrabold text-[var(--yellow)]">65 NPS</div><div class="mt-1 text-xs md:text-sm text-gray-300">NEXT: Valletta</div></div>
+                        <div class="stat-box anim anim-fade delay-300"><div class="text-2xl md:text-3xl font-extrabold text-[var(--yellow)]">9/10</div><div class="mt-1 text-xs md:text-sm text-gray-300">Operator Satisfaction (Retreats)</div></div>
+                        <div class="stat-box anim anim-fade delay-400"><div class="text-2xl md:text-3xl font-extrabold text-[var(--yellow)]">300+</div><div class="mt-1 text-xs md:text-sm text-gray-300">Expert Speakers</div></div>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="anim anim-up delay-500">
+                            <h3 class="text-2xl font-bold mb-2">Deliverables</h3>
+                            
+                            <h4 class="text-lg font-semibold text-[var(--yellow)] mb-1">NEXT Valletta (May)</h4> 
+                            <ul class="list-disc list-inside space-y-1 text-gray-300 mb-2 text-sm md:text-base">
+                                <li><span class="font-bold text-white">Keynote Partnership</span></li>
+                                <li><span class="font-bold text-white">B2G (Business-to-Government) Networking Event Partner</span> (exclusive regulator access)</li>
+                                <li><span class="font-bold text-white">NEXT Focus: Affiliate & Zone Headline Partner</span> (May 26)</li>
+                                <li><span class="font-bold text-white">Premium 9x3m Exhibition Stand</span> (F1 car activation option)</li>
+                            </ul>
+                
+                            <h4 class="text-lg font-semibold text-[var(--yellow)] mb-1">C-Level Retreats</h4> 
+                            <ul class="list-disc list-inside space-y-1 text-gray-300 mb-2 text-sm md:text-base">
+                                <li><span class="font-bold text-white">NEXT Retreat Cyprus (Oct 12-14):</span> Intimate C-level networking</li>
+                                <li><span class="font-bold text-white">NEXT Retreat LatAm (Nov 17-19):</span> Regional market entry</li>
+                            </ul>
+                
+                            <h4 class="text-lg font-semibold text-[var(--yellow)] mb-1">Thought Leadership</h4> 
+                            <ul class="list-disc list-inside space-y-1 text-gray-300 text-sm md:text-base">
+                                <li><span class="font-bold text-white">2x Panel Participations</span></li>
+                                <li><span class="font-bold text-white">Feature Your Ambassador on Stage</span> (Optional)</li>
+                            </ul>
+                            
+                            <p class="text-sm font-medium mt-3"> 
+                                <span class="font-bold">Attendee breakdown:</span> 41% operators, 29% suppliers, 19% affiliates, 8% investors, 3% regulators
+                            </p>
+                        </div>
+                        <div class="anim anim-up delay-600 hidden md:block">
+                            <h3 class="text-2xl font-bold mb-3">Valletta 2025: Click to Watch</h3>
+                            <a href="https://www.youtube.com/watch?v=KnBch9pT2A4" target="_blank" class="block relative group">
+                                <img src="https://i.ytimg.com/vi/KnBch9pT2A4/maxresdefault.jpg" 
+                                     alt="Valletta 2025 Experience Thumbnail" 
+                                     class="w-full rounded-lg shadow-xl border-4 border-[var(--yellow)] transition-all group-hover:opacity-80"
+                                     crossorigin="anonymous" onerror="handleImgError(this)">
+                                <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                    <svg class="h-24 w-24 text-white opacity-90 transition-all group-hover:scale-110 drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M6 3l12 9-12 9V3z"/>
+                                    </svg>
+                                </div>
+                            </a>
+                            <p class="text-lg font-semibold text-gray-300 px-2 mt-3"> 
+                                <span class="text-[var(--yellow)]">Highlight:</span> This pillar gives Stake direct, exclusive access to regulators and C-level peers at the industry's biggest leadership event.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SLIDE 10: Timeline -->
+            <section class="slide" id="slide-10">
+                <div class="slide-content">
+                    <h2 class="text-fluid-h1 font-extrabold text-center mb-12 anim anim-up">
+                        2026 Execution Timeline
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-gray-800 bg-opacity-40 p-6 rounded-xl anim anim-up delay-100">
+                            <h3 class="text-2xl font-bold text-[var(--yellow)] mb-4">Q1: Foundation</h3>
+                            <ul class="space-y-2 text-gray-300 text-sm md:text-base">
+                                <li>Partnership Kickoff</li>
+                                <li>Editorial Calendar Set</li>
+                                <li>Podcast Launches</li>
+                                <li>Digital Activations Live</li>
+                                <li>iGaming Digest Begins</li>
+                                <li>Valletta Planning</li>
+                                <li class="font-bold text-white">First Report (2,500+ readers)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-40 p-6 rounded-xl anim anim-up delay-200">
+                            <h3 class="text-2xl font-bold text-[var(--yellow)] mb-4">Q2: Momentum</h3>
+                            <ul class="space-y-2 text-gray-300 text-sm md:text-base">
+                                <li class="font-bold text-white">NEXT Focus: Affiliate (May 26)</li>
+                                <li class="font-bold text-white">NEXT Valletta (May 27-28)</li>
+                                <li class="font-bold text-white">B2G (Business-to-Government) Event</li>
+                                <li>Second Deep Dive Report</li>
+                                <li>Social Campaign #1</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-40 p-6 rounded-xl anim anim-up delay-300">
+                            <h3 class="text-2xl font-bold text-[var(--yellow)] mb-4">Q3: Amplification</h3>
+                            <ul class="space-y-2 text-gray-300 text-sm md:text-base">
+                                <li>Responsible Gambling Week</li>
+                                <li class="font-bold text-white">Cyprus Retreat (Oct 12-14)</li>
+                                <li>Third Deep Dive Report</li>
+                                <li>Social Campaigns #2-3</li>
+                                <li>Podcast Peak</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-40 p-6 rounded-xl anim anim-up delay-400">
+                            <h3 class="text-2xl font-bold text-[var(--yellow)] mb-4">Q4: Expansion</h3>
+                            <ul class="space-y-2 text-gray-300 text-sm md:text-base">
+                                <li class="font-bold text-white">LatAm Retreat (Nov 17-19)</li>
+                                <li>Final Report</li>
+                                <li>Social Campaign #4</li>
+                                <li>ROI Analysis</li>
+                                <li class="font-bold text-white">250+ Leads Delivered</li>
+                                <li>2027 Planning</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SLIDE 11: At a Glance -->
+            <section class="slide" id="slide-11"> 
+                <div class="slide-content">
+                    <h2 class="text-fluid-h1 font-extrabold text-center mb-6 anim anim-up">
+                        The 12-Month Transformation: At a Glance
+                        <span class="block text-xl md:text-3xl text-gray-300 font-semibold mt-1">A complete plan for your new strategic position</span> 
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4"> 
+                        <div class="bg-gray-800 bg-opacity-40 p-4 rounded-xl anim anim-up delay-100"> 
+                            <h3 class="text-xl font-bold text-[var(--yellow)] mb-2">Building Regulatory Trust</h3>
+                            <ul class="list-disc list-inside text-gray-300 space-y-0.5 text-sm"> 
+                                <li><span class="font-bold text-white">B2G (Business-to-Government) Networking Event Partner</span> (Valletta)</li>
+                                <li><span class="font-bold text-white">PR Distribution & Year-Round Crisis Counsel</span></li>
+                                <li><span class="font-bold text-white">12x Independent Journalist Content Pieces</span></li>
+                                <li><span class="font-bold text-white">Responsible Gambling Week Leadership</span></li>
+                                <li><span class="font-bold text-white">Editorial Support for Spin Chart reports</span></li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-40 p-4 rounded-xl anim anim-up delay-200"> 
+                            <h3 class="text-xl font-bold text-[var(--yellow)] mb-2">Achieving Peer Recognition</h3>
+                            <ul class="list-disc list-inside text-gray-300 space-y-0.5 text-sm">
+                                <li><span class="font-bold text-white">NEXT Valletta Keynote Partnership</span></li>
+                                <li><span class="font-bold text-white">NEXT Retreats: Cyprus & LatAm</span></li>
+                                <li><span class="font-bold text-white">4x Executive Podcast Episodes</span> (#1 Podcast)</li>
+                                <li><span class="font-bold text-white">2x Panel Participations</span> (Thought Leadership)</li>
+                                <li><span class="font-bold text-white">Premium 9x3m Stand</span> (+ F1 Option)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-40 p-4 rounded-xl anim anim-up delay-300"> 
+                            <h3 class="text-xl font-bold text-[var(--yellow)] mb-2">Driving Market Intelligence</h3>
+                            <ul class="list-disc list-inside text-gray-300 space-y-0.5 text-sm">
+                                <li><span class="font-bold text-white">4x Co-branded Deep Dive Reports</span></li>
+                                <li><span class="font-bold text-white">150+ Qualified Leads</span> (from reports/digital)</li>
+                                <li><span class="font-bold text-white">4x Boosted Spin Chart Promotions</span></li>
+                                <li><span class="font-bold text-white">9-12 month Brazil & LatAm Banners</span></li>
+                                <li><span class="font-bold text-white">NEXT Focus: Affiliate & Zone Partner</span></li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-40 p-4 rounded-xl anim anim-up delay-400"> 
+                            <h3 class="text-xl font-bold text-[var(--yellow)] mb-2">Ensuring Constant Visibility</h3>
+                            <ul class="list-disc list-inside text-gray-300 space-y-0.5 text-sm">
+                                <li><span class="font-bold text-white">12-month Mega Banner</span> (High CTR)</li>
+                                <li><span class="font-bold text-white">12-month Pop-up Banner</span> (2.34% CTR)</li>
+                                <li><span class="font-bold text-white">iGaming Digest Sponsor</span> (7.2K C-Level subs)</li>
+                                <li><span class="font-bold text-white">4x Co-branded special editions</span> of iGaming Digest</li>
+                                <li><span class="font-bold text-white">4x Social Campaigns</span> (Targeting 40k+ followers)</li>
+                                <li><span class="font-bold text-white">~52x Episodes w/ Stake Branding</span> on Podcast</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SLIDE 12: Investment -->
+            <section class="slide" id="slide-12"> 
+                <div class="slide-content">
+                    <h2 class="text-fluid-h1 font-extrabold text-center mb-12 anim anim-up">
+                        Why This Investment Matters
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-gray-800 bg-opacity-40 p-6 rounded-xl anim anim-up delay-100">
+                            <h3 class="text-2xl font-bold mb-3">Shape the Narrative</h3>
+                            <p class="text-gray-300">This isn't just media; it's year-round editorial counsel, direct B2G access, and integrity-led journalism to build regulatory trust.</p>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-40 p-6 rounded-xl anim anim-up delay-200">
+                            <h3 class="text-2xl font-bold mb-3">Close High-Value Deals</h3>
+                            <p class="text-gray-300">Move beyond leads. Use our 54% C-level events and intimate retreats to build direct, high-value partnerships with decision-makers.</p>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-40 p-6 rounded-xl anim anim-up delay-300">
+                            <h3 class="text-2xl font-bold mb-3">Own the Funnel</h3>
+                            <p class="text-gray-300">We provide a complete B2B engine, from 21M top-of-funnel impressions to 150+ high-intent, report-generated leads.</p>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-40 p-6 rounded-xl anim anim-up delay-400">
+                            <h3 class="text-2xl font-bold mb-3">Dominate New Markets</h3>
+                            <p class="text-gray-300">This is a global play, giving you a turnkey platform to establish authority in key expansion zones, including Europe, North America, and LatAm.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SLIDE 13: Pricing -->
+            <section class="slide" id="slide-13"> 
+                <div class="slide-content text-center">
+                    <h2 class="text-6xl md:text-8xl lg:text-[120px] font-extrabold text-[var(--yellow)] anim anim-up">
+                        €1.2M
+                    </h2>
+                    <p class="text-xl md:text-2xl font-semibold mt-2 anim anim-up delay-100">
+                        The complete 12-month strategic partnership.
+                    </p>
+                    
+                    <div class="border border-gray-700 bg-gray-800 bg-opacity-20 p-5 rounded-xl mt-6 text-left anim anim-up delay-200 max-w-4xl mx-auto">
+                        
+                        <h3 class="text-xl md:text-2xl font-bold mb-3 text-[var(--yellow)]">This is not a media buy. This is an investment in market leadership.</h3> 
+                        
+                        <p class="text-base md:text-lg text-center text-gray-300 mb-4">
+                            A media buy delivers impressions. This partnership delivers <span class="font-extrabold text-white text-xl uppercase">Influence</span>.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="flex items-start space-x-2">
+                                <svg class="h-5 w-5 text-[var(--yellow)] shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.333 9-6.03 9-11.623 0-1.662-.36-3.26-.998-4.751A11.959 11.959 0 0112 2.714z" />
+                                </svg>
+                                <div>
+                                    <h4 class="text-base font-bold text-white">Secure Regulatory Trust</h4>
+                                    <p class="text-xs text-gray-300">Direct B2G access and integrity-led journalism.</p>
+                                </div>
+                            </div>
+                    
+                            <div class="flex items-start space-x-2">
+                                <svg class="h-5 w-5 text-[var(--yellow)] shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.5 4.5m0 0l4.5 4.5m-4.5-4.5l-4.5 4.5M12 3v18" />
+                                </svg>
+                                <div>
+                                    <h4 class="text-base font-bold text-white">Dominate the Conversation</h4> 
+                                    <p class="text-xs text-gray-300">Own the C-Level narrative with the #1 industry podcast.</p> 
+                                </div>
+                            </div>
+                    
+                            <div class="flex items-start space-x-2">
+                                <svg class="h-5 w-5 text-[var(--yellow)] shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h12A2.25 2.25 0 0020.25 14.25V3M3.75 3H1.5m3 13.5h.008v.008H3.75v-.008zM9.75 3.75h4.5v4.5h-4.5V3.75zM15 3.75h2.25m-2.25 4.5h2.25m-2.25 4.5h2.25M3.75 12h16.5M3.75 7.5h.008v.008H3.75V7.5z" />
+                                </svg>
+                                <div>
+                                    <h4 class="text-base font-bold text-white">Achieve Total Visibility</h4> 
+                                    <p class="text-xs text-gray-300">A complete B2B funnel, from 21M+ impressions to 150+ leads.</p> 
+                                </div>
+                            </div>
+                    
+                            <div class="flex items-start space-x-2">
+                                <svg class="h-5 w-5 text-[var(--yellow)] shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 003-3V6.75a3 3 0 00-3-3h-9a3 3 0 00-3 3v9a3 3 0 003 3h9zM16.5 18.75a3 3 0 01-3-3V6.75a3 3 0 013-3h.008v.008h-.008v12z" />
+                                </svg>
+                                <div>
+                                    <h4 class="text-base font-bold text-white">Build Unrivaled Credibility</h4> 
+                                    <p class="text-xs text-gray-300">Become the industry's trusted voice, validated by Tier-1 journalism.</p> 
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 14: Conclusion -->
+            <section class="slide" id="slide-14">
+                <img src="https://i.postimg.cc/13847JQd/Team.png" alt="Team Background" class="slide-bg"
+                     crossorigin="anonymous" onerror="handleImgError(this)">
+                <div class="slide-overlay dark-overlay"></div>
+                
+                <div class="slide-content text-center">
+                    <h2 class="font-black text-7xl md:text-[100px] text-[var(--yellow)] uppercase anim anim-up">
+                        ALL IN
+                    </h2>
+                    <p class="text-2xl md:text-3xl font-semibold max-w-4xl mx-auto mt-4 anim anim-up delay-100">
+                        Stake becomes the most credible, visible, and connected brand in regulated iGaming.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 my-12 max-w-4xl mx-auto">
+                        <div class="stat-box anim anim-fade delay-200">
+                            <div class="text-3xl md:text-4xl font-extrabold text-[var(--yellow)]">4.5M+</div>
+                            <div class="mt-2 text-sm md:text-base text-gray-300 uppercase">Annual Visitors</div>
+                        </div>
+                        <div class="stat-box anim anim-fade delay-300">
+                            <div class="text-3xl md:text-4xl font-extrabold text-[var(--yellow)]">54%</div>
+                            <div class="mt-2 text-sm md:text-base text-gray-300 uppercase">C-Level Audience</div>
+                        </div>
+                        <div class="stat-box anim anim-fade delay-400">
+                            <div class="text-3xl md:text-4xl font-extrabold text-[var(--yellow)]">250+</div>
+                            <div class="mt-2 text-sm md:text-base text-gray-300 uppercase">Qualified Leads</div>
+                        </div>
+                        <div class="stat-box anim anim-fade delay-500">
+                            <div class="text-3xl md:text-4xl font-extrabold text-[var(--yellow)]">#1</div>
+                            <div class="mt-2 text-sm md:text-base text-gray-300 uppercase">Industry Podcast</div>
+                        </div>
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-bold anim anim-up delay-600">
+                        Let's build the future of regulated iGaming — together.
+                    </h3>
+                </div>
+            </section>		
+
+        </main>
+
+        <footer class="deck-ui-footer" id="deck-footer">
+            <button id="prev-btn" class="nav-button" title="Previous Slide (Left Arrow)">‹ Prev</button>
+            <div id="nav-dots"></div>
+            <div id="slide-counter">1 / 14</div>
+            <button id="next-btn" class="nav-button" title="Next Slide (Right Arrow)">Next ›</button>
+        </footer>
+
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let slides = [];
+        let totalSlides = 0;
+        let navDotsContainer;
+        let slideCounter;
+        let prevBtn, nextBtn;
+        let deckLogo, deckHeader;
+        let chartDrawn = false; 
+
+        // --- Image Error Handler ---
+        window.handleImgError = function(img) {
+            const altText = img.alt || 'Image';
+            const placeholderSrc = `https://placehold.co/600x400/eeeeee/242426?text=${encodeURIComponent(altText + ' Not Found')}`;
+            if (img.src !== placeholderSrc) img.src = placeholderSrc;
+            img.style.border = '2px dashed #bdbdbd';
+            img.style.minHeight = '100px';
+            img.style.objectFit = 'contain'; 
+        }
+
+        // --- Main Presentation Logic ---
+        function showSlide(index) {
+            if (index < 0 || index >= totalSlides) return;
+            currentSlide = index;
+
+            slides.forEach((slide, i) => {
+                if (i === currentSlide) {
+                    slide.classList.add('active');
+                    slide.scrollTop = 0; 
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            updateNavDots();
+            updateNavButtons();
+            updateSlideCounter();
+            updateHeader();
+            
+            if(slides[currentSlide]) slides[currentSlide].focus();
+            
+            // Trigger Chart if on Slide 3
+            if (currentSlide === 2 && !chartDrawn) {
+                 setTimeout(createAhrefsChart, 300);
+            }
+        }
+
+        function updateNavDots() {
+            if (!navDotsContainer) return;
+            const dots = navDotsContainer.children;
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.toggle('active', i === currentSlide);
+            }
+        }
+
+        function updateNavButtons() {
+            if (!prevBtn || !nextBtn) return;
+            prevBtn.disabled = (currentSlide === 0);
+            nextBtn.disabled = (currentSlide === totalSlides - 1);
+        }
+
+        function updateSlideCounter() {
+            if (!slideCounter) return;
+            slideCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+        
+        function updateHeader() {
+            if (!deckHeader || !deckLogo) return;
+            deckHeader.style.opacity = (currentSlide === 0) ? '0' : '1';
+            const activeSlide = slides[currentSlide];
+            if (activeSlide && activeSlide.querySelector('.light-overlay')) {
+                deckLogo.src = 'https://i.postimg.cc/4xz3FTQF/logo-dark.png';
+            } else {
+                deckLogo.src = 'https://i.postimg.cc/7Z5btmkg/Logo.png';
+            }
+        }
+
+        function handleKeyDown(e) {
+            if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+                e.preventDefault(); showSlide(currentSlide + 1);
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault(); showSlide(currentSlide - 1);
+            } else if (e.key === 'Home') {
+                e.preventDefault(); showSlide(0);
+            } else if (e.key === 'End') {
+                e.preventDefault(); showSlide(totalSlides - 1);
+            }
+        }
+        
+        function isNarrowScreen() {
+            return window.matchMedia('(max-width: 768px)').matches;
+        }
+
+        function createAhrefsChart() {
+            if (chartDrawn) return;
+            const ctx = document.getElementById('ahrefs-chart-canvas');
+            if (!ctx) return;
+            
+            // Check visibility
+            if (ctx.clientHeight === 0) {
+                setTimeout(createAhrefsChart, 100);
+                return;
+            }
+
+            chartDrawn = true; 
+
+            const data = {
+                labels: ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+                datasets: [
+                    { label: 'NEXT.io', data: [108032, 137517, 206067, 362949, 390449, 452214], borderColor: '#ffcf33', backgroundColor: '#ffcf33', borderWidth: 3, tension: 0.1, pointRadius: 4 },
+                    { label: 'iGaming Business', data: [30496, 28003, 24460, 29362, 19228, 21132], borderColor: '#34d399', backgroundColor: '#34d399', borderWidth: 2, tension: 0.1, pointRadius: 2 },
+                    { label: 'Gambling Insider', data: [19210, 24171, 21892, 19848, 15511, 14540], borderColor: '#fb923c', backgroundColor: '#fb923c', borderWidth: 2, tension: 0.1, pointRadius: 2 },
+                    { label: 'SiGMA', data: [70848, 113043, 141083, 101472, 81165, 66650], borderColor: '#a78bfa', backgroundColor: '#a78bfa', borderWidth: 2, tension: 0.1, pointRadius: 2 },
+                    { label: 'SBC News', data: [6892, 7984, 8638, 5192, 3175, 4390], borderColor: '#60a5fa', backgroundColor: '#60a5fa', borderWidth: 2, tension: 0.1, pointRadius: 2 },
+                    { label: 'EGR (Combined)', data: [7378, 7878, 5848, 3972, 3018, 3274], borderColor: '#f87171', backgroundColor: '#f87171', borderWidth: 2, tension: 0.1, pointRadius: 2 }
+                ]
+            };
+
+            const chartOptions = {
+                animation: false, 
+                responsive: true,
+                maintainAspectRatio: false, 
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        display: !isNarrowScreen(), 
+                        labels: { color: '#bdbdbd', font: { family: "'Inter', sans-serif", size: 14 }, padding: 20 }
+                    },
+                    tooltip: {
+                        mode: 'index', intersect: false,
+                        titleFont: { family: "'Inter', sans-serif" }, bodyFont: { family: "'Inter', sans-serif" }, footerFont: { family: "'Inter', sans-serif" }, 
+                        backgroundColor: '#242426', titleColor: '#f8f8f8', bodyColor: '#f8f8f8', borderColor: '#ffcf33', borderWidth: 1,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) label += ': ';
+                                if (context.parsed.y !== null) label += new Intl.NumberFormat().format(context.parsed.y);
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: { ticks: { color: '#bdbdbd', font: { family: "'Inter', sans-serif" } }, grid: { color: 'rgba(255, 255, 255, 0.1)' } },
+                    y: { 
+                        ticks: {
+                            color: '#bdbdbd', font: { family: "'Inter', sans-serif" },
+                            callback: function(value) {
+                                if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
+                                if (value >= 1000) return (value / 1000).toFixed(0) + 'k';
+                                return value;
+                            }
+                        },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    }
+                }
+            };
+
+            new Chart(ctx, { type: 'line', data: data, options: chartOptions });
+        }
+
+        function initDeck() {
+            slides = document.querySelectorAll('.slide');
+            totalSlides = slides.length; 
+            navDotsContainer = document.getElementById('nav-dots');
+            slideCounter = document.getElementById('slide-counter');
+            prevBtn = document.getElementById('prev-btn');
+            nextBtn = document.getElementById('next-btn');
+            deckLogo = document.getElementById('deck-logo');
+            deckHeader = document.getElementById('deck-header');
+
+            if (totalSlides === 0) return;
+
+            if (navDotsContainer) {
+                navDotsContainer.innerHTML = ''; 
+                for (let i = 0; i < totalSlides; i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                    dot.addEventListener('click', () => showSlide(i));
+                    navDotsContainer.appendChild(dot);
+                }
+            }
+            
+            if (prevBtn) prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+            if (nextBtn) nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+            document.addEventListener('keydown', handleKeyDown);
+
+            const chartSlide = document.getElementById('slide-3');
+            if (chartSlide) {
+                chartSlide.addEventListener('transitionend', (event) => {
+                    if (event.propertyName !== 'opacity') return;
+                    if (currentSlide === 2 && !chartDrawn && chartSlide.classList.contains('active')) {
+                        createAhrefsChart();
+                    }
+                });
+            }
+            showSlide(0);
+        }
+
+        document.addEventListener('DOMContentLoaded', initDeck);
+    </script>
+</body>
+</html>
