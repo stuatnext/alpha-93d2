@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXT.io × Stake | Executive Summary</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        /* Define Brand Colors */
+        :root {
+            --yellow: #ffcf33;
+            --dark-gray: #242426;
+            --medium-gray: #bdbdbd;
+            --light-gray: #eeeeee;
+            --text-light: #f8f8f8;
+            --text-dark: #242426;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
+            background-color: var(--dark-gray);
+            color: var(--text-light);
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Stat Box Style */
+        .stat-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+        }
+        
+        /* Custom Accordion (Details/Summary) Styles */
+        details {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        details[open] {
+            box-shadow: 0 4px 20px rgba(255, 207, 51, 0.1);
+        }
+
+        summary {
+            display: block;
+            cursor: pointer;
+            padding: 1.5rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            list-style: none; /* Remove default marker */
+            position: relative;
+        }
+
+        summary:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Custom Accordion Marker */
+        summary::after {
+            content: '+';
+            font-family: monospace;
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--yellow);
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.2s ease;
+        }
+        
+        details[open] summary::after {
+            content: '−';
+            transform: translateY(-50%);
+        }
+
+        /* Accordion Content Area */
+        .details-content {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .details-content ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        /* Comparison Table Styles (from original) */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background-color: rgba(255, 255, 255, 0.02);
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+        .comparison-table th, .comparison-table td {
+            padding: 1.25rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .comparison-table th {
+            font-size: 1.125rem;
+            font-weight: 700;
+        }
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        .comparison-table td:nth-child(2) {
+            color: var(--yellow);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-[var(--dark-gray)] text-[var(--text-light)]">
+
+    <main class="max-w-5xl mx-auto p-8 md:p-12 space-y-16">
+
+        <section class="text-center border-b border-gray-700 pb-16">
+            <h1 class="font-black text-7xl md:text-9xl text-[var(--yellow)] uppercase">
+                ALL IN
+            </h1>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mt-2">
+                Strategic Partnership Executive Summary
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-300 mt-4">
+                NEXT.io × Stake 2026
+            </p>
+            <div class="mt-8 bg-[var(--dark-gray)] border border-gray-700 p-6 rounded-lg inline-block">
+                <p class="text-lg md:text-xl font-semibold">
+                    Building B2B & B2G Leadership in Regulated iGaming
+                </p>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="text-lg font-semibold text-[var(--yellow)] uppercase mb-4 tracking-wider">THE CHALLENGE</h3>
+                <p class="text-xl md:text-2xl font-semibold leading-snug">
+                    Establish unmatched credibility with regulators, operators, and industry leaders as the responsible, future-proof iGaming brand.
+                </p>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold text-[var(--yellow)] uppercase mb-4 tracking-wider">THE SOLUTION</h3>
+                <p class="text-xl md:text-2xl font-semibold leading-snug">
+                    A 12-month strategic partnership to deliver regulatory alignment, thought leadership, and direct access to decision-makers.
+                </p>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            <div class="stat-box">
+                <div class="text-3xl md:text-4xl font-extrabold text-[var(--yellow)]">4.5M+</div>
+                <div class="mt-2 text-sm md:text-base text-gray-300">Annual Site Visitors</div>
+            </div>
+            <div class="stat-box">
+                <div class="text-3xl md:text-4xl font-extrabold text-[var(--yellow)]">54%</div>
+                <div class="mt-2 text-sm md:text-base text-gray-300">C-Level Reach</div>
+            </div>
+            <div class="stat-box">
+                <div class="text-3xl md:text-4xl font-extrabold text-[var(--yellow)]">10,000+</div>
+                <div class="mt-2 text-sm md:text-base text-gray-300">Event Delegates</div>
+            </div>
+            <div class="stat-box">
+                <div class="text-3xl md:text-4xl font-extrabold text-[var(--yellow)]">#1</div>
+                <div class="mt-2 text-sm md:text-base text-gray-300">Industry Podcast</div>
+            </div>
+        </section>
+        
+        <section>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-10">
+                Why This Investment Matters
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gray-800 bg-opacity-40 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-3 text-[var(--yellow)]">Shape the Narrative</h3>
+                    <p class="text-gray-300">This isn't just media; it's year-round editorial counsel, direct B2G access, and integrity-led journalism to build regulatory trust.</p>
+                </div>
+                <div class="bg-gray-800 bg-opacity-40 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-3 text-[var(--yellow)]">Close High-Value Deals</h3>
+                    <p class="text-gray-300">Use our 54% C-level events and intimate retreats to build direct, high-value partnerships with decision-makers.</p>
+                </div>
+                <div class="bg-gray-800 bg-opacity-40 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-3 text-[var(--yellow)]">Own the Funnel</h3>
+                    <p class="text-gray-300">We provide a complete B2B engine, from 21M top-of-funnel impressions to 150+ high-intent, report-generated leads.</p>
+                </div>
+                <div class="bg-gray-800 bg-opacity-40 p-6 rounded-xl">
+                    <h3 class="text-2xl font-bold mb-3 text-[var(--yellow)]">Dominate New Markets</h3>
+                    <p class="text-gray-300">A turnkey platform to establish authority in key expansion zones, including Europe, North America, and LatAm.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-4">
+                Data-Driven Dominance
+            </h2>
+            <p class="text-xl text-gray-300 text-center mb-8">
+                Our organic traffic growth vs. competitors (Nov 2025)
+            </p>
+            
+            <div class="bg-gray-800 bg-opacity-40 p-4 md:p-6 rounded-xl mb-8 h-[400px]">
+                <canvas id="ahrefs-chart-canvas"></canvas>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Media Property</th>
+                            <th>6-Month Growth</th>
+                            <th>Traffic (Nov 2025)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-semibold text-white">NEXT.io</td>
+                            <td class="text-green-400 font-bold text-lg">+318.6%</td>
+                            <td>452,214</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-white">iGaming Business</td>
+                            <td class="text-red-400 font-bold text-lg">-30.7%</td>
+                            <td>21,132</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-white">Gambling Insider</td>
+                            <td class="text-red-400 font-bold text-lg">-24.3%</td>
+                            <td>14,540</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-white">SiGMA</td>
+                            <td class="text-red-400 font-bold text-lg">-7.8%</td>
+                            <td>65,356</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-white">SBC News</td>
+                            <td class="text-red-400 font-bold text-lg">-36.3%</td>
+                            <td>4,390</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-10">
+                The Four-Pillar Framework
+                <span class="block text-2xl text-gray-300 font-semibold mt-2">Click to expand deliverables</span>
+            </h2>
+            
+            <div class="space-y-4">
+                <details>
+                    <summary>Pillar 01: Build Unmatched Credibility (Editorial)</summary>
+                    <div class="details-content">
+                        <ul class="text-gray-300">
+                            <li><span class="font-bold text-white">Year-Round Editorial Alignment & Crisis Support:</span> Your direct line to trusted industry journalists.</li>
+                            <li><span class="font-bold text-white">PR Distribution:</span> Share your announcements with guaranteed coverage.</li>
+                            <li><span class="font-bold text-white">4x Co-Branded Deep Dive Reports:</span> Position Stake as the authority on key topics (2,500+ readers each).</li>
+                            <li><span class="font-bold text-white">12x Journalist Content Pieces:</span> Build a portfolio of independent, high-integrity coverage.</li>
+                            <li><span class="font-bold text-white">Responsible Gambling Week Leadership:</span> Own the narrative on the industry's most critical topic.</li>
+                        </ul>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>Pillar 02: Lead the C-Level Conversation (Podcast)</summary>
+                    <div class="details-content">
+                        <ul class="text-gray-300">
+                            <li><span class="font-bold text-white">4 episodes featuring Stake executives.</span></li>
+                            <li><span class="font-bold text-white">Approx. 52 episodes with permanent Stake branding</span> ("In partnership with Stake").</li>
+                            <li><span class="font-bold text-white">12-month headline sponsorship on a brand-new NEXT Weekly podcast.</span></li>
+                            <li class="mt-2"><span class="font-bold text-[var(--yellow)]">Key Metric:</span> 1.3M Video Views in 2025 (+97% Growth QoQ).</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Pillar 03: Achieve Market-Wide Visibility (Digital)</summary>
+                    <div class="details-content">
+                        <ul class="text-gray-300">
+                            <li><span class="font-bold text-white">12-month NEXT.io mega banner</span> (High CTR)</li>
+                            <li><span class="font-bold text-white">12-month NEXT.io pop-up banner</span> (2.34% CTR)</li>
+                            <li><span class="font-bold text-white">4 social campaigns</span> (Targeting 40k+ followers)</li>
+                            <li><span class="font-bold text-white">iGaming Digest headline sponsor</span> (7.2K C-Level subs)</li>
+                            <li><span class="font-bold text-white">4 co-branded special editions of iGaming Digest</span></li>
+                            <li><span class="font-bold text-white">9-12 month Brazil & LatAm mega banners</span></li>
+                        </ul>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>Pillar 04: Gain Regulatory & Peer Access (Events)</summary>
+                    <div class="details-content">
+                        <ul class="text-gray-300">
+                            <li><span class="font-bold text-white">NEXT Valletta Keynote Partnership</span> (May)</li>
+                            <li><span class="font-bold text-white">B2G (Business-to-Government) Networking Event Partner</span> (exclusive regulator access)</li>
+                            <li><span class="font-bold text-white">NEXT Focus: Affiliate & Zone Headline Partner</span></li>
+                            <li><span class="font-bold text-white">Premium 9x3m Exhibition Stand</span> (F1 car activation option)</li>
+                            <li><span class="font-bold text-white">NEXT Retreat Cyprus</span> (Oct 12-14)</li>
+                            <li><span class="font-bold text-white">NEXT Retreat LatAm</span> (Nov 17-19)</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <section class="text-center pt-16 border-t border-gray-700">
+            <h2 class="text-7xl md:text-9xl font-extrabold text-[var(--yellow)]">
+                €1.2M
+            </h2>
+            <p class="text-xl md:text-2xl font-semibold mt-4">
+                The complete 12-month strategic partnership.
+            </p>
+            
+            <div class="border border-gray-700 bg-gray-800 bg-opacity-20 p-8 rounded-xl mt-12 text-left">
+                <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center text-[var(--yellow)]">This is not a media buy. This is an investment in market leadership.</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="flex items-start space-x-3">
+                        <svg class="h-8 w-8 text-[var(--yellow)] shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.333 9-6.03 9-11.623 0-1.662-.36-3.26-.998-4.751A11.959 11.959 0 0112 2.714z" /></svg>
+                        <div>
+                            <h4 class="text-xl font-bold text-white">Secure Regulatory Trust</h4>
+                            <p class="text-gray-300">Direct B2G access and integrity-led journalism.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <svg class="h-8 w-8 text-[var(--yellow)] shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.5 4.5m0 0l4.5 4.5m-4.5-4.5l-4.5 4.5M12 3v18" /></svg>
+                        <div>
+                            <h4 class="text-xl font-bold text-white">Dominate the Conversation</h4>
+                            <p class="text-gray-300">Own the C-Level narrative with the #1 industry podcast.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <svg class="h-8 w-8 text-[var(--yellow)] shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h12A2.25 2.25 0 0020.25 14.25V3M3.75 3H1.5m3 13.5h.008v.008H3.75v-.008zM9.75 3.75h4.5v4.5h-4.5V3.75zM15 3.75h2.25m-2.25 4.5h2.25m-2.25 4.5h2.25M3.75 12h16.5M3.75 7.5h.008v.008H3.75V7.5z" /></svg>
+                        <div>
+                            <h4 class="text-xl font-bold text-white">Achieve Total Visibility</h4>
+                            <p class="text-gray-300">A complete B2B funnel, from 21M+ impressions to 150+ leads.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <svg class="h-8 w-8 text-[var(--yellow)] shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 003-3V6.75a3 3 0 00-3-3h-9a3 3 0 00-3 3v9a3 3 0 003 3h9zM16.5 18.75a3 3 0 01-3-3V6.75a3 3 0 013-3h.008v.008h-.008v12z" /></svg>
+                        <div>
+                            <h4 class="text-xl font-bold text-white">Build Unrivaled Credibility</h4>
+                            <p class="text-gray-300">Become the industry's trusted voice, validated by Tier-1 journalism.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center pt-16">
+            <h3 class="text-3xl md:text-4xl font-bold">
+                Let's build the future of regulated iGaming — together.
+            </h3>
+            <img src="https://i.postimg.cc/7Z5btmkg/Logo.png" alt="NEXT.io Logo" class="h-20 mx-auto mt-12 opacity-80"
+                 crossorigin="anonymous">
+        </footer>
+
+    </main>
+
+    <script>
+        // --- Ahrefs Chart Function (using Chart.js) ---
+        // This is copied from your original file to render the chart
+        function createAhrefsChart() {
+            const ctx = document.getElementById('ahrefs-chart-canvas');
+            if (!ctx) {
+                console.error("Chart canvas not found!");
+                return;
+            }
+
+            const data = {
+                labels: ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+                datasets: [
+                    {
+                        label: 'NEXT.io',
+                        data: [108032, 137517, 206067, 362949, 390449, 452214],
+                        borderColor: '#ffcf33', // Hard-coded yellow
+                        backgroundColor: '#ffcf33',
+                        borderWidth: 3,
+                        tension: 0.1,
+                        pointRadius: 2,
+                    },
+                    {
+                        label: 'iGaming Business',
+                        data: [30496, 28003, 24460, 29362, 19228, 21132],
+                        borderColor: '#34d399',
+                        backgroundColor: '#34d399',
+                        borderWidth: 2,
+                        tension: 0.1,
+                        pointRadius: 2,
+                    },
+                    {
+                        label: 'Gambling Insider',
+                        data: [19210, 24171, 21892, 19848, 15511, 14540],
+                        borderColor: '#fb923c',
+                        backgroundColor: '#fb923c',
+                        borderWidth: 2,
+                        tension: 0.1,
+                        pointRadius: 2,
+                    },
+                    {
+                        label: 'SiGMA',
+                        data: [70848, 113043, 141083, 101472, 81165, 66650], 
+                        borderColor: '#a78bfa',
+                        backgroundColor: '#a78bfa',
+                        borderWidth: 2,
+                        tension: 0.1,
+                        pointRadius: 2,
+                    },
+                    {
+                        label: 'SBC News',
+                        data: [6892, 7984, 8638, 5192, 3175, 4390],
+                        borderColor: '#60a5fa',
+                        backgroundColor: '#60a5fa',
+                        borderWidth: 2,
+                        tension: 0.1,
+                        pointRadius: 2,
+                    },
+                    {
+                        label: 'EGR (Combined)',
+                        data: [7378, 7878, 5848, 3972, 3018, 3274],
+                        borderColor: '#f87171',
+                        backgroundColor: '#f87171',
+                        borderWidth: 2,
+                        tension: 0.1,
+                        pointRadius: 2,
+                    }
+                ]
+            };
+
+            const chartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#bdbdbd',
+                            font: { family: "'Inter', sans-serif", size: 14 },
+                            padding: 20
+                        }
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: '#242426',
+                        titleColor: '#f8f8f8',
+                        bodyColor: '#f8f8f8',
+                        borderColor: '#ffcf33', 
+                        borderWidth: 1,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) { label += ': '; }
+                                if (context.parsed.y !== null) {
+                                    label += new Intl.NumberFormat().format(context.parsed.y);
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: { color: '#bdbdbd', font: { family: "'Inter', sans-serif" } },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    },
+                    y: { 
+                        ticks: {
+                            color: '#bdbdbd',
+                            font: { family: "'Inter', sans-serif" },
+                            callback: function(value, index, values) {
+                                if (value >= 1000) { return (value / 1000).toFixed(0) + 'k'; }
+                                return value;
+                            }
+                        },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    }
+                }
+            };
+
+            new Chart(ctx, {
+                type: 'line',
+                data: data,
+                options: chartOptions
+            });
+        }
+
+        // Wait for the DOM to be fully loaded before initializing the chart
+        document.addEventListener('DOMContentLoaded', createAhrefsChart);
+    </script>
+</body>
+</html>
