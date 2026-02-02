@@ -192,7 +192,7 @@
             transform: scale(1.02);
         }
 
-        /* Investment Row Highlight (Clean, no neon glow) */
+        /* Investment Row Highlight */
         .investment-row {
             position: relative;
             z-index: 10;
@@ -208,6 +208,24 @@
             border-right: 6px solid white;
             border-top-right-radius: 0.5rem;
             border-bottom-right-radius: 0.5rem;
+        }
+
+        /* New Sections Styles */
+        .touchpoint-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 207, 51, 0.1);
+            border: 1px solid var(--yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .touchpoint-icon svg {
+            width: 30px;
+            height: 30px;
+            color: var(--yellow);
         }
 
         @media (max-width: 768px) {
@@ -237,11 +255,8 @@
 
         <!-- HEADER -->
         <header class="text-center mb-20 relative">
-            
-            <!-- LOGOS -->
             <div class="flex justify-center items-center gap-8 mb-12 opacity-90">
-               <!-- Combined Logo -->
-               <img src="https://i.postimg.cc/7Z5btmkg/Logo.png" alt="NEXT.io & Stake" class="h-16 md:h-20 w-auto object-contain">
+               <img src="https://i.postimg.cc/7Z5btmkg/Logo.png" alt="NEXT.io & Stake" class="h-16 md:h-24 w-auto object-contain">
             </div>
 
             <div class="inline-block px-3 py-1 mb-6 border border-yellow-500/30 rounded-full bg-yellow-500/10">
@@ -260,13 +275,13 @@
             <div class="space-y-6">
                 <h3 class="text-2xl font-bold text-white border-l-4 border-[var(--yellow)] pl-4">The Challenge</h3>
                 <p class="text-lg text-gray-400 leading-relaxed">
-                    You need to attract top-tier <strong>Game Studios</strong> to the platform, but you won't have a team on the ground in Valletta to man a booth. You need high visibility and a compelling "Studio-First" narrative without the operational logistics of a physical stand.
+                    You need to attract top-tier <strong>Game Studios</strong> to the platform, but you won't have a team on the ground in Valletta. You need high visibility and a compelling "Studio-First" narrative without the operational logistics of a physical booth.
                 </p>
             </div>
             <div class="space-y-6">
                 <h3 class="text-2xl font-bold text-white border-l-4 border-[var(--yellow)] pl-4">The Solution</h3>
                 <p class="text-lg text-gray-400 leading-relaxed">
-                    <strong>The "Automated Presence" Campaign.</strong> We replace the physical booth with <strong>Unmanned, High-Impact Branding</strong> (Outside Zone & Video Screens) and a flexible <strong>Always-On Media Strategy</strong> to drive studios to you year-round.
+                    <strong>The "Connected Journey" Campaign.</strong> We replace the physical stand with a sequence of <strong>Connected Branding Touchpoints</strong> that guide every attendee from entry to exit, reinforced by a massive <strong>3-Month Media Injection</strong>.
                 </p>
             </div>
         </section>
@@ -291,100 +306,97 @@
             </div>
         </section>
 
-        <!-- THE CAMPAIGN TIMELINE (Vertical Layout) -->
+        <!-- NEW SECTION: THE CONNECTED TOUCHPOINTS -->
         <section class="mb-24">
-            <h2 class="text-3xl font-bold text-white mb-10 text-center">The "Studio Acquisition" Timeline</h2>
-            <div class="space-y-6"> 
-                
-                <!-- PHASE 1 -->
-                <div class="stat-card timeline-card p-0 overflow-hidden">
-                    <div class="timeline-number">01</div>
-                    <div class="timeline-content">
-                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                            <h3 class="text-[var(--yellow)] font-bold uppercase tracking-widest text-lg">May (The Event)</h3>
-                            <span class="text-white font-bold bg-white/10 px-3 py-1 rounded text-sm mt-2 md:mt-0 inline-block w-fit">Automated Dominance</span>
-                        </div>
-                        <ul class="check-list text-gray-300">
-                            <li>
-                                <span class="text-[var(--yellow)] mr-3 text-xl">✓</span> 
-                                <div>
-                                    <strong class="text-white text-lg">Outside Entertainment Zone (100sqm)</strong>
-                                    <p class="text-gray-400 mt-1">
-                                        A premium, modulable outdoor area (€50k value). It is the perfect networking hub for Game Studios. We brand the entire space (deck chairs, umbrellas, bar area). <strong>No booth staff required.</strong>
-                                        <br><em class="text-gray-500 text-xs">Concept idea: "Matcha & Chill"</em>
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <span class="text-[var(--yellow)] mr-3 text-xl">✓</span> 
-                                <div>
-                                    <strong class="text-white text-lg">"Good Bye Bags" Sponsorship</strong>
-                                    <p class="text-gray-400 mt-1">The final impression. Every attendee leaves with your brand in hand. High retention, physical branding.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <span class="text-[var(--yellow)] mr-3 text-xl">✓</span> 
-                                <div>
-                                    <strong class="text-white text-lg">Venue Video Ad Campaign</strong>
-                                    <p class="text-gray-400 mt-1">High-visibility video advertisement playing on Main Stage screens and digital signage throughout the venue.</p>
-                                </div>
-                            </li>
-                        </ul>
+            <h2 class="text-3xl font-bold text-white mb-10 text-center">The Connected Journey</h2>
+            <p class="text-center text-gray-400 max-w-2xl mx-auto mb-16">
+                Even without a booth, Stake Engine will be unavoidable. We have designed a <strong>3-step physical journey</strong> that ensures every Game Studio attendee interacts with your brand.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Touchpoint 1 -->
+                <div class="stat-card relative group">
+                    <div class="touchpoint-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
                     </div>
-                </div>
-                
-                <!-- PHASE 2 -->
-                <div class="stat-card timeline-card p-0 overflow-hidden">
-                    <div class="timeline-number">02</div>
-                    <div class="timeline-content">
-                         <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                            <h3 class="text-[var(--yellow)] font-bold uppercase tracking-widest text-lg">June (The Content)</h3>
-                            <span class="text-white font-bold bg-white/10 px-3 py-1 rounded text-sm mt-2 md:mt-0 inline-block w-fit">Studio Success Stories</span>
-                        </div>
-                        <ul class="check-list text-gray-300">
-                            <li>
-                                <span class="text-[var(--yellow)] mr-3 text-xl">✓</span> 
-                                <div>
-                                    <strong class="text-white text-lg">Spotlight Series (4 Episodes)</strong>
-                                    <p class="text-gray-400 mt-1">Dedicated series: 1x Stake Engine Deep Dive + 3x Features on your participating studios. Perfect for attracting more partners.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <span class="text-[var(--yellow)] mr-3 text-xl">✓</span> 
-                                <div>
-                                    <strong class="text-white text-lg">Promoted Article Bundle (3x Articles)</strong>
-                                    <p class="text-gray-400 mt-1">Strategic narratives ("The Death of the Aggregator"). Includes <strong>full social media promotion</strong> across LinkedIn.</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">1. The Entry: Outside Zone</h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        <strong>"Matcha & Chill" Arcade Concept.</strong><br>
+                        Visible to everyone entering the venue. A 100sqm branded outdoor hub. Imagine branded deckchairs, umbrellas, and arcade cabinets showcasing the "Build. Launch. Earn." message. It's a natural networking magnet for developers.
+                    </p>
                 </div>
 
-                <!-- PHASE 3 -->
-                <div class="stat-card timeline-card p-0 overflow-hidden">
-                    <div class="timeline-number">03</div>
-                    <div class="timeline-content">
-                         <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                            <h3 class="text-[var(--yellow)] font-bold uppercase tracking-widest text-lg">Q3 & Beyond (Flexible)</h3>
-                            <span class="text-white font-bold bg-white/10 px-3 py-1 rounded text-sm mt-2 md:mt-0 inline-block w-fit">Flexible Site Takeover</span>
-                        </div>
-                        <ul class="check-list text-gray-300">
-                            <li>
-                                <span class="text-[var(--yellow)] mr-3 text-xl">✓</span> 
-                                <div>
-                                    <strong class="text-white text-lg">Pop-Up Banner Domination (Flexible Duration)</strong>
-                                    <p class="text-gray-400 mt-1">Owning the NEXT.io website traffic. You can choose to run these consecutively (June-Aug) or pulse them (e.g., June, Sept, Nov).</p>
-                                </div>
-                            </li>
-                            <li>
-                                <span class="text-[var(--yellow)] mr-3 text-xl">✓</span> 
-                                <div>
-                                    <strong class="text-white text-lg">iGaming Digest Sponsorship (Flexible Duration)</strong>
-                                    <p class="text-gray-400 mt-1">Daily branding in the inbox of <strong>7,000+ Founders & C-Levels</strong>. Extend this to 6+ months to stay top-of-mind all year.</p>
-                                </div>
-                            </li>
-                        </ul>
+                <!-- Touchpoint 2 -->
+                <div class="stat-card relative group">
+                    <div class="touchpoint-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" /></svg>
                     </div>
+                    <h3 class="text-xl font-bold text-white mb-2">2. The Experience: Video Ad</h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        <strong>Main Stage Domination.</strong><br>
+                        While they are inside, your high-impact video ad plays on the Main Stage screens and digital signage network. It reinforces the message they saw outside: "Stake Engine is the infrastructure for your next game."
+                    </p>
+                </div>
+
+                <!-- Touchpoint 3 -->
+                <div class="stat-card relative group">
+                    <div class="touchpoint-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">3. The Exit: Good Bye Bags</h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        <strong>Physical Takeaway.</strong><br>
+                        As every attendee leaves, they receive a "Good Bye Bag" branded by Stake Engine. It ensures you are the last brand they see and the one they physically take home. 100% retention.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW SECTION: MEDIA IMPACT & ROI -->
+        <section class="mb-24">
+            <h2 class="text-3xl font-bold text-white mb-10 text-center">Media Impact & ROI</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-[#1a1a1a] p-8 rounded-xl border border-[var(--border-color)]">
+                    <h3 class="text-xl font-bold text-[var(--yellow)] mb-4">Digital Dominance</h3>
+                    <ul class="space-y-4">
+                        <li class="flex justify-between border-b border-gray-800 pb-2">
+                            <span class="text-gray-400">Website Traffic (Annual)</span>
+                            <span class="text-white font-bold">1.7 Million+</span>
+                        </li>
+                        <li class="flex justify-between border-b border-gray-800 pb-2">
+                            <span class="text-gray-400">Pop-Up CTR (Avg)</span>
+                            <span class="text-white font-bold">2.23% (High Impact)</span>
+                        </li>
+                        <li class="flex justify-between border-b border-gray-800 pb-2">
+                            <span class="text-gray-400">Newsletter Reach</span>
+                            <span class="text-white font-bold">7,000+ Founders/C-Levels</span>
+                        </li>
+                        <li class="flex justify-between pt-2">
+                            <span class="text-gray-400">Open Rate</span>
+                            <span class="text-white font-bold">~31.5%</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-[#1a1a1a] p-8 rounded-xl border border-[var(--border-color)]">
+                    <h3 class="text-xl font-bold text-[var(--yellow)] mb-4">Content Authority</h3>
+                    <ul class="space-y-4">
+                        <li class="flex justify-between border-b border-gray-800 pb-2">
+                            <span class="text-gray-400">Podcast Ranking</span>
+                            <span class="text-white font-bold">#1 Industry Podcast</span>
+                        </li>
+                        <li class="flex justify-between border-b border-gray-800 pb-2">
+                            <span class="text-gray-400">Spotlight View Growth</span>
+                            <span class="text-white font-bold">12x YoY (2025)</span>
+                        </li>
+                        <li class="flex justify-between border-b border-gray-800 pb-2">
+                            <span class="text-gray-400">LinkedIn Followers</span>
+                            <span class="text-white font-bold">31,000+</span>
+                        </li>
+                        <li class="flex justify-between pt-2">
+                            <span class="text-gray-400">Top Geo-Location</span>
+                            <span class="text-white font-bold">USA (270k+ Views)</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>
