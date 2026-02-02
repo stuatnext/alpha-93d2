@@ -180,6 +180,39 @@
             min-width: 80px;
             text-align: right;
         }
+        
+        .price-sticker {
+            background: var(--yellow);
+            color: black;
+            /* Changed to a clean drop shadow instead of harsh glow */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            transform: scale(1);
+            transition: transform 0.2s;
+        }
+        .price-sticker:hover {
+            transform: scale(1.02);
+        }
+
+        /* NEW: Investment Row Highlight (Clean, no neon glow) */
+        .investment-row {
+            position: relative;
+            z-index: 10;
+            /* Deep drop shadow for "lift" without the fuzzy colored glow */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+            transform: scale(1.02);
+        }
+        .investment-row td:first-child {
+            /* Crisp white border accent on left */
+            border-left: 6px solid white;
+            border-top-left-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem;
+        }
+        .investment-row td:last-child {
+            /* Crisp white border accent on right */
+            border-right: 6px solid white;
+            border-top-right-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+        }
 
         @media (max-width: 768px) {
             .timeline-card { flex-direction: column; }
@@ -403,10 +436,10 @@
                         <tr>
                             <td>
                                 <strong class="text-white text-base">Spotlight Video Series</strong>
-                                <br><span class="text-gray-500">1x On-Site, 2x Digital</span>
+                                <br><span class="text-gray-500">1x On-Site, 1x Digital</span>
                             </td>
                             <td class="text-gray-400">
-                                <strong>Visual Demos.</strong> High-energy launch video + 2 product demos. This format saw <strong>12x YoY view growth</strong> in 2025.
+                                <strong>Visual Demos.</strong> High-energy launch video + 1 product demo. This format saw <strong>12x YoY view growth</strong> in 2025.
                             </td>
                             <td class="text-right font-mono text-gray-300">€16,000</td>
                         </tr>
@@ -444,7 +477,7 @@
                             <td colspan="2" class="text-right font-bold text-gray-400 uppercase tracking-widest pt-4">Total Rate Card Value</td>
                             <td class="text-right font-black text-xl text-white pt-4 strike">€150,000</td>
                         </tr>
-                        <tr class="bg-[var(--yellow)]">
+                        <tr class="bg-[var(--yellow)] investment-row">
                             <td colspan="2" class="text-right font-black text-black uppercase tracking-widest pt-4 pb-4">Launch Partner Investment</td>
                             <td class="text-right font-black text-2xl text-black pt-4 pb-4">€100,000</td>
                         </tr>
@@ -473,9 +506,11 @@
                         <div class="text-sm uppercase tracking-widest mb-1">Total Rate Card Value</div>
                         <div id="total-rate-card" class="text-2xl font-mono strike">€150,000</div>
                     </div>
-                    <div>
-                        <div class="text-sm uppercase tracking-widest mb-1 text-[var(--yellow)] font-bold">Your Partner Price (33% Off)</div>
-                        <div id="total-partner-price" class="text-4xl md:text-5xl font-black text-white">€100,000</div>
+                    
+                    <!-- HIGH IMPACT PRICE DISPLAY -->
+                    <div class="price-sticker px-8 py-4 rounded-xl flex flex-col items-center md:items-end transform transition-transform hover:scale-105">
+                        <div class="text-xs uppercase tracking-widest font-bold opacity-80 mb-1">Your Partner Price (33% Off)</div>
+                        <div id="total-partner-price" class="text-5xl md:text-6xl font-black leading-none">€100,000</div>
                     </div>
                 </div>
             </div>
@@ -506,25 +541,50 @@
             { name: "Entertainment Zone", price: 40000, type: 'binary', active: true },
             { name: "Exhibition Stand (6x3m)", price: 15000, type: 'binary', active: true },
             
+            // Re-ordered Add-ons (Crypto & Wifi)
+            { name: "ADD-ON: Crypto Focus Headline", price: 40000, type: 'binary', active: false },
+            { name: "ADD-ON: Wi-Fi Sponsorship", price: 18000, type: 'binary', active: false },
+
             // Core Media (Scalable)
             { name: "Podcast Participation (Ep)", price: 12000, type: 'quantity', qty: 1 },
             { name: "On-Site Spotlight Video", price: 10000, type: 'quantity', qty: 1 },
-            { name: "Digital Spotlight Video", price: 6000, type: 'quantity', qty: 2 },
-            { name: "Promoted Article", price: 1800, type: 'quantity', qty: 3 },
+            { name: "Digital Spotlight Video", price: 6000, type: 'quantity', qty: 1 },
+            // UPDATED: Promoted Article with specific ID for bundle logic
+            { name: "Promoted Article (+Backlink)", id: "articles", price: 1800, type: 'quantity', qty: 3 },
             { name: "Pop-Up Banner (Month)", price: 8000, type: 'quantity', qty: 2 },
             { name: "iGaming Digest (Month)", price: 3000, type: 'quantity', qty: 2 },
             
-            // Add-ons
-            { name: "Crypto Focus Headline", price: 40000, type: 'binary', active: false },
-            { name: "Wi-Fi Sponsorship", price: 18000, type: 'binary', active: false },
-            { name: "Mega Banner (Month)", price: 8000, type: 'quantity', qty: 0 },
-            { name: "MPU Banner (Month)", price: 2000, type: 'quantity', qty: 0 }
+            // Banner Add-ons
+            { name: "ADD-ON: Mega Banner (Month) <span class='text-xs text-[var(--yellow)] ml-2'>0.47% CTR</span>", price: 8000, type: 'quantity', qty: 0 },
+            { name: "ADD-ON: Middle Leaderboard (Month) <span class='text-xs text-[var(--yellow)] ml-2'>0.16% CTR</span>", price: 2500, type: 'quantity', qty: 0 }
         ];
 
         const container = document.getElementById('calc-items');
         const totalRateEl = document.getElementById('total-rate-card');
         const totalPartnerEl = document.getElementById('total-partner-price');
         const discountRate = 0.666666; // 33.33% off
+
+        // Helper to get total price for a line item
+        function getLinePrice(item) {
+            if (item.type === 'binary') {
+                return item.active ? item.price : 0;
+            }
+            if (item.type === 'quantity') {
+                // Special Tiered Logic for Articles
+                if (item.id === 'articles') {
+                    const qty = item.qty;
+                    if (qty === 0) return 0;
+                    if (qty === 1) return 1800;
+                    if (qty === 2) return 3600; // 2 * 1800
+                    if (qty === 3) return 5000; // Bundle Deal
+                    if (qty === 4) return 6800; // 5000 + 1800
+                    if (qty === 5) return 8600; // 5000 + 3600
+                    if (qty >= 6) return 7500 + ((qty - 6) * 1250); // Bundle Deal (7500) + cheap extras
+                }
+                return item.price * item.qty;
+            }
+            return 0;
+        }
 
         function renderCalculator() {
             container.innerHTML = '';
@@ -554,14 +614,11 @@
                     `;
                 }
 
-                // Calculate line price
-                let linePrice = 0;
-                if (item.type === 'binary' && item.active) linePrice = item.price;
-                if (item.type === 'quantity') linePrice = item.price * item.qty;
+                const currentLinePrice = getLinePrice(item);
 
                 div.innerHTML = `
                     ${controlHTML}
-                    <div class="font-mono text-gray-300 item-price">€${item.price.toLocaleString()}</div>
+                    <div class="font-mono text-gray-300 item-price">€${currentLinePrice.toLocaleString()}</div>
                 `;
                 container.appendChild(div);
             });
@@ -589,11 +646,7 @@
         function calculateTotals() {
             let total = 0;
             items.forEach(item => {
-                if (item.type === 'binary' && item.active) {
-                    total += item.price;
-                } else if (item.type === 'quantity') {
-                    total += item.price * item.qty;
-                }
+                total += getLinePrice(item);
             });
 
             // Calculate partner price
