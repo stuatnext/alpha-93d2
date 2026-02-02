@@ -1,1 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXT.io × Malta Tourism Authority | Official Destination Partner</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        /* BRAND PALETTE: NYC Steel x Malta Stone */
+        :root {
+            --malta-red: #CE1126; 
+            --nyc-slate: #0f172a;
+            --nyc-steel: #94a3b8;
+            --limestone: #f8f8f8;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+        }
 
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--limestone);
+            color: var(--nyc-slate);
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* NYC Grid Background - Subtle */
+        .city-grid {
+            background-image: 
+                linear-gradient(var(--border-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+            background-size: 60px 60px;
+            background-position: center top;
+        }
+
+        /* Cards */
+        .proposal-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        
+        .proposal-card:hover {
+            border-color: var(--malta-red);
+            box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.1);
+        }
+
+        /* Typography Utilities */
+        .text-malta { color: var(--malta-red); }
+        .bg-malta { background-color: var(--malta-red); }
+        
+        /* Calculator Styles */
+        .calc-container {
+            background: white;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05);
+        }
+
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem;
+            border-bottom: 1px solid #f1f5f9;
+            transition: background 0.2s;
+        }
+        .calc-row:hover { background: #f8fafc; }
+        
+        /* Custom Checkbox */
+        .calc-checkbox {
+            appearance: none;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #cbd5e1;
+            margin-right: 1rem;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 2px;
+        }
+        .calc-checkbox:checked {
+            background-color: var(--nyc-slate);
+            border-color: var(--nyc-slate);
+        }
+        .calc-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            color: white;
+            font-size: 0.8rem;
+            left: 2px;
+            top: -1px;
+        }
+
+        /* Recommended Package Box */
+        .rec-box {
+            background: white;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+        }
+        .rec-header {
+            background: var(--nyc-slate);
+            color: white;
+            padding: 1.5rem;
+        }
+        .rec-item {
+            border-bottom: 1px dashed var(--border-color);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .rec-item:last-child { border-bottom: none; }
+        
+        .rec-total {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-top: 2px solid var(--nyc-slate);
+        }
+
+        /* Audience Data - Cleaned up */
+        .audience-stat {
+            text-align: center;
+            padding: 1rem;
+            border-right: 1px solid var(--border-color);
+        }
+        .audience-stat:last-child { border-right: none; }
+
+        /* Heritage Badge */
+        .heritage-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(206, 17, 38, 0.1);
+            border: 1px solid rgba(206, 17, 38, 0.2);
+            border-radius: 99px;
+            color: var(--malta-red);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-red-100 selection:text-red-900 city-grid">
+
+    <main class="max-w-6xl mx-auto px-6 py-16 md:py-24">
+
+        <!-- HEADER (Logos Included) -->
+        <header class="text-center mb-24 max-w-5xl mx-auto">
+            
+            <div class="heritage-badge mb-8">
+                <span>🇲🇹</span> From St. Julian's to New York
+            </div>
+
+            <!-- PARTNERSHIP TITLE -->
+            <div class="mb-12 border-b border-gray-200 pb-12">
+                <h2 class="text-3xl md:text-5xl font-serif text-slate-900 leading-tight">
+                    NEXT Summit: New York <span class="text-malta font-light">×</span> Malta Tourism Authority
+                </h2>
+            </div>
+
+            <h1 class="text-5xl md:text-8xl font-serif text-slate-900 leading-none mb-6">
+                The Official <br>
+                <span class="text-malta">Destination Partner.</span>
+            </h1>
+            
+            <p class="text-xl text-slate-500 max-w-2xl mx-auto font-light leading-relaxed mb-12">
+                NEXT.io is proudly Malta-based. We don't just want a client; we want to <strong>champion our home</strong> in the world's capital. 
+            </p>
+
+            <!-- AUDIENCE STATS -->
+            <div class="grid grid-cols-2 md:grid-cols-4 border-t border-b border-gray-200 bg-white/50 backdrop-blur-sm">
+                <div class="audience-stat">
+                    <div class="text-3xl font-bold text-slate-900">1,600</div>
+                    <div class="text-xs uppercase tracking-widest text-slate-500 mt-1">Attendees</div>
+                </div>
+                <div class="audience-stat">
+                    <div class="text-3xl font-bold text-slate-900">71%</div>
+                    <div class="text-xs uppercase tracking-widest text-slate-500 mt-1">C-Level / Director</div>
+                </div>
+                <div class="audience-stat">
+                    <div class="text-3xl font-bold text-slate-900">Top Tier</div>
+                    <div class="text-xs uppercase tracking-widest text-slate-500 mt-1">High Net Worth</div>
+                </div>
+                <div class="audience-stat">
+                    <div class="text-3xl font-bold text-malta">100%</div>
+                    <div class="text-xs uppercase tracking-widest text-slate-500 mt-1">Relevant</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- STRATEGY SECTION -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-24 items-center">
+            <div>
+                <h3 class="text-3xl font-serif text-slate-900 mb-6">The "Power Broker" Strategy</h3>
+                <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+                    A standard exhibition stand puts Malta in competition with suppliers. That is the wrong tier. Malta is a destination, a regulator, and a hub.
+                </p>
+                <p class="text-lg text-slate-600 leading-relaxed border-l-4 border-malta pl-6">
+                    Our strategy is to <strong>Host the Leaders</strong>. By branding the physical environment where C-Levels sit, meet, and relax, we subtly reinforce Malta as the foundation of their business.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-6">
+               <div class="proposal-card">
+                   <h4 class="font-bold text-slate-900 mb-2">1. The Physical Seat of Power</h4>
+                   <p class="text-sm text-slate-500">By owning the <strong>Leadership Stage Chairs</strong>, you ensure every VIP sits "with Malta" during the most important sessions.</p>
+               </div>
+               <div class="proposal-card border-l-4 border-malta">
+                   <h4 class="font-bold text-slate-900 mb-2">2. The Moving Billboard</h4>
+                   <p class="text-sm text-slate-500">
+                       We aren't just running; we are parading. The <strong>Nico Jansen Run Club</strong> will carry the <strong>MTA Flag</strong> through Hudson River Park—a moving billboard seen by New Yorkers and attendees alike.
+                   </p>
+               </div>
+               <div class="proposal-card">
+                   <h4 class="font-bold text-slate-900 mb-2">3. Unavoidable Visibility</h4>
+                   <p class="text-sm text-slate-500">From the <strong>Event Guide</strong> in their pocket to the <strong>Restrooms</strong> and <strong>Main Stage Screens</strong>, the brand is omnipresent.</p>
+               </div>
+            </div>
+        </section>
+
+        <!-- RECOMMENDED PACKAGE (Itemized) -->
+        <section class="max-w-3xl mx-auto mb-24">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-serif text-slate-900">Recommended Investment</h2>
+                <p class="text-slate-500">A comprehensive dominance package designed for MTA.</p>
+            </div>
+
+            <div class="rec-box overflow-hidden rounded-lg">
+                <div class="rec-header flex justify-between items-center">
+                    <span class="font-bold uppercase tracking-widest text-sm">Itemized Breakdown</span>
+                    <span class="text-white/80 text-sm">March 2026</span>
+                </div>
+                
+                <div class="rec-item">
+                    <div>
+                        <div class="font-bold text-slate-900">Leadership Stage Chair Sponsorship</div>
+                        <div class="text-xs text-slate-500">High-visibility branding on all chairs in Main Hall</div>
+                    </div>
+                    <div class="font-mono text-slate-700">€25,000</div>
+                </div>
+
+                <div class="rec-item">
+                    <div>
+                        <div class="font-bold text-slate-900">Nico Jansen Run Club</div>
+                        <div class="text-xs text-slate-500">Carrying the Flag through NYC</div>
+                    </div>
+                    <div class="font-mono text-slate-700">€12,000</div>
+                </div>
+
+                <div class="rec-item">
+                    <div>
+                        <div class="font-bold text-slate-900">Event Guide Sponsorship</div>
+                        <div class="text-xs text-slate-500">Physical/Digital Guide Branding</div>
+                    </div>
+                    <div class="font-mono text-slate-700">€8,000</div>
+                </div>
+
+                <div class="rec-item">
+                    <div>
+                        <div class="font-bold text-slate-900">Restroom Sponsorship</div>
+                        <div class="text-xs text-slate-500">High-frequency visibility throughout venue</div>
+                    </div>
+                    <div class="font-mono text-slate-700">€7,500</div>
+                </div>
+
+                <div class="rec-item">
+                    <div>
+                        <div class="font-bold text-slate-900">Advertisement Video</div>
+                        <div class="text-xs text-slate-500">30-sec spot on Main Stage screens</div>
+                    </div>
+                    <div class="font-mono text-slate-700">€7,000</div>
+                </div>
+
+                <div class="rec-total flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div class="text-center md:text-left">
+                        <div class="text-xs uppercase tracking-widest text-slate-400 font-bold">Total Rate Card Value</div>
+                        <div class="text-lg font-mono text-slate-400 line-through decoration-red-500">€59,500</div>
+                    </div>
+                    <div class="text-center md:text-right">
+                        <div class="text-xs uppercase tracking-widest text-malta font-bold mb-1">Partner Price (You Save €9,500)</div>
+                        <div class="text-5xl font-serif text-slate-900">€50,000</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CALCULATOR -->
+        <section class="max-w-4xl mx-auto mb-24">
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-serif text-slate-900">Customize Your Package</h3>
+                <p class="text-sm text-slate-500">Add or remove items to adjust your investment level.</p>
+            </div>
+            
+            <div class="calc-container rounded-lg overflow-hidden">
+                <!-- Header -->
+                <div class="bg-slate-50 border-b border-gray-200 p-4 grid grid-cols-12 gap-4 text-xs font-bold text-slate-500 uppercase tracking-widest">
+                    <div class="col-span-8 md:col-span-7">Product</div>
+                    <div class="hidden md:block md:col-span-3">Category</div>
+                    <div class="col-span-4 md:col-span-2 text-right">Cost</div>
+                </div>
+
+                <div id="calc-items">
+                    <!-- JS Injected Items -->
+                </div>
+
+                <!-- Footer Summary -->
+                <div class="bg-white p-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div class="text-xs text-slate-400 text-center md:text-left">
+                        *All prices subject to final inventory availability.
+                    </div>
+                    <div class="flex items-center gap-8">
+                        <div class="text-right hidden md:block">
+                             <p class="text-xs text-slate-400 uppercase tracking-widest mb-1">List Price</p>
+                             <p id="total-list-price" class="text-lg font-bold text-slate-400 line-through">€59,500</p>
+                        </div>
+                        <div class="text-right hidden md:block">
+                             <p class="text-xs text-malta uppercase tracking-widest mb-1">Your Savings</p>
+                             <p id="total-savings" class="text-lg font-bold text-malta">-€9,500</p>
+                        </div>
+                        <div class="text-right p-4 bg-slate-50 rounded-lg border border-slate-100">
+                             <p class="text-xs text-slate-900 uppercase tracking-widest mb-1 font-bold">Partner Total</p>
+                             <p id="total-partner-price" class="text-3xl font-serif text-slate-900">€50,000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center pt-12 border-t border-gray-200 opacity-60">
+            <p class="text-sm text-slate-500 mb-2 font-serif italic">New York City / March 10-11, 2026</p>
+            <p class="text-xs text-slate-400">NEXT.io Confidential</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // Inventory
+        const inventory = [
+            // CORE "HOST" ITEMS
+            { 
+                name: "Leadership Stage Chairs", 
+                desc: "Every leader sits with Malta. High visibility.",
+                price: 25000, 
+                type: 'binary', 
+                active: true,
+                category: "Dominance"
+            },
+            { 
+                name: "Nico Jansen Run Club", 
+                desc: "Carrying the MTA Flag through NYC.",
+                price: 12000, 
+                type: 'binary', 
+                active: true,
+                category: "Lifestyle"
+            },
+            { 
+                name: "Event Guide Sponsorship", 
+                desc: "Physical/Digital guide branding.",
+                price: 8000, 
+                type: 'binary', 
+                active: true,
+                category: "Utility"
+            },
+            { 
+                name: "Restroom Sponsorship", 
+                desc: "High-frequency visibility throughout venue.",
+                price: 7500, 
+                type: 'binary', 
+                active: true,
+                category: "Visibility"
+            },
+            { 
+                name: "Advertisement Video", 
+                desc: "30-sec spot on Main Stage screens.",
+                price: 7000, 
+                type: 'binary', 
+                active: true,
+                category: "Awareness"
+            },
+            
+            // OPTIONAL ADD-ONS
+             { 
+                name: "Day 2 Networking Reception", 
+                desc: "Non-Exclusive sponsorship of drinks.",
+                price: 17000, 
+                type: 'binary', 
+                active: false,
+                category: "Networking"
+            },
+            { 
+                name: "Investment Hub Headline", 
+                desc: "Title sponsor of the Investment track.",
+                price: 17500, 
+                type: 'binary', 
+                active: false,
+                category: "Business"
+            },
+            { 
+                name: "Investment Hub Chairs", 
+                desc: "Branding on chairs in Investment Hub.",
+                price: 7000, 
+                type: 'binary', 
+                active: false,
+                category: "Visibility"
+            },
+            { 
+                name: "VIP Speaker Lounge", 
+                desc: "Exclusive branding of VIP area.",
+                price: 30000, 
+                type: 'binary', 
+                active: false,
+                category: "Hospitality"
+            }
+        ];
+
+        const container = document.getElementById('calc-items');
+        const totalPartnerEl = document.getElementById('total-partner-price');
+        const totalListEl = document.getElementById('total-list-price');
+        const totalSavingsEl = document.getElementById('total-savings');
+        
+        function renderCalculator() {
+            container.innerHTML = '';
+            inventory.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'calc-row';
+                
+                // Style based on active state
+                const activeClass = item.active ? 'text-slate-900 font-bold' : 'text-slate-500';
+                // Highlight Core Items
+                const coreBadge = item.active && index < 5 ? '<span class="ml-2 px-1.5 py-0.5 bg-slate-100 text-slate-500 text-[10px] uppercase rounded">Recommended</span>' : '';
+                
+                div.innerHTML = `
+                    <div class="col-span-8 md:col-span-7 flex items-center">
+                        <label class="flex items-center w-full">
+                            <input type="checkbox" class="calc-checkbox" data-index="${index}" ${item.active ? 'checked' : ''}>
+                            <div>
+                                <div class="${activeClass} text-sm md:text-base font-serif flex items-center">${item.name} ${coreBadge}</div>
+                                <div class="text-xs text-gray-400 mt-0.5">${item.desc}</div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="hidden md:block md:col-span-3">
+                        <span class="inline-block px-2 py-1 bg-slate-100 text-slate-500 text-[10px] uppercase tracking-wider font-bold">${item.category}</span>
+                    </div>
+                    <div class="col-span-4 md:col-span-2 text-right">
+                        <div class="font-mono text-sm text-slate-700">€${item.price.toLocaleString()}</div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+            
+            // Re-bind listeners
+            document.querySelectorAll('.calc-checkbox').forEach(cb => {
+                cb.addEventListener('change', (e) => {
+                    const idx = e.target.getAttribute('data-index');
+                    inventory[idx].active = e.target.checked;
+                    updateTotals();
+                });
+            });
+            
+            updateTotals();
+        }
+
+        function updateTotals() {
+            let total = 0;
+            inventory.forEach(item => {
+                if (item.active) total += item.price;
+            });
+
+            // LOGIC: Apply a ~16% discount to calculate the "Partner Price" dynamically
+            // But round it to look like a clean number
+            let discountFactor = 0.84; 
+            let partnerPrice = Math.floor((total * discountFactor) / 1000) * 1000;
+            
+            // Hardcode the core package to be exactly 50k if selected (59.5k total)
+            if (total === 59500) {
+                partnerPrice = 50000;
+            }
+
+            let savings = total - partnerPrice;
+            
+            totalListEl.innerText = '€' + total.toLocaleString();
+            totalPartnerEl.innerText = '€' + partnerPrice.toLocaleString();
+            totalSavingsEl.innerText = '-€' + savings.toLocaleString();
+            
+            // Visual feedback
+            if (partnerPrice > 50000) {
+                totalPartnerEl.classList.add('text-malta');
+                totalPartnerEl.classList.remove('text-slate-900');
+            } else {
+                totalPartnerEl.classList.remove('text-malta');
+                totalPartnerEl.classList.add('text-slate-900');
+            }
+        }
+
+        renderCalculator();
+    </script>
+</body>
+</html>
