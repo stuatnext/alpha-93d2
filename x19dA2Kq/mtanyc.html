@@ -239,8 +239,10 @@
                    </p>
                </div>
                <div class="proposal-card">
-                   <h4 class="font-bold text-slate-900 mb-2">3. Unavoidable Visibility</h4>
-                   <p class="text-sm text-slate-500">From the <strong>Event Guide</strong> in their pocket to the <strong>Restrooms</strong> and <strong>Main Stage Screens</strong>, the brand is omnipresent.</p>
+                   <h4 class="font-bold text-slate-900 mb-2">3. Mediterranean Hospitality</h4>
+                   <p class="text-sm text-slate-500">
+                       Through the <strong>Nourish Bar</strong>, MTA provides the healthy fuel (smoothies, wellness shots) that powers the delegates. It connects the Maltese lifestyle directly to the attendee experience.
+                   </p>
                </div>
             </div>
         </section>
@@ -268,26 +270,18 @@
 
                 <div class="rec-item">
                     <div>
+                        <div class="font-bold text-slate-900">Nourish Bar Sponsorship</div>
+                        <div class="text-xs text-slate-500">Branded Wellness & Smoothie Bar (Hospitality)</div>
+                    </div>
+                    <div class="font-mono text-slate-700">€13,500</div>
+                </div>
+
+                <div class="rec-item">
+                    <div>
                         <div class="font-bold text-slate-900">Nico Jansen Run Club</div>
                         <div class="text-xs text-slate-500">Carrying the Flag through NYC</div>
                     </div>
                     <div class="font-mono text-slate-700">€12,000</div>
-                </div>
-
-                <div class="rec-item">
-                    <div>
-                        <div class="font-bold text-slate-900">Event Guide Sponsorship</div>
-                        <div class="text-xs text-slate-500">Physical/Digital Guide Branding</div>
-                    </div>
-                    <div class="font-mono text-slate-700">€8,000</div>
-                </div>
-
-                <div class="rec-item">
-                    <div>
-                        <div class="font-bold text-slate-900">Restroom Sponsorship</div>
-                        <div class="text-xs text-slate-500">High-frequency visibility throughout venue</div>
-                    </div>
-                    <div class="font-mono text-slate-700">€7,500</div>
                 </div>
 
                 <div class="rec-item">
@@ -301,10 +295,10 @@
                 <div class="rec-total flex flex-col md:flex-row justify-between items-center gap-4">
                     <div class="text-center md:text-left">
                         <div class="text-xs uppercase tracking-widest text-slate-400 font-bold">Total Rate Card Value</div>
-                        <div class="text-lg font-mono text-slate-400 line-through decoration-red-500">€59,500</div>
+                        <div class="text-lg font-mono text-slate-400 line-through decoration-red-500">€57,500</div>
                     </div>
                     <div class="text-center md:text-right">
-                        <div class="text-xs uppercase tracking-widest text-malta font-bold mb-1">Partner Price (You Save €9,500)</div>
+                        <div class="text-xs uppercase tracking-widest text-malta font-bold mb-1">Partner Price (You Save €7,500)</div>
                         <div class="text-5xl font-serif text-slate-900">€50,000</div>
                     </div>
                 </div>
@@ -319,7 +313,7 @@
             </div>
             
             <div class="calc-container rounded-lg overflow-hidden">
-                <!-- Header (Now Grid) -->
+                <!-- Header (Grid) -->
                 <div class="bg-slate-50 border-b border-gray-200 calc-padding calc-grid text-xs font-bold text-slate-500 uppercase tracking-widest">
                     <div class="col-span-8 md:col-span-7">Product</div>
                     <div class="hidden md:block md:col-span-3">Category</div>
@@ -338,11 +332,11 @@
                     <div class="flex items-center gap-8">
                         <div class="text-right hidden md:block">
                              <p class="text-xs text-slate-400 uppercase tracking-widest mb-1">List Price</p>
-                             <p id="total-list-price" class="text-lg font-bold text-slate-400 line-through">€59,500</p>
+                             <p id="total-list-price" class="text-lg font-bold text-slate-400 line-through">€57,500</p>
                         </div>
                         <div class="text-right hidden md:block">
                              <p class="text-xs text-malta uppercase tracking-widest mb-1">Your Savings</p>
-                             <p id="total-savings" class="text-lg font-bold text-malta">-€9,500</p>
+                             <p id="total-savings" class="text-lg font-bold text-malta">-€7,500</p>
                         </div>
                         <div class="text-right p-4 bg-slate-50 rounded-lg border border-slate-100">
                              <p class="text-xs text-slate-900 uppercase tracking-widest mb-1 font-bold">Partner Total</p>
@@ -374,28 +368,20 @@
                 category: "Dominance"
             },
             { 
+                name: "Nourish Bar", 
+                desc: "Healthy smoothies & wellness shots. Hospitality.",
+                price: 13500, 
+                type: 'binary', 
+                active: true,
+                category: "Hospitality"
+            },
+            { 
                 name: "Nico Jansen Run Club", 
                 desc: "Carrying the MTA Flag through NYC.",
                 price: 12000, 
                 type: 'binary', 
                 active: true,
                 category: "Lifestyle"
-            },
-            { 
-                name: "Event Guide Sponsorship", 
-                desc: "Physical/Digital guide branding.",
-                price: 8000, 
-                type: 'binary', 
-                active: true,
-                category: "Utility"
-            },
-            { 
-                name: "Restroom Sponsorship", 
-                desc: "High-frequency visibility throughout venue.",
-                price: 7500, 
-                type: 'binary', 
-                active: true,
-                category: "Visibility"
             },
             { 
                 name: "Advertisement Video", 
@@ -408,6 +394,38 @@
             
             // OPTIONAL ADD-ONS
              { 
+                name: "Pillar Branding (Lower Floor)", 
+                desc: "Structural branding in high traffic areas.",
+                price: 11000, 
+                type: 'binary', 
+                active: false,
+                category: "Visibility"
+            },
+             { 
+                name: "VIP Speaker Lounge", 
+                desc: "Exclusive branding of VIP area.",
+                price: 30000, 
+                type: 'binary', 
+                active: false,
+                category: "Hospitality"
+            },
+             { 
+                name: "Private Meeting Zone", 
+                desc: "Dedicated area for B2B meetings.",
+                price: 20000, 
+                type: 'binary', 
+                active: false,
+                category: "Business"
+            },
+             { 
+                name: "Networking Lunch", 
+                desc: "Branding of the main food experience.",
+                price: 25000, 
+                type: 'binary', 
+                active: false,
+                category: "Hospitality"
+            },
+            { 
                 name: "Day 2 Networking Reception", 
                 desc: "Non-Exclusive sponsorship of drinks.",
                 price: 17000, 
@@ -430,14 +448,6 @@
                 type: 'binary', 
                 active: false,
                 category: "Visibility"
-            },
-            { 
-                name: "VIP Speaker Lounge", 
-                desc: "Exclusive branding of VIP area.",
-                price: 30000, 
-                type: 'binary', 
-                active: false,
-                category: "Hospitality"
             }
         ];
 
@@ -450,12 +460,12 @@
             container.innerHTML = '';
             inventory.forEach((item, index) => {
                 const div = document.createElement('div');
-                div.className = 'calc-row calc-padding calc-grid'; // Use calc-grid here
+                div.className = 'calc-row calc-padding calc-grid'; 
                 
                 // Style based on active state
                 const activeClass = item.active ? 'text-slate-900 font-bold' : 'text-slate-500';
                 // Highlight Core Items
-                const coreBadge = item.active && index < 5 ? '<span class="ml-2 px-1.5 py-0.5 bg-slate-100 text-slate-500 text-[10px] uppercase rounded">Recommended</span>' : '';
+                const coreBadge = item.active && index < 4 ? '<span class="ml-2 px-1.5 py-0.5 bg-slate-100 text-slate-500 text-[10px] uppercase rounded">Recommended</span>' : '';
                 
                 div.innerHTML = `
                     <div class="col-span-8 md:col-span-7 flex items-center">
@@ -495,13 +505,12 @@
                 if (item.active) total += item.price;
             });
 
-            // LOGIC: Apply a ~16% discount to calculate the "Partner Price" dynamically
-            // But round it to look like a clean number
-            let discountFactor = 0.84; 
+            // LOGIC: Apply a ~13-15% discount to calculate the "Partner Price" dynamically
+            let discountFactor = 0.87; 
             let partnerPrice = Math.floor((total * discountFactor) / 1000) * 1000;
             
-            // Hardcode the core package to be exactly 50k if selected (59.5k total)
-            if (total === 59500) {
+            // Hardcode the core package to be exactly 50k if selected (57.5k total)
+            if (total === 57500) {
                 partnerPrice = 50000;
             }
 
