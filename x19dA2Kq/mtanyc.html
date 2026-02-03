@@ -176,7 +176,6 @@
             
             <!-- DATE & VENUE (Top) -->
             <div class="mb-8 border-b border-gray-200 pb-8">
-                <!-- Added whitespace-nowrap to force single line -->
                 <p class="text-slate-900 font-bold uppercase tracking-widest text-xs md:text-sm whitespace-nowrap overflow-x-hidden">
                     10-11 March 2026 <span class="text-gray-300 mx-2">|</span> Convene Brookfield Place, NYC
                 </p>
@@ -247,9 +246,9 @@
                    </p>
                </div>
                <div class="proposal-card">
-                   <h4 class="font-bold text-slate-900 mb-2">3. A Taste of the Good Life</h4>
+                   <h4 class="font-bold text-slate-900 mb-2">3. The Mediterranean Feast</h4>
                    <p class="text-sm text-slate-500">
-                       The <strong>Nourish Bar</strong> serves fresh smoothies and wellness shots—a direct link to the healthy, vibrant lifestyle that attracts tourists to the Maltese Islands year-round.
+                       In Malta, business and friendship happen over food. By sponsoring the <strong>Networking Lunch</strong>, MTA hosts the summit's central social moment, creating a warm, communal atmosphere that attendees will remember.
                    </p>
                </div>
             </div>
@@ -278,10 +277,10 @@
 
                 <div class="rec-item">
                     <div>
-                        <div class="font-bold text-slate-900">Nourish Bar Sponsorship</div>
-                        <div class="text-xs text-slate-500">Providing healthy Mediterranean refreshments</div>
+                        <div class="font-bold text-slate-900">Networking Lunch Sponsorship</div>
+                        <div class="text-xs text-slate-500">Official Host of the Summit's Main Meal</div>
                     </div>
-                    <div class="font-mono text-slate-700">€13,500</div>
+                    <div class="font-mono text-slate-700">€25,000</div>
                 </div>
 
                 <div class="rec-item">
@@ -303,10 +302,10 @@
                 <div class="rec-total flex flex-col md:flex-row justify-between items-center gap-4">
                     <div class="text-center md:text-left">
                         <div class="text-xs uppercase tracking-widest text-slate-400 font-bold">Total Rate Card Value</div>
-                        <div class="text-lg font-mono text-slate-400 line-through decoration-red-500">€57,500</div>
+                        <div class="text-lg font-mono text-slate-400 line-through decoration-red-500">€69,000</div>
                     </div>
                     <div class="text-center md:text-right">
-                        <div class="text-xs uppercase tracking-widest text-malta font-bold mb-1">Official Partner Price (You Save €7,500)</div>
+                        <div class="text-xs uppercase tracking-widest text-malta font-bold mb-1">Official Partner Price (You Save €19,000)</div>
                         <div class="text-5xl font-serif text-slate-900">€50,000</div>
                     </div>
                 </div>
@@ -347,14 +346,14 @@
                             <!-- List Price -->
                             <div class="text-center md:text-right">
                                  <p class="text-[10px] text-slate-400 uppercase tracking-widest font-bold mb-1">Total List Price</p>
-                                 <p id="total-list-price" class="text-xl font-bold text-slate-400 line-through decoration-red-500">€57,500</p>
+                                 <p id="total-list-price" class="text-xl font-bold text-slate-400 line-through decoration-red-500">€69,000</p>
                             </div>
 
                             <!-- Discount -->
                             <div class="text-center md:text-right">
                                  <p class="text-[10px] text-malta uppercase tracking-widest font-bold mb-1">Partner Discount</p>
                                  <div id="total-savings-badge" class="bg-red-50 text-malta border border-red-100 px-3 py-1 rounded-full font-bold text-sm">
-                                    -€7,500
+                                    -€19,000
                                  </div>
                             </div>
 
@@ -391,9 +390,9 @@
                 category: "Comfort"
             },
             { 
-                name: "Nourish Bar", 
-                desc: "Healthy smoothies & wellness shots. A taste of the island.",
-                price: 13500, 
+                name: "Networking Lunch", 
+                desc: "Official Host of the Summit's Main Meal.",
+                price: 25000, 
                 type: 'binary', 
                 active: true,
                 category: "Hospitality"
@@ -425,6 +424,14 @@
                 category: "Visibility"
             },
              { 
+                name: "Nourish Bar", 
+                desc: "Healthy smoothies & wellness shots. A taste of the island.",
+                price: 13500, 
+                type: 'binary', 
+                active: false,
+                category: "Hospitality"
+            },
+             { 
                 name: "VIP Speaker Lounge", 
                 desc: "Exclusive branding of the VIP relaxation area.",
                 price: 30000, 
@@ -439,14 +446,6 @@
                 type: 'binary', 
                 active: false,
                 category: "Business"
-            },
-             { 
-                name: "Networking Lunch", 
-                desc: "Branding of the main food experience.",
-                price: 25000, 
-                type: 'binary', 
-                active: false,
-                category: "Hospitality"
             },
             { 
                 name: "Day 2 Networking Reception", 
@@ -528,12 +527,12 @@
                 if (item.active) total += item.price;
             });
 
-            // LOGIC: Apply a ~13-15% discount to calculate the "Partner Price" dynamically
-            let discountFactor = 0.87; 
+            // LOGIC: Apply a discount curve
+            let discountFactor = 0.85; 
             let partnerPrice = Math.floor((total * discountFactor) / 1000) * 1000;
             
-            // Hardcode the core package to be exactly 50k if selected (57.5k total)
-            if (total === 57500) {
+            // Hardcode the core package (Lunch + Chairs + Run + Video = 69k) to remain at 50k
+            if (total === 69000) {
                 partnerPrice = 50000;
             }
 
