@@ -424,7 +424,7 @@
                 category: "Visibility"
             },
              { 
-                name: "Nourish Bar", 
+                name: "Nourish Bar (Lower Floor)", 
                 desc: "Healthy smoothies & wellness shots. A taste of the island.",
                 price: 13500, 
                 type: 'binary', 
@@ -438,30 +438,6 @@
                 type: 'binary', 
                 active: false,
                 category: "Hospitality"
-            },
-             { 
-                name: "Private Meeting Zone", 
-                desc: "Dedicated area for B2B meetings.",
-                price: 20000, 
-                type: 'binary', 
-                active: false,
-                category: "Business"
-            },
-             { 
-                name: "Day 2 Networking Reception", 
-                desc: "Non-Exclusive sponsorship of celebratory drinks.",
-                price: 17000, 
-                type: 'binary', 
-                active: false,
-                category: "Networking"
-            },
-            { 
-                name: "Investment Hub Headline", 
-                desc: "Title sponsor of the Investment track.",
-                price: 17500, 
-                type: 'binary', 
-                active: false,
-                category: "Business"
             }
         ];
 
@@ -519,8 +495,8 @@
                 if (item.active) total += item.price;
             });
 
-            // LOGIC: Apply a discount curve
-            let discountFactor = 0.85; 
+            // LOGIC: Apply a ~13-15% discount to calculate the "Partner Price" dynamically
+            let discountFactor = 0.87; 
             let partnerPrice = Math.floor((total * discountFactor) / 1000) * 1000;
             
             // Hardcode the core package (Lunch + Chairs + Run + Video = 69k) to remain at 50k
