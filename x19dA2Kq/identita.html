@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXT.io × Identità | 2026 Strategic Proposal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* BRAND PALETTE: Bold Red & White (Swiss Style) */
+        :root {
+            --brand-red: #E61E25; 
+            --brand-black: #1a1a1a;
+            --brand-gray: #f4f4f5;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--white);
+            color: var(--brand-black);
+            scroll-behavior: smooth;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            letter-spacing: -0.02em;
+        }
+        
+        .text-red { color: var(--brand-red); }
+        .bg-red { background-color: var(--brand-red); }
+
+        /* Structural Elements */
+        .section-divider {
+            height: 4px;
+            width: 60px;
+            background: var(--brand-red);
+            margin: 2rem 0;
+        }
+
+        /* Feature Section */
+        .malta-graphic {
+            background-image: url('https://www.thoughtco.com/thmb/sIAGSdsc5DMbf7OwPgQWoq3MAUg=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/544690955-58b8dc225f9b58af5c8f978b.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            position: relative;
+        }
+        .malta-overlay {
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+        }
+
+        /* Calculator Styles */
+        .calc-container {
+            background: var(--brand-gray);
+            border: 1px solid #e5e5e5;
+        }
+
+        .calc-header {
+            background: white;
+            padding: 1rem 2rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            color: var(--brand-black);
+            display: grid;
+            grid-template-columns: 5fr 3fr 3fr;
+            gap: 1rem;
+            border-bottom: 2px solid var(--brand-black);
+        }
+
+        .calc-row {
+            padding: 1.5rem 2rem;
+            display: grid;
+            grid-template-columns: 5fr 3fr 3fr;
+            gap: 1rem;
+            align-items: center;
+            border-bottom: 1px solid #e5e5e5;
+            transition: background 0.2s;
+        }
+        .calc-row:hover { background: white; }
+
+        /* Controls */
+        .qty-wrapper {
+            display: inline-flex;
+            background: white;
+            border: 1px solid #d4d4d4;
+            border-radius: 4px;
+        }
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .qty-btn:hover { background: var(--brand-red); color: white; }
+        .qty-val {
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            border-left: 1px solid #d4d4d4;
+            border-right: 1px solid #d4d4d4;
+        }
+
+        /* Checkbox */
+        .custom-check {
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 2px solid #d4d4d4;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .custom-check.checked {
+            background: var(--brand-red);
+            border-color: var(--brand-red);
+            color: white;
+        }
+        
+        .section-label {
+            grid-column: 1 / -1;
+            padding: 0.5rem 2rem;
+            background: #e5e5e5;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: #666;
+            border-bottom: 1px solid #d4d4d4;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .calc-header { display: none; }
+            .calc-row { grid-template-columns: 1fr; gap: 1rem; }
+            .section-label { padding: 0.5rem 1rem; }
+            .malta-graphic { height: 300px; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <main class="max-w-7xl mx-auto px-6 py-20">
+
+        <!-- HERO SECTION -->
+        <header class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24 items-center">
+            <div>
+                <div class="inline-block bg-black text-white px-3 py-1 text-xs font-bold uppercase tracking-widest mb-6">
+                    NEXT.io x Identità
+                </div>
+                <h1 class="text-6xl md:text-8xl font-extrabold leading-none mb-8 tracking-tighter">
+                    SELL THE <br>
+                    <span class="text-red">LIFESTYLE.</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-lg mb-8">
+                    Targeting the <strong>High-Net-Worth</strong> decision makers who determine where their companies—and their families—call home.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#package" class="bg-red-600 text-white px-8 py-4 font-bold hover:bg-black transition-colors">
+                        View The Package
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Malta Visual -->
+            <div class="malta-graphic w-full h-full min-h-[400px] relative shadow-2xl">
+                <div class="malta-overlay absolute inset-0 flex flex-col justify-end p-8 text-white">
+                    <div class="text-xs font-bold uppercase tracking-widest text-red-500 mb-2">Destination: Malta</div>
+                    <div class="text-3xl font-bold leading-tight mb-2">The Home of iGaming.</div>
+                    <p class="text-white/80 text-sm max-w-sm">
+                        From the historic streets of Valletta to the boardrooms of New York, we position Malta as the ultimate destination for business and leisure.
+                    </p>
+                </div>
+            </div>
+        </header>
+
+        <!-- AUDIENCE & STRATEGY (Relocation Angle) -->
+        <section class="mb-24">
+            <div class="mb-10">
+                <h2 class="text-3xl font-bold">Why This Partnership Works</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 border border-gray-100">
+                    <h3 class="text-xl font-bold mb-3 text-red">The Decision Makers</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                        Relocation isn't an HR decision; it's a C-Level strategy. Our audience is composed of the exact people who sign off on moving HQs.
+                    </p>
+                    <div class="flex gap-4 pt-4 border-t border-gray-200">
+                        <div>
+                            <div class="text-2xl font-bold">71%</div>
+                            <div class="text-[10px] uppercase font-bold text-gray-400">C-Level NYC</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold">54%</div>
+                            <div class="text-[10px] uppercase font-bold text-gray-400">C-Level Valletta</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-8 border border-gray-100">
+                    <h3 class="text-xl font-bold mb-3 text-red">Showcase Quality of Life</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        By sponsoring the <strong>Golf Tournament</strong> and <strong>Premium Networking</strong>, Identità aligns itself with the high-end lifestyle that attracts High-Net-Worth individuals to the island.
+                    </p>
+                </div>
+                <div class="bg-gray-50 p-8 border border-gray-100">
+                    <h3 class="text-xl font-bold mb-3 text-red">Remove Barriers</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        A persistent digital presence combined with physical touchpoints allows you to demystify the relocation process directly to the people who need to hear it most.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RECOMMENDED PACKAGE -->
+        <section id="package" class="mb-32">
+            <div class="mb-12">
+                <h2 class="text-4xl font-bold mb-4">The Recommended Mix</h2>
+                <div class="section-divider"></div>
+                <p class="text-xl text-gray-500">A targeted campaign to drive relocation interest across two continents.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-0 border border-gray-200 shadow-2xl">
+                
+                <!-- Physical Column -->
+                <div class="bg-white p-8 border-b lg:border-b-0 lg:border-r border-gray-100">
+                    <div class="text-red font-bold uppercase tracking-widest text-sm mb-6">01. Physical Presence</div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold mb-1">NYC Pillar Branding</h3>
+                        <div class="text-xs text-gray-400 uppercase tracking-wide mb-2">Gallery 1 • Lower Floor</div>
+                        <p class="text-sm text-gray-600">Dominating the visual space where US execs discuss expansion plans.</p>
+                        <div class="mt-3 font-mono font-bold">€11,000</div>
+                    </div>
+
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold mb-1">Advertisement Videos</h3>
+                        <div class="text-xs text-gray-400 uppercase tracking-wide mb-2">NYC & Valletta Main Screens</div>
+                        <p class="text-sm text-gray-600">30-second "Life in Malta" commercial played to 6,000+ attendees.</p>
+                        <div class="mt-3 font-mono font-bold">€7,000 (x2)</div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Golf Tournament Sponsor</h3>
+                        <div class="text-xs text-gray-400 uppercase tracking-wide mb-2">Valletta • Title Sponsor</div>
+                        <p class="text-sm text-gray-600">The ultimate lifestyle showcase. Exclusive branding & networking.</p>
+                        <div class="mt-3 font-mono font-bold">€35,000</div>
+                    </div>
+                </div>
+
+                <!-- Digital Column -->
+                <div class="bg-white p-8 border-b lg:border-b-0 lg:border-r border-gray-100">
+                    <div class="text-red font-bold uppercase tracking-widest text-sm mb-6">02. Digital Dominance</div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold mb-1">Mega Banner</h3>
+                        <div class="text-xs text-gray-400 uppercase tracking-wide mb-2">1 Month Duration</div>
+                        <p class="text-sm text-gray-600">The highest impact position. Perfect for "Move to Malta" campaigns.</p>
+                        <div class="mt-3 font-mono font-bold">€8,000</div>
+                    </div>
+
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold mb-1">Middle Leaderboard</h3>
+                        <div class="text-xs text-gray-400 uppercase tracking-wide mb-2">2 Months Duration</div>
+                        <p class="text-sm text-gray-600">Contextual placement within industry news.</p>
+                        <div class="mt-3 font-mono font-bold">€5,000</div>
+                    </div>
+                </div>
+
+                <!-- Total Column -->
+                <div class="bg-black text-white p-10 flex flex-col justify-between">
+                    <div>
+                        <div class="text-white/50 text-sm font-bold uppercase tracking-widest mb-2">Total Rate Card</div>
+                        <div class="text-3xl font-bold tracking-tighter text-gray-400 line-through mb-4">€73,000</div>
+                        
+                        <div class="bg-red-600 text-white text-xs font-bold uppercase inline-block px-3 py-1 mb-8 rounded">
+                            Partner Savings: -€23,000
+                        </div>
+
+                        <div class="text-white/50 text-sm font-bold uppercase tracking-widest mb-2">Final Investment</div>
+                        <div class="text-6xl font-bold tracking-tighter text-white mb-6">€50,000</div>
+
+                        <p class="text-white/70 text-sm leading-relaxed">
+                            A highly optimized package focusing budget on the highest impact assets for maximum ROI.
+                        </p>
+                    </div>
+                    <a href="mailto:pierre@next.io" class="block text-center w-full bg-red-600 hover:bg-white hover:text-red-600 text-white font-bold py-4 mt-8 transition-colors uppercase tracking-widest text-sm">
+                        Confirm Partnership
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CALCULATOR -->
+        <section class="max-w-5xl mx-auto">
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold mb-2">Package Calculator</h2>
+                    <p class="text-gray-500">Customize the inventory mix.</p>
+                </div>
+            </div>
+
+            <div class="calc-container">
+                <div class="calc-header">
+                    <div>Item</div>
+                    <div>Quantity / Duration</div>
+                    <div class="text-right">Price</div>
+                </div>
+
+                <div id="calculator-rows">
+                    <!-- JS Injected -->
+                </div>
+
+                <!-- Total Bar -->
+                <div class="bg-white p-8 border-t border-gray-200">
+                    <div class="flex flex-col gap-4 items-end">
+                        
+                        <!-- List Price -->
+                         <div class="flex justify-between items-center w-full md:w-1/2">
+                            <div class="text-xs text-gray-400 uppercase tracking-widest font-bold">Total List Price</div>
+                            <div id="list-total" class="text-xl font-bold text-gray-400 line-through">€0</div>
+                        </div>
+
+                        <!-- Savings -->
+                        <div class="flex justify-between items-center w-full md:w-1/2">
+                            <div class="text-xs text-red-500 uppercase tracking-widest font-bold">Partner Savings</div>
+                            <div id="savings-total" class="text-xl font-bold text-red-500">€0</div>
+                        </div>
+
+                        <!-- Final -->
+                        <div class="flex justify-between items-center w-full md:w-1/2 pt-4 border-t border-gray-100">
+                            <div class="text-xs text-black uppercase tracking-widest font-bold">Final Investment</div>
+                            <div id="grand-total" class="text-5xl font-bold text-black tracking-tight">€50,000</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-24 pt-12 border-t border-gray-100 text-center text-gray-400 text-sm">
+            NEXT.io × Identità | 2026
+        </footer>
+
+    </main>
+
+    <script>
+        const inventory = [
+            // NEW YORK ITEMS
+            { name: "NYC: Advertisement Video", price: 7000, type: 'binary', active: true, desc: "Main Stage Screens", section: "New York" },
+            { name: "NYC: Pillar Branding (Lower Floor)", price: 11000, type: 'binary', active: true, desc: "High Visibility in Gallery 1", section: "New York" },
+            { name: "NYC: Nourish Bar (Lower Floor)", price: 13500, type: 'binary', active: false, desc: "Branded Smoothie Bar", section: "New York" },
+
+            // VALLETTA ITEMS
+            { name: "Valletta: Advertisement Video", price: 7000, type: 'binary', active: true, desc: "Main Stage Screens", section: "Valletta" },
+            { name: "Valletta: Golf Tournament Sponsor", price: 35000, type: 'binary', active: true, desc: "Title Sponsor of Tournament", section: "Valletta" },
+            { name: "Valletta: Global Markets Track", price: 21000, type: 'binary', active: false, desc: "Brand seen by international audience", section: "Valletta" },
+            { name: "Valletta: Joint Rooftop Drinks (Day 2)", price: 25000, type: 'binary', active: false, desc: "Exclusive Networking Event", section: "Valletta" },
+            { name: "Valletta: App Sponsorship", price: 20000, type: 'binary', active: false, desc: "Digital visibility on every device", section: "Valletta" },
+            { name: "Valletta: Wi-Fi Sponsorship", price: 18000, type: 'binary', active: false, desc: "Exclusive connectivity branding", section: "Valletta" },
+            { name: "Valletta: Government Hub Stand", price: 15000, type: 'binary', active: false, desc: "6x3m Exhibition Space", section: "Valletta" },
+            { name: "Valletta: Affiliate Networking Drinks", price: 30000, type: 'binary', active: false, desc: "Title Sponsor of Evening Event", section: "Valletta" },
+            { name: "Valletta: Golf Tournament Team", price: 5000, type: 'binary', active: false, desc: "Branded Flight & Networking", section: "Valletta" },
+
+            // MEDIA ITEMS
+            { name: "Web Ad: Mega Banner", price: 8000, type: 'qty', qty: 1, unit: "Months", desc: "Top of page visibility", section: "Media" },
+            { name: "Web Ad: Middle Leaderboard", price: 2500, type: 'qty', qty: 2, unit: "Months", desc: "In-article placement", section: "Media" },
+            { name: "Web Ad: MPU Banner", price: 2000, type: 'qty', qty: 0, unit: "Months", desc: "Sidebar visibility", section: "Media" },
+            { name: "Web Ad: Slide In Banner", price: 5000, type: 'qty', qty: 0, unit: "Months", desc: "Bottom corner overlay", section: "Media" },
+            { name: "Web Ad: Pop-up Banner", price: 8000, type: 'qty', qty: 0, unit: "Months", desc: "Center screen overlay", section: "Media" }
+        ];
+
+        const container = document.getElementById('calculator-rows');
+        const listTotalEl = document.getElementById('list-total');
+        const savingsTotalEl = document.getElementById('savings-total');
+        const grandTotalEl = document.getElementById('grand-total');
+
+        function render() {
+            container.innerHTML = '';
+            let total = 0;
+            let currentSection = '';
+
+            inventory.forEach((item, idx) => {
+                // Section Header Logic
+                if (item.section !== currentSection) {
+                    const sectionHeader = document.createElement('div');
+                    sectionHeader.className = 'section-label';
+                    sectionHeader.innerText = item.section;
+                    container.appendChild(sectionHeader);
+                    currentSection = item.section;
+                }
+
+                const row = document.createElement('div');
+                row.className = 'calc-row';
+                
+                let controls = '';
+                let price = 0;
+
+                if (item.type === 'binary') {
+                    price = item.active ? item.price : 0;
+                    controls = `
+                        <div class="custom-check ${item.active ? 'checked' : ''}" onclick="toggleBinary(${idx})">
+                            ${item.active ? '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>' : ''}
+                        </div>
+                    `;
+                } else {
+                    price = item.price * item.qty;
+                    controls = `
+                        <div class="flex items-center gap-3">
+                            <div class="qty-wrapper">
+                                <div class="qty-btn" onclick="updateQty(${idx}, -1)">-</div>
+                                <div class="qty-val">${item.qty}</div>
+                                <div class="qty-btn" onclick="updateQty(${idx}, 1)">+</div>
+                            </div>
+                            <span class="text-xs text-gray-500 font-bold uppercase">${item.unit}</span>
+                        </div>
+                    `;
+                }
+
+                total += price;
+
+                row.innerHTML = `
+                    <div>
+                        <div class="font-bold text-lg leading-tight ${price > 0 ? 'text-black' : 'text-gray-400'}">${item.name}</div>
+                        <div class="text-xs text-gray-400 uppercase tracking-wide mt-1">${item.desc}</div>
+                    </div>
+                    <div>${controls}</div>
+                    <div class="text-right font-mono font-bold ${price > 0 ? 'text-black' : 'text-gray-300'}">
+                        €${price.toLocaleString()}
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+
+            // Discount Logic for Calculator Display
+            let finalPrice = total;
+            // Exact package match logic
+            if (total === 73000) {
+                finalPrice = 50000;
+            }
+
+            let savings = total - finalPrice;
+
+            // Update DOM
+            listTotalEl.innerText = '€' + total.toLocaleString();
+            savingsTotalEl.innerText = '-€' + savings.toLocaleString();
+            grandTotalEl.innerText = '€' + finalPrice.toLocaleString();
+            
+            // Visual cue for discount
+            if (finalPrice < total) {
+                grandTotalEl.classList.add('text-red');
+                grandTotalEl.classList.remove('text-black');
+            } else {
+                grandTotalEl.classList.add('text-black');
+                grandTotalEl.classList.remove('text-red');
+            }
+        }
+
+        window.toggleBinary = (idx) => {
+            inventory[idx].active = !inventory[idx].active;
+            render();
+        }
+
+        window.updateQty = (idx, change) => {
+            const newVal = inventory[idx].qty + change;
+            if (newVal >= 0) {
+                inventory[idx].qty = newVal;
+                render();
+            }
+        }
+
+        render();
+    </script>
+</body>
+</html>
