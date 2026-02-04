@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXT Summit Valletta 2026 - Partnership Opportunities</title>
+    
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .brand-yellow { color: #ffcf33; }
+        .bg-brand-yellow { background-color: #ffcf33; }
+        .border-brand-yellow { border-color: #ffcf33; }
+        
+        .hover-lift { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .hover-lift:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ffcf33; }
+
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .tab-active {
+            background-color: #ffcf33;
+            color: #000;
+            font-weight: 700;
+        }
+        .tab-inactive {
+            background-color: transparent;
+            color: #888;
+            border: 1px solid #333;
+        }
+        .tab-inactive:hover {
+            border-color: #ffcf33;
+            color: #fff;
+        }
+
+        .check-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #d1d5db;
+        }
+        .check-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ffcf33;
+            font-weight: bold;
+        }
+        
+        .modal-animate {
+            animation: modalFadeIn 0.3s ease-out forwards;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // --- ICONS ---
+        const IconMap = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>;
+        const IconMic = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>;
+        const IconGlass = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 21h8"></path><path d="M12 21v-8"></path><path d="M6 6h12l-1.5 8.6a4.4 4.4 0 0 1-4.5 3.4 4.4 4.4 0 0 1-4.5-3.4L6 6z"></path><line x1="6" y1="6" x2="18" y2="6"></line></svg>;
+        const IconLayout = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>;
+        const IconUsers = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>;
+
+        // --- DATA ---
+        
+        const categories = [
+            { id: 'venue', label: 'Venue & Branding', icon: <IconMap /> },
+            { id: 'stage', label: 'Main Stage & Content', icon: <IconMic /> },
+            { id: 'networking', label: 'Networking & Parties', icon: <IconGlass /> },
+            { id: 'expo', label: 'Exhibition Stands', icon: <IconLayout /> },
+            { id: 'side_events', label: 'NEXT In Focus', icon: <IconUsers /> },
+        ];
+
+        const inventory = {
+            venue: [
+                {
+                    title: "Headline Sponsorship",
+                    price: "€150,000",
+                    tags: ["Exclusive", "Platinum"],
+                    description: "The ultimate visibility package. 'NEXT Valletta brought to you by [Your Company]'.",
+                    deliverables: [
+                        "Headline status & logo placement within NEXT.io",
+                        "Press release with C-Level quote",
+                        "Headline branding on site (main event)",
+                        "1x Speaking opportunity (TBD)",
+                        "15-20 sec ad video played throughout venue",
+                        "Logo on all pre-event promotion & email blasts",
+                        "25x Tickets to NEXT Summit Valletta 2026"
+                    ]
+                },
+                {
+                    title: "Registration Branding",
+                    price: "€60,000",
+                    tags: ["High Impact", "Platinum"],
+                    description: "Have your brand be the first seen by all guests. Prominent branding within the Registration Area.",
+                    deliverables: [
+                        "Branding within Registration Area (Check-In & Main Desk)",
+                        "Official co-sponsor of pre-registration event",
+                        "Gold Branding on site",
+                        "Digital logo on display screens",
+                        "10x Tickets to NEXT Summit Valletta 2026"
+                    ]
+                },
+                {
+                    title: "Rave Cave",
+                    price: "€50,000",
+                    tags: ["Closing Party", "Gold"],
+                    description: "Official sponsor of the Rave Cave closing party on Day 2.",
+                    deliverables: [
+                        "4-hour event with open bar & 2 DJ sets",
+                        "Logo on photo wall & freestanding signage",
+                        "Lighting in brand colors & logo gobo projection",
+                        "Photo opportunity in chillout room",
+                        "10x Tickets to NEXT Summit Valletta 2026"
+                    ]
+                },
+                {
+                    title: "Matcha & Chill Zone",
+                    price: "€50,000",
+                    tags: ["Gold"],
+                    description: "Your own area at the entrance serving matcha tea and ice cream.",
+                    deliverables: [
+                        "Staff in branded uniforms",
+                        "Sponsor-branded flags",
+                        "Branded counter for Matcha and Ice Cream",
+                        "Gold sponsorship status",
+                        "10x Tickets to NEXT Summit Valletta 2026"
+                    ]
+                },
+                {
+                    title: "Shisha Lounge",
+                    price: "€50,000",
+                    tags: ["Exclusive", "Gold"],
+                    description: "Dedicated area on the Grand Harbour Terrace.",
+                    deliverables: [
+                        "Exclusive area 10am-3pm both days",
+                        "Feather flags & Branded tables",
+                        "Branded cushions/seating",
+                        "Branded bar for soft drinks",
+                        "10x Tickets to NEXT Summit Valletta 2026"
+                    ]
+                },
+                 {
+                    title: "Wi-Fi Sponsorship",
+                    price: "€18,000",
+                    tags: ["Utility", "Gold"],
+                    description: "High visibility utility sponsorship.",
+                    deliverables: [
+                        "Customisable Wi-Fi login: username and password",
+                        "Logo on back of delegate badge next to Wi-Fi details",
+                        "Gold sponsorship status",
+                        "5x Tickets to NEXT Summit Valletta 2026"
+                    ]
+                },
+                {
+                    title: "Lanyard Sponsorship",
+                    price: "€20,000",
+                    tags: ["Exclusive", "Gold"],
+                    description: "Worn by every single attendee.",
+                    deliverables: [
+                        "Logo on all delegate lanyards (approx 6,000)",
+                        "Gold Sponsorship Status",
+                        "Logo on main event screens",
+                        "6x Tickets to NEXT Summit Valletta 2026"
+                    ]
+                }
+            ],
+            stage: [
+                {
+                    title: "Main Stage Sponsorship",
+                    price: "€45,000",
+                    tags: ["Gold", "Exclusive"],
+                    description: "Dominant branding in the Republic Hall.",
+                    deliverables: [
+                        "Branding on 2 large LED screens either side of main stage",
+                        "Gold sponsorship status",
+                        "Logo in event guide & agenda",
+                        "10x Tickets to NEXT Summit Valletta 2026"
+                    ]
+                },
+                {
+                    title: "Presentation Sponsorship",
+                    price: "€44,000",
+                    tags: ["Thought Leadership", "Gold"],
+                    description: "15-minute presentation to showcase latest developments to a curated audience.",
+                    deliverables: [
+                        "15-min presentation on Main Stage",
+                        "Company logo sting to present session",
+                        "Professional video content package",
+                        "15-20 sec ad video played on screens",
+                        "20x Tickets to NEXT Summit Valletta 2026"
+                    ]
+                },
+                {
+                    title: "Custom Panel",
+                    price: "€30,000",
+                    tags: ["Gold"],
+                    description: "C-Level Executive participation in a panel session.",
+                    deliverables: [
+                        "C-Level Exec on panel (confirmed by content team)",
+                        "10 sec company sting on stage",
+                        "Logo visible throughout panel",
+                        "4x Tickets to NEXT Summit Valletta 2026"
+                    ]
+                }
+            ],
+            networking: [
+                {
+                    title: "Rooftop Drinks (Exclusive)",
+                    price: "€100,000",
+                    tags: ["Platinum", "High Impact"],
+                    description: "Day 1 or Day 2 Exclusive Rooftop Drinks Reception.",
+                    deliverables: [
+                        "6m photo wall & 10m backdrop behind bar",
+                        "Logo on staff aprons, cushions, feather flags",
+                        "Logo on 360 photo booth frame",
+                        "50 entrance wristbands",
+                        "Platinum Sponsorship Status",
+                        "25x Tickets to NEXT Summit Valletta 2026"
+                    ]
+                },
+                {
+                    title: "Golf Tournament",
+                    price: "€35,000",
+                    tags: ["Activity", "Gold"],
+                    description: "Official sponsor of the golf tournament at Royal Golf Club Malta.",
+                    deliverables: [
+                        "Invite up to 20 guests",
+                        "Branded gift/giveaway opportunity",
+                        "Logo on photo walls, flags, window stickers",
+                        "Gold Sponsorship Status",
+                        "10x Tickets to NEXT Summit Valletta 2026"
+                    ]
+                },
+                {
+                    title: "Affiliate & Operator Dinner",
+                    price: "€30,000",
+                    tags: ["Private", "Gold"],
+                    description: "A private dinner for Operators and Affiliates only (50-80 Pax).",
+                    deliverables: [
+                        "Guest list curated with sponsor",
+                        "Branded menus & welcome sign",
+                        "Logo on invitation",
+                        "10x Tickets to NEXT Summit Valletta 2026",
+                        "3x Tickets to NEXT Focus: Affiliate"
+                    ]
+                },
+                {
+                    title: "Padel Tournament",
+                    price: "€12,000",
+                    tags: ["Activity", "Silver"],
+                    description: "Official co-sponsor of the Padel tournament.",
+                    deliverables: [
+                        "Invite up to 10 guests",
+                        "Branded gift opportunity",
+                        "Branding on-site (walls, flags, signage)",
+                        "Silver Sponsorship Status",
+                        "4x Tickets to NEXT Summit Valletta 2026"
+                    ]
+                },
+                 {
+                    title: "Ice Bath & Yoga",
+                    price: "€19,000",
+                    tags: ["Wellness", "Gold"],
+                    description: "Official sponsor of the Ice Bath Yoga Event (60 Pax).",
+                    deliverables: [
+                        "Logo on yoga mats, towels, and ice baths",
+                        "Light lunch included",
+                        "Gold Sponsorship Status",
+                        "6x Tickets to NEXT Summit Valletta 2026"
+                    ]
+                }
+            ],
+            expo: [
+                {
+                    title: "Wall Mural Branding",
+                    price: "€45,000",
+                    tags: ["High Visibility", "Gold"],
+                    description: "25m(w) x 3m(h) freestanding wall mural on both sides of Expo area.",
+                    deliverables: [
+                        "Exclusive branding of 2x 25m murals",
+                        "High footfall location after registration",
+                        "Gold Sponsorship Status",
+                        "10x Tickets to NEXT Summit Valletta 2026"
+                    ]
+                },
+                {
+                    title: "Expo Lounge",
+                    price: "€30,000",
+                    tags: ["Networking", "Gold"],
+                    description: "Exclusive customisable branding of the expo lounge.",
+                    deliverables: [
+                        "Named lounge on floorplan",
+                        "Gold Branding on site",
+                        "10x Tickets to NEXT Summit Valletta 2026"
+                    ]
+                },
+                {
+                    title: "Coffee Station (West/East)",
+                    price: "€25,000",
+                    tags: ["High Traffic", "Gold"],
+                    description: "Official coffee sponsor for West or East side of Expo.",
+                    deliverables: [
+                        "Branded coffee counter and backdrop",
+                        "Opportunity to bring staff merch & cups",
+                        "Gold Sponsorship Status",
+                        "8x Tickets to NEXT Summit Valletta 2026"
+                    ]
+                },
+                {
+                    title: "Space Only (4x8m)",
+                    price: "€24,000",
+                    tags: ["Booth", "Gold"],
+                    description: "Large exhibition space for custom build.",
+                    deliverables: [
+                        "Space only (build charged separately)",
+                        "Gold Sponsorship Status",
+                        "8x Tickets to NEXT Summit Valletta 2026"
+                    ]
+                },
+                {
+                    title: "Shell Scheme (6x3m)",
+                    price: "€23,000",
+                    tags: ["Booth", "Gold"],
+                    description: "Ready-to-go booth package.",
+                    deliverables: [
+                        "2x Tables, 6x High Chairs, 1x Counter",
+                        "Branded Backdrop & Side Panels",
+                        "Power Supply & Daily Clean",
+                        "Gold Sponsorship Status",
+                        "8x Tickets to NEXT Summit Valletta 2026"
+                    ]
+                }
+            ],
+            side_events: [
+                {
+                    title: "Investor Summit Headline",
+                    price: "€40,000",
+                    tags: ["Exclusive", "Focus"],
+                    description: "Presented by [Your Company] with headline branding.",
+                    deliverables: [
+                        "Headline logo on photo wall & banners",
+                        "Logo on stage returns",
+                        "1x Speaker slot",
+                        "Access to pre-event delegate list",
+                        "4x Tickets to NEXT Focus: Investor"
+                    ]
+                },
+                {
+                    title: "Crypto Headline",
+                    price: "€40,000",
+                    tags: ["Exclusive", "Focus"],
+                    description: "Crypto Focus brought to you by [Your Company].",
+                    deliverables: [
+                        "Headline logo on event page & agenda",
+                        "Chair branding (shared)",
+                        "Branded panel participation",
+                        "8x Tickets to NEXT Focus: Crypto"
+                    ]
+                },
+                {
+                    title: "Affiliate Headline",
+                    price: "€40,000",
+                    tags: ["Exclusive", "Focus"],
+                    description: "NEXT Focus: Affiliate presented by [Your Company].",
+                    deliverables: [
+                        "Headline branding pre/during/post event",
+                        "1x Speaker slot",
+                        "Delegate list access",
+                        "4x Tickets to NEXT Focus: Affiliate"
+                    ]
+                },
+                {
+                    title: "General Partnership",
+                    price: "€16,000",
+                    tags: ["Focus"],
+                    description: "General partnership for Investor, Crypto, or Affiliate tracks.",
+                    deliverables: [
+                        "Logo on event page & agenda",
+                        "Chair branding (shared)",
+                        "Logo on photo wall",
+                        "2x Tickets to specific Focus event"
+                    ]
+                }
+            ]
+        };
+
+        // --- COMPONENTS ---
+
+        const Modal = ({ item, onClose }) => {
+            if (!item) return null;
+
+            return (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                    <div className="absolute inset-0 bg-black/90 backdrop-blur-md" onClick={onClose}></div>
+                    <div className="relative w-full max-w-2xl bg-[#111] border border-[#333] rounded-2xl shadow-2xl overflow-hidden flex flex-col modal-animate">
+                        
+                        <div className="p-8 border-b border-[#222] bg-[#161616] relative">
+                             <button onClick={onClose} className="absolute top-6 right-6 p-2 text-gray-500 hover:text-white transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                            <div className="flex gap-2 mb-4">
+                                {item.tags.map(tag => (
+                                    <span key={tag} className="px-2 py-1 text-xs font-bold uppercase tracking-wider text-black bg-brand-yellow rounded-sm">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                            <h2 className="text-3xl font-black text-white mb-2">{item.title}</h2>
+                            <p className="text-2xl font-mono text-[#ffcf33]">{item.price}</p>
+                        </div>
+                        
+                        <div className="p-8 overflow-y-auto max-h-[60vh]">
+                            <p className="text-gray-300 text-lg mb-6 leading-relaxed border-l-4 border-[#ffcf33] pl-4">
+                                {item.description}
+                            </p>
+                            
+                            <h4 className="text-white font-bold uppercase tracking-wider text-sm mb-4 flex items-center gap-2">
+                                <span className="w-2 h-2 bg-[#ffcf33] rounded-full"></span> Deliverables
+                            </h4>
+                            <ul className="check-list space-y-3">
+                                {item.deliverables.map((d, i) => (
+                                    <li key={i}>{d}</li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        <div className="p-6 border-t border-[#222] bg-[#161616] flex justify-end gap-4">
+                             <button onClick={onClose} className="px-6 py-3 font-bold text-white transition-colors hover:text-[#ffcf33]">
+                                Close
+                            </button>
+                            <a 
+                                href={`mailto:sales@next.io?subject=Inquiry: ${item.title} (Valletta 2026)`}
+                                className="flex items-center gap-2 px-8 py-3 font-bold text-black transition-colors bg-brand-yellow hover:bg-white rounded-lg shadow-[0_0_20px_rgba(255,207,51,0.3)] hover:shadow-[0_0_30px_rgba(255,207,51,0.5)]"
+                            >
+                                Secure Opportunity
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const InventoryCard = ({ item, onClick }) => {
+            return (
+                <div 
+                    onClick={() => onClick(item)}
+                    className="group flex flex-col bg-[#111] border border-[#222] hover:border-[#ffcf33] p-6 rounded-xl cursor-pointer hover-lift relative overflow-hidden"
+                >
+                    <div className="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffcf33" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                    </div>
+                    
+                    <div className="flex gap-2 mb-4">
+                         {item.tags.includes("Exclusive") && (
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-[#ffcf33] border border-[#ffcf33] px-2 py-0.5 rounded">
+                                Exclusive
+                            </span>
+                         )}
+                         {item.tags.includes("Platinum") && (
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-black bg-gray-200 px-2 py-0.5 rounded">
+                                Platinum
+                            </span>
+                         )}
+                    </div>
+
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#ffcf33] transition-colors">{item.title}</h3>
+                    <p className="text-gray-400 text-sm mb-6 line-clamp-2 flex-grow">{item.description}</p>
+                    
+                    <div className="mt-auto pt-4 border-t border-[#222] flex items-center justify-between">
+                         <span className="text-lg font-mono font-bold text-white">{item.price}</span>
+                         <span className="text-xs font-bold text-[#ffcf33] opacity-0 group-hover:opacity-100 transition-opacity">VIEW DETAILS</span>
+                    </div>
+                </div>
+            );
+        };
+
+        const StatCard = ({ value, label }) => (
+            <div className="bg-[#111] border border-[#222] p-6 rounded-xl text-center">
+                <div className="text-3xl md:text-4xl font-black text-white mb-1">{value}</div>
+                <div className="text-xs md:text-sm text-gray-500 uppercase tracking-widest font-bold">{label}</div>
+            </div>
+        );
+
+        const TierCard = ({ title, investment, color }) => (
+            <div className="bg-[#111] border-l-4 p-6 rounded-r-xl" style={{ borderLeftColor: color }}>
+                <h4 className="text-lg font-bold text-white uppercase tracking-wider mb-1">{title}</h4>
+                <p className="text-gray-400 text-sm mb-0">Investment: <span className="text-white font-mono">{investment}</span></p>
+            </div>
+        );
+
+        const App = () => {
+            const [activeCategory, setActiveCategory] = useState('venue');
+            const [selectedItem, setSelectedItem] = useState(null);
+
+            return (
+                <div className="min-h-screen pb-20 selection:bg-[#ffcf33] selection:text-black">
+                    {/* NAV */}
+                    <nav className="sticky top-0 z-40 bg-black/90 backdrop-blur-md border-b border-[#222]">
+                        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+                            <div className="flex items-center gap-3">
+                                <img 
+                                    src="https://i.ibb.co/7d8TG1zF/IMG-9205.png" 
+                                    alt="NEXT.io" 
+                                    className="h-8 md:h-10 object-contain"
+                                />
+                                <div className="hidden md:flex flex-col pl-3 border-l border-gray-700">
+                                    <span className="text-white font-bold leading-none tracking-tight">VALLETTA</span>
+                                    <span className="text-[#ffcf33] text-xs font-bold leading-none tracking-widest">2026</span>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-6">
+                                <span className="hidden md:block text-gray-400 text-sm font-medium">May 27-28, Mediterranean Conference Centre</span>
+                                <a href="mailto:sales@next.io" className="px-5 py-2 text-sm font-bold text-black bg-brand-yellow rounded hover:bg-white transition-colors">
+                                    Book Meeting
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+
+                    {/* HERO */}
+                    <header className="relative py-20 overflow-hidden">
+                        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#ffcf33] opacity-[0.05] blur-[150px] rounded-full pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
+                        
+                        <div className="container mx-auto px-6 relative z-10">
+                            <div className="max-w-4xl">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-[#333] rounded-full bg-[#111]">
+                                    <span className="w-2 h-2 rounded-full bg-[#ffcf33] animate-pulse"></span>
+                                    <span className="text-xs font-bold text-gray-300 uppercase tracking-wider">Partnership Opportunities</span>
+                                </div>
+                                <h1 className="text-6xl md:text-8xl font-black text-white tracking-tighter mb-6 leading-[0.9]">
+                                    THE HEART OF <br/>
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ffcf33] to-[#fff]">iGAMING</span>
+                                </h1>
+                                <p className="text-xl text-gray-400 max-w-2xl leading-relaxed mb-12">
+                                    Valletta 2026 is iGaming's leading operator-led event. A week-long festival shaping the future of our industry with outstanding thought leadership and unmatched networking.
+                                </p>
+
+                                {/* STATS GRID */}
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+                                    <StatCard value="6,000+" label="Delegates" />
+                                    <StatCard value="40%+" label="Operators" />
+                                    <StatCard value="54%" label="C-Level / Director" />
+                                    <StatCard value="27-28" label="May 2026" />
+                                </div>
+
+                                {/* TIERS MINI */}
+                                <div className="grid md:grid-cols-3 gap-4 mb-12 opacity-80 hover:opacity-100 transition-opacity">
+                                    <TierCard title="Platinum" investment="€60,000+" color="#e5e7eb" />
+                                    <TierCard title="Gold" investment="€15k - €60k" color="#ffcf33" />
+                                    <TierCard title="Silver" investment="< €15,000" color="#525252" />
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* MAIN INVENTORY INTERFACE */}
+                    <main className="container mx-auto px-6" id="inventory">
+                        
+                        {/* TABS */}
+                        <div className="flex overflow-x-auto gap-2 pb-4 mb-8 no-scrollbar">
+                            {categories.map(cat => (
+                                <button
+                                    key={cat.id}
+                                    onClick={() => setActiveCategory(cat.id)}
+                                    className={`flex items-center gap-2 px-6 py-3 rounded-lg whitespace-nowrap transition-all ${
+                                        activeCategory === cat.id 
+                                        ? 'tab-active' 
+                                        : 'tab-inactive'
+                                    }`}
+                                >
+                                    {cat.icon}
+                                    {cat.label}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* GRID */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {inventory[activeCategory].map((item, idx) => (
+                                <InventoryCard key={idx} item={item} onClick={setSelectedItem} />
+                            ))}
+                        </div>
+                        
+                        {/* CTA BANNER */}
+                        <div className="mt-20 p-12 rounded-3xl bg-gradient-to-r from-[#111] to-[#0a0a0a] border border-[#222] text-center relative overflow-hidden">
+                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#ffcf33] to-transparent opacity-50"></div>
+                             <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter mb-4">Don't see what you need?</h2>
+                             <p className="text-gray-400 mb-8 max-w-xl mx-auto">
+                                We offer bespoke package pricing available on request. Let's build a custom presence that fits your specific KPIs.
+                             </p>
+                             <a href="mailto:sales@next.io" className="inline-block px-10 py-4 font-bold text-black bg-white hover:bg-[#ffcf33] rounded-full transition-colors">
+                                Contact Partnership Team
+                             </a>
+                        </div>
+
+                    </main>
+
+                    {/* FOOTER */}
+                    <footer className="border-t border-[#222] bg-[#0a0a0a] py-12 mt-20">
+                        <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+                            <div className="flex items-center gap-2">
+                                <img 
+                                    src="https://i.ibb.co/7d8TG1zF/IMG-9205.png" 
+                                    alt="NEXT.io" 
+                                    className="h-6 opacity-50 grayscale hover:grayscale-0 transition-all"
+                                />
+                                <span className="text-gray-600 text-sm">© 2026</span>
+                            </div>
+                            <div className="flex items-center gap-6">
+                                <a href="mailto:sales@next.io" className="text-gray-400 hover:text-[#ffcf33] font-medium transition-colors">
+                                    sales@next.io
+                                </a>
+                                <span className="text-[#222]">|</span>
+                                <span className="text-gray-600 text-sm">Confidential Partnership Deck</span>
+                            </div>
+                        </div>
+                    </footer>
+
+                    {/* MODAL */}
+                    {selectedItem && (
+                        <Modal item={selectedItem} onClose={() => setSelectedItem(null)} />
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
+
+
