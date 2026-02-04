@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXT.io Research Reports 2026</title>
+    
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+        }
+        
+        .brand-yellow {
+            color: #ffcf33;
+        }
+        .bg-brand-yellow {
+            background-color: #ffcf33;
+        }
+        .border-brand-yellow {
+            border-color: #ffcf33;
+        }
+        .hover-brand-yellow:hover {
+            background-color: #ffcf33;
+            color: #000;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ffcf33;
+        }
+
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-hoverable {
+            transition: all 0.3s ease;
+        }
+        .card-hoverable:hover {
+            transform: translateY(-4px);
+            border-color: #ffcf33;
+            box-shadow: 0 10px 30px -10px rgba(255, 207, 51, 0.15);
+        }
+        
+        .check-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .check-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ffcf33;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // --- DATA ---
+        const reportsData = {
+            q1: [
+                {
+                    title: "Kenya",
+                    type: "Market Report",
+                    summary: "The most consequential regulatory overhaul in Kenya's history.",
+                    content: `Kenya is entering the most consequential regulatory overhaul in its gambling history, and 2026 will be the year the industry resets. The Betting Control and Licensing Board (BCLB) has suspended all licence applications and has handed over its powers to the newly created Gambling Regulatory Authority of Kenya (GRA).\n\nA new law, the Gambling Control Act, has replaced decades-old rules with a streamlined, compliance-driven and consumer-focused regime. From stricter responsible gambling measures to real-time monitoring, unified national oversight and enhanced AML and data-protection benchmarks, the GRA will reset every operational, strategic and regulatory assumption in the market. The law also introduces B2B licensing, opening new opportunities for suppliers and service providers in the sector. What’s more, recent tax reforms have transformed Kenya’s gambling taxation from one of the most burdensome in the region to one of the most competitive.\n\nThis 2026 report will unpack what the transition means for operators, suppliers, investors and policymakers. With licensing suspended until at least February 2026 and the GRA set to define entirely new standards, all stakeholders face a period of uncertainty but also opportunity. The report will analyse the shift, map the new regulatory architecture, track market disruptions, and outline critical timelines that will shape business decisions throughout 2026 and beyond.`
+                },
+                {
+                    title: "Brazil",
+                    type: "Market Report",
+                    summary: "Brazil's first year as a regulated market: enforcement & consolidation.",
+                    content: `Brazil’s first year as a regulated gambling market has been anything but quiet. As the industry accelerates, rumblings are growing that the regulator is preparing to move from licensing to strict enforcement, with substantial fines expected for operators that fall short of their obligations.\n\nOver the past 12 months, operators have navigated sweeping regulatory shifts, including new tax measures that are reshaping competition. Market moves are already underway: everyone outside the top 10 is reportedly exploring a sale. Consolidation attempts are plentiful, but experts caution it may take another year before any major deals land. And the current top three? Few believe they’ll still be top of the table in five years.\n\nBut rapid expansion brings its own risks. Legal experts warn that Brazil may be entering the perfect storm for consumer litigation. If 2025 was the year the market found its footing, 2026 will be defined by the consolidation and growth now being set in motion. This report delivers the data, analysis, and expert insight you need to stay ahead in one of the world’s most dynamic new gambling markets.`
+                },
+                {
+                    title: "Prediction Markets",
+                    type: "Thematic Report",
+                    summary: "How big is the opportunity? From niche curiosity to billion-dollar battlegrounds.",
+                    content: `A little over a year after a federal court struck down the US ban on election betting, prediction markets have surged from niche curiosity to billion-dollar battlegrounds.\n\nThe commercial potential is now undeniable. Kalshi’s valuation has surpassed $11bn, Polymarket is posting record on-chain volumes, and major gambling operators are moving in. FanDuel and DraftKings—the two leaders in US sports betting—are preparing to launch their own prediction-market products in the coming weeks. They join a growing cohort of daily fantasy sports (DFS) and sports gaming brands that now view prediction markets as the next major product category, capable of attracting both traditional bettors and a younger, data-driven audience.\n\nThis report traces the evolution of prediction markets from centuries-old betting traditions to the modern crypto era, outlines the emerging competitive landscape, and examines the regulatory and investment forces driving their rapid rise. It considers the risks of manipulation and fragmented oversight, but also highlights the industry’s biggest opportunity: building a new high-engagement product category that could eventually rival traditional sportsbook and gaming revenue streams.`
+                }
+            ],
+            q2: [
+                {
+                    title: "Italy",
+                    type: "Market Report",
+                    summary: "Fewer operators, more control. Can the new era balance growth & integrity?",
+                    content: `Fewer operators, more control? Could Italy’s new rules be the secret formula for a sustainable market?\n\nItaly’s gambling industry has always carried a hint of intrigue, from its deep cultural roots to the shadows of mafia influence that linger over parts of the sector. Yet in 2025, the stakes changed. A redesigned online licensing system slashed the number of operators, turning a once-crowded market into a tightly controlled playground for the few who could pay the price.\n\nThis report dives into that transformation. Behind the headlines of soaring revenue and headline-grabbing mergers lies a carefully managed reshuffle: licensing costs, high-profile mergers, and an intensified battle against the black market are reshaping the landscape. But as Italy tightens its grip on the industry, the question remains: can this new era balance growth, integrity, and competition, and maybe even become a model for Europe’s gambling future?`
+                },
+                {
+                    title: "South Africa",
+                    type: "Market Report",
+                    summary: "The continent's largest market faces a bold 20% tax on GGR.",
+                    content: `South Africa, the continent’s largest and most lucrative gambling market, is once again under the spotlight. The National Treasury has floated a bold 20% tax on gross gambling revenue, covering everything from sports betting to the country’s still-murky online casino sector. If adopted, this levy would stack on top of VAT, provincial taxes, and corporate income tax, pushing the total burden toward a staggering 44% of GGR — potentially the highest effective rate anywhere in the world.\n\nAmid mounting pressure, lawmakers are still wrestling with the unresolved illegality of online gambling. While some provincial regulators license traditional casino games under current sports betting regulations, the Democratic Alliance attempted to break the deadlock with fresh legislation in 2024, but momentum has since stalled.\n\nThis report dives deep into South Africa’s fast-evolving gambling landscape: market growth, regulatory gridlock, competitive shifts, and the rise of online play. It also unpacks the financial and operational impact of the proposed national tax — and what it could mean for operators, consumers, and government coffers alike.`
+                },
+                {
+                    title: "Bad Crypto, Good Crypto",
+                    type: "Thematic Report",
+                    summary: "Is crypto the future of clean, compliant gambling or the engine behind the black market?",
+                    content: `Crypto gambling is at a crossroads. Some platforms promise transparency and regulated financial rails, while others remain hotbeds for untraceable activity and fraud. So, what’s really happening: is crypto the future of clean, compliant gambling or the engine behind the black market?\n\nThis report examines the spectrum of crypto in gambling, from “good” regulated platforms to “bad” schemes exploiting AML blind spots. We explore regulatory gaps, market risks, and the challenges operators face as crypto adoption accelerates.`
+                },
+                {
+                    title: "AI in iGaming",
+                    type: "Thematic Report",
+                    summary: "The Playa Report. Potential topic exploring AI's deep impact.",
+                    content: "This report explores the transformative role of Artificial Intelligence in the iGaming sector. From personalized player experiences to advanced fraud detection and responsible gambling algorithms, we analyze how AI is reshaping operations and strategy for major players."
+                }
+            ],
+            q3: [
+                {
+                    title: "Finland",
+                    type: "Market Report",
+                    summary: "The shift from state monopoly to a fully regulated competitive licensing model.",
+                    content: `Finland is gearing up for the most significant overhaul of its gambling sector in decades, as the country shifts from a long-standing state monopoly to a fully regulated, competitive licensing model. With the Finnish Parliament’s Administrative Committee finalising its report — and the legislation expected to pass without further changes — the framework for a modernised market is quickly crystallising.\n\nThe reform sets out a clear transition timeline that operators and suppliers should already be preparing for. B2C licence applications will open on 1 March 2026, ahead of the market’s full launch on 1 July 2027. On the same date, B2B licence applications will become available, with the B2B licensing requirement coming into force a year later on 1 July 2028.\n\nThis report examines Finland’s transition from monopoly to licensing, analysing the regulatory roadmap, commercial opportunities, competitive dynamics, and the emerging vision shaping the country’s next chapter.`
+                },
+                {
+                    title: "Ethiopia",
+                    type: "Market Report",
+                    summary: "One of Africa’s most intriguing and underdeveloped gambling opportunities.",
+                    content: `Despite a population of 120 million, twice that of Kenya, Ethiopia hosts only a limited number of established operators, making it one of Africa’s most intriguing and underdeveloped gambling opportunities. International brands are already present, despite the 100% local-ownership requirement, operating through franchise and service-agreement models that allow them to build a footprint without holding the licence directly.\n\nBut Ethiopia comes with real structural challenges: retail operations remain banned, repatriating profits is notoriously difficult, and the regulatory environment demands patience as well as creativity. Local betting behaviour is consistent with broader African trends: strong appetite for crash games and high-multiple accumulator bets.\n\nOur upcoming Ethiopia Report breaks down the regulatory model, market entry pathways, player preferences, competitive dynamics, and the realistic opportunities for growth. This is a market to watch.`
+                },
+                {
+                    title: "The Changed C-Suite",
+                    type: "Thematic Report",
+                    summary: "How iGaming leadership teams are reshaping to meet digital transformation.",
+                    content: `The C-Suite in iGaming is evolving at a breakneck pace. New organisational structures, shifting market expectations, and the accelerating digital transformation are demanding an unprecedented breadth of skills from today’s executives. Market observers, and former and current C-suite leaders alike, agree on one thing: the speed at which companies must adapt is faster than ever, sometimes transforming operating models every 18 months.\n\nSo how are iGaming C-suites keeping up? What roles are truly essential, and how many executives does a modern operator really need? New titles keep emerging, and the reality is that iGaming executives are navigating a landscape far more dynamic and multifaceted than ever before.\n\nThis report explores how today’s iGaming companies are reshaping their leadership teams, what skills are now critical at the top, and what the next wave of C-suite evolution might look like.`
+                }
+            ],
+            q4: [
+                {
+                    title: "New Zealand",
+                    type: "Market Report",
+                    summary: "Entering a critical phase: full regulation and licensing in late 2026.",
+                    content: `New Zealand’s online casino sector is entering a critical phase, edging closer to full regulation with key dates now set: draft regulations have been submitted to Cabinet, final rules are expected by mid-2026, and new licences will take effect on 1 December 2026. Offshore gambling duty will rise from 12% to 16% GGR from 1 January 2027, and up to 15 licences will be auctioned to operators meeting rigorous entry requirements.\n\nThis report provides a comprehensive overview of New Zealand’s emerging online casino market, offering insight into the regulatory framework, licensing timelines, taxation changes, and compliance requirements. With strict enforcement penalties of up to NZ$5m for violations and a shift toward active regulation that balances consumer freedom with harm prevention, operators will need to navigate a complex landscape.`
+                },
+                {
+                    title: "UAE",
+                    type: "Market Report",
+                    summary: "A market of possibility, where innovation meets ambiguity.",
+                    content: `The UAE is on everyone’s radar, but what’s really happening behind the dunes? Officially, the market is not yet regulated, yet full-scale gambling platforms are quietly appearing, leaving the industry guessing. Some see the spark of innovation, with hints of crypto, blockchain, and high-tech platforms testing the waters.\n\nWith each emirate allowed just one licence, early moves by suppliers suggest the UAE is experimenting with a futuristic, transparent gaming ecosystem, but the rules of the game are still being written. For investors and operators, it’s a market of possibility, where innovation meets ambiguity, and the first movers could shape the landscape of Middle Eastern gaming for years to come.\n\nWe planned this report for Q4 2026, anticipating that by then more clarity would have emerged on licensing, regulation, and market development.`
+                },
+                {
+                    title: "eSports",
+                    type: "Thematic Report",
+                    summary: "No longer a punchline: global revenue projected to hit $2.8bn.",
+                    content: `Long dismissed as a niche sideshow in traditional gambling circles, esports betting is rapidly becoming one of the industry’s most powerful growth engines. In Latin American markets, esports is already huge.\n\nGlobal esports betting revenue is projected to hit $2.8bn by end of 2025, up 12% year-on-year and more than double the volume of just four years ago. By 2026, it is expected to surpass $3 billion, driven by a maturing esports audience: the average bettor is around 30, well-educated, and affluent.\n\nThis report explores the myths, the momentum, and the market realities reshaping esports betting. From regulatory shifts to audience demographics and revenue projections, we unpack why esports is no longer the industry’s punchline; it’s its next big opportunity.`
+                }
+            ]
+        };
+
+        // --- ICONS ---
+        const IconGlobe = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        );
+        const IconBook = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        );
+        const IconX = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        );
+        const IconArrowRight = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        );
+
+        // --- COMPONENTS ---
+
+        const Modal = ({ report, onClose }) => {
+            if (!report) return null;
+
+            return (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                    <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose}></div>
+                    <div className="relative w-full max-w-2xl bg-[#111] border border-[#333] rounded-xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col animate-fadeIn">
+                        
+                        <div className="p-6 border-b border-[#333] flex justify-between items-start bg-[#161616]">
+                            <div>
+                                <span className="inline-block px-2 py-1 mb-2 text-xs font-bold tracking-wider text-black uppercase bg-brand-yellow rounded-sm">
+                                    {report.type}
+                                </span>
+                                <h2 className="text-3xl font-bold text-white">{report.title}</h2>
+                            </div>
+                            <button onClick={onClose} className="p-2 text-gray-400 hover:text-white bg-transparent hover:bg-[#222] rounded-full transition-colors">
+                                <IconX />
+                            </button>
+                        </div>
+                        
+                        <div className="p-8 overflow-y-auto">
+                            <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed whitespace-pre-line">
+                                {report.content}
+                            </div>
+                        </div>
+
+                        <div className="p-6 border-t border-[#333] bg-[#161616] flex flex-col sm:flex-row justify-between items-center gap-4">
+                            <div className="text-white">
+                                <span className="block text-xs text-gray-500 uppercase font-bold">Price</span>
+                                <span className="text-xl font-bold">€30,000</span>
+                            </div>
+                            <a 
+                                href="mailto:sales@next.io" 
+                                className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 font-bold text-black transition-colors bg-brand-yellow hover:bg-white rounded-lg"
+                            >
+                                Sponsor This Report <IconArrowRight />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const ReportCard = ({ report, onClick }) => {
+            const isMarket = report.type.toLowerCase().includes("market");
+            
+            return (
+                <div 
+                    onClick={() => onClick(report)}
+                    className="group relative flex flex-col p-6 bg-[#111] border border-[#222] rounded-xl cursor-pointer card-hoverable h-full"
+                >
+                    <div className="flex items-center justify-between mb-4">
+                        <span className={`flex items-center gap-2 text-xs font-bold uppercase tracking-wider ${isMarket ? 'text-gray-400' : 'brand-yellow'}`}>
+                            {isMarket ? <IconGlobe /> : <IconBook />}
+                            {report.type}
+                        </span>
+                    </div>
+                    
+                    <h3 className="mb-3 text-xl font-bold text-white group-hover:text-[#ffcf33] transition-colors">{report.title}</h3>
+                    
+                    <p className="text-sm text-gray-400 line-clamp-3 mb-6 flex-grow">{report.summary}</p>
+                    
+                    <div className="mt-auto pt-4 border-t border-[#222] flex items-center justify-between">
+                        <span className="text-xs font-semibold text-[#ffcf33] opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0 flex items-center">
+                            READ MORE <span className="ml-1">→</span>
+                        </span>
+                        <span className="text-xs font-mono text-gray-600 group-hover:text-gray-400 transition-colors">€30,000</span>
+                    </div>
+                </div>
+            );
+        };
+
+        const SponsorshipPackage = () => (
+            <div className="my-16 bg-gradient-to-br from-[#161616] to-[#0a0a0a] border border-[#333] rounded-2xl overflow-hidden relative">
+                {/* Decorative Elements */}
+                <div className="absolute top-0 right-0 w-96 h-96 bg-[#ffcf33] opacity-[0.03] blur-[120px] rounded-full pointer-events-none"></div>
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-white opacity-[0.02] blur-[80px] rounded-full pointer-events-none"></div>
+
+                <div className="grid lg:grid-cols-2">
+                    {/* Left Column: Pitch & Price */}
+                    <div className="p-8 lg:p-12 flex flex-col border-b lg:border-b-0 lg:border-r border-[#222]">
+                        <h2 className="text-3xl font-black text-white uppercase tracking-tighter mb-4">
+                            Sponsorship <span className="text-[#ffcf33]">Package</span>
+                        </h2>
+                        <p className="text-gray-400 leading-relaxed mb-8 text-sm md:text-base">
+                            Unlock powerful insights with an industry-leading deep dive report tailored to the market of your choice. Over a focused three-month research period, our expert NEXT.io research team works hand-in-hand with leading subject matter experts to deliver primary research you can trust. 
+                        </p>
+                        <p className="text-gray-400 leading-relaxed mb-8 text-sm md:text-base">
+                            Co-branded with NEXT.io and promoted throughout our thriving community, your report becomes more than just intelligence—it’s a strategic lead generation tool designed to put your brand in front of the right audience.
+                        </p>
+                        
+                        <div className="mt-auto pt-6 border-t border-[#222] flex flex-col sm:flex-row items-baseline justify-between gap-4">
+                            <div>
+                                <span className="text-sm text-gray-500 uppercase font-bold tracking-wider">Total Package Cost</span>
+                                <div className="text-5xl font-black text-white mt-1">€ 30,000</div>
+                            </div>
+                            <a href="mailto:sales@next.io" className="bg-[#ffcf33] text-black px-6 py-3 rounded-lg font-bold hover:bg-white transition-colors w-full sm:w-auto text-center">
+                                Reserve Now
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Right Column: Deliverables */}
+                    <div className="p-8 lg:p-12 bg-[#000]/20">
+                        <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <span className="w-2 h-8 bg-[#ffcf33] rounded-sm inline-block"></span>
+                            Key Deliverables
+                        </h3>
+                        <ul className="check-list text-gray-300 space-y-3 text-sm">
+                            <li className="pl-6"><span className="text-white font-semibold">Deep dive market report</span> (est. 50 pages) on a market of your choice</li>
+                            <li className="pl-6">Produced by NEXT.io's in-house research team</li>
+                            <li className="pl-6"><span className="text-white font-semibold">Interviews with market experts</span> conducted by NEXT.io (est. 10 per report)</li>
+                            <li className="pl-6">Logo featured prominently on cover and throughout</li>
+                            <li className="pl-6">Co-branding with NEXT.io in all marketing collateral</li>
+                            <li className="pl-6">Marketing via social media, website, newsletters & email campaigns</li>
+                            <li className="pl-6">Strategic Lead Gen: Name/Company/Job title of downloaders shared</li>
+                            <li className="pl-6"><span className="text-white font-semibold">Top 30 Leads:</span> Email addresses of top downloaders shared</li>
+                            <li className="pl-6"><span className="text-white font-semibold">Exclusive Webinar</span> presenting the report, with partner representative</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        );
+
+        const QuarterSection = ({ quarter, data, onReportClick, filter }) => {
+            const filteredData = filter === 'All' 
+                ? data 
+                : data.filter(r => r.type.includes(filter.replace('Reports', '')));
+
+            if (filteredData.length === 0) return null;
+
+            return (
+                <div className="mb-16">
+                    <div className="flex items-center gap-4 mb-8">
+                        <div className="flex flex-col">
+                            <h2 className="text-4xl font-black text-white uppercase tracking-tighter">
+                                {quarter}
+                            </h2>
+                            <span className="text-sm text-[#ffcf33] font-mono">2026</span>
+                        </div>
+                        <div className="h-px bg-gradient-to-r from-[#ffcf33] to-transparent flex-grow opacity-30"></div>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {filteredData.map((report, idx) => (
+                            <ReportCard key={idx} report={report} onClick={onReportClick} />
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const CustomReportsBanner = () => (
+            <div className="my-20 p-8 rounded-xl border border-dashed border-gray-700 bg-[#0d0d0d] flex flex-col md:flex-row items-center justify-between gap-8">
+                <div>
+                    <h3 className="text-2xl font-bold text-white mb-2">Looking for something else?</h3>
+                    <p className="text-gray-400 max-w-2xl">
+                        Custom reports on specific markets or verticals are available upon request. These are priced up accordingly at <span className="text-[#ffcf33] font-semibold">bespoke pricing</span>.
+                    </p>
+                    <p className="text-xs text-gray-600 mt-2 italic">* Subject to research team availability.</p>
+                </div>
+                <a href="mailto:sales@next.io?subject=Custom Report Inquiry" className="whitespace-nowrap px-6 py-3 border border-gray-600 text-white rounded-lg font-bold hover:border-[#ffcf33] hover:text-[#ffcf33] transition-colors">
+                    Inquire About Custom Reports
+                </a>
+            </div>
+        );
+
+        const DeepDiveSection = () => (
+            <div className="p-8 mb-16 rounded-2xl glass-panel relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-[#ffcf33] opacity-5 blur-[100px] rounded-full pointer-events-none"></div>
+                
+                <div className="flex flex-col lg:flex-row gap-12 relative z-10">
+                    <div className="lg:w-1/3">
+                        <h2 className="text-3xl font-black text-white mb-4 uppercase tracking-tighter">
+                            Company <span className="brand-yellow">Deep-Dives</span>
+                        </h2>
+                        <div className="h-1 w-20 bg-brand-yellow mb-6"></div>
+                        <p className="text-gray-400 mb-6">
+                            Individual reports released throughout 2026 based on research completion and client agreements.
+                        </p>
+                        <h4 className="text-white font-bold mb-3">Potential Companies:</h4>
+                        <ul className="grid grid-cols-2 gap-2 text-sm text-gray-500 mb-8">
+                            <li>• DraftKings</li>
+                            <li>• Evolution</li>
+                            <li>• Glitnor Group</li>
+                            <li>• Catena Media</li>
+                            <li>• Kambi</li>
+                            <li>• EveryMatrix</li>
+                            <li>• Entain</li>
+                            <li>• Evoke</li>
+                        </ul>
+                    </div>
+                    
+                    <div className="lg:w-2/3 bg-[#0a0a0a] border border-[#222] rounded-xl p-6">
+                        <h3 className="text-lg font-bold text-white mb-4 border-b border-[#222] pb-4">Standard Report Structure</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-sm text-gray-400">
+                            <div className="flex gap-3">
+                                <span className="text-[#ffcf33] font-mono">01</span> Executive Summary
+                            </div>
+                            <div className="flex gap-3">
+                                <span className="text-[#ffcf33] font-mono">02</span> Founding & History
+                            </div>
+                            <div className="flex gap-3">
+                                <span className="text-[#ffcf33] font-mono">03</span> Business Overview
+                            </div>
+                            <div className="flex gap-3">
+                                <span className="text-[#ffcf33] font-mono">04</span> Market Overview
+                            </div>
+                            <div className="flex gap-3">
+                                <span className="text-[#ffcf33] font-mono">05</span> Competitive Dynamics
+                            </div>
+                            <div className="flex gap-3">
+                                <span className="text-[#ffcf33] font-mono">06</span> Business Model
+                            </div>
+                            <div className="flex gap-3">
+                                <span className="text-[#ffcf33] font-mono">07</span> Financial Analysis
+                            </div>
+                            <div className="flex gap-3">
+                                <span className="text-[#ffcf33] font-mono">08</span> Strategic Outlook
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+
+        const OtherMarkets = () => (
+             <div className="mb-16 border-t border-gray-800 pt-10">
+                <h3 className="text-xl font-bold text-gray-300 mb-4">Other Markets Worth Exploring</h3>
+                <p className="text-gray-500 text-sm mb-4">
+                    Any of the listed reports could be replaced or supplemented depending on client demand or market developments.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                    {["Botswana", "Cameroon", "Canada (Alberta)", "Colombia", "Argentina", "Paraguay", "Nigeria"].map(m => (
+                        <span key={m} className="px-3 py-1 bg-[#111] border border-[#333] rounded-full text-xs text-gray-400">
+                            {m}
+                        </span>
+                    ))}
+                </div>
+            </div>
+        )
+
+        const ComparativeGuides = () => (
+            <div className="mb-24">
+                <div className="flex items-center gap-4 mb-8">
+                     <div className="flex flex-col">
+                        <h2 className="text-3xl font-black text-white uppercase tracking-tighter">
+                            Comparative Guides
+                        </h2>
+                        <span className="text-sm text-gray-500 font-mono">Publication TBD 2026</span>
+                    </div>
+                     <div className="h-px bg-[#222] flex-grow"></div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="bg-[#111] p-8 rounded-xl border-l-4 border-brand-yellow">
+                        <h3 className="text-2xl font-bold text-white mb-2">East Africa</h3>
+                        <p className="text-[#ffcf33] text-sm font-bold mb-4 uppercase tracking-widest">Comparative Guide</p>
+                        <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                            A side-by-side analysis of Kenya, Ethiopia, Tanzania, and Uganda. Highlights key differences shaping strategy, compliance, and market opportunity across the region.
+                        </p>
+                    </div>
+                    <div className="bg-[#111] p-8 rounded-xl border-l-4 border-brand-yellow">
+                        <h3 className="text-2xl font-bold text-white mb-2">Latam</h3>
+                        <p className="text-[#ffcf33] text-sm font-bold mb-4 uppercase tracking-widest">Comparative Guide</p>
+                        <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                            Explores Brazil’s massive potential, Mexico’s regulatory landscape, Peru’s consolidation, Colombia’s high tax, and Argentina’s federal system.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        );
+
+        const App = () => {
+            const [selectedReport, setSelectedReport] = useState(null);
+            const [filter, setFilter] = useState("All");
+
+            return (
+                <div className="min-h-screen pb-20 selection:bg-[#ffcf33] selection:text-black">
+                    {/* NAV */}
+                    <nav className="sticky top-0 z-40 bg-black/90 backdrop-blur-md border-b border-[#222]">
+                        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+                            <div className="flex items-center gap-3">
+                                <img 
+                                    src="https://i.ibb.co/7xcRV73z/IMG-9203.png" 
+                                    alt="NEXT.io" 
+                                    className="h-8 md:h-10 object-contain"
+                                />
+                                <span className="text-gray-500 text-base font-normal hidden sm:inline-block border-l border-gray-700 pl-3">
+                                    Research
+                                </span>
+                            </div>
+                            <a href="mailto:sales@next.io" className="px-5 py-2 text-sm font-bold text-black bg-brand-yellow rounded hover:bg-white transition-colors">
+                                Contact Sales
+                            </a>
+                        </div>
+                    </nav>
+
+                    {/* HERO */}
+                    <header className="pt-20 pb-10 container mx-auto px-6 relative">
+                        <div className="max-w-3xl">
+                            <h1 className="text-6xl md:text-7xl font-black text-white tracking-tighter mb-6 leading-tight">
+                                2026 <span className="brand-yellow block">Research Calendar</span>
+                            </h1>
+                            <p className="text-xl text-gray-400 max-w-2xl leading-relaxed mb-8">
+                                A comprehensive timeline of market reports, thematic deep-dives, and comparative guides defining the iGaming landscape next year.
+                            </p>
+                        </div>
+                    </header>
+
+                    <main className="container mx-auto px-6">
+                        
+                        {/* Sponsorship Package Section */}
+                        <SponsorshipPackage />
+
+                        {/* Filter Tabs */}
+                        <div className="flex justify-between items-end mb-10 mt-16">
+                            <div className="inline-flex bg-[#111] p-1 rounded-lg border border-[#222]">
+                                {['All', 'Market', 'Thematic'].map(f => (
+                                    <button
+                                        key={f}
+                                        onClick={() => setFilter(f)}
+                                        className={`px-6 py-2 rounded-md text-sm font-bold transition-all ${
+                                            filter === f 
+                                            ? 'bg-[#333] text-white shadow-lg' 
+                                            : 'text-gray-500 hover:text-gray-300'
+                                        }`}
+                                    >
+                                        {f}
+                                    </button>
+                                ))}
+                            </div>
+                            <div className="text-right hidden md:block">
+                                <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Calendar</span>
+                            </div>
+                        </div>
+
+                        {/* Quarters */}
+                        <QuarterSection quarter="Q1" data={reportsData.q1} onReportClick={setSelectedReport} filter={filter} />
+                        <QuarterSection quarter="Q2" data={reportsData.q2} onReportClick={setSelectedReport} filter={filter} />
+                        <QuarterSection quarter="Q3" data={reportsData.q3} onReportClick={setSelectedReport} filter={filter} />
+                        <QuarterSection quarter="Q4" data={reportsData.q4} onReportClick={setSelectedReport} filter={filter} />
+                        
+                        <ComparativeGuides />
+                        <DeepDiveSection />
+                        
+                        {/* Custom Reports Banner */}
+                        <CustomReportsBanner />
+
+                        <OtherMarkets />
+                    </main>
+
+                    {/* FOOTER */}
+                    <footer className="border-t border-[#222] bg-[#0a0a0a] py-12 mt-12">
+                        <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+                            <div className="text-gray-500 text-sm">
+                                © 2026 NEXT.io. All rights reserved.
+                            </div>
+                            <div className="flex items-center gap-6">
+                                <a href="mailto:sales@next.io" className="text-gray-400 hover:text-[#ffcf33] font-medium transition-colors">
+                                    sales@next.io
+                                </a>
+                                <span className="text-[#222]">|</span>
+                                <span className="text-gray-600 text-sm">Confidential Sales Presentation</span>
+                            </div>
+                        </div>
+                    </footer>
+
+                    {/* MODAL */}
+                    {selectedReport && (
+                        <Modal report={selectedReport} onClose={() => setSelectedReport(null)} />
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
+
