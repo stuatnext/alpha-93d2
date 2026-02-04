@@ -149,13 +149,14 @@
         .partnership-box {
             border: 2px solid var(--brand-black);
             background-color: #fff1f2; /* Very light red bg */
-            padding: 1.5rem;
-            margin-bottom: 2rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 1rem;
+            gap: 1.5rem;
             position: relative;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
         }
         
         .partnership-box::before {
@@ -168,15 +169,22 @@
             color: white;
             font-size: 0.7rem;
             font-weight: 700;
-            letter-spacing: 0.1em;
-            padding: 0.25rem 1rem;
+            letter-spacing: 0.15em;
+            padding: 0.5rem 1.5rem;
             text-transform: uppercase;
         }
 
         .brand-text {
             font-weight: 800;
+            font-size: 2rem;
+            letter-spacing: -0.03em;
+            color: var(--brand-black);
+        }
+
+        .brand-x {
             font-size: 1.5rem;
-            letter-spacing: -0.02em;
+            color: var(--brand-red);
+            font-weight: 300;
         }
 
         /* Mobile */
@@ -185,7 +193,8 @@
             .calc-row { grid-template-columns: 1fr; gap: 1rem; }
             .section-label { padding: 0.5rem 1rem; }
             .malta-graphic { height: 300px; }
-            .partnership-box { flex-direction: column; gap: 0.5rem; text-align: center; }
+            .partnership-box { flex-direction: column; gap: 0.5rem; text-align: center; padding: 2rem 1rem; }
+            .brand-text { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -196,7 +205,7 @@
         <!-- PARTNERSHIP CALLOUT -->
         <div class="partnership-box">
             <span class="brand-text">NEXT.io</span>
-            <span class="text-2xl text-red-500 font-light">×</span>
+            <span class="brand-x">×</span>
             <span class="brand-text">Identità</span>
         </div>
 
@@ -243,12 +252,16 @@
                         Relocation isn't an HR decision; it's a C-Level strategy. Our audience is composed of the exact people who sign off on moving HQs.
                     </p>
                     <div class="space-y-3 pt-4 border-t border-gray-200">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs uppercase font-bold text-gray-400"><a href="https://next.io/summits/newyork/" target="_blank" class="hover:text-red-500 transition-colors border-b border-gray-300 pb-0.5">NYC Attendees</a></span>
+                        <div class="flex justify-between items-center group">
+                            <a href="https://next.io/summits/newyork/" target="_blank" class="flex items-center gap-2 text-xs uppercase font-bold text-gray-400 hover:text-red-600 transition-colors">
+                                NYC Attendees <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            </a>
                             <span class="text-xl font-bold">1,600+</span>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs uppercase font-bold text-gray-400"><a href="https://next.io/summits/valletta/" target="_blank" class="hover:text-red-500 transition-colors border-b border-gray-300 pb-0.5">Valletta Attendees</a></span>
+                        <div class="flex justify-between items-center group">
+                            <a href="https://next.io/summits/valletta/" target="_blank" class="flex items-center gap-2 text-xs uppercase font-bold text-gray-400 hover:text-red-600 transition-colors">
+                                Valletta Attendees <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            </a>
                             <span class="text-xl font-bold">6,000+</span>
                         </div>
                         <div class="flex justify-between items-center">
@@ -291,24 +304,17 @@
                     <div class="text-red font-bold uppercase tracking-widest text-sm mb-6">01. Physical Presence</div>
                     
                     <div class="mb-8">
-                        <h3 class="text-xl font-bold mb-1">NYC Pillar Branding</h3>
-                        <div class="text-xs text-gray-400 uppercase tracking-wide mb-2">Gallery 1 • Lower Floor</div>
-                        <p class="text-sm text-gray-600">Dominating the visual space where US execs discuss expansion plans.</p>
-                        <div class="mt-3 font-mono font-bold">€11,000</div>
-                    </div>
-
-                    <div class="mb-8">
-                        <h3 class="text-xl font-bold mb-1">Advertisement Videos</h3>
-                        <div class="text-xs text-gray-400 uppercase tracking-wide mb-2">NYC & Valletta Main Screens</div>
-                        <p class="text-sm text-gray-600">30-second "Life in Malta" commercial played to 6,000+ attendees.</p>
-                        <div class="mt-3 font-mono font-bold">€7,000 (x2)</div>
-                    </div>
-
-                    <div>
                         <h3 class="text-xl font-bold mb-1">Golf Tournament Sponsor</h3>
                         <div class="text-xs text-gray-400 uppercase tracking-wide mb-2">Valletta • Title Sponsor</div>
                         <p class="text-sm text-gray-600">The ultimate lifestyle showcase. Exclusive branding & networking.</p>
                         <div class="mt-3 font-mono font-bold">€35,000</div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold mb-1">Advertisement Videos</h3>
+                        <div class="text-xs text-gray-400 uppercase tracking-wide mb-2">NYC & Valletta Main Screens</div>
+                        <p class="text-sm text-gray-600">30-second "Life in Malta" commercial played to 6,000+ attendees.</p>
+                        <div class="mt-3 font-mono font-bold">€14,000</div>
                     </div>
                 </div>
 
@@ -323,11 +329,11 @@
                         <div class="mt-3 font-mono font-bold">€8,000</div>
                     </div>
 
-                    <div class="mb-8">
+                    <div>
                         <h3 class="text-xl font-bold mb-1">Middle Leaderboard</h3>
-                        <div class="text-xs text-gray-400 uppercase tracking-wide mb-2">2 Months Duration</div>
+                        <div class="text-xs text-gray-400 uppercase tracking-wide mb-2">1 Month Duration</div>
                         <p class="text-sm text-gray-600">Contextual placement within industry news.</p>
-                        <div class="mt-3 font-mono font-bold">€5,000</div>
+                        <div class="mt-3 font-mono font-bold">€2,500</div>
                     </div>
                 </div>
 
@@ -335,14 +341,14 @@
                 <div class="bg-black text-white p-10 flex flex-col justify-between">
                     <div>
                         <div class="text-white/50 text-sm font-bold uppercase tracking-widest mb-2">Total Rate Card</div>
-                        <div class="text-3xl font-bold tracking-tighter text-gray-400 line-through mb-4">€73,000</div>
+                        <div class="text-3xl font-bold tracking-tighter text-gray-400 line-through mb-4">€59,500</div>
                         
                         <div class="bg-red-600 text-white text-xs font-bold uppercase inline-block px-3 py-1 mb-8 rounded">
-                            Partner Savings: -€23,000
+                            Partner Discount: 5% (-€3,000)
                         </div>
 
                         <div class="text-white/50 text-sm font-bold uppercase tracking-widest mb-2">Final Investment</div>
-                        <div class="text-6xl font-bold tracking-tighter text-white mb-6">€50,000</div>
+                        <div class="text-6xl font-bold tracking-tighter text-white mb-6">€56,500</div>
 
                         <p class="text-white/70 text-sm leading-relaxed">
                             A highly optimized package focusing budget on the highest impact assets for maximum ROI.
@@ -385,7 +391,7 @@
                         </div>
 
                         <div class="flex flex-col items-end">
-                            <div class="text-xs text-red-500 uppercase tracking-widest font-bold mb-1">Your Savings</div>
+                            <div class="text-xs text-red-500 uppercase tracking-widest font-bold mb-1">5% Discount</div>
                             <div id="savings-total" class="text-xl font-bold text-red-500">€0</div>
                         </div>
 
@@ -409,7 +415,7 @@
         const inventory = [
             // NEW YORK ITEMS
             { name: "NYC: Advertisement Video", price: 7000, type: 'binary', active: true, desc: "Main Stage Screens", section: "New York" },
-            { name: "NYC: Pillar Branding (Lower Floor)", price: 11000, type: 'binary', active: true, desc: "High Visibility in Gallery 1", section: "New York" },
+            { name: "NYC: Pillar Branding (Lower Floor)", price: 11000, type: 'binary', active: false, desc: "High Visibility in Gallery 1", section: "New York" },
             { name: "NYC: Nourish Bar (Lower Floor)", price: 13500, type: 'binary', active: false, desc: "Branded Smoothie Bar", section: "New York" },
 
             // VALLETTA ITEMS
@@ -425,7 +431,7 @@
 
             // MEDIA ITEMS
             { name: "Web Ad: Mega Banner", price: 8000, type: 'qty', qty: 1, unit: "Months", desc: "Top of page visibility", section: "Media" },
-            { name: "Web Ad: Middle Leaderboard", price: 2500, type: 'qty', qty: 2, unit: "Months", desc: "In-article placement", section: "Media" },
+            { name: "Web Ad: Middle Leaderboard", price: 2500, type: 'qty', qty: 1, unit: "Months", desc: "In-article placement", section: "Media" },
             { name: "Web Ad: MPU Banner", price: 2000, type: 'qty', qty: 0, unit: "Months", desc: "Sidebar visibility", section: "Media" },
             { name: "Web Ad: Slide In Banner", price: 5000, type: 'qty', qty: 0, unit: "Months", desc: "Bottom corner overlay", section: "Media" },
             { name: "Web Ad: Pop-up Banner", price: 8000, type: 'qty', qty: 0, unit: "Months", desc: "Center screen overlay", section: "Media" }
@@ -493,13 +499,13 @@
                 container.appendChild(row);
             });
 
-            // Discount Logic for Calculator Display
-            let finalPrice = total;
-            // Exact package match logic (The recommended mix list price is 73k)
-            if (total === 73000) {
-                finalPrice = 50000;
-            }
-
+            // STRICT 5% DISCOUNT LOGIC
+            let discountRate = 0.05;
+            let finalPrice = Math.floor(total * (1 - discountRate));
+            
+            // Round to nearest 100 for cleaner numbers
+            finalPrice = Math.round(finalPrice / 100) * 100;
+            
             let savings = total - finalPrice;
 
             // Update DOM
@@ -508,7 +514,7 @@
             grandTotalEl.innerText = '€' + finalPrice.toLocaleString();
             
             // Visual cue for discount
-            if (finalPrice < total) {
+            if (savings > 0) {
                 grandTotalEl.classList.add('text-red');
                 grandTotalEl.classList.remove('text-black');
             } else {
