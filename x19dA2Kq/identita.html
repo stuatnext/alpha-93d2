@@ -145,25 +145,64 @@
             border-bottom: 1px solid #d4d4d4;
         }
 
+        /* Partnership Callout Box */
+        .partnership-box {
+            border: 2px solid var(--brand-black);
+            background-color: #fff1f2; /* Very light red bg */
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            position: relative;
+        }
+        
+        .partnership-box::before {
+            content: "STRATEGIC PARTNERSHIP PROPOSAL";
+            position: absolute;
+            top: -0.75rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--brand-black);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            padding: 0.25rem 1rem;
+            text-transform: uppercase;
+        }
+
+        .brand-text {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
         /* Mobile */
         @media (max-width: 768px) {
             .calc-header { display: none; }
             .calc-row { grid-template-columns: 1fr; gap: 1rem; }
             .section-label { padding: 0.5rem 1rem; }
             .malta-graphic { height: 300px; }
+            .partnership-box { flex-direction: column; gap: 0.5rem; text-align: center; }
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <main class="max-w-7xl mx-auto px-6 py-20">
+    <main class="max-w-7xl mx-auto px-6 py-12 md:py-20">
+
+        <!-- PARTNERSHIP CALLOUT -->
+        <div class="partnership-box">
+            <span class="brand-text">NEXT.io</span>
+            <span class="text-2xl text-red-500 font-light">×</span>
+            <span class="brand-text">Identità</span>
+        </div>
 
         <!-- HERO SECTION -->
         <header class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24 items-center">
             <div>
-                <div class="inline-block bg-black text-white px-3 py-1 text-xs font-bold uppercase tracking-widest mb-6">
-                    NEXT.io x Identità
-                </div>
                 <h1 class="text-6xl md:text-8xl font-extrabold leading-none mb-8 tracking-tighter">
                     SELL THE <br>
                     <span class="text-red">LIFESTYLE.</span>
@@ -203,14 +242,22 @@
                     <p class="text-gray-600 text-sm leading-relaxed mb-4">
                         Relocation isn't an HR decision; it's a C-Level strategy. Our audience is composed of the exact people who sign off on moving HQs.
                     </p>
-                    <div class="flex gap-4 pt-4 border-t border-gray-200">
-                        <div>
-                            <div class="text-2xl font-bold">71%</div>
-                            <div class="text-[10px] uppercase font-bold text-gray-400">C-Level NYC</div>
+                    <div class="space-y-3 pt-4 border-t border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs uppercase font-bold text-gray-400"><a href="https://next.io/summits/newyork/" target="_blank" class="hover:text-red-500 transition-colors border-b border-gray-300 pb-0.5">NYC Attendees</a></span>
+                            <span class="text-xl font-bold">1,600+</span>
                         </div>
-                        <div>
-                            <div class="text-2xl font-bold">54%</div>
-                            <div class="text-[10px] uppercase font-bold text-gray-400">C-Level Valletta</div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs uppercase font-bold text-gray-400"><a href="https://next.io/summits/valletta/" target="_blank" class="hover:text-red-500 transition-colors border-b border-gray-300 pb-0.5">Valletta Attendees</a></span>
+                            <span class="text-xl font-bold">6,000+</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs uppercase font-bold text-gray-400">Web Traffic</span>
+                            <span class="text-xl font-bold">1.7M+</span>
+                        </div>
+                        <div class="flex gap-4 pt-2">
+                            <div class="bg-red-50 text-red-600 px-2 py-1 text-xs font-bold uppercase rounded">71% C-Level NYC</div>
+                            <div class="bg-red-50 text-red-600 px-2 py-1 text-xs font-bold uppercase rounded">54% C-Level Valletta</div>
                         </div>
                     </div>
                 </div>
@@ -330,23 +377,20 @@
 
                 <!-- Total Bar -->
                 <div class="bg-white p-8 border-t border-gray-200">
-                    <div class="flex flex-col gap-4 items-end">
+                    <div class="flex flex-col md:flex-row justify-end items-center gap-8">
                         
-                        <!-- List Price -->
-                         <div class="flex justify-between items-center w-full md:w-1/2">
-                            <div class="text-xs text-gray-400 uppercase tracking-widest font-bold">Total List Price</div>
+                        <div class="flex flex-col items-end">
+                            <div class="text-xs text-gray-400 uppercase tracking-widest font-bold mb-1">List Price</div>
                             <div id="list-total" class="text-xl font-bold text-gray-400 line-through">€0</div>
                         </div>
 
-                        <!-- Savings -->
-                        <div class="flex justify-between items-center w-full md:w-1/2">
-                            <div class="text-xs text-red-500 uppercase tracking-widest font-bold">Partner Savings</div>
+                        <div class="flex flex-col items-end">
+                            <div class="text-xs text-red-500 uppercase tracking-widest font-bold mb-1">Your Savings</div>
                             <div id="savings-total" class="text-xl font-bold text-red-500">€0</div>
                         </div>
 
-                        <!-- Final -->
-                        <div class="flex justify-between items-center w-full md:w-1/2 pt-4 border-t border-gray-100">
-                            <div class="text-xs text-black uppercase tracking-widest font-bold">Final Investment</div>
+                        <div class="flex flex-col items-end pl-8 border-l border-gray-100">
+                            <div class="text-xs text-black uppercase tracking-widest font-bold mb-1">Final Investment</div>
                             <div id="grand-total" class="text-5xl font-bold text-black tracking-tight">€50,000</div>
                         </div>
 
@@ -451,7 +495,7 @@
 
             // Discount Logic for Calculator Display
             let finalPrice = total;
-            // Exact package match logic
+            // Exact package match logic (The recommended mix list price is 73k)
             if (total === 73000) {
                 finalPrice = 50000;
             }
