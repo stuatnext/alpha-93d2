@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXT.io × Plaee | Official Prediction Market Partner</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        /* Define Plaee Brand Colors (Tech/Prediction Vibe) */
+        :root {
+            --neon-green: #00E676; /* Prediction 'Up' / Action color */
+            --bg-dark: #0A0A0B;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --border-color: rgba(0, 230, 118, 0.2);
+            --text-main: #E2E8F0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Cards */
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-green), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--neon-green);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px -10px rgba(0, 230, 118, 0.15);
+        }
+        
+        .stat-card:hover::before { opacity: 1; }
+
+        /* Tables */
+        .price-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        .price-table th {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            color: var(--neon-green);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .price-table td {
+            padding: 1.25rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            vertical-align: top;
+        }
+        
+        .strike { text-decoration: line-through; color: #64748b; }
+        
+        /* Calculator Styles */
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background 0.2s;
+        }
+        .calc-row:hover { background: rgba(255, 255, 255, 0.02); }
+        .calc-row label { cursor: pointer; display: flex; align-items: center; flex-grow: 1; }
+        
+        /* Checkbox styling */
+        .calc-checkbox {
+            appearance: none;
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 0.25rem;
+            margin-right: 1.25rem;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-shrink: 0;
+            background: transparent;
+        }
+        .calc-checkbox:checked {
+            background-color: var(--neon-green);
+            border-color: var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
+        }
+        .calc-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            color: var(--bg-dark);
+            font-size: 1rem;
+            font-weight: 900;
+            left: 3px;
+            top: -1px;
+        }
+
+        .qty-control {
+            display: flex;
+            align-items: center;
+            background: rgba(0,0,0,0.5);
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-right: 1.25rem;
+        }
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--neon-green);
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .qty-btn:hover { background: rgba(0, 230, 118, 0.1); }
+        .qty-val {
+            width: 40px;
+            text-align: center;
+            font-variant-numeric: tabular-nums;
+            font-weight: 600;
+            color: white;
+            border-left: 1px solid rgba(255,255,255,0.1);
+            border-right: 1px solid rgba(255,255,255,0.1);
+            line-height: 32px;
+        }
+
+        .total-display {
+            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0, 230, 118, 0.05));
+            border-top: 1px solid var(--neon-green);
+        }
+        
+        .price-sticker {
+            background: var(--neon-green);
+            color: var(--bg-dark);
+            box-shadow: 0 10px 30px -5px rgba(0, 230, 118, 0.3);
+        }
+
+        .investment-row {
+            background: rgba(0, 230, 118, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+        .investment-row td {
+            border-top: 1px solid var(--neon-green);
+            border-bottom: 1px solid var(--neon-green);
+        }
+        .investment-row td:first-child { border-left: 4px solid var(--neon-green); }
+
+        /* Glowing dots background */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="antialiased bg-grid selection:bg-green-500 selection:text-black">
+
+    <main class="max-w-6xl mx-auto px-6 py-16 md:py-24">
+        
+        <!-- HEADER -->
+        <header class="text-center mb-24 relative">
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-12">
+               <h2 class="text-3xl font-display font-bold tracking-widest text-white opacity-90">NEXT.io</h2>
+               <span class="text-gray-600 hidden md:inline">×</span>
+               <h2 class="text-4xl font-display font-black tracking-wider text-[var(--neon-green)]">PLAEE</h2>
+            </div>
+
+            <div class="inline-block px-4 py-1.5 mb-6 border border-green-500/30 rounded-full bg-green-500/10 shadow-[0_0_15px_rgba(0,230,118,0.15)]">
+                <span class="text-[var(--neon-green)] text-xs font-bold tracking-widest uppercase">Category Ownership Strategy</span>
+            </div>
+            
+            <h1 class="text-6xl md:text-8xl font-display font-black tracking-tighter mb-6 text-white leading-tight">
+                OWN THE <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--neon-green)] to-emerald-400">
+                    PREDICTION
+                </span> <br>
+                ECONOMY.
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mt-8 font-light leading-relaxed">
+                Positioning <strong class="text-white">Plaee</strong> as the Official Prediction Market Partner of NEXT Summit Valletta 2026.
+            </p>
+        </header>
+
+        <!-- STRATEGY / THE PLAY -->
+        <section class="mb-24">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 bg-black/50 border border-white/5 p-8 md:p-12 rounded-2xl backdrop-blur-sm">
+                <div>
+                    <h3 class="text-sm font-bold text-[var(--neon-green)] uppercase tracking-widest mb-3">The Opportunity</h3>
+                    <p class="text-lg text-gray-300 leading-relaxed">
+                        Prediction markets are the fastest-growing vertical in global entertainment. The iGaming industry is watching, but lacks a definitive leader. NEXT Summit Valletta gathers <strong>6,000+ operators, investors, and affiliates</strong> looking for the next major revenue driver.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-bold text-[var(--neon-green)] uppercase tracking-widest mb-3">The Strategy</h3>
+                    <p class="text-lg text-gray-300 leading-relaxed">
+                        We don't just give you a booth; we give you the category. By anchoring your physical presence with an island stand, dominating the visual landscape with the <strong>"Prediction Wall"</strong>, and leading the thought-leadership narrative, Plaee becomes synonymous with the future of betting.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE 4 PILLARS -->
+        <section class="mb-24">
+            <h2 class="text-3xl font-display font-bold text-white mb-12 text-center">The Category Domination Protocol</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Pillar 1 -->
+                <div class="stat-card">
+                    <div class="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center mb-6 border border-green-500/20">
+                        <span class="text-[var(--neon-green)] font-bold font-display text-xl">01</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">The Anchor</h3>
+                    <p class="text-gray-400 mb-4"><strong>4x8 Island Exhibition Stand.</strong></p>
+                    <p class="text-sm text-gray-500">A premium 32sqm island space in the heart of the expo. This is your operational base for high-level meetings, product demos, and deal-making. Fully customizable footprint.</p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="stat-card">
+                    <div class="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center mb-6 border border-green-500/20">
+                        <span class="text-[var(--neon-green)] font-bold font-display text-xl">02</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">The Takeover</h3>
+                    <p class="text-gray-400 mb-4"><strong>The Plaee Prediction Wall (25m x 3m).</strong></p>
+                    <p class="text-sm text-gray-500">We replace standard static branding with a massive 25-meter mural in the expo area. Use this to display live market odds, interactive QR codes for delegates, and bold predictive statements. Unmissable.</p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="stat-card">
+                    <div class="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center mb-6 border border-green-500/20">
+                        <span class="text-[var(--neon-green)] font-bold font-display text-xl">03</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">The Authority</h3>
+                    <p class="text-gray-400 mb-4"><strong>NEXT Focus: Prediction Markets Headline.</strong></p>
+                    <p class="text-sm text-gray-500">You are the exclusive Headline Partner for the dedicated Prediction Markets side-event. This positions Plaee as the definitive market educator to highly targeted, captive attendees.</p>
+                </div>
+
+                <!-- Pillar 4 -->
+                <div class="stat-card">
+                    <div class="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center mb-6 border border-green-500/20">
+                        <span class="text-[var(--neon-green)] font-bold font-display text-xl">04</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">The Voice</h3>
+                    <p class="text-gray-400 mb-4"><strong>Main Stage Custom Panel.</strong></p>
+                    <p class="text-sm text-gray-500">Host and moderate a custom panel on the Main Stage of the Republic Hall. Control the narrative, invite your key partners, and broadcast your vision to the entire summit audience.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PACKAGE BREAKDOWN & CALCULATOR -->
+        <section class="max-w-5xl mx-auto mb-24">
+            <h2 class="text-3xl font-display font-bold text-white mb-8 text-center">Partnership Investment</h2>
+            
+            <!-- CALCULATOR SECTION -->
+            <div id="calculator" class="bg-[#0f0f11] border border-gray-800 rounded-2xl overflow-hidden shadow-2xl">
+                <div class="p-6 border-b border-gray-800 flex justify-between items-center bg-black/40">
+                    <div>
+                        <h3 class="text-lg font-bold text-white tracking-wide font-display">Customizable Proposal</h3>
+                        <p class="text-sm text-gray-400 mt-1">Select your assets. Strategic discount applies automatically.</p>
+                    </div>
+                    <div class="text-[var(--neon-green)] bg-green-500/10 px-3 py-1 rounded-full text-xs font-bold border border-green-500/20">
+                        PREDICTION PARTNER TIER
+                    </div>
+                </div>
+                
+                <div id="calc-items" class="divide-y divide-gray-800/50">
+                    <!-- Javascript will populate this -->
+                </div>
+
+                <div class="total-display p-8 flex flex-col md:flex-row justify-between items-center md:items-end gap-6">
+                    <div class="text-left w-full md:w-auto">
+                        <div class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Total Rate Card Value</div>
+                        <div id="total-rate-card" class="text-2xl font-mono strike opacity-60">€149,000</div>
+                    </div>
+                    
+                    <!-- HIGH IMPACT PRICE DISPLAY -->
+                    <div class="price-sticker px-8 py-5 rounded-xl flex flex-col items-center md:items-end w-full md:w-auto text-center md:text-right">
+                        <div class="text-xs uppercase tracking-widest font-black opacity-80 mb-1">Official Partner Investment</div>
+                        <div id="total-partner-price" class="text-5xl md:text-6xl font-display font-black leading-none tracking-tighter">€138,500</div>
+                        <div class="text-xs font-bold mt-2 opacity-80 bg-black/10 px-2 py-1 rounded">INCLUDES EXCLUSIVITY</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-24 pb-12 border-t border-gray-800 pt-12">
+            <p class="text-sm text-gray-500 font-display">NEXT.io × Plaee | 2026 Official Partnership Proposal</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- Calculator Logic ---
+        const items = [
+            // Core Package
+            { name: "NEXT Focus: Prediction Markets Headline Partner", desc: "Exclusive ownership of the side-event.", price: 50000, type: 'binary', active: true },
+            { name: "The Plaee Prediction Wall", desc: "25m(W) x 3m(H) Freestanding Wall Mural branding.", price: 45000, type: 'binary', active: true },
+            { name: "Main Stage Custom Panel", desc: "Host a curated panel in the Republic Hall.", price: 30000, type: 'binary', active: true },
+            { name: "Exhibition Stand - 4x8 Island (Space Only)", desc: "Premium footprint in the main expo hall.", price: 24000, type: 'binary', active: true },
+            
+            // Add-ons for Upsell
+            { name: "ADD-ON: Registration Entrance Arch", desc: "First touchpoint branding for all 6,000+ delegates.", price: 8000, type: 'binary', active: false },
+            { name: "ADD-ON: Video Ad Campaign", desc: "Main stage & digital signage network.", price: 8625, type: 'binary', active: false },
+            { name: "ADD-ON: Promoted Article Bundle", desc: "Pre-event SEO & Social thought leadership.", price: 5000, type: 'quantity', qty: 0, unit: "Bundles" }
+        ];
+
+        const container = document.getElementById('calc-items');
+        const totalRateEl = document.getElementById('total-rate-card');
+        const totalPartnerEl = document.getElementById('total-partner-price');
+        
+        // 7% strategic discount
+        const discountRate = 0.93; 
+
+        function getLinePrice(item) {
+            if (item.type === 'binary') return item.active ? item.price : 0;
+            if (item.type === 'quantity') return item.price * item.qty;
+            return 0;
+        }
+
+        function renderCalculator() {
+            container.innerHTML = '';
+            items.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'calc-row';
+                
+                let controlHTML = '';
+                
+                if (item.type === 'binary') {
+                    controlHTML = `
+                        <label class="group">
+                            <input type="checkbox" class="calc-checkbox" data-index="${index}" ${item.active ? 'checked' : ''}>
+                            <div class="flex flex-col">
+                                <span class="${item.active ? 'text-white' : 'text-gray-500'} font-bold transition-colors text-lg">${item.name}</span>
+                                <span class="text-sm text-gray-500 mt-1">${item.desc}</span>
+                            </div>
+                        </label>
+                    `;
+                } else {
+                    controlHTML = `
+                        <div class="flex items-center flex-grow">
+                            <div class="qty-control">
+                                <div class="qty-btn" onclick="updateQty(${index}, -1)">-</div>
+                                <div class="qty-val">${item.qty}</div>
+                                <div class="qty-btn" onclick="updateQty(${index}, 1)">+</div>
+                            </div>
+                            <div class="flex flex-col ml-2">
+                                <span class="${item.qty > 0 ? 'text-white' : 'text-gray-500'} font-bold transition-colors text-lg">${item.name}</span>
+                                <span class="text-sm text-gray-500 mt-1">${item.desc}</span>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                const currentLinePrice = getLinePrice(item);
+
+                div.innerHTML = `
+                    ${controlHTML}
+                    <div class="font-mono ${item.active || item.qty > 0 ? 'text-[var(--neon-green)]' : 'text-gray-600'} text-lg font-bold min-w-[100px] text-right">€${currentLinePrice.toLocaleString()}</div>
+                `;
+                container.appendChild(div);
+            });
+            
+            // Bind listeners
+            document.querySelectorAll('.calc-checkbox').forEach(cb => {
+                cb.addEventListener('change', (e) => {
+                    const idx = e.target.getAttribute('data-index');
+                    items[idx].active = e.target.checked;
+                    renderCalculator(); 
+                });
+            });
+            
+            calculateTotals();
+        }
+
+        window.updateQty = function(index, change) {
+            const item = items[index];
+            let newQty = item.qty + change;
+            if (newQty < 0) newQty = 0;
+            item.qty = newQty;
+            renderCalculator();
+        };
+
+        function calculateTotals() {
+            let total = 0;
+            items.forEach(item => {
+                total += getLinePrice(item);
+            });
+
+            // Calculate partner price (rounded to nearest 500)
+            let partnerPrice = Math.round((total * discountRate) / 500) * 500;
+
+            totalRateEl.innerText = '€' + total.toLocaleString();
+            totalPartnerEl.innerText = '€' + partnerPrice.toLocaleString();
+        }
+
+        renderCalculator();
+    </script>
+</body>
+</html>
