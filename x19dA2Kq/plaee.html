@@ -89,13 +89,13 @@
         .calc-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start; /* Changed to flex-start for perfect alignment */
             padding: 1.25rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             transition: background 0.2s;
         }
         .calc-row:hover { background: rgba(255, 255, 255, 0.02); }
-        .calc-row label { cursor: pointer; display: flex; align-items: center; flex-grow: 1; }
+        .calc-row label { cursor: pointer; display: flex; align-items: flex-start; flex-grow: 1; }
         
         /* Checkbox styling */
         .calc-checkbox {
@@ -105,6 +105,7 @@
             border: 2px solid rgba(255,255,255,0.2);
             border-radius: 0.25rem;
             margin-right: 1.25rem;
+            margin-top: 0.125rem; /* Precise nudge to perfectly align with text baseline */
             position: relative;
             cursor: pointer;
             transition: all 0.2s;
@@ -203,7 +204,7 @@
                     <span class="text-[var(--neon-green)] text-xs font-bold tracking-widest uppercase">Category Ownership Strategy</span>
                 </div>
                 <div class="inline-block px-4 py-1.5 border border-white/20 rounded-full bg-white/5">
-                    <span class="text-gray-300 text-xs font-bold tracking-widest uppercase">May 25 - 28, 2026 • Valletta, Malta</span>
+                    <span class="text-gray-300 text-xs font-bold tracking-widest uppercase">May 25 - 30, 2026 • Valletta, Malta</span>
                 </div>
             </div>
             
@@ -260,7 +261,7 @@
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-3">The Takeover</h3>
                     <p class="text-gray-400 mb-4"><strong>Networking Rooftop Drinks (Day 1 - May 27).</strong></p>
-                    <p class="text-sm text-gray-500">Own the crucial post-conference conversations. As the official sponsor of the Day 1 networking drinks, your brand dominates the rooftop with a 10m branded bar backdrop, photo walls, and prominent digital screen takeovers.</p>
+                    <p class="text-sm text-gray-500">Own the crucial post-conference conversations. The interactive proposal below allows you to select either a Co-Sponsor package, or absolute dominance with <strong>Exclusive</strong> ownership of the Day 1 rooftop.</p>
                 </div>
 
                 <!-- Pillar 3 -->
@@ -269,8 +270,8 @@
                         <span class="text-[var(--neon-green)] font-bold font-display text-xl">03</span>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-3">The Authority</h3>
-                    <p class="text-gray-400 mb-4"><strong>Headline Partner & Main Stage Panel.</strong></p>
-                    <p class="text-sm text-gray-500">You are the exclusive Headline Partner for the dedicated Prediction Markets side-event on May 25. Furthermore, you'll host a custom panel on the Main Stage of the Republic Hall (May 27-28) to control the narrative across the entire summit.</p>
+                    <p class="text-gray-400 mb-4"><strong>Headline Partner & Curated Panel.</strong></p>
+                    <p class="text-sm text-gray-500">You are the exclusive Headline Partner for the dedicated Prediction Markets side-event on May 25. Furthermore, you'll host and set the topic for a dedicated panel (May 27-28), bringing in your own top-tier experts to control the industry narrative.</p>
                 </div>
 
                 <!-- Pillar 4 -->
@@ -278,9 +279,9 @@
                     <div class="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center mb-6 border border-green-500/20">
                         <span class="text-[var(--neon-green)] font-bold font-display text-xl">04</span>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-3">The Connection</h3>
-                    <p class="text-gray-400 mb-4"><strong>Exclusive Wi-Fi Sponsorship.</strong></p>
-                    <p class="text-sm text-gray-500">Every single one of the 6,000+ delegates will connect to the internet through the Plaee custom portal. Your logo will also be featured on the back of every delegate badge next to the network credentials.</p>
+                    <h3 class="text-2xl font-bold text-white mb-3">The Climax</h3>
+                    <p class="text-gray-400 mb-4"><strong>Headline Partner - Showers (May 30).</strong></p>
+                    <p class="text-sm text-gray-500">Keep the momentum going into the weekend. As the Headline Partner of our legendary Saturday closing event, you own the final, most memorable touchpoint of the entire Malta week.</p>
                 </div>
             </div>
         </section>
@@ -308,13 +309,13 @@
                 <div class="total-display p-8 flex flex-col md:flex-row justify-between items-center md:items-end gap-6">
                     <div class="text-left w-full md:w-auto">
                         <div class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-2">Total Rate Card Value</div>
-                        <div id="total-rate-card" class="text-2xl font-mono strike opacity-60">€156,625</div>
+                        <div id="total-rate-card" class="text-2xl font-mono strike opacity-60">€259,125</div>
                     </div>
                     
                     <!-- HIGH IMPACT PRICE DISPLAY -->
                     <div class="price-sticker px-8 py-5 rounded-xl flex flex-col items-center md:items-end w-full md:w-auto text-center md:text-right">
                         <div class="text-xs uppercase tracking-widest font-black opacity-80 mb-1">Official Partner Investment</div>
-                        <div id="total-partner-price" class="text-5xl md:text-6xl font-display font-black leading-none tracking-tighter">€145,500</div>
+                        <div id="total-partner-price" class="text-5xl md:text-6xl font-display font-black leading-none tracking-tighter">€241,000</div>
                         <div class="text-xs font-bold mt-2 opacity-80 bg-black/10 px-2 py-1 rounded">INCLUDES EXCLUSIVITY</div>
                     </div>
                 </div>
@@ -330,16 +331,18 @@
     <script>
         // --- Calculator Logic ---
         const items = [
-            // Core Package
-            { name: "NEXT Focus: Prediction Markets Headline Partner (May 25)", desc: "Exclusive ownership of the side-event.", price: 50000, type: 'binary', active: true },
-            { name: "Networking Rooftop Drinks (Day 1 - May 27)", desc: "Headline branding at the official Day 1 party.", price: 25000, type: 'binary', active: true },
-            { name: "Exclusive Wi-Fi Sponsorship (May 27-28)", desc: "Custom portal & delegate badge branding.", price: 18000, type: 'binary', active: true },
-            { name: "Main Stage Custom Panel", desc: "Host a curated panel in the Republic Hall.", price: 30000, type: 'binary', active: true },
-            { name: "Exhibition Stand - 4x4 (Custom Build)", desc: "Premium footprint in the main expo hall. Build included.", price: 25000, type: 'binary', active: true },
-            { name: "Venue Video Ad Campaign", desc: "Main stage & digital signage network.", price: 8625, type: 'binary', active: true },
+            // Event & Physical Assets
+            { category: "Event & Physical Assets", name: "NEXT Focus: Prediction Markets Headline (May 25)", desc: "Exclusive ownership of the side-event.", price: 50000, type: 'binary', active: true },
+            { category: "Event & Physical Assets", name: "Networking Rooftop Drinks (Day 1 - May 27)", desc: "Headline branding at the official Day 1 party.", priceExclusive: 100000, priceNonExclusive: 25000, type: 'rooftop', active: true, isExclusive: true },
+            { category: "Event & Physical Assets", name: "Headline Partner - Showers (May 30)", desc: "Official partner of the legendary Saturday closing event.", price: 40000, type: 'binary', active: true },
+            { category: "Event & Physical Assets", name: "Main Stage Panel", desc: "Host a dedicated panel featuring your top experts.", price: 20000, type: 'binary', active: true },
+            { category: "Event & Physical Assets", name: "Exhibition Stand - 4x4 (Custom Build)", desc: "Premium footprint in the main expo hall. Build included.", price: 25000, type: 'binary', active: true },
             
-            // Add-ons for Upsell
-            { name: "ADD-ON: Promoted Articles (3x Bundle)", desc: "Pre-event SEO & Social thought leadership.", price: 5000, type: 'quantity', qty: 0, unit: "Bundles" }
+            // Digital & Content Assets
+            { category: "Digital & Content Assets", name: "Venue Video Ad Campaign", desc: "Main stage & digital signage network.", price: 8625, type: 'binary', active: true },
+            { category: "Digital & Content Assets", name: "Mega Banner (Month)", desc: "High-impact digital visibility. CTR benchmarks beat competitors and B2B standards.", price: 8000, type: 'quantity', qty: 1, unit: "Months" },
+            { category: "Digital & Content Assets", name: "Daily Newsletter Upper Leaderboard (Month)", desc: "15,000+ subscribers.", price: 2500, type: 'quantity', qty: 3, unit: "Months" },
+            { category: "Digital & Content Assets", name: "Promoted Articles (3x Bundle)", desc: "Pre-event SEO & Social thought leadership.", price: 5000, type: 'quantity', qty: 1, unit: "Bundles" }
         ];
 
         const container = document.getElementById('calc-items');
@@ -352,37 +355,68 @@
         function getLinePrice(item) {
             if (item.type === 'binary') return item.active ? item.price : 0;
             if (item.type === 'quantity') return item.price * item.qty;
+            if (item.type === 'rooftop') return item.active ? (item.isExclusive ? item.priceExclusive : item.priceNonExclusive) : 0;
             return 0;
         }
 
         function renderCalculator() {
             container.innerHTML = '';
+            
+            let currentCategory = '';
+            
             items.forEach((item, index) => {
+                // Add Category Headers for clarity
+                if (item.category !== currentCategory) {
+                    currentCategory = item.category;
+                    const header = document.createElement('div');
+                    header.className = 'px-6 py-3 bg-gray-900/50 border-b border-gray-800/50 text-xs text-[var(--neon-green)] font-bold uppercase tracking-widest';
+                    header.innerText = currentCategory;
+                    container.appendChild(header);
+                }
+
                 const div = document.createElement('div');
-                div.className = 'calc-row';
+                div.className = 'calc-row px-6';
                 
                 let controlHTML = '';
                 
                 if (item.type === 'binary') {
                     controlHTML = `
-                        <label class="group">
+                        <label class="group flex items-start cursor-pointer w-full pr-4">
                             <input type="checkbox" class="calc-checkbox" data-index="${index}" ${item.active ? 'checked' : ''}>
                             <div class="flex flex-col">
-                                <span class="${item.active ? 'text-white' : 'text-gray-500'} font-bold transition-colors text-lg">${item.name}</span>
+                                <span class="${item.active ? 'text-white' : 'text-gray-500'} font-bold transition-colors text-lg leading-tight">${item.name}</span>
                                 <span class="text-sm text-gray-500 mt-1">${item.desc}</span>
                             </div>
                         </label>
                     `;
+                } else if (item.type === 'rooftop') {
+                    controlHTML = `
+                        <div class="flex flex-col w-full pr-4">
+                            <label class="group flex items-start cursor-pointer w-full">
+                                <input type="checkbox" class="calc-checkbox" data-index="${index}" ${item.active ? 'checked' : ''}>
+                                <div class="flex flex-col">
+                                    <span class="${item.active ? 'text-white' : 'text-gray-500'} font-bold transition-colors text-lg leading-tight">${item.name}</span>
+                                    <span class="text-sm text-gray-500 mt-1">${item.desc}</span>
+                                </div>
+                            </label>
+                            <div class="pl-[2.75rem] mt-3">
+                                <div class="flex items-center bg-black/40 rounded-lg p-1 border border-gray-700 self-start inline-flex shrink-0 relative z-10">
+                                    <button onclick="updateRooftop(${index}, true)" class="px-4 py-1.5 text-xs font-bold rounded-md transition-all ${item.isExclusive ? 'bg-[var(--neon-green)] text-black shadow-[0_0_10px_rgba(0,230,118,0.3)]' : 'text-gray-500 hover:text-white'}">Exclusive (€100k)</button>
+                                    <button onclick="updateRooftop(${index}, false)" class="px-4 py-1.5 text-xs font-bold rounded-md transition-all ${!item.isExclusive ? 'bg-gray-700 text-white' : 'text-gray-500 hover:text-white'}">Co-Sponsor (€25k)</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
                 } else {
                     controlHTML = `
-                        <div class="flex items-center flex-grow">
-                            <div class="qty-control">
+                        <div class="flex items-start flex-grow pr-4">
+                            <div class="qty-control mt-0.5 shrink-0">
                                 <div class="qty-btn" onclick="updateQty(${index}, -1)">-</div>
                                 <div class="qty-val">${item.qty}</div>
                                 <div class="qty-btn" onclick="updateQty(${index}, 1)">+</div>
                             </div>
-                            <div class="flex flex-col ml-2">
-                                <span class="${item.qty > 0 ? 'text-white' : 'text-gray-500'} font-bold transition-colors text-lg">${item.name}</span>
+                            <div class="flex flex-col">
+                                <span class="${item.qty > 0 ? 'text-white' : 'text-gray-500'} font-bold transition-colors text-lg leading-tight">${item.name}</span>
                                 <span class="text-sm text-gray-500 mt-1">${item.desc}</span>
                             </div>
                         </div>
@@ -390,10 +424,11 @@
                 }
 
                 const currentLinePrice = getLinePrice(item);
+                const isActive = (item.type === 'quantity' && item.qty > 0) || (item.type !== 'quantity' && item.active);
 
                 div.innerHTML = `
                     ${controlHTML}
-                    <div class="font-mono ${item.active || item.qty > 0 ? 'text-[var(--neon-green)]' : 'text-gray-600'} text-lg font-bold min-w-[100px] text-right">€${currentLinePrice.toLocaleString()}</div>
+                    <div class="font-mono ${isActive ? 'text-[var(--neon-green)]' : 'text-gray-600'} text-lg font-bold min-w-[100px] text-right shrink-0 mt-0.5">€${currentLinePrice.toLocaleString()}</div>
                 `;
                 container.appendChild(div);
             });
@@ -401,7 +436,7 @@
             // Bind listeners
             document.querySelectorAll('.calc-checkbox').forEach(cb => {
                 cb.addEventListener('change', (e) => {
-                    const idx = e.target.getAttribute('data-index');
+                    const idx = parseInt(e.target.getAttribute('data-index'));
                     items[idx].active = e.target.checked;
                     renderCalculator(); 
                 });
@@ -409,6 +444,13 @@
             
             calculateTotals();
         }
+
+        window.updateRooftop = function(index, isExclusive) {
+            items[index].isExclusive = isExclusive;
+            // Automatically ensure the checkbox is ticked if they click the toggle
+            items[index].active = true;
+            renderCalculator();
+        };
 
         window.updateQty = function(index, change) {
             const item = items[index];
