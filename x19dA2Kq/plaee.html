@@ -340,6 +340,16 @@
                         <div class="text-xs font-bold mt-2 opacity-80 bg-black/10 px-2 py-1 rounded">INCLUDES EXCLUSIVITY</div>
                     </div>
                 </div>
+                
+                <!-- NEW ACTION BUTTON -->
+                <div class="p-6 bg-black/60 border-t border-[var(--neon-green)]/20 flex justify-center">
+                    <button onclick="sendEmail()" class="w-full md:w-auto px-10 py-4 bg-[var(--neon-green)] text-[var(--bg-dark)] font-black font-display text-lg tracking-widest uppercase rounded-xl hover:scale-105 transition-all shadow-[0_0_20px_rgba(0,230,118,0.25)] hover:shadow-[0_0_30px_rgba(0,230,118,0.4)] flex items-center justify-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                        </svg>
+                        Lock In This Package
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -492,6 +502,41 @@
 
             totalRateEl.innerText = '€' + total.toLocaleString();
             totalPartnerEl.innerText = '€' + partnerPrice.toLocaleString();
+        }
+        
+        // --- Email Generation Logic ---
+        function sendEmail() {
+            let selectedList = [];
+            let totalRate = 0;
+
+            items.forEach(item => {
+                let currentLinePrice = getLinePrice(item);
+                if (currentLinePrice > 0) {
+                    totalRate += currentLinePrice;
+                    if (item.type === 'binary') {
+                        selectedList.push(`• ${item.name} (€${currentLinePrice.toLocaleString()})`);
+                    } else if (item.type === 'rooftop') {
+                        let typeStr = item.isExclusive ? "EXCLUSIVE" : "CO-SPONSOR";
+                        selectedList.push(`• ${item.name} [${typeStr}] (€${currentLinePrice.toLocaleString()})`);
+                    } else if (item.type === 'quantity') {
+                        selectedList.push(`• ${item.name} (Qty: ${item.qty}) (€${currentLinePrice.toLocaleString()})`);
+                    }
+                }
+            });
+
+            let partnerPrice = Math.round((totalRate * discountRate) / 500) * 500;
+
+            let subject = "Plaee × NEXT Summit Valletta 2026 - Partnership Confirmation";
+            
+            let body = `Hi Pierre,\n\nWe have reviewed the strategy and are interested in securing the following NEXT.io partnership package for Valletta 2026:\n\nSELECTED ASSETS:\n`;
+            body += selectedList.join('\n');
+            body += `\n\n---------------------------------\n`;
+            body += `Total Rate Card Value: €${totalRate.toLocaleString()}\n`;
+            body += `Official Partner Investment (incl. 7% Strategic Discount): €${partnerPrice.toLocaleString()}\n`;
+            body += `---------------------------------\n\n`;
+            body += `Let's schedule a time to finalize the contract and next steps.\n\nBest regards,\n[Your Name]`;
+
+            window.location.href = `mailto:pierre@next.io?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         }
 
         renderCalculator();
