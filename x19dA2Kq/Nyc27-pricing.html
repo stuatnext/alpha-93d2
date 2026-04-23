@@ -942,7 +942,7 @@
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-2">The Core Promise: Facilitation, Not Guarantees</h3>
                 <p className="text-slate-400 text-sm md:text-base leading-relaxed">
-                  We sell <strong>curated, double opt-in introductions</strong> to relevant operators, affiliates, or strategic partners. Included introductions are reserved exclusively for Headline and Diamond / Flagship Pavilion partners. All packages below €150k receive zero included introductions.
+                  We sell curated, double opt-in introductions to relevant operators, affiliates, or strategic partners. Included introductions are reserved exclusively for Headline and Diamond / Flagship Pavilion partners. All packages below €150k receive zero included introductions.
                 </p>
               </div>
             </div>
@@ -1062,9 +1062,7 @@
                 <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Premium onsite status and placement priority</li>
                 <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> 1 onsite filmed interview</li>
                 <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> 1 dedicated pre-event strategy session</li>
-                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> 1 dedicated pre-event feature / profile</li>
                 <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Priority booking window for private meeting rooms and hospitality inventory</li>
-                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Meeting concierge support for onsite scheduling and hosted conversations</li>
               </ul>
             </div>
 
@@ -1255,7 +1253,7 @@
       );
     }
 
-    function SlideCatalogBranding() {
+    function SlideCatalogueBranding() {
       const products = [
         { isHeader: true, title: "Base Case Inventory (Included in Models)" },
         { name: "Headline Sponsorship (Excl)", price: "€280,000", qty: "1", del: "Press release, 20m keynote, Premium arrival zone visibility (Subject to venue rights), 10 passes.", narrative: "Market Leadership Positioning targeted for apex brand dominance.", rationale: "Premium tier anchored by true market capture potential." },
@@ -1279,10 +1277,10 @@
         { name: "Projection Mapping", price: "€40,000", qty: "1", del: "Pending Venue Confirmation.", narrative: "Massive scale digital branding.", rationale: "Upside inventory leveraging Hudson Yards tech capabilities.", isUpside: true }
       ];
      
-      return <CatalogTable title="Appendix: Branding & Utility" products={products} />;
+      return <CatalogueTable title="Appendix: Branding & Utility" products={products} />;
     }
 
-    function SlideCatalogContent() {
+    function SlideCatalogueContent() {
       const products = [
         { isHeader: true, title: "Base Case Inventory (Included in Models)" },
         { name: "Stage 1 Hub Sponsor (Main)", price: "€85,000", qty: "1", del: "Main stage holding slide, podium sign, 2x 20m keynotes, 6 passes.", narrative: "Consolidates main stage dominance into one Platinum asset.", rationale: "Definitive main stage ownership." },
@@ -1307,10 +1305,10 @@
         { name: "Prediction Markets: General", price: "€24,000", qty: "8", del: "General track sponsorship.", narrative: "Niche audience targeting.", rationale: "Tentative - March 2027. Excluded from base case to protect October summit.", isUpside: true }
       ];
      
-      return <CatalogTable title="Appendix: Content & Stages" products={products} />;
+      return <CatalogueTable title="Appendix: Content & Stages" products={products} />;
     }
 
-    function SlideCatalogExpo() {
+    function SlideCatalogueExpo() {
       const products = [
         { isHeader: true, title: "Base Case Inventory (Included in Models)" },
         { name: "Flagship Pavilion 10x4", price: "€150,000", qty: "1", del: "Turnkey build, 20-min keynote, 15 passes, premium placement.", narrative: "Defensible €150k anchor with full content and ABM integration.", rationale: "Bundled value transforms space into a strategic partnership." },
@@ -1338,10 +1336,10 @@
         { name: "C-Level Event (Bespoke)", price: "Starts €35k", qty: "1", del: "Invitation-only gathering for select leaders.", narrative: "Hyper-targeted ABM. Floor price established.", rationale: "The €35k base establishes a strict floor for bespoke access." },
       ];
      
-      return <CatalogTable title="Appendix: Expo & Networking" products={products} />;
+      return <CatalogueTable title="Appendix: Expo & Networking" products={products} />;
     }
      
-    function CatalogTable({ title, products }) {
+    function CatalogueTable({ title, products }) {
       return (
         <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
           <div className="text-[10px] md:text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Appendix</div>
@@ -1410,9 +1408,9 @@
       SlideDealDesk,
       SlideTiers,
       SlideBundles,
-      SlideCatalogBranding,
-      SlideCatalogContent,
-      SlideCatalogExpo
+      SlideCatalogueBranding,
+      SlideCatalogueContent,
+      SlideCatalogueExpo
     ];
 
     function App() {
