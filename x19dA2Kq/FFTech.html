@@ -1,1461 +1,618 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>NYC 2027 Commercial Strategy</title>
-  
-  <!-- Load Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Load React and ReactDOM -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  
-  <!-- Load Babel to compile JSX in the browser -->
-  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-  <style>
-    body { background-color: #020617; color: #f8fafc; }
-    /* Beautiful scrollbar for horizontal tables */
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: #0f172a; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #475569; }
-    
-    /* Prevent table squishing globally */
-    .table-container {
-        -webkit-overflow-scrolling: touch;
-    }
-  </style>
-</head>
-<body>
-  <div id="root"></div>
-
-  <script type="text/babel">
-    const { useState } = React;
-
-    // --- ICON COMPONENTS ---
-    const Icon = ({ p, className }) => (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} dangerouslySetInnerHTML={{ __html: p }} />
-    );
-    const ChevronLeft = (props) => <Icon p='<path d="m15 18-6-6 6-6"/>' {...props} />;
-    const ChevronRight = (props) => <Icon p='<path d="m9 18 6-6-6-6"/>' {...props} />;
-    const Target = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>' {...props} />;
-    const ShieldCheck = (props) => <Icon p='<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>' {...props} />;
-    const TrendingUp = (props) => <Icon p='<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>' {...props} />;
-    const Users = (props) => <Icon p='<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' {...props} />;
-    const Layers = (props) => <Icon p='<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>' {...props} />;
-    const Package = (props) => <Icon p='<line x1="16.5" x2="7.5" y1="9.4" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/>' {...props} />;
-    const Award = (props) => <Icon p='<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>' {...props} />;
-    const Clock = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>' {...props} />;
-    const AlertCircle = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>' {...props} />;
-    const CheckCircle2 = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>' {...props} />;
-    const FileText = (props) => <Icon p='<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>' {...props} />;
-    const PieChart = (props) => <Icon p='<path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/>' {...props} />;
-    const ArrowRight = (props) => <Icon p='<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>' {...props} />;
-    const Diamond = (props) => <Icon p='<path d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.42 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.42 0Z"/>' {...props} />;
-    const CheckSquare = (props) => <Icon p='<rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/>' {...props} />;
-    const XCircle = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/>' {...props} />;
-    const TicketIcon = (props) => <Icon p='<path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/>' {...props} />;
-    const Calculator = (props) => <Icon p='<rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/>' {...props} />;
-
-    // Utility for conditional classes
-    function cn(...classes) {
-      return classes.filter(Boolean).join(' ');
-    }
-
-    // --- CORE PRESENTATION SLIDES ---
-
-    function SlideTitle() {
-      return (
-        <div className="flex-1 flex flex-col items-center justify-center text-center animate-in fade-in duration-500">
-          <div className="mb-10">
-            <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-2xl flex items-center justify-center mx-auto shadow-2xl shadow-amber-900/50 mb-6">
-              <Target className="w-10 h-10 md:w-12 md:h-12 text-slate-950" />
-            </div>
-          </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 md:mb-6 bg-gradient-to-br from-white to-slate-400 bg-clip-text text-transparent px-2">
-            NYC 2027 Commercial Strategy
-          </h1>
-          <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 px-4">
-            Defending premium pricing through strict governance, curated audience density, and strategic packaging.
-          </p>
-        </div>
-      );
-    }
-
-    function SlideExecutiveSummary() {
-      return (
-        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Executive Summary</h2>
-          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">The 2027 commercial architecture: moving from volume to density.</p>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 flex-1">
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-indigo-900/30 rounded-lg flex items-center justify-center border border-indigo-800/50">
-                  <Layers className="w-5 h-5 text-indigo-400" />
-                </div>
-                <h3 className="text-lg md:text-xl font-bold text-slate-200">Strategic Continuity</h3>
-              </div>
-              <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-4">
-                To protect operational bandwidth for the upcoming <strong>NEXTPredict</strong> launch, the 2027 physical product set is largely a lift and shift of our proven 2026 model. This minimises execution risk as we settle into a new venue.
-              </p>
-            </div>
-
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-amber-900/30 rounded-lg flex items-center justify-center border border-amber-800/50">
-                  <TrendingUp className="w-5 h-5 text-amber-400" />
-                </div>
-                <h3 className="text-lg md:text-xl font-bold text-slate-200">Yield Optimisation</h3>
-              </div>
-              <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-4">
-                While the product set remains familiar, the valuation does not. We are applying a <strong>Manhattan premium pricing structure</strong>, concentrating value in scarce, high-yield formats rather than commoditised floor space. This is not arbitrary inflation. It is a deliberate rebalancing of historically underpriced inventory to reflect genuine scarcity, buyer density, premium venue context, and delivery value in New York.
-              </p>
-            </div>
-
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-yellow-900/30 rounded-lg flex items-center justify-center border border-yellow-800/50">
-                  <ShieldCheck className="w-5 h-5 text-yellow-400" />
-                </div>
-                <h3 className="text-lg md:text-xl font-bold text-slate-200">Margin Defence</h3>
-              </div>
-              <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-4">
-                We are ending the culture of steep discounting. A strict <strong>15% discount ceiling</strong> is now enforced (with exceptions requiring Commercial Director approval). To close enterprise deals, sales will utilise a Sweetener Bank of high-margin add-ons rather than eroding the core price.
-              </p>
-            </div>
-
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-amber-900/30 rounded-lg flex items-center justify-center border border-amber-800/50">
-                  <Users className="w-5 h-5 text-amber-400" />
-                </div>
-                <h3 className="text-lg md:text-xl font-bold text-slate-200">Pipeline Generation</h3>
-              </div>
-              <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-4">
-                We are transforming partnership from a branding play into an Account-Based Marketing (ABM) tool by introducing a structured <strong>Executive Matchmaking</strong> layer explicitly tied to top-tier investments.
-              </p>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    function SlideWhatChanged() {
-      return (
-        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Model Evolution & Assumptions</h2>
-          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Key shifts bridging our initial targets to the final, fully-loaded operational reality.</p>
-          
-          <div className="space-y-4">
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 md:p-5 flex gap-4">
-              <div className="mt-1"><AlertCircle className="w-5 h-5 text-amber-500" /></div>
-              <div>
-                <h4 className="text-slate-200 font-bold mb-1">Fully Loaded Break-Even</h4>
-                <p className="text-slate-400 text-sm">Our initial model evaluated core event margins. The updated model integrates the full €2.73M cost base, including salaries and commissions, dictating a harder revenue floor for the base case.</p>
-              </div>
-            </div>
-
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 md:p-5 flex gap-4">
-              <div className="mt-1"><AlertCircle className="w-5 h-5 text-amber-500" /></div>
-              <div>
-                <h4 className="text-slate-200 font-bold mb-1">Net Ticket Revenue Treatment</h4>
-                <p className="text-slate-400 text-sm">The ticket target is explicitly modelled as <strong>net cash</strong>. It absorbs payment provider processing fees and relies strictly on paid volume, projecting a modelled net ticket revenue of c.€1.32M. Ticketing provides material headroom above the €750k base target, but is not guaranteed.</p>
-              </div>
-            </div>
-
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 md:p-5 flex gap-4">
-              <div className="mt-1"><AlertCircle className="w-5 h-5 text-amber-500" /></div>
-              <div>
-                <h4 className="text-slate-200 font-bold mb-1">Cannibalisation Defence (Prediction Markets)</h4>
-                <p className="text-slate-400 text-sm">To prevent cannibalising the standalone NEXTPredict event in October, the Prediction Markets Focus track has been marked as tentative and <strong>entirely removed from our base-case revenue model</strong>. If unlocked later, it represents conditional upside.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    function SlideContext() {
-      return (
-        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8">The Commercial Context</h2>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-8 flex flex-col">
-              <div className="flex items-center gap-3 mb-4 md:mb-6">
-                <PieChart className="w-6 h-6 text-slate-400" />
-                <h3 className="text-lg md:text-xl font-semibold">The 2026 Demographic Reality</h3>
-              </div>
-              <p className="text-slate-400 text-sm md:text-base mb-4 md:mb-6 leading-relaxed">
-                European competitors scale to 30,000+ delegates and 100,000+ sqm, commoditising space to amortise costs. They price space at volume. We have proven a completely different, scarcity-based model.
-              </p>
-              
-              <div className="space-y-3 mb-6 flex-1">
-                <div className="p-4 md:p-6 rounded-xl bg-slate-950 border border-slate-800 text-center flex flex-col justify-center items-center h-full">
-                  <div className="text-5xl md:text-6xl font-black text-amber-400 mb-2">51.4%</div>
-                  <div className="text-base md:text-lg font-bold text-slate-300 uppercase tracking-widest leading-tight">Executive / Founder<br/>Density</div>
-                  <p className="text-xs md:text-sm text-slate-500 mt-4 max-w-xs">Our 2026 verified registration data confirms an unprecedented concentration of decision-makers (30.4% Founders/MDs + 21% C-Suite).</p>
-                </div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 mt-auto">
-                <div className="text-sm text-slate-500 mb-1">Business Type Breakdown</div>
-                <div className="font-medium text-slate-300">Operators: 28.6% • Suppliers: 22.6%</div>
-              </div>
-            </div>
-     
-            <div className="bg-yellow-950/30 border border-yellow-900/50 rounded-2xl p-5 md:p-8 flex flex-col relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-48 h-48 md:w-64 md:h-64 bg-yellow-500/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-yellow-900/50 rounded-xl flex items-center justify-center mb-4 md:mb-6 border border-yellow-800/50">
-                <Target className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
-              </div>
-              <h3 className="text-lg md:text-xl font-bold mb-4 text-yellow-100">The North American Premium</h3>
-              <ul className="space-y-4 text-yellow-200/80 text-sm md:text-base flex-1">
-                <li className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-yellow-500 mt-2 shrink-0" />
-                  <p><strong className="text-yellow-100">Curated Audience Density:</strong> We compete entirely on executive density, not volume. A verified 51.4% Executive presence is what justifies our premium pricing against mass-market events.</p>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-yellow-500 mt-2 shrink-0" />
-                  <p><strong className="text-yellow-100">Protecting Audience Quality:</strong> A €27k floor for a 3x2 stand acts as a quality filter. This biases the floor heavily toward well-funded corporate peers.</p>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-yellow-500 mt-2 shrink-0" />
-                  <p><strong className="text-yellow-100">The Multi-Day Venue Constraint:</strong> A multi-day event format targeting 2,000+ total registered delegates is designed to optimise our current operational peak-capacity planning assumption of c.1,500. We are selling a capped premium room environment.</p>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    function SlideFinancialRealities() {
-      return (
-        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">The Break-Even Reality</h2>
-          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Realigning our targets to protect the €2.73M operational threshold.</p>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6 flex-1">
-            
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl flex flex-col">
-              <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6 text-slate-200">The €2.73M Hurdle</h3>
-              
-              <div className="space-y-4 mb-6 md:mb-8">
-                <div className="flex justify-between items-center pb-2 border-b border-slate-800">
-                  <span className="text-slate-400 text-sm md:text-base">Salaries</span>
-                  <span className="text-slate-200 font-mono text-sm md:text-base">€555,792</span>
-                </div>
-                <div className="flex justify-between items-center pb-2 border-b border-slate-800">
-                  <span className="text-slate-400 text-sm md:text-base">Cost of Sales (COS)</span>
-                  <span className="text-slate-200 font-mono text-sm md:text-base">€2,000,000</span>
-                </div>
-                <div className="flex justify-between items-center pb-2 border-b border-slate-800">
-                  <span className="text-slate-400 text-sm md:text-base">Commission</span>
-                  <span className="text-slate-200 font-mono text-sm md:text-base">€178,905</span>
-                </div>
-                <div className="flex justify-between items-center pt-2">
-                  <span className="text-yellow-400 font-bold uppercase tracking-wider text-xs md:text-sm">Total Break-Even Cost</span>
-                  <span className="text-yellow-400 font-bold text-lg md:text-xl font-mono">€2,734,697</span>
-                </div>
-              </div>
-              
-              <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-auto">
-                <p className="text-xs md:text-sm text-slate-400 leading-relaxed">
-                  Our fully-loaded fixed costs necessitate a minimum €2.73M total revenue intake just to break even. A conservative revenue model is no longer operationally viable.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl flex flex-col">
-              <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6 text-slate-200">The Minimum Viable Plan</h3>
-              
-              <div className="space-y-4 mb-6 md:mb-8">
-                <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 flex justify-between items-center">
-                  <div>
-                    <div className="text-amber-500 font-bold mb-1 text-sm md:text-base">Net Ticket Revenue</div>
-                    <div className="text-xs text-slate-500">Absolute Floor Requirement</div>
-                  </div>
-                  <div className="text-amber-400 font-mono text-lg md:text-xl">€750,000</div>
-                </div>
-                
-                <div className="flex justify-center my-2 text-slate-500">
-                  <div className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center font-bold">+</div>
-                </div>
-                
-                <div className="p-4 rounded-xl bg-amber-950/20 border border-amber-900/50 flex justify-between items-center shadow-inner">
-                  <div>
-                    <div className="text-amber-400 font-bold mb-1 uppercase tracking-widest text-xs md:text-sm">Minimum Viable Partnerships Target</div>
-                  </div>
-                  <div className="text-amber-400 font-bold font-mono text-xl md:text-2xl">€2,070,000</div>
-                </div>
-              </div>
-              
-              <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-auto">
-                <p className="text-xs md:text-sm text-slate-400 leading-relaxed">
-                  Assuming the Marketing Base Target of €750k is achieved, the B2B sales floor <strong className="text-slate-200">must reach €2.07M</strong>. This combined €2.82M plan covers costs with a thin c.€85k operating margin. The €750k is our protected floor, not our modelled stretch.
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      );
-    }
-
-    function SlideTicketing() {
-      return (
-        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Ticketing Architecture & Net Revenue Bridge</h2>
-          <p className="text-slate-400 mb-6 text-base md:text-lg">A smart middle ground pricing ladder combining realistic volume with Hudson Yards premium rates.</p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6">
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col">
-              <div className="text-xs md:text-sm font-bold text-slate-500 uppercase tracking-widest mb-2">The Decoy</div>
-              <h3 className="text-xl md:text-2xl font-bold text-slate-300 mb-1">Conference Only</h3>
-              <div className="text-xs text-slate-500 mb-4">Target: ~550 paid</div>
-              <div className="space-y-2 mb-4 flex-1">
-                <div className="flex justify-between text-sm"><span className="text-slate-500">Early Bird</span><span className="text-slate-300 font-mono">$699</span></div>
-                <div className="flex justify-between text-sm"><span className="text-slate-500">Standard</span><span className="text-slate-300 font-mono">$899</span></div>
-                <div className="flex justify-between text-sm"><span className="text-slate-500">Late</span><span className="text-slate-300 font-mono">$1,099</span></div>
-              </div>
-              <div className="text-[11px] md:text-xs text-slate-500 border-t border-slate-800 pt-3">Exists to anchor the premium baseline.</div>
-            </div>
-
-            <div className="bg-slate-900 border border-amber-600/50 rounded-2xl p-5 md:p-6 flex flex-col relative overflow-hidden shadow-lg shadow-amber-900/20">
-              <div className="absolute top-0 left-0 w-full h-1 bg-amber-500"></div>
-              <div className="text-xs md:text-sm font-bold text-amber-500 uppercase tracking-widest mb-2">The Revenue Engine</div>
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-1">Full Event</h3>
-              <div className="text-xs text-amber-500/70 mb-4">Target: ~450 paid</div>
-              <div className="space-y-2 mb-4 flex-1">
-                <div className="flex justify-between text-sm"><span className="text-slate-500">Early Bird</span><span className="text-amber-400 font-mono">$1,099</span></div>
-                <div className="flex justify-between text-sm"><span className="text-slate-500">Standard</span><span className="text-amber-400 font-mono">$1,399</span></div>
-                <div className="flex justify-between text-sm"><span className="text-slate-500">Late / Final</span><span className="text-amber-400 font-mono">$1,699</span></div>
-              </div>
-              <div className="text-[11px] md:text-xs text-amber-200/60 border-t border-slate-700 pt-3">Core product. Up ~$100 vs prior models, justified by upgraded networking/venue.</div>
-            </div>
-
-            <div className="bg-slate-900 border border-indigo-500/30 rounded-2xl p-5 md:p-6 flex flex-col relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1 bg-indigo-500"></div>
-              <div className="text-xs md:text-sm font-bold text-indigo-400 uppercase tracking-widest mb-2">The Margin Tier</div>
-              <h3 className="text-xl md:text-2xl font-bold text-indigo-100 mb-1">VIP Pass</h3>
-              <div className="text-xs text-indigo-300/70 mb-4">Target: ~50 VIP</div>
-              <div className="space-y-2 mb-4 flex-1">
-                <div className="flex justify-between text-sm"><span className="text-slate-500">VIP Early</span><span className="text-indigo-300 font-mono">$2,199</span></div>
-                <div className="flex justify-between text-sm"><span className="text-slate-500">VIP Standard</span><span className="text-indigo-300 font-mono">$2,499</span></div>
-                <div className="flex justify-between text-sm"><span className="text-slate-500">VIP Late</span><span className="text-indigo-300 font-mono">$2,799</span></div>
-              </div>
-              <div className="text-[11px] md:text-xs text-indigo-200/60 border-t border-indigo-900/50 pt-3">Premium hospitality access for hosted buyers. This pricing only works if the VIP experience is materially elevated through a true VIP Lounge, premium F&B, hosted networking, and access that clearly stands above standard delegate status.</div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mb-6">
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col justify-center">
-              <h3 className="text-base md:text-lg font-semibold text-slate-200 mb-4">Focus Passes (EV)</h3>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center py-2 border-b border-slate-800">
-                  <span className="text-slate-400 text-sm">Early Bird</span>
-                  <span className="text-slate-200 font-mono">$399</span>
-                </div>
-                <div className="flex justify-between items-center py-2">
-                  <span className="text-slate-400 text-sm">Standard / Late</span>
-                  <span className="text-slate-200 font-mono">$549 - $699</span>
-                </div>
-              </div>
-              <p className="text-xs text-slate-500 mt-3">Base Case Target: ~350 paid.</p>
-            </div>
-
-            {/* Clean Gross to Net Bridge */}
-            <div className="bg-slate-950 border border-slate-800 rounded-2xl p-5 shadow-inner lg:col-span-2 flex flex-col justify-center relative">
-              <h3 className="text-base md:text-lg font-semibold text-slate-200 mb-3 flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-amber-500" />
-                Gross Paid to Net Revenue Bridge (Modelled Ticket Case)
-              </h3>
-              <div className="space-y-1.5 text-xs md:text-sm font-mono">
-                <div className="flex justify-between py-1 text-slate-300">
-                  <span>Gross Summit Paid (Conf+Full+VIP)</span>
-                  <span>~$1,250,000</span>
-                </div>
-                <div className="flex justify-between py-1 text-slate-300">
-                  <span>Gross Focus Paid (EV Only)</span>
-                  <span>~$192,500</span>
-                </div>
-                <div className="flex justify-between py-1 border-t border-slate-800 mt-1 pt-1.5 font-bold text-amber-400">
-                  <span>Total Gross Paid Base Case (USD)</span>
-                  <span>~$1,442,500</span>
-                </div>
-                <div className="flex items-center gap-2 py-1 text-slate-500">
-                  <ArrowRight className="w-4 h-4" /> <em>Est. ~€1,336,000 EUR Equivalent</em>
-                </div>
-                <div className="flex justify-between py-1 text-rose-400/80">
-                  <span>Less: Blended deductions from Stripe fees (3.52%), early-bird mix, partner/group discounting (~12%)</span>
-                  <span>(~€207,000)</span>
-                </div>
-                <div className="flex justify-between py-1.5 border-t border-slate-700 mt-1 font-bold text-white text-base">
-                  <span>Modelled Net Ticket Revenue</span>
-                  <span className="text-[#50fa7b]">~€1,129,000</span>
-                </div>
-                <div className="flex justify-between py-1 font-bold text-slate-400 text-[11px] md:text-sm bg-slate-900 px-2 rounded">
-                  <span>Marketing Base Target</span>
-                  <span>€750,000</span>
-                </div>
-                <p className="text-[10px] text-cyan-400/80 mt-2 font-sans font-medium">
-                  *Ticketing provides material headroom above the minimum floor, but is not guaranteed.*
-                </p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-amber-950/20 border border-amber-900/50 rounded-xl p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-2 md:gap-0">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-amber-500/80 block mb-1">Conditional Upside (Not in Approved Base Case)</span>
-              <span className="text-xs md:text-sm text-slate-400">Prediction Markets (PM) Passes: ~450 potential sales</span>
-            </div>
-            <div className="font-mono text-amber-500/80 text-sm md:text-base">~ $270,000 Gross Upside</div>
-          </div>
-        </div>
-      );
-    }
-
-    function SlideFlagshipPricing() {
-      return (
-        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Large Stand Pricing Architecture</h2>
-          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Evaluating the pricing strategy for a 32sqm footprint and protecting our premium boundaries.</p>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-8">
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-red-900/30 rounded-lg flex items-center justify-center border border-red-800/50">
-                  <TrendingUp className="w-5 h-5 text-red-500" />
-                </div>
-                <h3 className="text-lg md:text-xl font-bold text-slate-200">The SQM Reality Check</h3>
-              </div>
-              <p className="text-slate-400 text-xs md:text-sm mb-4">Pricing a 32sqm footprint at €150k as a space-only stand mathematically distorts our entire model.</p>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-slate-800">
-                  <span className="text-slate-300 text-xs md:text-sm">Space Only 6x4 (24 sqm)</span>
-                  <div className="text-right">
-                    <div className="text-white font-medium text-xs md:text-sm">€52,000</div>
-                    <div className="text-[10px] md:text-xs text-slate-500">€2,166 / sqm</div>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-slate-800">
-                  <span className="text-slate-300 text-xs md:text-sm">Space Only 8x4 <span className="text-slate-500 text-[10px] md:text-xs ml-1">(Secondary)</span></span>
-                  <div className="text-right">
-                    <div className="text-white font-medium text-xs md:text-sm">€85,000</div>
-                    <div className="text-[10px] md:text-xs text-slate-500">€2,656 / sqm</div>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-slate-800 border-l-4 border-l-indigo-500">
-                  <span className="text-slate-300 text-xs md:text-sm">Space Only 8x4 <span className="text-indigo-400 text-[10px] md:text-xs ml-1 font-bold">(Prime Location)</span></span>
-                  <div className="text-right">
-                    <div className="text-white font-medium text-xs md:text-sm">€95,000</div>
-                    <div className="text-[10px] md:text-xs text-indigo-400/80">Includes €10k placement premium</div>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center p-3 bg-red-950/30 rounded-lg border border-red-900/50 shadow-inner">
-                  <span className="text-red-200 font-semibold text-xs md:text-sm">Proposed Space Only (32 sqm)</span>
-                  <div className="text-right">
-                    <div className="text-red-400 font-bold text-sm md:text-lg">€150,000</div>
-                    <div className="text-[10px] md:text-xs text-red-400/70 font-mono">€4,688 / sqm</div>
-                  </div>
-                </div>
-              </div>
-              <p className="text-[11px] md:text-sm text-slate-400 mt-5 leading-relaxed">
-                <strong className="text-slate-200">The Problem:</strong> The 8x4 is a scarce, premium large-format space in a constrained floorplan. Pricing is driven by exclusivity and placement, not volume discounts. However, the €150k proposal breaks this logic entirely, asking buyers to pay an apex markup for empty square metres.
-              </p>
-            </div>
-
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-amber-900/30 rounded-lg flex items-center justify-center border border-amber-800/50">
-                  <Award className="w-5 h-5 text-amber-500" />
-                </div>
-                <h3 className="text-lg md:text-xl font-bold text-slate-200">The Defensible Path</h3>
-              </div>
-              <p className="text-slate-400 text-xs md:text-sm mb-4">If we want to secure a €150k check, we cannot sell it as a "stand." We must package it as an Anchor Pavilion to bundle lead-gen value and exclusivity.</p>
-              
-              <div className="flex items-center gap-2 md:gap-4 mb-6">
-                <div className="flex-1 bg-slate-950 p-3 md:p-4 rounded-xl border border-slate-800 text-center">
-                  <div className="text-slate-400 text-[10px] md:text-xs uppercase tracking-wider mb-1">Space Only True Value</div>
-                  <div className="text-base md:text-xl font-semibold text-white">€85k - €95k</div>
-                </div>
-                <div className="text-slate-600 font-bold text-xs md:text-sm">OR</div>
-                <div className="flex-1 bg-amber-500/10 p-3 md:p-4 rounded-xl border border-amber-500/30 text-center shadow-inner">
-                  <div className="text-amber-500/80 text-[10px] md:text-xs uppercase tracking-wider mb-1">Flagship Pavilion Value</div>
-                  <div className="text-lg md:text-2xl font-bold text-amber-400 drop-shadow-md">€150,000</div>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <h4 className="text-[11px] md:text-sm font-semibold text-slate-300 uppercase tracking-wider border-b border-slate-800 pb-2">Required Inclusions for €150k:</h4>
-                <ul className="space-y-3">
-                  <li className="flex gap-3 text-[11px] md:text-sm text-slate-400 items-start">
-                    <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0 shadow-sm shadow-amber-500/50" />
-                    <p><strong className="text-slate-200 font-medium">The Event Within an Event:</strong> Turnkey 32sqm luxury footprint, premium floor placement, private meeting room, and barista bar.</p>
-                  </li>
-                  <li className="flex gap-3 text-[11px] md:text-sm text-slate-400 items-start">
-                    <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0 shadow-sm shadow-amber-500/50" />
-                    <p><strong className="text-slate-200 font-medium">Extended Team Access:</strong> 15-20 passes to flood the venue with their enterprise sales team.</p>
-                  </li>
-                  <li className="flex gap-3 text-[11px] md:text-sm text-slate-400 items-start">
-                    <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0 shadow-sm shadow-amber-500/50" />
-                    <p><strong className="text-slate-200 font-medium">Content & Marketing:</strong> 20-min solo keynote, onsite video interview, and pre-event marketing inclusion.</p>
-                  </li>
-                  <li className="flex gap-3 text-[11px] md:text-sm text-slate-400 items-start">
-                    <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0 shadow-sm shadow-amber-500/50" />
-                    <p><strong className="text-slate-200 font-medium">Deal Flow:</strong> White-glove concierge delivering up to 5 curated introductions.</p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-slate-950 border-l-8 border-amber-500 rounded-r-2xl p-5 md:p-6 mt-auto shadow-md border border-slate-900 border-l-amber-500">
-            <div className="flex items-center gap-2 mb-2 md:mb-3">
-              <ShieldCheck className="w-4 h-4 md:w-5 md:h-5 text-amber-500" />
-              <h3 className="text-[10px] md:text-xs font-black text-amber-500 uppercase tracking-[0.2em] drop-shadow-sm">Message to Leadership</h3>
-            </div>
-            <p className="text-slate-200 text-sm md:text-lg leading-relaxed italic font-serif">
-              "To achieve €150k, we must reposition this as a fully packaged Flagship Pavilion. True space-only 8x4 pricing must remain strictly anchored to the €85k–€95k range to maintain mathematical integrity across our exhibition floorplan. Exact placement of the 8x4 stands depends on the final floorplan."
-            </p>
-          </div>
-        </div>
-      );
-    }
-
-    function SlideRevenueForecast() {
-      return (
-        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">Partnership Revenue Forecast</h2>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6">
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl relative overflow-hidden group">
-              <div className="absolute top-0 left-0 w-2 h-full bg-yellow-600/30 group-hover:bg-yellow-600/50 transition-colors"></div>
-              <h3 className="text-base md:text-lg font-semibold text-slate-200 mb-4 ml-2">1. Base-Case Revenue Ceiling</h3>
-              <div className="overflow-x-auto w-full table-container">
-                <table className="w-full text-left text-sm min-w-[300px]">
-                  <thead className="border-b border-slate-800 text-slate-400">
-                    <tr>
-                      <th className="pb-2 font-medium whitespace-nowrap pl-2">Base Case Category</th>
-                      <th className="pb-2 font-medium text-right whitespace-nowrap pr-2">Max Revenue</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-800/50 text-slate-300">
-                    <tr><td className="py-2 pl-2">Branding & Utility</td><td className="py-2 pr-2 text-amber-400 font-mono text-right">€788,000</td></tr>
-                    <tr><td className="py-2 pl-2">Content & Stages</td><td className="py-2 pr-2 text-amber-400 font-mono text-right">€1,123,000</td></tr>
-                    <tr><td className="py-2 pl-2">Expo & Networking</td><td className="py-2 pr-2 text-amber-400 font-mono text-right">€1,384,000</td></tr>
-                    <tr className="bg-slate-800/30 font-semibold text-slate-200 uppercase tracking-tighter">
-                      <td className="py-3 pl-2">Total Base Case Maximum</td>
-                      <td className="py-3 pr-2 text-amber-400 font-mono text-right">€3,295,000</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p className="text-[10px] text-slate-500 mt-2 italic ml-2">*Note: Strict base case only. Excludes Prediction Markets (tentative) and venue-dependent ops inventory (Upstairs Reg/Projection Mapping). The Expo catalogue shows all available inventory for sales reference. The €1.384M ceiling applies mutual-exclusivity rules: Exclusive networking events take priority over Non-Exclusive; Turnkey and Space Only options for the same footprint cannot both sell; and 6x2 stands are formed by combining 3x2s, meaning both cannot sell at full listed quantities simultaneously.*</p>
-            </div>
-
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl relative overflow-hidden group">
-              <div className="absolute top-0 left-0 w-2 h-full bg-amber-600/30 group-hover:bg-amber-600/50 transition-colors"></div>
-              <h3 className="text-base md:text-lg font-semibold text-slate-200 mb-4 ml-2">2. Base-Case Working Forecast</h3>
-              <div className="overflow-x-auto w-full table-container">
-                <table className="w-full text-left text-[11px] md:text-sm min-w-[400px]">
-                  <thead className="border-b border-slate-800 text-slate-400 uppercase">
-                    <tr>
-                      <th className="pb-2 font-medium whitespace-nowrap pl-2">Category</th>
-                      <th className="pb-2 font-medium text-right whitespace-nowrap">Modelled Sell-Through</th>
-                      <th className="pb-2 font-medium text-right whitespace-nowrap pr-2">Projected Revenue</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-800/50">
-                    <tr>
-                      <td className="py-2 pl-2 text-slate-300">Branding & Utility</td>
-                      <td className="py-2 text-amber-500 font-mono text-right">77%</td>
-                      <td className="py-2 pr-2 text-amber-400 font-mono text-right">€606,760</td>
-                    </tr>
-                    <tr>
-                      <td className="py-2 pl-2 text-slate-300">Content & Stages</td>
-                      <td className="py-2 text-amber-500 font-mono text-right">66%</td>
-                      <td className="py-2 pr-2 text-amber-400 font-mono text-right">€741,180</td>
-                    </tr>
-                    <tr>
-                      <td className="py-2 pl-2 text-slate-300">Expo & Networking</td>
-                      <td className="py-2 text-amber-500 font-mono text-right">60%</td>
-                      <td className="py-2 pr-2 text-amber-400 font-mono text-right">€830,400</td>
-                    </tr>
-                    <tr className="bg-slate-800/40 font-bold border-t border-slate-700">
-                      <td className="py-3 pl-2 text-slate-100 uppercase tracking-tighter" colSpan="2">Total Projected Revenue</td>
-                      <td className="py-3 pr-2 text-amber-400 font-mono text-right">€2,178,340</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p className="text-[10px] text-slate-500 mt-2 italic ml-2">*The Base-Case Working Forecast is a modelling output based on 2026 sell-through rates. The official sales commitment remains the €2.07M Minimum Viable Target.*</p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mb-6">
-            <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-lg shadow-black/50">
-              <h3 className="text-base md:text-lg font-semibold text-slate-200 mb-4">3. Sensitivity Analysis (Base Case)</h3>
-              <div className="overflow-x-auto w-full table-container">
-                <table className="w-full text-left text-xs md:text-sm min-w-[500px]">
-                  <thead className="border-b border-slate-800 text-slate-400 uppercase">
-                    <tr>
-                      <th className="pb-2 font-medium whitespace-nowrap pl-2">Scenario</th>
-                      <th className="pb-2 font-medium whitespace-nowrap">Sell-Through Adjustment</th>
-                      <th className="pb-2 font-medium text-right whitespace-nowrap pr-2">Revenue</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-800/50 text-slate-300">
-                    <tr className="bg-red-950/10">
-                      <td className="py-2 pl-2">Conservative</td>
-                      <td className="py-2 text-red-400/80">-10 percentage points</td>
-                      <td className="py-2 pr-2 text-red-400 font-mono text-right">~€1,849,000</td>
-                    </tr>
-                    <tr className="bg-amber-950/20">
-                      <td className="py-2 pl-2 text-amber-50">Base Case</td>
-                      <td className="py-2 text-slate-400 italic">As modelled</td>
-                      <td className="py-2 pr-2 text-amber-400 font-mono text-right font-bold underline underline-offset-4 decoration-amber-800">€2,178,340</td>
-                    </tr>
-                    <tr className="bg-yellow-950/10">
-                      <td className="py-2 pl-2">Optimistic</td>
-                      <td className="py-2 text-yellow-400/80">+10 percentage points</td>
-                      <td className="py-2 pr-2 text-yellow-400 font-mono text-right">~€2,508,000</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div className="mt-4 pt-4 border-t border-slate-800 space-y-1">
-                <p className="text-[10px] text-slate-400 font-mono flex justify-between"><span>Conservative Delta:</span> <span className="text-red-400">Misses Base Target by c.€221k</span></p>
-                <p className="text-[10px] text-slate-400 font-mono flex justify-between"><span>Base-Case Delta:</span> <span className="text-emerald-400">Exceeds Base Target by c.€108k</span></p>
-                <p className="text-[10px] text-slate-400 font-mono flex justify-between"><span>Stretch Delta:</span> <span className="text-amber-400">Gap to Management Target is c.€72k</span></p>
-              </div>
-            </div>
-
-            <div className="lg:col-span-1 bg-amber-950/10 border border-amber-900/30 rounded-2xl p-5 md:p-6 flex flex-col justify-center shadow-inner">
-              <h3 className="text-xs md:text-sm font-bold text-amber-500 uppercase tracking-widest mb-3">Conditional Upside</h3>
-              <p className="text-[11px] md:text-xs text-slate-400 mb-4">Inventory excluded from the base case. Activation requires separate approval.</p>
-              <div className="space-y-3 flex-1">
-                <div className="flex justify-between items-center py-2 border-b border-slate-800/50">
-                  <span className="text-slate-300 text-xs md:text-sm">Prediction Markets</span>
-                  <span className="text-slate-400 font-mono text-xs md:text-sm">+ €252k Max</span>
-                </div>
-                <div className="flex justify-between items-center py-2">
-                  <span className="text-slate-300 text-xs md:text-sm">Pending Ops Brands</span>
-                  <span className="text-slate-400 font-mono text-xs md:text-sm">+ €70k Max</span>
-                </div>
-              </div>
-              <div className="flex justify-between items-center py-2 border-t border-slate-700 mt-2">
-                <span className="text-amber-400 font-bold text-xs md:text-sm uppercase">Total Upside</span>
-                <span className="text-amber-400 font-mono font-bold text-sm md:text-base">+ €322k Max</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-t border-slate-700 mt-2">
-                <span className="text-slate-300 font-bold text-xs md:text-sm">Base-Case Forecast + Upside</span>
-                <span className="text-white font-mono font-bold text-sm md:text-base">~ €2.50M</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    function SlideScorecard() {
-      return (
-        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">2027 Official Revenue Scorecard</h2>
-          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Clear accountability lines for Sales and Marketing against our €2.73M operational cost base.</p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
-            {/* Marketing Quota Box */}
-            <div className="bg-slate-900 border border-indigo-500/50 rounded-2xl p-5 md:p-6 shadow-xl relative overflow-hidden flex flex-col">
-              <div className="absolute top-0 left-0 w-2 h-full bg-indigo-500"></div>
-              <div className="flex items-center gap-3 mb-6 ml-2">
-                <div className="p-2 md:p-3 bg-indigo-900/40 rounded-xl border border-indigo-500/30">
-                  <TicketIcon className="w-5 h-5 md:w-6 md:h-6 text-indigo-400" />
-                </div>
-                <h3 className="text-lg md:text-xl font-bold text-slate-200">Marketing Revenue Target (Tickets)</h3>
-              </div>
-              <div className="space-y-4 ml-2 flex-1">
-                <div className="flex justify-between items-end pb-3 border-b border-slate-800">
-                  <div>
-                    <div className="text-xs md:text-sm text-slate-400 font-medium">Base Target</div>
-                    <div className="text-[10px] md:text-[11px] text-slate-500 mt-1">Minimum to clear break-even</div>
-                  </div>
-                  <div className="text-xl md:text-2xl font-bold font-mono text-white">€750,000</div>
-                </div>
-                <div className="flex justify-between items-end pb-2">
-                  <div>
-                    <div className="text-xs md:text-sm text-indigo-400 font-bold">Stretch Target</div>
-                    <div className="text-[10px] md:text-[11px] text-indigo-300/60 mt-1">Modelled projection</div>
-                  </div>
-                  <div className="text-xl md:text-2xl font-bold font-mono text-indigo-400">€1,100,000</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Sales Quota Box */}
-            <div className="bg-slate-900 border border-amber-500/50 rounded-2xl p-5 md:p-6 shadow-xl relative overflow-hidden flex flex-col">
-              <div className="absolute top-0 left-0 w-2 h-full bg-amber-500"></div>
-              <div className="flex items-center gap-3 mb-6 ml-2">
-                <div className="p-2 md:p-3 bg-amber-900/40 rounded-xl border border-amber-500/30">
-                  <Award className="w-5 h-5 md:w-6 md:h-6 text-amber-400" />
-                </div>
-                <h3 className="text-lg md:text-xl font-bold text-slate-200">Sales Revenue Target (Partnerships)</h3>
-              </div>
-              <div className="space-y-4 ml-2 flex-1">
-                <div className="flex justify-between items-end pb-3 border-b border-slate-800">
-                  <div>
-                    <div className="text-xs md:text-sm text-slate-400 font-medium">Base Target</div>
-                    <div className="text-[10px] md:text-[11px] text-slate-500 mt-1">Minimum to clear break-even</div>
-                  </div>
-                  <div className="text-xl md:text-2xl font-bold font-mono text-white">€2,070,000</div>
-                </div>
-                <div className="flex justify-between items-end pb-2">
-                  <div>
-                    <div className="text-xs md:text-sm text-amber-500 font-bold">Stretch Target</div>
-                    <div className="text-[10px] md:text-[11px] text-amber-400/60 mt-1">Management target</div>
-                  </div>
-                  <div className="text-xl md:text-2xl font-bold font-mono text-amber-400">€2,250,000</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* The Bottom Line Math */}
-          <div className="bg-slate-950 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-inner relative overflow-hidden">
-            <h3 className="text-base md:text-lg font-semibold text-slate-200 mb-4 flex items-center gap-2">
-              <Calculator className="w-5 h-5 text-emerald-500" />
-              The Bottom Line vs. €2.73M Cost Base
-            </h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-              {/* Base Case Scenario */}
-              <div className="space-y-2">
-                <div className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest mb-3 border-b border-slate-800 pb-2">If We Hit Base Targets</div>
-                <div className="flex justify-between text-xs md:text-sm text-slate-300">
-                  <span>Combined Company Revenue (Base)</span>
-                  <span className="font-mono">€2,820,000</span>
-                </div>
-                <div className="flex justify-between text-xs md:text-sm text-rose-400/80">
-                  <span>Total Operational Costs</span>
-                  <span className="font-mono">(€2,734,697)</span>
-                </div>
-                <div className="flex justify-between pt-2 border-t border-slate-700 font-bold text-sm md:text-base">
-                  <span className="text-white">Base Operating Margin</span>
-                  <span className="text-emerald-400 font-mono">+€85,303</span>
-                </div>
-              </div>
-
-              {/* Stretch Case Scenario */}
-              <div className="space-y-2">
-                <div className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest mb-3 border-b border-slate-800 pb-2">If We Hit Stretch Targets</div>
-                <div className="flex justify-between text-xs md:text-sm text-slate-300">
-                  <span>Combined Company Revenue (Stretch)</span>
-                  <span className="font-mono">€3,350,000</span>
-                </div>
-                <div className="flex justify-between text-xs md:text-sm text-rose-400/80">
-                  <span>Total Operational Costs</span>
-                  <span className="font-mono">(€2,734,697)</span>
-                </div>
-                <div className="flex justify-between pt-2 border-t border-slate-700 font-bold text-sm md:text-base">
-                  <span className="text-white">Stretch Operating Margin</span>
-                  <span className="text-emerald-400 font-mono">+€615,303</span>
-                </div>
-              </div>
-            </div>
-            <div className="mt-6 pt-4 border-t border-slate-800 text-center">
-                <p className="text-[10px] md:text-xs text-slate-400 italic">
-                    *The Base Target clears costs, but only with a thin c.€85k operating margin. This is survival. The Stretch Target is the true operating objective for 2027.*
-                </p>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    function SlideApprovalRequested() {
-      return (
-        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">Approval Requested Today</h2>
-          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">We are seeking sign-off on the commercial framework and pricing logic, not final venue-dependent inventory confirmation.</p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-6">
-            <div className="flex flex-col gap-4">
-              <div className="bg-slate-900 border border-indigo-500/30 rounded-xl p-5 md:p-6 shadow-lg relative overflow-hidden h-full">
-                <div className="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
-                <h4 className="font-bold text-white mb-4 flex items-center gap-2 text-base md:text-lg">
-                  <CheckSquare className="w-4 h-4 md:w-5 md:h-5 text-indigo-400" />
-                  Approved Today
-                </h4>
-                <ul className="space-y-3 text-xs md:text-sm text-slate-300">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
-                    <span><strong>Sales Quota:</strong> €2.07M Base Target (with a €2.25M Management Target).</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
-                    <span><strong>Marketing Quota:</strong> €750k Base Target (with a €1.1M Stretch).</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
-                    <div>
-                      <span><strong>Model Delta:</strong> Gap from current modelled sales forecast (€2.178M) to management sales target (€2.25M) is c.€72k.</span>
-                      <div className="text-[10px] md:text-[11px] text-indigo-300/80 mt-1 pl-1 italic">*Gap to be closed via stricter renewals discipline, bundle conversion, and selectively unlocking approved upside.*</div>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
-                    <span><strong>Deal Desk:</strong> 15% standard discount ceiling (any discount &gt;15% requires Stuart's approval); 5% strict cap on power inventory.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
-                    <span><strong>Floorplan:</strong> 20-stand max cap, max 2 stands per brand.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
-                    <span><strong>Large Stand Logic:</strong> €85k–€95k space-led anchor, €150k only as Flagship Pavilion.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
-                    <span><strong>Diamond Tier Logic:</strong> €150k+ partners receive concierge servicing, x4 VIP upgrades, a pre-event strategy session, and up to 5 curated introductions. All packages below €150k receive no included introductions.</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            
-            <div className="flex flex-col gap-4">
-              <div className="bg-slate-900 border border-rose-500/30 rounded-xl p-5 md:p-6 shadow-lg relative overflow-hidden h-full">
-                <div className="absolute top-0 left-0 w-1 h-full bg-rose-500"></div>
-                <h4 className="font-bold text-white mb-4 flex items-center gap-2 text-base md:text-lg">
-                  <XCircle className="w-4 h-4 md:w-5 md:h-5 text-rose-400" />
-                  Deferred / Requires Separate Approval
-                </h4>
-                <ul className="space-y-3 text-xs md:text-sm text-slate-300">
-                  <li className="flex items-start gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
-                    <span><strong>Prediction Markets:</strong> Explicitly excluded from base case unless separately approved (cannibalisation check).</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
-                    <span><strong>Pending Inventory:</strong> Final confirmation of venue-dependent assets (e.g., Upstairs Reg Desk, Projection Mapping).</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
-                    <span><strong>Floorplan Execution:</strong> Exact layout rendering and final stand placements.</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 md:p-5 flex flex-col justify-center">
-            <p className="text-xs md:text-sm text-slate-300 font-medium mb-3">
-              "This framework is built on 2026 attendee quality, 2026 pacing logic, venue-led scarcity, and the conservative exclusion of unapproved upside."
-            </p>
-            <p className="text-[11px] md:text-xs text-amber-500 flex items-start md:items-center gap-2">
-              <Clock className="w-3.5 h-3.5 mt-0.5 md:mt-0 shrink-0" />
-              <span><strong>Next 7 Days Action Items:</strong> Finalise floorplan assumptions, lock the 15% rebook window, and issue the rate card. This approval allows sales to open renewals immediately against a clean rate-card logic rather than provisional pricing.</span>
-            </p>
-          </div>
-        </div>
-      );
-    }
-
-    // --- APPENDIX SLIDES ---
-
-    function SlidePricingPsychology() {
-      return (
-        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
-          <div className="text-[10px] md:text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Appendix</div>
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">How We Defend Premium Pricing</h2>
-          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Positioning high-yield inventory and managing buyer expectations.</p>
-          
-          <div className="grid md:grid-cols-3 gap-4 md:gap-6 flex-1">
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-rose-900/30 rounded-xl flex items-center justify-center mb-4 md:mb-6 border border-rose-800/50">
-                <ShieldCheck className="w-5 h-5 md:w-6 md:h-6 text-rose-400" />
-              </div>
-              <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-4">Premium Executive Environments</h3>
-              <p className="text-slate-400 leading-relaxed mb-4 text-sm md:text-base">
-                Executive attendees suffer from "floor fatigue" and avoid eye contact in exhibition aisles. The true commercial value lies in socially lubricated, curated environments.
-              </p>
-              <p className="text-slate-300 font-medium mt-auto text-sm md:text-base">
-                Sales Tactic: Pitch the €100k Day 1 Networking as capturing targets when defensive business postures are lowered.
-              </p>
-            </div>
-
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-amber-900/30 rounded-xl flex items-center justify-center mb-4 md:mb-6 border border-amber-800/50">
-                <Target className="w-5 h-5 md:w-6 md:h-6 text-amber-400" />
-              </div>
-              <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-4">Category Dominance</h3>
-              <p className="text-slate-400 leading-relaxed mb-4 text-sm md:text-base">
-                Competitors fragment their headline partnerships into Bronze/Silver/Gold to maximise aggregate revenue. We reject fragmentation for absolute ownership.
-              </p>
-              <p className="text-slate-300 font-medium mt-auto text-sm md:text-base">
-                Sales Tactic: The €280k Headline is not a CPM play. It is an unfragmented, total market-capture vehicle.
-              </p>
-            </div>
-
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-yellow-900/30 rounded-xl flex items-center justify-center mb-4 md:mb-6 border border-yellow-800/50">
-                <Layers className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
-              </div>
-              <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-4">The Decoy Effect & Anchoring</h3>
-              <p className="text-slate-400 leading-relaxed mb-4 text-sm md:text-base">
-                A €58k solo keynote normalises the surrounding inventory. A €19k branded panel suddenly feels like a highly efficient, value-driven compromise.
-              </p>
-              <p className="text-slate-300 font-medium mt-auto text-sm md:text-base">
-                Sales Tactic: Use the highest tiers to drag the median organisational spend upward by establishing a strong premium anchor.
-              </p>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    function SlideMatchmaking() {
-      return (
-        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
-          <div className="text-[10px] md:text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Appendix</div>
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Executive Matchmaking Support</h2>
-          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">A strict, non-negotiable entitlement structure reserved for premium strategic partners.</p>
-          
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-8 mb-6 md:mb-8">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-amber-900/30 rounded-xl flex items-center justify-center shrink-0 border border-amber-800/50">
-                <Users className="w-5 h-5 md:w-6 md:h-6 text-amber-400" />
-              </div>
-              <div>
-                <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-2">The Core Promise: Facilitation, Not Guarantees</h3>
-                <p className="text-slate-400 text-sm md:text-base leading-relaxed">
-                  We sell curated, double opt-in introductions to relevant operators, affiliates, or strategic partners. Included introductions are reserved exclusively for Headline and Diamond / Flagship Pavilion partners. All packages below €150k receive zero included introductions.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-4 md:gap-6 flex-1 max-w-5xl mx-auto w-full">
-            <div className="bg-slate-950 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col shadow-lg shadow-black/50">
-              <div className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Headline (€280k)</div>
-              <h3 className="text-xl md:text-2xl font-bold text-amber-400 mb-3">10 Intros</h3>
-              <p className="text-slate-400 text-xs md:text-sm leading-relaxed mb-4 md:mb-6">
-                A NEXT.io senior team member acts as a personal concierge to identify, qualify and facilitate introductions to high-value executive attendees.
-              </p>
-            </div>
-
-            <div className="bg-slate-950 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col shadow-lg shadow-black/50">
-              <div className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Diamond / Flagship Pavilion (€150k+)</div>
-              <h3 className="text-xl md:text-2xl font-bold text-slate-200 mb-3">Up to 5 Intros</h3>
-              <p className="text-slate-400 text-xs md:text-sm leading-relaxed mb-4 md:mb-6">
-                Structured, concierge-led matchmaking for premium partners, designed to create real commercial outcomes rather than passive brand exposure.
-              </p>
-            </div>
-
-            <div className="bg-slate-950 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col shadow-lg shadow-black/50">
-              <div className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Below €150k</div>
-              <h3 className="text-xl md:text-2xl font-bold text-slate-200 mb-3">0 Included Intros</h3>
-              <p className="text-slate-400 text-xs md:text-sm leading-relaxed mb-4 md:mb-6">
-                These packages do not include matchmaking. Access to introductions is reserved for our highest-value strategic partnerships only.
-              </p>
-            </div>
-          </div>
-          <div className="mt-6 md:mt-8 text-center">
-            <p className="text-[10px] md:text-xs text-slate-500 italic">Matchmaking is a premium ABM deliverable, not a general sponsorship benefit.</p>
-          </div>
-        </div>
-      );
-    }
-
-    function SlideDealDesk() {
-      return (
-        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
-          <div className="text-[10px] md:text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Appendix</div>
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">The 2027 Deal Desk Policy</h2>
-          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">We are holding our 2027 list prices. This requires strict discount governance.</p>
-          
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-8 mb-6 md:mb-8">
-            <div className="flex items-center gap-3 md:gap-4 mb-6 md:mb-8 pb-4 md:pb-6 border-b border-slate-800">
-              <ShieldCheck className="w-8 h-8 md:w-10 md:h-10 text-amber-500" />
-              <div>
-                <h3 className="text-lg md:text-xl font-bold text-slate-200">Discount Authority Matrix</h3>
-                <p className="text-slate-400 text-sm md:text-base">Clear boundaries to protect our yield.</p>
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-              <div className="p-5 md:p-6 rounded-xl bg-slate-950 border border-slate-800">
-                <div className="text-xs md:text-sm font-medium text-slate-500 uppercase tracking-wider mb-2">Sales Reps</div>
-                <div className="text-2xl md:text-3xl font-bold text-slate-200 mb-2">Max 10%</div>
-                <p className="text-xs md:text-sm text-slate-400">Standard authority off 2027 list price.</p>
-              </div>
-              <div className="p-5 md:p-6 rounded-xl bg-slate-950 border border-slate-800">
-                <div className="text-xs md:text-sm font-medium text-slate-500 uppercase tracking-wider mb-2">Sales Director</div>
-                <div className="text-2xl md:text-3xl font-bold text-slate-200 mb-2">Max 15%</div>
-                <p className="text-xs md:text-sm text-slate-400">Requires direct approval.</p>
-              </div>
-              <div className="p-5 md:p-6 rounded-xl bg-slate-950 border border-amber-900/30 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-amber-500"></div>
-                <div className="text-xs md:text-sm font-medium text-amber-500 uppercase tracking-wider mb-2">Commercial Dir.</div>
-                <div className="text-2xl md:text-3xl font-bold text-slate-200 mb-2">&gt; 15%</div>
-                <p className="text-xs md:text-sm text-slate-400">Any discount over 15% must be approved by Stuart.</p>
-              </div>
-              <div className="p-5 md:p-6 rounded-xl bg-slate-950 border border-rose-900/30 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-rose-500"></div>
-                <div className="text-xs md:text-sm font-medium text-rose-400 uppercase tracking-wider mb-2">Power Inventory</div>
-                <div className="text-2xl md:text-3xl font-bold text-slate-200 mb-2">Max 5%</div>
-                <p className="text-xs md:text-sm text-slate-400">Hard cap on Headline, 3x2 Stands, Lanyards, & Wi-Fi.</p>
-              </div>
-            </div>
-          </div>
-     
-          <div className="grid grid-cols-1 gap-6">
-            <div className="p-5 md:p-6 rounded-xl bg-slate-900 border border-slate-800">
-              <h4 className="font-bold text-slate-200 mb-3 flex items-center gap-2 text-base md:text-lg">
-                <Award className="w-5 h-5 text-amber-500" />
-                The Sweetener Bank
-              </h4>
-              <p className="text-slate-400 text-sm leading-relaxed mb-2 md:mb-4">
-                Rather than dropping the price further, to close deals over €50k, reps should pull from the Sweetener Bank (e.g., Advertisement Videos, Non-Branded Panels) to add value.
-              </p>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    function SlideTiers() {
-      return (
-        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
-          <div className="text-[10px] md:text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Appendix</div>
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Partnership Tiering & Status</h2>
-          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Clear thresholds to drive upsells and define partner status.</p>
-          
-          <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-xl p-5 md:p-6 mb-6 md:mb-8 flex items-start gap-4">
-            <Award className="w-6 h-6 md:w-8 md:h-8 text-yellow-400 shrink-0" />
-            <div>
-              <h3 className="text-base md:text-lg font-bold text-yellow-100 mb-1">The Headline Asset (€280,000)</h3>
-              <p className="text-yellow-200/80 text-xs md:text-sm">
-                Headline is a singular, exclusive product. It sits above all standard tiering to ensure absolute market dominance and exclusive status for our apex buyer.
-              </p>
-            </div>
-          </div>
-     
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 flex-1">
-            <div className="bg-slate-900 border border-slate-700 rounded-2xl p-4 md:p-5 flex flex-col">
-              <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Tier 1</div>
-              <h3 className="text-xl md:text-2xl font-extrabold text-cyan-400 mb-1 flex items-center gap-2"><Diamond className="w-4 h-4 md:w-5 md:h-5" /> Diamond</h3>
-              <div className="text-base md:text-lg font-medium text-amber-400 mb-3 md:mb-4">€150,000+</div>
-              <p className="text-[10px] md:text-xs text-slate-400 italic mb-3">The first true premium access tier. This is where partnership moves from visibility into structured commercial outcomes.</p>
-              <ul className="space-y-2 text-[10px] md:text-xs text-slate-300 flex-1">
-                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> x8 Full Event Passes</li>
-                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> x4 VIP hospitality upgrades</li>
-                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Senior account lead / concierge servicing</li>
-                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Up to 5 curated double opt-in introductions</li>
-                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Premium onsite status and placement priority</li>
-                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> 1 onsite filmed interview</li>
-                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> 1 dedicated pre-event strategy session</li>
-                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Priority booking window for private meeting rooms and hospitality inventory</li>
-              </ul>
-            </div>
-
-            <div className="bg-slate-900 border border-slate-700 rounded-2xl p-4 md:p-5 flex flex-col">
-              <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Tier 2</div>
-              <h3 className="text-xl md:text-2xl font-extrabold text-white mb-1">Platinum</h3>
-              <div className="text-base md:text-lg font-medium text-amber-400 mb-3 md:mb-4">€80,000 - €149,999</div>
-              <p className="text-[10px] md:text-xs text-slate-400 italic mb-3">Premium partnership visibility without the concierge servicing, VIP elevation, or structured ABM support reserved for Diamond.</p>
-              <ul className="space-y-2 text-[10px] md:text-xs text-slate-300 flex-1">
-                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> x6 Full Event Passes</li>
-                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Platinum onsite status</li>
-                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Individual pre-event post</li>
-              </ul>
-            </div>
-     
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-5 flex flex-col">
-              <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Tier 3</div>
-              <h3 className="text-xl md:text-2xl font-extrabold text-amber-500 mb-1">Gold</h3>
-              <div className="text-base md:text-lg font-medium text-amber-400 mb-3 md:mb-4">€30,000 - €79,999</div>
-              <ul className="space-y-2 text-[10px] md:text-xs text-slate-300 flex-1">
-                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> x3 Full Event Passes</li>
-                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Gold status onsite</li>
-                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Shared pre-event post</li>
-              </ul>
-            </div>
-     
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-5 flex flex-col">
-              <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Tier 4</div>
-              <h3 className="text-xl md:text-2xl font-extrabold text-slate-300 mb-1">Silver</h3>
-              <div className="text-base md:text-lg font-medium text-amber-400 mb-3 md:mb-4">€0 - €29,999</div>
-              <ul className="space-y-2 text-[10px] md:text-xs text-slate-300 flex-1">
-                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> x1 Full Event Pass</li>
-                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Silver status onsite</li>
-                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Shared pre-event post</li>
-              </ul>
-            </div>
-          </div>
-     
-          <div className="mt-6 md:mt-8 bg-slate-900 border border-slate-800 rounded-xl p-5 md:p-6">
-            <h3 className="text-base md:text-lg font-bold text-slate-200 mb-4 flex items-center gap-2">
-              <Users className="w-4 h-4 md:w-5 md:h-5 text-amber-400" />
-              Curated Introductions (ABM Value Add)
-            </h3>
-            <div className="grid md:grid-cols-2 gap-3 md:gap-4">
-              <div className="bg-slate-950 border border-slate-800 rounded-lg p-3 md:p-4 flex justify-between items-center">
-                <span className="font-medium text-slate-300 text-xs md:text-sm">Headline (€280k)</span>
-                <span className="text-amber-400 font-bold text-xs md:text-sm">10 curated introductions</span>
-              </div>
-              <div className="bg-slate-950 border border-slate-800 rounded-lg p-3 md:p-4 flex justify-between items-center">
-                <span className="font-medium text-slate-300 text-xs md:text-sm">Diamond / Flagship Pavilion (€150k+)</span>
-                <span className="text-amber-400 font-bold text-xs md:text-sm">Up to 5 curated introductions</span>
-              </div>
-            </div>
-            <p className="text-[10px] md:text-xs text-slate-500 mt-3 md:mt-4 italic">Partnerships below €150k receive no included introductions. No discretionary exceptions.</p>
-          </div>
-        </div>
-      );
-    }
-
-    function SlideBundles() {
-      return (
-        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
-          <div className="text-[10px] md:text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Appendix</div>
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Suggested Bundle Strategies</h2>
-          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">We are not lowering list prices. We use suggested bundles to move high-value inventory and secure Platinum/Gold commitments.</p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col hover:border-yellow-500/50 transition-colors">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-yellow-900/30 rounded-lg flex items-center justify-center mb-4 border border-yellow-800/50">
-                <Package className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
-              </div>
-              <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-2">The Arrival Takeover</h3>
-              <div className="text-xs md:text-sm text-yellow-400 font-medium mb-4">Achieves Platinum Status</div>
-              
-              <div className="space-y-2 mb-6 flex-1">
-                <div className="flex justify-between text-xs md:text-sm">
-                  <span className="text-slate-400">Registration (Excl)</span>
-                  <span className="text-slate-500 line-through">€75k</span>
-                </div>
-                <div className="flex justify-between text-xs md:text-sm">
-                  <span className="text-slate-400">Lanyard Partner A</span>
-                  <span className="text-slate-500 line-through">€30k</span>
-                </div>
-                <div className="flex justify-between text-xs md:text-sm">
-                  <span className="text-slate-400">General Badge</span>
-                  <span className="text-slate-500 line-through">€20k</span>
-                </div>
-              </div>
-              
-              <div className="pt-4 border-t border-slate-800">
-                <div className="flex justify-between items-end">
-                  <span className="text-[10px] md:text-xs text-slate-500 uppercase tracking-wider">Suggested Price</span>
-                  <span className="text-xl md:text-2xl font-bold text-amber-400">€110,000</span>
-                </div>
-                <p className="text-[10px] md:text-xs text-slate-500 mt-2">Drives premium value by packaging the exclusive Registration asset with guaranteed-reach utility.</p>
-              </div>
-            </div>
-     
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col hover:border-yellow-500/50 transition-colors">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-yellow-900/30 rounded-lg flex items-center justify-center mb-4 border border-yellow-800/50">
-                <Package className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
-              </div>
-              <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-2">The Hospitality Partner</h3>
-              <div className="text-xs md:text-sm text-amber-500 font-medium mb-4">Achieves Gold Status</div>
-              
-              <div className="space-y-2 mb-6 flex-1">
-                <div className="flex justify-between text-xs md:text-sm">
-                  <span className="text-slate-400">Dining Area (Excl)</span>
-                  <span className="text-slate-500 line-through">€50k</span>
-                </div>
-                <div className="flex justify-between text-xs md:text-sm">
-                  <span className="text-slate-400">Nourish Bar (x2)</span>
-                  <span className="text-slate-500 line-through">€37k</span>
-                </div>
-              </div>
-              
-              <div className="pt-4 border-t border-slate-800">
-                <div className="flex justify-between items-end">
-                  <span className="text-[10px] md:text-xs text-slate-500 uppercase tracking-wider">Suggested Price</span>
-                  <span className="text-xl md:text-2xl font-bold text-amber-400">€75,000</span>
-                </div>
-                <p className="text-[10px] md:text-xs text-slate-500 mt-2">Solves the Dining Area challenge by creating total F&B dominance.</p>
-              </div>
-            </div>
-     
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col hover:border-yellow-500/50 transition-colors">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-yellow-900/30 rounded-lg flex items-center justify-center mb-4 border border-yellow-800/50">
-                <Package className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
-              </div>
-              <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-2">Content & Connect</h3>
-              <div className="text-xs md:text-sm text-amber-500 font-medium mb-4">Achieves Gold Status</div>
-              
-              <div className="space-y-2 mb-6 flex-1">
-                <div className="flex justify-between text-xs md:text-sm">
-                  <span className="text-slate-400">Stage 3 Hub Partner</span>
-                  <span className="text-slate-500 line-through">€24k</span>
-                </div>
-                <div className="flex justify-between text-xs md:text-sm">
-                  <span className="text-slate-400">Day 1 (Non-Excl)</span>
-                  <span className="text-slate-500 line-through">€25k</span>
-                </div>
-                <div className="flex justify-between text-xs md:text-sm">
-                  <span className="text-slate-400">4-Pax Meeting Room</span>
-                  <span className="text-slate-500 line-through">€16k</span>
-                </div>
-              </div>
-              
-              <div className="pt-4 border-t border-slate-800">
-                <div className="flex justify-between items-end">
-                  <span className="text-[10px] md:text-xs text-slate-500 uppercase tracking-wider">Suggested Price</span>
-                  <span className="text-xl md:text-2xl font-bold text-amber-400">€56,000</span>
-                </div>
-                <p className="text-[10px] md:text-xs text-slate-500 mt-2">Perfect mid-market package combining thought leadership, networking, and a base.</p>
-              </div>
-            </div>
-     
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col hover:border-yellow-500/50 transition-colors">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-yellow-900/30 rounded-lg flex items-center justify-center mb-4 border border-yellow-800/50">
-                <Package className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
-              </div>
-              <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-2">The Main Stage Anchor</h3>
-              <div className="text-xs md:text-sm text-yellow-400 font-medium mb-4">Achieves Platinum Status</div>
-              
-              <div className="space-y-2 mb-6 flex-1">
-                <div className="flex justify-between text-xs md:text-sm">
-                  <span className="text-slate-400">Plenary Stage Partner</span>
-                  <span className="text-slate-500 line-through">€85k</span>
-                </div>
-                <div className="flex justify-between text-xs md:text-sm">
-                  <span className="text-slate-400">Leadership Chair Partner</span>
-                  <span className="text-slate-500 line-through">€26k</span>
-                </div>
-              </div>
-              
-              <div className="pt-4 border-t border-slate-800">
-                <div className="flex justify-between items-end">
-                  <span className="text-[10px] md:text-xs text-slate-500 uppercase tracking-wider">Suggested Price</span>
-                  <span className="text-xl md:text-2xl font-bold text-amber-400">€95,000</span>
-                </div>
-                <p className="text-[10px] md:text-xs text-slate-500 mt-2">Use where Chair remains unsold or as an approved bundle sweetener only. Eliminates double-selling risk.</p>
-              </div>
-            </div>
-          </div>
-          <div className="mt-6 md:mt-4 text-center">
-            <p className="text-[10px] md:text-xs text-slate-500 italic">*Illustrative packaging only. Bundles repackage existing inventory and are not modelled as incremental revenue lines.*</p>
-          </div>
-        </div>
-      );
-    }
-
-    function SlideCatalogueBranding() {
-      const products = [
-        { isHeader: true, title: "Base Case Inventory (Included in Models)" },
-        { name: "Headline Partnership (Excl)", price: "€280,000", qty: "1", del: "Press release, 20m keynote, Premium arrival zone visibility (Subject to venue rights), 10 passes.", narrative: "Market Leadership Positioning targeted for apex brand dominance.", rationale: "Premium tier anchored by true market capture potential." },
-        { name: "Registration (Online & Onsite)", price: "€75,000", qty: "1", del: "Online logo, 2 curved LEDs, backdrop, counter, 3 passes.", narrative: "Highest-attention attendee chokepoint. Supports strong conversion potential.", rationale: "Subject to final confirmation of branding rights from Convene." },
-        { name: "Speaker's Lounge Partnership (Excl)", price: "€35,000", qty: "1", del: "Branding in VIP lounge, video ad, 3 passes.", narrative: "Exclusive, friction-free access to the speaker faculty.", rationale: "Unrivaled, unmediated access to VIP speakers. Valued for elite networking density." },
-        { name: "Lanyard Partner A", price: "€30,000", qty: "1", del: "Logo on alternating delegate lanyards across both days, ensuring continuous visibility, 1 pass, Silver status.", narrative: "High-demand physical asset. Every delegate wears this all day.", rationale: "Split inventory reflects iGaming budgets and full-event visibility with alternating designs." },
-        { name: "Lanyard Partner B", price: "€30,000", qty: "1", del: "Logo on alternating delegate lanyards across both days, ensuring continuous visibility, 1 pass, Silver status.", narrative: "High-demand physical asset. Every delegate wears this all day.", rationale: "Split inventory reflects iGaming budgets and full-event visibility with alternating designs." },
-        { name: "General Delegate Badge (Excl)", price: "€20,000", qty: "1", del: "Logo on all general delegate badges, 1 pass, Silver status.", narrative: "Unavoidable reach on the general delegate audience.", rationale: "Yield-optimised split. General badge captures the broadest possible audience." },
-        { name: "Operator Badge (Excl)", price: "€18,000", qty: "1", del: "Logo exclusively on operator-designated badges, 1 pass, Silver status.", narrative: "Hyper-targeted visibility on the buyer persona that matters most to B2B suppliers.", rationale: "New product created from leadership direction. Splits the badge to maximise yield." },
-        { name: "Wi-Fi", price: "€20,000", qty: "1", del: "Custom network/password, 1 pass, Silver status.", narrative: "Power Inventory. Captive audience utility.", rationale: "Repriced to reflect the captive digital audience value and high integration rate." },
-        { name: "Dining Meeting Area", price: "€50,000", qty: "1", del: "Library branding, tent cards, napkins, 2 passes.", narrative: "Sell the exclusive, highly structured meeting environment.", rationale: "Premium, exclusive environment pricing. Drives structured meeting value." },
-        { name: "Media Lounge (Excl)", price: "€45,000", qty: "1", del: "Overhead glass/wall branding, Gold status, branded interview backdrop, priority space use.", narrative: "Exclusive media hub ownership. High visibility in all filmed content.", rationale: "Priced to reflect exclusive media presence and high-value video assets." },
-        { name: "Nourish Bar", price: "€18,500", qty: "2", del: "Branding at one bar, 1 pass.", narrative: "High foot traffic F&B integration for organic networking.", rationale: "Reflects natural networking gravity and high foot-traffic dwell time." },
-        { name: "Stairs: 34 Stair Risers (Excl)", price: "€20,000", qty: "1", del: "Branding on stair risers, LCD monitor at top, 1 pass.", narrative: "Unavoidable visual impact between floors.", rationale: "High-visibility environmental branding leveraging necessary venue pathways." },
-        { name: "Restroom Partnership", price: "€18,000", qty: "1", del: "Branding in all restrooms, mirror clings.", narrative: "High-frequency, captive audience touchpoint.", rationale: "Unexpected, high-recall branding yielding defensible unskippable visibility." },
-        { name: "Cloakroom Area", price: "€18,000", qty: "1", del: "LCD monitor screen, counter branding, 1 pass.", narrative: "High utility touchpoint at arrival/departure.", rationale: "Priced for high-frequency utility and attendee interactions." },
-        { name: "Digital Event Guide", price: "€20,000", qty: "1", del: "QR code on badge, logo on digital agenda, on-site screens, tent cards, email promotion, 1 pass.", narrative: "Enhanced visibility on screens, tent cards, and email promotion.", rationale: "Reflects enhanced attendee app adoption and repeated digital engagements." },
-        { name: "Advertisement Video", price: "€9,000", qty: "8", del: "30s video during breaks, 1 pass.", narrative: "Cost-effective brand reinforcement.", rationale: "High-margin digital inventory reflecting focused screen engagement during breaks." },
-        { isHeader: true, title: "Pending Venue Confirmation (Upside - Excluded from Base Case)", isUpside: true },
-        { name: "Upstairs Reg Desk", price: "€30,000", qty: "1", del: "Pending Venue Confirmation.", narrative: "Additional high-visibility touchpoint.", rationale: "Upside inventory if venue logistics permit.", isUpside: true },
-        { name: "Projection Mapping", price: "€40,000", qty: "1", del: "Pending Venue Confirmation.", narrative: "Massive scale digital branding.", rationale: "Upside inventory leveraging Hudson Yards tech capabilities.", isUpside: true }
-      ];
-     
-      return <CatalogueTable title="Appendix: Branding & Utility" products={products} />;
-    }
-
-    function SlideCatalogueContent() {
-      const products = [
-        { isHeader: true, title: "Base Case Inventory (Included in Models)" },
-        { name: "Plenary Stage Partner", price: "€85,000", qty: "1", del: "Main stage holding slide, podium sign, 1x 20-min Headline Keynote, 6 passes.", narrative: "Consolidates main stage dominance into one Platinum asset.", rationale: "Definitive main stage ownership." },
-        { name: "Stage 2 Hub Partner", price: "€45,000", qty: "2", del: "Podium branding, screen bug, 1 keynote, 3 passes.", narrative: "Defend price by emphasising targeted audience density.", rationale: "Reflects targeted audience density and focused industry leadership positioning." },
-        { name: "Stage 3 Hub Partner", price: "€24,000", qty: "2", del: "Holding slide logo, 1 branded panel slot, 2 passes.", narrative: "The most accessible route into partnered thought leadership.", rationale: "Accessible entry point capturing high-intent, targeted niche audiences." },
-        { name: "Plenary Presenter", price: "€58,000", qty: "2", del: "1x 20-min keynote per day (one per day across two days), full brand ownership.", narrative: "Aggressive corporate storytelling on the main plenary stage.", rationale: "Premium main stage storytelling." },
-        { name: "Stage 2 Presenter", price: "€38,000", qty: "2", del: "20-min keynote, full brand ownership.", narrative: "Targeted thought leadership.", rationale: "Priced perfectly to reflect highly engaged mid-sized room capacity." },
-        { name: "Stage 3 Presenter", price: "€19,000", qty: "2", del: "20-min keynote, full brand ownership.", narrative: "Accessible thought leadership.", rationale: "Valuated strictly for intimate, highly engaged problem-solving sessions." },
-        { name: "Custom Panels (Plenary)", price: "€38,000", qty: "2", del: "Partner + Guest speaker, moderated format.", narrative: "Controlled narrative with external credibility.", rationale: "Reflects the substantial value of driving controlled narratives." },
-        { name: "Custom Panels (Stage 2)", price: "€26,000", qty: "2", del: "Partner + Guest speaker, moderated format.", narrative: "Controlled narrative with external credibility.", rationale: "Reflects the substantial value of driving controlled narratives." },
-        { name: "Custom Panels (Stage 3)", price: "€14,000", qty: "2", del: "Partner + Guest speaker, moderated format.", narrative: "Controlled narrative with external credibility.", rationale: "Reflects the substantial value of driving controlled narratives." },
-        { name: "Branded Panels (Plenary)", price: "€19,000", qty: "4", del: "Powered By title, 1 speaker slot.", narrative: "Standard thought leadership integration.", rationale: "Strong market demand validated the uplift for scalable thought leadership." },
-        { name: "Branded Panels (Stage 2)", price: "€16,000", qty: "4", del: "Powered By title, 1 speaker slot.", narrative: "Standard thought leadership integration.", rationale: "Strong market demand validated the uplift for scalable thought leadership." },
-        { name: "Branded Panels (Stage 3)", price: "€9,000", qty: "4", del: "Powered By title, 1 speaker slot.", narrative: "Standard thought leadership integration.", rationale: "Strong market demand validated the uplift for scalable thought leadership." },
-        { name: "Non-Branded Panels (Stage 1/2/3)", price: "€12k / €10.5k / €6.5k", qty: "Internal", del: "Panel participation without branding.", narrative: "Plausible deniability. The credibility of an organically selected expert.", rationale: "Priced for the high credibility of organic integration." },
-        { name: "Leadership Chair Partner", price: "€26,000", qty: "1", del: "Logo on all main hall seats. Fallback standalone or bundle sweetener.", narrative: "High visual impact in the premium plenary room.", rationale: "Not modelled as incremental revenue if sold within Plenary Stage Partner bundle." },
-        { name: "Livestream", price: "€60,000", qty: "1", del: "Logo on stream, video ad, social/email promo, 3 passes.", narrative: "Extended digital reach beyond the physical room.", rationale: "Reflects the vastly extended digital reach scaling far beyond the physical room." },
-        { name: "Emerging Verticals: Headline", price: "€60,000", qty: "1", del: "Headline positioning for emerging verticals track.", narrative: "Own the narrative on future markets.", rationale: "Anchors future market narratives. Strategic valuation for vanguard leaders." },
-        { name: "Emerging Verticals: General", price: "€24,000", qty: "8", del: "General partner positioning for emerging verticals.", narrative: "High-value entry into new market discussions.", rationale: "Captures enthusiastic early-adopter budgets targeting high-growth sectors." },
-        { isHeader: true, title: "Tentative Upside (Excluded from Base Case)", isUpside: true },
-        { name: "Prediction Markets: Headline", price: "€60,000", qty: "1", del: "Headline position for NEXTPredict track.", narrative: "Category ownership for prediction markets.", rationale: "Tentative - March 2027. Excluded from base case to protect October summit.", isUpside: true },
-        { name: "Prediction Markets: General", price: "€24,000", qty: "8", del: "General track partnership.", narrative: "Niche audience targeting.", rationale: "Tentative - March 2027. Excluded from base case to protect October summit.", isUpside: true }
-      ];
-     
-      return <CatalogueTable title="Appendix: Content & Stages" products={products} />;
-    }
-
-    function SlideCatalogueExpo() {
-      const products = [
-        { isHeader: true, title: "Base Case Inventory (Included in Models)" },
-        { name: "Flagship Pavilion 8x4", price: "€150,000", qty: "1", del: "Turnkey 32sqm build, 20-min keynote, 15 passes, premium placement.", narrative: "Defensible €150k anchor with full content and ABM integration.", rationale: "Bundled value transforms space into a strategic partnership." },
-        { name: "Exhibition Stand 8x4 (Prime Space)", price: "€95,000", qty: "1", del: "Space only, 6 passes, Lead Scanner. Premium location opposite registration area / corridor effect (subject to final floorplan).", narrative: "Premium blank canvas for enterprise activations.", rationale: "Positions the 32sqm footprint with a placement premium." },
-        { name: "Exhibition Stand 8x4 (Secondary Space)", price: "€85,000", qty: "1", del: "Space only, 6 passes, Lead Scanner. High-visibility secondary location (subject to final floorplan).", narrative: "Secondary premium lot.", rationale: "True economies-of-scale benchmark (€2,656/sqm)." },
-        { name: "Exhibition Stand 6x4 Turnkey", price: "€65,000", qty: "2", del: "Turnkey build, premium placement, 3 passes, Lead Scanner.", narrative: "Premium layout targeting top-tier custom exhibitors.", rationale: "Priced dynamically to reflect its premium footprint. 2 turnkey units available; only 1 can be converted to space-only due to wall configurations." },
-        { name: "Exhibition Stand 6x4 Space Only", price: "€52,000", qty: "1", del: "Space only, 3 passes, Lead Scanner.", narrative: "For brands with custom builds.", rationale: "Premium mid-tier lot pricing. 2 turnkey units available; only 1 can be converted to space-only due to wall configurations." },
-        { name: "Exhibition Stand 6x2 Turnkey", price: "€40,000", qty: "2", del: "Turnkey build, 3 passes, Lead Scanner.", narrative: "Power Inventory. Scarcity is real.", rationale: "Supports full-list-price confidence." },
-        { name: "Exhibition Stand 3x2 Turnkey", price: "€27,000", qty: "8", del: "Turnkey build, 2 passes, Lead Scanner.", narrative: "Power Inventory. Strict 5% discount cap. Scarcity is real.", rationale: "Supports full-list-price confidence. Up to 12 pending Convene." },
-        { name: "Private Meeting Room 4p", price: "€16,000", qty: "3", del: "Capacity: 4p.", narrative: "Friction-free deal-making environments.", rationale: "Proportional pricing reflecting premium private environments." },
-        { name: "Private Meeting Room 6p", price: "€20,000", qty: "1", del: "Capacity: 6p.", narrative: "Friction-free deal-making environments.", rationale: "Proportional pricing reflecting premium private environments." },
-        { name: "Private Meeting Room 8p", price: "€25,000", qty: "1", del: "Capacity: 8p.", narrative: "Friction-free deal-making environments.", rationale: "Proportional pricing reflecting premium private environments." },
-        { name: "Private Meeting Room 12p", price: "€35,000", qty: "1", del: "Capacity: 12p.", narrative: "Friction-free deal-making environments.", rationale: "Apex meeting asset. Priced for ultimate exclusivity and enterprise delegations." },
-        { name: "Lunch Partnership", price: "€50,000", qty: "1", del: "Upgraded lunch inventory, full-duration branding across all food stations, 4 passes.", narrative: "High value, high duration interaction window.", rationale: "Monetising the significantly upgraded F&B operational expenditure into a premium partnership." },
-        { name: "Nico Jansen Run Club", price: "€18,000", qty: "1", del: "Official partner, branded gifts, pre-event marketing.", narrative: "High-engagement wellness alignment.", rationale: "Commands a premium for authentic integration." },
-        { name: "Pre-Registration Event (Exclusive)", price: "€80,000", qty: "1", del: "Exclusive branding at pre-reg event, 3 passes.", narrative: "First impression ownership.", rationale: "Protects the most critical pre-business networking window." },
-        { name: "Pre-Registration Event (Non-Exclusive)", price: "€22,000", qty: "5", del: "Shared branding at pre-reg event, 3 passes.", narrative: "Accessible networking entry point.", rationale: "An extremely high-value entry point for capturing early executive mindshare." },
-        { name: "Day 1 NEXTworking (Exclusive)", price: "€100,000", qty: "1", del: "Total brand takeover of premier party, 6 passes.", narrative: "Capturing decision-makers off-guard.", rationale: "Defensible apex experiential asset. Dominates the most heavily trafficked party." },
-        { name: "Day 1 NEXTworking (Non-Exclusive)", price: "€25,000", qty: "5", del: "Shared branding at premier party, 3 passes.", narrative: "High-visibility networking.", rationale: "Provides shared but definitive visibility at the premier experiential nexus of the event." },
-        { name: "VIP Event (Exclusive)", price: "€85,000", qty: "1", del: "Exclusive branding at VIP dinner, 6 passes.", narrative: "Access to high executive density.", rationale: "Commands absolute top-tier pricing due to targeted audience." },
-        { name: "VIP Event (Non-Exclusive)", price: "€22,000", qty: "5", del: "Shared branding at VIP dinner, 3 passes.", narrative: "Targeted executive networking.", rationale: "Proven targeted executive interaction format ensuring a strong ROI potential." },
-        { name: "Day 2 NEXTworking (Exclusive)", price: "€80,000", qty: "1", del: "Closing party partnership, 6 passes.", narrative: "Final impression ownership.", rationale: "Secures the final strategic impression. Priced robustly for closing-night dominance." },
-        { name: "Day 2 NEXTworking (Non-Exclusive)", price: "€20,000", qty: "5", del: "Shared branding at closing party, 3 passes.", narrative: "Lasting brand recall.", rationale: "An accessible yet deeply impactful wrap-up branding opportunity." },
-        { name: "C-Level Event (Bespoke)", price: "Starts €35k", qty: "1", del: "Invitation-only gathering for select leaders.", narrative: "Hyper-targeted ABM. Floor price established.", rationale: "The €35k base establishes a strict floor for bespoke access." },
-      ];
-     
-      return <CatalogueTable title="Appendix: Expo & Networking" products={products} tableNote="Note: The revenue ceiling applies mutual-exclusivity caps. Exclusive/Non-Exclusive events, overlapping stand footprints, and combined units (e.g., 6x2s formed from 3x2s) cannot all be sold concurrently." />;
-    }
-     
-    function CatalogueTable({ title, products, tableNote }) {
-      return (
-        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
-          <div className="text-[10px] md:text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Appendix</div>
-          <div className="flex items-center gap-3 mb-4 md:mb-6">
-            <FileText className="w-6 h-6 md:w-8 md:h-8 text-slate-500" />
-            <h2 className="text-2xl md:text-3xl font-bold">{title}</h2>
-          </div>
-          {tableNote && <p className="text-[10px] md:text-xs text-slate-500 italic mb-4 md:mb-6">{tableNote}</p>}
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden flex-1 flex flex-col">
-            <div className="overflow-x-auto w-full flex-1 table-container">
-              <table className="w-full text-left text-[11px] md:text-sm min-w-[900px]">
-                <thead className="bg-slate-950 border-b border-slate-800 text-slate-400">
-                  <tr>
-                    <th className="p-3 md:p-4 font-medium whitespace-nowrap min-w-[180px]">Product</th>
-                    <th className="p-3 md:p-4 font-medium whitespace-nowrap min-w-[60px]">Qty</th>
-                    <th className="p-3 md:p-4 font-medium whitespace-nowrap min-w-[120px]">2027 Price</th>
-                    <th className="p-3 md:p-4 font-medium min-w-[250px]">Key Deliverables</th>
-                    <th className="p-3 md:p-4 font-medium min-w-[200px]">Sales Narrative</th>
-                    <th className="p-3 md:p-4 font-medium min-w-[200px]">Commercial Rationale</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-800/50">
-                  {products.map((p, i) => {
-                    if (p.isHeader) {
-                      return (
-                        <tr key={i} className="bg-slate-800/80 border-y border-slate-700">
-                          <td colSpan="6" className={p.isUpside ? "p-3 font-bold text-amber-500/80 text-[10px] md:text-xs tracking-wider uppercase" : "p-3 font-bold text-slate-200 text-[10px] md:text-xs tracking-wider uppercase"}>
-                            {p.title}
-                          </td>
-                        </tr>
-                      );
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlareFlow Singapore - Commercial Architecture Proposal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#050505',
+                            panel: '#111111',
+                            card: '#1A1A1A',
+                            border: '#2A2A2A',
+                            orange: '#FF5E00',
+                            gold: '#FFCC00',
+                            navy: '#1A3C5E',
+                            teal: '#0E5C6B',
+                            text: '#A1A1AA', 
+                            light: '#F4F5F7'
+                        }
                     }
-                    return (
-                      <tr key={i} className={p.isUpside ? "border-l-2 border-amber-500/50 bg-amber-950/10 hover:bg-amber-950/20 transition-colors opacity-80" : "hover:bg-slate-800/30 transition-colors group"}>
-                        <td className="p-3 md:p-4 font-semibold text-slate-200 whitespace-nowrap">{p.name}</td>
-                        <td className="p-3 md:p-4 font-mono text-amber-400 whitespace-nowrap">{p.qty || '-'}</td>
-                        <td className="p-3 md:p-4 font-mono text-amber-400 whitespace-nowrap">{p.price}</td>
-                        <td className="p-3 md:p-4 text-slate-400 leading-relaxed text-[10px] md:text-xs">{p.del}</td>
-                        <td className="p-3 md:p-4 text-slate-300 italic text-[10px] md:text-xs">"{p.narrative}"</td>
-                        <td className="p-3 md:p-4 text-indigo-300 text-[10px] md:text-xs">{p.rationale}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050505; color: #A1A1AA; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; color: #FFFFFF; }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FF5E00; }
+
+        .glass-panel {
+            background: rgba(17, 17, 17, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #FFFFFF, #A1A1AA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media print {
+            body { background: white; color: black; }
+            h1, h2, h3, h4, h5, h6 { color: black; }
+            .glass-panel, .bg-brand-panel, .bg-brand-card { background: #f9fafb !important; border: 1px solid #e5e7eb; border-radius: 8px; }
+            .text-brand-text { color: #374151 !important; }
+            .border-brand-border { border-color: #e5e7eb !important; }
+            .text-white { color: black !important; }
+            section { page-break-inside: avoid; margin-bottom: 2rem; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-orange selection:text-white relative">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-brand-border no-print">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-3 h-3 bg-brand-orange rounded-full"></div>
+                <span class="font-heading font-bold text-white text-lg tracking-wide">Flare<span class="text-brand-orange">Flow</span></span>
             </div>
-          </div>
+            <div class="hidden md:flex gap-6 text-sm font-medium">
+                <a href="#brief" class="hover:text-white transition">The Brief</a>
+                <a href="#honest-truth" class="hover:text-white transition">The Truth</a>
+                <a href="#options" class="hover:text-white transition">The Architecture</a>
+                <a href="#advanced-ai" class="text-brand-teal hover:text-white transition">AI Horizon</a>
+                <a href="#roadmap" class="hover:text-white transition">Roadmap</a>
+            </div>
         </div>
-      );
-    }
+    </nav>
 
-    // --- APP ENTRY POINT ---
-
-    const slides = [
-      SlideTitle,
-      SlideExecutiveSummary,
-      SlideWhatChanged,
-      SlideContext,
-      SlideFinancialRealities,
-      SlideTicketing,
-      SlideFlagshipPricing,
-      SlideRevenueForecast,
-      SlideScorecard,
-      SlideApprovalRequested,
-      SlidePricingPsychology,
-      SlideMatchmaking,
-      SlideDealDesk,
-      SlideTiers,
-      SlideBundles,
-      SlideCatalogueBranding,
-      SlideCatalogueContent,
-      SlideCatalogueExpo
-    ];
-
-    function App() {
-      const [currentSlide, setCurrentSlide] = useState(0);
-
-      const next = () => setCurrentSlide(s => Math.min(slides.length - 1, s + 1));
-      const prev = () => setCurrentSlide(s => Math.max(0, s - 1));
-
-      const Slide = slides[currentSlide];
-
-      return (
-        <div className="min-h-screen bg-slate-950 text-slate-50 font-sans flex flex-col">
-          <main className="flex-1 flex flex-col max-w-7xl mx-auto w-full p-4 md:p-8">
-            <Slide />
-          </main>
-          
-          <footer className="border-t border-slate-900 bg-slate-950/50 p-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Target className="w-5 h-5 md:w-6 md:h-6 text-amber-500" />
-              <div className="text-amber-500/80 text-xs md:text-sm font-medium">NYC 2027 Commercial Strategy</div>
+    <!-- Hero Section -->
+    <header class="relative pt-40 pb-20 px-6 overflow-hidden flex flex-col items-center text-center border-b border-brand-border">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand-orange opacity-10 blur-[120px] rounded-full pointer-events-none"></div>
+        
+        <div class="max-w-4xl relative z-10">
+            <span class="inline-block py-1 px-3 rounded-full border border-brand-orange/30 bg-brand-orange/10 text-brand-orange text-xs font-bold uppercase tracking-widest mb-6">
+                Execution Strategy
+            </span>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                The Commercial <br>
+                <span class="gradient-text">Operating System</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-brand-text mb-12 font-light max-w-3xl mx-auto">
+                A 90-day plan to centralize FlareFlow’s licensing catalog, sales pipeline, and outbound lead generation strictly under the $500/mo cap.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-8 text-left border-t border-brand-border/50 pt-8 mt-8">
+                <div>
+                    <p class="text-xs uppercase tracking-wider text-brand-text mb-1">Prepared For</p>
+                    <p class="text-white font-medium">Timothy Oh <span class="text-sm text-brand-text font-normal ml-1">General Manager</span></p>
+                </div>
+                <div class="hidden md:block w-px h-10 bg-brand-border"></div>
+                <div>
+                    <p class="text-xs uppercase tracking-wider text-brand-text mb-1">Prepared By</p>
+                    <p class="text-white font-medium">Stuart <span class="text-sm text-brand-text font-normal ml-1">Commercial Director</span></p>
+                </div>
+                <div class="hidden md:block w-px h-10 bg-brand-border"></div>
+                <div>
+                    <p class="text-xs uppercase tracking-wider text-brand-text mb-1">Date</p>
+                    <p class="text-white font-medium">April 2026</p>
+                </div>
             </div>
-            <div className="flex items-center gap-4">
-              <button
-                onClick={prev}
-                disabled={currentSlide === 0}
-                className="p-2 rounded-full hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
-              </button>
-              <span className="text-slate-400 font-medium min-w-[3rem] text-center text-sm md:text-base">
-                {currentSlide + 1} / {slides.length}
-              </span>
-              <button
-                onClick={next}
-                disabled={currentSlide === slides.length - 1}
-                className="p-2 rounded-full hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
-              </button>
-            </div>
-          </footer>
         </div>
-      );
-    }
+    </header>
 
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<App />);
-  </script>
+    <!-- The Brief Section -->
+    <section id="brief" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="mb-16">
+            <h2 class="text-3xl md:text-4xl mb-4">The Brief & Constraints</h2>
+            <p class="text-lg max-w-3xl">We are optimizing for a 10-person team over a 90-day implementation sprint. The objective is to secure commercial leverage and pipeline visibility, not to deploy complex software for the sake of it.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            <div class="bg-brand-panel border border-brand-border p-8 rounded-2xl">
+                <p class="text-brand-orange text-sm font-bold uppercase tracking-wider mb-2">Budget Limit</p>
+                <h3 class="text-4xl mb-2">$500<span class="text-xl text-brand-text font-normal">/mo</span></h3>
+                <p class="text-sm">Hard cap for all software tool subscriptions combined.</p>
+            </div>
+            <div class="bg-brand-panel border border-brand-border p-8 rounded-2xl">
+                <p class="text-brand-gold text-sm font-bold uppercase tracking-wider mb-2">Team Size</p>
+                <h3 class="text-4xl mb-2">10 <span class="text-xl text-brand-text font-normal">Seats</span></h3>
+                <p class="text-sm">Supporting the GM, Sales, Marketing, and Ops staff.</p>
+            </div>
+            <div class="bg-brand-panel border border-brand-border p-8 rounded-2xl">
+                <p class="text-brand-teal text-sm font-bold uppercase tracking-wider mb-2">Timeline</p>
+                <h3 class="text-4xl mb-2">3 <span class="text-xl text-brand-text font-normal">Months</span></h3>
+                <p class="text-sm">$3,000 consultancy implementation window.</p>
+            </div>
+        </div>
+
+        <h3 class="text-2xl mb-6 border-b border-brand-border pb-4">The 6 Core Requirements</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded bg-brand-card border border-brand-border flex items-center justify-center text-white font-bold shrink-0">1</div>
+                <p class="font-medium text-white pt-1">Team Project Tracking</p>
+            </div>
+            <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded bg-brand-card border border-brand-border flex items-center justify-center text-white font-bold shrink-0">2</div>
+                <p class="font-medium text-white pt-1">Revenue & Forecast Tracking</p>
+            </div>
+            <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded bg-brand-card border border-brand-border flex items-center justify-center text-white font-bold shrink-0">3</div>
+                <p class="font-medium text-white pt-1">Category Segmentation</p>
+            </div>
+            <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded bg-brand-card border border-brand-border flex items-center justify-center text-white font-bold shrink-0">4</div>
+                <p class="font-medium text-white pt-1">AI Lead Gen & Outreach</p>
+            </div>
+            <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded bg-brand-card border border-brand-border flex items-center justify-center text-white font-bold shrink-0">5</div>
+                <p class="font-medium text-white pt-1">CRM System</p>
+            </div>
+            <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded bg-brand-card border border-brand-border flex items-center justify-center text-white font-bold shrink-0">6</div>
+                <p class="font-medium text-white pt-1">AI Productivity Tools</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Honest Truth -->
+    <section id="honest-truth" class="py-24 px-6 border-y border-brand-border bg-brand-panel">
+        <div class="max-w-4xl mx-auto text-center">
+            <i class="fa-solid fa-scale-balanced text-4xl text-brand-orange mb-6"></i>
+            <h2 class="text-3xl md:text-4xl mb-6">The Honest Truth</h2>
+            <p class="text-xl mb-6 leading-relaxed">
+                A fully uncompromised media rights tech stack (Attio Pro, MOLTEN, Vitrina AI) costs roughly <strong class="text-white">~$2,000/month</strong>. 
+            </p>
+            <p class="text-lg mb-10 leading-relaxed">
+                To hit the $500 cap while serving 10 people, we must deploy surgical trade-offs. The question isn't <em>"what is the sexiest SaaS stack?"</em>, but rather <strong class="text-brand-gold">"what yields the highest deal velocity and catalog protection right now?"</strong>
+            </p>
+            <div class="bg-brand-dark border border-brand-border rounded-xl p-6 text-left max-w-3xl mx-auto border-l-4 border-l-brand-orange shadow-lg">
+                <p class="text-sm text-brand-text leading-relaxed"><strong class="text-white">Strategic Advantage:</strong> We are deploying a nimble commercial operating system. We are intentionally avoiding the bloated, 6-month deployment cycles of legacy media-rights platforms. Furthermore, operational revenue trackers in this stack do <em>not</em> replace your general accounting ledger (e.g., Xero) for tax and invoicing compliance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Options Section -->
+    <section id="options" class="py-24 px-6 max-w-7xl mx-auto space-y-12">
+        <div class="mb-12">
+            <h2 class="text-3xl md:text-4xl mb-4">Architectural Options</h2>
+            <p class="text-lg">Three distinct paths translated into plain English, showing exactly what each tool does for the business.</p>
+        </div>
+
+        <!-- Option 1: The Decoy -->
+        <article class="bg-brand-panel border border-brand-border rounded-2xl p-8 md:p-12 opacity-80 transition hover:opacity-100">
+            <div class="flex flex-col md:flex-row justify-between items-start mb-8 gap-4 border-b border-brand-border pb-8">
+                <div>
+                    <span class="inline-block py-1 px-3 rounded text-xs font-bold uppercase tracking-wider bg-gray-800 text-gray-300 mb-4">Option 1: The Decoy</span>
+                    <h3 class="text-3xl mb-2 text-white">The "All-In-One" Illusion</h3>
+                    <p class="text-brand-text max-w-2xl">Attempts to minimize tool sprawl by forcing the catalog, CRM, and task management into a single software platform.</p>
+                </div>
+                <div class="text-left md:text-right">
+                    <p class="text-4xl font-bold text-white">$400<span class="text-lg text-brand-text font-normal">/mo</span></p>
+                    <p class="text-sm mt-1">Leaves $100 Headroom</p>
+                </div>
+            </div>
+
+            <!-- Plain English Tool Breakdown -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div class="bg-brand-card border border-brand-border rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-white font-bold text-lg">SmartSuite</h4>
+                        <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-1 rounded font-bold uppercase tracking-wider">The "Everything" Binder</span>
+                    </div>
+                    <p class="text-sm mb-3">Tries to be your CRM, rights catalog, and project tracker all at once.</p>
+                    <p class="text-xs text-brand-text border-t border-brand-border pt-3"><strong>Cost:</strong> $150/mo (10 seats)</p>
+                </div>
+
+                <div class="bg-brand-card border border-brand-border rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-white font-bold text-lg">ChatGPT Business</h4>
+                        <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-1 rounded font-bold uppercase tracking-wider">The Drafter</span>
+                    </div>
+                    <p class="text-sm mb-3">Provides AI accounts for all 10 staff to help write emails and summarize notes.</p>
+                    <p class="text-xs text-brand-text border-t border-brand-border pt-3"><strong>Cost:</strong> $250/mo (10 seats)</p>
+                </div>
+            </div>
+
+            <!-- The Fatal Flaw -->
+            <div class="bg-red-950/20 border border-red-900/30 p-6 rounded-xl">
+                <h4 class="text-red-400 font-bold mb-2"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Why we reject this:</h4>
+                <ul class="text-sm space-y-3 list-disc pl-4 text-brand-text">
+                    <li><strong class="text-white">Zero Lead Generation:</strong> Option 1 completely fails Requirement #4. Your sales team will have to manually hunt for leads on Google.</li>
+                    <li><strong class="text-white">The Catalog Data Cap:</strong> The SmartSuite "binder" literally runs out of pages. It has a hard limit of 5,000 records. A 1,700-title catalog tracked across multiple territories will breach this in months, forcing a massive, unbudgeted software upgrade.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Option 2: RECOMMENDED -->
+        <article id="recommendation" class="bg-brand-panel border-2 border-brand-gold rounded-2xl p-8 md:p-12 relative overflow-hidden shadow-[0_0_40px_rgba(200,151,58,0.05)]">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-brand-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="flex flex-col md:flex-row justify-between items-start mb-8 gap-4 border-b border-brand-border pb-8 relative z-10">
+                <div>
+                    <span class="inline-block py-1 px-3 rounded text-xs font-bold uppercase tracking-wider bg-brand-gold text-brand-dark mb-4"><i class="fa-solid fa-star mr-1"></i> Recommended Architecture</span>
+                    <h3 class="text-3xl mb-2 text-white">The Commercial & Rights Backbone</h3>
+                    <p class="text-brand-text max-w-2xl">A purpose-built hybrid stack. We use specific tools for the exact jobs they are best at. Protect the catalog, accelerate sales, and meet all 6 requirements safely.</p>
+                </div>
+                <div class="text-left md:text-right shrink-0">
+                    <p class="text-5xl font-bold text-brand-gold">$339<span class="text-lg text-brand-text font-normal">/mo</span></p>
+                    <p class="text-sm mt-2 text-white font-medium bg-brand-card px-3 py-1 rounded border border-brand-border inline-block">Leaves $161 Headroom</p>
+                </div>
+            </div>
+
+            <!-- Plain English Tool Breakdown -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 relative z-10">
+                
+                <!-- Tool 1: Airtable -->
+                <div class="bg-brand-card border border-brand-teal/30 rounded-xl p-6 shadow-md">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-white font-bold text-lg"><i class="fa-solid fa-database text-brand-teal mr-2"></i> Airtable</h4>
+                        <span class="text-[10px] bg-brand-teal/20 text-brand-teal border border-brand-teal/30 px-2 py-1 rounded font-bold uppercase tracking-wider">The Vault</span>
+                    </div>
+                    <p class="text-sm mb-3">The master ledger. It holds your 1,700-title catalog, territory rules, and pricing. It ensures you never accidentally double-sell exclusive rights.</p>
+                    <p class="text-xs text-brand-text border-t border-brand-border pt-3"><strong>Cost:</strong> $60/mo (3 Editors; remaining 7 staff are free Viewers)</p>
+                </div>
+
+                <!-- Tool 2: HubSpot -->
+                <div class="bg-brand-card border border-orange-500/30 rounded-xl p-6 shadow-md">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-white font-bold text-lg"><i class="fa-solid fa-address-book text-orange-500 mr-2"></i> HubSpot Starter</h4>
+                        <span class="text-[10px] bg-orange-500/20 text-orange-500 border border-orange-500/30 px-2 py-1 rounded font-bold uppercase tracking-wider">The Front Desk</span>
+                    </div>
+                    <p class="text-sm mb-3">The sales hub. This is where reps log client emails, track conversations, and drag deals visually from "Lead" to "Term Sheet".</p>
+                    <p class="text-xs text-brand-text border-t border-brand-border pt-3"><strong>Cost:</strong> $60/mo (4 Sales Seats)</p>
+                </div>
+
+                <!-- Tool 3: ClickUp -->
+                <div class="bg-brand-card border border-purple-500/30 rounded-xl p-6 shadow-md">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-white font-bold text-lg"><i class="fa-solid fa-industry text-purple-500 mr-2"></i> ClickUp Business</h4>
+                        <span class="text-[10px] bg-purple-500/20 text-purple-400 border border-purple-500/30 px-2 py-1 rounded font-bold uppercase tracking-wider">The Factory Floor</span>
+                    </div>
+                    <p class="text-sm mb-3">The delivery hub. Once a deal is signed in HubSpot, it moves here so Ops knows exactly what files to deliver, and Finance tracks the revenue forecast.</p>
+                    <p class="text-xs text-brand-text border-t border-brand-border pt-3"><strong>Cost:</strong> $120/mo (10 Users)</p>
+                </div>
+
+                <!-- Tool 4: Apollo -->
+                <div class="bg-brand-card border border-blue-400/30 rounded-xl p-6 shadow-md">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-white font-bold text-lg"><i class="fa-solid fa-radar text-blue-400 mr-2"></i> Apollo.io</h4>
+                        <span class="text-[10px] bg-blue-400/20 text-blue-400 border border-blue-400/30 px-2 py-1 rounded font-bold uppercase tracking-wider">The Radar</span>
+                    </div>
+                    <p class="text-sm mb-3">The outbound scout. Actively scans B2B databases to find newly launched streaming platforms and extracts the emails of their content buyers.</p>
+                    <p class="text-xs text-brand-text border-t border-brand-border pt-3"><strong>Cost:</strong> $49/mo (Basic Lead Gen)</p>
+                </div>
+
+                <!-- Tool 5: ChatGPT -->
+                <div class="bg-brand-card border border-gray-400/30 rounded-xl p-6 shadow-md md:col-span-2">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-white font-bold text-lg"><i class="fa-solid fa-robot text-gray-300 mr-2"></i> ChatGPT Business</h4>
+                        <span class="text-[10px] bg-gray-500/20 text-gray-300 border border-gray-500/30 px-2 py-1 rounded font-bold uppercase tracking-wider">The AI Drafter</span>
+                    </div>
+                    <p class="text-sm mb-3">The secure AI brain. Used by leadership to rapidly draft bilingual term sheets and summarize complex deal notes.</p>
+                    <p class="text-xs text-brand-text border-t border-brand-border pt-3"><strong>Cost:</strong> $50/mo (2 Power Users - templates shared with team)</p>
+                </div>
+            </div>
+
+            <!-- Commercial ROI -->
+            <div class="bg-brand-dark p-6 rounded-xl border border-brand-gold/30 relative z-10">
+                <h4 class="text-white font-medium mb-3 flex items-center"><i class="fa-solid fa-arrow-trend-up text-brand-gold mr-2"></i> Commercial ROI</h4>
+                <ul class="text-sm space-y-3">
+                    <li class="flex items-start"><i class="fa-solid fa-shield-halved text-brand-text mt-1 mr-3 w-4"></i> <span class="text-white"><strong>Zero Double-Selling:</strong> Keeping the catalog locked in Airtable ensures data integrity across exclusive windows.</span></li>
+                    <li class="flex items-start"><i class="fa-solid fa-forward-fast text-brand-text mt-1 mr-3 w-4"></i> <span class="text-white"><strong>Accelerated Deal Velocity:</strong> Sales engages freely in HubSpot without breaking backend rights logic.</span></li>
+                    <li class="flex items-start"><i class="fa-solid fa-broom text-brand-text mt-1 mr-3 w-4"></i> <span class="text-white"><strong>Strict Pipeline Hygiene:</strong> Automated handoffs to ClickUp prevent dropped delivery tasks or lost invoices.</span></li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Option 3: The Risk -->
+        <article class="bg-brand-panel border border-brand-border rounded-2xl p-8 md:p-12 opacity-80 transition hover:opacity-100">
+            <div class="flex flex-col md:flex-row justify-between items-start mb-8 gap-4 border-b border-brand-border pb-8">
+                <div>
+                    <span class="inline-block py-1 px-3 rounded text-xs font-bold uppercase tracking-wider bg-purple-900/30 border border-purple-500/30 text-purple-300 mb-4">Option 3: The Risk</span>
+                    <h3 class="text-3xl mb-2 text-white">The Heavy Automation Hub</h3>
+                    <p class="text-brand-text max-w-2xl">Attempts to automate everything by wiring together complex API platforms.</p>
+                </div>
+                <div class="text-left md:text-right shrink-0">
+                    <p class="text-4xl font-bold text-white">$455<span class="text-lg text-brand-text font-normal">/mo</span></p>
+                </div>
+            </div>
+
+            <!-- Plain English Tool Breakdown -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div class="bg-brand-card border border-brand-border rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-white font-bold text-lg">Airtable (Full)</h4>
+                        <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-1 rounded font-bold uppercase tracking-wider">The Vault + Front Desk</span>
+                    </div>
+                    <p class="text-sm mb-3">Forces all 10 staff to use the database as their daily CRM and project tracker.</p>
+                    <p class="text-xs text-brand-text border-t border-brand-border pt-3"><strong>Cost:</strong> $200/mo (10 Paid Editors)</p>
+                </div>
+
+                <div class="bg-brand-card border border-brand-border rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-white font-bold text-lg">Instantly & Make.com</h4>
+                        <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-1 rounded font-bold uppercase tracking-wider">The Megaphone & Wiring</span>
+                    </div>
+                    <p class="text-sm mb-3">Sends thousands of cold emails and relies on custom code to stitch data together.</p>
+                    <p class="text-xs text-brand-text border-t border-brand-border pt-3"><strong>Cost:</strong> ~$205/mo (w/ ChatGPT & Portals)</p>
+                </div>
+            </div>
+
+            <!-- The Fatal Flaw -->
+            <div class="bg-red-950/20 border border-red-900/30 p-6 rounded-xl">
+                <h4 class="text-red-400 font-bold mb-2"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Why we reject this:</h4>
+                <ul class="text-sm space-y-3 list-disc pl-4 text-brand-text">
+                    <li><strong class="text-white">Execution Failure:</strong> Interconnecting 4 platforms via Make.com APIs inside a 90-day window is a severe operational risk. It breaks easily.</li>
+                    <li><strong class="text-white">UI Friction:</strong> Airtable is a phenomenal database, but a clunky CRM. Forcing sales teams to use it daily kills adoption.</li>
+                    <li><strong class="text-white">Wrong Market Fit:</strong> Instantly's mass-email approach ignores the reality that Chinese B2B partners communicate almost exclusively via WeChat.</li>
+                </ul>
+            </div>
+        </article>
+        
+        <p class="text-xs text-right opacity-60">*Prices based on verified standard annual billing logic (ClickUp $12/u, HubSpot Starter ~$15/u, Airtable $20/editor). Taxes excluded.</p>
+    </section>
+
+    <!-- Architecture Map -->
+    <section id="architecture" class="py-24 px-6 border-y border-brand-border bg-brand-panel">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl mb-4 text-center">The Architecture Map</h2>
+            <p class="text-lg text-center mb-16 max-w-2xl mx-auto">Visualizing the workflow for the recommended Option 2 stack.</p>
+
+            <div class="relative bg-brand-dark p-8 md:p-12 rounded-3xl border border-brand-border mt-12 shadow-2xl">
+                
+                <!-- The Brain -->
+                <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-brand-card text-white px-8 py-4 rounded-xl border border-brand-border shadow-2xl z-20 flex items-center">
+                    <i class="fa-solid fa-robot text-brand-text text-2xl mr-4"></i>
+                    <div>
+                        <p class="text-[10px] uppercase font-bold text-brand-text tracking-wider">AI Productivity Layer</p>
+                        <p class="font-bold text-sm">ChatGPT Business</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 pt-12 pb-12 relative z-10 border-b border-brand-border/50">
+                    
+                    <!-- Left: Engagement -->
+                    <div class="bg-brand-card p-8 rounded-2xl border-t-4 border-orange-500 shadow-lg relative">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h3 class="text-xl text-white mb-1">Find & Connect</h3>
+                                <p class="text-orange-500 font-bold text-[10px] uppercase tracking-wider">System of Engagement</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="w-8 h-8 bg-brand-dark border border-brand-border rounded flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-radar text-blue-400"></i></div>
+                                <div>
+                                    <p class="text-sm font-bold text-white leading-snug">Apollo (The Radar)</p>
+                                    <p class="text-xs text-brand-text mt-1">Identifies streaming platforms & buyer emails.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-8 h-8 bg-brand-dark border border-brand-border rounded flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-address-book text-orange-500"></i></div>
+                                <div>
+                                    <p class="text-sm font-bold text-white leading-snug">HubSpot (The Front Desk)</p>
+                                    <p class="text-xs text-brand-text mt-1">Logs conversations and manages the sales pipeline.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Right: Execution -->
+                    <div class="bg-brand-card p-8 rounded-2xl border-t-4 border-purple-500 shadow-lg">
+                        <h3 class="text-xl text-white mb-1">Deliver & Track</h3>
+                        <p class="text-purple-500 font-bold text-[10px] uppercase tracking-wider mb-6">System of Execution</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="w-8 h-8 bg-brand-dark border border-brand-border rounded flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-industry text-purple-400"></i></div>
+                                <div>
+                                    <p class="text-sm font-bold text-white leading-snug">ClickUp (The Factory Floor)</p>
+                                    <p class="text-xs text-brand-text mt-1">Turns won deals into delivery tasks for Ops.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-8 h-8 bg-brand-dark border border-brand-border rounded flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-chart-pie text-purple-400"></i></div>
+                                <div>
+                                    <p class="text-sm font-bold text-white leading-snug">ClickUp (The Dashboard)</p>
+                                    <p class="text-xs text-brand-text mt-1">Rolls up contract values into revenue forecasts.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Foundational Layer -->
+                <div class="mt-12 bg-brand-panel border-2 border-brand-teal p-8 rounded-2xl relative shadow-lg text-center mx-auto max-w-3xl">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-brand-teal text-white px-4 py-1 rounded text-[10px] font-bold uppercase tracking-wider shadow-md">The Source of Truth</div>
+                    <h3 class="text-2xl text-white mb-2"><i class="fa-solid fa-database mr-2 text-brand-teal"></i> Airtable (The Vault)</h3>
+                    <p class="text-brand-text text-sm">The foundational rights and catalog master. Holds the 1,700-title logic, exclusive territory windows, and complex pricing rules. Protects the commercial core from duplication errors in the front-end tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase 2 / Advanced AI Horizon -->
+    <section id="advanced-ai" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="mb-12 text-center max-w-3xl mx-auto">
+            <span class="inline-block py-1 px-3 rounded text-[10px] font-bold uppercase tracking-wider bg-brand-teal/10 border border-brand-teal/30 text-brand-teal mb-4">Month 4-6 Horizon</span>
+            <h2 class="text-3xl md:text-4xl mb-4">The Advanced AI Acceleration Layer</h2>
+            <p class="text-lg">We cannot deploy enterprise AI if the underlying data is a mess. The 90-day sprint organizes your catalog and pipeline so we can deploy true autonomous leverage in Phase 2.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Agentic Ops -->
+            <div class="bg-brand-panel border border-brand-border p-8 rounded-2xl hover:border-brand-text transition">
+                <div class="text-3xl mb-4 text-purple-400"><i class="fa-solid fa-microchip"></i></div>
+                <h3 class="text-xl mb-1 text-white font-bold">Agentic Operations</h3>
+                <p class="text-sm text-brand-text leading-relaxed">Moving beyond chatbots. We deploy AI agents to autonomously read client email threads, auto-update HubSpot deal stages, and instantly generate bilingual term sheets using live data extracted directly from the Airtable Vault.</p>
+            </div>
+            
+            <!-- Legal & Avails -->
+            <div class="bg-brand-panel border border-brand-border p-8 rounded-2xl hover:border-brand-text transition">
+                <div class="text-3xl mb-4 text-brand-gold"><i class="fa-solid fa-file-contract"></i></div>
+                <h3 class="text-xl mb-1 text-white font-bold">Legal & Avails Intelligence</h3>
+                <p class="text-sm text-brand-text leading-relaxed">Deploying specialized LLMs to ingest 40-page Chinese licensing agreements. The AI will automatically translate terms and instantly flag if a requested exclusivity window conflicts with your existing catalog commitments.</p>
+            </div>
+
+            <!-- WeCom Bridge -->
+            <div class="bg-brand-panel border border-brand-border p-8 rounded-2xl hover:border-brand-text transition">
+                <div class="text-3xl mb-4 text-blue-400"><i class="fa-brands fa-weixin"></i></div>
+                <h3 class="text-xl mb-1 text-white font-bold">The China/WeCom Bridge</h3>
+                <p class="text-sm text-brand-text leading-relaxed">Email outreach works for MENA/SEA, but China requires WeCom. Once the Singapore Hub is standardized, we use enterprise APIs (like Weiban or iParllay) to sync WeChat conversations directly into HubSpot.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 90-Day Roadmap -->
+    <section id="roadmap" class="py-24 px-6 border-y border-brand-border bg-brand-panel">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16">
+                <h2 class="text-3xl md:text-4xl mb-4">90-Day Implementation Plan</h2>
+                <p class="text-lg">Mapping the $3,000 consultancy engagement to rigorous operational milestones.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                <div class="hidden md:block absolute top-10 left-10 right-10 h-0.5 bg-brand-border z-0"></div>
+
+                <!-- Month 1 -->
+                <div class="relative z-10">
+                    <div class="w-20 h-20 bg-brand-card border-2 border-brand-orange text-white rounded-full flex items-center justify-center text-2xl font-bold mb-6 mx-auto md:mx-0 shadow-lg">01</div>
+                    <h3 class="text-xl mb-1 text-white">Architecture & Catalog</h3>
+                    <p class="text-xs text-brand-orange font-bold uppercase tracking-wider mb-4">Month 1</p>
+                    <ul class="text-brand-text space-y-3 text-sm">
+                        <li class="flex items-start"><span class="text-brand-orange mr-2 mt-0.5">•</span> Airtable relational catalog logic locked.</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2 mt-0.5">•</span> HubSpot pipelines & custom fields deployed.</li>
+                        <li class="flex items-start mt-4 p-4 bg-brand-dark border border-brand-border rounded-xl shadow-inner">
+                            <i class="fa-solid fa-flag-checkered text-brand-orange mt-1 mr-3"></i>
+                            <span><strong class="text-white block mb-1">Signal:</strong> 100% of active deals and the top 20% of catalog titles migrated cleanly into the new architecture.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Month 2 -->
+                <div class="relative z-10">
+                    <div class="w-20 h-20 bg-brand-card border-2 border-brand-border text-white rounded-full flex items-center justify-center text-2xl font-bold mb-6 mx-auto md:mx-0 shadow-lg">02</div>
+                    <h3 class="text-xl mb-1 text-white">Execution & Visibility</h3>
+                    <p class="text-xs text-brand-gold font-bold uppercase tracking-wider mb-4">Month 2</p>
+                    <ul class="text-brand-text space-y-3 text-sm">
+                        <li class="flex items-start"><span class="text-brand-gold mr-2 mt-0.5">•</span> ClickUp workspaces and handoff logic built.</li>
+                        <li class="flex items-start"><span class="text-brand-gold mr-2 mt-0.5">•</span> Apollo lead gen searches initiated.</li>
+                        <li class="flex items-start mt-4 p-4 bg-brand-dark border border-brand-border rounded-xl shadow-inner">
+                            <i class="fa-solid fa-flag-checkered text-brand-gold mt-1 mr-3"></i>
+                            <span><strong class="text-white block mb-1">Signal:</strong> Revenue forecast dashboard live across all 5 segments without manual spreadsheet updates.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Month 3 -->
+                <div class="relative z-10">
+                    <div class="w-20 h-20 bg-brand-card border-2 border-brand-border text-brand-text rounded-full flex items-center justify-center text-2xl font-bold mb-6 mx-auto md:mx-0 shadow-lg">03</div>
+                    <h3 class="text-xl mb-1 text-white">Handover</h3>
+                    <p class="text-xs text-brand-text font-bold uppercase tracking-wider mb-4">Month 3</p>
+                    <ul class="text-brand-text space-y-3 text-sm">
+                        <li class="flex items-start"><span class="text-brand-text mr-2 mt-0.5">•</span> ChatGPT prompting libraries distributed.</li>
+                        <li class="flex items-start"><span class="text-brand-text mr-2 mt-0.5">•</span> Playbook documentation finalized.</li>
+                        <li class="flex items-start mt-4 p-4 bg-brand-dark border border-brand-border rounded-xl shadow-inner">
+                            <i class="fa-solid fa-flag-checkered text-brand-text mt-1 mr-3"></i>
+                            <span><strong class="text-white block mb-1">Signal:</strong> The team independently manages a full deal lifecycle from Apollo discovery to ClickUp delivery.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Steps -->
+    <section class="py-24 px-6 max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl mb-12">Immediate Next Steps</h2>
+        
+        <div class="text-left space-y-6 mb-12">
+            <div class="bg-brand-panel p-6 rounded-2xl border border-brand-border flex items-start shadow-sm">
+                <div class="w-10 h-10 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-white font-bold mr-4 shrink-0">1</div>
+                <div>
+                    <h3 class="text-xl text-white mb-1">Lock the Architecture</h3>
+                    <p class="text-brand-text">Approve the Option 2 Hybrid Stack to finalize the software budget and confirm SOW limits.</p>
+                </div>
+            </div>
+            <div class="bg-brand-panel p-6 rounded-2xl border border-brand-border flex items-start shadow-sm">
+                <div class="w-10 h-10 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-white font-bold mr-4 shrink-0">2</div>
+                <div>
+                    <h3 class="text-xl text-white mb-1">Infrastructure Clearance</h3>
+                    <p class="text-brand-text">Confirm Google Workspace/M365 admin rights to enable CRM email syncing and Apollo domain configurations.</p>
+                </div>
+            </div>
+            <div class="bg-brand-panel p-6 rounded-2xl border-l-4 border-l-brand-orange flex items-start shadow-lg">
+                <div class="w-10 h-10 rounded-full bg-brand-orange/20 text-brand-orange flex items-center justify-center font-bold mr-4 shrink-0"><i class="fa-solid fa-signature"></i></div>
+                <div>
+                    <h3 class="text-xl text-white mb-1">Initiate SOW</h3>
+                    <p class="text-brand-text">Execute the $3,000 consultancy agreement. Schedule the 60-minute technical kickoff to begin Week 1 execution in May.</p>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-2xl font-medium text-white italic mb-2">"I am ready to begin execution."</p>
+        <p class="text-brand-text uppercase tracking-widest text-sm font-bold">Stuart, Commercial Director</p>
+    </section>
+
+    <!-- Appendix (Top 12) -->
+    <section id="appendix" class="py-24 px-6 border-t border-brand-border bg-brand-dark w-full">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-12 text-center">
+                <span class="inline-block py-1 px-3 rounded text-xs font-bold uppercase tracking-wider bg-brand-card border border-brand-border text-brand-text mb-4">Appendix</span>
+                <h2 class="text-3xl mb-4">The Top 12 Platforms Evaluated</h2>
+                <p class="text-lg text-brand-text max-w-2xl mx-auto">Distilled from 44+ generic SaaS tools, these represent the most commercially viable components specifically for the FlareFlow architecture.</p>
+            </div>
+
+            <div class="bg-brand-panel rounded-2xl border border-brand-border overflow-hidden shadow-xl">
+                <table class="w-full text-left text-sm">
+                    <thead>
+                        <tr class="bg-brand-card border-b border-brand-border">
+                            <th class="p-5 text-white font-semibold w-1/3">Platform</th>
+                            <th class="p-5 text-white font-semibold">Architectural Role Evaluated</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-brand-border/50">
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-white font-medium"><i class="fa-solid fa-database text-brand-teal w-6"></i> Airtable</td><td class="p-5 text-brand-text">Relational database & master rights/catalog layer.</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-white font-medium"><i class="fa-solid fa-address-book text-orange-500 w-6"></i> HubSpot Starter</td><td class="p-5 text-brand-text">System of engagement; pipeline management & email tracking.</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-white font-medium"><i class="fa-solid fa-industry text-purple-400 w-6"></i> ClickUp Business</td><td class="p-5 text-brand-text">System of execution; project delivery & operational finance tracking.</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-white font-medium"><i class="fa-solid fa-radar text-blue-400 w-6"></i> Apollo.io</td><td class="p-5 text-brand-text">Initial B2B lead generation and outreach sequencing.</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-white font-medium"><i class="fa-solid fa-robot text-gray-400 w-6"></i> ChatGPT Business</td><td class="p-5 text-brand-text">Secure AI productivity layer for term sheets and summaries.</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-brand-text font-medium"><i class="fa-solid fa-layer-group text-brand-text w-6"></i> SmartSuite</td><td class="p-5 text-brand-text opacity-70">Unified work platform (Rejected due to low 5,000-record limits).</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-brand-text font-medium"><i class="fa-solid fa-bullhorn text-brand-text w-6"></i> Instantly.ai</td><td class="p-5 text-brand-text opacity-70">Dedicated outbound email scale engine (Deferred).</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-brand-text font-medium"><i class="fa-solid fa-file-contract text-brand-text w-6"></i> Creative Intell</td><td class="p-5 text-brand-text opacity-70">AI-powered music/media rights management (Phase 2 prospect).</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-brand-text font-medium"><i class="fa-solid fa-brain text-brand-text w-6"></i> Clay</td><td class="p-5 text-brand-text opacity-70">Advanced AI lead enrichment & data scraping (Phase 2 prospect).</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-brand-text font-medium"><i class="fa-brands fa-weixin text-brand-text w-6"></i> Weiban Zhushou</td><td class="p-5 text-brand-text opacity-70">China social CRM / WeCom integration (Phase 2 prospect).</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-brand-text font-medium"><i class="fa-solid fa-file-signature text-brand-text w-6"></i> PandaDoc / Juro</td><td class="p-5 text-brand-text opacity-70">Document generation & contract lifecycle (Deferred necessity).</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-brand-text font-medium"><i class="fa-solid fa-microchip text-brand-text w-6"></i> Lindy / Taskade</td><td class="p-5 text-brand-text opacity-70">Agentic AI operations & automated task management (Phase 2 prospect).</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 text-center border-t border-brand-border w-full text-sm">
+        <p>&copy; 2026 FlareFlow Proposal. Strictly Confidential.</p>
+    </footer>
+
 </body>
 </html>
