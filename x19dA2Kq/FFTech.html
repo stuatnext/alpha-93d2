@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlareFlow Singapore - Commercial Architecture Proposal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#050505',
+                            panel: '#111111',
+                            card: '#1A1A1A',
+                            border: '#2A2A2A',
+                            orange: '#FF5E00',
+                            gold: '#FFCC00',
+                            navy: '#1A3C5E',
+                            teal: '#0E5C6B',
+                            text: '#A1A1AA', 
+                            light: '#F4F5F7'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050505; color: #A1A1AA; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; color: #FFFFFF; }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FF5E00; }
+
+        .glass-panel {
+            background: rgba(17, 17, 17, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #FFFFFF, #A1A1AA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media print {
+            body { background: white; color: black; }
+            h1, h2, h3, h4, h5, h6 { color: black; }
+            .glass-panel, .bg-brand-panel, .bg-brand-card { background: #f9fafb !important; border: 1px solid #e5e7eb; border-radius: 8px; }
+            .text-brand-text { color: #374151 !important; }
+            .border-brand-border { border-color: #e5e7eb !important; }
+            .text-white { color: black !important; }
+            section { page-break-inside: avoid; margin-bottom: 2rem; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-orange selection:text-white relative">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-brand-border no-print">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-3 h-3 bg-brand-orange rounded-full"></div>
+                <span class="font-heading font-bold text-white text-lg tracking-wide">Flare<span class="text-brand-orange">Flow</span></span>
+            </div>
+            <div class="hidden md:flex gap-6 text-sm font-medium">
+                <a href="#brief" class="hover:text-white transition">The Brief</a>
+                <a href="#honest-truth" class="hover:text-white transition">The Truth</a>
+                <a href="#options" class="hover:text-white transition">The Architecture</a>
+                <a href="#advanced-ai" class="text-brand-teal hover:text-white transition">AI Horizon</a>
+                <a href="#roadmap" class="hover:text-white transition">Roadmap</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-40 pb-20 px-6 overflow-hidden flex flex-col items-center text-center border-b border-brand-border">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand-orange opacity-10 blur-[120px] rounded-full pointer-events-none"></div>
+        
+        <div class="max-w-4xl relative z-10">
+            <span class="inline-block py-1 px-3 rounded-full border border-brand-orange/30 bg-brand-orange/10 text-brand-orange text-xs font-bold uppercase tracking-widest mb-6">
+                Execution Strategy
+            </span>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                The Commercial <br>
+                <span class="gradient-text">Operating System</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-brand-text mb-12 font-light max-w-3xl mx-auto">
+                A 90-day plan to centralize FlareFlow’s licensing catalog, sales pipeline, and outbound lead generation strictly under the $500/mo cap.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-8 text-left border-t border-brand-border/50 pt-8 mt-8">
+                <div>
+                    <p class="text-xs uppercase tracking-wider text-brand-text mb-1">Prepared For</p>
+                    <p class="text-white font-medium">Timothy Oh <span class="text-sm text-brand-text font-normal ml-1">General Manager</span></p>
+                </div>
+                <div class="hidden md:block w-px h-10 bg-brand-border"></div>
+                <div>
+                    <p class="text-xs uppercase tracking-wider text-brand-text mb-1">Prepared By</p>
+                    <p class="text-white font-medium">Stuart <span class="text-sm text-brand-text font-normal ml-1">Commercial Director</span></p>
+                </div>
+                <div class="hidden md:block w-px h-10 bg-brand-border"></div>
+                <div>
+                    <p class="text-xs uppercase tracking-wider text-brand-text mb-1">Date</p>
+                    <p class="text-white font-medium">April 2026</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- The Brief Section -->
+    <section id="brief" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="mb-16">
+            <h2 class="text-3xl md:text-4xl mb-4">The Brief & Constraints</h2>
+            <p class="text-lg max-w-3xl">We are optimizing for a 10-person team over a 90-day implementation sprint. The objective is to secure commercial leverage and pipeline visibility, not to deploy complex software for the sake of it.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            <div class="bg-brand-panel border border-brand-border p-8 rounded-2xl">
+                <p class="text-brand-orange text-sm font-bold uppercase tracking-wider mb-2">Budget Limit</p>
+                <h3 class="text-4xl mb-2">$500<span class="text-xl text-brand-text font-normal">/mo</span></h3>
+                <p class="text-sm">Hard cap for all software tool subscriptions combined.</p>
+            </div>
+            <div class="bg-brand-panel border border-brand-border p-8 rounded-2xl">
+                <p class="text-brand-gold text-sm font-bold uppercase tracking-wider mb-2">Team Size</p>
+                <h3 class="text-4xl mb-2">10 <span class="text-xl text-brand-text font-normal">Seats</span></h3>
+                <p class="text-sm">Supporting the GM, Sales, Marketing, and Ops staff.</p>
+            </div>
+            <div class="bg-brand-panel border border-brand-border p-8 rounded-2xl">
+                <p class="text-brand-teal text-sm font-bold uppercase tracking-wider mb-2">Timeline</p>
+                <h3 class="text-4xl mb-2">3 <span class="text-xl text-brand-text font-normal">Months</span></h3>
+                <p class="text-sm">$3,000 consultancy implementation window.</p>
+            </div>
+        </div>
+
+        <h3 class="text-2xl mb-6 border-b border-brand-border pb-4">The 6 Core Requirements</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded bg-brand-card border border-brand-border flex items-center justify-center text-white font-bold shrink-0">1</div>
+                <p class="font-medium text-white pt-1">Team Project Tracking</p>
+            </div>
+            <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded bg-brand-card border border-brand-border flex items-center justify-center text-white font-bold shrink-0">2</div>
+                <p class="font-medium text-white pt-1">Revenue & Forecast Tracking</p>
+            </div>
+            <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded bg-brand-card border border-brand-border flex items-center justify-center text-white font-bold shrink-0">3</div>
+                <p class="font-medium text-white pt-1">Category Segmentation</p>
+            </div>
+            <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded bg-brand-card border border-brand-border flex items-center justify-center text-white font-bold shrink-0">4</div>
+                <p class="font-medium text-white pt-1">AI Lead Gen & Outreach</p>
+            </div>
+            <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded bg-brand-card border border-brand-border flex items-center justify-center text-white font-bold shrink-0">5</div>
+                <p class="font-medium text-white pt-1">CRM System</p>
+            </div>
+            <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded bg-brand-card border border-brand-border flex items-center justify-center text-white font-bold shrink-0">6</div>
+                <p class="font-medium text-white pt-1">AI Productivity Tools</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Honest Truth -->
+    <section id="honest-truth" class="py-24 px-6 border-y border-brand-border bg-brand-panel">
+        <div class="max-w-4xl mx-auto text-center">
+            <i class="fa-solid fa-scale-balanced text-4xl text-brand-orange mb-6"></i>
+            <h2 class="text-3xl md:text-4xl mb-6">The Honest Truth</h2>
+            <p class="text-xl mb-6 leading-relaxed">
+                A fully uncompromised media rights tech stack (Attio Pro, MOLTEN, Vitrina AI) costs roughly <strong class="text-white">~$2,000/month</strong>. 
+            </p>
+            <p class="text-lg mb-10 leading-relaxed">
+                To hit the $500 cap while serving 10 people, we must deploy surgical trade-offs. The question isn't <em>"what is the sexiest SaaS stack?"</em>, but rather <strong class="text-brand-gold">"what yields the highest deal velocity and catalog protection right now?"</strong>
+            </p>
+            <div class="bg-brand-dark border border-brand-border rounded-xl p-6 text-left max-w-3xl mx-auto border-l-4 border-l-brand-orange shadow-lg">
+                <p class="text-sm text-brand-text leading-relaxed"><strong class="text-white">Strategic Advantage:</strong> We are deploying a nimble commercial operating system. We are intentionally avoiding the bloated, 6-month deployment cycles of legacy media-rights platforms. Furthermore, operational revenue trackers in this stack do <em>not</em> replace your general accounting ledger (e.g., Xero) for tax and invoicing compliance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Options Section -->
+    <section id="options" class="py-24 px-6 max-w-7xl mx-auto space-y-12">
+        <div class="mb-12">
+            <h2 class="text-3xl md:text-4xl mb-4">Architectural Options</h2>
+            <p class="text-lg">Three distinct paths translated into plain English, showing exactly what each tool does for the business.</p>
+        </div>
+
+        <!-- Option 1: The Decoy -->
+        <article class="bg-brand-panel border border-brand-border rounded-2xl p-8 md:p-12 opacity-80 transition hover:opacity-100">
+            <div class="flex flex-col md:flex-row justify-between items-start mb-8 gap-4 border-b border-brand-border pb-8">
+                <div>
+                    <span class="inline-block py-1 px-3 rounded text-xs font-bold uppercase tracking-wider bg-gray-800 text-gray-300 mb-4">Option 1: The Decoy</span>
+                    <h3 class="text-3xl mb-2 text-white">The "All-In-One" Illusion</h3>
+                    <p class="text-brand-text max-w-2xl">Attempts to minimize tool sprawl by forcing the catalog, CRM, and task management into a single software platform.</p>
+                </div>
+                <div class="text-left md:text-right">
+                    <p class="text-4xl font-bold text-white">$400<span class="text-lg text-brand-text font-normal">/mo</span></p>
+                    <p class="text-sm mt-1">Leaves $100 Headroom</p>
+                </div>
+            </div>
+
+            <!-- Plain English Tool Breakdown -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div class="bg-brand-card border border-brand-border rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-white font-bold text-lg">SmartSuite</h4>
+                        <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-1 rounded font-bold uppercase tracking-wider">The "Everything" Binder</span>
+                    </div>
+                    <p class="text-sm mb-3">Tries to be your CRM, rights catalog, and project tracker all at once.</p>
+                    <p class="text-xs text-brand-text border-t border-brand-border pt-3"><strong>Cost:</strong> $150/mo (10 seats)</p>
+                </div>
+
+                <div class="bg-brand-card border border-brand-border rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-white font-bold text-lg">ChatGPT Business</h4>
+                        <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-1 rounded font-bold uppercase tracking-wider">The Drafter</span>
+                    </div>
+                    <p class="text-sm mb-3">Provides AI accounts for all 10 staff to help write emails and summarize notes.</p>
+                    <p class="text-xs text-brand-text border-t border-brand-border pt-3"><strong>Cost:</strong> $250/mo (10 seats)</p>
+                </div>
+            </div>
+
+            <!-- The Fatal Flaw -->
+            <div class="bg-red-950/20 border border-red-900/30 p-6 rounded-xl">
+                <h4 class="text-red-400 font-bold mb-2"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Why we reject this:</h4>
+                <ul class="text-sm space-y-3 list-disc pl-4 text-brand-text">
+                    <li><strong class="text-white">Zero Lead Generation:</strong> Option 1 completely fails Requirement #4. Your sales team will have to manually hunt for leads on Google.</li>
+                    <li><strong class="text-white">The Catalog Data Cap:</strong> The SmartSuite "binder" literally runs out of pages. It has a hard limit of 5,000 records. A 1,700-title catalog tracked across multiple territories will breach this in months, forcing a massive, unbudgeted software upgrade.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Option 2: RECOMMENDED -->
+        <article id="recommendation" class="bg-brand-panel border-2 border-brand-gold rounded-2xl p-8 md:p-12 relative overflow-hidden shadow-[0_0_40px_rgba(200,151,58,0.05)]">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-brand-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="flex flex-col md:flex-row justify-between items-start mb-8 gap-4 border-b border-brand-border pb-8 relative z-10">
+                <div>
+                    <span class="inline-block py-1 px-3 rounded text-xs font-bold uppercase tracking-wider bg-brand-gold text-brand-dark mb-4"><i class="fa-solid fa-star mr-1"></i> Recommended Architecture</span>
+                    <h3 class="text-3xl mb-2 text-white">The Commercial & Rights Backbone</h3>
+                    <p class="text-brand-text max-w-2xl">A purpose-built hybrid stack. We use specific tools for the exact jobs they are best at. Protect the catalog, accelerate sales, and meet all 6 requirements safely.</p>
+                </div>
+                <div class="text-left md:text-right shrink-0">
+                    <p class="text-5xl font-bold text-brand-gold">$339<span class="text-lg text-brand-text font-normal">/mo</span></p>
+                    <p class="text-sm mt-2 text-white font-medium bg-brand-card px-3 py-1 rounded border border-brand-border inline-block">Leaves $161 Headroom</p>
+                </div>
+            </div>
+
+            <!-- Plain English Tool Breakdown -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 relative z-10">
+                
+                <!-- Tool 1: Airtable -->
+                <div class="bg-brand-card border border-brand-teal/30 rounded-xl p-6 shadow-md">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-white font-bold text-lg"><i class="fa-solid fa-database text-brand-teal mr-2"></i> Airtable</h4>
+                        <span class="text-[10px] bg-brand-teal/20 text-brand-teal border border-brand-teal/30 px-2 py-1 rounded font-bold uppercase tracking-wider">The Vault</span>
+                    </div>
+                    <p class="text-sm mb-3">The master ledger. It holds your 1,700-title catalog, territory rules, and pricing. It ensures you never accidentally double-sell exclusive rights.</p>
+                    <p class="text-xs text-brand-text border-t border-brand-border pt-3"><strong>Cost:</strong> $60/mo (3 Editors; remaining 7 staff are free Viewers)</p>
+                </div>
+
+                <!-- Tool 2: HubSpot -->
+                <div class="bg-brand-card border border-orange-500/30 rounded-xl p-6 shadow-md">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-white font-bold text-lg"><i class="fa-solid fa-address-book text-orange-500 mr-2"></i> HubSpot Starter</h4>
+                        <span class="text-[10px] bg-orange-500/20 text-orange-500 border border-orange-500/30 px-2 py-1 rounded font-bold uppercase tracking-wider">The Front Desk</span>
+                    </div>
+                    <p class="text-sm mb-3">The sales hub. This is where reps log client emails, track conversations, and drag deals visually from "Lead" to "Term Sheet".</p>
+                    <p class="text-xs text-brand-text border-t border-brand-border pt-3"><strong>Cost:</strong> $60/mo (4 Sales Seats)</p>
+                </div>
+
+                <!-- Tool 3: ClickUp -->
+                <div class="bg-brand-card border border-purple-500/30 rounded-xl p-6 shadow-md">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-white font-bold text-lg"><i class="fa-solid fa-industry text-purple-500 mr-2"></i> ClickUp Business</h4>
+                        <span class="text-[10px] bg-purple-500/20 text-purple-400 border border-purple-500/30 px-2 py-1 rounded font-bold uppercase tracking-wider">The Factory Floor</span>
+                    </div>
+                    <p class="text-sm mb-3">The delivery hub. Once a deal is signed in HubSpot, it moves here so Ops knows exactly what files to deliver, and Finance tracks the revenue forecast.</p>
+                    <p class="text-xs text-brand-text border-t border-brand-border pt-3"><strong>Cost:</strong> $120/mo (10 Users)</p>
+                </div>
+
+                <!-- Tool 4: Apollo -->
+                <div class="bg-brand-card border border-blue-400/30 rounded-xl p-6 shadow-md">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-white font-bold text-lg"><i class="fa-solid fa-radar text-blue-400 mr-2"></i> Apollo.io</h4>
+                        <span class="text-[10px] bg-blue-400/20 text-blue-400 border border-blue-400/30 px-2 py-1 rounded font-bold uppercase tracking-wider">The Radar</span>
+                    </div>
+                    <p class="text-sm mb-3">The outbound scout. Actively scans B2B databases to find newly launched streaming platforms and extracts the emails of their content buyers.</p>
+                    <p class="text-xs text-brand-text border-t border-brand-border pt-3"><strong>Cost:</strong> $49/mo (Basic Lead Gen)</p>
+                </div>
+
+                <!-- Tool 5: ChatGPT -->
+                <div class="bg-brand-card border border-gray-400/30 rounded-xl p-6 shadow-md md:col-span-2">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-white font-bold text-lg"><i class="fa-solid fa-robot text-gray-300 mr-2"></i> ChatGPT Business</h4>
+                        <span class="text-[10px] bg-gray-500/20 text-gray-300 border border-gray-500/30 px-2 py-1 rounded font-bold uppercase tracking-wider">The AI Drafter</span>
+                    </div>
+                    <p class="text-sm mb-3">The secure AI brain. Used by leadership to rapidly draft bilingual term sheets and summarize complex deal notes.</p>
+                    <p class="text-xs text-brand-text border-t border-brand-border pt-3"><strong>Cost:</strong> $50/mo (2 Power Users - templates shared with team)</p>
+                </div>
+            </div>
+
+            <!-- Commercial ROI -->
+            <div class="bg-brand-dark p-6 rounded-xl border border-brand-gold/30 relative z-10">
+                <h4 class="text-white font-medium mb-3 flex items-center"><i class="fa-solid fa-arrow-trend-up text-brand-gold mr-2"></i> Commercial ROI</h4>
+                <ul class="text-sm space-y-3">
+                    <li class="flex items-start"><i class="fa-solid fa-shield-halved text-brand-text mt-1 mr-3 w-4"></i> <span class="text-white"><strong>Zero Double-Selling:</strong> Keeping the catalog locked in Airtable ensures data integrity across exclusive windows.</span></li>
+                    <li class="flex items-start"><i class="fa-solid fa-forward-fast text-brand-text mt-1 mr-3 w-4"></i> <span class="text-white"><strong>Accelerated Deal Velocity:</strong> Sales engages freely in HubSpot without breaking backend rights logic.</span></li>
+                    <li class="flex items-start"><i class="fa-solid fa-broom text-brand-text mt-1 mr-3 w-4"></i> <span class="text-white"><strong>Strict Pipeline Hygiene:</strong> Automated handoffs to ClickUp prevent dropped delivery tasks or lost invoices.</span></li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Option 3: The Risk -->
+        <article class="bg-brand-panel border border-brand-border rounded-2xl p-8 md:p-12 opacity-80 transition hover:opacity-100">
+            <div class="flex flex-col md:flex-row justify-between items-start mb-8 gap-4 border-b border-brand-border pb-8">
+                <div>
+                    <span class="inline-block py-1 px-3 rounded text-xs font-bold uppercase tracking-wider bg-purple-900/30 border border-purple-500/30 text-purple-300 mb-4">Option 3: The Risk</span>
+                    <h3 class="text-3xl mb-2 text-white">The Heavy Automation Hub</h3>
+                    <p class="text-brand-text max-w-2xl">Attempts to automate everything by wiring together complex API platforms.</p>
+                </div>
+                <div class="text-left md:text-right shrink-0">
+                    <p class="text-4xl font-bold text-white">$455<span class="text-lg text-brand-text font-normal">/mo</span></p>
+                </div>
+            </div>
+
+            <!-- Plain English Tool Breakdown -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div class="bg-brand-card border border-brand-border rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-white font-bold text-lg">Airtable (Full)</h4>
+                        <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-1 rounded font-bold uppercase tracking-wider">The Vault + Front Desk</span>
+                    </div>
+                    <p class="text-sm mb-3">Forces all 10 staff to use the database as their daily CRM and project tracker.</p>
+                    <p class="text-xs text-brand-text border-t border-brand-border pt-3"><strong>Cost:</strong> $200/mo (10 Paid Editors)</p>
+                </div>
+
+                <div class="bg-brand-card border border-brand-border rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-white font-bold text-lg">Instantly & Make.com</h4>
+                        <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-1 rounded font-bold uppercase tracking-wider">The Megaphone & Wiring</span>
+                    </div>
+                    <p class="text-sm mb-3">Sends thousands of cold emails and relies on custom code to stitch data together.</p>
+                    <p class="text-xs text-brand-text border-t border-brand-border pt-3"><strong>Cost:</strong> ~$205/mo (w/ ChatGPT & Portals)</p>
+                </div>
+            </div>
+
+            <!-- The Fatal Flaw -->
+            <div class="bg-red-950/20 border border-red-900/30 p-6 rounded-xl">
+                <h4 class="text-red-400 font-bold mb-2"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Why we reject this:</h4>
+                <ul class="text-sm space-y-3 list-disc pl-4 text-brand-text">
+                    <li><strong class="text-white">Execution Failure:</strong> Interconnecting 4 platforms via Make.com APIs inside a 90-day window is a severe operational risk. It breaks easily.</li>
+                    <li><strong class="text-white">UI Friction:</strong> Airtable is a phenomenal database, but a clunky CRM. Forcing sales teams to use it daily kills adoption.</li>
+                    <li><strong class="text-white">Wrong Market Fit:</strong> Instantly's mass-email approach ignores the reality that Chinese B2B partners communicate almost exclusively via WeChat.</li>
+                </ul>
+            </div>
+        </article>
+        
+        <p class="text-xs text-right opacity-60">*Prices based on verified standard annual billing logic (ClickUp $12/u, HubSpot Starter ~$15/u, Airtable $20/editor). Taxes excluded.</p>
+    </section>
+
+    <!-- Architecture Map -->
+    <section id="architecture" class="py-24 px-6 border-y border-brand-border bg-brand-panel">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl mb-4 text-center">The Architecture Map</h2>
+            <p class="text-lg text-center mb-16 max-w-2xl mx-auto">Visualizing the workflow for the recommended Option 2 stack.</p>
+
+            <div class="relative bg-brand-dark p-8 md:p-12 rounded-3xl border border-brand-border mt-12 shadow-2xl">
+                
+                <!-- The Brain -->
+                <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-brand-card text-white px-8 py-4 rounded-xl border border-brand-border shadow-2xl z-20 flex items-center">
+                    <i class="fa-solid fa-robot text-brand-text text-2xl mr-4"></i>
+                    <div>
+                        <p class="text-[10px] uppercase font-bold text-brand-text tracking-wider">AI Productivity Layer</p>
+                        <p class="font-bold text-sm">ChatGPT Business</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 pt-12 pb-12 relative z-10 border-b border-brand-border/50">
+                    
+                    <!-- Left: Engagement -->
+                    <div class="bg-brand-card p-8 rounded-2xl border-t-4 border-orange-500 shadow-lg relative">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h3 class="text-xl text-white mb-1">Find & Connect</h3>
+                                <p class="text-orange-500 font-bold text-[10px] uppercase tracking-wider">System of Engagement</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="w-8 h-8 bg-brand-dark border border-brand-border rounded flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-radar text-blue-400"></i></div>
+                                <div>
+                                    <p class="text-sm font-bold text-white leading-snug">Apollo (The Radar)</p>
+                                    <p class="text-xs text-brand-text mt-1">Identifies streaming platforms & buyer emails.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-8 h-8 bg-brand-dark border border-brand-border rounded flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-address-book text-orange-500"></i></div>
+                                <div>
+                                    <p class="text-sm font-bold text-white leading-snug">HubSpot (The Front Desk)</p>
+                                    <p class="text-xs text-brand-text mt-1">Logs conversations and manages the sales pipeline.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Right: Execution -->
+                    <div class="bg-brand-card p-8 rounded-2xl border-t-4 border-purple-500 shadow-lg">
+                        <h3 class="text-xl text-white mb-1">Deliver & Track</h3>
+                        <p class="text-purple-500 font-bold text-[10px] uppercase tracking-wider mb-6">System of Execution</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="w-8 h-8 bg-brand-dark border border-brand-border rounded flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-industry text-purple-400"></i></div>
+                                <div>
+                                    <p class="text-sm font-bold text-white leading-snug">ClickUp (The Factory Floor)</p>
+                                    <p class="text-xs text-brand-text mt-1">Turns won deals into delivery tasks for Ops.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-8 h-8 bg-brand-dark border border-brand-border rounded flex items-center justify-center mr-3 shrink-0"><i class="fa-solid fa-chart-pie text-purple-400"></i></div>
+                                <div>
+                                    <p class="text-sm font-bold text-white leading-snug">ClickUp (The Dashboard)</p>
+                                    <p class="text-xs text-brand-text mt-1">Rolls up contract values into revenue forecasts.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Foundational Layer -->
+                <div class="mt-12 bg-brand-panel border-2 border-brand-teal p-8 rounded-2xl relative shadow-lg text-center mx-auto max-w-3xl">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-brand-teal text-white px-4 py-1 rounded text-[10px] font-bold uppercase tracking-wider shadow-md">The Source of Truth</div>
+                    <h3 class="text-2xl text-white mb-2"><i class="fa-solid fa-database mr-2 text-brand-teal"></i> Airtable (The Vault)</h3>
+                    <p class="text-brand-text text-sm">The foundational rights and catalog master. Holds the 1,700-title logic, exclusive territory windows, and complex pricing rules. Protects the commercial core from duplication errors in the front-end tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase 2 / Advanced AI Horizon -->
+    <section id="advanced-ai" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="mb-12 text-center max-w-3xl mx-auto">
+            <span class="inline-block py-1 px-3 rounded text-[10px] font-bold uppercase tracking-wider bg-brand-teal/10 border border-brand-teal/30 text-brand-teal mb-4">Month 4-6 Horizon</span>
+            <h2 class="text-3xl md:text-4xl mb-4">The Advanced AI Acceleration Layer</h2>
+            <p class="text-lg">We cannot deploy enterprise AI if the underlying data is a mess. The 90-day sprint organizes your catalog and pipeline so we can deploy true autonomous leverage in Phase 2.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Agentic Ops -->
+            <div class="bg-brand-panel border border-brand-border p-8 rounded-2xl hover:border-brand-text transition">
+                <div class="text-3xl mb-4 text-purple-400"><i class="fa-solid fa-microchip"></i></div>
+                <h3 class="text-xl mb-1 text-white font-bold">Agentic Operations</h3>
+                <p class="text-sm text-brand-text leading-relaxed">Moving beyond chatbots. We deploy AI agents to autonomously read client email threads, auto-update HubSpot deal stages, and instantly generate bilingual term sheets using live data extracted directly from the Airtable Vault.</p>
+            </div>
+            
+            <!-- Legal & Avails -->
+            <div class="bg-brand-panel border border-brand-border p-8 rounded-2xl hover:border-brand-text transition">
+                <div class="text-3xl mb-4 text-brand-gold"><i class="fa-solid fa-file-contract"></i></div>
+                <h3 class="text-xl mb-1 text-white font-bold">Legal & Avails Intelligence</h3>
+                <p class="text-sm text-brand-text leading-relaxed">Deploying specialized LLMs to ingest 40-page Chinese licensing agreements. The AI will automatically translate terms and instantly flag if a requested exclusivity window conflicts with your existing catalog commitments.</p>
+            </div>
+
+            <!-- WeCom Bridge -->
+            <div class="bg-brand-panel border border-brand-border p-8 rounded-2xl hover:border-brand-text transition">
+                <div class="text-3xl mb-4 text-blue-400"><i class="fa-brands fa-weixin"></i></div>
+                <h3 class="text-xl mb-1 text-white font-bold">The China/WeCom Bridge</h3>
+                <p class="text-sm text-brand-text leading-relaxed">Email outreach works for MENA/SEA, but China requires WeCom. Once the Singapore Hub is standardized, we use enterprise APIs (like Weiban or iParllay) to sync WeChat conversations directly into HubSpot.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 90-Day Roadmap -->
+    <section id="roadmap" class="py-24 px-6 border-y border-brand-border bg-brand-panel">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16">
+                <h2 class="text-3xl md:text-4xl mb-4">90-Day Implementation Plan</h2>
+                <p class="text-lg">Mapping the $3,000 consultancy engagement to rigorous operational milestones.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                <div class="hidden md:block absolute top-10 left-10 right-10 h-0.5 bg-brand-border z-0"></div>
+
+                <!-- Month 1 -->
+                <div class="relative z-10">
+                    <div class="w-20 h-20 bg-brand-card border-2 border-brand-orange text-white rounded-full flex items-center justify-center text-2xl font-bold mb-6 mx-auto md:mx-0 shadow-lg">01</div>
+                    <h3 class="text-xl mb-1 text-white">Architecture & Catalog</h3>
+                    <p class="text-xs text-brand-orange font-bold uppercase tracking-wider mb-4">Month 1</p>
+                    <ul class="text-brand-text space-y-3 text-sm">
+                        <li class="flex items-start"><span class="text-brand-orange mr-2 mt-0.5">•</span> Airtable relational catalog logic locked.</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2 mt-0.5">•</span> HubSpot pipelines & custom fields deployed.</li>
+                        <li class="flex items-start mt-4 p-4 bg-brand-dark border border-brand-border rounded-xl shadow-inner">
+                            <i class="fa-solid fa-flag-checkered text-brand-orange mt-1 mr-3"></i>
+                            <span><strong class="text-white block mb-1">Signal:</strong> 100% of active deals and the top 20% of catalog titles migrated cleanly into the new architecture.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Month 2 -->
+                <div class="relative z-10">
+                    <div class="w-20 h-20 bg-brand-card border-2 border-brand-border text-white rounded-full flex items-center justify-center text-2xl font-bold mb-6 mx-auto md:mx-0 shadow-lg">02</div>
+                    <h3 class="text-xl mb-1 text-white">Execution & Visibility</h3>
+                    <p class="text-xs text-brand-gold font-bold uppercase tracking-wider mb-4">Month 2</p>
+                    <ul class="text-brand-text space-y-3 text-sm">
+                        <li class="flex items-start"><span class="text-brand-gold mr-2 mt-0.5">•</span> ClickUp workspaces and handoff logic built.</li>
+                        <li class="flex items-start"><span class="text-brand-gold mr-2 mt-0.5">•</span> Apollo lead gen searches initiated.</li>
+                        <li class="flex items-start mt-4 p-4 bg-brand-dark border border-brand-border rounded-xl shadow-inner">
+                            <i class="fa-solid fa-flag-checkered text-brand-gold mt-1 mr-3"></i>
+                            <span><strong class="text-white block mb-1">Signal:</strong> Revenue forecast dashboard live across all 5 segments without manual spreadsheet updates.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Month 3 -->
+                <div class="relative z-10">
+                    <div class="w-20 h-20 bg-brand-card border-2 border-brand-border text-brand-text rounded-full flex items-center justify-center text-2xl font-bold mb-6 mx-auto md:mx-0 shadow-lg">03</div>
+                    <h3 class="text-xl mb-1 text-white">Handover</h3>
+                    <p class="text-xs text-brand-text font-bold uppercase tracking-wider mb-4">Month 3</p>
+                    <ul class="text-brand-text space-y-3 text-sm">
+                        <li class="flex items-start"><span class="text-brand-text mr-2 mt-0.5">•</span> ChatGPT prompting libraries distributed.</li>
+                        <li class="flex items-start"><span class="text-brand-text mr-2 mt-0.5">•</span> Playbook documentation finalized.</li>
+                        <li class="flex items-start mt-4 p-4 bg-brand-dark border border-brand-border rounded-xl shadow-inner">
+                            <i class="fa-solid fa-flag-checkered text-brand-text mt-1 mr-3"></i>
+                            <span><strong class="text-white block mb-1">Signal:</strong> The team independently manages a full deal lifecycle from Apollo discovery to ClickUp delivery.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Steps -->
+    <section class="py-24 px-6 max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl mb-12">Immediate Next Steps</h2>
+        
+        <div class="text-left space-y-6 mb-12">
+            <div class="bg-brand-panel p-6 rounded-2xl border border-brand-border flex items-start shadow-sm">
+                <div class="w-10 h-10 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-white font-bold mr-4 shrink-0">1</div>
+                <div>
+                    <h3 class="text-xl text-white mb-1">Lock the Architecture</h3>
+                    <p class="text-brand-text">Approve the Option 2 Hybrid Stack to finalize the software budget and confirm SOW limits.</p>
+                </div>
+            </div>
+            <div class="bg-brand-panel p-6 rounded-2xl border border-brand-border flex items-start shadow-sm">
+                <div class="w-10 h-10 rounded-full bg-brand-card border border-brand-border flex items-center justify-center text-white font-bold mr-4 shrink-0">2</div>
+                <div>
+                    <h3 class="text-xl text-white mb-1">Infrastructure Clearance</h3>
+                    <p class="text-brand-text">Confirm Google Workspace/M365 admin rights to enable CRM email syncing and Apollo domain configurations.</p>
+                </div>
+            </div>
+            <div class="bg-brand-panel p-6 rounded-2xl border-l-4 border-l-brand-orange flex items-start shadow-lg">
+                <div class="w-10 h-10 rounded-full bg-brand-orange/20 text-brand-orange flex items-center justify-center font-bold mr-4 shrink-0"><i class="fa-solid fa-signature"></i></div>
+                <div>
+                    <h3 class="text-xl text-white mb-1">Initiate SOW</h3>
+                    <p class="text-brand-text">Execute the $3,000 consultancy agreement. Schedule the 60-minute technical kickoff to begin Week 1 execution in May.</p>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-2xl font-medium text-white italic mb-2">"I am ready to begin execution."</p>
+        <p class="text-brand-text uppercase tracking-widest text-sm font-bold">Stuart, Commercial Director</p>
+    </section>
+
+    <!-- Appendix (Top 12) -->
+    <section id="appendix" class="py-24 px-6 border-t border-brand-border bg-brand-dark w-full">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-12 text-center">
+                <span class="inline-block py-1 px-3 rounded text-xs font-bold uppercase tracking-wider bg-brand-card border border-brand-border text-brand-text mb-4">Appendix</span>
+                <h2 class="text-3xl mb-4">The Top 12 Platforms Evaluated</h2>
+                <p class="text-lg text-brand-text max-w-2xl mx-auto">Distilled from 44+ generic SaaS tools, these represent the most commercially viable components specifically for the FlareFlow architecture.</p>
+            </div>
+
+            <div class="bg-brand-panel rounded-2xl border border-brand-border overflow-hidden shadow-xl">
+                <table class="w-full text-left text-sm">
+                    <thead>
+                        <tr class="bg-brand-card border-b border-brand-border">
+                            <th class="p-5 text-white font-semibold w-1/3">Platform</th>
+                            <th class="p-5 text-white font-semibold">Architectural Role Evaluated</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-brand-border/50">
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-white font-medium"><i class="fa-solid fa-database text-brand-teal w-6"></i> Airtable</td><td class="p-5 text-brand-text">Relational database & master rights/catalog layer.</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-white font-medium"><i class="fa-solid fa-address-book text-orange-500 w-6"></i> HubSpot Starter</td><td class="p-5 text-brand-text">System of engagement; pipeline management & email tracking.</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-white font-medium"><i class="fa-solid fa-industry text-purple-400 w-6"></i> ClickUp Business</td><td class="p-5 text-brand-text">System of execution; project delivery & operational finance tracking.</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-white font-medium"><i class="fa-solid fa-radar text-blue-400 w-6"></i> Apollo.io</td><td class="p-5 text-brand-text">Initial B2B lead generation and outreach sequencing.</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-white font-medium"><i class="fa-solid fa-robot text-gray-400 w-6"></i> ChatGPT Business</td><td class="p-5 text-brand-text">Secure AI productivity layer for term sheets and summaries.</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-brand-text font-medium"><i class="fa-solid fa-layer-group text-brand-text w-6"></i> SmartSuite</td><td class="p-5 text-brand-text opacity-70">Unified work platform (Rejected due to low 5,000-record limits).</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-brand-text font-medium"><i class="fa-solid fa-bullhorn text-brand-text w-6"></i> Instantly.ai</td><td class="p-5 text-brand-text opacity-70">Dedicated outbound email scale engine (Deferred).</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-brand-text font-medium"><i class="fa-solid fa-file-contract text-brand-text w-6"></i> Creative Intell</td><td class="p-5 text-brand-text opacity-70">AI-powered music/media rights management (Phase 2 prospect).</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-brand-text font-medium"><i class="fa-solid fa-brain text-brand-text w-6"></i> Clay</td><td class="p-5 text-brand-text opacity-70">Advanced AI lead enrichment & data scraping (Phase 2 prospect).</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-brand-text font-medium"><i class="fa-brands fa-weixin text-brand-text w-6"></i> Weiban Zhushou</td><td class="p-5 text-brand-text opacity-70">China social CRM / WeCom integration (Phase 2 prospect).</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-brand-text font-medium"><i class="fa-solid fa-file-signature text-brand-text w-6"></i> PandaDoc / Juro</td><td class="p-5 text-brand-text opacity-70">Document generation & contract lifecycle (Deferred necessity).</td></tr>
+                        <tr class="hover:bg-brand-card/50 transition"><td class="p-5 text-brand-text font-medium"><i class="fa-solid fa-microchip text-brand-text w-6"></i> Lindy / Taskade</td><td class="p-5 text-brand-text opacity-70">Agentic AI operations & automated task management (Phase 2 prospect).</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 text-center border-t border-brand-border w-full text-sm">
+        <p>&copy; 2026 FlareFlow Proposal. Strictly Confidential.</p>
+    </footer>
+
+</body>
+</html>
