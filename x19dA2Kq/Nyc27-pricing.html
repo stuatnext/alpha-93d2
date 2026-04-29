@@ -163,7 +163,7 @@
               <div className="mt-1"><AlertCircle className="w-5 h-5 text-amber-500" /></div>
               <div>
                 <h4 className="text-slate-200 font-bold mb-1">Net Ticket Revenue Treatment</h4>
-                <p className="text-slate-400 text-sm">The ticket target is explicitly modelled as <strong>net cash</strong>. It absorbs payment provider processing fees and relies strictly on paid volume, projecting a modelled net ticket revenue of c.€1.32M. Ticketing provides material headroom above the €750k base target, but is not guaranteed.</p>
+                <p className="text-slate-400 text-sm">The ticket target is explicitly modelled as <strong>net cash</strong>. It absorbs payment provider processing fees and relies strictly on paid volume, projecting modelled net ticket revenue of c.€1.13M. Ticketing provides material headroom above the €750k base target, but is not guaranteed.</p>
               </div>
             </div>
 
@@ -313,7 +313,7 @@
           <h2 className="text-2xl md:text-3xl font-bold mb-2">Ticketing Architecture & Net Revenue Bridge</h2>
           <p className="text-slate-400 mb-6 text-base md:text-lg">A smart middle ground pricing ladder combining realistic volume with Hudson Yards premium rates.</p>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6">
             <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col">
               <div className="text-xs md:text-sm font-bold text-slate-500 uppercase tracking-widest mb-2">The Decoy</div>
               <h3 className="text-xl md:text-2xl font-bold text-slate-300 mb-1">Conference Only</h3>
@@ -378,7 +378,7 @@
               <div className="space-y-1.5 text-xs md:text-sm font-mono">
                 <div className="flex justify-between py-1 text-slate-300">
                   <span>Gross Summit Paid (Conf+Full+VIP)</span>
-                  <span>~$1,490,000</span>
+                  <span>~$1,250,000</span>
                 </div>
                 <div className="flex justify-between py-1 text-slate-300">
                   <span>Gross Focus Paid (EV Only)</span>
@@ -386,18 +386,18 @@
                 </div>
                 <div className="flex justify-between py-1 border-t border-slate-800 mt-1 pt-1.5 font-bold text-amber-400">
                   <span>Total Gross Paid Base Case (USD)</span>
-                  <span>~$1,682,500</span>
+                  <span>~$1,442,500</span>
                 </div>
                 <div className="flex items-center gap-2 py-1 text-slate-500">
-                  <ArrowRight className="w-4 h-4" /> <em>Est. ~€1,558,000 EUR Equivalent</em>
+                  <ArrowRight className="w-4 h-4" /> <em>Est. ~€1,336,000 EUR Equivalent</em>
                 </div>
                 <div className="flex justify-between py-1 text-rose-400/80">
                   <span>Less: Blended deductions from Stripe fees (3.52%), early-bird mix, partner/group discounting (~12%)</span>
-                  <span>(~€242,000)</span>
+                  <span>(~€207,000)</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-t border-slate-700 mt-1 font-bold text-white text-base">
                   <span>Modelled Net Ticket Revenue</span>
-                  <span className="text-[#50fa7b]">~€1,316,000</span>
+                  <span className="text-[#50fa7b]">~€1,129,000</span>
                 </div>
                 <div className="flex justify-between py-1 font-bold text-slate-400 text-[11px] md:text-sm bg-slate-900 px-2 rounded">
                   <span>Marketing Base Target</span>
@@ -425,7 +425,7 @@
       return (
         <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">Large Stand Pricing Architecture</h2>
-          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Evaluating the pricing strategy for a 32sqm footprint and protecting our premium boundaries.</p>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Evaluating the pricing strategy for a 32sqm/48sqm footprint and protecting our premium boundaries.</p>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-8">
             <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl">
@@ -435,7 +435,7 @@
                 </div>
                 <h3 className="text-lg md:text-xl font-bold text-slate-200">The SQM Reality Check</h3>
               </div>
-              <p className="text-slate-400 text-xs md:text-sm mb-4">Pricing a 32sqm footprint at €135k as a space-only stand mathematically distorts our entire model.</p>
+              <p className="text-slate-400 text-xs md:text-sm mb-4">Pricing a large footprint at €135k as a space-only stand mathematically distorts our entire model.</p>
               <div className="space-y-3">
                 <div className="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-slate-800">
                   <span className="text-slate-300 text-xs md:text-sm">Space Only 6x4 (24 sqm)</span>
@@ -445,29 +445,29 @@
                   </div>
                 </div>
                 <div className="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-slate-800">
-                  <span className="text-slate-300 text-xs md:text-sm">Space Only 8x4 <span className="text-slate-500 text-[10px] md:text-xs ml-1">(Secondary)</span></span>
+                  <span className="text-slate-300 text-xs md:text-sm">Space Only 8x4 Corridor (32 sqm)</span>
                   <div className="text-right">
                     <div className="text-white font-medium text-xs md:text-sm">€85,000</div>
                     <div className="text-[10px] md:text-xs text-slate-500">€2,656 / sqm</div>
                   </div>
                 </div>
                 <div className="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-slate-800 border-l-4 border-l-indigo-500">
-                  <span className="text-slate-300 text-xs md:text-sm">Space Only 8x4 <span className="text-indigo-400 text-[10px] md:text-xs ml-1 font-bold">(Prime Location)</span></span>
+                  <span className="text-slate-300 text-xs md:text-sm">Space Only 8x6 <span className="text-indigo-400 text-[10px] md:text-xs ml-1 font-bold">(Prime Location)</span></span>
                   <div className="text-right">
                     <div className="text-white font-medium text-xs md:text-sm">€95,000</div>
-                    <div className="text-[10px] md:text-xs text-indigo-400/80">Includes €10k placement premium</div>
+                    <div className="text-[10px] md:text-xs text-indigo-400/80">€1,979 / sqm</div>
                   </div>
                 </div>
                 <div className="flex justify-between items-center p-3 bg-red-950/30 rounded-lg border border-red-900/50 shadow-inner">
-                  <span className="text-red-200 font-semibold text-xs md:text-sm">Proposed Space Only (32 sqm)</span>
+                  <span className="text-red-200 font-semibold text-xs md:text-sm">Proposed Flagship (TBC)</span>
                   <div className="text-right">
                     <div className="text-red-400 font-bold text-sm md:text-lg">€135,000</div>
-                    <div className="text-[10px] md:text-xs text-red-400/70 font-mono">€4,219 / sqm</div>
+                    <div className="text-[10px] md:text-xs text-red-400/70 font-mono">Custom Build</div>
                   </div>
                 </div>
               </div>
               <p className="text-[11px] md:text-sm text-slate-400 mt-5 leading-relaxed">
-                <strong className="text-slate-200">The Problem:</strong> The 8x4 is a scarce, premium large-format space in a constrained floorplan. Pricing is driven by exclusivity and placement, not volume discounts. However, the €135k proposal breaks this logic entirely, asking buyers to pay an apex markup for empty square metres.
+                <strong className="text-slate-200">The Problem:</strong> The large stands are scarce, premium spaces in a constrained floorplan. Pricing is driven by exclusivity and placement, not volume discounts. However, to ask buyers to pay €135k+, we cannot sell empty square metres.
               </p>
             </div>
 
@@ -478,7 +478,8 @@
                 </div>
                 <h3 className="text-lg md:text-xl font-bold text-slate-200">The Defensible Path</h3>
               </div>
-              <p className="text-slate-400 text-xs md:text-sm mb-4">If we want to secure a €135k check, we cannot sell it as a "stand." We must package it as an Anchor Pavilion to bundle lead-gen value and exclusivity.</p>
+              <p className="text-slate-400 text-xs md:text-sm mb-4">If we want to secure a €135k check, we must package it as an Anchor Pavilion (Booth 0) to bundle lead-gen value and exclusivity.</p>
+              <p className="text-slate-400 text-xs md:text-sm mb-4">Booth 0 should remain outside the base case until the final floorplan confirms whether it is genuinely incremental inventory or replaces existing sellable space.</p>
               
               <div className="flex items-center gap-2 md:gap-4 mb-6">
                 <div className="flex-1 bg-slate-950 p-3 md:p-4 rounded-xl border border-slate-800 text-center">
@@ -487,7 +488,7 @@
                 </div>
                 <div className="text-slate-600 font-bold text-xs md:text-sm">OR</div>
                 <div className="flex-1 bg-amber-500/10 p-3 md:p-4 rounded-xl border border-amber-500/30 text-center shadow-inner">
-                  <div className="text-amber-500/80 text-[10px] md:text-xs uppercase tracking-wider mb-1">Flagship Pavilion Value</div>
+                  <div className="text-amber-500/80 text-[10px] md:text-xs uppercase tracking-wider mb-1">Flagship Pavilion / Booth 0 (TBC) Value</div>
                   <div className="text-lg md:text-2xl font-bold text-amber-400 drop-shadow-md">€135,000</div>
                 </div>
               </div>
@@ -497,7 +498,7 @@
                 <ul className="space-y-3">
                   <li className="flex gap-3 text-[11px] md:text-sm text-slate-400 items-start">
                     <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0 shadow-sm shadow-amber-500/50" />
-                    <p><strong className="text-slate-200 font-medium">The Event Within an Event:</strong> Turnkey 32sqm luxury footprint, premium floor placement, private meeting room, and barista bar.</p>
+                    <p><strong className="text-slate-200 font-medium">The Event Within an Event:</strong> Turnkey luxury footprint, premium floor placement, private meeting room, and barista bar.</p>
                   </li>
                   <li className="flex gap-3 text-[11px] md:text-sm text-slate-400 items-start">
                     <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0 shadow-sm shadow-amber-500/50" />
@@ -522,7 +523,7 @@
               <h3 className="text-[10px] md:text-xs font-black text-amber-500 uppercase tracking-[0.2em] drop-shadow-sm">Message to Leadership</h3>
             </div>
             <p className="text-slate-200 text-sm md:text-lg leading-relaxed italic font-serif">
-              "To achieve €135k, we must reposition this as a fully packaged Flagship Pavilion. True space-only 8x4 pricing must remain strictly anchored to the €85k–€95k range to maintain mathematical integrity across our exhibition floorplan. Exact placement of the 8x4 stands depends on the final floorplan."
+              "To achieve €135k+, we must position this as a fully packaged Flagship Pavilion / Booth 0 (TBC). True space-only 8x4 and 8x6 pricing must remain strictly anchored to the €85k–€95k range to maintain mathematical integrity across our exhibition floorplan. Exact placement of these stands depends on the final floorplan."
             </p>
           </div>
         </div>
@@ -549,15 +550,15 @@
                   <tbody className="divide-y divide-slate-800/50 text-slate-300">
                     <tr><td className="py-2 pl-2">Branding & Utility</td><td className="py-2 pr-2 text-amber-400 font-mono text-right">€793,000</td></tr>
                     <tr><td className="py-2 pl-2">Content & Stages</td><td className="py-2 pr-2 text-amber-400 font-mono text-right">€1,117,000</td></tr>
-                    <tr><td className="py-2 pl-2">Expo & Networking</td><td className="py-2 pr-2 text-amber-400 font-mono text-right">€1,334,000</td></tr>
+                    <tr><td className="py-2 pl-2">Expo & Networking</td><td className="py-2 pr-2 text-amber-400 font-mono text-right">€1,225,000</td></tr>
                     <tr className="bg-slate-800/30 font-semibold text-slate-200 uppercase tracking-tighter">
                       <td className="py-3 pl-2">Total Base Case Maximum</td>
-                      <td className="py-3 pr-2 text-amber-400 font-mono text-right">€3,244,000</td>
+                      <td className="py-3 pr-2 text-amber-400 font-mono text-right">€3,135,000</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <p className="text-[10px] text-slate-500 mt-2 italic ml-2">*Note: Strict base case only. Excludes Prediction Markets (tentative) and venue-dependent ops inventory. The Expo catalogue shows all available inventory for sales reference. The €1.334M ceiling applies mutual-exclusivity rules: Exclusive networking events take priority over Non-Exclusive; Turnkey and Space Only options for the same footprint cannot both sell; and 6x2 stands are formed by combining 3x2s, meaning both cannot sell at full listed quantities simultaneously.*</p>
+              <p className="text-[10px] text-slate-500 mt-2 italic ml-2">*Note: Strict base case only. Excludes Prediction Markets (tentative) and venue-dependent ops inventory. The Expo catalogue shows all available inventory for sales reference. The €1.225M ceiling applies mutual-exclusivity caps. Turnkey and space-only versions of the same stand cannot both sell. A 6x2 uses the same footprint as two 3x2s. At €50k, it is a buyer-friendly upgrade path, but two 3x2s generate €54k, so each 6x2 conversion reduces theoretical max yield by €4k. Exclusive and non-exclusive networking options are also mutually exclusive. The model assumes the highest-revenue combinations for mutually exclusive options.*</p>
             </div>
 
             <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl relative overflow-hidden group">
@@ -586,11 +587,11 @@
                     <tr>
                       <td className="py-2 pl-2 text-slate-300">Expo & Networking</td>
                       <td className="py-2 text-amber-500 font-mono text-right">60%</td>
-                      <td className="py-2 pr-2 text-amber-400 font-mono text-right">€800,400</td>
+                      <td className="py-2 pr-2 text-amber-400 font-mono text-right">€735,000</td>
                     </tr>
                     <tr className="bg-slate-800/40 font-bold border-t border-slate-700">
                       <td className="py-3 pl-2 text-slate-100 uppercase tracking-tighter" colSpan="2">Total Projected Revenue</td>
-                      <td className="py-3 pr-2 text-amber-400 font-mono text-right">€2,148,230</td>
+                      <td className="py-3 pr-2 text-amber-400 font-mono text-right">€2,082,830</td>
                     </tr>
                   </tbody>
                 </table>
@@ -615,25 +616,25 @@
                     <tr className="bg-red-950/10">
                       <td className="py-2 pl-2">Conservative</td>
                       <td className="py-2 text-red-400/80">-10 percentage points</td>
-                      <td className="py-2 pr-2 text-red-400 font-mono text-right">~€1,824,000</td>
+                      <td className="py-2 pr-2 text-red-400 font-mono text-right">~€1,769,000</td>
                     </tr>
                     <tr className="bg-amber-950/20">
                       <td className="py-2 pl-2 text-amber-50">Base Case</td>
                       <td className="py-2 text-slate-400 italic">As modelled</td>
-                      <td className="py-2 pr-2 text-amber-400 font-mono text-right font-bold underline underline-offset-4 decoration-amber-800">€2,148,340</td>
+                      <td className="py-2 pr-2 text-amber-400 font-mono text-right font-bold underline underline-offset-4 decoration-amber-800">€2,082,830</td>
                     </tr>
                     <tr className="bg-yellow-950/10">
                       <td className="py-2 pl-2">Optimistic</td>
                       <td className="py-2 text-yellow-400/80">+10 percentage points</td>
-                      <td className="py-2 pr-2 text-yellow-400 font-mono text-right">~€2,473,000</td>
+                      <td className="py-2 pr-2 text-yellow-400 font-mono text-right">~€2,396,000</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               <div className="mt-4 pt-4 border-t border-slate-800 space-y-1">
-                <p className="text-[10px] text-slate-400 font-mono flex justify-between"><span>Conservative Delta:</span> <span className="text-red-400">Misses Base Target by c.€246k</span></p>
-                <p className="text-[10px] text-slate-400 font-mono flex justify-between"><span>Base-Case Delta:</span> <span className="text-emerald-400">Exceeds Base Target by c.€78k</span></p>
-                <p className="text-[10px] text-slate-400 font-mono flex justify-between"><span>Stretch Delta:</span> <span className="text-amber-400">Gap to Management Target is c.€102k</span></p>
+                <p className="text-[10px] text-slate-400 font-mono flex justify-between"><span>Conservative Delta:</span> <span className="text-red-400">Misses Base Target by c.€301k</span></p>
+                <p className="text-[10px] text-slate-400 font-mono flex justify-between"><span>Base-Case Delta:</span> <span className="text-emerald-400">Exceeds Base Target by c.€13k</span></p>
+                <p className="text-[10px] text-slate-400 font-mono flex justify-between"><span>Stretch Delta:</span> <span className="text-amber-400">Gap to Management Target is c.€167k</span></p>
               </div>
             </div>
 
@@ -645,18 +646,30 @@
                   <span className="text-slate-300 text-xs md:text-sm">Prediction Markets</span>
                   <span className="text-slate-400 font-mono text-xs md:text-sm">+ €252k Max</span>
                 </div>
-                <div className="flex justify-between items-center py-2">
-                  <span className="text-slate-300 text-xs md:text-sm">Pending Ops Brands</span>
+                <div className="flex justify-between items-center py-2 border-b border-slate-800/50">
+                  <span className="text-slate-300 text-xs md:text-sm">Pending Venue Branding</span>
                   <span className="text-slate-400 font-mono text-xs md:text-sm">+ €70k Max</span>
+                </div>
+                <div className="flex justify-between items-center py-2">
+                  <span className="text-slate-300 text-xs md:text-sm">Flagship Pavilion / Booth 0 (TBC)</span>
+                  <span className="text-slate-400 font-mono text-xs md:text-sm">+ €135k Max if fully incremental</span>
                 </div>
               </div>
               <div className="flex justify-between items-center py-2 border-t border-slate-700 mt-2">
-                <span className="text-amber-400 font-bold text-xs md:text-sm uppercase">Total Upside</span>
+                <span className="text-amber-400 font-bold text-xs md:text-sm uppercase">Confirmed / separable upside</span>
                 <span className="text-amber-400 font-mono font-bold text-sm md:text-base">+ €322k Max</span>
               </div>
               <div className="flex justify-between items-center py-2 border-t border-slate-700 mt-2">
-                <span className="text-slate-300 font-bold text-xs md:text-sm">Base-Case Forecast + Upside</span>
-                <span className="text-white font-mono font-bold text-sm md:text-base">~ €2.47M</span>
+                <span className="text-amber-400 font-bold text-xs md:text-sm uppercase">Illustrative max including Booth 0</span>
+                <span className="text-amber-400 font-mono font-bold text-sm md:text-base">+ €457k Max</span>
+              </div>
+              <div className="flex justify-between items-center py-2 border-t border-slate-700 mt-2">
+                <span className="text-slate-300 font-bold text-[10px] md:text-xs">Base-case forecast + separable upside</span>
+                <span className="text-white font-mono font-bold text-xs md:text-sm">~ €2.405M</span>
+              </div>
+              <div className="flex justify-between items-center py-2 border-t border-slate-700 mt-2">
+                <span className="text-slate-300 font-bold text-[10px] md:text-xs">Base-case forecast + all upside if Booth 0 is incremental</span>
+                <span className="text-white font-mono font-bold text-xs md:text-sm">~ €2.54M</span>
               </div>
             </div>
           </div>
@@ -691,9 +704,9 @@
                 <div className="flex justify-between items-end pb-2">
                   <div>
                     <div className="text-xs md:text-sm text-indigo-400 font-bold">Stretch Target</div>
-                    <div className="text-[10px] md:text-[11px] text-indigo-300/60 mt-1">Modelled projection</div>
+                    <div className="text-[10px] md:text-[11px] text-indigo-300/60 mt-1">Rounded modelled projection</div>
                   </div>
-                  <div className="text-xl md:text-2xl font-bold font-mono text-indigo-400">€1,300,000</div>
+                  <div className="text-xl md:text-2xl font-bold font-mono text-indigo-400">€1,100,000</div>
                 </div>
               </div>
             </div>
@@ -756,7 +769,7 @@
                 <div className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest mb-3 border-b border-slate-800 pb-2">If We Hit Stretch Targets</div>
                 <div className="flex justify-between text-xs md:text-sm text-slate-300">
                   <span>Combined Company Revenue (Stretch)</span>
-                  <span className="font-mono">€3,550,000</span>
+                  <span className="font-mono">€3,350,000</span>
                 </div>
                 <div className="flex justify-between text-xs md:text-sm text-rose-400/80">
                   <span>Total Operational Costs</span>
@@ -764,7 +777,7 @@
                 </div>
                 <div className="flex justify-between pt-2 border-t border-slate-700 font-bold text-sm md:text-base">
                   <span className="text-white">Stretch Operating Margin</span>
-                  <span className="text-emerald-400 font-mono">+€815,303</span>
+                  <span className="text-emerald-400 font-mono">+€615,303</span>
                 </div>
               </div>
             </div>
@@ -799,12 +812,12 @@
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
-                    <span><strong>Marketing Quota:</strong> €750k Base Target (with a €1.3M Stretch).</span>
+                    <span><strong>Marketing Quota:</strong> €750k Base Target (with a €1.1M Stretch).</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
                     <div>
-                      <span><strong>Model Delta:</strong> Gap from current modelled sales forecast (€2.148M) to management sales target (€2.25M) is c.€102k.</span>
+                      <span><strong>Model Delta:</strong> Gap from current modelled sales forecast (€2.083M) to management sales target (€2.25M) is c.€167k.</span>
                       <div className="text-[10px] md:text-[11px] text-indigo-300/80 mt-1 pl-1 italic">*Gap to be closed via stricter renewals discipline, bundle conversion, and selectively unlocking approved upside.*</div>
                     </div>
                   </li>
@@ -818,7 +831,7 @@
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
-                    <span><strong>Large Stand Logic:</strong> €85k–€95k space-led anchor, €135k only as Flagship Pavilion.</span>
+                    <span><strong>Large Stand Logic:</strong> €85k–€95k space-only anchor; €95k–€110k turnkey anchor; €135k Flagship Pavilion / Booth 0 remains subject to final floorplan confirmation and excluded from the base case.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
@@ -842,7 +855,11 @@
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
-                    <span><strong>Pending Inventory:</strong> Final confirmation of venue-dependent assets (e.g., Projection Mapping).</span>
+                    <span><strong>Pending Venue Branding:</strong> Upstairs Reg Desk and Projection Mapping remain excluded from base case pending final venue confirmation.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                    <span><strong>Flagship Pavilion / Booth 0 (TBC):</strong> TBC pending final venue / floorplan confirmation. Modelled strictly as upside. If Booth 0 replaces existing sellable floor inventory, it is not pure upside and the model must be adjusted.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
@@ -1009,7 +1026,7 @@
                 <div className="absolute top-0 left-0 w-1 h-full bg-rose-500"></div>
                 <div className="text-xs md:text-sm font-medium text-rose-400 uppercase tracking-wider mb-2">Power Inventory</div>
                 <div className="text-2xl md:text-3xl font-bold text-slate-200 mb-2">Max 5%</div>
-                <p className="text-xs md:text-sm text-slate-400">Hard cap on Headline, 3x2 Stands, Lanyards, & Wi-Fi.</p>
+                <p className="text-xs md:text-sm text-slate-400">Hard cap on Headline, 3x2 / 6x2 stand inventory, Lanyards, and Wi-Fi.</p>
               </div>
             </div>
           </div>
@@ -1021,7 +1038,7 @@
                 The Sweetener Bank
               </h4>
               <p className="text-slate-400 text-sm leading-relaxed mb-2 md:mb-4">
-                Reps cannot discount past 15%. Instead, to close deals over €50k, they may pull from the Sweetener Bank (e.g., Advertisement Videos, Non-Branded Panels) to add value rather than dropping the price.
+                Reps cannot discount past 15%. Instead, to close deals over €50k, they may pull from the Sweetener Bank (e.g., Advertisement Videos, Non-Branded Panels) to add value.
               </p>
             </div>
           </div>
@@ -1260,7 +1277,7 @@
         { isHeader: true, title: "Base Case Inventory (Included in Models)" },
         { name: "Headline Partnership (Excl)", price: "€280,000", qty: "1", del: "Press release, 20m keynote, Premium arrival zone visibility (Subject to venue rights), 10 passes.", narrative: "Market Leadership Positioning targeted for apex brand dominance.", rationale: "Premium tier anchored by true market capture potential." },
         { name: "Registration (Online & Onsite)", price: "€75,000", qty: "1", del: "Online logo, 2 curved LEDs, backdrop, counter, 3 passes.", narrative: "Highest-attention attendee chokepoint. Supports strong conversion potential.", rationale: "Subject to final confirmation of branding rights from Convene." },
-        { name: "Speaker's Lounge Partnership (Excl)", price: "€35,000", qty: "1", del: "Branding in VIP lounge, video ad, 3 passes.", narrative: "Exclusive, friction-free access to the speaker faculty.", rationale: "Unrivaled, unmediated access to VIP speakers. Valued for elite networking density." },
+        { name: "Speakers’ Lounge Partnership (Excl)", price: "€35,000", qty: "1", del: "Branding in VIP lounge, video ad, 3 passes.", narrative: "Exclusive, friction-free access to the speaker faculty.", rationale: "Unrivaled, unmediated access to VIP speakers. Valued for elite networking density." },
         { name: "Lanyard Partner A", price: "€30,000", qty: "1", del: "Logo on alternating delegate lanyards across both days, ensuring continuous visibility, 1 pass, Silver status.", narrative: "High-demand physical asset. Every delegate wears this all day.", rationale: "Split inventory reflects iGaming budgets and full-event visibility with alternating designs." },
         { name: "Lanyard Partner B", price: "€30,000", qty: "1", del: "Logo on alternating delegate lanyards across both days, ensuring continuous visibility, 1 pass, Silver status.", narrative: "High-demand physical asset. Every delegate wears this all day.", rationale: "Split inventory reflects iGaming budgets and full-event visibility with alternating designs." },
         { name: "General Delegate Badge (Excl)", price: "€20,000", qty: "1", del: "Logo on all general delegate badges, 1 pass, Silver status.", narrative: "Unavoidable reach on the general delegate audience.", rationale: "Yield-optimised split. General badge captures the broadest possible audience." },
@@ -1275,6 +1292,7 @@
         { name: "Digital Event Guide", price: "€25,000", qty: "1", del: "QR code on badge, logo on digital agenda, on-site screens, tent cards, email promotion, 1 pass.", narrative: "Enhanced visibility on screens, tent cards, and email promotion.", rationale: "Reflects enhanced attendee app adoption and repeated digital engagements." },
         { name: "Advertisement Video", price: "€9,000", qty: "8", del: "30s video during breaks, 1 pass.", narrative: "Cost-effective brand reinforcement.", rationale: "High-margin digital inventory reflecting focused screen engagement during breaks." },
         { isHeader: true, title: "Pending Venue Confirmation (Upside - Excluded from Base Case)", isUpside: true },
+        { name: "Upstairs Reg Desk", price: "€30,000", qty: "1", del: "Pending Venue Confirmation.", narrative: "Additional high-visibility touchpoint.", rationale: "Upside inventory if venue logistics permit.", isUpside: true },
         { name: "Projection Mapping", price: "€40,000", qty: "1", del: "Pending Venue Confirmation.", narrative: "Massive scale digital branding.", rationale: "Upside inventory leveraging Hudson Yards tech capabilities.", isUpside: true }
       ];
      
@@ -1284,10 +1302,10 @@
     function SlideCatalogueContent() {
       const products = [
         { isHeader: true, title: "Base Case Inventory (Included in Models)" },
-        { name: "Leadership Stage Partner", price: "€75,000", qty: "1", del: "Leadership stage holding slide, podium sign, 6 passes.", narrative: "Consolidates main stage dominance into one Platinum asset.", rationale: "Definitive main stage ownership." },
+        { name: "Leadership Stage Partner", price: "€75,000", qty: "1", del: "Leadership stage holding slide, podium sign, 6 passes.", narrative: "Consolidates Leadership Stage dominance into one Platinum asset.", rationale: "Definitive main stage ownership." },
         { name: "Stage 2 Hub Partner", price: "€45,000", qty: "2", del: "Podium branding, screen bug, 1 keynote, 3 passes.", narrative: "Defend price by emphasising targeted audience density.", rationale: "Reflects targeted audience density and focused industry leadership positioning." },
         { name: "Stage 3 Hub Partner", price: "€24,000", qty: "2", del: "Holding slide logo, 1 branded panel slot, 2 passes.", narrative: "The most accessible route into partnered thought leadership.", rationale: "Accessible entry point capturing high-intent, targeted niche audiences." },
-        { name: "Leadership Stage Presenter", price: "€58,000", qty: "2", del: "1x 20-min keynote per day (one per day across two days), full brand ownership.", narrative: "Aggressive corporate storytelling on the main plenary stage.", rationale: "Premium main stage storytelling." },
+        { name: "Leadership Stage Presenter", price: "€58,000", qty: "2", del: "1x 20-min keynote per day (one per day across two days), full brand ownership.", narrative: "Aggressive corporate storytelling on the Leadership Stage.", rationale: "Premium main stage storytelling." },
         { name: "Stage 2 Presenter", price: "€38,000", qty: "2", del: "20-min keynote, full brand ownership.", narrative: "Targeted thought leadership.", rationale: "Priced perfectly to reflect highly engaged mid-sized room capacity." },
         { name: "Stage 3 Presenter", price: "€19,000", qty: "2", del: "20-min keynote, full brand ownership.", narrative: "Accessible thought leadership.", rationale: "Valuated strictly for intimate, highly engaged problem-solving sessions." },
         { name: "Custom Panels (Leadership Stage)", price: "€38,000", qty: "2", del: "Partner + Guest speaker, moderated format.", narrative: "Controlled narrative with external credibility.", rationale: "Reflects the substantial value of driving controlled narratives." },
@@ -1296,8 +1314,8 @@
         { name: "Branded Panels (Leadership Stage)", price: "€19,000", qty: "4", del: "Powered By title, 1 speaker slot.", narrative: "Standard thought leadership integration.", rationale: "Strong market demand validated the uplift for scalable thought leadership." },
         { name: "Branded Panels (Stage 2)", price: "€16,000", qty: "4", del: "Powered By title, 1 speaker slot.", narrative: "Standard thought leadership integration.", rationale: "Strong market demand validated the uplift for scalable thought leadership." },
         { name: "Branded Panels (Stage 3)", price: "€9,000", qty: "4", del: "Powered By title, 1 speaker slot.", narrative: "Standard thought leadership integration.", rationale: "Strong market demand validated the uplift for scalable thought leadership." },
-        { name: "Non-Branded Panels (Leadership/2/3)", price: "€12k / €10.5k / €6.5k", qty: "Internal", del: "Panel participation without branding.", narrative: "Plausible deniability. The credibility of an organically selected expert.", rationale: "Priced for the high credibility of organic integration." },
-        { name: "Leadership Chair Partner", price: "€30,000", qty: "1", del: "Logo on all main hall seats. Fallback standalone or bundle sweetener.", narrative: "High visual impact in the premium plenary room.", rationale: "Not modelled as incremental revenue if sold within Leadership Stage Partner bundle." },
+        { name: "Non-Branded Panels (Leadership / Stage 2 / Stage 3)", price: "€12k / €10.5k / €6.5k", qty: "Internal", del: "Panel participation without branding.", narrative: "Plausible deniability. The credibility of an organically selected expert.", rationale: "Priced for the high credibility of organic integration." },
+        { name: "Leadership Chair Partner", price: "€30,000", qty: "1", del: "Logo on all Leadership Stage seats. Fallback standalone or bundle sweetener.", narrative: "High visual impact in the premium Leadership Stage room.", rationale: "Not modelled as incremental revenue if sold within Leadership Stage Partner bundle." },
         { name: "Livestream", price: "€60,000", qty: "1", del: "Logo on stream, video ad, social/email promo, 3 passes.", narrative: "Extended digital reach beyond the physical room.", rationale: "Reflects the vastly extended digital reach scaling far beyond the physical room." },
         { name: "Emerging Verticals: Headline", price: "€60,000", qty: "1", del: "Headline positioning for emerging verticals track.", narrative: "Own the narrative on future markets.", rationale: "Anchors future market narratives. Strategic valuation for vanguard leaders." },
         { name: "Emerging Verticals: General", price: "€24,000", qty: "8", del: "General partner positioning for emerging verticals.", narrative: "High-value entry into new market discussions.", rationale: "Captures enthusiastic early-adopter budgets targeting high-growth sectors." },
@@ -1312,16 +1330,18 @@
     function SlideCatalogueExpo() {
       const products = [
         { isHeader: true, title: "Base Case Inventory (Included in Models)" },
-{ name: "Flagship Pavilion 8x4", price: "€135,000", qty: "1", del: "Turnkey 32sqm build, 15 passes, premium placement, onsite filmed interview, pre-event marketing inclusion, and up to 5 curated introductions.", narrative: "Defensible €135k anchor with premium floor presence and ABM integration.", rationale: "Bundled value transforms space into a strategic partnership without relying on additional keynote capacity." },        { name: "Exhibition Stand 8x4 (1A)", price: "€95,000", qty: "1", del: "Space only, 6 passes, Lead Scanner. Premium location opposite registration area / corridor effect (subject to final floorplan).", narrative: "Premium blank canvas for enterprise activations.", rationale: "Positions the 32sqm footprint with a placement premium." },
-        { name: "Exhibition Stand 8x4 (1B)", price: "€85,000", qty: "1", del: "Space only, 6 passes, Lead Scanner. High-visibility secondary location (subject to final floorplan).", narrative: "Secondary premium lot.", rationale: "True economies-of-scale benchmark (€2,656/sqm)." },
-        { name: "Exhibition Stand 6x4 Turnkey", price: "€65,000", qty: "2", del: "Turnkey build, premium placement, 3 passes, Lead Scanner.", narrative: "Premium layout targeting top-tier custom exhibitors.", rationale: "Priced dynamically to reflect its premium footprint. 2 turnkey units available; only 1 can be converted to space-only due to wall configurations." },
-        { name: "Exhibition Stand 6x4 Space Only", price: "€52,000", qty: "1", del: "Space only, 3 passes, Lead Scanner.", narrative: "For brands with custom builds.", rationale: "Premium mid-tier lot pricing. 2 turnkey units available; only 1 can be converted to space-only due to wall configurations." },
-        { name: "Exhibition Stand 6x2 Turnkey", price: "€40,000", qty: "2", del: "Turnkey build, 3 passes, Lead Scanner.", narrative: "Power Inventory. Scarcity is real.", rationale: "Supports full-list-price confidence." },
-        { name: "Exhibition Stand 3x2 Turnkey", price: "€27,000", qty: "8", del: "Turnkey build, 2 passes, Lead Scanner.", narrative: "Power Inventory. Strict 5% discount cap. Scarcity is real.", rationale: "Supports full-list-price confidence. Up to 12 pending Convene." },
+        { name: "Exhibition Stand 8x6 (Booth 2) Turnkey", price: "€110,000", qty: "1", del: "Turnkey build, premium placement, 6 passes, Lead Scanner.", narrative: "Premium blank canvas for enterprise activations.", rationale: "Positions the 48sqm footprint with a placement premium." },
+        { name: "Exhibition Stand 8x6 (Booth 2) Space Only", price: "€95,000", qty: "1", del: "Space only, 6 passes, Lead Scanner. (Subject to final floorplan)", narrative: "Secondary premium lot.", rationale: "True economies-of-scale benchmark." },
+        { name: "Exhibition Stand 8x4 Corridor (Booth 1) Turnkey", price: "€95,000", qty: "1", del: "Turnkey build, 6 passes, Lead Scanner.", narrative: "High-visibility corridor location.", rationale: "High foot-traffic chokepoint premium." },
+        { name: "Exhibition Stand 8x4 Corridor (Booth 1) Space Only", price: "€85,000", qty: "1", del: "Space only, 6 passes, Lead Scanner. (Subject to final floorplan)", narrative: "High-visibility corridor location.", rationale: "Strong placement value." },
+        { name: "Exhibition Stand 6x4 (Booth 15) Turnkey", price: "€65,000", qty: "1", del: "Turnkey build, 3 passes, Lead Scanner.", narrative: "Premium layout targeting top-tier custom exhibitors.", rationale: "Priced dynamically to reflect its premium footprint." },
+        { name: "Exhibition Stand 6x4 (Booth 15) Space Only", price: "€52,000", qty: "1", del: "Space only, 3 passes, Lead Scanner.", narrative: "For brands with custom builds.", rationale: "Premium mid-tier lot pricing." },
+        { name: "Exhibition Stand 6x2 Turnkey (Cluster)", price: "€50,000", qty: "Up to 6", del: "Turnkey build, 3 passes, Lead Scanner. Formed by combining two 3x2s.", narrative: "Extended footprint for mid-market leaders.", rationale: "Maintains strong per-sqm yield while offering footprint flexibility." },
+        { name: "Exhibition Stand 3x2 Turnkey (Cluster)", price: "€27,000", qty: "Up to 12", del: "Turnkey build, 2 passes, Lead Scanner.", narrative: "Power Inventory. Strict 5% discount cap. Scarcity is real.", rationale: "Supports full-list-price confidence. Up to 12 pending Convene." },
         { name: "Private Meeting Room 4p", price: "€16,000", qty: "3", del: "Capacity: 4p.", narrative: "Friction-free deal-making environments.", rationale: "Proportional pricing reflecting premium private environments." },
         { name: "Private Meeting Room 6p", price: "€20,000", qty: "1", del: "Capacity: 6p.", narrative: "Friction-free deal-making environments.", rationale: "Proportional pricing reflecting premium private environments." },
         { name: "Private Meeting Room 8p", price: "€25,000", qty: "1", del: "Capacity: 8p.", narrative: "Friction-free deal-making environments.", rationale: "Proportional pricing reflecting premium private environments." },
-        { name: "Private Meeting Room 12p", price: "€35,000", qty: "1", del: "Capacity: 12p.", narrative: "Friction-free deal-making environments.", rationale: "Apex meeting asset. Priced for ultimate exclusivity and enterprise delegations." },
+        { name: "Private Meeting Room 12p", price: "€40,000", qty: "1", del: "Capacity: 12p.", narrative: "Friction-free deal-making environments.", rationale: "Apex meeting asset. Priced for ultimate exclusivity and enterprise delegations." },
         { name: "Nico Jansen Run Club", price: "€18,000", qty: "1", del: "Official partner, branded gifts, pre-event marketing.", narrative: "High-engagement wellness alignment.", rationale: "Commands a premium for authentic integration." },
         { name: "Pre-Registration Event (Exclusive)", price: "€80,000", qty: "1", del: "Exclusive branding at pre-reg event, 3 passes.", narrative: "First impression ownership.", rationale: "Protects the most critical pre-business networking window." },
         { name: "Pre-Registration Event (Non-Exclusive)", price: "€22,000", qty: "5", del: "Shared branding at pre-reg event, 3 passes.", narrative: "Accessible networking entry point.", rationale: "An extremely high-value entry point for capturing early executive mindshare." },
@@ -1332,9 +1352,11 @@
         { name: "Day 2 NEXTworking (Exclusive)", price: "€80,000", qty: "1", del: "Closing party partnership, 6 passes.", narrative: "Final impression ownership.", rationale: "Secures the final strategic impression. Priced robustly for closing-night dominance." },
         { name: "Day 2 NEXTworking (Non-Exclusive)", price: "€20,000", qty: "5", del: "Shared branding at closing party, 3 passes.", narrative: "Lasting brand recall.", rationale: "An accessible yet deeply impactful wrap-up branding opportunity." },
         { name: "C-Level Event (Bespoke)", price: "Starts €35k", qty: "1", del: "Invitation-only gathering for select leaders.", narrative: "Hyper-targeted ABM. Floor price established.", rationale: "The €35k base establishes a strict floor for bespoke access." },
+        { isHeader: true, title: "Conditional Upside / TBC Inventory", isUpside: true },
+        { name: "Flagship Pavilion / Booth 0 (TBC)", price: "€135,000", qty: "1", del: "Turnkey premium footprint, 15 passes, premium placement, onsite filmed interview, pre-event marketing inclusion, and up to 5 curated introductions. Subject to final floorplan confirmation.", narrative: "Defensible €135k anchor with premium floor presence and ABM integration.", rationale: "Bundled value transforms space into a strategic partnership without relying on additional keynote capacity. If Booth 0 replaces existing sellable floor inventory, only the incremental delta should be modelled.", isUpside: true }
       ];
      
-      return <CatalogueTable title="Appendix: Expo & Networking" products={products} tableNote="Note: The revenue ceiling applies mutual-exclusivity caps. Exclusive/Non-Exclusive events, overlapping stand footprints, and combined units (e.g., 6x2s formed from 3x2s) cannot all be sold concurrently." />;
+      return <CatalogueTable title="Appendix: Expo & Networking" products={products} tableNote="Note: The revenue ceiling applies mutual-exclusivity caps. Turnkey and space-only versions of the same stand cannot both sell. A 6x2 uses the same footprint as two 3x2s. At €50k, it is a buyer-friendly upgrade path, but two 3x2s generate €54k, so each 6x2 conversion reduces theoretical max yield by €4k. Exclusive and non-exclusive networking options are also mutually exclusive. The model assumes the highest-revenue combinations for mutually exclusive options." />;
     }
      
     function CatalogueTable({ title, products, tableNote }) {
