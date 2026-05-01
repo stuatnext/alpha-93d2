@@ -1,0 +1,1883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>NEXTPredict 2026 Commercial Strategy</title>
+  
+  <!-- Load Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Load React and ReactDOM -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  
+  <!-- Load Babel to compile JSX in the browser -->
+  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body { background-color: #111111; color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #1a1a1a; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #ffcf33; }
+    .table-container { -webkit-overflow-scrolling: touch; }
+    .slide-enter { animation: fadeIn 0.5s ease-out forwards; }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    // --- ICON COMPONENTS ---
+    const Icon = ({ p, className }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} dangerouslySetInnerHTML={{ __html: p }} />
+    );
+    const ChevronLeft = (props) => <Icon p='<path d="m15 18-6-6 6-6"/>' {...props} />;
+    const ChevronRight = (props) => <Icon p='<path d="m9 18 6-6-6-6"/>' {...props} />;
+    const Target = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>' {...props} />;
+    const ShieldCheck = (props) => <Icon p='<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>' {...props} />;
+    const TrendingUp = (props) => <Icon p='<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>' {...props} />;
+    const Users = (props) => <Icon p='<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' {...props} />;
+    const Layers = (props) => <Icon p='<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>' {...props} />;
+    const Package = (props) => <Icon p='<line x1="16.5" x2="7.5" y1="9.4" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/>' {...props} />;
+    const Award = (props) => <Icon p='<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>' {...props} />;
+    const Clock = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>' {...props} />;
+    const AlertCircle = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>' {...props} />;
+    const CheckCircle2 = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>' {...props} />;
+    const FileText = (props) => <Icon p='<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>' {...props} />;
+    const PieChart = (props) => <Icon p='<path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/>' {...props} />;
+    const ArrowRight = (props) => <Icon p='<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>' {...props} />;
+    const Diamond = (props) => <Icon p='<path d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.42 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.42 0Z"/>' {...props} />;
+    const CheckSquare = (props) => <Icon p='<rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/>' {...props} />;
+    const XCircle = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/>' {...props} />;
+    const TicketIcon = (props) => <Icon p='<path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/>' {...props} />;
+    const Calculator = (props) => <Icon p='<rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/>' {...props} />;
+    const Globe = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/>' {...props} />;
+    const Activity = (props) => <Icon p='<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>' {...props} />;
+    const Lock = (props) => <Icon p='<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>' {...props} />;
+    const TrendingDown = (props) => <Icon p='<polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/>' {...props} />;
+
+    // Utility for conditional classes
+    function cn(...classes) {
+      return classes.filter(Boolean).join(' ');
+    }
+
+    // --- SLIDES ---
+
+    function SlideTitle() {
+      return (
+        <div className="flex-1 flex flex-col items-center justify-center text-center slide-enter">
+          <div className="mb-10 relative">
+            <div className="absolute inset-0 bg-[#ffcf33] blur-[80px] opacity-20 rounded-full"></div>
+            <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-[#ffcf33] to-amber-600 rounded-2xl flex items-center justify-center mx-auto shadow-2xl shadow-[#ffcf33]/20 mb-6 relative z-10">
+              <Globe className="w-10 h-10 md:w-12 md:h-12 text-[#232323]" />
+            </div>
+          </div>
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 md:mb-6 text-white px-2">
+            NEXTPredict 2026<br />
+            <span className="text-[#ffcf33]">Commercial Strategy</span>
+          </h1>
+          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 px-4">
+            Institutionalising prediction markets. Securing the Manhattan premium.
+          </p>
+        </div>
+      );
+    }
+
+    function SlideExecutiveSummary() {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2 text-white">Executive Summary</h2>
+          <p className="text-gray-400 mb-6 md:mb-8 text-base md:text-lg">Establishing the definitive global summit for prediction markets.</p>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 flex-1">
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 flex flex-col hover:border-[#ffcf33]/50 transition-colors">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-[#ffcf33]/10 rounded-lg flex items-center justify-center border border-[#ffcf33]/30">
+                  <ShieldCheck className="w-5 h-5 text-[#ffcf33]" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-white">Category Leadership</h3>
+              </div>
+              <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-4">
+                NEXTPredict is a first-year event, but it is <strong>not a small community meetup</strong>. It is positioned as the premium, institutional-grade category leader covering prediction markets, information markets, event-driven derivatives, and market structure.
+              </p>
+            </div>
+
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 flex flex-col hover:border-[#ffcf33]/50 transition-colors">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-[#ffcf33]/10 rounded-lg flex items-center justify-center border border-[#ffcf33]/30">
+                  <Package className="w-5 h-5 text-[#ffcf33]" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-white">Premium Valuation</h3>
+              </div>
+              <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-4">
+                Our pricing structure is ambitious and must be defended by enterprise-scale delivery, operator density, NYC market context, and category scarcity. We are pricing for institutional B2B budgets, not community-event attendance.
+              </p>
+            </div>
+
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 flex flex-col hover:border-[#ffcf33]/50 transition-colors">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-[#ffcf33]/10 rounded-lg flex items-center justify-center border border-[#ffcf33]/30">
+                  <Target className="w-5 h-5 text-[#ffcf33]" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-white">Commercial Realism</h3>
+              </div>
+              <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-4">
+                Because this is a launch event, our sell-through assumptions must be conservative. We are modeling a <strong>weighted forecast of €1.645M base</strong> against a maximum catalogue inventory of €2.89M.
+              </p>
+            </div>
+
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 flex flex-col hover:border-[#ffcf33]/50 transition-colors">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-[#ffcf33]/10 rounded-lg flex items-center justify-center border border-[#ffcf33]/30">
+                  <TrendingUp className="w-5 h-5 text-[#ffcf33]" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-white">Integrated Revenue & Ticketing</h3>
+              </div>
+              <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-4">
+                Ticket revenue is marketing-led, not sponsorship-sales-led. The website, campaign calendar, speaker/content momentum, partner amplification, and public price deadlines are the core conversion drivers. Ticket revenue is modelled on a <strong>1,000-paid target</strong>, generating approximately €1.20M–€1.25M net. The 900-paid model should be treated as downside sensitivity only, while the €750k net figure remains the protected floor.
+              </p>
+            </div>
+          </div>
+          
+          <div className="mt-4 p-4 bg-[#111] border border-[#333] rounded-xl text-xs md:text-sm text-gray-500 italic text-center shrink-0">
+            This framework builds on Will’s original commercial draft, including the sponsorship catalogue, competitor research, commercial positioning, and 16-week sales timeline. The additional work here converts that draft into a board-ready commercial framework: revenue modelling, ticket strategy, margin protection, GTM execution, pipeline quality, governance, and approval controls.
+          </div>
+        </div>
+      );
+    }
+
+    function SlideCommercialModel() {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Commercial Model</h2>
+          <p className="text-gray-400 mb-6 md:mb-8 text-base md:text-lg">Key principles driving the 2026 forecast.</p>
+          
+          <div className="space-y-4">
+            <div className="bg-[#232323] border border-[#444] rounded-xl p-4 md:p-5 flex gap-4">
+              <div className="mt-1"><AlertCircle className="w-5 h-5 text-[#ffcf33]" /></div>
+              <div>
+                <h4 className="text-white font-bold mb-1">First-Year Sell-Through Discount</h4>
+                <p className="text-gray-400 text-sm">As a launch event, we cannot project historic renewal rates. We are deliberately suppressing our forecast models to 50–60% sell-through to provide a realistic base, rather than inflating pipeline optimism.</p>
+              </div>
+            </div>
+
+            <div className="bg-[#232323] border border-[#444] rounded-xl p-4 md:p-5 flex gap-4">
+              <div className="mt-1"><Target className="w-5 h-5 text-[#ffcf33]" /></div>
+              <div>
+                <h4 className="text-white font-bold mb-1">Max Ceiling vs. Target Revenue</h4>
+                <p className="text-gray-400 text-sm">The B2B Partnership Maximum Revenue Ceiling is <strong className="text-[#ffcf33]">€2,897,800</strong>. This represents 100% inventory sold at list price. It is our capacity limit, not our forecast. Our official sales stretch target is <strong className="text-[#ffcf33]">€1.8M</strong>.</p>
+              </div>
+            </div>
+
+            <div className="bg-[#232323] border border-[#444] rounded-xl p-4 md:p-5 flex gap-4">
+              <div className="mt-1"><Users className="w-5 h-5 text-[#ffcf33]" /></div>
+              <div>
+                <h4 className="text-white font-bold mb-1">Operator Density Priority</h4>
+                <p className="text-gray-400 text-sm">If delivered, the 40% operator-density target creates the pricing leverage required to defend premium sponsor packages. We are slanting complimentary and hosted passes to build this core audience, relying on suppliers to fund the ecosystem via premium B2B packages.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideBreakEven() {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Break-Even Reality</h2>
+          <p className="text-gray-400 mb-6 md:mb-8 text-base md:text-lg">Establishing our financial floor and projecting fully-loaded costs.</p>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6 flex-1">
+            
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 shadow-xl flex flex-col">
+              <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6 text-white">The Cost Base</h3>
+              
+              <div className="space-y-4 mb-6 md:mb-8">
+                <div className="flex justify-between items-center pb-2 border-b border-[#444]">
+                  <span className="text-gray-400 text-sm md:text-base">Confirmed Direct Event Cost</span>
+                  <span className="text-white font-mono text-sm md:text-base">€1,535,000</span>
+                </div>
+                <div className="flex justify-between items-center pb-2 border-b border-[#444]">
+                  <span className="text-gray-400 text-sm md:text-base">Salary Allocation Assumption</span>
+                  <span className="text-gray-400 font-mono text-sm md:text-base italic">c.€450,000</span>
+                </div>
+                <div className="flex justify-between items-center pb-2 border-b border-[#444]">
+                  <span className="text-gray-400 text-sm md:text-base">Commission Estimate (6.5% of Base)</span>
+                  <span className="text-gray-400 font-mono text-sm md:text-base italic">c.€107,000</span>
+                </div>
+                <div className="flex justify-between items-center pt-2">
+                  <span className="text-rose-400 font-bold uppercase tracking-wider text-xs md:text-sm">Est. Fully-Loaded Cost Base</span>
+                  <span className="text-rose-400 font-bold text-lg md:text-xl font-mono">c.€2,092,000</span>
+                </div>
+              </div>
+              
+              <div className="bg-[#111] p-4 rounded-xl border border-[#444] mt-auto">
+                <p className="text-[11px] md:text-xs text-gray-400 leading-relaxed">
+                  Salary allocation remains subject to final confirmation. For planning purposes, the model assumes c.€450k salary allocation and commission at c.6.5% of B2B partnership revenue. At the base partnership forecast of €1.645M, projected commission is c.€107k. This creates an estimated fully loaded cost base of c.€2.09M. Final confirmation required from Desi / Maria before formal margin approval.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 shadow-xl flex flex-col">
+              <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6 text-white">The Required Revenue Math</h3>
+              
+              <div className="overflow-x-auto w-full table-container flex-1">
+                <table className="w-full text-left text-xs md:text-sm">
+                  <thead className="border-b border-[#444] text-gray-400">
+                    <tr>
+                      <th className="pb-2">Scenario</th>
+                      <th className="pb-2 text-right">Net Ticket Revenue</th>
+                      <th className="pb-2 text-right">B2B Revenue</th>
+                      <th className="pb-2 text-right font-bold text-[#ffcf33]">Total Revenue</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#444] text-gray-300">
+                    <tr>
+                      <td className="py-3">Protected Floor</td>
+                      <td className="py-3 font-mono text-right">€750,000</td>
+                      <td className="py-3 font-mono text-right">€1,645,530</td>
+                      <td className="py-3 font-mono text-right font-bold text-white">€2,395,530</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 text-rose-300">Downside Ticket Sensitivity</td>
+                      <td className="py-3 font-mono text-right text-rose-300">€1,100,000</td>
+                      <td className="py-3 font-mono text-right">€1,645,530</td>
+                      <td className="py-3 font-mono text-right font-bold text-rose-300">€2,745,530</td>
+                    </tr>
+                    <tr className="bg-[#ffcf33]/5">
+                      <td className="py-3 text-[#ffcf33] font-bold">Modelled Target</td>
+                      <td className="py-3 font-mono text-right text-[#ffcf33]">€1,225,000</td>
+                      <td className="py-3 font-mono text-right text-[#ffcf33]">€1,645,530</td>
+                      <td className="py-3 font-mono text-right font-bold text-[#ffcf33]">€2,870,530</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 text-white font-bold">Stretch Case</td>
+                      <td className="py-3 font-mono text-right text-gray-300">€1,225,000</td>
+                      <td className="py-3 font-mono text-right text-gray-300">€1,800,000</td>
+                      <td className="py-3 font-mono text-right font-bold text-white">€3,025,000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div className="mt-4 p-3 bg-emerald-900/20 border border-emerald-500/30 rounded-lg">
+                <p className="text-[10px] text-gray-400 italic">
+                  *Ticket upside should not be treated as free profit. It protects the model against sponsorship timing risk, ticket-yield leakage, FX movement, refunds, and late-stage discounting.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      );
+    }
+
+    function SlideTicketing() {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Ticketing Model</h2>
+          <p className="text-gray-400 mb-6 text-base md:text-lg">A structured pricing ladder balancing volume targets with premium institutional yield.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6">
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 flex flex-col">
+              <div className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">The Decoy</div>
+              <h3 className="text-lg md:text-xl font-bold text-gray-300 mb-1">Conference Only</h3>
+              <div className="text-[10px] text-gray-500 mb-3">Accessible entry tier</div>
+              <div className="space-y-1.5 mb-3 flex-1">
+                <div className="flex justify-between text-xs"><span className="text-[#ffcf33] font-medium">Founder / Launch*</span><span className="text-[#ffcf33] font-mono">$699</span></div>
+                <div className="flex justify-between text-xs"><span className="text-gray-400">Early</span><span className="text-gray-300 font-mono">$799</span></div>
+                <div className="flex justify-between text-xs"><span className="text-gray-400">Standard</span><span className="text-gray-300 font-mono">$999</span></div>
+                <div className="flex justify-between text-xs"><span className="text-gray-400">Late</span><span className="text-gray-300 font-mono">$1,199</span></div>
+              </div>
+              <div className="text-[10px] text-gray-600 border-t border-[#444] pt-2">*Founder allocation: Max 50 tickets</div>
+            </div>
+
+            <div className="bg-[#232323] border border-[#ffcf33]/50 rounded-2xl p-5 flex flex-col relative overflow-hidden shadow-lg shadow-[#ffcf33]/10">
+              <div className="absolute top-0 left-0 w-full h-1 bg-[#ffcf33]"></div>
+              <div className="text-[10px] font-bold text-[#ffcf33] uppercase tracking-widest mb-2">The Revenue Engine</div>
+              <h3 className="text-lg md:text-xl font-bold text-white mb-1">Full Event</h3>
+              <div className="text-[10px] text-[#ffcf33]/70 mb-3">Includes evening networking</div>
+              <div className="space-y-1.5 mb-3 flex-1">
+                <div className="flex justify-between text-xs"><span className="text-[#ffcf33] font-medium">Founder / Launch*</span><span className="text-[#ffcf33] font-mono">$1,099</span></div>
+                <div className="flex justify-between text-xs"><span className="text-gray-400">Early</span><span className="text-gray-300 font-mono">$1,199</span></div>
+                <div className="flex justify-between text-xs"><span className="text-gray-400">Standard</span><span className="text-gray-300 font-mono">$1,499</span></div>
+                <div className="flex justify-between text-xs"><span className="text-gray-400">Late</span><span className="text-gray-300 font-mono">$1,899</span></div>
+              </div>
+              <div className="text-[10px] text-[#ffcf33]/60 border-t border-[#ffcf33]/30 pt-2">*Founder allocation: Max 150 tickets</div>
+            </div>
+
+            <div className="bg-[#232323] border border-gray-600 rounded-2xl p-5 flex flex-col relative overflow-hidden">
+              <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">The Scarcity Tier</div>
+              <h3 className="text-lg md:text-xl font-bold text-white mb-1">VIP Pass</h3>
+              <div className="text-[10px] text-gray-500 mb-3">Margin generation</div>
+              <div className="space-y-1.5 mb-3 flex-1">
+                <div className="flex justify-between text-xs"><span className="text-[#ffcf33] font-medium">Founder / Launch*</span><span className="text-[#ffcf33] font-mono">$2,299</span></div>
+                <div className="flex justify-between text-xs"><span className="text-gray-400">Early</span><span className="text-white font-mono">$2,499</span></div>
+                <div className="flex justify-between text-xs"><span className="text-gray-400">Standard</span><span className="text-white font-mono">$2,799</span></div>
+                <div className="flex justify-between text-xs"><span className="text-gray-400">Late</span><span className="text-white font-mono">$2,999</span></div>
+              </div>
+              <div className="text-[10px] text-gray-600 border-t border-[#444] pt-2">*Founder allocation: Max 20 tickets</div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-2">
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 flex flex-col">
+              <h3 className="text-base md:text-lg font-semibold text-white mb-4">Paid Volume Model — 1,000 Ticket Target</h3>
+              <div className="overflow-x-auto w-full table-container">
+                <table className="w-full text-left text-xs md:text-sm">
+                  <thead className="border-b border-[#444] text-gray-400">
+                    <tr>
+                      <th className="pb-2">Pass Type</th>
+                      <th className="pb-2 text-right">Paid Vol.</th>
+                      <th className="pb-2 text-right">Blended Price</th>
+                      <th className="pb-2 text-right">Gross Revenue</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#444] text-gray-300">
+                    <tr><td className="py-2">Conference Only</td><td className="py-2 font-mono text-right">200</td><td className="py-2 font-mono text-right">~$999</td><td className="py-2 font-mono text-right">~$200,000</td></tr>
+                    <tr><td className="py-2">Full Event</td><td className="py-2 font-mono text-right">700</td><td className="py-2 font-mono text-right">~$1,499</td><td className="py-2 font-mono text-right">~$1,049,000</td></tr>
+                    <tr><td className="py-2">VIP</td><td className="py-2 font-mono text-right">100</td><td className="py-2 font-mono text-right">~$2,799</td><td className="py-2 font-mono text-right">~$280,000</td></tr>
+                    <tr className="bg-[#111]">
+                      <td className="py-2 font-bold text-white uppercase text-[10px]">Total Paid</td>
+                      <td className="py-2 font-mono text-right font-bold text-white">1,000</td>
+                      <td className="py-2 font-mono text-right text-gray-500">—</td>
+                      <td className="py-2 font-mono text-right font-bold text-[#ffcf33]">~$1.53M</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div className="mt-4 p-2 bg-[#ffcf33]/10 border border-[#ffcf33]/20 rounded text-[10px] text-[#ffcf33] font-medium text-center">
+                1,000 paid tickets is the commercial target. 900 paid tickets is a downside sensitivity, not the plan.
+              </div>
+            </div>
+
+            <div className="bg-[#111] border border-[#444] rounded-2xl p-5 shadow-inner flex flex-col relative">
+              <h3 className="text-base md:text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                <TrendingUp className="w-5 h-5 text-[#ffcf33]" />
+                Gross Paid to Net Revenue Bridge
+              </h3>
+              
+              <div className="space-y-2 text-xs md:text-sm font-mono mb-4">
+                <div className="text-[10px] uppercase text-gray-500 font-bold mb-1">Target Model (1,000 Paid)</div>
+                <div className="flex justify-between py-1 text-gray-300">
+                  <span>Gross Ticket Revenue</span>
+                  <span>~$1.53M USD</span>
+                </div>
+                <div className="flex items-center gap-2 py-1 text-gray-400">
+                  <ArrowRight className="w-4 h-4" /> <em>Est. EUR Equivalent</em>
+                  <span className="ml-auto">~€1.42M</span>
+                </div>
+                <div className="flex justify-between py-1 text-rose-400/80">
+                  <span className="truncate pr-4">Less: Fees, FX, discounts, early mix, refunds</span>
+                  <span>(~€170k-€220k)</span>
+                </div>
+                <div className="flex justify-between py-1.5 border-t border-[#444] mt-1 font-bold text-[#ffcf33]">
+                  <span>Net Ticket Target</span>
+                  <span>~€1.20M–€1.25M</span>
+                </div>
+              </div>
+              
+              <div className="space-y-1.5 text-xs font-mono border-t border-[#333] pt-3">
+                <div className="text-[10px] uppercase text-gray-500 font-bold mb-1">Downside Sensitivity (900 Paid)</div>
+                <div className="flex justify-between text-gray-400">
+                  <span>Gross Revenue</span>
+                  <span>~$1.38M USD</span>
+                </div>
+                <div className="flex justify-between text-rose-300 font-bold">
+                  <span>Net Downside Target</span>
+                  <span>~€1.10M</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p className="text-[10px] text-gray-500 italic px-2">Founder pricing is a launch momentum tool, not a discounting strategy. It must be visibly capped by quantity and deadline. €1.20M–€1.25M net is the modelled ticket target. €1.1M net is the downside sensitivity. €750k remains the protected floor.</p>
+        </div>
+      );
+    }
+
+    function SlideMarketingLedTicketing() {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Marketing-Led Ticket Conversion Strategy</h2>
+          <p className="text-gray-400 mb-6 md:mb-8 text-base md:text-lg">Ticket sales are driven by public pricing, website conversion, campaign timing, and perceived market momentum — not by sponsorship sales reps.</p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6">
+            <div className="flex flex-col gap-6">
+              <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 flex flex-col shadow-lg">
+                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                  <Globe className="w-5 h-5 text-[#ffcf33]" />
+                  The Marketing Mandate
+                </h3>
+                <ul className="space-y-3 text-sm text-gray-300">
+                  <li className="flex gap-2"><span className="text-[#ffcf33] mt-0.5">•</span> Ticket sales are marketing-owned, not sponsorship-sales-owned.</li>
+                  <li className="flex gap-2"><span className="text-[#ffcf33] mt-0.5">•</span> The website is the single source of truth for ticket pricing.</li>
+                  <li className="flex gap-2"><span className="text-[#ffcf33] mt-0.5">•</span> Urgency must be visible to the buyer on-site, in emails, and in campaign messaging.</li>
+                  <li className="flex gap-2"><span className="text-[#ffcf33] mt-0.5">•</span> Every price increase must be public, deadline-based, allocation-based, or campaign-calendar-led.</li>
+                  <li className="flex gap-2"><span className="text-[#ffcf33] mt-0.5">•</span> Pricing must not appear arbitrary, negotiable, or improvised.</li>
+                  <li className="flex gap-2"><span className="text-[#ffcf33] mt-0.5">•</span> The objective is to create buying pressure without making the event feel gimmicky or discounted.</li>
+                  <li className="flex gap-2"><span className="text-[#ffcf33] mt-0.5">•</span> Sales teams may reference public ticket deadlines, but they do not control ticket pricing, ticket discounts, or ticket offers.</li>
+                </ul>
+              </div>
+
+              <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 flex flex-col shadow-lg">
+                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                  <Activity className="w-5 h-5 text-emerald-400" />
+                  Public Price Movement Mechanics
+                </h3>
+                <ul className="space-y-2 text-sm text-gray-400 mb-4">
+                  <li>• The website should show the current active price.</li>
+                  <li>• The website may show the next scheduled price increase.</li>
+                  <li>• Campaigns use "Prices increase by $100 next week" only when the website reflects that same price movement.</li>
+                  <li>• The buyer must never feel like pricing is arbitrary or negotiable.</li>
+                  <li>• Price changes should be pre-planned and controlled by Marketing / Commercial.</li>
+                </ul>
+                <div className="bg-[#111] p-4 rounded-xl border border-[#333]">
+                  <div className="text-[10px] text-gray-500 uppercase tracking-widest mb-2 font-bold">Example Campaign Messaging</div>
+                  <div className="space-y-1 text-xs text-[#ffcf33] font-mono">
+                    <div>"Founder pricing ends Friday"</div>
+                    <div>"Only 38 Founder tickets remaining"</div>
+                    <div>"Full Event price increases by $100 on Monday"</div>
+                    <div>"Early pricing closes in 72 hours"</div>
+                    <div>"VIP allocation is limited"</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-[#111] border border-[#ffcf33]/50 rounded-2xl p-5 md:p-6 shadow-xl relative overflow-hidden flex flex-col">
+              <div className="absolute top-0 right-0 w-2 h-full bg-[#ffcf33]"></div>
+              <h3 className="text-lg font-bold text-[#ffcf33] mb-4 flex items-center gap-2">
+                <TrendingUp className="w-5 h-5" />
+                $100 Step-Ups: Public Urgency, Not Ad Hoc Discounting
+              </h3>
+              <p className="text-sm text-gray-300 mb-4">
+                $100 increases can be effective because they give marketing regular urgency moments. These increases must be visible on the site and reflected in campaign copy. Do not publish a confusing nine-tier ticket table. Keep the pricing architecture simple (Founder, Early, Standard, Late) and use $100 step-ups tactically between the major bands where appropriate.
+              </p>
+              
+              <div className="flex-1 bg-[#232323] rounded-xl border border-[#444] p-4 flex flex-col">
+                <div className="text-[10px] text-gray-500 uppercase tracking-widest mb-3 font-bold border-b border-[#333] pb-2">Full Event: Campaign Step-Up Example</div>
+                <div className="space-y-2 text-xs md:text-sm font-mono flex-1">
+                  <div className="flex justify-between items-center text-[#ffcf33]"><span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#ffcf33]"></div>Founder / Launch</span><span>$1,099</span></div>
+                  <div className="flex justify-between items-center text-white"><span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-white"></div>Early opens</span><span>$1,199</span></div>
+                  <div className="flex justify-between items-center text-gray-400 pl-3"><span>Early step-up</span><span>$1,299</span></div>
+                  <div className="flex justify-between items-center text-gray-400 pl-3"><span>Early final call</span><span>$1,399</span></div>
+                  <div className="flex justify-between items-center text-white"><span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-white"></div>Standard</span><span>$1,499</span></div>
+                  <div className="flex justify-between items-center text-gray-400 pl-3"><span>Standard step-up</span><span>$1,599</span></div>
+                  <div className="flex justify-between items-center text-gray-400 pl-3"><span>Standard final call</span><span>$1,699</span></div>
+                  <div className="flex justify-between items-center text-rose-300"><span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-rose-400"></div>Late</span><span>$1,899</span></div>
+                </div>
+                
+                <div className="mt-4 pt-3 border-t border-[#333] text-[10px] text-gray-500 italic">
+                  *These are public price movements controlled through the website and campaign calendar. Marketing owns the timing and campaign execution; Commercial leadership owns approval of the pricing rules. The buyer must never feel like pricing is arbitrary or negotiable.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlidePartnershipCeiling() {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6">Partnership Revenue Ceiling</h2>
+          <p className="text-gray-400 mb-6 md:mb-8 text-base md:text-lg">The total addressable inventory value for NEXTPredict 2026. This is capacity, not a forecast.</p>
+          
+          <div className="bg-[#232323] border border-[#444] rounded-2xl p-6 md:p-8 shadow-xl relative overflow-hidden group max-w-4xl mx-auto w-full">
+            <div className="absolute top-0 left-0 w-2 h-full bg-[#ffcf33]/50"></div>
+            
+            <div className="space-y-6">
+              <div className="flex justify-between items-center pb-4 border-b border-[#444]">
+                <div className="flex items-center gap-3">
+                  <Package className="w-6 h-6 text-gray-400" />
+                  <span className="text-lg md:text-xl text-white">General Branding, Utility & Rooms</span>
+                </div>
+                <span className="text-xl md:text-2xl font-mono text-[#ffcf33]">€1,434,800</span>
+              </div>
+              
+              <div className="flex justify-between items-center pb-4 border-b border-[#444]">
+                <div className="flex items-center gap-3">
+                  <FileText className="w-6 h-6 text-gray-400" />
+                  <span className="text-lg md:text-xl text-white">Content & Stages</span>
+                </div>
+                <span className="text-xl md:text-2xl font-mono text-[#ffcf33]">€1,063,000</span>
+              </div>
+              
+              <div className="flex justify-between items-center pb-4 border-b border-[#444]">
+                <div className="flex items-center gap-3">
+                  <Users className="w-6 h-6 text-gray-400" />
+                  <span className="text-lg md:text-xl text-white">NEXTworking / Networking</span>
+                </div>
+                <span className="text-xl md:text-2xl font-mono text-[#ffcf33]">€400,000</span>
+              </div>
+
+              <div className="flex justify-between items-center pt-4 bg-[#ffcf33]/10 p-4 rounded-xl border border-[#ffcf33]/30 mt-8">
+                <span className="text-lg md:text-2xl font-black text-white uppercase tracking-wider">Total Maximum Ceiling</span>
+                <span className="text-2xl md:text-4xl font-black font-mono text-[#ffcf33] drop-shadow-md">€2,897,800</span>
+              </div>
+            </div>
+            
+            <div className="mt-6 space-y-2">
+              <p className="text-[10px] text-gray-500 italic text-center">
+                *Calculated against full list price at 100% sell-through. Mutual exclusivity limits apply.
+              </p>
+              <p className="text-[10px] text-gray-500 italic text-center">
+                *Exclusive and non-exclusive networking inventory is mutually exclusive. The €400k NEXTworking ceiling assumes exclusive packages take priority. Non-exclusive inventory is fallback inventory only and is excluded from the modelled ceiling unless an exclusive package does not sell.
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideWeightedForecast() {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Weighted Partnership Forecast</h2>
+          <p className="text-gray-400 mb-6 md:mb-8 text-base md:text-lg">Applying first-year commercial realism to our inventory capacity.</p>
+          
+          <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 shadow-xl relative overflow-hidden group mb-8">
+            <div className="absolute top-0 left-0 w-2 h-full bg-[#ffcf33]"></div>
+            <h3 className="text-base md:text-lg font-semibold text-white mb-4 ml-2">Base Working Forecast (Recommended)</h3>
+            <div className="overflow-x-auto w-full table-container">
+              <table className="w-full text-left text-sm min-w-[500px]">
+                <thead className="border-b border-[#444] text-gray-400 uppercase tracking-wider text-xs">
+                  <tr>
+                    <th className="pb-3 font-medium pl-2">Category</th>
+                    <th className="pb-3 font-medium text-right">Target Sell-Through</th>
+                    <th className="pb-3 font-medium text-right pr-2">Projected Revenue</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[#444]">
+                  <tr>
+                    <td className="py-3 pl-2 text-gray-300">General Branding, Utility & Rooms</td>
+                    <td className="py-3 text-[#ffcf33] font-mono text-right">60%</td>
+                    <td className="py-3 pr-2 text-white font-mono text-right">€860,880</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pl-2 text-gray-300">Content & Stages</td>
+                    <td className="py-3 text-[#ffcf33] font-mono text-right">55%</td>
+                    <td className="py-3 pr-2 text-white font-mono text-right">€584,650</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pl-2 text-gray-300">NEXTworking / Networking</td>
+                    <td className="py-3 text-[#ffcf33] font-mono text-right">50%</td>
+                    <td className="py-3 pr-2 text-white font-mono text-right">€200,000</td>
+                  </tr>
+                  <tr className="bg-[#111] font-bold border-t border-[#444]">
+                    <td className="py-4 pl-2 text-[#ffcf33] uppercase tracking-tighter" colSpan="2">Total Base Working Forecast</td>
+                    <td className="py-4 pr-2 text-[#ffcf33] font-mono text-right text-lg">€1,645,530</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <h3 className="text-base md:text-lg font-semibold text-white mb-4">Sensitivity Analysis</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-[#111] border border-[#444] rounded-xl p-4">
+              <div className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Conservative</div>
+              <div className="text-[10px] text-gray-500 mb-3">50% General / 45% Content / 40% Net</div>
+              <div className="text-xl font-bold font-mono text-white">€1,355,750</div>
+            </div>
+            <div className="bg-[#ffcf33]/10 border border-[#ffcf33]/50 rounded-xl p-4 ring-1 ring-[#ffcf33]/20">
+              <div className="text-xs font-bold text-[#ffcf33] uppercase tracking-widest mb-1">Base Case</div>
+              <div className="text-[10px] text-gray-500 mb-3">As Modelled Above</div>
+              <div className="text-xl font-bold font-mono text-[#ffcf33]">€1,645,530</div>
+            </div>
+            <div className="bg-[#111] border border-[#444] rounded-xl p-4">
+              <div className="text-xs font-bold text-white uppercase tracking-widest mb-1">Optimistic</div>
+              <div className="text-[10px] text-gray-500 mb-3">70% General / 65% Content / 65% Net</div>
+              <div className="text-xl font-bold font-mono text-white">€1,955,310</div>
+            </div>
+          </div>
+
+          <div className="mt-6 bg-[#ffcf33]/10 border border-[#ffcf33]/30 rounded-xl p-4 flex items-center justify-between">
+            <div>
+              <span className="text-sm font-bold text-[#ffcf33] block mb-1">Official Sales Target (Stretch)</span>
+              <span className="text-xs text-gray-400">The €1.8M stretch target is c.€154k above the weighted base forecast and requires early conversion of at least one six-figure package.</span>
+            </div>
+            <div className="font-mono font-bold text-[#ffcf33] text-xl ml-4">€1,800,000</div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideScorecard() {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Scorecard</h2>
+          <p className="text-gray-400 mb-6 md:mb-8 text-base md:text-lg">Integrating Sales and Marketing against operational exposure.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
+            <div className="bg-[#232323] border border-[#ffcf33]/30 rounded-2xl p-5 md:p-6 shadow-xl relative overflow-hidden flex flex-col">
+              <div className="absolute top-0 left-0 w-2 h-full bg-[#ffcf33]/60"></div>
+              <div className="flex items-center gap-3 mb-6 ml-2">
+                <div className="p-2 md:p-3 bg-[#ffcf33]/10 rounded-xl border border-[#ffcf33]/20">
+                  <TicketIcon className="w-5 h-5 md:w-6 md:h-6 text-[#ffcf33]" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-white">Marketing Revenue (Tickets)</h3>
+              </div>
+              <div className="space-y-4 ml-2 flex-1 text-sm">
+                <div className="flex justify-between items-center pb-2 border-b border-[#444]">
+                  <span className="text-gray-400">Protected Floor</span>
+                  <span className="font-mono text-white">€750,000 net</span>
+                </div>
+                <div className="flex justify-between items-center pb-2 border-b border-[#444]">
+                  <span className="text-rose-300">Downside Sensitivity <span className="text-[10px] text-gray-500">(900 paid)</span></span>
+                  <span className="font-mono text-rose-300">~€1,100,000 net</span>
+                </div>
+                <div className="flex justify-between items-center pt-1">
+                  <span className="text-[#ffcf33] font-bold">Modelled Target <span className="text-[10px] text-[#ffcf33]/70">(1,000 paid)</span></span>
+                  <span className="font-mono text-[#ffcf33] font-bold text-lg">~€1.20M–€1.25M net</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-[#232323] border border-[#ffcf33]/50 rounded-2xl p-5 md:p-6 shadow-xl relative overflow-hidden flex flex-col">
+              <div className="absolute top-0 left-0 w-2 h-full bg-[#ffcf33]"></div>
+              <div className="flex items-center gap-3 mb-6 ml-2">
+                <div className="p-2 md:p-3 bg-[#ffcf33]/20 rounded-xl border border-[#ffcf33]/40">
+                  <Award className="w-5 h-5 md:w-6 md:h-6 text-[#ffcf33]" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-white">Sales Revenue (B2B)</h3>
+              </div>
+              <div className="space-y-4 ml-2 flex-1 flex flex-col justify-center">
+                <div className="flex justify-between items-end pb-3 border-b border-[#444]">
+                  <div>
+                    <div className="text-xs md:text-sm text-gray-400 font-medium">Weighted Base</div>
+                  </div>
+                  <div className="text-xl md:text-2xl font-bold font-mono text-white">€1,645,530</div>
+                </div>
+                <div className="flex justify-between items-end pb-2">
+                  <div>
+                    <div className="text-xs md:text-sm text-[#ffcf33] font-bold">Official Stretch Target</div>
+                  </div>
+                  <div className="text-xl md:text-2xl font-bold font-mono text-[#ffcf33]">€1,800,000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+            <div className="lg:col-span-2 bg-[#111] border border-[#444] rounded-2xl p-5 shadow-inner">
+              <h3 className="text-sm font-semibold text-white mb-4">Commission Projection (Est. 6.5%)</h3>
+              <div className="space-y-3">
+                <div className="flex justify-between text-xs border-b border-[#333] pb-2">
+                  <span className="text-gray-400">Conservative (€1.35M)</span>
+                  <span className="font-mono text-white">~€88,124</span>
+                </div>
+                <div className="flex justify-between text-xs border-b border-[#333] pb-2 font-bold">
+                  <span className="text-[#ffcf33]">Base (€1.64M)</span>
+                  <span className="font-mono text-[#ffcf33]">~€106,959</span>
+                </div>
+                <div className="flex justify-between text-xs border-b border-[#333] pb-2">
+                  <span className="text-white">Stretch (€1.80M)</span>
+                  <span className="font-mono text-white">~€117,000</span>
+                </div>
+                <div className="flex justify-between text-[10px] text-gray-500 pt-1">
+                  <span>Full Ceiling (€2.89M)</span>
+                  <span className="font-mono">~€188,357</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-3 bg-[#111] border border-[#444] rounded-2xl p-5 shadow-inner relative overflow-hidden">
+              <h3 className="text-base md:text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                <Calculator className="w-5 h-5 text-[#ffcf33]" />
+                The Bottom Line Math (Indicative)
+              </h3>
+              
+              <div className="space-y-4 text-xs md:text-sm">
+                <div className="grid grid-cols-3 gap-2 border-b border-[#444] pb-2 text-gray-400 font-bold uppercase tracking-wider text-[10px]">
+                  <div>Scenario</div>
+                  <div className="text-right">Est. Cost Base</div>
+                  <div className="text-right text-[#ffcf33]">Indicative Margin</div>
+                </div>
+                
+                <div className="grid grid-cols-3 gap-2">
+                  <div className="text-gray-300">Protected Floor Rev (€2.39M)</div>
+                  <div className="text-right font-mono text-rose-400">~€2,092,000</div>
+                  <div className="text-right font-mono text-emerald-400 font-bold">~€304,000</div>
+                </div>
+                <div className="grid grid-cols-3 gap-2">
+                  <div className="text-rose-300">Downside Ticket Rev (€2.74M)</div>
+                  <div className="text-right font-mono text-rose-400">~€2,092,000</div>
+                  <div className="text-right font-mono text-emerald-400 font-bold">~€654,000</div>
+                </div>
+                <div className="grid grid-cols-3 gap-2">
+                  <div className="text-[#ffcf33] font-bold">Modelled Target Rev (€2.87M)</div>
+                  <div className="text-right font-mono text-rose-400">~€2,092,000</div>
+                  <div className="text-right font-mono text-emerald-400 font-bold">~€779,000</div>
+                </div>
+                <div className="grid grid-cols-3 gap-2">
+                  <div className="text-white font-bold">Stretch Rev (€3.02M)</div>
+                  <div className="text-right font-mono text-rose-400">~€2,102,000</div>
+                  <div className="text-right font-mono text-emerald-400 font-bold">~€923,000</div>
+                </div>
+              </div>
+              <p className="text-[10px] text-gray-500 mt-4 italic">
+                *Indicative planning numbers pending final salary and commission confirmation. Modelled Target assumes 1,000 paid tickets.
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideSalesRamp() {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Revenue Ramp</h2>
+          <p className="text-gray-400 mb-6 md:mb-8 text-base md:text-lg">De-Risking the Hockey Stick: Enterprise cash must be pulled forward from a named-account map.</p>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 flex-1">
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 shadow-xl flex flex-col">
+              <div className="flex items-center gap-3 mb-6">
+                <TrendingUp className="w-5 h-5 text-[#ffcf33]" />
+                <h3 className="text-lg font-bold text-white">Required Cumulative Pacing</h3>
+              </div>
+              
+              <div className="space-y-4 flex-1 relative border-l border-[#444] ml-4 pl-6 pb-2">
+                <div className="flex items-center gap-4 relative z-10 group">
+                  <div className="absolute -left-[31px] top-1 w-3 h-3 rounded-full bg-gray-500 border-2 border-[#111]"></div>
+                  <div className="w-16 text-xs text-gray-400 font-mono">Week 4</div>
+                  <div className="h-6 bg-[#111] rounded-r-md flex items-center px-2" style={{ width: '25%' }}><span className="text-xs text-gray-300 ml-2 font-mono">€150k-€250k</span></div>
+                </div>
+                
+                <div className="flex items-center gap-4 relative z-10 group">
+                  <div className="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-rose-500 border-4 border-[#111] shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
+                  <div className="w-16 text-xs font-bold text-rose-400 font-mono">Week 8</div>
+                  <div className="h-6 bg-rose-900/50 border border-rose-800/50 rounded-r-md flex items-center px-2" style={{ width: '45%' }}><span className="text-xs text-rose-200 ml-2 font-mono font-bold">€400k-€500k</span></div>
+                </div>
+                
+                <div className="flex items-center gap-4 relative z-10">
+                  <div className="absolute -left-[31px] top-1 w-3 h-3 rounded-full bg-gray-500 border-2 border-[#111]"></div>
+                  <div className="w-16 text-xs text-gray-400 font-mono">Week 12</div>
+                  <div className="h-6 bg-[#ffcf33]/20 border border-[#ffcf33]/30 rounded-r-md flex items-center px-2" style={{ width: '75%' }}><span className="text-xs text-[#ffcf33] ml-2 font-mono">€900k-€1.1M</span></div>
+                </div>
+                
+                <div className="flex items-center gap-4 relative z-10">
+                  <div className="absolute -left-[31px] top-1 w-3 h-3 rounded-full bg-emerald-500 border-2 border-[#111]"></div>
+                  <div className="w-16 text-xs font-bold text-emerald-400 font-mono">Week 16</div>
+                  <div className="h-6 bg-emerald-600/80 rounded-r-md flex items-center px-2" style={{ width: '100%' }}><span className="text-xs text-white ml-2 font-mono font-bold">€1.5M / €1.8M</span></div>
+                </div>
+              </div>
+
+              <div className="mt-6 space-y-3">
+                <div className="p-3 bg-[#ffcf33]/10 border border-[#ffcf33]/30 rounded-lg text-[10px] md:text-xs text-[#ffcf33]">
+                  <strong className="block mb-1">Sponsorship Week 8 Re-Evaluation:</strong> Target €400k–€500k closed or strongly committed. If only c.€100k is closed by Week 8, reassess stretch target before defensive discounting begins.
+                </div>
+                <div className="p-3 bg-[#111] border border-[#444] rounded-lg text-[10px] md:text-xs text-gray-400">
+                  <strong className="text-white block mb-1">Suggested Ticket Pacing:</strong> 25% sold by first major agenda/speaker push, 50% sold by mid-campaign, 75% sold before late pricing, 100% target by event week.
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-6">
+              <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 shadow-xl flex flex-col">
+                <h3 className="text-lg font-bold text-white mb-4">Pipeline Quality Layers</h3>
+                <div className="overflow-x-auto w-full table-container">
+                  <table className="w-full text-left text-xs md:text-sm">
+                    <thead className="bg-[#111] text-gray-400">
+                      <tr>
+                        <th className="p-2">Layer</th>
+                        <th className="p-2">Meaning</th>
+                        <th className="p-2 text-right">Target</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#444] text-gray-300">
+                      <tr>
+                        <td className="p-2 font-bold text-white">Target Account Universe</td>
+                        <td className="p-2">Companies we want to sell to</td>
+                        <td className="p-2 font-mono text-right">€8M–€10M</td>
+                      </tr>
+                      <tr>
+                        <td className="p-2 font-bold text-[#ffcf33]">Active Sales Pipeline</td>
+                        <td className="p-2">Accounts with outreach, meeting, proposal or live discussion</td>
+                        <td className="p-2 font-mono text-right text-[#ffcf33]">€3M–€4M</td>
+                      </tr>
+                      <tr>
+                        <td className="p-2 font-bold text-emerald-400">Qualified Close Pipeline</td>
+                        <td className="p-2">Real buyer, real budget, real package, real next step</td>
+                        <td className="p-2 font-mono text-right text-emerald-400">€2M–€2.5M</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p className="text-[10px] text-gray-500 mt-3 italic">
+                  After Week 8, pipeline coverage should shift from volume to close certainty: named close dates, procurement status, contract status, and decision-maker confirmation.
+                </p>
+              </div>
+
+              <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 shadow-xl flex flex-col flex-1">
+                <h3 className="text-lg font-bold text-white mb-4">Backwards-Built Target Model (€1.8M)</h3>
+                <div className="overflow-x-auto w-full table-container">
+                  <table className="w-full text-left text-xs md:text-sm">
+                    <thead className="bg-[#111] text-gray-400">
+                      <tr>
+                        <th className="p-2">Package Type</th>
+                        <th className="p-2">Quantity</th>
+                        <th className="p-2 text-right">Revenue</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#444] text-gray-300">
+                      <tr>
+                        <td className="p-2 font-bold text-white">1 major anchor package</td>
+                        <td className="p-2">1 x €250k–€350k</td>
+                        <td className="p-2 font-mono text-right">€250k–€350k</td>
+                      </tr>
+                      <tr>
+                        <td className="p-2 font-bold text-white">3 strategic packages</td>
+                        <td className="p-2">3 x €100k–€150k</td>
+                        <td className="p-2 font-mono text-right">€300k–€450k</td>
+                      </tr>
+                      <tr>
+                        <td className="p-2 font-bold text-white">8 mid/high packages</td>
+                        <td className="p-2">8 x €50k–€90k</td>
+                        <td className="p-2 font-mono text-right">€400k–€720k</td>
+                      </tr>
+                      <tr>
+                        <td className="p-2 font-bold text-white">12 smaller packages</td>
+                        <td className="p-2">12 x €20k–€40k</td>
+                        <td className="p-2 font-mono text-right">€240k–€480k</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p className="text-[10px] text-[#ffcf33] mt-3 font-medium">
+                  This revenue range is achievable only if the sales motion is built from named accounts, senior relationship routes, and weekly deal progression — not generic market interest.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideHighLevelGTMStrategy() {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-4">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">High-Level GTM Strategy: Category Capture, Not Event Promotion</h2>
+          <p className="text-gray-400 mb-6 text-sm md:text-base leading-relaxed">
+            The €1.8M sponsorship target will not be reached through passive marketing alone. Pipeline must be deliberately manufactured through category authority, named-account targeting, partner amplification, senior commercial outreach, and weekly execution discipline.
+          </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 flex-1 min-h-0">
+            <div className="lg:col-span-5 flex flex-col gap-4">
+              
+              <div className="bg-[#232323] border border-rose-900/50 rounded-xl p-4 md:p-5 flex flex-col shadow-lg relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-rose-500"></div>
+                <h3 className="text-base font-bold text-white mb-3 flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 text-rose-400" />
+                  Why Passive Marketing Is Not Enough
+                </h3>
+                <ul className="space-y-1.5 text-xs text-gray-300 mb-4">
+                  <li className="flex gap-2"><span className="text-rose-400">•</span> First-year event with no renewal base</li>
+                  <li className="flex gap-2"><span className="text-rose-400">•</span> New category with limited existing buyer intent</li>
+                  <li className="flex gap-2"><span className="text-rose-400">•</span> High sponsorship target relative to market maturity</li>
+                  <li className="flex gap-2"><span className="text-rose-400">•</span> No historical pipeline data to lean on</li>
+                  <li className="flex gap-2"><span className="text-rose-400">•</span> €1.8M target requires deliberate pipeline creation</li>
+                  <li className="flex gap-2"><span className="text-rose-400">•</span> Waiting for inbound demand is not a strategy</li>
+                  <li className="flex gap-2"><span className="text-rose-400">•</span> Standard promotion will not create six-figure ops</li>
+                  <li className="flex gap-2"><span className="text-rose-400">•</span> Pipeline quality matters more than lead volume</li>
+                </ul>
+                <div className="p-3 bg-rose-500/10 rounded border border-rose-500/20 text-[10px] md:text-[11px] text-rose-200">
+                  <strong>Commercial warning:</strong> Marketing can create awareness and urgency, but it cannot magically generate €5.4M of qualified sponsorship pipeline without a named-account GTM motion.
+                </div>
+              </div>
+
+              <div className="bg-[#111] border border-[#444] rounded-xl p-4 flex flex-col shadow-inner">
+                 <ul className="space-y-2 text-xs text-gray-300 font-medium">
+                   <li className="flex items-start gap-2"><Target className="w-4 h-4 text-[#ffcf33] shrink-0" /> €1.8M sponsorship target = minimum €5.4M qualified pipeline required at 3x coverage.</li>
+                   <li className="flex items-start gap-2"><Activity className="w-4 h-4 text-emerald-400 shrink-0" /> Pipeline must be measured by qualified value, not lead count.</li>
+                   <li className="flex items-start gap-2"><Users className="w-4 h-4 text-blue-400 shrink-0" /> Every Tier 1 account needs a named owner and next action.</li>
+                 </ul>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 flex-1">
+                <div className="bg-[#1a1a1a] border border-[#333] rounded-xl p-3 flex flex-col">
+                  <h4 className="text-[10px] uppercase font-bold text-gray-400 mb-2 tracking-wider">Weekly GTM Rhythm</h4>
+                  <ul className="space-y-1.5 text-[10px] text-gray-400 leading-tight">
+                    <li>- Weekly war room (Comm, Sales, Mktg, Content, Ptnrs)</li>
+                    <li>- Review pacing, pipeline, and account blockers</li>
+                    <li>- Separate real pipeline from vanity interest</li>
+                    <li>- Escalate stalled Tier 1 accounts</li>
+                    <li>- Turn every announcement into a sales trigger</li>
+                    <li>- Update the GTM account board</li>
+                  </ul>
+                </div>
+                <div className="bg-[#1a1a1a] border border-[#333] rounded-xl p-3 flex flex-col">
+                  <h4 className="text-[10px] uppercase font-bold text-gray-400 mb-2 tracking-wider">Qualification Rules</h4>
+                  <p className="text-[9px] text-gray-500 mb-1 leading-tight">A sponsorship opp only counts as qualified pipeline if it has:</p>
+                  <ul className="space-y-1 text-[10px] text-gray-400 leading-tight">
+                    <li>- Named account & buyer</li>
+                    <li>- Relevant category</li>
+                    <li>- Proposed package/value</li>
+                    <li>- Clear commercial need</li>
+                    <li>- Next action</li>
+                    <li>- Close probability & date</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+
+            <div className="lg:col-span-7 bg-[#ffcf33]/5 border border-[#ffcf33]/30 rounded-xl p-5 md:p-6 shadow-xl flex flex-col">
+              <h3 className="text-lg font-bold text-[#ffcf33] mb-4 flex items-center gap-2 border-b border-[#ffcf33]/20 pb-2">
+                <TrendingUp className="w-5 h-5" />
+                The GTM Engine
+              </h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-4 flex-1 overflow-y-auto">
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-[#ffcf33]/20 flex items-center justify-center shrink-0 text-[#ffcf33] font-bold text-xs">1</div>
+                  <div>
+                    <h4 className="text-xs font-bold text-white mb-0.5">Category Narrative</h4>
+                    <p className="text-[10px] text-gray-400 leading-tight">Position NEXTPredict as the institutional gathering point for prediction markets, market structure, trading, sports betting, data, regulation, and capital. The category story must make sponsors feel that this is where future market leadership is being defined.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-[#ffcf33]/20 flex items-center justify-center shrink-0 text-[#ffcf33] font-bold text-xs">2</div>
+                  <div>
+                    <h4 className="text-xs font-bold text-white mb-0.5">ICP & Buyer Committee Mapping</h4>
+                    <p className="text-[10px] text-gray-400 leading-tight">Define highest-value sponsor ICPs by segment: exchanges, operators, sportsbooks, trading firms, data, compliance, media, capital. Map the buyer committee: CEO/founder, CMO, commercial lead, policy lead, and IR.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-[#ffcf33]/20 flex items-center justify-center shrink-0 text-[#ffcf33] font-bold text-xs">3</div>
+                  <div>
+                    <h4 className="text-xs font-bold text-white mb-0.5">Named-Account War Room</h4>
+                    <p className="text-[10px] text-gray-400 leading-tight">Build a priority account list split into Tier 1, 2, and 3. Each account must have an owner, buyer hypothesis, target package, target value, relationship route, next action, probability, and close date. Not a generic lead list.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-[#ffcf33]/20 flex items-center justify-center shrink-0 text-[#ffcf33] font-bold text-xs">4</div>
+                  <div>
+                    <h4 className="text-xs font-bold text-white mb-0.5">Commercial-Led Outreach</h4>
+                    <p className="text-[10px] text-gray-400 leading-tight">Founder, Commercial Director, Sales Director, and senior relationships must open doors. This cannot sit only with standard campaign marketing or junior outbound. Six-figure packages need senior-to-senior selling.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-[#ffcf33]/20 flex items-center justify-center shrink-0 text-[#ffcf33] font-bold text-xs">5</div>
+                  <div>
+                    <h4 className="text-xs font-bold text-white mb-0.5">Offer Architecture</h4>
+                    <p className="text-[10px] text-gray-400 leading-tight">Clear entry points: Category ownership for market leaders, Thought leadership for firms shaping perception, Networking for private access, Media/content for visibility, and Lower-friction packages for new entrants testing the market.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-[#ffcf33]/20 flex items-center justify-center shrink-0 text-[#ffcf33] font-bold text-xs">6</div>
+                  <div>
+                    <h4 className="text-xs font-bold text-white mb-0.5">Content as Ammunition</h4>
+                    <p className="text-[10px] text-gray-400 leading-tight">Use speaker drops, agenda announcements, regulatory debates, reports, and podcasts as sales triggers. Every major content moment should create a reason for sales to re-engage priority accounts.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-[#ffcf33]/20 flex items-center justify-center shrink-0 text-[#ffcf33] font-bold text-xs">7</div>
+                  <div>
+                    <h4 className="text-xs font-bold text-white mb-0.5">Partner & Speaker Amplification</h4>
+                    <p className="text-[10px] text-gray-400 leading-tight">Every speaker, advisor, sponsor, media partner, and ecosystem voice is a distribution node. Their networks are part of the GTM engine. Build amplification requirements into speaker/sponsor comms.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-[#ffcf33]/20 flex items-center justify-center shrink-0 text-[#ffcf33] font-bold text-xs">8</div>
+                  <div>
+                    <h4 className="text-xs font-bold text-white mb-0.5">Public Momentum Signals</h4>
+                    <p className="text-[10px] text-gray-400 leading-tight">Use ticket price deadlines, Founder allocation updates, sponsor announcements, speaker reveals, and "who is attending" signals to make the market feel that NEXTPredict is becoming the room to be in.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 bg-[#232323] border border-[#444] rounded-xl p-4 shadow-inner flex flex-col shrink-0">
+                <h3 className="text-[11px] font-bold text-white mb-3 border-b border-[#333] pb-2 uppercase tracking-wider">Commercial Execution Ownership</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                  <div>
+                    <div className="text-[10px] font-bold text-[#ffcf33] uppercase mb-1">Sales Director</div>
+                    <ul className="space-y-1 text-[10px] text-gray-300 leading-tight">
+                      <li>• Named-account build</li>
+                      <li>• Package targeting</li>
+                      <li>• Outreach quality</li>
+                      <li>• Proposal movement</li>
+                      <li>• Weekly pipeline hygiene</li>
+                      <li>• Forecast accuracy</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-bold text-[#ffcf33] uppercase mb-1">Commercial Dir.</div>
+                    <ul className="space-y-1 text-[10px] text-gray-300 leading-tight">
+                      <li>• Pricing governance</li>
+                      <li>• Strategic deal shaping</li>
+                      <li>• Senior escalation</li>
+                      <li>• Discount approval</li>
+                      <li>• Margin protection</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-bold text-[#ffcf33] uppercase mb-1">Marketing</div>
+                    <ul className="space-y-1 text-[10px] text-gray-300 leading-tight">
+                      <li>• Ticket demand</li>
+                      <li>• Website conversion</li>
+                      <li>• Public urgency</li>
+                      <li>• Campaign calendar</li>
+                      <li>• Speaker/content amplification</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-bold text-[#ffcf33] uppercase mb-1">Content/Editorial</div>
+                    <ul className="space-y-1 text-[10px] text-gray-300 leading-tight">
+                      <li>• Category narrative</li>
+                      <li>• Speaker momentum</li>
+                      <li>• Agenda hooks</li>
+                      <li>• Thought-leadership ammunition</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="mt-4 p-3 bg-[#ffcf33] text-[#111] rounded-lg text-center font-bold text-sm shadow-md shrink-0">
+            Bottom line: This is not an event-promotion campaign. It is an account-based category-capture campaign. Marketing creates the market pressure. Sales leadership converts it into pipeline, proposals, and closed revenue.
+          </div>
+        </div>
+      );
+    }
+
+    function SlideCommercialControls() {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Commercial Controls</h2>
+          <p className="text-gray-400 mb-6 md:mb-8 text-base md:text-lg">Maintaining board-level visibility on margin protection, cashflow, and delivery.</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 flex-1">
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 shadow-xl flex flex-col">
+              <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2 border-b border-[#333] pb-2">
+                <TrendingUp className="w-5 h-5 text-[#ffcf33]" /> Pipeline & Cashflow
+              </h3>
+              <ul className="space-y-4 text-xs md:text-sm text-gray-300 flex-1">
+                <li><strong className="text-white block mb-0.5">Pipeline Quality:</strong> To hit €1.8M, maintain €2M–€2.5M in Qualified Close Pipeline (real buyer, budget, package, next step) extracted from a broader €8M–€10M target universe. After Week 8, shift entirely from volume to close certainty.</li>
+                <li><strong className="text-white block mb-0.5">Cashflow Discipline:</strong> Sponsorship contracts should target 50% upfront / 50% pre-event as standard. No major activation goes live without a signed contract and deposit received. Any sponsor requiring extended terms must be commercially approved. Ticket revenue pacing must be reviewed against cost-payment milestones.</li>
+                <li><strong className="text-white block mb-0.5">Signed vs Forecast Revenue:</strong> Weekly reporting will separate: Contracted & Invoiced, Contracted but not invoiced, Verbal / Procurement commit, Proposal issued, Qualified pipeline, and Unqualified opportunity.</li>
+              </ul>
+            </div>
+            
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 shadow-xl flex flex-col">
+              <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2 border-b border-[#333] pb-2">
+                <ShieldCheck className="w-5 h-5 text-[#ffcf33]" /> Delivery, Risk & Positioning
+              </h3>
+              <ul className="space-y-4 text-xs md:text-sm text-gray-300 flex-1">
+                <li><strong className="text-white block mb-0.5">Deliverable Ownership:</strong> Every sold package must be mapped to a delivery owner, operational deadline, production dependency, and client approval date. No package should be sold unless delivery feasibility is confirmed.</li>
+                <li><strong className="text-white block mb-0.5">Regulatory Sensitivity:</strong> Given the evolving legal status of prediction markets, all sponsor positioning, agenda language, and public messaging should avoid implying financial advice, regulated-product endorsement, or guaranteed market outcomes.</li>
+                <li><strong className="text-white block mb-0.5">Portfolio Positioning:</strong> NEXTPredict must be positioned as a distinct category event, not a cheaper or more expensive version of NEXT NYC. Sponsor conversations must cleanly separate institutional market structure from iGaming, protecting pricing integrity across the wider commercial portfolio.</li>
+                <li><strong className="text-white block mb-0.5">Sponsor ROI & 2027 Renewal:</strong> Year-one pricing must create a defensible renewal base. Premium partners should receive a post-event performance report covering attendance quality, content views, media exposure, and agreed deliverables completed.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideMarketingGovernance() {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Marketing Governance</h2>
+          <p className="text-gray-400 mb-6 md:mb-8 text-base md:text-lg">Ticket sales are driven by public pricing, website conversion, campaign timing, and perceived market momentum.</p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6">
+            <div className="flex flex-col gap-6">
+              <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 flex flex-col shadow-lg">
+                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                  <Globe className="w-5 h-5 text-[#ffcf33]" />
+                  The Marketing Mandate & KPIs
+                </h3>
+                <ul className="space-y-3 text-sm text-gray-300">
+                  <li className="flex gap-2"><span className="text-[#ffcf33] mt-0.5">•</span> Ticket sales are marketing-owned, not sponsorship-sales-owned.</li>
+                  <li className="flex gap-2"><span className="text-[#ffcf33] mt-0.5">•</span> The website is the single source of truth for ticket pricing.</li>
+                  <li className="flex gap-2"><span className="text-[#ffcf33] mt-0.5">•</span> Every price increase must be public, deadline-based, allocation-based, or campaign-calendar-led.</li>
+                  <li className="flex gap-2"><span className="text-[#ffcf33] mt-0.5">•</span> Sales teams may reference public ticket deadlines, but they do not control ticket pricing, ticket discounts, or ticket offers.</li>
+                </ul>
+                <div className="mt-4 pt-4 border-t border-[#333]">
+                  <p className="text-xs text-gray-400 mb-2 font-bold">Weekly Marketing Accountability:</p>
+                  <p className="text-xs text-gray-400 leading-relaxed">
+                    Paid tickets sold, net ticket revenue, blended ASP by pass type, website conversion rate, registration-page visits, email conversion rate, paid vs organic source mix, code usage, refunds/chargebacks, comp pass volume, price-step performance, and speaker announcement impact.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 flex flex-col shadow-lg">
+                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                  <Lock className="w-5 h-5 text-rose-400" />
+                  Ticket Pricing & Code Governance
+                </h3>
+                <ul className="space-y-2 text-sm text-gray-300">
+                  <li><span className="text-rose-400 mr-2">•</span> Founder pricing cannot be extended without Commercial Director approval.</li>
+                  <li><span className="text-rose-400 mr-2">•</span> No ad hoc ticket offers. No open-ended discount codes. No generic 50% codes.</li>
+                  <li><span className="text-rose-400 mr-2">•</span> Partner codes must have usage limits, expiry dates, and owner attribution.</li>
+                  <li><span className="text-rose-400 mr-2">•</span> Complimentary passes are strategic audience-building tools, not goodwill currency. Every comp pass must be allocated against an approved objective (e.g., Operator density, Regulator credibility, Speaker quality, Press, Investor/VIP). No general-purpose comping.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="bg-[#111] border border-[#ffcf33]/50 rounded-2xl p-5 md:p-6 shadow-xl relative overflow-hidden flex flex-col">
+              <div className="absolute top-0 right-0 w-2 h-full bg-[#ffcf33]"></div>
+              <h3 className="text-lg font-bold text-[#ffcf33] mb-4 flex items-center gap-2">
+                <TrendingUp className="w-5 h-5" />
+                $100 Step-Ups: Public Urgency
+              </h3>
+              <p className="text-sm text-gray-300 mb-4">
+                $100 increases can be effective because they give marketing regular urgency moments. These increases must be visible on the site and reflected in campaign copy. Do not publish a confusing nine-tier ticket table. Keep the pricing architecture simple (Founder, Early, Standard, Late) and use $100 step-ups tactically between the major bands where appropriate.
+              </p>
+              
+              <div className="flex-1 bg-[#232323] rounded-xl border border-[#444] p-4 flex flex-col">
+                <div className="text-[10px] text-gray-500 uppercase tracking-widest mb-3 font-bold border-b border-[#333] pb-2">Full Event: Campaign Step-Up Example</div>
+                <div className="space-y-2 text-xs md:text-sm font-mono flex-1">
+                  <div className="flex justify-between items-center text-[#ffcf33]"><span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#ffcf33]"></div>Founder / Launch</span><span>$1,099</span></div>
+                  <div className="flex justify-between items-center text-white"><span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-white"></div>Early opens</span><span>$1,199</span></div>
+                  <div className="flex justify-between items-center text-gray-400 pl-3"><span>Early step-up</span><span>$1,299</span></div>
+                  <div className="flex justify-between items-center text-gray-400 pl-3"><span>Early final call</span><span>$1,399</span></div>
+                  <div className="flex justify-between items-center text-white"><span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-white"></div>Standard</span><span>$1,499</span></div>
+                  <div className="flex justify-between items-center text-gray-400 pl-3"><span>Standard step-up</span><span>$1,599</span></div>
+                  <div className="flex justify-between items-center text-gray-400 pl-3"><span>Standard final call</span><span>$1,699</span></div>
+                  <div className="flex justify-between items-center text-rose-300"><span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-rose-400"></div>Late</span><span>$1,899</span></div>
+                </div>
+                
+                <div className="mt-4 pt-3 border-t border-[#333] text-[10px] text-gray-500 italic">
+                  *These are public price movements controlled through the website and campaign calendar. Marketing owns the timing and campaign execution; Commercial leadership owns approval of the pricing rules. The buyer must never feel like pricing is arbitrary or negotiable.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideWhatMustBeTrue() {
+      return (
+        <div className="flex-1 flex flex-col items-center justify-center text-center slide-enter">
+          <div className="w-full max-w-4xl bg-[#ffcf33]/5 border border-[#ffcf33]/30 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1 bg-[#ffcf33]"></div>
+            
+            <div className="w-16 h-16 bg-[#ffcf33]/10 rounded-2xl flex items-center justify-center mx-auto border border-[#ffcf33]/30 mb-6">
+              <CheckSquare className="w-8 h-8 text-[#ffcf33]" />
+            </div>
+            
+            <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4">Commercial Controls</h2>
+            <p className="text-xl text-[#ffcf33] font-medium mb-8">What Must Be True</p>
+            
+            <p className="text-gray-400 mb-8 max-w-2xl mx-auto">For this commercial model to hold, the following must be true:</p>
+            
+            <div className="text-left max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+              <div className="flex items-start gap-3 bg-[#111] p-4 rounded-xl border border-[#333]">
+                <div className="w-6 h-6 rounded-full bg-[#ffcf33]/20 flex items-center justify-center shrink-0 text-[#ffcf33] font-bold text-xs">1</div>
+                <p className="text-sm text-gray-300 leading-tight">Marketing delivers 1,000 paid tickets without uncontrolled discounting.</p>
+              </div>
+              <div className="flex items-start gap-3 bg-[#111] p-4 rounded-xl border border-[#333]">
+                <div className="w-6 h-6 rounded-full bg-[#ffcf33]/20 flex items-center justify-center shrink-0 text-[#ffcf33] font-bold text-xs">2</div>
+                <p className="text-sm text-gray-300 leading-tight">Sponsorship sales maintains a €2M–€2.5M Qualified Close Pipeline built from named accounts.</p>
+              </div>
+              <div className="flex items-start gap-3 bg-[#111] p-4 rounded-xl border border-[#333]">
+                <div className="w-6 h-6 rounded-full bg-[#ffcf33]/20 flex items-center justify-center shrink-0 text-[#ffcf33] font-bold text-xs">3</div>
+                <p className="text-sm text-gray-300 leading-tight">Website pricing remains the single source of truth for tickets.</p>
+              </div>
+              <div className="flex items-start gap-3 bg-[#111] p-4 rounded-xl border border-[#333]">
+                <div className="w-6 h-6 rounded-full bg-[#ffcf33]/20 flex items-center justify-center shrink-0 text-[#ffcf33] font-bold text-xs">4</div>
+                <p className="text-sm text-gray-300 leading-tight">Comp passes are governed against operator density and sponsor value.</p>
+              </div>
+              <div className="flex items-start gap-3 bg-[#111] p-4 rounded-xl border border-[#333]">
+                <div className="w-6 h-6 rounded-full bg-[#ffcf33]/20 flex items-center justify-center shrink-0 text-[#ffcf33] font-bold text-xs">5</div>
+                <p className="text-sm text-gray-300 leading-tight">Sponsor deliverables are mapped before packages are sold.</p>
+              </div>
+              <div className="flex items-start gap-3 bg-[#111] p-4 rounded-xl border border-[#333]">
+                <div className="w-6 h-6 rounded-full bg-[#ffcf33]/20 flex items-center justify-center shrink-0 text-[#ffcf33] font-bold text-xs">6</div>
+                <p className="text-sm text-gray-300 leading-tight">Finance confirms FX, fees, tax, refund, salary, and commission assumptions.</p>
+              </div>
+              <div className="flex items-start gap-3 bg-[#111] p-4 rounded-xl border border-[#333]">
+                <div className="w-6 h-6 rounded-full bg-[#ffcf33]/20 flex items-center justify-center shrink-0 text-[#ffcf33] font-bold text-xs">7</div>
+                <p className="text-sm text-gray-300 leading-tight">Week 8 re-baseline is enforced if six-figure sponsorship momentum is weak.</p>
+              </div>
+              <div className="flex items-start gap-3 bg-[#111] p-4 rounded-xl border border-[#333]">
+                <div className="w-6 h-6 rounded-full bg-[#ffcf33]/20 flex items-center justify-center shrink-0 text-[#ffcf33] font-bold text-xs">8</div>
+                <p className="text-sm text-gray-300 leading-tight">Post-event ROI reporting is built from day one to protect renewals.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideApprovalRequested() {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6">Approval Requested Today</h2>
+          <p className="text-gray-400 mb-6 md:mb-8 text-base md:text-lg">Seeking sign-off on the commercial framework. Certain logistical numbers remain TBC.</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-6">
+            <div className="flex flex-col gap-4">
+              <div className="bg-[#232323] border border-emerald-500/30 rounded-xl p-5 md:p-6 shadow-lg relative overflow-hidden h-full">
+                <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
+                <h4 className="font-bold text-white mb-4 flex items-center gap-2 text-base md:text-lg">
+                  <CheckSquare className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
+                  Approved Today
+                </h4>
+                <ul className="space-y-3 text-xs md:text-sm text-gray-300">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />
+                    <span><strong>Sales Target:</strong> €1.645M Base Forecast / €1.8M Stretch.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />
+                    <span><strong>Ticketing:</strong> 1,000 paid tickets approved as commercial ticket target. 900 paid tickets recognised only as downside sensitivity. €750k net protected as minimum floor. Founder/Launch pricing approved with hard volume caps.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />
+                    <span><strong>Marketing-Led Ticket Urgency:</strong> Public $100 price-rise mechanics approved where reflected on the website, campaign calendar, and registration journey. Ticket discount and partner-code governance approved. Website approved as single source of truth.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />
+                    <span><strong>Deal Desk:</strong> Strict 15% discount cap; 5% on Power Inventory. Marketing owns ticket conversion/pacing; Commercial approves pricing rules, caps, codes.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />
+                    <span><strong>Commercial Model:</strong> Total Partnership Ceiling €2.898M, with no exhibition booth inventory included.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className="flex flex-col gap-4">
+              <div className="bg-[#232323] border border-rose-500/30 rounded-xl p-5 md:p-6 shadow-lg relative overflow-hidden h-full">
+                <div className="absolute top-0 left-0 w-1 h-full bg-rose-500"></div>
+                <h4 className="font-bold text-white mb-4 flex items-center gap-2 text-base md:text-lg">
+                  <XCircle className="w-4 h-4 md:w-5 md:h-5 text-rose-400" />
+                  Requires Separate Approval / TBC
+                </h4>
+                <ul className="space-y-3 text-xs md:text-sm text-gray-300">
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                    <span><strong>Fully Loaded Margin:</strong> Final salary allocation and commission treatment from Finance.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                    <span><strong>Finance Assumptions:</strong> Final EUR/USD FX conversion rate, VAT/sales tax treatment, Stripe fees, and refund/chargeback assumptions.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                    <span><strong>Venue Limits:</strong> Final venue layout and room-capacity confirmation.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                    <span><strong>Audience Ops:</strong> Final comp pass allocation to reach operator density target.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                    <span><strong>Category Mapping:</strong> Final category mapping / single source of truth for which inventory lines are included in each revenue ceiling.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                    <span><strong>Ramp Mechanics:</strong> Week 8 re-baseline trigger if no six-figure enterprise package has closed or reached commit stage.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideCompetitiveContext() {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+          <div className="text-[10px] md:text-xs font-black text-gray-500 uppercase tracking-widest mb-4">Appendix</div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Competitive Context: The Category Race</h2>
+          <p className="text-gray-400 mb-6 md:mb-8 text-base md:text-lg">We are not competing with these events—we are redefining the scale of the category.</p>
+          
+          <div className="bg-[#232323] border border-[#444] rounded-2xl overflow-hidden shadow-xl mb-6">
+            <div className="overflow-x-auto w-full table-container">
+              <table className="w-full text-left text-sm min-w-[700px]">
+                <thead className="bg-[#1a1a1a] border-b border-[#444] text-gray-400 uppercase tracking-wider text-xs">
+                  <tr>
+                    <th className="p-4 font-medium">Metric</th>
+                    <th className="p-4 font-bold text-[#111] bg-[#ffcf33] border-l border-[#ffcf33]">NEXTPredict (NYC)</th>
+                    <th className="p-4 font-medium text-gray-500">PREDICT (DealFlow)</th>
+                    <th className="p-4 font-medium text-gray-500">Delphi Conf (Vegas)</th>
+                    <th className="p-4 font-medium text-gray-500">PREDICT (Voliti Co)</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[#444] text-gray-300">
+                  <tr>
+                    <td className="p-4 font-medium text-gray-400">Scale (Pax)</td>
+                    <td className="p-4 font-bold text-[#ffcf33] bg-[#ffcf33]/10 border-l border-[#ffcf33]/30">Up to 2,500 registration ambition</td>
+                    <td className="p-4">~300</td>
+                    <td className="p-4">~300</td>
+                    <td className="p-4">300+</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-medium text-gray-400">Operator Focus</td>
+                    <td className="p-4 font-bold text-[#ffcf33] bg-[#ffcf33]/10 border-l border-[#ffcf33]/30">High (40% Density Target)</td>
+                    <td className="p-4 text-gray-500">Low (Broad)</td>
+                    <td className="p-4 text-gray-500">Low (Traders)</td>
+                    <td className="p-4 text-gray-500">Low (Builders)</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-medium text-gray-400">Max Sponsor Pkg</td>
+                    <td className="p-4 font-bold text-[#ffcf33] bg-[#ffcf33]/10 border-l border-[#ffcf33]/30">€350,000 (Headline)</td>
+                    <td className="p-4">$100,000</td>
+                    <td className="p-4">est. $45,000</td>
+                    <td className="p-4">$60,000</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-medium text-gray-400">Sponsorship Model</td>
+                    <td className="p-4 font-bold text-[#ffcf33] bg-[#ffcf33]/10 border-l border-[#ffcf33]/30">A-La-Carte (Granular)</td>
+                    <td className="p-4">Bundled Tiers</td>
+                    <td className="p-4">Bundled Tiers</td>
+                    <td className="p-4">Bundled Tiers</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-medium text-gray-400">Additional Signals</td>
+                    <td colSpan="4" className="p-4 text-xs text-gray-400 bg-[#1a1a1a] italic">
+                      Kalshi / Academic events signal intellectual credibility. SBC entering space signals validation that iGaming and sports betting are absorbing prediction markets.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="p-3 bg-[#111] text-[10px] text-gray-500 italic">
+              *Competitor attendance and sponsorship figures are based on published materials and internal intelligence where available. NEXTPredict figures represent commercial targets, not guaranteed delivery.
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideCommercialThesis() {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+          <div className="text-[10px] md:text-xs font-black text-gray-500 uppercase tracking-widest mb-4">Appendix</div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-white">Why NEXTPredict Can Own the Premium Position</h2>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-8 flex flex-col">
+              <div className="flex items-center gap-3 mb-4 md:mb-6">
+                <Activity className="w-6 h-6 text-gray-400" />
+                <h3 className="text-lg md:text-xl font-semibold text-white">The Category is Forming Now</h3>
+              </div>
+              <p className="text-gray-400 text-sm md:text-base mb-4 md:mb-6 leading-relaxed">
+                The prediction market space is transitioning from niche academic/crypto circles to mainstream financial utility. By establishing a premium, institutional-scale event now, we define the category ceiling before it commoditizes.
+              </p>
+              <div className="p-4 md:p-6 rounded-xl bg-[#111] border border-[#444] text-center flex flex-col justify-center items-center h-full mb-4">
+                <div className="text-4xl md:text-5xl font-black text-[#ffcf33] mb-2">Scale vs Meetup</div>
+                <p className="text-xs md:text-sm text-gray-500 mt-4 max-w-sm">Competitors are fragmented and running 300-person community gatherings. We are positioned as the enterprise-scale platform.</p>
+              </div>
+            </div>
+     
+            <div className="bg-[#ffcf33]/5 border border-[#ffcf33]/20 rounded-2xl p-5 md:p-8 flex flex-col relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-[#ffcf33]/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-[#ffcf33]/10 rounded-xl flex items-center justify-center mb-4 md:mb-6 border border-[#ffcf33]/30">
+                <Target className="w-5 h-5 md:w-6 md:h-6 text-[#ffcf33]" />
+              </div>
+              <h3 className="text-lg md:text-xl font-bold mb-4 text-[#ffcf33]">The Market Structure Context</h3>
+              <ul className="space-y-4 text-gray-300 text-sm md:text-base flex-1">
+                <li className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#ffcf33] mt-2 shrink-0" />
+                  <p><strong className="text-white">The NYC Advantage:</strong> New York provides the necessary density of finance, trading, sports betting, and institutional capital to validate an enterprise price point.</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#ffcf33] mt-2 shrink-0" />
+                  <p><strong className="text-white">Budget Gravity:</strong> The buyer universe spans exchanges, operators, trading firms, market makers, data providers, integrity platforms, sports betting, iGaming, and institutional capital. That moves NEXTPredict from community-event economics into enterprise B2B budget territory.</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#ffcf33] mt-2 shrink-0" />
+                  <p><strong className="text-white">Existing Execution Infrastructure:</strong> NEXT.io already possesses the sales machinery, marketing infrastructure, and executive audience-building capability to deliver this.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideAudienceCapacity() {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+          <div className="text-[10px] md:text-xs font-black text-gray-500 uppercase tracking-widest mb-4">Appendix</div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Audience Strategy & Capacity Reality</h2>
+          <p className="text-gray-400 mb-6 md:mb-8 text-base md:text-lg">Defining our targeted scale advantage.</p>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6 flex-1">
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 shadow-xl flex flex-col">
+              <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6 text-white">The Registration Ambition</h3>
+              
+              <div className="space-y-4 mb-6 md:mb-8">
+                <p className="text-sm md:text-base text-gray-400 leading-relaxed">
+                  We are targeting an ambition of up to 2,500 total attendees across the two-day event. This must be strictly framed in our sales narratives as a <strong>total registration and attendance ambition</strong>, not a guaranteed peak simultaneous room capacity.
+                </p>
+                <div className="p-4 rounded-xl bg-[#111] border border-[#444] flex justify-between items-center">
+                  <div>
+                    <div className="text-[#ffcf33] font-bold mb-1 text-sm md:text-base">Target Operator Density</div>
+                    <div className="text-xs text-gray-500">Platform / Market-Side Focus</div>
+                  </div>
+                  <div className="text-[#ffcf33] font-mono text-xl md:text-2xl">~40%</div>
+                </div>
+              </div>
+              
+              <div className="bg-[#111] p-4 rounded-xl border border-[#444] mt-auto">
+                <p className="text-xs md:text-sm text-gray-400 leading-relaxed">
+                  *Sales reps must phrase this 40% figure as a target ambition, not a contractually guaranteed outcome, to protect us against SLA liabilities in a first-year event. Premium pricing is dependent on delivering a materially larger, more institutional audience than the current competitor set.*
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 shadow-xl flex flex-col">
+              <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6 text-white">Expanding the Thesis</h3>
+              <p className="text-sm md:text-base text-gray-400 leading-relaxed mb-6">
+                To achieve the target scale, the content and marketing strategy must cast a wider net than pure retail prediction markets.
+              </p>
+              
+              <ul className="space-y-4 text-gray-300 text-sm flex-1">
+                <li className="flex items-center gap-3 p-3 bg-[#111] rounded-lg border border-[#444]">
+                  <div className="w-2 h-2 rounded-full bg-[#ffcf33] shrink-0" /> Prediction & Information Markets
+                </li>
+                <li className="flex items-center gap-3 p-3 bg-[#111] rounded-lg border border-[#444]">
+                  <div className="w-2 h-2 rounded-full bg-[#ffcf33] shrink-0" /> Crypto-Finance & Trading
+                </li>
+                <li className="flex items-center gap-3 p-3 bg-[#111] rounded-lg border border-[#444]">
+                  <div className="w-2 h-2 rounded-full bg-[#ffcf33] shrink-0" /> Sports Betting & iGaming
+                </li>
+                <li className="flex items-center gap-3 p-3 bg-[#111] rounded-lg border border-[#444]">
+                  <div className="w-2 h-2 rounded-full bg-[#ffcf33] shrink-0" /> Event-Driven Derivatives
+                </li>
+                <li className="flex items-center gap-3 p-3 bg-[#111] rounded-lg border border-[#444]">
+                  <div className="w-2 h-2 rounded-full bg-[#ffcf33] shrink-0" /> Institutional Capital & Market Structure
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideDealDesk() {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+          <div className="text-[10px] md:text-xs font-black text-gray-500 uppercase tracking-widest mb-4">Appendix</div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Deal Desk Governance</h2>
+          <p className="text-gray-400 mb-6 md:mb-8 text-base md:text-lg">Holding the premium line using value-adds instead of cash discounts.</p>
+          
+          <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-8 mb-6 md:mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
+              <div className="p-4 md:p-5 rounded-xl bg-[#111] border border-[#444]">
+                <div className="text-[10px] md:text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">Sales Reps</div>
+                <div className="text-2xl md:text-3xl font-bold text-white mb-1">Max 10%</div>
+              </div>
+              <div className="p-4 md:p-5 rounded-xl bg-[#111] border border-[#444]">
+                <div className="text-[10px] md:text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">Sales Director</div>
+                <div className="text-2xl md:text-3xl font-bold text-white mb-1">Max 15%</div>
+              </div>
+              <div className="p-4 md:p-5 rounded-xl bg-[#111] border border-[#ffcf33]/30 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-[#ffcf33]"></div>
+                <div className="text-[10px] md:text-xs font-medium text-[#ffcf33] uppercase tracking-wider mb-2">Commercial Dir.</div>
+                <div className="text-2xl md:text-3xl font-bold text-white mb-1">&gt; 15%</div>
+                <p className="text-[10px] text-gray-400 mt-1">Requires approval</p>
+              </div>
+              <div className="p-4 md:p-5 rounded-xl bg-[#111] border border-rose-900/30 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-rose-500"></div>
+                <div className="text-[10px] md:text-xs font-medium text-rose-400 uppercase tracking-wider mb-2">Power Inventory</div>
+                <div className="text-2xl md:text-3xl font-bold text-white mb-1">Max 5%</div>
+                <p className="text-[10px] text-gray-400 mt-1">Hard cap</p>
+              </div>
+            </div>
+            
+            <div className="mt-4 space-y-3">
+              <div className="p-3 bg-[#111] rounded-lg border border-[#444] text-xs text-gray-400">
+                <strong className="text-white">Defined Power Inventory:</strong> Headline Partnership, Registration, Leadership Stage Partner, Leadership Stage Featured Session / Executive Interview, Day 1 Exclusive, VIP/C-Level Networking, Lanyards, Wi-Fi, and any single package &gt;€100k.
+              </div>
+              <div className="p-3 bg-[#ffcf33]/10 rounded-lg border border-[#ffcf33]/30 text-xs text-[#ffcf33]">
+                Private meeting rooms are not standard visibility units. Discounting should be governed by scarcity, not floor-space logic.
+              </div>
+            </div>
+          </div>
+     
+          <div className="bg-[#232323] border border-[#444] rounded-xl p-5 md:p-6 flex flex-col flex-1">
+            <h4 className="font-bold text-white mb-3 flex items-center gap-2 text-base md:text-lg">
+              <Award className="w-5 h-5 text-[#ffcf33]" />
+              The Sweetener Bank (B2B)
+            </h4>
+            <p className="text-gray-400 text-sm leading-relaxed mb-4">
+              Instead of discounting past 15%, reps must use zero-cost or low-margin impact items to close enterprise deals.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+              <div className="bg-[#111] p-2 rounded border border-[#444] text-[11px] text-gray-300 flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#ffcf33]"></div>On-site interview</div>
+              <div className="bg-[#111] p-2 rounded border border-[#444] text-[11px] text-gray-300 flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#ffcf33]"></div>Advertisement video</div>
+              <div className="bg-[#111] p-2 rounded border border-[#444] text-[11px] text-gray-300 flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#ffcf33]"></div>Extra passes</div>
+              <div className="bg-[#111] p-2 rounded border border-[#444] text-[11px] text-gray-300 flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#ffcf33]"></div>Target-account invitation support</div>
+              <div className="bg-[#111] p-2 rounded border border-[#444] text-[11px] text-gray-300 flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#ffcf33]"></div>Additional social media visibility</div>
+              <div className="bg-[#111] p-2 rounded border border-[#444] text-[11px] text-gray-300 flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#ffcf33]"></div>Sponsor success strategy call</div>
+            </div>
+            <div className="mt-4 p-3 bg-[#ffcf33]/5 border border-[#ffcf33]/20 rounded-lg">
+              <p className="text-[11px] text-[#ffcf33] italic text-center">
+                *All sweeteners must be explicitly included in the contract and logged in HubSpot to ensure delivery and tracking.
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideCommercialOperations() {
+          <div className="bg-[#232323] border border-[#444] rounded-2xl overflow-hidden shadow-xl flex-1 flex flex-col">
+            <div className="overflow-x-auto w-full flex-1 table-container">
+              <table className="w-full text-left text-xs md:text-sm min-w-[800px]">
+                <thead className="bg-[#111] border-b border-[#444] text-gray-400 uppercase tracking-wider text-[10px]">
+                  <tr>
+                    <th className="p-4 font-medium w-1/5">Partner Type</th>
+                    <th className="p-4 font-medium w-1/4">Feature</th>
+                    <th className="p-4 font-medium w-1/4">Advantage</th>
+                    <th className="p-4 font-medium w-1/3">Buyer Benefit</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[#444] text-gray-300">
+                  <tr className="hover:bg-[#1a1a1a] transition-colors">
+                    <td className="p-4 font-bold text-white">Speaker Partner</td>
+                    <td className="p-4 text-gray-400">Agenda-approved speaking, panel, interview, or presentation format.</td>
+                    <td className="p-4 text-gray-300">Positions the brand inside the market conversation, not just around it.</td>
+                    <td className="p-4 text-[#ffcf33]">Builds authority with decision-makers and creates a credible reason for post-event follow-up.</td>
+                  </tr>
+                  <tr className="hover:bg-[#1a1a1a] transition-colors">
+                    <td className="p-4 font-bold text-white">Branding Partner</td>
+                    <td className="p-4 text-gray-400">High-frequency physical and digital visibility across registration, lanyards, stages, lounges, Wi-Fi, guide, screens, and venue assets.</td>
+                    <td className="p-4 text-gray-300">Turns unavoidable delegate touchpoints into repeated brand exposure.</td>
+                    <td className="p-4 text-[#ffcf33]">Increases share of mind with a concentrated audience of operators, platforms, investors, and market-structure stakeholders.</td>
+                  </tr>
+                  <tr className="hover:bg-[#1a1a1a] transition-colors">
+                    <td className="p-4 font-bold text-white">Networking Partner</td>
+                    <td className="p-4 text-gray-400">Ownership or co-ownership of pre-registration, Day 1, Day 2, VIP, C-level, or curated networking environments.</td>
+                    <td className="p-4 text-gray-300">Moves the sponsor from visibility into relationship creation.</td>
+                    <td className="p-4 text-[#ffcf33]">Creates private access, social proximity, and warmer commercial conversations.</td>
+                  </tr>
+                  <tr className="hover:bg-[#1a1a1a] transition-colors">
+                    <td className="p-4 font-bold text-white">Content / Media Partner</td>
+                    <td className="p-4 text-gray-400">Interviews, video content, newsletter inclusion, post-event content, and thought-leadership distribution.</td>
+                    <td className="p-4 text-gray-300">Extends sponsor value before, during, and after the physical event.</td>
+                    <td className="p-4 text-[#ffcf33]">Gives the sponsor measurable assets for demand generation, sales follow-up, and internal ROI reporting.</td>
+                  </tr>
+                  <tr className="hover:bg-[#1a1a1a] transition-colors">
+                    <td className="p-4 font-bold text-white">Private Meeting Room Partner</td>
+                    <td className="p-4 text-gray-400">Dedicated on-site meeting space for client meetings, demos, and executive conversations.</td>
+                    <td className="p-4 text-gray-300">Converts event attendance into controlled commercial meetings.</td>
+                    <td className="p-4 text-[#ffcf33]">Helps sponsors justify spend through booked meetings and deal progression, not just brand exposure.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlidePricingPsychology() {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+          <div className="text-[10px] md:text-xs font-black text-gray-500 uppercase tracking-widest mb-4">Appendix</div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">How We Defend Premium Pricing</h2>
+          <p className="text-gray-400 mb-6 md:mb-8 text-base md:text-lg">Arming the sales team against community-level price expectations.</p>
+          
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 flex-1">
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 flex flex-col">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-[#ffcf33]/10 rounded-xl flex items-center justify-center mb-4 md:mb-6 border border-[#ffcf33]/30">
+                <Target className="w-5 h-5 md:w-6 md:h-6 text-[#ffcf33]" />
+              </div>
+              <h3 className="text-lg md:text-xl font-bold text-white mb-4">Category Ownership</h3>
+              <p className="text-gray-400 leading-relaxed mb-4 text-sm md:text-base">
+                Competitors validate the demand, but we are providing the enterprise ceiling. Sponsoring NEXTPredict is a statement of institutional market leadership, not just logo exposure.
+              </p>
+            </div>
+
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 flex flex-col">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-[#ffcf33]/10 rounded-xl flex items-center justify-center mb-4 md:mb-6 border border-[#ffcf33]/30">
+                <Users className="w-5 h-5 md:w-6 md:h-6 text-[#ffcf33]" />
+              </div>
+              <h3 className="text-lg md:text-xl font-bold text-white mb-4">Institutional Density</h3>
+              <p className="text-gray-400 leading-relaxed mb-4 text-sm md:text-base">
+                Operators don't engage in generic sponsor setups; they buy in socially lubricated, curated environments. The value is our executive networking structure, not arbitrary foot traffic.
+              </p>
+            </div>
+
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-5 md:p-6 flex flex-col">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-[#ffcf33]/10 rounded-xl flex items-center justify-center mb-4 md:mb-6 border border-[#ffcf33]/30">
+                <Layers className="w-5 h-5 md:w-6 md:h-6 text-[#ffcf33]" />
+              </div>
+              <h3 className="text-lg md:text-xl font-bold text-white mb-4">The Manhattan Context</h3>
+              <p className="text-gray-400 leading-relaxed mb-4 text-sm md:text-base">
+                Hosting in NYC anchors us to the capital of finance, trading, and institutional capital. We are pricing against Wall Street B2B event benchmarks, not Vegas builder meetups.
+              </p>
+            </div>
+          </div>
+          <p className="text-[#ffcf33]/90 text-xs md:text-sm font-medium mt-4 text-center">
+            The pricing is correct for the ambition. The risk is not pricing logic; the risk is whether we can deliver the audience scale and operator density required to justify it.
+          </p>
+        </div>
+      );
+    }
+
+    function SlidePartnershipTiering() {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+          <div className="text-[10px] md:text-xs font-black text-gray-500 uppercase tracking-widest mb-4">Appendix</div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Partnership Tiering & Status</h2>
+          <p className="text-gray-400 mb-6 md:mb-8 text-base md:text-lg">Clear thresholds to define partner status and drive upsells.</p>
+          
+          <div className="bg-[#ffcf33]/10 border border-[#ffcf33]/30 rounded-xl p-4 md:p-5 mb-6 flex items-start gap-4">
+            <Award className="w-6 h-6 text-[#ffcf33] shrink-0" />
+            <div>
+              <h3 className="text-base md:text-lg font-bold text-[#ffcf33] mb-1">Headline (€350,000 max list value)</h3>
+              <p className="text-[#ffcf33]/80 text-xs md:text-sm">
+                Sits above all normal tiering. Absolute category dominance. Eligible for up to 10 curated introductions (facilitation, not guaranteed meetings).
+              </p>
+            </div>
+          </div>
+     
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 flex-1">
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-4 flex flex-col">
+              <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Strategic Tier</div>
+              <h3 className="text-xl font-extrabold text-white mb-1 flex items-center gap-2"><Diamond className="w-4 h-4 text-[#ffcf33]" /> Diamond</h3>
+              <div className="text-sm md:text-base font-medium text-[#ffcf33] mb-2">€135,000+</div>
+              <ul className="space-y-2 text-[10px] md:text-xs text-gray-300 flex-1">
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-gray-500 rounded-full mt-1 shrink-0"/> Senior concierge servicing</li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-gray-500 rounded-full mt-1 shrink-0"/> Up to 5 curated introductions (facilitation only)</li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-gray-500 rounded-full mt-1 shrink-0"/> Premium VIP elevations</li>
+              </ul>
+            </div>
+
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-4 flex flex-col">
+              <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Tier 1</div>
+              <h3 className="text-xl font-extrabold text-white mb-1">Platinum</h3>
+              <div className="text-sm md:text-base font-medium text-[#ffcf33] mb-2">€80,000 - €134,999</div>
+              <ul className="space-y-2 text-[10px] md:text-xs text-gray-300 flex-1">
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-gray-500 rounded-full mt-1 shrink-0"/> Strong visibility / stage presence</li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-gray-500 rounded-full mt-1 shrink-0"/> 0 included introductions</li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-gray-500 rounded-full mt-1 shrink-0"/> Standard VIP allocations</li>
+              </ul>
+            </div>
+     
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-4 flex flex-col">
+              <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Tier 2</div>
+              <h3 className="text-xl font-extrabold text-[#ffcf33] mb-1">Gold</h3>
+              <div className="text-sm md:text-base font-medium text-[#ffcf33] mb-2">€30,000 - €79,999</div>
+              <ul className="space-y-2 text-[10px] md:text-xs text-gray-300 flex-1">
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-gray-500 rounded-full mt-1 shrink-0"/> Core branding / mid-tier content</li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-gray-500 rounded-full mt-1 shrink-0"/> 0 included introductions</li>
+              </ul>
+            </div>
+     
+            <div className="bg-[#232323] border border-[#444] rounded-2xl p-4 flex flex-col">
+              <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Tier 3</div>
+              <h3 className="text-xl font-extrabold text-gray-300 mb-1">Silver</h3>
+              <div className="text-sm md:text-base font-medium text-[#ffcf33] mb-2">Below €30,000</div>
+              <ul className="space-y-2 text-[10px] md:text-xs text-gray-300 flex-1">
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-gray-500 rounded-full mt-1 shrink-0"/> Entry-level visibility</li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-gray-500 rounded-full mt-1 shrink-0"/> 0 included introductions</li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-4 text-center text-[10px] text-gray-500 italic">
+            Matchmaking / introductions are a premium facilitation tool, not guaranteed meetings, and strictly withheld from sub-€135k packages to protect operator time.
+          </div>
+        </div>
+      );
+    }
+
+    const catalogueBranding = [
+      { name: "Headline Sponsorship (Excl)", price: "€350,000", qty: "1", desc: "Maximum brand dominance across the full event. Sole naming rights." },
+      { name: "Online & Onsite Registration (Excl)", price: "€110,000", qty: "1", desc: "First and last brand experience. Converts logistical necessity to impression." },
+      { name: "Leadership Stage Branding", price: "€115,000", qty: "1", desc: "Leadership Stage Partner: stage holding slide, podium sign, premium room ownership, 6 passes. No keynote or presenter slot included." },
+      { name: "Livestream", price: "€92,500", qty: "1", desc: "Broadcast to full NEXT global audience beyond physical room." },
+      { name: "Dining Meeting Area (Excl)", price: "€77,000", qty: "1", desc: "Own the most social real estate where informal deals start." },
+      { name: "Media Lounge", price: "€65,000", qty: "1", desc: "Where press, podcasters, and content creators work." },
+      { name: "Speaker's Lounge (Excl)", price: "€54,000", qty: "1", desc: "Private access to faculty in their unguarded moments." },
+      { name: "Stair Risers (Excl)", price: "€31,000", qty: "1", desc: "Unavoidable, high-frequency physical branding." },
+      { name: "Badge Sponsor", price: "€30,800", qty: "1", desc: "The one item every delegate touches multiple times per day." },
+      { name: "Lanyards A & B", price: "€30,000", qty: "2", desc: "Power Inventory. Joint packages covering 100% of reach." },
+      { name: "Nourish Bar", price: "€28,500", qty: "2", desc: "Sponsor the pause. Extended natural dwell time." },
+      { name: "Digital Event Guide (Excl)", price: "€23,000", qty: "1", desc: "Exclusive ownership of primary delegate nav tool." },
+      { name: "Wi-Fi", price: "€23,000", qty: "1", desc: "100% delegate reach, zero opt-out." },
+      { name: "Advertisement Video", price: "€13,500", qty: "8", desc: "High-frequency reach on screens. Scalable across day." },
+      { name: "Cloakroom Area", price: "€32,000", qty: "1", desc: "First/last touchpoint." },
+      { name: "Private Meeting Room 12p", price: "€62,000", qty: "1", desc: "Boardroom scale for flagship enterprise delegations." },
+      { name: "Private Meeting Room 8p", price: "€38,500", qty: "1", desc: "Multi-stakeholder demos." },
+      { name: "Private Meeting Room 6p", price: "€31,000", qty: "1", desc: "Mid-tier private space." },
+      { name: "Private Meeting Room 4p", price: "€25,000", qty: "3", desc: "Private deal room." }
+    ];
+
+    const catalogueContent = [
+      { name: "Leadership Stage Featured Session / Executive Interview", price: "€90,000", qty: "1", desc: "1 agenda-approved 20-minute featured session, executive interview, or presentation format. Sold separately from Leadership Stage Partner. Subject to final agenda approval." },
+      { name: "Leadership Stage Custom Panel", price: "€60,000", qty: "2", desc: "Full narrative control. Paired with a moderator." },
+      { name: "Leadership Stage Chair Partner (Excl)", price: "€40,000", qty: "1", desc: "Logo on every seat in the main hall." },
+      { name: "Leadership Stage Branded Panel", price: "€30,000", qty: "6", desc: "'Powered by' title drives awareness." },
+      { name: "Leadership Stage Non-Branded Panel", price: "€19,000", qty: "4", desc: "Pure credibility play. Earn the room on substance." },
+      { name: "Stage 2 Presenter Panel", price: "€58,000", qty: "2", desc: "Presentation format slot in front of 250 delegates." },
+      { name: "Stage 2 Custom Panel", price: "€40,000", qty: "2", desc: "Controlled message, third-party validation." },
+      { name: "Stage 2 Branded Panel", price: "€25,000", qty: "4", desc: "Volume visibility across mid-tier track." },
+      { name: "Stage 2 Non-Branded Panel", price: "€16,000", qty: "4", desc: "Organic authority. Thought leadership led sales." },
+      { name: "Stage 3 Presenter Panel", price: "€30,000", qty: "2", desc: "Intimate 80-pax format for technical topics." },
+      { name: "Stage 3 Custom Panel", price: "€21,500", qty: "2", desc: "Narrative control in specialist room." },
+      { name: "Stage 3 Branded Panel", price: "€13,500", qty: "4", desc: "Targeted operator message." },
+      { name: "Stage 3 Non-Branded Panel", price: "€10,000", qty: "4", desc: "Maximum credibility with engaged audience." }
+    ];
+    
+    const catalogueNetworking = [
+      { isHeader: true, title: "Modelled Exclusive Inventory" },
+      { name: "Pre-Registration Event (Excl)", price: "€125,000", qty: "1", desc: "Own the night before. First impression of the cycle." },
+      { name: "Day 1 NEXTworking (Excl)", price: "€150,000", qty: "1", desc: "The flagship evening. Maximum attendance, platinum positioning." },
+      { name: "Day 2 NEXTworking (Excl)", price: "€125,000", qty: "1", desc: "Closing night. The last brand delegates associate with event." },
+      { isHeader: true, title: "Fallback / Non-Exclusive Inventory — Excluded From €400k Modelled Ceiling", isUpside: true },
+      { name: "Pre-Registration (Non-Excl)", price: "€34,000", qty: "5", desc: "Shared slots. Highest share-of-mind before noise begins.", isUpside: true },
+      { name: "Day 1 NEXTworking (Non-Excl)", price: "€34,000", qty: "5", desc: "Shared slots at primary evening.", isUpside: true },
+      { name: "Day 2 NEXTworking (Non-Excl)", price: "€30,000", qty: "5", desc: "Shared slots on closing night.", isUpside: true },
+      { name: "C-Level Event (Bespoke)", price: "€55,000", qty: "1", desc: "Fully bespoke upside / excluded from base ceiling.", isUpside: true }
+    ];
+
+    function CatalogueSlide({ title, data, totalRev, tableNote }) {
+      return (
+        <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+          <div className="text-[10px] md:text-xs font-black text-gray-500 uppercase tracking-widest mb-4">Appendix / Reference</div>
+          <div className="flex items-center justify-between mb-4 md:mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold flex items-center gap-3 text-white">
+              <FileText className="w-6 h-6 md:w-8 md:h-8 text-gray-500" />
+              {title}
+            </h2>
+            <div className="bg-[#232323] border border-[#444] rounded-lg px-4 py-2 text-right">
+              <div className="text-[10px] uppercase tracking-wider text-gray-400">Max Rev Ceiling</div>
+              <div className="font-mono font-bold text-[#ffcf33]">{totalRev}</div>
+            </div>
+          </div>
+          
+          <div className="bg-[#232323] border border-[#444] rounded-2xl overflow-hidden flex-1 flex flex-col">
+            <div className="overflow-x-auto w-full flex-1 table-container">
+              <table className="w-full text-left text-[11px] md:text-sm min-w-[700px]">
+                <thead className="bg-[#111] border-b border-[#444] text-gray-400 uppercase tracking-wider text-[10px]">
+                  <tr>
+                    <th className="p-3 md:p-4 font-medium min-w-[200px]">Inventory Item</th>
+                    <th className="p-3 md:p-4 font-medium text-center">Qty</th>
+                    <th className="p-3 md:p-4 font-medium">List Price</th>
+                    <th className="p-3 md:p-4 font-medium min-w-[300px]">Delivery / Notes</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[#444] text-gray-300">
+                  {data.map((item, i) => {
+                    if (item.isHeader) {
+                      return (
+                        <tr key={i} className="bg-[#1a1a1a] border-y border-[#333]">
+                          <td colSpan="4" className={item.isUpside ? "p-3 font-bold text-[#ffcf33]/80 text-[10px] md:text-xs tracking-wider uppercase" : "p-3 font-bold text-white text-[10px] md:text-xs tracking-wider uppercase"}>
+                            {item.title}
+                          </td>
+                        </tr>
+                      );
+                    }
+                    return (
+                      <tr key={i} className={item.isUpside ? "border-l-2 border-[#ffcf33]/50 bg-[#ffcf33]/5 hover:bg-[#ffcf33]/10 transition-colors opacity-80" : "hover:bg-[#111] transition-colors group"}>
+                        <td className="p-3 md:p-4 font-bold text-white">{item.name}</td>
+                        <td className="p-3 md:p-4 text-center font-mono text-gray-400">{item.qty}</td>
+                        <td className="p-3 md:p-4 font-mono text-[#ffcf33] font-bold">{item.price}</td>
+                        <td className="p-3 md:p-4 text-[10px] md:text-xs text-gray-400">{item.desc}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          {tableNote && (
+            <div className="mt-4 text-[10px] text-gray-500 italic">
+              {tableNote}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    // --- APP ENTRY POINT ---
+
+    const slides = [
+      SlideTitle,
+      SlideExecutiveSummary,
+      SlideCommercialModel,
+      SlideBreakEven,
+      SlideTicketing,
+      SlideMarketingLedTicketing,
+      SlidePartnershipCeiling,
+      SlideWeightedForecast,
+      SlideScorecard,
+      SlideSalesRamp,
+      SlideHighLevelGTMStrategy,
+      SlideCommercialControls,
+      SlideMarketingGovernance,
+      SlideWhatMustBeTrue,
+      SlideApprovalRequested,
+      SlideCompetitiveContext,
+      SlideCommercialThesis,
+      SlideAudienceCapacity,
+      SlideDealDesk,
+      SlidePartnerFABs,
+      SlidePricingPsychology,
+      SlidePartnershipTiering,
+      () => <CatalogueSlide title="Catalogue: General Branding, Utility & Rooms" data={catalogueBranding} totalRev="€1,434,800" />,
+      () => <CatalogueSlide title="Catalogue: Content & Stages" data={catalogueContent} totalRev="€1,063,000" tableNote="*Room capacities are provisional and subject to final venue room-configuration confirmation." />,
+      () => <CatalogueSlide title="Catalogue: NEXTworking" data={catalogueNetworking} totalRev="€400,000" tableNote="*Exclusive and non-exclusive networking inventory is mutually exclusive. The €400k NEXTworking ceiling assumes exclusive packages take priority. Non-exclusive inventory is fallback inventory only and is excluded from the modelled ceiling unless an exclusive package does not sell." />
+    ];
+
+    function App() {
+      const [currentSlide, setCurrentSlide] = useState(0);
+
+      const next = () => setCurrentSlide(s => Math.min(slides.length - 1, s + 1));
+      const prev = () => setCurrentSlide(s => Math.max(0, s - 1));
+
+      const Slide = slides[currentSlide];
+
+      return (
+        <div className="min-h-screen bg-[#111] text-gray-50 font-sans flex flex-col">
+          <main className="flex-1 flex flex-col max-w-7xl mx-auto w-full p-4 md:p-8">
+            <Slide key={currentSlide} /> 
+          </main>
+          
+          <footer className="border-t border-[#333] bg-[#111]/80 backdrop-blur-sm p-4 flex items-center justify-between sticky bottom-0 z-50">
+            <div className="flex items-center gap-3">
+              <Globe className="w-5 h-5 md:w-6 md:h-6 text-[#ffcf33]" />
+              <div className="text-[#ffcf33] text-xs md:text-sm font-medium tracking-wide">NEXTPredict 2026 Commercial Strategy</div>
+            </div>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={prev}
+                disabled={currentSlide === 0}
+                className="p-2 rounded-full hover:bg-[#232323] text-gray-300 disabled:text-gray-700 disabled:hover:bg-transparent transition-colors"
+              >
+                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+              </button>
+              <span className="text-gray-400 font-medium font-mono min-w-[3rem] text-center text-sm md:text-base">
+                {currentSlide + 1} / {slides.length}
+              </span>
+              <button
+                onClick={next}
+                disabled={currentSlide === slides.length - 1}
+                className="p-2 rounded-full hover:bg-[#232323] text-gray-300 disabled:text-gray-700 disabled:hover:bg-transparent transition-colors"
+              >
+                <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+              </button>
+            </div>
+          </footer>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
