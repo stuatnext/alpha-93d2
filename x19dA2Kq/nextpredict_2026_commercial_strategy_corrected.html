@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>NEXTPredict 2026 Commercial Strategy</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body { background-color: #111111; color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #1a1a1a; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #ffcf33; }
+    .table-container { -webkit-overflow-scrolling: touch; }
+    .slide-enter { animation: fadeIn 0.5s ease-out forwards; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    const Icon = ({ p, className }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} dangerouslySetInnerHTML={{ __html: p }} />
+    );
+
+    const ChevronLeft = (props) => <Icon p='<path d="m15 18-6-6 6-6"/>' {...props} />;
+    const ChevronRight = (props) => <Icon p='<path d="m9 18 6-6-6-6"/>' {...props} />;
+    const Target = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>' {...props} />;
+    const ShieldCheck = (props) => <Icon p='<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>' {...props} />;
+    const TrendingUp = (props) => <Icon p='<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>' {...props} />;
+    const TrendingDown = (props) => <Icon p='<polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/>' {...props} />;
+    const Users = (props) => <Icon p='<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' {...props} />;
+    const Layers = (props) => <Icon p='<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>' {...props} />;
+    const Package = (props) => <Icon p='<line x1="16.5" x2="7.5" y1="9.4" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/>' {...props} />;
+    const Award = (props) => <Icon p='<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>' {...props} />;
+    const AlertCircle = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>' {...props} />;
+    const CheckCircle2 = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>' {...props} />;
+    const FileText = (props) => <Icon p='<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>' {...props} />;
+    const ArrowRight = (props) => <Icon p='<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>' {...props} />;
+    const Diamond = (props) => <Icon p='<path d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.42 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.42 0Z"/>' {...props} />;
+    const CheckSquare = (props) => <Icon p='<rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/>' {...props} />;
+    const XCircle = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/>' {...props} />;
+    const TicketIcon = (props) => <Icon p='<path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/>' {...props} />;
+    const Calculator = (props) => <Icon p='<rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/>' {...props} />;
+    const Globe = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/>' {...props} />;
+    const Activity = (props) => <Icon p='<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>' {...props} />;
+    const Lock = (props) => <Icon p='<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>' {...props} />;
+
+    function cn(...classes) { return classes.filter(Boolean).join(' '); }
+
+    const SectionLabel = ({ children }) => <div className="text-[10px] md:text-xs font-black text-gray-500 uppercase tracking-widest mb-4">{children}</div>;
+
+    const SlideFrame = ({ eyebrow, title, subtitle, children }) => (
+      <div className="flex-1 flex flex-col slide-enter overflow-y-auto pr-2 md:pr-4 pb-8">
+        {eyebrow && <SectionLabel>{eyebrow}</SectionLabel>}
+        {title && <h2 className="text-2xl md:text-3xl font-bold mb-2 text-white">{title}</h2>}
+        {subtitle && <p className="text-gray-400 mb-6 md:mb-8 text-base md:text-lg">{subtitle}</p>}
+        {children}
+      </div>
+    );
+
+    const Card = ({ icon: IconComp, title, children, className, accent = false, danger = false }) => (
+      <div className={cn(
+        "bg-[#232323] border rounded-2xl p-5 md:p-6 flex flex-col shadow-xl relative overflow-hidden",
+        accent ? "border-[#ffcf33]/40" : danger ? "border-rose-500/30" : "border-[#444]",
+        className
+      )}>
+        {accent && <div className="absolute top-0 left-0 w-1.5 h-full bg-[#ffcf33]"></div>}
+        {danger && <div className="absolute top-0 left-0 w-1.5 h-full bg-rose-500"></div>}
+        {title && (
+          <div className="flex items-center gap-3 mb-4">
+            {IconComp && <div className={cn("w-10 h-10 rounded-lg flex items-center justify-center border", accent ? "bg-[#ffcf33]/10 border-[#ffcf33]/30" : danger ? "bg-rose-500/10 border-rose-500/30" : "bg-[#111] border-[#444]") }><IconComp className={cn("w-5 h-5", accent ? "text-[#ffcf33]" : danger ? "text-rose-400" : "text-gray-400")} /></div>}
+            <h3 className="text-lg md:text-xl font-bold text-white">{title}</h3>
+          </div>
+        )}
+        {children}
+      </div>
+    );
+
+    const MetricRow = ({ label, value, valueClass = "text-white", note }) => (
+      <div className="flex justify-between items-start gap-4 pb-2 border-b border-[#444] last:border-b-0">
+        <div>
+          <div className="text-gray-400 text-xs md:text-sm">{label}</div>
+          {note && <div className="text-[10px] text-gray-500 mt-0.5">{note}</div>}
+        </div>
+        <div className={cn("font-mono text-right text-sm md:text-base font-bold", valueClass)}>{value}</div>
+      </div>
+    );
+
+    const Bullet = ({ children, color = "text-[#ffcf33]" }) => (
+      <li className="flex items-start gap-3">
+        <span className={cn("mt-1.5 w-1.5 h-1.5 rounded-full shrink-0", color === "text-rose-400" ? "bg-rose-400" : color === "text-emerald-400" ? "bg-emerald-400" : "bg-[#ffcf33]")}></span>
+        <span>{children}</span>
+      </li>
+    );
+
+    const NumberedPoint = ({ n, children }) => (
+      <div className="flex items-start gap-3 bg-[#111] p-4 rounded-xl border border-[#333]">
+        <div className="w-6 h-6 rounded-full bg-[#ffcf33]/20 flex items-center justify-center shrink-0 text-[#ffcf33] font-bold text-xs">{n}</div>
+        <p className="text-sm text-gray-300 leading-tight">{children}</p>
+      </div>
+    );
+
+    const SimpleTable = ({ headers, rows, minWidth = "600px" }) => (
+      <div className="overflow-x-auto w-full table-container">
+        <table className="w-full text-left text-xs md:text-sm" style={{ minWidth }}>
+          <thead className="border-b border-[#444] text-gray-400 uppercase tracking-wider text-[10px]">
+            <tr>{headers.map((h, i) => <th key={i} className={cn("p-3 font-medium", h.align === "right" && "text-right", h.className)}>{h.label}</th>)}</tr>
+          </thead>
+          <tbody className="divide-y divide-[#444] text-gray-300">
+            {rows.map((row, i) => (
+              <tr key={i} className={cn(row.className, "hover:bg-[#111] transition-colors")}>
+                {row.cells.map((cell, j) => <td key={j} className={cn("p-3", cell.align === "right" && "text-right", cell.className)}>{cell.value}</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+
+    function SlideTitle() {
+      return (
+        <div className="flex-1 flex flex-col items-center justify-center text-center slide-enter">
+          <div className="mb-10 relative">
+            <div className="absolute inset-0 bg-[#ffcf33] blur-[80px] opacity-20 rounded-full"></div>
+            <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-[#ffcf33] to-amber-600 rounded-2xl flex items-center justify-center mx-auto shadow-2xl shadow-[#ffcf33]/20 mb-6 relative z-10">
+              <Globe className="w-10 h-10 md:w-12 md:h-12 text-[#232323]" />
+            </div>
+          </div>
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 md:mb-6 text-white px-2">
+            NEXTPredict 2026<br />
+            <span className="text-[#ffcf33]">Commercial Strategy</span>
+          </h1>
+          <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-12 px-4">
+            Institutionalising prediction markets. Securing the Manhattan premium. Protecting core NEXT.io revenue while testing a new category.
+          </p>
+        </div>
+      );
+    }
+
+    function SlideExecutiveSummary() {
+      return (
+        <SlideFrame title="Executive Summary" subtitle="Establishing the definitive global summit for prediction markets, with realistic year-one controls.">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 flex-1">
+            <Card icon={ShieldCheck} title="Category Leadership" accent>
+              <p className="text-gray-400 text-sm md:text-base leading-relaxed">
+                NEXTPredict is a first-year event, but it is not a small community meetup. It is positioned as the premium institutional category leader across prediction markets, information markets, event-driven derivatives and market structure.
+              </p>
+            </Card>
+            <Card icon={Package} title="Premium Valuation" accent>
+              <p className="text-gray-400 text-sm md:text-base leading-relaxed">
+                Pricing is ambitious and must be defended by enterprise-scale delivery, operator / platform / institutional buyer density, NYC market context and category scarcity. We are pricing for B2B budgets, not meetup economics.
+              </p>
+            </Card>
+            <Card icon={Target} title="Commercial Realism" accent>
+              <p className="text-gray-400 text-sm md:text-base leading-relaxed">
+                The base market validation forecast is <strong className="text-[#ffcf33]">€1.35M</strong> against a maximum catalogue ceiling of <strong className="text-[#ffcf33]">€2.897M</strong>. The <strong className="text-[#ffcf33]">€1.8M</strong> stretch target is achievable only with tight GTM execution.
+              </p>
+            </Card>
+            <Card icon={TrendingUp} title="Integrated Revenue & Strategic Value" accent>
+              <p className="text-gray-400 text-sm md:text-base leading-relaxed">
+                Ticket revenue is marketing-led. B2B revenue is sales-led. Strategic launch value must also be measured through sponsor calibre, buyer density, media reach, renewal probability, 2027 pipeline and category ownership signals.
+              </p>
+            </Card>
+          </div>
+          <div className="mt-6 pt-4 border-t border-[#333] text-xs text-gray-500 italic text-center shrink-0 w-full">
+            This board framework converts the original commercial draft into a controlled launch model covering revenue, ticket strategy, margin protection, GTM execution, pipeline quality, governance, resource control and approval discipline.
+          </div>
+        </SlideFrame>
+      );
+    }
+
+    function SlideCommercialModel() {
+      return (
+        <SlideFrame title="Commercial Model" subtitle="Key principles driving the 2026 forecast.">
+          <div className="space-y-4">
+            <Card icon={AlertCircle} title="First-Year Sell-Through Discount">
+              <p className="text-gray-400 text-sm">As a launch event, NEXTPredict has no renewal base and no historic conversion data. Forecasting must therefore stay conservative. Pipeline optimism should not be mistaken for market validation.</p>
+            </Card>
+            <Card icon={Target} title="Max Ceiling vs. Target Revenue">
+              <p className="text-gray-400 text-sm">The B2B Partnership Maximum Revenue Ceiling is <strong className="text-[#ffcf33]">€2,897,800</strong>. This is full catalogue capacity, not the default expectation. Base market validation is <strong className="text-[#ffcf33]">€1.35M</strong>. Stretch is <strong className="text-[#ffcf33]">€1.8M</strong>.</p>
+            </Card>
+            <Card icon={Users} title="Buyer Density Priority">
+              <p className="text-gray-400 text-sm">The target is operator / platform / institutional buyer density. Comp, hosted and partner-led passes should build the audience quality required to defend premium sponsor pricing.</p>
+            </Card>
+            <Card icon={Calculator} title="Model Assumptions">
+              <p className="text-gray-400 text-sm">The model includes Cloakroom Area at €32,000 and all listed Stage 3 content inventory. POA, bespoke and formally unapproved upside items are excluded from the modelled ceiling.</p>
+            </Card>
+          </div>
+        </SlideFrame>
+      );
+    }
+
+    function SlideBreakEven() {
+      const scenarioRows = [
+        { className: "text-rose-500", cells: [
+          { value: "Combined Stress Case", className: "text-rose-500" },
+          { value: "€1,100,000", align: "right", className: "font-mono text-rose-500" },
+          { value: "€900,000", align: "right", className: "font-mono text-rose-500" },
+          { value: "€2,000,000", align: "right", className: "font-mono font-bold text-rose-500" },
+          { value: "-€75,000", align: "right", className: "font-mono font-bold text-rose-500" }
+        ]},
+        { className: "text-rose-300", cells: [
+          { value: "Downside Case", className: "text-rose-300" },
+          { value: "€1,100,000", align: "right", className: "font-mono text-rose-300" },
+          { value: "€1,100,000", align: "right", className: "font-mono text-rose-300" },
+          { value: "€2,200,000", align: "right", className: "font-mono font-bold text-rose-300" },
+          { value: "€105,000", align: "right", className: "font-mono font-bold text-emerald-400" }
+        ]},
+        { className: "bg-[#ffcf33]/5", cells: [
+          { value: "Base Market Validation", className: "text-[#ffcf33] font-bold" },
+          { value: "€1,225,000", align: "right", className: "font-mono text-[#ffcf33]" },
+          { value: "€1,350,000", align: "right", className: "font-mono text-[#ffcf33]" },
+          { value: "€2,575,000", align: "right", className: "font-mono font-bold text-[#ffcf33]" },
+          { value: "€455,000", align: "right", className: "font-mono font-bold text-emerald-400" }
+        ]},
+        { cells: [
+          { value: "Stretch Case", className: "text-white font-bold" },
+          { value: "€1,225,000", align: "right", className: "font-mono text-gray-300" },
+          { value: "€1,800,000", align: "right", className: "font-mono text-gray-300" },
+          { value: "€3,025,000", align: "right", className: "font-mono font-bold text-white" },
+          { value: "€860,000", align: "right", className: "font-mono font-bold text-emerald-400" }
+        ]}
+      ];
+
+      return (
+        <SlideFrame title="Break-Even Reality" subtitle="Establishing the financial floor and the strategic investment boundary.">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6 flex-1">
+            <Card title="The Cost Base">
+              <div className="space-y-4 mb-6 md:mb-8">
+                <MetricRow label="Confirmed Direct Event Cost" value="€1,535,000" />
+                <MetricRow label="Salary Allocation Assumption" value="c.€450,000" valueClass="text-gray-400 italic" />
+                <MetricRow label="Commission Estimate" note="10% of base B2B forecast" value="c.€135,000" valueClass="text-gray-400 italic" />
+                <MetricRow label="Est. Fully-Loaded Cost Base" value="c.€2,120,000" valueClass="text-rose-400 text-lg md:text-xl" />
+              </div>
+              <div className="bg-[#111] p-4 rounded-xl border border-[#444] mt-auto">
+                <p className="text-[11px] md:text-xs text-gray-400 leading-relaxed">
+                  Salary allocation and commission treatment require Finance confirmation. For planning purposes, the fully loaded cost base is c.€2.12M at the base partnership forecast.
+                </p>
+              </div>
+            </Card>
+            <Card title="The Required Revenue Math">
+              <SimpleTable
+                minWidth="700px"
+                headers={[
+                  { label: "Scenario" },
+                  { label: "Net Ticket Rev", align: "right" },
+                  { label: "B2B Rev", align: "right" },
+                  { label: "Total Rev", align: "right", className: "text-[#ffcf33]" },
+                  { label: "Est. Margin", align: "right", className: "text-[#ffcf33]" }
+                ]}
+                rows={scenarioRows}
+              />
+              <div className="mt-4 p-3 bg-[#ffcf33]/10 border border-[#ffcf33]/30 rounded-lg">
+                <p className="text-[11px] text-gray-300 leading-relaxed">
+                  <strong className="text-[#ffcf33]">Loss tolerance must be agreed upfront.</strong> A controlled first-year investment loss is acceptable if it delivers audience scale, sponsor proof points, category authority and 2027 renewal potential. An unplanned loss caused by weak pipeline discipline or uncontrolled discounting is not acceptable.
+                </p>
+              </div>
+            </Card>
+          </div>
+        </SlideFrame>
+      );
+    }
+
+    function SlideStrategicLaunchInvestmentLogic() {
+      return (
+        <SlideFrame title="Strategic Launch Investment Logic" subtitle="Year one should be judged on financial control and strategic market position.">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 flex-1">
+            <Card icon={TrendingDown} title="Controlled Loss vs. Accidental Loss" danger>
+              <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-4">
+                A first-year loss is not automatically a failure. A vague, unmanaged loss is. If NEXTPredict loses money in year one, it must be because we deliberately invested in market position, not because pricing, pipeline, staffing or governance drifted.
+              </p>
+              <ul className="space-y-3 text-sm text-gray-300">
+                <Bullet color="text-rose-400"><strong className="text-white">Acceptable:</strong> Approved launch investment with a clear ceiling, clear owner and clear strategic return.</Bullet>
+                <Bullet color="text-rose-400"><strong className="text-white">Unacceptable:</strong> Loss created by uncontrolled discounting, unclear ownership, weak pipeline discipline or sales-team distraction.</Bullet>
+              </ul>
+            </Card>
+            <Card icon={Award} title="What the Investment Buys" accent>
+              <ul className="space-y-3 text-sm text-gray-300">
+                <Bullet>Category authority in a forming prediction markets sector.</Bullet>
+                <Bullet>Market credibility with operators, platforms, trading firms, data providers, capital and regulatory stakeholders.</Bullet>
+                <Bullet>Audience scale and buyer density large enough to justify premium sponsor pricing.</Bullet>
+                <Bullet>Sponsor proof points for 2027 renewal conversations.</Bullet>
+                <Bullet>Media reach, content authority and owned category narrative.</Bullet>
+              </ul>
+            </Card>
+            <Card icon={ShieldCheck} title="Core Revenue Protection">
+              <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                NEXT.io core revenue must stay protected. Established events and products provide the commercial cushion against NEXTPredict launch volatility.
+              </p>
+              <div className="p-4 bg-[#111] border border-[#444] rounded-xl text-xs text-gray-400">
+                NEXTPredict deserves senior focus, structured activity and escalation support. It must not become an uncontrolled drain on the sales team or a reason to weaken proven revenue streams.
+              </div>
+            </Card>
+            <Card icon={Activity} title="Strategic Scorecard">
+              <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                Year-one profit matters, but it is not the only success measure. The board should measure launch value through:
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-gray-300">
+                <div className="bg-[#111] border border-[#444] p-2 rounded">Sponsor calibre</div>
+                <div className="bg-[#111] border border-[#444] p-2 rounded">Buyer density</div>
+                <div className="bg-[#111] border border-[#444] p-2 rounded">Ticket buyer quality</div>
+                <div className="bg-[#111] border border-[#444] p-2 rounded">Media/content reach</div>
+                <div className="bg-[#111] border border-[#444] p-2 rounded">Renewal probability</div>
+                <div className="bg-[#111] border border-[#444] p-2 rounded">2027 pipeline created</div>
+              </div>
+            </Card>
+          </div>
+        </SlideFrame>
+      );
+    }
+
+    function SlideTicketing() {
+      const volumeRows = [
+        { cells: [{ value: "Conference Only" }, { value: "200", align: "right", className: "font-mono" }, { value: "~$999", align: "right", className: "font-mono" }, { value: "~$200,000", align: "right", className: "font-mono" }] },
+        { cells: [{ value: "Full Event", className: "font-bold text-white" }, { value: "700", align: "right", className: "font-mono" }, { value: "~$1,499", align: "right", className: "font-mono" }, { value: "~$1,049,000", align: "right", className: "font-mono" }] },
+        { cells: [{ value: "VIP" }, { value: "100", align: "right", className: "font-mono" }, { value: "~$2,799", align: "right", className: "font-mono" }, { value: "~$280,000", align: "right", className: "font-mono" }] },
+        { className: "bg-[#111]", cells: [{ value: "Total Paid", className: "font-bold text-white uppercase text-[10px]" }, { value: "1,000", align: "right", className: "font-mono font-bold text-white" }, { value: "-", align: "right", className: "font-mono text-gray-500" }, { value: "~$1.53M", align: "right", className: "font-mono font-bold text-[#ffcf33]" }] }
+      ];
+
+      return (
+        <SlideFrame title="Ticketing Model" subtitle="A structured pricing ladder balancing volume targets with premium institutional yield.">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6">
+            {[
+              { tier: "Access Tier", name: "Conference Only", sub: "Accessible entry tier", prices: [["Founder / Launch", "$699"], ["Early", "$799"], ["Standard", "$999"], ["Late", "$1,199"]], cap: "Founder allocation: Max 50 tickets" },
+              { tier: "Revenue Engine", name: "Full Event", sub: "Includes evening networking", prices: [["Founder / Launch", "$1,099"], ["Early", "$1,199"], ["Standard", "$1,499"], ["Late", "$1,899"]], cap: "Founder allocation: Max 150 tickets", featured: true },
+              { tier: "Scarcity Tier", name: "VIP Pass", sub: "Margin generation", prices: [["Founder / Launch", "$2,299"], ["Early", "$2,499"], ["Standard", "$2,799"], ["Late", "$2,999"]], cap: "Founder allocation: Max 20 tickets" }
+            ].map((p, i) => (
+              <div key={i} className={cn("bg-[#232323] border rounded-2xl p-5 flex flex-col relative overflow-hidden", p.featured ? "border-[#ffcf33]/50 shadow-lg shadow-[#ffcf33]/10" : "border-[#444]") }>
+                {p.featured && <div className="absolute top-0 left-0 w-full h-1 bg-[#ffcf33]"></div>}
+                <div className={cn("text-[10px] font-bold uppercase tracking-widest mb-2", p.featured ? "text-[#ffcf33]" : "text-gray-500")}>{p.tier}</div>
+                <h3 className="text-lg md:text-xl font-bold text-white mb-1">{p.name}</h3>
+                <div className="text-[10px] text-gray-500 mb-3">{p.sub}</div>
+                <div className="space-y-1.5 mb-3 flex-1">
+                  {p.prices.map((price, idx) => <div key={idx} className="flex justify-between text-xs"><span className={idx === 0 ? "text-[#ffcf33] font-medium" : "text-gray-400"}>{price[0]}</span><span className={idx === 0 ? "text-[#ffcf33] font-mono" : "text-gray-300 font-mono"}>{price[1]}</span></div>)}
+                </div>
+                <div className="text-[10px] text-gray-600 border-t border-[#444] pt-2">{p.cap}</div>
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+            <Card title="Paid Volume Model, 1,000 Ticket Target">
+              <SimpleTable headers={[{ label: "Pass Type" }, { label: "Paid Vol.", align: "right" }, { label: "Blended Price", align: "right" }, { label: "Gross Revenue", align: "right" }]} rows={volumeRows} />
+              <div className="mt-4 p-2 bg-[#ffcf33]/10 border border-[#ffcf33]/20 rounded text-[10px] text-[#ffcf33] font-medium text-center">
+                1,000 paid tickets is the commercial target. 900 paid tickets is downside sensitivity only.
+              </div>
+            </Card>
+            <Card icon={TrendingUp} title="Gross Paid to Net Revenue Bridge">
+              <div className="space-y-2 text-xs md:text-sm font-mono mb-4">
+                <div className="text-[10px] uppercase text-gray-500 font-bold mb-1">Target Model, 1,000 Paid</div>
+                <div className="flex justify-between py-1 text-gray-300"><span>Gross Ticket Revenue</span><span>~$1.53M USD</span></div>
+                <div className="flex items-center gap-2 py-1 text-gray-400"><ArrowRight className="w-4 h-4" /><em>Est. EUR Equivalent</em><span className="ml-auto">~€1.42M</span></div>
+                <div className="flex justify-between py-1 text-rose-400/80"><span>Fees, FX, discounts, refunds</span><span>(~€170k-€220k)</span></div>
+                <div className="flex justify-between py-1.5 border-t border-[#444] mt-1 font-bold text-[#ffcf33]"><span>Net Ticket Target</span><span>~€1.20M-€1.25M</span></div>
+              </div>
+              <div className="space-y-1.5 text-xs font-mono border-t border-[#333] pt-3">
+                <div className="text-[10px] uppercase text-gray-500 font-bold mb-1">Downside Sensitivity, 900 Paid</div>
+                <div className="flex justify-between text-gray-400"><span>Gross Revenue</span><span>~$1.38M USD</span></div>
+                <div className="flex justify-between text-rose-300 font-bold"><span>Net Downside Target</span><span>~€1.10M</span></div>
+              </div>
+            </Card>
+          </div>
+        </SlideFrame>
+      );
+    }
+
+    function SlidePartnershipForecast() {
+      const forecastRows = [
+        { cells: [{ value: "Combined Stress Case", className: "text-rose-500" }, { value: "€900,000", align: "right", className: "font-mono text-rose-500" }] },
+        { cells: [{ value: "Downside Case", className: "text-rose-300" }, { value: "€1,100,000", align: "right", className: "font-mono text-rose-300" }] },
+        { className: "bg-[#ffcf33]/10", cells: [{ value: "Base Market Validation Case", className: "text-[#ffcf33] font-bold" }, { value: "€1,350,000", align: "right", className: "font-mono font-bold text-[#ffcf33] text-lg" }] },
+        { cells: [{ value: "Upper Base / Strong Execution Case", className: "text-white font-bold" }, { value: "€1,645,530", align: "right", className: "font-mono font-bold text-white" }] },
+        { cells: [{ value: "Stretch Target", className: "text-white font-bold" }, { value: "€1,800,000", align: "right", className: "font-mono font-bold text-white text-lg" }] }
+      ];
+
+      return (
+        <SlideFrame title="Partnership Forecast" subtitle="Applying first-year commercial realism to our inventory capacity.">
+          <Card title="Sponsorship Revenue Hierarchy" accent className="mb-8">
+            <SimpleTable headers={[{ label: "Commercial Case" }, { label: "Projected Revenue", align: "right" }]} rows={forecastRows} />
+            <div className="mt-4 p-3 bg-[#111] border border-[#444] rounded-lg">
+              <p className="text-[11px] text-gray-400 italic">
+                The €1.645M model is treated as an upper base / strong execution case. It should not replace the €1.35M base forecast. The €1.8M stretch target requires senior leadership support, enterprise conversion and visible category momentum.
+              </p>
+            </div>
+          </Card>
+        </SlideFrame>
+      );
+    }
+
+    function SlideScorecard() {
+      return (
+        <SlideFrame title="Scorecard" subtitle="Separating year-one financial performance from strategic launch value.">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
+            <Card icon={TicketIcon} title="Marketing Revenue, Tickets" accent>
+              <div className="space-y-4 text-sm">
+                <MetricRow label="Protected Floor" value="€750,000 net" />
+                <MetricRow label="Downside Sensitivity" note="900 paid tickets" value="~€1,100,000 net" valueClass="text-rose-300" />
+                <MetricRow label="Modelled Target" note="1,000 paid tickets" value="~€1.20M-€1.25M net" valueClass="text-[#ffcf33] text-lg" />
+              </div>
+            </Card>
+            <Card icon={Award} title="Sales Revenue, B2B" accent>
+              <div className="space-y-4 flex-1 flex flex-col justify-center">
+                <MetricRow label="Base Market Validation" value="€1,350,000" valueClass="text-white text-2xl" />
+                <MetricRow label="Upper Base / Strong Execution" value="€1,645,530" valueClass="text-gray-300 text-xl" />
+                <MetricRow label="Official Stretch Target" value="€1,800,000" valueClass="text-[#ffcf33] text-2xl" />
+              </div>
+            </Card>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+            <Card title="Year-One Financial Performance" className="lg:col-span-2 bg-[#111]">
+              <div className="space-y-3">
+                <MetricRow label="Stress commission" note="10% of €900k" value="~€90,000" valueClass="text-rose-400" />
+                <MetricRow label="Base commission" note="10% of €1.35M" value="~€135,000" valueClass="text-[#ffcf33]" />
+                <MetricRow label="Stretch commission" note="10% of €1.80M" value="~€180,000" />
+              </div>
+            </Card>
+            <Card icon={Activity} title="Strategic Launch Value" className="lg:col-span-3 bg-[#111]" accent>
+              <p className="text-xs md:text-sm text-gray-400 mb-4">
+                The board should review financial outcome and strategic launch value separately. A controlled investment loss only makes sense if these indicators are strong.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-gray-300">
+                {[
+                  "Sponsor calibre",
+                  "Operator / platform / institutional buyer density",
+                  "Ticket buyer quality",
+                  "Media/content reach",
+                  "Senior attendee quality",
+                  "Sponsor renewal likelihood",
+                  "2027 pipeline created",
+                  "Category ownership signals"
+                ].map((item, i) => <div key={i} className="bg-[#232323] border border-[#444] p-2 rounded">{item}</div>)}
+              </div>
+            </Card>
+          </div>
+        </SlideFrame>
+      );
+    }
+
+    function SlideSalesRamp() {
+      return (
+        <SlideFrame title="Revenue Ramp" subtitle="De-risking the hockey stick through named accounts and senior escalation.">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 flex-1">
+            <Card icon={TrendingUp} title="Required Cumulative Pacing">
+              <div className="space-y-4 flex-1 relative border-l border-[#444] ml-4 pl-6 pb-2">
+                {[
+                  ["Week 4", "€150k-€250k", "25%", "gray"],
+                  ["Week 8", "€400k-€500k", "45%", "rose"],
+                  ["Week 12", "€900k-€1.1M", "75%", "yellow"],
+                  ["Week 16", "€1.35M base / €1.8M stretch", "100%", "green"]
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-4 relative z-10">
+                    <div className={cn("absolute -left-[31px] top-1 w-3 h-3 rounded-full border-2 border-[#111]", item[3] === "rose" ? "bg-rose-500" : item[3] === "yellow" ? "bg-[#ffcf33]" : item[3] === "green" ? "bg-emerald-500" : "bg-gray-500")}></div>
+                    <div className={cn("w-16 text-xs font-mono", item[3] === "rose" ? "text-rose-400 font-bold" : item[3] === "green" ? "text-emerald-400 font-bold" : "text-gray-400")}>{item[0]}</div>
+                    <div className={cn("h-6 rounded-r-md flex items-center px-2", item[3] === "rose" ? "bg-rose-900/50 border border-rose-800/50" : item[3] === "yellow" ? "bg-[#ffcf33]/20 border border-[#ffcf33]/30" : item[3] === "green" ? "bg-emerald-600/80" : "bg-[#111]")} style={{ width: item[2] }}><span className="text-xs text-gray-200 ml-2 font-mono font-bold whitespace-nowrap">{item[1]}</span></div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 space-y-3">
+                <div className="p-3 bg-[#ffcf33]/10 border border-[#ffcf33]/30 rounded-lg text-[10px] md:text-xs text-[#ffcf33]">
+                  <strong className="block mb-1">Sponsorship Week 8 Re-Evaluation:</strong> Target €400k-€500k closed, committed or late-stage. If only c.€100k is closed or committed by Week 8, reassess the €1.8M stretch target before defensive discounting begins.
+                </div>
+                <div className="p-3 bg-[#111] border border-[#444] rounded-lg text-[10px] md:text-xs text-gray-400">
+                  <strong className="text-white block mb-1">Suggested Ticket Pacing:</strong> 25% sold by first major agenda push, 50% by mid-campaign, 75% before late pricing and 100% target by event week.
+                </div>
+              </div>
+            </Card>
+
+            <div className="flex flex-col gap-6">
+              <Card title="Pipeline Coverage Requirements">
+                <SimpleTable
+                  headers={[{ label: "Layer" }, { label: "Meaning" }, { label: "Target", align: "right" }]}
+                  rows={[
+                    { cells: [{ value: "Target Account Universe", className: "font-bold text-white" }, { value: "Companies we want to sell to" }, { value: "€8M-€10M", align: "right", className: "font-mono" }] },
+                    { cells: [{ value: "Qualified Pipeline Coverage", className: "font-bold text-[#ffcf33]" }, { value: "Real account, relevant buyer, value hypothesis and next action" }, { value: "€4.05M base / €5.4M stretch", align: "right", className: "font-mono text-[#ffcf33]" }] },
+                    { cells: [{ value: "Late-Stage Close Pipeline", className: "font-bold text-emerald-400" }, { value: "Commit, procurement, contract or decision-stage opportunities after Week 8" }, { value: "€2M-€2.5M", align: "right", className: "font-mono text-emerald-400" }] }
+                  ]}
+                />
+              </Card>
+              <Card title="Backwards-Built Target Model, €1.8M">
+                <SimpleTable
+                  headers={[{ label: "Package Type" }, { label: "Quantity" }, { label: "Revenue", align: "right" }]}
+                  rows={[
+                    { cells: [{ value: "1 major anchor package", className: "font-bold text-white" }, { value: "1 x €250k-€350k" }, { value: "€250k-€350k", align: "right", className: "font-mono" }] },
+                    { cells: [{ value: "3 strategic packages", className: "font-bold text-white" }, { value: "3 x €100k-€150k" }, { value: "€300k-€450k", align: "right", className: "font-mono" }] },
+                    { cells: [{ value: "8 mid/high packages", className: "font-bold text-white" }, { value: "8 x €50k-€90k" }, { value: "€400k-€720k", align: "right", className: "font-mono" }] },
+                    { cells: [{ value: "12 smaller packages", className: "font-bold text-white" }, { value: "12 x €20k-€40k" }, { value: "€240k-€480k", align: "right", className: "font-mono" }] }
+                  ]}
+                />
+                <p className="text-[10px] text-[#ffcf33] mt-3 font-medium">
+                  This range only works if sales starts from named accounts, senior relationship routes and weekly deal progression.
+                </p>
+              </Card>
+            </div>
+          </div>
+        </SlideFrame>
+      );
+    }
+
+    function SlideCommercialControls() {
+      return (
+        <SlideFrame title="Commercial Controls" subtitle="Maintaining board-level visibility on margin protection, cashflow and delivery.">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 flex-1">
+            <Card icon={TrendingUp} title="Pipeline & Cashflow">
+              <ul className="space-y-4 text-xs md:text-sm text-gray-300 flex-1">
+                <Bullet><strong className="text-white block mb-0.5">Commercial Source of Truth:</strong> Final pricing, inventory status, discount permissions and sold/available quantities must sit in one approved pricing tracker.</Bullet>
+                <Bullet><strong className="text-white block mb-0.5">Qualified Pipeline Coverage:</strong> €4.05M required for €1.35M base. €5.4M required for €1.8M stretch.</Bullet>
+                <Bullet><strong className="text-white block mb-0.5">Late-Stage Close Pipeline:</strong> €2M-€2.5M required after Week 8, with named close dates, procurement status and decision-maker confirmation.</Bullet>
+                <Bullet><strong className="text-white block mb-0.5">Cashflow Discipline:</strong> Target 100% upfront where possible, or 50% upfront / 50% pre-event. No major activation goes live without a signed contract and deposit.</Bullet>
+                <Bullet><strong className="text-white block mb-0.5">Signed vs Forecast Revenue:</strong> Weekly reporting must separate contracted, invoiced, procurement commit, proposal issued, qualified pipeline and unqualified opportunity.</Bullet>
+              </ul>
+            </Card>
+            <Card icon={ShieldCheck} title="Delivery, Risk & Positioning">
+              <ul className="space-y-4 text-xs md:text-sm text-gray-300 flex-1">
+                <Bullet><strong className="text-white block mb-0.5">Deliverable Ownership:</strong> Every sold package needs a delivery owner, production dependency and client approval date.</Bullet>
+                <Bullet><strong className="text-white block mb-0.5">Regulatory Sensitivity:</strong> Sponsor positioning, agenda language and public messaging must avoid financial advice, regulated-product endorsement or guaranteed outcomes.</Bullet>
+                <Bullet><strong className="text-white block mb-0.5">Portfolio Protection:</strong> NEXTPredict must stay distinct from NEXT NYC and other core products. The category story should protect pricing integrity across the portfolio.</Bullet>
+                <Bullet><strong className="text-white block mb-0.5">Sponsor ROI & 2027 Renewal:</strong> Premium partners should receive post-event reporting covering audience quality, content views, media exposure and deliverables.</Bullet>
+              </ul>
+            </Card>
+          </div>
+        </SlideFrame>
+      );
+    }
+
+    function SlideMarketingGovernance() {
+      return (
+        <SlideFrame title="Marketing Governance" subtitle="Ticket sales are driven by public pricing, website conversion, campaign timing and perceived market momentum.">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6">
+            <div className="flex flex-col gap-6">
+              <Card icon={Globe} title="Marketing Mandate & KPIs">
+                <ul className="space-y-3 text-sm text-gray-300">
+                  <Bullet>Ticket sales are marketing-owned, not sponsorship-sales-owned.</Bullet>
+                  <Bullet>The website is the single source of truth for ticket pricing.</Bullet>
+                  <Bullet>Every price increase must be public, deadline-based, allocation-based or campaign-calendar-led.</Bullet>
+                  <Bullet>Sales teams may reference public ticket deadlines, but they do not control ticket pricing, ticket discounts or ticket offers.</Bullet>
+                </ul>
+                <div className="mt-4 pt-4 border-t border-[#333]">
+                  <p className="text-xs text-gray-400 mb-2 font-bold">Weekly Marketing Accountability:</p>
+                  <p className="text-xs text-gray-400 leading-relaxed">Paid tickets sold, net ticket revenue, blended ASP by pass type, website conversion rate, registration-page visits, email conversion rate, paid vs organic source mix, code usage, refunds, comp volume and price-step performance.</p>
+                </div>
+              </Card>
+              <Card icon={Lock} title="Ticket Pricing & Code Governance" danger>
+                <ul className="space-y-2 text-sm text-gray-300">
+                  <Bullet color="text-rose-400">Founder pricing cannot be extended without Commercial Director approval.</Bullet>
+                  <Bullet color="text-rose-400">No ad hoc ticket offers. No open-ended discount codes. No generic 50% codes.</Bullet>
+                  <Bullet color="text-rose-400">Partner codes must have usage limits, expiry dates and owner attribution.</Bullet>
+                  <Bullet color="text-rose-400">Complimentary passes are strategic audience-building tools, not goodwill currency.</Bullet>
+                </ul>
+              </Card>
+            </div>
+            <Card icon={TrendingUp} title="$100 Step-Ups: Public Urgency" accent>
+              <p className="text-sm text-gray-300 mb-4">
+                $100 increases create regular campaign urgency. These increases must be visible on the site and reflected in campaign copy. Keep the pricing architecture simple: Founder, Early, Standard and Late.
+              </p>
+              <div className="flex-1 bg-[#232323] rounded-xl border border-[#444] p-4 flex flex-col">
+                <div className="text-[10px] text-gray-500 uppercase tracking-widest mb-3 font-bold border-b border-[#333] pb-2">Full Event: Campaign Step-Up Example</div>
+                <div className="space-y-2 text-xs md:text-sm font-mono flex-1">
+                  {[["Founder / Launch", "$1,099", "text-[#ffcf33]"], ["Early opens", "$1,199", "text-white"], ["Early step-up", "$1,299", "text-gray-400 pl-3"], ["Early final call", "$1,399", "text-gray-400 pl-3"], ["Standard", "$1,499", "text-white"], ["Standard step-up", "$1,599", "text-gray-400 pl-3"], ["Standard final call", "$1,699", "text-gray-400 pl-3"], ["Late", "$1,899", "text-rose-300"]].map((r, i) => <div key={i} className={cn("flex justify-between items-center", r[2])}><span>{r[0]}</span><span>{r[1]}</span></div>)}
+                </div>
+                <div className="mt-4 pt-3 border-t border-[#333] text-[10px] text-gray-500 italic">
+                  These are public price movements controlled through the website and campaign calendar. The buyer must never feel pricing is arbitrary or negotiable.
+                </div>
+              </div>
+            </Card>
+          </div>
+        </SlideFrame>
+      );
+    }
+
+    function SlideWhatMustBeTrue() {
+      return (
+        <div className="flex-1 flex flex-col items-center justify-center text-center slide-enter">
+          <div className="w-full max-w-4xl bg-[#ffcf33]/5 border border-[#ffcf33]/30 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1 bg-[#ffcf33]"></div>
+            <div className="w-16 h-16 bg-[#ffcf33]/10 rounded-2xl flex items-center justify-center mx-auto border border-[#ffcf33]/30 mb-6">
+              <CheckSquare className="w-8 h-8 text-[#ffcf33]" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-6">What Must Be True</h2>
+            <p className="text-gray-400 mb-8 max-w-2xl mx-auto">For this commercial model to hold, the following must be true:</p>
+            <div className="text-left max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+              <NumberedPoint n="1">Marketing delivers 1,000 paid tickets without uncontrolled discounting.</NumberedPoint>
+              <NumberedPoint n="2">Sponsorship sales maintains c.€4.05M qualified pipeline coverage for the base case, with €2M-€2.5M late-stage close pipeline after Week 8.</NumberedPoint>
+              <NumberedPoint n="3">Stretch requires €5.4M qualified pipeline coverage, not vague market interest.</NumberedPoint>
+              <NumberedPoint n="4">Website pricing remains the single source of truth for tickets.</NumberedPoint>
+              <NumberedPoint n="5">Comp passes are governed against operator / platform / institutional buyer density and sponsor value.</NumberedPoint>
+              <NumberedPoint n="6">Sponsor deliverables are mapped before packages are sold.</NumberedPoint>
+              <NumberedPoint n="7">Finance confirms FX, fees, tax, refund, salary and commission assumptions.</NumberedPoint>
+              <NumberedPoint n="8">Any first-year loss is pre-approved, capped and measured against strategic launch value.</NumberedPoint>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideApprovalRequested() {
+      return (
+        <SlideFrame title="Approval Requested Today" subtitle="Seeking sign-off on the commercial framework. Certain logistical numbers remain TBC.">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-6">
+            <Card icon={CheckSquare} title="Recommended for Approval" accent>
+              <ul className="space-y-3 text-xs md:text-sm text-gray-300">
+                <Bullet color="text-emerald-400"><strong className="text-white">Sales Target:</strong> €1.35M base forecast, €1.645M upper base / strong execution, €1.8M stretch.</Bullet>
+                <Bullet color="text-emerald-400"><strong className="text-white">Ticketing:</strong> 1,000 paid tickets as commercial target. 900 paid tickets as downside sensitivity. €750k net protected as minimum floor.</Bullet>
+                <Bullet color="text-emerald-400"><strong className="text-white">Marketing-Led Ticket Urgency:</strong> Public $100 price-rise mechanics approved where reflected on the website, campaign calendar and registration journey.</Bullet>
+                <Bullet color="text-emerald-400"><strong className="text-white">Deal Desk:</strong> Strict 15% discount cap. 5% on Power Inventory. Commercial approves pricing rules, caps and codes.</Bullet>
+                <Bullet color="text-emerald-400"><strong className="text-white">Strategic Investment Logic:</strong> Controlled first-year loss tolerance to be pre-agreed, capped and measured against launch-value indicators.</Bullet>
+              </ul>
+            </Card>
+            <Card icon={XCircle} title="Requires Separate Approval / TBC" danger>
+              <ul className="space-y-3 text-xs md:text-sm text-gray-300">
+                <Bullet color="text-rose-400"><strong className="text-white">Fully Loaded Margin:</strong> Final salary allocation and commission treatment from Finance.</Bullet>
+                <Bullet color="text-rose-400"><strong className="text-white">Finance Assumptions:</strong> Final EUR/USD FX conversion rate, VAT/sales tax treatment, Stripe fees and refund assumptions.</Bullet>
+                <Bullet color="text-rose-400"><strong className="text-white">Venue Limits:</strong> Final venue layout and room-capacity confirmation.</Bullet>
+                <Bullet color="text-rose-400"><strong className="text-white">Audience Ops:</strong> Final comp pass allocation to reach operator / platform / institutional buyer density target.</Bullet>
+                <Bullet color="text-rose-400"><strong className="text-white">Category Mapping:</strong> Final single source of truth for which inventory lines sit inside each revenue ceiling.</Bullet>
+                <Bullet color="text-rose-400"><strong className="text-white">Ramp Mechanics:</strong> Week 8 re-baseline trigger if no six-figure enterprise package has closed or reached commit stage.</Bullet>
+              </ul>
+            </Card>
+          </div>
+        </SlideFrame>
+      );
+    }
+
+    function SlideResourceRequired() {
+      return (
+        <SlideFrame eyebrow="Appendix" title="Resource Required: This Cannot Be Sold Like a Normal Event" subtitle="The €1.8M stretch case requires coordinated execution without weakening proven revenue streams.">
+          <Card title="Core Operating Requirements" accent className="flex-1">
+            <ul className="space-y-4 text-sm text-gray-300">
+              <Bullet>NEXTPredict must not distract the sales team from core NEXT.io revenue. Core NEXT.io sales remain the commercial cushion against NEXTPredict launch risk.</Bullet>
+              <Bullet>NEXTPredict requires named ownership, senior escalation and disciplined weekly execution, not uncontrolled sales-team distraction.</Bullet>
+              <Bullet>NEXTPredict needs a named sales owner, named marketing owner, named content owner and named HubSpot/reporting owner.</Bullet>
+              <Bullet>Marketing needs clear NEXTPredict KPIs because it owns the ticket revenue engine.</Bullet>
+              <Bullet>Senior leadership must help open enterprise doors. Six-figure deals require senior-to-senior selling.</Bullet>
+              <Bullet>Weekly sales feedback must be converted into collateral, FAQs, package refinement and commercial objection handling.</Bullet>
+            </ul>
+            <div className="mt-auto pt-6">
+              <div className="p-4 bg-rose-950/20 border border-rose-900/50 rounded-xl">
+                <p className="text-rose-400 font-medium text-sm text-center">
+                  If the resource model is not controlled, the €1.8M stretch target becomes theatre and core revenue takes unnecessary risk.
+                </p>
+              </div>
+            </div>
+          </Card>
+        </SlideFrame>
+      );
+    }
+
+    function SlideHighLevelGTMStrategy() {
+      return (
+        <SlideFrame eyebrow="Appendix" title="High-Level GTM Strategy: Category Capture, Not Event Promotion" subtitle="The €1.8M sponsorship target requires category authority, named-account targeting, partner amplification, senior outreach and weekly execution discipline.">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 flex-1 min-h-0">
+            <div className="lg:col-span-5 flex flex-col gap-4">
+              <Card icon={AlertCircle} title="Why Passive Marketing Is Not Enough" danger>
+                <ul className="space-y-1.5 text-xs text-gray-300 mb-4">
+                  <Bullet color="text-rose-400">First-year event with no renewal base.</Bullet>
+                  <Bullet color="text-rose-400">New category with limited existing buyer intent.</Bullet>
+                  <Bullet color="text-rose-400">High sponsorship target relative to market maturity.</Bullet>
+                  <Bullet color="text-rose-400">€1.8M requires deliberate pipeline creation.</Bullet>
+                  <Bullet color="text-rose-400">Waiting for inbound demand is not a strategy.</Bullet>
+                </ul>
+                <div className="p-3 bg-rose-500/10 rounded border border-rose-500/20 text-[10px] md:text-[11px] text-rose-200">
+                  <strong>Commercial warning:</strong> Marketing creates awareness and urgency, but it cannot generate €5.4M of qualified pipeline without a named-account GTM motion.
+                </div>
+              </Card>
+              <Card title="Pipeline Rules" className="bg-[#111]">
+                <ul className="space-y-2 text-xs text-gray-300 font-medium">
+                  <Bullet>€1.35M base target = c.€4.05M qualified pipeline coverage required at 3x.</Bullet>
+                  <Bullet>€1.8M stretch target = c.€5.4M qualified pipeline coverage required at 3x.</Bullet>
+                  <Bullet>After Week 8, late-stage close pipeline must reach €2M-€2.5M.</Bullet>
+                  <Bullet>Every Tier 1 account needs a named owner and next action.</Bullet>
+                </ul>
+              </Card>
+            </div>
+            <Card icon={TrendingUp} title="The GTM Engine" accent className="lg:col-span-7">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-4 flex-1 overflow-y-auto">
+                {[
+                  ["Category Narrative", "Position NEXTPredict as the institutional gathering point for prediction markets, market structure, trading, sports betting, data, regulation and capital."],
+                  ["ICP & Buyer Committee Mapping", "Define highest-value sponsor ICPs by segment: exchanges, operators, sportsbooks, trading firms, data, compliance, media and capital."],
+                  ["Named-Account War Room", "Build a priority account list with owner, buyer hypothesis, package target, relationship route, next action, probability and close date."],
+                  ["Commercial-Led Outreach", "Founder, Commercial Director, Sales Director and senior relationships must open doors. Six-figure packages need senior selling."],
+                  ["Offer Architecture", "Create clear entry points: category ownership, thought leadership, private access, media/content and lower-friction test packages."],
+                  ["Content as Ammunition", "Use speaker drops, agenda announcements, X-first commentary, reports and podcasts as sales triggers."],
+                  ["Partner & Speaker Amplification", "Every speaker, advisor, sponsor, media partner and ecosystem voice is a distribution node."],
+                  ["Public Momentum Signals", "Use ticket deadlines, sponsor announcements, speaker reveals and attendee signals to make the market feel active."]
+                ].map((item, i) => <div key={i} className="flex items-start gap-3"><div className="w-6 h-6 rounded-full bg-[#ffcf33]/20 flex items-center justify-center shrink-0 text-[#ffcf33] font-bold text-xs">{i + 1}</div><div><h4 className="text-xs font-bold text-white mb-0.5">{item[0]}</h4><p className="text-[10px] text-gray-400 leading-tight">{item[1]}</p></div></div>)}
+              </div>
+              <div className="mt-4 p-3 bg-[#ffcf33] text-[#111] rounded-lg text-center font-bold text-sm shadow-md shrink-0">
+                Bottom line: Marketing creates market pressure. Sales leadership converts it into pipeline, proposals and closed revenue.
+              </div>
+            </Card>
+          </div>
+        </SlideFrame>
+      );
+    }
+
+    function SlideDifferentSalesMotion() {
+      const rows = [
+        ["Sportsbooks / Operators", "CEO, CCO, Head of Product", "Defending market share against new prediction platforms and testing new revenue lines.", "Thought leadership and networking to find tech partners."],
+        ["Exchanges / Prediction Market Platforms", "CEO, Founder, Head of Growth", "Establishing dominance in a new category and attracting liquidity.", "Category ownership through Headline or Diamond positioning."],
+        ["Data / Integrity / Compliance Providers", "VP Sales, Head of Partnerships, CRO", "Platforms need institutional-grade data, KYC and integrity tooling.", "Lead-generation branding and private meeting rooms."],
+        ["Trading Firms / Market Makers", "Head of Trading, Managing Partner", "Finding new markets for liquidity provision and arbitrage.", "Targeted networking to secure liquidity partnerships."],
+        ["Capital / VC / Institutional Investors", "Partner, Investment Director", "Deal flow and early identification of breakout platforms.", "VIP networking and bespoke dinners."],
+        ["Legal / Regulatory / Advisory Firms", "Managing Partner, Head of Practice", "Navigating CFTC/SEC compliance and grey areas for new platforms.", "Stage presence to demonstrate regulatory authority."],
+        ["Media / Research / Intelligence Platforms", "Head of Content, Commercial Director", "Owning the narrative and selling subscriptions to traders and platforms.", "Media lounges, livestream partnerships and on-site branding."]
+      ];
+      return (
+        <SlideFrame eyebrow="Appendix" title="Why This Requires a Different Sales Motion" subtitle="NEXTPredict is not a standard iGaming sponsorship product. The buyer universe is broader and more sophisticated.">
+          <Card className="p-0 overflow-hidden flex-1">
+            <SimpleTable
+              minWidth="900px"
+              headers={[{ label: "Segment", className: "w-1/4" }, { label: "Likely Buyer", className: "w-1/5" }, { label: "Why They Care", className: "w-1/4" }, { label: "Sponsorship Angle" }]}
+              rows={rows.map(r => ({ cells: [
+                { value: r[0], className: "font-bold text-white" },
+                { value: r[1], className: "text-gray-400" },
+                { value: r[2] },
+                { value: r[3], className: "text-[#ffcf33]" }
+              ] }))}
+            />
+          </Card>
+        </SlideFrame>
+      );
+    }
+
+    function SlideHubSpotRhythm() {
+      return (
+        <SlideFrame eyebrow="Appendix" title="HubSpot Structure & Weekly Commercial Rhythm" subtitle="Moving from pipeline theatre to rigorous execution.">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 flex-1">
+            <Card icon={Target} title="CRM Tracking Requirements">
+              <ul className="space-y-3 text-sm text-gray-300">
+                {[
+                  "Company type on forms",
+                  "Contact segment / ICP type",
+                  "Product interest and sponsorship interest",
+                  "Ticket interest",
+                  "Source / campaign attribution",
+                  "Sales owner and deal stage",
+                  "Forecast category",
+                  "Next action date and close probability",
+                  "Payment status",
+                  "Price objection reason"
+                ].map((item, i) => <Bullet key={i}>{item}</Bullet>)}
+              </ul>
+            </Card>
+            <Card icon={Activity} title="Weekly Review Agenda">
+              <ul className="space-y-3 text-sm text-gray-300">
+                {[
+                  "Contracted revenue",
+                  "Late-stage close pipeline",
+                  "Qualified pipeline coverage against €4.05M / €5.4M requirements",
+                  "Ticket sales pacing",
+                  "Price resistance feedback",
+                  "ICP mix and audience acquisition",
+                  "Marketing campaign performance",
+                  "Strategic account blockers",
+                  "Senior leadership asks"
+                ].map((item, i) => <Bullet key={i} color={i === 7 ? "text-rose-400" : "text-emerald-400"}>{item}</Bullet>)}
+              </ul>
+            </Card>
+          </div>
+        </SlideFrame>
+      );
+    }
+
+    function SlideSalesFeedback() {
+      return (
+        <SlideFrame eyebrow="Appendix" title="Sales Feedback & Market Response Loop" subtitle="Structured feedback replaces anecdotal panic. No uncontrolled discounting.">
+          <Card accent className="max-w-4xl mx-auto w-full flex-1">
+            <p className="text-sm md:text-base text-gray-300 mb-6 leading-relaxed">
+              Sales feedback must be structured and reviewed weekly. Premium pricing in a new category will create resistance. The response is diagnosis, not instant price cuts.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 flex-1">
+              <ul className="space-y-4 text-sm text-gray-300">
+                <Bullet><strong className="text-white">Objections Collected Weekly:</strong> Lost deals and stalled pipeline need a reason logged in HubSpot.</Bullet>
+                <Bullet><strong className="text-white">Pricing Resistance Categorised:</strong> Split no budget, value concern and wrong package fit.</Bullet>
+                <Bullet><strong className="text-white">Package Feedback Reviewed:</strong> Adjust the catalogue before cutting the price.</Bullet>
+              </ul>
+              <ul className="space-y-4 text-sm text-gray-300">
+                <Bullet><strong className="text-white">Collateral & FAQs Refined:</strong> Marketing and Content update sales materials based on live objections.</Bullet>
+                <Bullet><strong className="text-white">ICP Messaging Adjusted:</strong> If a segment does not respond, adjust the angle before abandoning the territory.</Bullet>
+                <li className="flex items-start gap-3 p-3 bg-rose-900/10 rounded-lg border border-rose-500/20"><AlertCircle className="w-4 h-4 text-rose-400 mt-0.5 shrink-0" /><p className="text-sm text-rose-200"><strong>No Uncontrolled Discounting:</strong> Anecdotal feedback does not trigger blanket discounts. We hold the line unless data proves otherwise.</p></li>
+              </ul>
+            </div>
+          </Card>
+        </SlideFrame>
+      );
+    }
+
+    function SlideDownsideSensitivity() {
+      return (
+        <SlideFrame eyebrow="Appendix" title="Downside Sensitivity: Discounting & Market Risk" subtitle="Assessing the impact of pricing degradation and sub-optimal sell-through.">
+          <Card title="Discounted Revenue Scenarios" danger className="max-w-3xl mx-auto w-full mb-6">
+            <SimpleTable
+              headers={[{ label: "Scenario" }, { label: "Sponsorship Revenue", align: "right" }]}
+              rows={[
+                { cells: [{ value: "Stretch Case", className: "font-bold text-white" }, { value: "€1.80M", align: "right", className: "font-mono text-white" }] },
+                { className: "bg-[#ffcf33]/5", cells: [{ value: "Base Market Validation Case", className: "font-bold text-[#ffcf33]" }, { value: "c.€1.35M", align: "right", className: "font-mono text-[#ffcf33]" }] },
+                { cells: [{ value: "Price Resistance / Low Case", className: "font-bold text-rose-300" }, { value: "c.€1.10M", align: "right", className: "font-mono text-rose-300 font-bold" }] },
+                { cells: [{ value: "Severe Price Resistance / Stress Test", className: "font-bold text-rose-500" }, { value: "c.€900k", align: "right", className: "font-mono text-rose-500 font-bold" }] }
+              ]}
+            />
+            <div className="mt-6 p-4 bg-rose-950/20 border border-rose-900/30 rounded-lg">
+              <p className="text-xs text-gray-400 leading-relaxed italic">
+                The downside scenario is not automatically failure. It becomes acceptable only if approved as a strategic investment case with clear loss tolerance and post-event value measurement.
+              </p>
+            </div>
+          </Card>
+        </SlideFrame>
+      );
+    }
+
+    function SlideCompetitiveContext() {
+      return (
+        <SlideFrame eyebrow="Appendix" title="Competitive Context: The Category Race" subtitle="These events validate the category. NEXTPredict is positioned to define the institutional-scale tier.">
+          <Card className="p-0 overflow-hidden mb-6">
+            <SimpleTable
+              minWidth="800px"
+              headers={[{ label: "Metric" }, { label: "NEXTPredict (NYC)", className: "font-bold text-[#111] bg-[#ffcf33]" }, { label: "PREDICT (DealFlow)", className: "text-gray-500" }, { label: "Delphi Conf (Vegas)", className: "text-gray-500" }, { label: "PREDICT (Voliti Co)", className: "text-gray-500" }]}
+              rows={[
+                { cells: [{ value: "Scale (Pax)", className: "font-medium text-gray-400" }, { value: "Up to 2,500 registration ambition", className: "font-bold text-[#ffcf33] bg-[#ffcf33]/10" }, { value: "~300" }, { value: "~300" }, { value: "300+" }] },
+                { cells: [{ value: "Buyer Density", className: "font-medium text-gray-400" }, { value: "High, operator / platform / institutional buyer target", className: "font-bold text-[#ffcf33] bg-[#ffcf33]/10" }, { value: "Low / broad" }, { value: "Low / trader-led" }, { value: "Low / builder-led" }] },
+                { cells: [{ value: "Max Sponsor Package", className: "font-medium text-gray-400" }, { value: "€350,000 Headline", className: "font-bold text-[#ffcf33] bg-[#ffcf33]/10" }, { value: "$100,000" }, { value: "est. $45,000" }, { value: "$60,000" }] },
+                { cells: [{ value: "Sponsorship Model", className: "font-medium text-gray-400" }, { value: "A-la-carte, granular", className: "font-bold text-[#ffcf33] bg-[#ffcf33]/10" }, { value: "Bundled tiers" }, { value: "Bundled tiers" }, { value: "Bundled tiers" }] }
+              ]}
+            />
+            <div className="p-3 bg-[#111] text-[10px] text-gray-500 italic">
+              Competitor attendance and sponsorship figures are based on available published materials, observed market positioning and internal commercial intelligence where available. NEXTPredict figures are commercial targets, not guaranteed delivery.
+            </div>
+          </Card>
+        </SlideFrame>
+      );
+    }
+
+    function SlideCommercialThesis() {
+      return (
+        <SlideFrame eyebrow="Appendix" title="Why NEXTPredict Can Own the Premium Position">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+            <Card icon={Activity} title="The Category is Forming Now">
+              <p className="text-gray-400 text-sm md:text-base mb-4 md:mb-6 leading-relaxed">
+                Prediction markets are moving from niche academic and crypto circles toward mainstream financial utility. A premium, institutional-scale event sets the category ceiling before lower-priced formats define the market.
+              </p>
+              <div className="p-4 md:p-6 rounded-xl bg-[#111] border border-[#444] text-center flex flex-col justify-center items-center h-full mb-4">
+                <div className="text-4xl md:text-5xl font-black text-[#ffcf33] mb-2">Scale vs Meetup</div>
+                <p className="text-xs md:text-sm text-gray-500 mt-4 max-w-sm">Competitors are fragmented and running 300-person community gatherings. NEXTPredict is the enterprise-scale platform.</p>
+              </div>
+            </Card>
+            <Card icon={Target} title="The Market Structure Context" accent>
+              <ul className="space-y-4 text-gray-300 text-sm md:text-base flex-1">
+                <Bullet><strong className="text-white">The NYC Advantage:</strong> New York provides the density of finance, trading, sports betting and institutional capital needed to validate an enterprise price point.</Bullet>
+                <Bullet><strong className="text-white">Budget Gravity:</strong> The buyer universe spans exchanges, operators, trading firms, market makers, data providers, integrity platforms, iGaming and capital.</Bullet>
+                <Bullet><strong className="text-white">Existing Execution Infrastructure:</strong> NEXT.io already has the sales machinery, marketing infrastructure and executive audience-building capability to support this launch.</Bullet>
+              </ul>
+            </Card>
+          </div>
+        </SlideFrame>
+      );
+    }
+
+    function SlideAudienceCapacity() {
+      return (
+        <SlideFrame eyebrow="Appendix" title="Audience Strategy & Capacity Reality" subtitle="Defining the targeted scale advantage.">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6 flex-1">
+            <Card title="The Registration Ambition">
+              <div className="space-y-4 mb-6 md:mb-8">
+                <div className="p-4 rounded-xl bg-[#111] border border-[#444] flex justify-between items-center">
+                  <div><div className="text-[#ffcf33] font-bold mb-1 text-sm md:text-base">Target Buyer Density</div><div className="text-xs text-gray-500">Operator / platform / institutional buyer focus</div></div>
+                  <div className="text-[#ffcf33] font-mono text-xl md:text-2xl">~40%</div>
+                </div>
+              </div>
+              <div className="bg-[#111] p-4 rounded-xl border border-[#444] mt-auto">
+                <p className="text-xs md:text-sm text-gray-400 leading-relaxed mb-2">
+                  The 2,500 figure is a total registration ambition, not a paid-ticket target. The paid-ticket model is 1,000. The remaining audience is built through sponsor allocations, speaker/VIP/media participation, partner distribution and strategic complimentary passes.
+                </p>
+                <p className="text-[10px] md:text-xs text-gray-500 leading-relaxed italic">
+                  Sales reps must phrase the 40% figure as a target ambition, not a guaranteed outcome, to protect against SLA liability in a first-year event.
+                </p>
+              </div>
+            </Card>
+            <Card title="Expanding the Thesis">
+              <p className="text-sm md:text-base text-gray-400 leading-relaxed mb-6">The content and marketing strategy must cast a wider net than pure retail prediction markets.</p>
+              <ul className="space-y-4 text-gray-300 text-sm flex-1">
+                {[
+                  "Prediction & Information Markets",
+                  "Crypto-Finance & Trading",
+                  "Sports Betting & iGaming",
+                  "Event-Driven Derivatives",
+                  "Institutional Capital & Market Structure",
+                  "Data, Integrity, Compliance & KYC"
+                ].map((item, i) => <li key={i} className="flex items-center gap-3 p-3 bg-[#111] rounded-lg border border-[#444]"><div className="w-2 h-2 rounded-full bg-[#ffcf33] shrink-0" />{item}</li>)}
+              </ul>
+            </Card>
+          </div>
+        </SlideFrame>
+      );
+    }
+
+    function SlidePartnershipCeiling() {
+      return (
+        <SlideFrame eyebrow="Appendix" title="Partnership Revenue Ceiling" subtitle="The total addressable inventory value for NEXTPredict 2026. This is capacity, not a forecast.">
+          <Card accent className="max-w-4xl mx-auto w-full">
+            <div className="space-y-6">
+              <MetricRow label="General Branding, Utility & Rooms" value="€1,434,800" valueClass="text-[#ffcf33] text-xl md:text-2xl" />
+              <MetricRow label="Content & Stages" value="€1,063,000" valueClass="text-[#ffcf33] text-xl md:text-2xl" />
+              <MetricRow label="NEXTworking / Networking" value="€400,000" valueClass="text-[#ffcf33] text-xl md:text-2xl" />
+              <div className="flex justify-between items-center pt-4 bg-[#ffcf33]/10 p-4 rounded-xl border border-[#ffcf33]/30 mt-8">
+                <span className="text-lg md:text-2xl font-black text-white uppercase tracking-wider">Total Maximum Ceiling</span>
+                <span className="text-2xl md:text-4xl font-black font-mono text-[#ffcf33] drop-shadow-md">€2,897,800</span>
+              </div>
+            </div>
+            <div className="mt-6 space-y-2">
+              <p className="text-[10px] text-gray-500 italic text-center">Calculated against full list price at 100% sell-through. Mutual exclusivity limits apply.</p>
+              <p className="text-[10px] text-gray-500 italic text-center">Exclusive and non-exclusive networking inventory is mutually exclusive. The €400k NEXTworking ceiling assumes exclusive packages take priority.</p>
+            </div>
+          </Card>
+        </SlideFrame>
+      );
+    }
+
+    function SlideDealDesk() {
+      return (
+        <SlideFrame eyebrow="Appendix" title="Deal Desk Governance" subtitle="Holding the premium line using value-adds instead of cash discounts.">
+          <Card className="mb-6 md:mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
+              {[
+                ["Sales Reps", "Max 10%", ""],
+                ["Sales Director", "Max 15%", ""],
+                ["Commercial Dir.", "> 15%", "Requires approval"],
+                ["Power Inventory", "Max 5%", "Hard cap"]
+              ].map((item, i) => <div key={i} className={cn("p-4 md:p-5 rounded-xl bg-[#111] border relative overflow-hidden", i === 2 ? "border-[#ffcf33]/30" : i === 3 ? "border-rose-900/30" : "border-[#444]")}><div className={cn("text-[10px] md:text-xs font-medium uppercase tracking-wider mb-2", i === 2 ? "text-[#ffcf33]" : i === 3 ? "text-rose-400" : "text-gray-500")}>{item[0]}</div><div className="text-2xl md:text-3xl font-bold text-white mb-1">{item[1]}</div>{item[2] && <p className="text-[10px] text-gray-400 mt-1">{item[2]}</p>}</div>)}
+            </div>
+            <div className="mt-4 space-y-3">
+              <div className="p-3 bg-[#111] rounded-lg border border-[#444] text-xs text-gray-400"><strong className="text-white">Defined Power Inventory:</strong> Headline Partnership, Registration, Leadership Stage Partner, Leadership Stage Featured Session, Day 1 Exclusive, VIP/C-Level Networking, Lanyards, Wi-Fi and any single package above €100k.</div>
+              <div className="p-3 bg-[#ffcf33]/10 rounded-lg border border-[#ffcf33]/30 text-xs text-[#ffcf33]">Private meeting rooms are not standard visibility units. Discounting should be governed by scarcity, not floor-space logic.</div>
+            </div>
+          </Card>
+          <Card icon={Award} title="The Sweetener Bank, B2B" className="flex-1">
+            <p className="text-gray-400 text-sm leading-relaxed mb-4">Instead of discounting past 15%, reps must use zero-cost or low-margin impact items to close enterprise deals.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+              {[
+                "On-site interview",
+                "Advertisement video",
+                "Additional passes, subject to allocation",
+                "Target-account invitation support",
+                "Additional social media visibility",
+                "Sponsor success strategy call"
+              ].map((item, i) => <div key={i} className="bg-[#111] p-2 rounded border border-[#444] text-[11px] text-gray-300 flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#ffcf33]"></div>{item}</div>)}
+            </div>
+          </Card>
+        </SlideFrame>
+      );
+    }
+
+    function SlidePartnerFABs() {
+      const rows = [
+        ["Speaker Partner", "Agenda-approved speaking, panel, interview or presentation format.", "Positions the brand inside the market conversation.", "Builds authority with decision-makers and creates a credible post-event follow-up reason."],
+        ["Branding Partner", "High-frequency physical and digital visibility across venue assets.", "Turns unavoidable delegate touchpoints into repeated brand exposure.", "Increases share of mind with a concentrated audience of operators, platforms, investors and market-structure stakeholders."],
+        ["Networking Partner", "Ownership or co-ownership of curated networking environments.", "Moves the sponsor from visibility into relationship creation.", "Creates private access, social proximity and warmer commercial conversations."],
+        ["Content / Media Partner", "On-site interviews, video slots and social amplification.", "Extends sponsor visibility through digital assets.", "Gives the sponsor measurable video assets for demand generation and internal ROI reporting."],
+        ["Private Meeting Room Partner", "Dedicated on-site meeting space for meetings, demos and executive conversations.", "Converts attendance into controlled commercial meetings.", "Helps justify spend through booked meetings and deal progression."]
+      ];
+      return (
+        <SlideFrame eyebrow="Appendix" title="Sales Narrative: Core Partner FABs">
+          <Card className="p-0 overflow-hidden flex-1">
+            <SimpleTable
+              minWidth="800px"
+              headers={[{ label: "Partner Type" }, { label: "Feature" }, { label: "Advantage" }, { label: "Buyer Benefit" }]}
+              rows={rows.map(r => ({ cells: [{ value: r[0], className: "font-bold text-white" }, { value: r[1], className: "text-gray-400" }, { value: r[2] }, { value: r[3], className: "text-[#ffcf33]" }] }))}
+            />
+          </Card>
+        </SlideFrame>
+      );
+    }
+
+    function SlidePricingPsychology() {
+      return (
+        <SlideFrame eyebrow="Appendix" title="How We Defend Premium Pricing" subtitle="Arming the sales team against community-level price expectations.">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 flex-1">
+            <Card icon={Target} title="Category Ownership"><p className="text-gray-400 leading-relaxed mb-4 text-sm md:text-base">Competitors validate demand, but NEXTPredict provides the enterprise ceiling. Sponsorship is a market-leadership signal, not logo exposure.</p></Card>
+            <Card icon={Users} title="Institutional Density"><p className="text-gray-400 leading-relaxed mb-4 text-sm md:text-base">The value is operator / platform / institutional buyer density, curated access and high-trust relationship creation, not arbitrary foot traffic.</p></Card>
+            <Card icon={Layers} title="The Manhattan Context"><p className="text-gray-400 leading-relaxed mb-4 text-sm md:text-base">NYC anchors the event to finance, trading and institutional capital. We are pricing against Wall Street B2B benchmarks, not Vegas meetup economics.</p></Card>
+          </div>
+          <p className="text-[#ffcf33]/90 text-xs md:text-sm font-medium mt-4 text-center">The pricing is correct for the ambition. The risk is whether we deliver the audience scale and buyer density required to justify it.</p>
+        </SlideFrame>
+      );
+    }
+
+    function SlidePartnershipTiering() {
+      return (
+        <SlideFrame eyebrow="Appendix" title="Partnership Tiering & Status" subtitle="Clear thresholds define partner status and drive upsells.">
+          <div className="bg-[#ffcf33]/10 border border-[#ffcf33]/30 rounded-xl p-4 md:p-5 mb-6 flex items-start gap-4">
+            <Award className="w-6 h-6 text-[#ffcf33] shrink-0" />
+            <div><h3 className="text-base md:text-lg font-bold text-[#ffcf33] mb-1">Headline (€350,000 max list value)</h3><p className="text-[#ffcf33]/80 text-xs md:text-sm">Sits above normal tiering. Absolute category dominance. Eligible for up to 10 curated introductions, facilitation only.</p></div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 flex-1">
+            {[
+              ["Strategic Tier", "Diamond", "€135,000+", "Up to 5 curated introductions, facilitation only"],
+              ["Tier 1", "Platinum", "€80,000 - €134,999", "Strong visibility and stage presence"],
+              ["Tier 2", "Gold", "€30,000 - €79,999", "Core branding and mid-tier content"],
+              ["Tier 3", "Silver", "Below €30,000", "Entry-level visibility"]
+            ].map((item, i) => <div key={i} className="bg-[#232323] border border-[#444] rounded-2xl p-4 flex flex-col"><div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">{item[0]}</div><h3 className={cn("text-xl font-extrabold mb-1 flex items-center gap-2", i === 0 ? "text-white" : i === 2 ? "text-[#ffcf33]" : "text-gray-300")}>{i === 0 && <Diamond className="w-4 h-4 text-[#ffcf33]" />}{item[1]}</h3><div className="text-sm md:text-base font-medium text-[#ffcf33] mb-2">{item[2]}</div><p className="text-[10px] md:text-xs text-gray-300 flex-1">{item[3]}</p></div>)}
+          </div>
+          <div className="mt-4 text-center text-[10px] text-gray-500 italic">Matchmaking is a premium facilitation tool, not guaranteed meetings, and should be withheld from sub-€135k packages to protect buyer time.</div>
+        </SlideFrame>
+      );
+    }
+
+    const catalogueBranding = [
+      { name: "Headline Sponsorship (Excl)", price: "€350,000", qty: "1", desc: "Maximum brand dominance across the full event. Includes co-branded post-event white paper / market insights report, subject to editorial capacity and sponsor data approval." },
+      { name: "Online & Onsite Registration (Excl)", price: "€110,000", qty: "1", desc: "First and last brand experience. Converts logistical necessity into impression." },
+      { name: "Leadership Stage Branding", price: "€115,000", qty: "1", desc: "Leadership Stage Partner: stage holding slide, podium sign, premium room ownership and 6 passes. No keynote or presenter slot included." },
+      { name: "Livestream", price: "€92,500", qty: "1", desc: "Broadcast to the NEXT global audience beyond the physical room." },
+      { name: "Dining Meeting Area (Excl)", price: "€77,000", qty: "1", desc: "Own the social real estate where informal deals start." },
+      { name: "Media Lounge", price: "€65,000", qty: "1", desc: "Where press, podcasters and content creators work." },
+      { name: "Speaker's Lounge (Excl)", price: "€54,000", qty: "1", desc: "Private access to speakers and senior participants in an informal networking environment." },
+      { name: "Stair Risers (Excl)", price: "€31,000", qty: "1", desc: "Unavoidable, high-frequency physical branding." },
+      { name: "Badge Sponsor", price: "€30,800", qty: "1", desc: "The one item every delegate touches multiple times per day." },
+      { name: "Lanyards A & B", price: "€30,000", qty: "2", desc: "Power Inventory. Joint packages covering 100% of reach." },
+      { name: "Nourish Bar", price: "€28,500", qty: "2", desc: "Sponsor the pause. Extended natural dwell time." },
+      { name: "Digital Event Guide (Excl)", price: "€23,000", qty: "1", desc: "Exclusive ownership of the primary delegate navigation tool." },
+      { name: "Wi-Fi", price: "€23,000", qty: "1", desc: "100% delegate reach, zero opt-out." },
+      { name: "Advertisement Video", price: "€13,500", qty: "8", desc: "High-frequency reach on screens. Scalable across the day." },
+      { name: "Cloakroom Area", price: "€32,000", qty: "1", desc: "First and last delegate touchpoint at arrival and departure. Includes branded counter/signage, branded tickets/tags and digital guide listing." },
+      { name: "Private Meeting Room 12p", price: "€62,000", qty: "1", desc: "Boardroom scale for flagship enterprise delegations." },
+      { name: "Private Meeting Room 8p", price: "€38,500", qty: "1", desc: "Multi-stakeholder demos." },
+      { name: "Private Meeting Room 6p", price: "€31,000", qty: "1", desc: "Mid-tier private space." },
+      { name: "Private Meeting Room 4p", price: "€25,000", qty: "3", desc: "Private deal room." }
+    ];
+
+    const catalogueContent = [
+      { name: "Strategic Premium Keynote / Paid Executive Session", price: "c.€100,000", qty: "1", desc: "Upside inventory. Subject to talent, editorial, legal and leadership approval. Excluded from the €1,063,000 content ceiling until formally approved.", isUpside: true },
+      { name: "Leadership Stage Featured Session / Executive Interview", price: "€90,000", qty: "1", desc: "Agenda-approved 20-minute featured session, executive interview or presentation format. Sold separately from Leadership Stage Partner." },
+      { name: "Leadership Stage Custom Panel", price: "€60,000", qty: "2", desc: "Full narrative control. Paired with a moderator." },
+      { name: "Leadership Stage Chair Partner (Excl)", price: "€40,000", qty: "1", desc: "Logo on every seat in the main hall." },
+      { name: "Leadership Stage Branded Panel", price: "€30,000", qty: "6", desc: "Powered by title drives awareness." },
+      { name: "Leadership Stage Non-Branded Panel", price: "€19,000", qty: "4", desc: "Credibility play. Earn the room on substance." },
+      { name: "Stage 2 Presenter Panel", price: "€58,000", qty: "2", desc: "Presentation format slot in front of 250 delegates." },
+      { name: "Stage 2 Custom Panel", price: "€40,000", qty: "2", desc: "Controlled message, third-party validation." },
+      { name: "Stage 2 Branded Panel", price: "€25,000", qty: "4", desc: "Volume visibility across mid-tier track." },
+      { name: "Stage 2 Non-Branded Panel", price: "€16,000", qty: "4", desc: "Organic authority. Thought leadership-led sales." },
+      { name: "Stage 3 Presenter Panel", price: "€30,000", qty: "2", desc: "Intimate 80-pax format for technical topics." },
+      { name: "Stage 3 Custom Panel", price: "€21,500", qty: "2", desc: "Narrative control in specialist room." },
+      { name: "Stage 3 Branded Panel", price: "€13,500", qty: "4", desc: "Targeted buyer message." },
+      { name: "Stage 3 Non-Branded Panel", price: "€10,000", qty: "4", desc: "Maximum credibility with an engaged audience." }
+    ];
+
+    const catalogueNetworking = [
+      { isHeader: true, title: "Modelled Exclusive Inventory" },
+      { name: "Pre-Registration Event (Excl)", price: "€125,000", qty: "1", desc: "Own the night before. First impression of the cycle." },
+      { name: "Day 1 NEXTworking (Excl)", price: "€150,000", qty: "1", desc: "The flagship evening. Maximum attendance and platinum positioning." },
+      { name: "Day 2 NEXTworking (Excl)", price: "€125,000", qty: "1", desc: "Closing night. The last brand delegates associate with the event." },
+      { isHeader: true, title: "Fallback / Non-Exclusive Inventory, Excluded From €400k Modelled Ceiling", isUpside: true },
+      { name: "Pre-Registration (Non-Excl)", price: "€34,000", qty: "5", desc: "Shared slots. High share-of-mind before noise begins.", isUpside: true },
+      { name: "Day 1 NEXTworking (Non-Excl)", price: "€34,000", qty: "5", desc: "Shared slots at the primary evening.", isUpside: true },
+      { name: "Day 2 NEXTworking (Non-Excl)", price: "€30,000", qty: "5", desc: "Shared slots on closing night.", isUpside: true },
+      { name: "C-Level Event (Bespoke)", price: "€55,000", qty: "1", desc: "Bespoke upside. Excluded from base ceiling.", isUpside: true }
+    ];
+
+    function CatalogueSlide({ title, data, totalRev, tableNote }) {
+      return (
+        <SlideFrame eyebrow="Appendix / Reference">
+          <div className="flex items-center justify-between mb-4 md:mb-6 gap-4">
+            <h2 className="text-2xl md:text-3xl font-bold flex items-center gap-3 text-white"><FileText className="w-6 h-6 md:w-8 md:h-8 text-gray-500" />{title}</h2>
+            <div className="bg-[#232323] border border-[#444] rounded-lg px-4 py-2 text-right shrink-0"><div className="text-[10px] uppercase tracking-wider text-gray-400">Max Rev Ceiling</div><div className="font-mono font-bold text-[#ffcf33]">{totalRev}</div></div>
+          </div>
+          <div className="bg-[#232323] border border-[#444] rounded-2xl overflow-hidden flex-1 flex flex-col">
+            <div className="overflow-x-auto w-full flex-1 table-container">
+              <table className="w-full text-left text-[11px] md:text-sm min-w-[700px]">
+                <thead className="bg-[#111] border-b border-[#444] text-gray-400 uppercase tracking-wider text-[10px]">
+                  <tr><th className="p-3 md:p-4 font-medium min-w-[200px]">Inventory Item</th><th className="p-3 md:p-4 font-medium text-center">Qty</th><th className="p-3 md:p-4 font-medium">List Price</th><th className="p-3 md:p-4 font-medium min-w-[300px]">Delivery / Notes</th></tr>
+                </thead>
+                <tbody className="divide-y divide-[#444] text-gray-300">
+                  {data.map((item, i) => {
+                    if (item.isHeader) {
+                      return <tr key={i} className="bg-[#1a1a1a] border-y border-[#333]"><td colSpan="4" className={item.isUpside ? "p-3 font-bold text-[#ffcf33]/80 text-[10px] md:text-xs tracking-wider uppercase" : "p-3 font-bold text-white text-[10px] md:text-xs tracking-wider uppercase"}>{item.title}</td></tr>;
+                    }
+                    return <tr key={i} className={item.isUpside ? "border-l-2 border-[#ffcf33]/50 bg-[#ffcf33]/5 hover:bg-[#ffcf33]/10 transition-colors opacity-90" : "hover:bg-[#111] transition-colors group"}><td className="p-3 md:p-4 font-bold text-white">{item.name}</td><td className="p-3 md:p-4 text-center font-mono text-gray-400">{item.qty}</td><td className="p-3 md:p-4 font-mono text-[#ffcf33] font-bold">{item.price}</td><td className="p-3 md:p-4 text-[10px] md:text-xs text-gray-400">{item.desc}</td></tr>;
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          {tableNote && <div className="mt-4 text-[10px] text-gray-500 italic">{tableNote}</div>}
+        </SlideFrame>
+      );
+    }
+
+    const slides = [
+      SlideTitle,
+      SlideExecutiveSummary,
+      SlideCommercialModel,
+      SlideBreakEven,
+      SlideStrategicLaunchInvestmentLogic,
+      SlideTicketing,
+      SlidePartnershipForecast,
+      SlideScorecard,
+      SlideSalesRamp,
+      SlideCommercialControls,
+      SlideMarketingGovernance,
+      SlideWhatMustBeTrue,
+      SlideApprovalRequested,
+      SlideResourceRequired,
+      SlideHighLevelGTMStrategy,
+      SlideDifferentSalesMotion,
+      SlideHubSpotRhythm,
+      SlideSalesFeedback,
+      SlideDownsideSensitivity,
+      SlideCompetitiveContext,
+      SlideCommercialThesis,
+      SlideAudienceCapacity,
+      SlidePartnershipCeiling,
+      SlideDealDesk,
+      SlidePartnerFABs,
+      SlidePricingPsychology,
+      SlidePartnershipTiering,
+      () => <CatalogueSlide title="Catalogue: General Branding, Utility & Rooms" data={catalogueBranding} totalRev="€1,434,800" />,
+      () => <CatalogueSlide title="Catalogue: Content & Stages" data={catalogueContent} totalRev="€1,063,000" tableNote="Strategic Premium Keynote / Paid Executive Session is upside inventory and is excluded from the €1,063,000 content ceiling until formally approved. Room capacities and final panel quantities are provisional and subject to final Convene room-configuration confirmation." />,
+      () => <CatalogueSlide title="Catalogue: NEXTworking" data={catalogueNetworking} totalRev="€400,000" tableNote="Exclusive and non-exclusive networking inventory is mutually exclusive. The €400k NEXTworking ceiling assumes exclusive packages take priority. Non-exclusive inventory is fallback inventory only and is excluded from the modelled ceiling unless an exclusive package does not sell." />
+    ];
+
+    function App() {
+      const [currentSlide, setCurrentSlide] = useState(0);
+      const next = () => setCurrentSlide(s => Math.min(slides.length - 1, s + 1));
+      const prev = () => setCurrentSlide(s => Math.max(0, s - 1));
+      const Slide = slides[currentSlide];
+
+      return (
+        <div className="min-h-screen bg-[#111] text-gray-50 font-sans flex flex-col">
+          <main className="flex-1 flex flex-col max-w-7xl mx-auto w-full p-4 md:p-8">
+            <Slide key={currentSlide} />
+          </main>
+          <footer className="border-t border-[#333] bg-[#111]/80 backdrop-blur-sm p-4 flex items-center justify-between sticky bottom-0 z-50">
+            <div className="flex items-center gap-3">
+              <Globe className="w-5 h-5 md:w-6 md:h-6 text-[#ffcf33]" />
+              <div className="text-[#ffcf33] text-xs md:text-sm font-medium tracking-wide">NEXTPredict 2026 Commercial Strategy</div>
+            </div>
+            <div className="flex items-center gap-4">
+              <button onClick={prev} disabled={currentSlide === 0} className="p-2 rounded-full hover:bg-[#232323] text-gray-300 disabled:text-gray-700 disabled:hover:bg-transparent transition-colors" aria-label="Previous slide"><ChevronLeft className="w-5 h-5 md:w-6 md:h-6" /></button>
+              <span className="text-gray-400 font-medium font-mono min-w-[3rem] text-center text-sm md:text-base">{currentSlide + 1} / {slides.length}</span>
+              <button onClick={next} disabled={currentSlide === slides.length - 1} className="p-2 rounded-full hover:bg-[#232323] text-gray-300 disabled:text-gray-700 disabled:hover:bg-transparent transition-colors" aria-label="Next slide"><ChevronRight className="w-5 h-5 md:w-6 md:h-6" /></button>
+            </div>
+          </footer>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
