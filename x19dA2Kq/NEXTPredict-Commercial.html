@@ -105,6 +105,12 @@
       </li>
     );
 
+    const ContentCaveat = () => (
+      <div className="mt-4 p-3 bg-[#ffcf33]/10 border border-[#ffcf33]/30 rounded-lg text-[10px] md:text-xs text-[#ffcf33] leading-relaxed">
+        <strong>Content caveat:</strong> We are asking Rory to confirm the number of stages and the sellable content quantities per stage before finalising content inventory, content ceiling and stage-package availability.
+      </div>
+    );
+
     const NumberedPoint = ({ n, children }) => (
       <div className="flex items-start gap-3 bg-[#111] p-4 rounded-xl border border-[#333]">
         <div className="w-6 h-6 rounded-full bg-[#ffcf33]/20 flex items-center justify-center shrink-0 text-[#ffcf33] font-bold text-xs">{n}</div>
@@ -165,7 +171,7 @@
             </Card>
             <Card icon={Target} title="Commercial Realism" accent>
               <p className="text-gray-400 text-sm md:text-base leading-relaxed">
-                The base market validation forecast is <strong className="text-[#ffcf33]">€1.35M</strong> against a maximum catalogue ceiling of <strong className="text-[#ffcf33]">€2.897M</strong>. The <strong className="text-[#ffcf33]">€1.8M</strong> stretch target is achievable only with tight GTM execution.
+                The visible commercial view is focused on two targets: <strong className="text-[#ffcf33]">€1.35M base</strong> and <strong className="text-[#ffcf33]">€1.8M stretch</strong>. Other stress, downside, upper-base and ceiling scenarios are retained for internal modelling, but hidden from this board view.
               </p>
             </Card>
             <Card icon={TrendingUp} title="Integrated Revenue & Strategic Value" accent>
@@ -188,14 +194,14 @@
             <Card icon={AlertCircle} title="First-Year Sell-Through Discount">
               <p className="text-gray-400 text-sm">As a launch event, NEXTPredict has no renewal base and no historic conversion data. Forecasting must therefore stay conservative. Pipeline optimism should not be mistaken for market validation.</p>
             </Card>
-            <Card icon={Target} title="Max Ceiling vs. Target Revenue">
-              <p className="text-gray-400 text-sm">The B2B Partnership Maximum Revenue Ceiling is <strong className="text-[#ffcf33]">€2,897,800</strong>. This is full catalogue capacity, not the default expectation. Base market validation is <strong className="text-[#ffcf33]">€1.35M</strong>. Stretch is <strong className="text-[#ffcf33]">€1.8M</strong>.</p>
+            <Card icon={Target} title="Visible Revenue Targets">
+              <p className="text-gray-400 text-sm">The board view shows two commercial targets only: <strong className="text-[#ffcf33]">€1.35M base</strong> and <strong className="text-[#ffcf33]">€1.8M stretch</strong>. Stress, downside, upper-base and ceiling values are retained for internal modelling, but hidden from this presentation.</p>
             </Card>
             <Card icon={Users} title="Buyer Density Priority">
               <p className="text-gray-400 text-sm">The target is operator / platform / institutional buyer density. Comp, hosted and partner-led passes should build the audience quality required to defend premium sponsor pricing.</p>
             </Card>
             <Card icon={Calculator} title="Model Assumptions">
-              <p className="text-gray-400 text-sm">The model includes Cloakroom Area at €32,000 and all listed Stage 3 content inventory. POA, bespoke and formally unapproved upside items are excluded from the modelled ceiling.</p>
+              <p className="text-gray-400 text-sm">The model includes Cloakroom Area at €32,000 and listed content inventory, subject to Rory confirming final stage count and sellable content quantities per stage. POA, bespoke and formally unapproved upside items are excluded from the modelled ceiling.</p>
             </Card>
           </div>
         </SlideFrame>
@@ -204,29 +210,15 @@
 
     function SlideBreakEven() {
       const scenarioRows = [
-        { className: "text-rose-500", cells: [
-          { value: "Combined Stress Case", className: "text-rose-500" },
-          { value: "€1,100,000", align: "right", className: "font-mono text-rose-500" },
-          { value: "€900,000", align: "right", className: "font-mono text-rose-500" },
-          { value: "€2,000,000", align: "right", className: "font-mono font-bold text-rose-500" },
-          { value: "-€75,000", align: "right", className: "font-mono font-bold text-rose-500" }
-        ]},
-        { className: "text-rose-300", cells: [
-          { value: "Downside Case", className: "text-rose-300" },
-          { value: "€1,100,000", align: "right", className: "font-mono text-rose-300" },
-          { value: "€1,100,000", align: "right", className: "font-mono text-rose-300" },
-          { value: "€2,200,000", align: "right", className: "font-mono font-bold text-rose-300" },
-          { value: "€105,000", align: "right", className: "font-mono font-bold text-emerald-400" }
-        ]},
         { className: "bg-[#ffcf33]/5", cells: [
-          { value: "Base Market Validation", className: "text-[#ffcf33] font-bold" },
+          { value: "Base Target", className: "text-[#ffcf33] font-bold" },
           { value: "€1,225,000", align: "right", className: "font-mono text-[#ffcf33]" },
           { value: "€1,350,000", align: "right", className: "font-mono text-[#ffcf33]" },
           { value: "€2,575,000", align: "right", className: "font-mono font-bold text-[#ffcf33]" },
           { value: "€455,000", align: "right", className: "font-mono font-bold text-emerald-400" }
         ]},
         { cells: [
-          { value: "Stretch Case", className: "text-white font-bold" },
+          { value: "Stretch Target", className: "text-white font-bold" },
           { value: "€1,225,000", align: "right", className: "font-mono text-gray-300" },
           { value: "€1,800,000", align: "right", className: "font-mono text-gray-300" },
           { value: "€3,025,000", align: "right", className: "font-mono font-bold text-white" },
@@ -264,7 +256,7 @@
               />
               <div className="mt-4 p-3 bg-[#ffcf33]/10 border border-[#ffcf33]/30 rounded-lg">
                 <p className="text-[11px] text-gray-300 leading-relaxed">
-                  <strong className="text-[#ffcf33]">Loss tolerance must be agreed upfront.</strong> A controlled first-year investment loss is acceptable if it delivers audience scale, sponsor proof points, category authority and 2027 renewal potential. An unplanned loss caused by weak pipeline discipline or uncontrolled discounting is not acceptable.
+                  <strong className="text-[#ffcf33]">Visible approval view:</strong> Base and stretch are the only revenue cases shown. Stress, downside and upper-base scenarios stay in the internal model.
                 </p>
               </div>
             </Card>
@@ -353,7 +345,7 @@
             <Card title="Paid Volume Model, 1,000 Ticket Target">
               <SimpleTable headers={[{ label: "Pass Type" }, { label: "Paid Vol.", align: "right" }, { label: "Blended Price", align: "right" }, { label: "Gross Revenue", align: "right" }]} rows={volumeRows} />
               <div className="mt-4 p-2 bg-[#ffcf33]/10 border border-[#ffcf33]/20 rounded text-[10px] text-[#ffcf33] font-medium text-center">
-                1,000 paid tickets is the commercial target. 900 paid tickets is downside sensitivity only.
+                1,000 paid tickets is the commercial target. 900 paid tickets remains internal downside sensitivity only.
               </div>
             </Card>
             <Card icon={TrendingUp} title="Gross Paid to Net Revenue Bridge">
@@ -364,11 +356,6 @@
                 <div className="flex justify-between py-1 text-rose-400/80"><span>Fees, FX, discounts, refunds</span><span>(~€170k-€220k)</span></div>
                 <div className="flex justify-between py-1.5 border-t border-[#444] mt-1 font-bold text-[#ffcf33]"><span>Net Ticket Target</span><span>~€1.20M-€1.25M</span></div>
               </div>
-              <div className="space-y-1.5 text-xs font-mono border-t border-[#333] pt-3">
-                <div className="text-[10px] uppercase text-gray-500 font-bold mb-1">Downside Sensitivity, 900 Paid</div>
-                <div className="flex justify-between text-gray-400"><span>Gross Revenue</span><span>~$1.38M USD</span></div>
-                <div className="flex justify-between text-rose-300 font-bold"><span>Net Downside Target</span><span>~€1.10M</span></div>
-              </div>
             </Card>
           </div>
         </SlideFrame>
@@ -377,20 +364,17 @@
 
     function SlidePartnershipForecast() {
       const forecastRows = [
-        { cells: [{ value: "Combined Stress Case", className: "text-rose-500" }, { value: "€900,000", align: "right", className: "font-mono text-rose-500" }] },
-        { cells: [{ value: "Downside Case", className: "text-rose-300" }, { value: "€1,100,000", align: "right", className: "font-mono text-rose-300" }] },
-        { className: "bg-[#ffcf33]/10", cells: [{ value: "Base Market Validation Case", className: "text-[#ffcf33] font-bold" }, { value: "€1,350,000", align: "right", className: "font-mono font-bold text-[#ffcf33] text-lg" }] },
-        { cells: [{ value: "Upper Base / Strong Execution Case", className: "text-white font-bold" }, { value: "€1,645,530", align: "right", className: "font-mono font-bold text-white" }] },
+        { className: "bg-[#ffcf33]/10", cells: [{ value: "Base Target", className: "text-[#ffcf33] font-bold" }, { value: "€1,350,000", align: "right", className: "font-mono font-bold text-[#ffcf33] text-lg" }] },
         { cells: [{ value: "Stretch Target", className: "text-white font-bold" }, { value: "€1,800,000", align: "right", className: "font-mono font-bold text-white text-lg" }] }
       ];
 
       return (
         <SlideFrame title="Partnership Forecast" subtitle="Applying first-year commercial realism to our inventory capacity.">
-          <Card title="Sponsorship Revenue Hierarchy" accent className="mb-8">
+          <Card title="Sponsorship Revenue Targets" accent className="mb-8">
             <SimpleTable headers={[{ label: "Commercial Case" }, { label: "Projected Revenue", align: "right" }]} rows={forecastRows} />
             <div className="mt-4 p-3 bg-[#111] border border-[#444] rounded-lg">
               <p className="text-[11px] text-gray-400 italic">
-                The €1.645M model is treated as an upper base / strong execution case. It should not replace the €1.35M base forecast. The €1.8M stretch target requires senior leadership support, enterprise conversion and visible category momentum.
+                The board view shows the base target and stretch target only. Supporting downside, stress, ceiling and upper-base modelling remains internal.
               </p>
             </div>
           </Card>
@@ -405,15 +389,13 @@
             <Card icon={TicketIcon} title="Marketing Revenue, Tickets" accent>
               <div className="space-y-4 text-sm">
                 <MetricRow label="Protected Floor" value="€750,000 net" />
-                <MetricRow label="Downside Sensitivity" note="900 paid tickets" value="~€1,100,000 net" valueClass="text-rose-300" />
                 <MetricRow label="Modelled Target" note="1,000 paid tickets" value="~€1.20M-€1.25M net" valueClass="text-[#ffcf33] text-lg" />
               </div>
             </Card>
             <Card icon={Award} title="Sales Revenue, B2B" accent>
               <div className="space-y-4 flex-1 flex flex-col justify-center">
-                <MetricRow label="Base Market Validation" value="€1,350,000" valueClass="text-white text-2xl" />
-                <MetricRow label="Upper Base / Strong Execution" value="€1,645,530" valueClass="text-gray-300 text-xl" />
-                <MetricRow label="Official Stretch Target" value="€1,800,000" valueClass="text-[#ffcf33] text-2xl" />
+                <MetricRow label="Base Target" value="€1,350,000" valueClass="text-white text-2xl" />
+                <MetricRow label="Stretch Target" value="€1,800,000" valueClass="text-[#ffcf33] text-2xl" />
               </div>
             </Card>
           </div>
@@ -421,7 +403,6 @@
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
             <Card title="Year-One Financial Performance" className="lg:col-span-2 bg-[#111]">
               <div className="space-y-3">
-                <MetricRow label="Stress commission" note="10% of €900k" value="~€90,000" valueClass="text-rose-400" />
                 <MetricRow label="Base commission" note="10% of €1.35M" value="~€135,000" valueClass="text-[#ffcf33]" />
                 <MetricRow label="Stretch commission" note="10% of €1.80M" value="~€180,000" />
               </div>
@@ -597,7 +578,7 @@
               <NumberedPoint n="5">Comp passes are governed against operator / platform / institutional buyer density and sponsor value.</NumberedPoint>
               <NumberedPoint n="6">Sponsor deliverables are mapped before packages are sold.</NumberedPoint>
               <NumberedPoint n="7">Finance confirms FX, fees, tax, refund, salary and commission assumptions.</NumberedPoint>
-              <NumberedPoint n="8">Any first-year loss is pre-approved, capped and measured against strategic launch value.</NumberedPoint>
+              <NumberedPoint n="8">Rory confirms stage count and sellable content quantities before content inventory is finalised.</NumberedPoint>
             </div>
           </div>
         </div>
@@ -606,12 +587,12 @@
 
     function SlideApprovalRequested() {
       return (
-        <SlideFrame title="Approval Requested Today" subtitle="Seeking sign-off on the commercial framework. Certain logistical numbers remain TBC.">
+        <SlideFrame title="Approval Requested Today" subtitle="Seeking sign-off on the commercial framework. Certain logistical and content numbers remain TBC.">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-6">
             <Card icon={CheckSquare} title="Recommended for Approval" accent>
               <ul className="space-y-3 text-xs md:text-sm text-gray-300">
-                <Bullet color="text-emerald-400"><strong className="text-white">Sales Target:</strong> €1.35M base forecast, €1.645M upper base / strong execution, €1.8M stretch.</Bullet>
-                <Bullet color="text-emerald-400"><strong className="text-white">Ticketing:</strong> 1,000 paid tickets as commercial target. 900 paid tickets as downside sensitivity. €750k net protected as minimum floor.</Bullet>
+                <Bullet color="text-emerald-400"><strong className="text-white">Sales Target:</strong> €1.35M base forecast and €1.8M stretch.</Bullet>
+                <Bullet color="text-emerald-400"><strong className="text-white">Ticketing:</strong> 1,000 paid tickets as commercial target. €750k net protected as minimum floor.</Bullet>
                 <Bullet color="text-emerald-400"><strong className="text-white">Marketing-Led Ticket Urgency:</strong> Public $100 price-rise mechanics approved where reflected on the website, campaign calendar and registration journey.</Bullet>
                 <Bullet color="text-emerald-400"><strong className="text-white">Deal Desk:</strong> Strict 15% discount cap. 5% on Power Inventory. Commercial approves pricing rules, caps and codes.</Bullet>
                 <Bullet color="text-emerald-400"><strong className="text-white">Strategic Investment Logic:</strong> Controlled first-year loss tolerance to be pre-agreed, capped and measured against launch-value indicators.</Bullet>
@@ -622,6 +603,7 @@
                 <Bullet color="text-rose-400"><strong className="text-white">Fully Loaded Margin:</strong> Final salary allocation and commission treatment from Finance.</Bullet>
                 <Bullet color="text-rose-400"><strong className="text-white">Finance Assumptions:</strong> Final EUR/USD FX conversion rate, VAT/sales tax treatment, Stripe fees and refund assumptions.</Bullet>
                 <Bullet color="text-rose-400"><strong className="text-white">Venue Limits:</strong> Final venue layout and room-capacity confirmation.</Bullet>
+                <Bullet color="text-rose-400"><strong className="text-white">Content Inventory:</strong> Rory to confirm the number of stages and sellable content quantities per stage before final content inventory is approved.</Bullet>
                 <Bullet color="text-rose-400"><strong className="text-white">Audience Ops:</strong> Final comp pass allocation to reach operator / platform / institutional buyer density target.</Bullet>
                 <Bullet color="text-rose-400"><strong className="text-white">Category Mapping:</strong> Final single source of truth for which inventory lines sit inside each revenue ceiling.</Bullet>
                 <Bullet color="text-rose-400"><strong className="text-white">Ramp Mechanics:</strong> Week 8 re-baseline trigger if no six-figure enterprise package has closed or reached commit stage.</Bullet>
@@ -796,29 +778,6 @@
       );
     }
 
-    function SlideDownsideSensitivity() {
-      return (
-        <SlideFrame eyebrow="Appendix" title="Downside Sensitivity: Discounting & Market Risk" subtitle="Assessing the impact of pricing degradation and sub-optimal sell-through.">
-          <Card title="Discounted Revenue Scenarios" danger className="max-w-3xl mx-auto w-full mb-6">
-            <SimpleTable
-              headers={[{ label: "Scenario" }, { label: "Sponsorship Revenue", align: "right" }]}
-              rows={[
-                { cells: [{ value: "Stretch Case", className: "font-bold text-white" }, { value: "€1.80M", align: "right", className: "font-mono text-white" }] },
-                { className: "bg-[#ffcf33]/5", cells: [{ value: "Base Market Validation Case", className: "font-bold text-[#ffcf33]" }, { value: "c.€1.35M", align: "right", className: "font-mono text-[#ffcf33]" }] },
-                { cells: [{ value: "Price Resistance / Low Case", className: "font-bold text-rose-300" }, { value: "c.€1.10M", align: "right", className: "font-mono text-rose-300 font-bold" }] },
-                { cells: [{ value: "Severe Price Resistance / Stress Test", className: "font-bold text-rose-500" }, { value: "c.€900k", align: "right", className: "font-mono text-rose-500 font-bold" }] }
-              ]}
-            />
-            <div className="mt-6 p-4 bg-rose-950/20 border border-rose-900/30 rounded-lg">
-              <p className="text-xs text-gray-400 leading-relaxed italic">
-                The downside scenario is not automatically failure. It becomes acceptable only if approved as a strategic investment case with clear loss tolerance and post-event value measurement.
-              </p>
-            </div>
-          </Card>
-        </SlideFrame>
-      );
-    }
-
     function SlideCompetitiveContext() {
       return (
         <SlideFrame eyebrow="Appendix" title="Competitive Context: The Category Race" subtitle="These events validate the category. NEXTPredict is positioned to define the institutional-scale tier.">
@@ -906,21 +865,22 @@
 
     function SlidePartnershipCeiling() {
       return (
-        <SlideFrame eyebrow="Appendix" title="Partnership Revenue Ceiling" subtitle="The total addressable inventory value for NEXTPredict 2026. This is capacity, not a forecast.">
+        <SlideFrame eyebrow="Appendix" title="Partnership Inventory Control" subtitle="Inventory capacity supports the model, but is not shown as a revenue target.">
           <Card accent className="max-w-4xl mx-auto w-full">
             <div className="space-y-6">
-              <MetricRow label="General Branding, Utility & Rooms" value="€1,434,800" valueClass="text-[#ffcf33] text-xl md:text-2xl" />
-              <MetricRow label="Content & Stages" value="€1,063,000" valueClass="text-[#ffcf33] text-xl md:text-2xl" />
-              <MetricRow label="NEXTworking / Networking" value="€400,000" valueClass="text-[#ffcf33] text-xl md:text-2xl" />
-              <div className="flex justify-between items-center pt-4 bg-[#ffcf33]/10 p-4 rounded-xl border border-[#ffcf33]/30 mt-8">
-                <span className="text-lg md:text-2xl font-black text-white uppercase tracking-wider">Total Maximum Ceiling</span>
-                <span className="text-2xl md:text-4xl font-black font-mono text-[#ffcf33] drop-shadow-md">€2,897,800</span>
+              <MetricRow label="General Branding, Utility & Rooms" value="Internal model only" valueClass="text-gray-300 text-xl md:text-2xl" />
+              <MetricRow label="Content & Stages" value="TBC with Rory" valueClass="text-[#ffcf33] text-xl md:text-2xl" />
+              <MetricRow label="NEXTworking / Networking" value="Internal model only" valueClass="text-gray-300 text-xl md:text-2xl" />
+              <div className="pt-4 bg-[#ffcf33]/10 p-4 rounded-xl border border-[#ffcf33]/30 mt-8">
+                <span className="block text-lg md:text-2xl font-black text-white uppercase tracking-wider mb-2">Commercial display rule</span>
+                <span className="block text-sm md:text-base text-gray-300">Show Base and Stretch targets externally. Keep full inventory ceiling, stress, downside and upper-base revenue views inside the internal model.</span>
               </div>
             </div>
             <div className="mt-6 space-y-2">
-              <p className="text-[10px] text-gray-500 italic text-center">Calculated against full list price at 100% sell-through. Mutual exclusivity limits apply.</p>
-              <p className="text-[10px] text-gray-500 italic text-center">Exclusive and non-exclusive networking inventory is mutually exclusive. The €400k NEXTworking ceiling assumes exclusive packages take priority.</p>
+              <p className="text-[10px] text-gray-500 italic text-center">Inventory values are calculated against full list price at 100% sell-through. Mutual exclusivity limits apply.</p>
+              <p className="text-[10px] text-gray-500 italic text-center">Exclusive and non-exclusive networking inventory is mutually exclusive. NEXTworking ceiling logic assumes exclusive packages take priority.</p>
             </div>
+            <ContentCaveat />
           </Card>
         </SlideFrame>
       );
@@ -1037,7 +997,7 @@
     ];
 
     const catalogueContent = [
-      { name: "Strategic Premium Keynote / Paid Executive Session", price: "c.€100,000", qty: "1", desc: "Upside inventory. Subject to talent, editorial, legal and leadership approval. Excluded from the €1,063,000 content ceiling until formally approved.", isUpside: true },
+      { name: "Strategic Premium Keynote / Paid Executive Session", price: "c.€100,000", qty: "1", desc: "Upside inventory. Subject to talent, editorial, legal and leadership approval. Excluded from the content ceiling until formally approved.", isUpside: true },
       { name: "Leadership Stage Featured Session / Executive Interview", price: "€90,000", qty: "1", desc: "Agenda-approved 20-minute featured session, executive interview or presentation format. Sold separately from Leadership Stage Partner." },
       { name: "Leadership Stage Custom Panel", price: "€60,000", qty: "2", desc: "Full narrative control. Paired with a moderator." },
       { name: "Leadership Stage Chair Partner (Excl)", price: "€40,000", qty: "1", desc: "Logo on every seat in the main hall." },
@@ -1058,19 +1018,19 @@
       { name: "Pre-Registration Event (Excl)", price: "€125,000", qty: "1", desc: "Own the night before. First impression of the cycle." },
       { name: "Day 1 NEXTworking (Excl)", price: "€150,000", qty: "1", desc: "The flagship evening. Maximum attendance and platinum positioning." },
       { name: "Day 2 NEXTworking (Excl)", price: "€125,000", qty: "1", desc: "Closing night. The last brand delegates associate with the event." },
-      { isHeader: true, title: "Fallback / Non-Exclusive Inventory, Excluded From €400k Modelled Ceiling", isUpside: true },
+      { isHeader: true, title: "Fallback / Non-Exclusive Inventory, Excluded From Modelled Ceiling", isUpside: true },
       { name: "Pre-Registration (Non-Excl)", price: "€34,000", qty: "5", desc: "Shared slots. High share-of-mind before noise begins.", isUpside: true },
       { name: "Day 1 NEXTworking (Non-Excl)", price: "€34,000", qty: "5", desc: "Shared slots at the primary evening.", isUpside: true },
       { name: "Day 2 NEXTworking (Non-Excl)", price: "€30,000", qty: "5", desc: "Shared slots on closing night.", isUpside: true },
       { name: "C-Level Event (Bespoke)", price: "€55,000", qty: "1", desc: "Bespoke upside. Excluded from base ceiling.", isUpside: true }
     ];
 
-    function CatalogueSlide({ title, data, totalRev, tableNote }) {
+    function CatalogueSlide({ title, data, totalRev, tableNote, hideRevenueLabel = false }) {
       return (
         <SlideFrame eyebrow="Appendix / Reference">
           <div className="flex items-center justify-between mb-4 md:mb-6 gap-4">
             <h2 className="text-2xl md:text-3xl font-bold flex items-center gap-3 text-white"><FileText className="w-6 h-6 md:w-8 md:h-8 text-gray-500" />{title}</h2>
-            <div className="bg-[#232323] border border-[#444] rounded-lg px-4 py-2 text-right shrink-0"><div className="text-[10px] uppercase tracking-wider text-gray-400">Max Rev Ceiling</div><div className="font-mono font-bold text-[#ffcf33]">{totalRev}</div></div>
+            <div className="bg-[#232323] border border-[#444] rounded-lg px-4 py-2 text-right shrink-0"><div className="text-[10px] uppercase tracking-wider text-gray-400">{hideRevenueLabel ? "Revenue" : "Max Rev Ceiling"}</div><div className="font-mono font-bold text-[#ffcf33]">{totalRev}</div></div>
           </div>
           <div className="bg-[#232323] border border-[#444] rounded-2xl overflow-hidden flex-1 flex flex-col">
             <div className="overflow-x-auto w-full flex-1 table-container">
@@ -1113,7 +1073,6 @@
       SlideDifferentSalesMotion,
       SlideHubSpotRhythm,
       SlideSalesFeedback,
-      SlideDownsideSensitivity,
       SlideCompetitiveContext,
       SlideCommercialThesis,
       SlideAudienceCapacity,
@@ -1122,9 +1081,9 @@
       SlidePartnerFABs,
       SlidePricingPsychology,
       SlidePartnershipTiering,
-      () => <CatalogueSlide title="Catalogue: General Branding, Utility & Rooms" data={catalogueBranding} totalRev="€1,434,800" />,
-      () => <CatalogueSlide title="Catalogue: Content & Stages" data={catalogueContent} totalRev="€1,063,000" tableNote="Strategic Premium Keynote / Paid Executive Session is upside inventory and is excluded from the €1,063,000 content ceiling until formally approved. Room capacities and final panel quantities are provisional and subject to final Convene room-configuration confirmation." />,
-      () => <CatalogueSlide title="Catalogue: NEXTworking" data={catalogueNetworking} totalRev="€400,000" tableNote="Exclusive and non-exclusive networking inventory is mutually exclusive. The €400k NEXTworking ceiling assumes exclusive packages take priority. Non-exclusive inventory is fallback inventory only and is excluded from the modelled ceiling unless an exclusive package does not sell." />
+      () => <CatalogueSlide title="Catalogue: General Branding, Utility & Rooms" data={catalogueBranding} totalRev="Internal model only" hideRevenueLabel />,
+      () => <CatalogueSlide title="Catalogue: Content & Stages" data={catalogueContent} totalRev="TBC with Rory" hideRevenueLabel tableNote="Strategic Premium Keynote / Paid Executive Session is upside inventory and is excluded from the content ceiling until formally approved. Content inventory is provisional. Rory is confirming the number of stages and sellable content quantities per stage before final approval." />,
+      () => <CatalogueSlide title="Catalogue: NEXTworking" data={catalogueNetworking} totalRev="Internal model only" hideRevenueLabel tableNote="Exclusive and non-exclusive networking inventory is mutually exclusive. Non-exclusive inventory is fallback inventory only and is excluded from the modelled ceiling unless an exclusive package does not sell." />
     ];
 
     function App() {
