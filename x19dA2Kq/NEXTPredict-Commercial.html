@@ -868,9 +868,10 @@
         <SlideFrame eyebrow="Appendix" title="Partnership Inventory Control" subtitle="Inventory capacity supports the model, but is not shown as a revenue target.">
           <Card accent className="max-w-4xl mx-auto w-full">
             <div className="space-y-6">
-              <MetricRow label="General Branding, Utility & Rooms" value="Internal model only" valueClass="text-gray-300 text-xl md:text-2xl" />
+              <MetricRow label="General Branding, Utility & Rooms" value="€1.435M list ceiling" valueClass="text-gray-300 text-xl md:text-2xl" note="Full list-price ceiling for visible catalogue inventory." />
               <MetricRow label="Content & Stages" value="€1.126M list ceiling" valueClass="text-[#ffcf33] text-xl md:text-2xl" note="Includes 3 x €85k Curated Workshops; excludes included Headline presentation and unapproved upside." />
-              <MetricRow label="NEXTworking / Networking" value="Internal model only" valueClass="text-gray-300 text-xl md:text-2xl" />
+              <MetricRow label="Total Modelled Inventory Ceiling" value="€2.961M" valueClass="text-[#ffcf33] text-2xl md:text-3xl" note="Branding + content + exclusive networking at full list price; not a sales target." />
+              <MetricRow label="NEXTworking / Networking" value="€400k exclusive ceiling" valueClass="text-gray-300 text-xl md:text-2xl" note="Modelled exclusive inventory only; fallback non-exclusive inventory excluded." />
               <div className="pt-4 bg-[#ffcf33]/10 p-4 rounded-xl border border-[#ffcf33]/30 mt-8">
                 <span className="block text-lg md:text-2xl font-black text-white uppercase tracking-wider mb-2">Commercial display rule</span>
                 <span className="block text-sm md:text-base text-gray-300">Show Base and Stretch targets externally. Keep full inventory ceiling, stress, downside and upper-base revenue views inside the internal model.</span>
@@ -1083,9 +1084,9 @@
       SlidePartnerFABs,
       SlidePricingPsychology,
       SlidePartnershipTiering,
-      () => <CatalogueSlide title="Catalogue: General Branding, Utility & Rooms" data={catalogueBranding} totalRev="Internal model only" hideRevenueLabel />,
+      () => <CatalogueSlide title="Catalogue: General Branding, Utility & Rooms" data={catalogueBranding} totalRev="€1.435M list ceiling" hideRevenueLabel tableNote="Full list-price ceiling for visible catalogue inventory. This is inventory capacity, not the sales forecast." />,
       () => <CatalogueSlide title="Catalogue: Content & Stages" data={catalogueContent} totalRev="€1.126M list ceiling" hideRevenueLabel tableNote="Content ceiling includes the revised Day 1 / Day 2 stage allocation and 3 x €85,000 Curated Workshops. It excludes the Headline Sponsor Day 1 Leadership Stage presentation because that value is bundled inside Headline Sponsorship, and excludes the Strategic Premium Keynote / Paid Executive Session until formally approved." />,
-      () => <CatalogueSlide title="Catalogue: NEXTworking" data={catalogueNetworking} totalRev="Internal model only" hideRevenueLabel tableNote="Exclusive and non-exclusive networking inventory is mutually exclusive. Non-exclusive inventory is fallback inventory only and is excluded from the modelled ceiling unless an exclusive package does not sell." />
+      () => <CatalogueSlide title="Catalogue: NEXTworking" data={catalogueNetworking} totalRev="€400k exclusive ceiling" hideRevenueLabel tableNote="Modelled ceiling uses exclusive networking inventory only: Pre-Registration €125k, Day 1 NEXTworking €150k and Day 2 NEXTworking €125k. Non-exclusive inventory is fallback inventory only and is excluded from the modelled ceiling unless an exclusive package does not sell." />
     ];
 
     function App() {
