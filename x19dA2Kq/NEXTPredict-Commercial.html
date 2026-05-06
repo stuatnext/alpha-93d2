@@ -107,7 +107,7 @@
 
     const ContentCaveat = () => (
       <div className="mt-4 p-3 bg-[#ffcf33]/10 border border-[#ffcf33]/30 rounded-lg text-[10px] md:text-xs text-[#ffcf33] leading-relaxed">
-        <strong>Content caveat:</strong> We are asking Rory to confirm the number of stages and the sellable content quantities per stage before finalising content inventory, content ceiling and stage-package availability.
+        <strong>Content update:</strong> Content inventory now reflects the revised two-day stage allocation. Curated Workshops are treated as high-pricepoint inventory at €85,000 each, pending final commercial sign-off.
       </div>
     );
 
@@ -201,7 +201,7 @@
               <p className="text-gray-400 text-sm">The target is operator / platform / institutional buyer density. Comp, hosted and partner-led passes should build the audience quality required to defend premium sponsor pricing.</p>
             </Card>
             <Card icon={Calculator} title="Model Assumptions">
-              <p className="text-gray-400 text-sm">The model includes Cloakroom Area at €32,000 and listed content inventory, subject to Rory confirming final stage count and sellable content quantities per stage. POA, bespoke and formally unapproved upside items are excluded from the modelled ceiling.</p>
+              <p className="text-gray-400 text-sm">The model includes Cloakroom Area at €32,000 and the updated content inventory. The content stage ceiling now reflects the revised Day 1 / Day 2 allocation. POA, bespoke and formally unapproved upside items remain excluded from the modelled ceiling.</p>
             </Card>
           </div>
         </SlideFrame>
@@ -578,7 +578,7 @@
               <NumberedPoint n="5">Comp passes are governed against operator / platform / institutional buyer density and sponsor value.</NumberedPoint>
               <NumberedPoint n="6">Sponsor deliverables are mapped before packages are sold.</NumberedPoint>
               <NumberedPoint n="7">Finance confirms FX, fees, tax, refund, salary and commission assumptions.</NumberedPoint>
-              <NumberedPoint n="8">Rory confirms stage count and sellable content quantities before content inventory is finalised.</NumberedPoint>
+              <NumberedPoint n="8">Content inventory is locked against the updated Day 1 / Day 2 stage allocation, with any new POA or upside items requiring separate commercial approval.</NumberedPoint>
             </div>
           </div>
         </div>
@@ -587,7 +587,7 @@
 
     function SlideApprovalRequested() {
       return (
-        <SlideFrame title="Approval Requested Today" subtitle="Seeking sign-off on the commercial framework. Certain logistical and content numbers remain TBC.">
+        <SlideFrame title="Approval Requested Today" subtitle="Seeking sign-off on the commercial framework. Certain logistical, finance and new-product assumptions still require final approval.">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-6">
             <Card icon={CheckSquare} title="Recommended for Approval" accent>
               <ul className="space-y-3 text-xs md:text-sm text-gray-300">
@@ -603,7 +603,7 @@
                 <Bullet color="text-rose-400"><strong className="text-white">Fully Loaded Margin:</strong> Final salary allocation and commission treatment from Finance.</Bullet>
                 <Bullet color="text-rose-400"><strong className="text-white">Finance Assumptions:</strong> Final EUR/USD FX conversion rate, VAT/sales tax treatment, Stripe fees and refund assumptions.</Bullet>
                 <Bullet color="text-rose-400"><strong className="text-white">Venue Limits:</strong> Final venue layout and room-capacity confirmation.</Bullet>
-                <Bullet color="text-rose-400"><strong className="text-white">Content Inventory:</strong> Rory to confirm the number of stages and sellable content quantities per stage before final content inventory is approved.</Bullet>
+                <Bullet color="text-rose-400"><strong className="text-white">Curated Workshop Pricing:</strong> Final approval required for the €85,000 high-pricepoint treatment, opt-in invitation rules and delivery ownership.</Bullet>
                 <Bullet color="text-rose-400"><strong className="text-white">Audience Ops:</strong> Final comp pass allocation to reach operator / platform / institutional buyer density target.</Bullet>
                 <Bullet color="text-rose-400"><strong className="text-white">Category Mapping:</strong> Final single source of truth for which inventory lines sit inside each revenue ceiling.</Bullet>
                 <Bullet color="text-rose-400"><strong className="text-white">Ramp Mechanics:</strong> Week 8 re-baseline trigger if no six-figure enterprise package has closed or reached commit stage.</Bullet>
@@ -869,7 +869,7 @@
           <Card accent className="max-w-4xl mx-auto w-full">
             <div className="space-y-6">
               <MetricRow label="General Branding, Utility & Rooms" value="Internal model only" valueClass="text-gray-300 text-xl md:text-2xl" />
-              <MetricRow label="Content & Stages" value="TBC with Rory" valueClass="text-[#ffcf33] text-xl md:text-2xl" />
+              <MetricRow label="Content & Stages" value="€1.126M list ceiling" valueClass="text-[#ffcf33] text-xl md:text-2xl" note="Includes 3 x €85k Curated Workshops; excludes included Headline presentation and unapproved upside." />
               <MetricRow label="NEXTworking / Networking" value="Internal model only" valueClass="text-gray-300 text-xl md:text-2xl" />
               <div className="pt-4 bg-[#ffcf33]/10 p-4 rounded-xl border border-[#ffcf33]/30 mt-8">
                 <span className="block text-lg md:text-2xl font-black text-white uppercase tracking-wider mb-2">Commercial display rule</span>
@@ -975,7 +975,7 @@
     }
 
     const catalogueBranding = [
-      { name: "Headline Sponsorship (Excl)", price: "€350,000", qty: "1", desc: "Maximum brand dominance across the full event. Includes co-branded post-event white paper / market insights report, subject to editorial capacity and sponsor data approval." },
+      { name: "Headline Sponsorship (Excl)", price: "€350,000", qty: "1", desc: "Maximum brand dominance across the full event. Includes Day 1 Leadership Stage presentation plus co-branded post-event white paper / market insights report, subject to editorial capacity and sponsor data approval." },
       { name: "Online & Onsite Registration (Excl)", price: "€110,000", qty: "1", desc: "First and last brand experience. Converts logistical necessity into impression." },
       { name: "Leadership Stage Branding", price: "€115,000", qty: "1", desc: "Leadership Stage Partner: stage holding slide, podium sign, premium room ownership and 6 passes. No keynote or presenter slot included." },
       { name: "Livestream", price: "€92,500", qty: "1", desc: "Broadcast to the NEXT global audience beyond the physical room." },
@@ -998,19 +998,21 @@
 
     const catalogueContent = [
       { name: "Strategic Premium Keynote / Paid Executive Session", price: "c.€100,000", qty: "1", desc: "Upside inventory. Subject to talent, editorial, legal and leadership approval. Excluded from the content ceiling until formally approved.", isUpside: true },
-      { name: "Leadership Stage Featured Session / Executive Interview", price: "€90,000", qty: "1", desc: "Agenda-approved 20-minute featured session, executive interview or presentation format. Sold separately from Leadership Stage Partner." },
-      { name: "Leadership Stage Custom Panel", price: "€60,000", qty: "2", desc: "Full narrative control. Paired with a moderator." },
+      { name: "Headline Sponsor Leadership Stage Presentation", price: "Included", qty: "1", desc: "Day 1 Leadership Stage presentation bundled inside Headline Sponsorship. Not available for separate sale and excluded from the content revenue ceiling." },
+      { name: "Leadership Stage Presenter", price: "€90,000", qty: "1", desc: "Day 2 Leadership Stage presentation / executive interview / featured session format. Sold separately from Leadership Stage Partner." },
+      { name: "Leadership Stage Custom Session", price: "€60,000", qty: "2", desc: "1 x Day 1 and 1 x Day 2. Full narrative control. Paired with a moderator." },
       { name: "Leadership Stage Chair Partner (Excl)", price: "€40,000", qty: "1", desc: "Logo on every seat in the main hall." },
-      { name: "Leadership Stage Branded Panel", price: "€30,000", qty: "6", desc: "Powered by title drives awareness." },
-      { name: "Leadership Stage Non-Branded Panel", price: "€19,000", qty: "4", desc: "Credibility play. Earn the room on substance." },
-      { name: "Stage 2 Presenter Panel", price: "€58,000", qty: "2", desc: "Presentation format slot in front of 250 delegates." },
-      { name: "Stage 2 Custom Panel", price: "€40,000", qty: "2", desc: "Controlled message, third-party validation." },
-      { name: "Stage 2 Branded Panel", price: "€25,000", qty: "4", desc: "Volume visibility across mid-tier track." },
-      { name: "Stage 2 Non-Branded Panel", price: "€16,000", qty: "4", desc: "Organic authority. Thought leadership-led sales." },
-      { name: "Stage 3 Presenter Panel", price: "€30,000", qty: "2", desc: "Intimate 80-pax format for technical topics." },
-      { name: "Stage 3 Custom Panel", price: "€21,500", qty: "2", desc: "Narrative control in specialist room." },
-      { name: "Stage 3 Branded Panel", price: "€13,500", qty: "4", desc: "Targeted buyer message." },
-      { name: "Stage 3 Non-Branded Panel", price: "€10,000", qty: "4", desc: "Maximum credibility with an engaged audience." }
+      { name: "Leadership Stage Branded Session", price: "€30,000", qty: "4", desc: "2 x Day 1 and 2 x Day 2. Powered-by title drives awareness." },
+      { name: "Leadership Stage Non-Branded Panel", price: "€19,000", qty: "4", desc: "2 x Day 1 and 2 x Day 2. Credibility play. Earn the room on substance." },
+      { name: "Stage 2 Partner Presentation", price: "€58,000", qty: "2", desc: "1 x Day 1 and 1 x Day 2. Presentation format slot in front of 250 delegates." },
+      { name: "Stage 2 Custom Session", price: "€40,000", qty: "2", desc: "1 x Day 1 and 1 x Day 2. Controlled message, third-party validation." },
+      { name: "Stage 2 Branded Session", price: "€25,000", qty: "2", desc: "1 x Day 1 and 1 x Day 2. Volume visibility across mid-tier track." },
+      { name: "Stage 2 Non-Branded Panel", price: "€16,000", qty: "4", desc: "2 x Day 1 and 2 x Day 2. Organic authority. Thought leadership-led sales." },
+      { name: "Stage 3 Partner Presentation", price: "€30,000", qty: "2", desc: "1 x Day 1 and 1 x Day 2. Intimate 80-pax format for technical topics." },
+      { name: "Stage 3 Custom Session", price: "€21,500", qty: "1", desc: "1 x Day 1. Narrative control in specialist room." },
+      { name: "Stage 3 Branded Session", price: "€13,500", qty: "1", desc: "1 x Day 1. Targeted buyer message." },
+      { name: "Stage 3 Non-Branded Panel", price: "€10,000", qty: "2", desc: "2 x Day 1. Maximum credibility with an engaged audience." },
+      { name: "Curated Workshop + 5 Curated Opt-In Invites", price: "€85,000", qty: "3", desc: "High-pricepoint invite-led workshop product. Each workshop includes 5 curated opt-in invite targets / facilitated invitations, with no guaranteed attendance unless separately contracted." }
     ];
 
     const catalogueNetworking = [
@@ -1082,7 +1084,7 @@
       SlidePricingPsychology,
       SlidePartnershipTiering,
       () => <CatalogueSlide title="Catalogue: General Branding, Utility & Rooms" data={catalogueBranding} totalRev="Internal model only" hideRevenueLabel />,
-      () => <CatalogueSlide title="Catalogue: Content & Stages" data={catalogueContent} totalRev="TBC with Rory" hideRevenueLabel tableNote="Strategic Premium Keynote / Paid Executive Session is upside inventory and is excluded from the content ceiling until formally approved. Content inventory is provisional. Rory is confirming the number of stages and sellable content quantities per stage before final approval." />,
+      () => <CatalogueSlide title="Catalogue: Content & Stages" data={catalogueContent} totalRev="€1.126M list ceiling" hideRevenueLabel tableNote="Content ceiling includes the revised Day 1 / Day 2 stage allocation and 3 x €85,000 Curated Workshops. It excludes the Headline Sponsor Day 1 Leadership Stage presentation because that value is bundled inside Headline Sponsorship, and excludes the Strategic Premium Keynote / Paid Executive Session until formally approved." />,
       () => <CatalogueSlide title="Catalogue: NEXTworking" data={catalogueNetworking} totalRev="Internal model only" hideRevenueLabel tableNote="Exclusive and non-exclusive networking inventory is mutually exclusive. Non-exclusive inventory is fallback inventory only and is excluded from the modelled ceiling unless an exclusive package does not sell." />
     ];
 
