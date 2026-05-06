@@ -534,14 +534,15 @@
     function SlideContentSessionAllocation() {
       const rows = [
         { stage: "Leadership Stage", day1: "Headline Sponsor presentation; 2 branded sessions; 1 custom session; 2 non-branded panels", day2: "1 Leadership Stage Presenter; 2 branded sessions; 1 custom session; 2 non-branded panels" },
-        { stage: "Stage 2", day1: "1 Stage 2 Partner; 1 branded session; 1 custom session; 2 non-branded panels", day2: "1 Stage 2 Partner; 1 branded session; 1 custom session; 2 non-branded panels" },
-        { stage: "Stage 3", day1: "1 Stage 3 Partner; 1 branded session; 1 custom session; 2 non-branded panels", day2: "1 Stage 3 Partner" }
+        { stage: "Stage 2", day1: "1 Stage 2 Hub Partner; 1 Stage 2 Presenter; 1 branded session; 1 custom session; 2 non-branded panels", day2: "1 Stage 2 Hub Partner; 1 Stage 2 Presenter; 1 branded session; 1 custom session; 2 non-branded panels" },
+        { stage: "Stage 3", day1: "1 Stage 3 Hub Partner; 1 Stage 3 Presenter; 1 branded session; 1 custom session; 2 non-branded panels", day2: "1 Stage 3 Hub Partner; 1 Stage 3 Presenter; 1 branded session; 1 custom session; 2 non-branded panels" }
       ];
 
       const commercialRows = [
-        { item: "Curated Workshops", qty: "3", value: "€135,000", note: "€45k each. 5 curated opt-in invites per workshop. 15 total opt-in invite slots." },
-        { item: "Non-Branded Panels", qty: "10", value: "€103,000", note: "Leadership x4 at €12k, Stage 2 x4 at €10.5k, Stage 3 x2 at €6.5k." },
-        { item: "Removed Presenter Inventory", qty: "4", value: "-€114,000", note: "Stage 2 Presenter x2 and Stage 3 Presenter x2 removed from the updated base case." }
+        { item: "Removed Curated Workshops", qty: "3", value: "-€135,000", note: "Removed from the base case. The curated opt-in workshop product is no longer part of the content inventory." },
+        { item: "Added Stage 3 Day 2 Inventory", qty: "4", value: "+€36,000", note: "Mirrors the Stage 2 pattern on Stage 3: 1 branded session, 1 custom session, and 2 paid non-branded panels." },
+        { item: "Non-Branded Panels", qty: "12", value: "€116,000", note: "Leadership x4 at €12k, Stage 2 x4 at €10.5k, Stage 3 x4 at €6.5k." },
+        { item: "Reinstated Hub Presenter Slots", qty: "4", value: "+€114,000", note: "Stage 2 Presenter x2 and Stage 3 Presenter x2 added back as standalone paid inventory, one per day on each hub stage." }
       ];
 
       return (
@@ -572,7 +573,7 @@
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {commercialRows.map((r, i) => (
               <div key={i} className="bg-slate-950 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col">
                 <div className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">{r.item}</div>
@@ -593,7 +594,7 @@
 
           <div className="mt-6 bg-amber-950/20 border border-amber-900/50 rounded-xl p-4">
             <p className="text-xs md:text-sm text-amber-100/80">
-              Updated Content & Stages maximum: <strong className="text-amber-400">€1.110M</strong>. The net movement is small because the new workshop and non-branded panel inventory offsets removed Stage 2 and Stage 3 presenter inventory.
+              Updated Content & Stages maximum: <strong className="text-amber-400">€1.125M</strong>. Workshops remain removed. Hub Partner presentation entitlements are moved into standalone Stage 2 and Stage 3 Presenter inventory.
             </p>
           </div>
         </div>
@@ -619,16 +620,16 @@
                   </thead>
                   <tbody className="divide-y divide-slate-800/50 text-slate-300">
                     <tr><td className="py-2 pl-2">Branding & Utility</td><td className="py-2 pr-2 text-amber-400 font-mono text-right">€793,000</td></tr>
-                    <tr><td className="py-2 pl-2">Content & Stages</td><td className="py-2 pr-2 text-amber-400 font-mono text-right">€1,110,000</td></tr>
+                    <tr><td className="py-2 pl-2">Content & Stages</td><td className="py-2 pr-2 text-amber-400 font-mono text-right">€1,125,000</td></tr>
                     <tr><td className="py-2 pl-2">Expo & Networking</td><td className="py-2 pr-2 text-amber-400 font-mono text-right">€1,225,000</td></tr>
                     <tr className="bg-slate-800/30 font-semibold text-slate-200 uppercase tracking-tighter">
                       <td className="py-3 pl-2">Total Base Case Maximum</td>
-                      <td className="py-3 pr-2 text-amber-400 font-mono text-right">€3,128,000</td>
+                      <td className="py-3 pr-2 text-amber-400 font-mono text-right">€3,143,000</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <p className="text-[10px] text-slate-500 mt-2 italic ml-2">*Note: Strict base case only. Excludes Prediction Markets (tentative) and venue-dependent ops inventory. Content & Stages assumes Curated Workshops at €45k each and counts non-branded panels as monetisable inventory now exact quantities are defined. The Expo catalogue shows all available inventory for sales reference. The €1.225M ceiling applies mutual-exclusivity caps. Turnkey and space-only versions of the same stand cannot both sell. A 6x2 uses the same footprint as two 3x2s. At €50k, it is a buyer-friendly upgrade path, but two 3x2s generate €54k, so each 6x2 conversion reduces theoretical max yield by €4k. Exclusive and non-exclusive networking options are also mutually exclusive. The model assumes the highest-revenue combinations for mutually exclusive options.*</p>
+              <p className="text-[10px] text-slate-500 mt-2 italic ml-2">*Note: Strict base case only. Excludes Prediction Markets (tentative) and venue-dependent ops inventory. Content & Stages removes Curated Workshops, counts non-branded panels as monetisable inventory, and restores standalone Stage 2 and Stage 3 Presenter slots. The Expo catalogue shows all available inventory for sales reference. The €1.225M ceiling applies mutual-exclusivity caps. Turnkey and space-only versions of the same stand cannot both sell. A 6x2 uses the same footprint as two 3x2s. At €50k, it is a buyer-friendly upgrade path, but two 3x2s generate €54k, so each 6x2 conversion reduces theoretical max yield by €4k. Exclusive and non-exclusive networking options are also mutually exclusive. The model assumes the highest-revenue combinations for mutually exclusive options.*</p>
             </div>
 
             <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl relative overflow-hidden group">
@@ -652,7 +653,7 @@
                     <tr>
                       <td className="py-2 pl-2 text-slate-300">Content & Stages</td>
                       <td className="py-2 text-amber-500 font-mono text-right">66%</td>
-                      <td className="py-2 pr-2 text-amber-400 font-mono text-right">€732,600</td>
+                      <td className="py-2 pr-2 text-amber-400 font-mono text-right">€742,500</td>
                     </tr>
                     <tr>
                       <td className="py-2 pl-2 text-slate-300">Expo & Networking</td>
@@ -661,7 +662,7 @@
                     </tr>
                     <tr className="bg-slate-800/40 font-bold border-t border-slate-700">
                       <td className="py-3 pl-2 text-slate-100 uppercase tracking-tighter" colSpan="2">Total Projected Revenue</td>
-                      <td className="py-3 pr-2 text-amber-400 font-mono text-right">€2,078,210</td>
+                      <td className="py-3 pr-2 text-amber-400 font-mono text-right">€2,088,110</td>
                     </tr>
                   </tbody>
                 </table>
@@ -686,25 +687,25 @@
                     <tr className="bg-red-950/10">
                       <td className="py-2 pl-2">Conservative</td>
                       <td className="py-2 text-red-400/80">-10 percentage points</td>
-                      <td className="py-2 pr-2 text-red-400 font-mono text-right">~€1,765,000</td>
+                      <td className="py-2 pr-2 text-red-400 font-mono text-right">~€1,774,000</td>
                     </tr>
                     <tr className="bg-amber-950/20">
                       <td className="py-2 pl-2 text-amber-50">Base Case</td>
                       <td className="py-2 text-slate-400 italic">As modelled</td>
-                      <td className="py-2 pr-2 text-amber-400 font-mono text-right font-bold underline underline-offset-4 decoration-amber-800">€2,078,210</td>
+                      <td className="py-2 pr-2 text-amber-400 font-mono text-right font-bold underline underline-offset-4 decoration-amber-800">€2,088,110</td>
                     </tr>
                     <tr className="bg-yellow-950/10">
                       <td className="py-2 pl-2">Optimistic</td>
                       <td className="py-2 text-yellow-400/80">+10 percentage points</td>
-                      <td className="py-2 pr-2 text-yellow-400 font-mono text-right">~€2,391,000</td>
+                      <td className="py-2 pr-2 text-yellow-400 font-mono text-right">~€2,402,000</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               <div className="mt-4 pt-4 border-t border-slate-800 space-y-1">
-                <p className="text-[10px] text-slate-400 font-mono flex justify-between"><span>Conservative Delta:</span> <span className="text-red-400">Misses Base Target by c.€305k</span></p>
-                <p className="text-[10px] text-slate-400 font-mono flex justify-between"><span>Base-Case Delta:</span> <span className="text-emerald-400">Exceeds Base Target by c.€8k</span></p>
-                <p className="text-[10px] text-slate-400 font-mono flex justify-between"><span>Stretch Delta:</span> <span className="text-amber-400">Gap to Management Target is c.€172k</span></p>
+                <p className="text-[10px] text-slate-400 font-mono flex justify-between"><span>Conservative Delta:</span> <span className="text-red-400">Misses Base Target by c.€296k</span></p>
+                <p className="text-[10px] text-slate-400 font-mono flex justify-between"><span>Base-Case Delta:</span> <span className="text-emerald-400">Exceeds Base Target by c.€18k</span></p>
+                <p className="text-[10px] text-slate-400 font-mono flex justify-between"><span>Stretch Delta:</span> <span className="text-amber-400">Gap to Management Target is c.€162k</span></p>
               </div>
             </div>
 
@@ -735,11 +736,11 @@
               </div>
               <div className="flex justify-between items-center py-2 border-t border-slate-700 mt-2">
                 <span className="text-slate-300 font-bold text-[10px] md:text-xs">Base-case forecast + separable upside</span>
-                <span className="text-white font-mono font-bold text-xs md:text-sm">~ €2.400M</span>
+                <span className="text-white font-mono font-bold text-xs md:text-sm">~ €2.410M</span>
               </div>
               <div className="flex justify-between items-center py-2 border-t border-slate-700 mt-2">
                 <span className="text-slate-300 font-bold text-[10px] md:text-xs">Base-case forecast + all upside if Booth 0 is incremental</span>
-                <span className="text-white font-mono font-bold text-xs md:text-sm">~ €2.535M</span>
+                <span className="text-white font-mono font-bold text-xs md:text-sm">~ €2.545M</span>
               </div>
             </div>
           </div>
@@ -887,7 +888,7 @@
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
                     <div>
-                      <span><strong>Model Delta:</strong> Gap from current modelled sales forecast (€2.078M) to management sales target (€2.25M) is c.€172k.</span>
+                      <span><strong>Model Delta:</strong> Gap from current modelled sales forecast (€2.088M) to management sales target (€2.25M) is c.€162k.</span>
                       <div className="text-[10px] md:text-[11px] text-indigo-300/80 mt-1 pl-1 italic">*Gap to be closed via stricter renewals discipline, bundle conversion, and selectively unlocking approved upside.*</div>
                     </div>
                   </li>
@@ -1373,17 +1374,18 @@
       const products = [
         { isHeader: true, title: "Base Case Inventory (Included in Models)" },
         { name: "Leadership Stage Partner", price: "€75,000", qty: "1", del: "Leadership stage holding slide, podium sign, 6 passes.", narrative: "Consolidates Leadership Stage dominance into one Platinum asset.", rationale: "Definitive main stage ownership." },
-        { name: "Stage 2 Hub Partner", price: "€45,000", qty: "2", del: "Podium branding, screen bug, 1 partner session. Inventory split: 1 Day 1, 1 Day 2. 3 passes.", narrative: "Defend price by emphasising targeted audience density.", rationale: "Reflects targeted audience density and focused industry leadership positioning." },
-        { name: "Stage 3 Hub Partner", price: "€24,000", qty: "2", del: "Holding slide logo, 1 partner session. Inventory split: 1 Day 1, 1 Day 2. 2 passes.", narrative: "The most accessible route into partnered thought leadership.", rationale: "Accessible entry point capturing high-intent, targeted niche audiences." },
+        { name: "Stage 2 Hub Partner", price: "€45,000", qty: "2", del: "Podium branding, screen bug, hub ownership, agenda and partner listing, 3 passes. No included presenter slot.", narrative: "Defend price by emphasising targeted audience density.", rationale: "Reflects targeted audience density and focused industry leadership positioning. Presenter inventory is sold separately." },
+        { name: "Stage 3 Hub Partner", price: "€24,000", qty: "2", del: "Holding slide logo, hub ownership, agenda and partner listing, 2 passes. No included presenter slot.", narrative: "The most accessible route into partnered thought leadership.", rationale: "Accessible entry point capturing high-intent, targeted niche audiences. Presenter inventory is sold separately." },
         { name: "Leadership Stage Presenter", price: "€58,000", qty: "1", del: "1x 20-min keynote on Day 2, full brand ownership.", narrative: "Aggressive corporate storytelling on the Leadership Stage.", rationale: "Premium main stage storytelling. Day 1 is reserved for the Headline Sponsor presentation." },
-        { name: "Curated Workshops", price: "€45,000", qty: "3", del: "Partner-led curated workshop with 5 curated opt-in invites per workshop, pre-qualified audience targeting, and workshop branding.", narrative: "Premium ABM product for partners who want selected buyers in a room, not passive stage exposure.", rationale: "High-price product due to controlled format, curated attendance, and 15 total opt-in invite slots across the inventory." },
+        { name: "Stage 2 Presenter", price: "€38,000", qty: "2", del: "1x 20-min keynote, full brand ownership. Inventory split: 1 Day 1, 1 Day 2.", narrative: "Targeted thought leadership on a high-intent hub stage.", rationale: "Restored as standalone inventory after removing the presentation entitlement from Stage 2 Hub Partner." },
+        { name: "Stage 3 Presenter", price: "€19,000", qty: "2", del: "1x 20-min keynote, full brand ownership. Inventory split: 1 Day 1, 1 Day 2.", narrative: "Accessible thought leadership on a niche hub stage.", rationale: "Restored as standalone inventory after removing the presentation entitlement from Stage 3 Hub Partner." },
         { name: "Custom Sessions (Leadership Stage)", price: "€38,000", qty: "2", del: "Partner + guest speaker, moderated format. Inventory split: 1 Day 1, 1 Day 2.", narrative: "Controlled narrative with external credibility.", rationale: "Reflects the substantial value of driving controlled narratives." },
         { name: "Custom Sessions (Stage 2)", price: "€26,000", qty: "2", del: "Partner + guest speaker, moderated format. Inventory split: 1 Day 1, 1 Day 2.", narrative: "Controlled narrative with external credibility.", rationale: "Reflects the substantial value of driving controlled narratives." },
-        { name: "Custom Sessions (Stage 3)", price: "€14,000", qty: "1", del: "Partner + guest speaker, moderated format. Inventory: Day 1 only.", narrative: "Controlled narrative with external credibility.", rationale: "Reflects the substantial value of driving controlled narratives." },
+        { name: "Custom Sessions (Stage 3)", price: "€14,000", qty: "2", del: "Partner + guest speaker, moderated format. Inventory split: 1 Day 1, 1 Day 2.", narrative: "Controlled narrative with external credibility.", rationale: "Reflects the substantial value of driving controlled narratives." },
         { name: "Branded Sessions (Leadership Stage)", price: "€19,000", qty: "4", del: "Powered By title, 1 speaker slot. Inventory split: 2 Day 1, 2 Day 2.", narrative: "Standard thought leadership integration.", rationale: "Strong market demand validated the uplift for scalable thought leadership." },
         { name: "Branded Sessions (Stage 2)", price: "€16,000", qty: "2", del: "Powered By title, 1 speaker slot. Inventory split: 1 Day 1, 1 Day 2.", narrative: "Standard thought leadership integration.", rationale: "Strong market demand validated the uplift for scalable thought leadership." },
-        { name: "Branded Sessions (Stage 3)", price: "€9,000", qty: "1", del: "Powered By title, 1 speaker slot. Inventory: Day 1 only.", narrative: "Standard thought leadership integration.", rationale: "Strong market demand validated the uplift for scalable thought leadership." },
-        { name: "Non-Branded Panels (Leadership / Stage 2 / Stage 3)", price: "€12k / €10.5k / €6.5k", qty: "4 / 4 / 2", del: "Panel participation without branding. Leadership: 2 Day 1, 2 Day 2. Stage 2: 2 Day 1, 2 Day 2. Stage 3: 2 Day 1.", narrative: "Plausible deniability. The credibility of an organically selected expert.", rationale: "Priced for the high credibility of organic integration. Counted in the model now quantities are fixed." },
+        { name: "Branded Sessions (Stage 3)", price: "€9,000", qty: "2", del: "Powered By title, 1 speaker slot. Inventory split: 1 Day 1, 1 Day 2.", narrative: "Standard thought leadership integration.", rationale: "Strong market demand validated the uplift for scalable thought leadership." },
+        { name: "Non-Branded Panels (Leadership / Stage 2 / Stage 3)", price: "€12k / €10.5k / €6.5k", qty: "4 / 4 / 4", del: "Panel participation without branding. Leadership: 2 Day 1, 2 Day 2. Stage 2: 2 Day 1, 2 Day 2. Stage 3: 2 Day 1, 2 Day 2.", narrative: "Plausible deniability. The credibility of an organically selected expert.", rationale: "Priced for the high credibility of organic integration. Counted in the model now quantities are fixed." },
         { name: "Leadership Chair Partner", price: "€30,000", qty: "1", del: "Logo on all Leadership Stage seats. Fallback standalone or bundle sweetener.", narrative: "High visual impact in the premium Leadership Stage room.", rationale: "Not modelled as incremental revenue if sold within Leadership Stage Partner bundle." },
         { name: "Livestream", price: "€60,000", qty: "1", del: "Logo on stream, video ad, social/email promo, 3 passes.", narrative: "Extended digital reach beyond the physical room.", rationale: "Reflects the vastly extended digital reach scaling far beyond the physical room." },
         { name: "Emerging Verticals: Headline", price: "€60,000", qty: "1", del: "Headline positioning for emerging verticals track.", narrative: "Own the narrative on future markets.", rationale: "Anchors future market narratives. Strategic valuation for vanguard leaders." },
