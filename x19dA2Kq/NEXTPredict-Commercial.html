@@ -171,7 +171,7 @@
             </Card>
             <Card icon={Target} title="Commercial Realism" accent>
               <p className="text-gray-400 text-sm md:text-base leading-relaxed">
-                The visible commercial view is focused on two targets: <strong className="text-[#ffcf33]">€1.35M base</strong> and <strong className="text-[#ffcf33]">€1.8M stretch</strong>. Other stress, downside, upper-base and ceiling scenarios are retained for internal modelling, but hidden from this board view.
+                The visible commercial view is focused on the committed partnership target of <strong className="text-[#ffcf33]">€1.35M</strong> and a separate net ticket target of <strong className="text-[#ffcf33]">€1.25M</strong>. The €1.8M B2B stretch case remains internal only.
               </p>
             </Card>
             <Card icon={TrendingUp} title="Integrated Revenue & Strategic Value" accent>
@@ -195,13 +195,13 @@
               <p className="text-gray-400 text-sm">As a launch event, NEXTPredict has no renewal base and no historic conversion data. Forecasting must therefore stay conservative. Pipeline optimism should not be mistaken for market validation.</p>
             </Card>
             <Card icon={Target} title="Visible Revenue Targets">
-              <p className="text-gray-400 text-sm">The board view shows two commercial targets only: <strong className="text-[#ffcf33]">€1.35M base</strong> and <strong className="text-[#ffcf33]">€1.8M stretch</strong>. Stress, downside, upper-base and ceiling values are retained for internal modelling, but hidden from this presentation.</p>
+              <p className="text-gray-400 text-sm">The board view commits only to the <strong className="text-[#ffcf33]">€1.35M B2B partnership target</strong>. The <strong className="text-[#ffcf33]">€1.8M stretch</strong> remains internal. Ticket revenue is tracked separately against a <strong className="text-[#ffcf33]">€1.25M net</strong> working target.</p>
             </Card>
             <Card icon={Users} title="Buyer Density Priority">
               <p className="text-gray-400 text-sm">The target is operator / platform / institutional buyer density. Comp, hosted and partner-led passes should build the audience quality required to defend premium sponsor pricing.</p>
             </Card>
             <Card icon={Calculator} title="Model Assumptions">
-              <p className="text-gray-400 text-sm">The model includes Cloakroom Area at €32,000 and the updated content inventory. The content stage ceiling now reflects the revised Day 1 / Day 2 allocation. POA, bespoke and formally unapproved upside items remain excluded from the modelled ceiling.</p>
+              <p className="text-gray-400 text-sm">The model includes Cloakroom Area at €32,000, updated content inventory and the 2026 launch-year ticket structure of Full Event + VIP only. POA, bespoke and formally unapproved upside items remain excluded from the modelled ceiling.</p>
             </Card>
           </div>
         </SlideFrame>
@@ -209,54 +209,57 @@
     }
 
     function SlideBreakEven() {
-      const scenarioRows = [
-        { className: "bg-[#ffcf33]/5", cells: [
-          { value: "Base Target", className: "text-[#ffcf33] font-bold" },
-          { value: "€1,225,000", align: "right", className: "font-mono text-[#ffcf33]" },
-          { value: "€1,350,000", align: "right", className: "font-mono text-[#ffcf33]" },
-          { value: "€2,575,000", align: "right", className: "font-mono font-bold text-[#ffcf33]" },
-          { value: "€455,000", align: "right", className: "font-mono font-bold text-emerald-400" }
+      const targetRows = [
+        { className: "bg-[#ffcf33]/10", cells: [
+          { value: "Ticket Revenue", className: "text-[#ffcf33] font-bold" },
+          { value: "€1,250,000 net", align: "right", className: "font-mono font-bold text-[#ffcf33]" },
+          { value: "Marketing-owned", className: "text-gray-400" },
+          { value: "1,000 paid tickets", className: "text-gray-300" }
         ]},
         { cells: [
-          { value: "Stretch Target", className: "text-white font-bold" },
-          { value: "€1,225,000", align: "right", className: "font-mono text-gray-300" },
-          { value: "€1,800,000", align: "right", className: "font-mono text-gray-300" },
-          { value: "€3,025,000", align: "right", className: "font-mono font-bold text-white" },
-          { value: "€860,000", align: "right", className: "font-mono font-bold text-emerald-400" }
+          { value: "B2B Partnerships", className: "text-white font-bold" },
+          { value: "€1,350,000", align: "right", className: "font-mono font-bold text-white" },
+          { value: "Sales-owned", className: "text-gray-400" },
+          { value: "Committed target only", className: "text-gray-300" }
+        ]},
+        { cells: [
+          { value: "Internal B2B Stretch", className: "text-gray-400 font-bold" },
+          { value: "€1,800,000", align: "right", className: "font-mono text-gray-400" },
+          { value: "Internal only", className: "text-gray-500" },
+          { value: "Not board-committed", className: "text-gray-500" }
         ]}
       ];
 
       return (
-        <SlideFrame title="Break-Even Reality" subtitle="Establishing the financial floor and the strategic investment boundary.">
+        <SlideFrame title="Break-Even Reality" subtitle="Revenue streams are tracked separately; fully loaded margin still depends on Finance confirmation.">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6 flex-1">
             <Card title="The Cost Base">
               <div className="space-y-4 mb-6 md:mb-8">
                 <MetricRow label="Confirmed Direct Event Cost" value="€1,535,000" />
                 <MetricRow label="Salary Allocation Assumption" value="c.€450,000" valueClass="text-gray-400 italic" />
-                <MetricRow label="Commission Estimate" note="10% of base B2B forecast" value="c.€135,000" valueClass="text-gray-400 italic" />
+                <MetricRow label="Commission Estimate" note="10% of committed B2B target" value="c.€135,000" valueClass="text-gray-400 italic" />
                 <MetricRow label="Est. Fully-Loaded Cost Base" value="c.€2,120,000" valueClass="text-rose-400 text-lg md:text-xl" />
               </div>
               <div className="bg-[#111] p-4 rounded-xl border border-[#444] mt-auto">
                 <p className="text-[11px] md:text-xs text-gray-400 leading-relaxed">
-                  Salary allocation and commission treatment require Finance confirmation. For planning purposes, the fully loaded cost base is c.€2.12M at the base partnership forecast.
+                  Salary allocation, commission treatment, ticketing fees, FX, tax and refund assumptions require Finance confirmation. These do not change the revenue targets, but they determine final margin.
                 </p>
               </div>
             </Card>
-            <Card title="The Required Revenue Math">
+            <Card title="Separate Revenue Commitments">
               <SimpleTable
-                minWidth="700px"
+                minWidth="760px"
                 headers={[
-                  { label: "Scenario" },
-                  { label: "Net Ticket Rev", align: "right" },
-                  { label: "B2B Rev", align: "right" },
-                  { label: "Total Rev", align: "right", className: "text-[#ffcf33]" },
-                  { label: "Est. Margin", align: "right", className: "text-[#ffcf33]" }
+                  { label: "Revenue Line" },
+                  { label: "Target", align: "right" },
+                  { label: "Owner" },
+                  { label: "Status" }
                 ]}
-                rows={scenarioRows}
+                rows={targetRows}
               />
               <div className="mt-4 p-3 bg-[#ffcf33]/10 border border-[#ffcf33]/30 rounded-lg">
                 <p className="text-[11px] text-gray-300 leading-relaxed">
-                  <strong className="text-[#ffcf33]">Visible approval view:</strong> Base and stretch are the only revenue cases shown. Stress, downside and upper-base scenarios stay in the internal model.
+                  <strong className="text-[#ffcf33]">Governance rule:</strong> ticket sales and B2B partnership sales should be forecast, reported and managed separately. Do not blend monthly ticket pacing with monthly sponsorship targets.
                 </p>
               </div>
             </Card>
@@ -315,19 +318,24 @@
 
     function SlideTicketing() {
       const volumeRows = [
-        { cells: [{ value: "Conference Only" }, { value: "200", align: "right", className: "font-mono" }, { value: "~$999", align: "right", className: "font-mono" }, { value: "~$200,000", align: "right", className: "font-mono" }] },
-        { cells: [{ value: "Full Event", className: "font-bold text-white" }, { value: "700", align: "right", className: "font-mono" }, { value: "~$1,499", align: "right", className: "font-mono" }, { value: "~$1,049,000", align: "right", className: "font-mono" }] },
-        { cells: [{ value: "VIP" }, { value: "100", align: "right", className: "font-mono" }, { value: "~$2,799", align: "right", className: "font-mono" }, { value: "~$280,000", align: "right", className: "font-mono" }] },
-        { className: "bg-[#111]", cells: [{ value: "Total Paid", className: "font-bold text-white uppercase text-[10px]" }, { value: "1,000", align: "right", className: "font-mono font-bold text-white" }, { value: "-", align: "right", className: "font-mono text-gray-500" }, { value: "~$1.53M", align: "right", className: "font-mono font-bold text-[#ffcf33]" }] }
+        { cells: [{ value: "Full Event", className: "font-bold text-white" }, { value: "900", align: "right", className: "font-mono" }, { value: "~$1,549", align: "right", className: "font-mono" }, { value: "~$1.394M", align: "right", className: "font-mono" }] },
+        { cells: [{ value: "VIP", className: "font-bold text-white" }, { value: "100", align: "right", className: "font-mono" }, { value: "~$2,689", align: "right", className: "font-mono" }, { value: "~$269k", align: "right", className: "font-mono" }] },
+        { className: "bg-[#111]", cells: [{ value: "Total Paid", className: "font-bold text-white uppercase text-[10px]" }, { value: "1,000", align: "right", className: "font-mono font-bold text-white" }, { value: "-", align: "right", className: "font-mono text-gray-500" }, { value: "~$1.663M", align: "right", className: "font-mono font-bold text-[#ffcf33]" }] }
+      ];
+
+      const phaseRows = [
+        { cells: [{ value: "Founder / Launch", className: "font-bold text-[#ffcf33]" }, { value: "27 May-19 June" }, { value: "First 150 tickets", align: "right" }, { value: "Full $1,199 / VIP $2,299", align: "right", className: "font-mono text-[#ffcf33]" }] },
+        { cells: [{ value: "Early", className: "font-bold text-white" }, { value: "20 June-17 July" }, { value: "Next 250 tickets", align: "right" }, { value: "Full $1,399 / VIP $2,499", align: "right", className: "font-mono" }] },
+        { cells: [{ value: "Standard", className: "font-bold text-white" }, { value: "18 July-28 August" }, { value: "Next 400 tickets", align: "right" }, { value: "Full $1,599 / VIP $2,799", align: "right", className: "font-mono" }] },
+        { cells: [{ value: "Late", className: "font-bold text-rose-300" }, { value: "29 August-event week" }, { value: "Remaining allocation", align: "right" }, { value: "Full $1,899 / VIP $2,999", align: "right", className: "font-mono text-rose-300" }] }
       ];
 
       return (
-        <SlideFrame title="Ticketing Model" subtitle="A structured pricing ladder balancing volume targets with premium institutional yield.">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6">
+        <SlideFrame title="Ticketing Model" subtitle="2026 launch structure: Full Event and VIP only. Conference Only is deferred until the event has scale proof.">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
             {[
-              { tier: "Access Tier", name: "Conference Only", sub: "Accessible entry tier", prices: [["Founder / Launch", "$699"], ["Early", "$799"], ["Standard", "$999"], ["Late", "$1,199"]], cap: "Founder allocation: Max 50 tickets" },
-              { tier: "Revenue Engine", name: "Full Event", sub: "Includes evening networking", prices: [["Founder / Launch", "$1,099"], ["Early", "$1,199"], ["Standard", "$1,499"], ["Late", "$1,899"]], cap: "Founder allocation: Max 150 tickets", featured: true },
-              { tier: "Scarcity Tier", name: "VIP Pass", sub: "Margin generation", prices: [["Founder / Launch", "$2,299"], ["Early", "$2,499"], ["Standard", "$2,799"], ["Late", "$2,999"]], cap: "Founder allocation: Max 20 tickets" }
+              { tier: "Revenue Engine", name: "Full Event", sub: "Core 2026 access product", prices: [["Founder / Launch", "$1,199"], ["Early", "$1,399"], ["Standard", "$1,599"], ["Late", "$1,899"]], cap: "Target allocation: 900 paid tickets", featured: true },
+              { tier: "Scarcity Tier", name: "VIP Pass", sub: "Premium access and yield protection", prices: [["Founder / Launch", "$2,299"], ["Early", "$2,499"], ["Standard", "$2,799"], ["Late", "$2,999"]], cap: "Target allocation: 100 paid tickets", featured: false }
             ].map((p, i) => (
               <div key={i} className={cn("bg-[#232323] border rounded-2xl p-5 flex flex-col relative overflow-hidden", p.featured ? "border-[#ffcf33]/50 shadow-lg shadow-[#ffcf33]/10" : "border-[#444]") }>
                 {p.featured && <div className="absolute top-0 left-0 w-full h-1 bg-[#ffcf33]"></div>}
@@ -343,18 +351,79 @@
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
             <Card title="Paid Volume Model, 1,000 Ticket Target">
-              <SimpleTable headers={[{ label: "Pass Type" }, { label: "Paid Vol.", align: "right" }, { label: "Blended Price", align: "right" }, { label: "Gross Revenue", align: "right" }]} rows={volumeRows} />
+              <SimpleTable headers={[{ label: "Pass Type" }, { label: "Paid Vol.", align: "right" }, { label: "Blended Gross", align: "right" }, { label: "Gross Revenue", align: "right" }]} rows={volumeRows} />
               <div className="mt-4 p-2 bg-[#ffcf33]/10 border border-[#ffcf33]/20 rounded text-[10px] text-[#ffcf33] font-medium text-center">
-                1,000 paid tickets is the commercial target. 900 paid tickets remains internal downside sensitivity only.
+                Ticket target is managed separately from B2B partnership sales: 1,000 paid tickets / €1.25M net.
               </div>
             </Card>
-            <Card icon={TrendingUp} title="Gross Paid to Net Revenue Bridge">
-              <div className="space-y-2 text-xs md:text-sm font-mono mb-4">
-                <div className="text-[10px] uppercase text-gray-500 font-bold mb-1">Target Model, 1,000 Paid</div>
-                <div className="flex justify-between py-1 text-gray-300"><span>Gross Ticket Revenue</span><span>~$1.53M USD</span></div>
-                <div className="flex items-center gap-2 py-1 text-gray-400"><ArrowRight className="w-4 h-4" /><em>Est. EUR Equivalent</em><span className="ml-auto">~€1.42M</span></div>
-                <div className="flex justify-between py-1 text-rose-400/80"><span>Fees, FX, discounts, refunds</span><span>(~€170k-€220k)</span></div>
-                <div className="flex justify-between py-1.5 border-t border-[#444] mt-1 font-bold text-[#ffcf33]"><span>Net Ticket Target</span><span>~€1.20M-€1.25M</span></div>
+            <Card icon={TrendingUp} title="Price Phase Logic">
+              <SimpleTable minWidth="760px" headers={[{ label: "Phase" }, { label: "Dates" }, { label: "Batch Limit", align: "right" }, { label: "Pricing", align: "right" }]} rows={phaseRows} />
+              <div className="mt-4 p-3 bg-[#111] border border-[#444] rounded-lg text-[10px] text-gray-400">
+                Price increases happen when the date arrives or the batch sells out, whichever comes first. No quiet Conference Only substitute in 2026.
+              </div>
+            </Card>
+          </div>
+        </SlideFrame>
+      );
+    }
+
+    function SlideTicketProjection() {
+      const projectionRows = [
+        { cells: [{ value: "27-31 May", className: "font-bold text-[#ffcf33]" }, { value: "15", align: "right", className: "font-mono" }, { value: "3", align: "right", className: "font-mono" }, { value: "18", align: "right", className: "font-mono font-bold text-[#ffcf33]" }, { value: "18", align: "right", className: "font-mono" }, { value: "~€23k", align: "right", className: "font-mono text-[#ffcf33]" }] },
+        { cells: [{ value: "June", className: "font-bold text-white" }, { value: "45", align: "right", className: "font-mono" }, { value: "5", align: "right", className: "font-mono" }, { value: "50", align: "right", className: "font-mono font-bold" }, { value: "68", align: "right", className: "font-mono" }, { value: "~€63k", align: "right", className: "font-mono" }] },
+        { cells: [{ value: "July", className: "font-bold text-white" }, { value: "115", align: "right", className: "font-mono" }, { value: "12", align: "right", className: "font-mono" }, { value: "127", align: "right", className: "font-mono font-bold" }, { value: "195", align: "right", className: "font-mono" }, { value: "~€159k", align: "right", className: "font-mono" }] },
+        { cells: [{ value: "August", className: "font-bold text-white" }, { value: "215", align: "right", className: "font-mono" }, { value: "25", align: "right", className: "font-mono" }, { value: "240", align: "right", className: "font-mono font-bold" }, { value: "435", align: "right", className: "font-mono" }, { value: "~€300k", align: "right", className: "font-mono" }] },
+        { className: "bg-[#ffcf33]/5", cells: [{ value: "September", className: "font-bold text-[#ffcf33]" }, { value: "355", align: "right", className: "font-mono text-[#ffcf33]" }, { value: "40", align: "right", className: "font-mono text-[#ffcf33]" }, { value: "395", align: "right", className: "font-mono font-bold text-[#ffcf33]" }, { value: "830", align: "right", className: "font-mono text-[#ffcf33]" }, { value: "~€494k", align: "right", className: "font-mono text-[#ffcf33]" }] },
+        { cells: [{ value: "1-21 October", className: "font-bold text-white" }, { value: "155", align: "right", className: "font-mono" }, { value: "15", align: "right", className: "font-mono" }, { value: "170", align: "right", className: "font-mono font-bold" }, { value: "1,000", align: "right", className: "font-mono" }, { value: "~€213k", align: "right", className: "font-mono" }] },
+        { className: "bg-[#111]", cells: [{ value: "Total", className: "font-bold text-white uppercase text-[10px]" }, { value: "900", align: "right", className: "font-mono font-bold" }, { value: "100", align: "right", className: "font-mono font-bold" }, { value: "1,000", align: "right", className: "font-mono font-bold text-[#ffcf33]" }, { value: "-", align: "right", className: "font-mono text-gray-500" }, { value: "~€1.25M", align: "right", className: "font-mono font-bold text-[#ffcf33]" }] }
+      ];
+
+      return (
+        <SlideFrame title="Ticket Sales Projection" subtitle="Ticket sales are intentionally back-weighted. This projection is separate from the B2B partnership ramp.">
+          <Card accent className="mb-6">
+            <SimpleTable
+              minWidth="900px"
+              headers={[{ label: "Period" }, { label: "Full Event", align: "right" }, { label: "VIP", align: "right" }, { label: "Monthly Tickets", align: "right" }, { label: "Cumulative", align: "right" }, { label: "Est. Net Ticket Rev", align: "right" }]}
+              rows={projectionRows}
+            />
+          </Card>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Card title="Launch Halo">
+              <p className="text-xs md:text-sm text-gray-400 leading-relaxed">Tickets launch on 27 May during NEXT Summit Valletta. May is treated as a small warm-audience spike, not a full sales month.</p>
+            </Card>
+            <Card title="Main Conversion Window" accent>
+              <p className="text-xs md:text-sm text-gray-400 leading-relaxed">September and October carry 565 tickets, or 56.5% of the paid-ticket target. That mirrors the late-heavy B2B registration pattern seen across NEXT events.</p>
+            </Card>
+            <Card title="Key Checkpoint">
+              <p className="text-xs md:text-sm text-gray-400 leading-relaxed">End of August target: 435 cumulative paid tickets. Below 300 by then should trigger a major campaign intervention.</p>
+            </Card>
+          </div>
+        </SlideFrame>
+      );
+    }
+
+    function SlideVIPValue() {
+      return (
+        <SlideFrame title="VIP Value Proposition" subtitle="VIP must feel materially different from Full Event, not just more expensive.">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
+            <Card icon={Award} title="VIP Inclusions" accent>
+              <ul className="space-y-4 text-sm text-gray-300">
+                <Bullet>VIP lounge / networking area access.</Bullet>
+                <Bullet>Reserved seating for headline sessions, subject to room capacity.</Bullet>
+                <Bullet>Meeting-maker access.</Bullet>
+                <Bullet>One pre-bookable meeting table slot, subject to availability.</Bullet>
+                <Bullet>Dedicated support contact.</Bullet>
+                <Bullet>VIP badge status.</Bullet>
+              </ul>
+            </Card>
+            <Card icon={ShieldCheck} title="Commercial Guardrails">
+              <p className="text-sm text-gray-400 leading-relaxed mb-4">
+                VIP is the yield-protection tier. If its value is vague, buyers will trade down to Full Event and the €1.25M net target becomes harder to protect.
+              </p>
+              <div className="space-y-3 text-xs text-gray-300">
+                <div className="bg-[#111] border border-[#444] rounded-lg p-3"><strong className="text-white">No overpromising:</strong> reserved seating and meeting slots must remain capacity-based.</div>
+                <div className="bg-[#111] border border-[#444] rounded-lg p-3"><strong className="text-white">No quiet discounting:</strong> VIP value should be enhanced with access, not undermined with uncontrolled codes.</div>
+                <div className="bg-[#111] border border-[#444] rounded-lg p-3"><strong className="text-white">Operational owner needed:</strong> Event Ops must confirm who manages VIP support, table bookings and badge logic.</div>
               </div>
             </Card>
           </div>
@@ -364,20 +433,36 @@
 
     function SlidePartnershipForecast() {
       const forecastRows = [
-        { className: "bg-[#ffcf33]/10", cells: [{ value: "Base Target", className: "text-[#ffcf33] font-bold" }, { value: "€1,350,000", align: "right", className: "font-mono font-bold text-[#ffcf33] text-lg" }] },
-        { cells: [{ value: "Stretch Target", className: "text-white font-bold" }, { value: "€1,800,000", align: "right", className: "font-mono font-bold text-white text-lg" }] }
+        { className: "bg-[#ffcf33]/10", cells: [{ value: "Committed Partnership Target", className: "text-[#ffcf33] font-bold" }, { value: "€1,350,000", align: "right", className: "font-mono font-bold text-[#ffcf33] text-lg" }] },
+        { cells: [{ value: "Internal Stretch Case", className: "text-gray-400 font-bold" }, { value: "€1,800,000", align: "right", className: "font-mono font-bold text-gray-400 text-lg" }] }
+      ];
+
+      const b2bRows = [
+        { cells: [{ value: "May", className: "font-bold text-[#ffcf33]" }, { value: "€40k", align: "right", className: "font-mono text-[#ffcf33]" }, { value: "€40k", align: "right", className: "font-mono text-[#ffcf33]" }] },
+        { cells: [{ value: "June", className: "font-bold text-white" }, { value: "€190k", align: "right", className: "font-mono" }, { value: "€150k", align: "right", className: "font-mono" }] },
+        { className: "bg-[#ffcf33]/5", cells: [{ value: "July", className: "font-bold text-[#ffcf33]" }, { value: "€700k", align: "right", className: "font-mono text-[#ffcf33]" }, { value: "€510k", align: "right", className: "font-mono text-[#ffcf33]" }] },
+        { cells: [{ value: "August", className: "font-bold text-white" }, { value: "€1.15M", align: "right", className: "font-mono" }, { value: "€450k", align: "right", className: "font-mono" }] },
+        { cells: [{ value: "September", className: "font-bold text-white" }, { value: "€1.35M", align: "right", className: "font-mono font-bold text-[#ffcf33]" }, { value: "€200k", align: "right", className: "font-mono" }] }
       ];
 
       return (
-        <SlideFrame title="Partnership Forecast" subtitle="Applying first-year commercial realism to our inventory capacity.">
-          <Card title="Sponsorship Revenue Targets" accent className="mb-8">
-            <SimpleTable headers={[{ label: "Commercial Case" }, { label: "Projected Revenue", align: "right" }]} rows={forecastRows} />
-            <div className="mt-4 p-3 bg-[#111] border border-[#444] rounded-lg">
-              <p className="text-[11px] text-gray-400 italic">
-                The board view shows the base target and stretch target only. Supporting downside, stress, ceiling and upper-base modelling remains internal.
-              </p>
-            </div>
-          </Card>
+        <SlideFrame title="Partnership Forecast" subtitle="B2B partnership sales are managed separately from ticket revenue.">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <Card title="Sponsorship Revenue Targets" accent>
+              <SimpleTable headers={[{ label: "Commercial Case" }, { label: "Projected Revenue", align: "right" }]} rows={forecastRows} />
+              <div className="mt-4 p-3 bg-[#111] border border-[#444] rounded-lg">
+                <p className="text-[11px] text-gray-400 italic">
+                  Only the €1.35M partnership target should be committed externally. The €1.8M stretch case is internal and should not be presented as a committed target.
+                </p>
+              </div>
+            </Card>
+            <Card title="Proposed Monthly B2B Ramp">
+              <SimpleTable headers={[{ label: "Month" }, { label: "Cumulative Target", align: "right" }, { label: "Monthly Increment", align: "right" }]} rows={b2bRows} />
+              <div className="mt-4 p-3 bg-[#ffcf33]/10 border border-[#ffcf33]/30 rounded-lg text-[11px] text-[#ffcf33]">
+                Will to review realism. July requires the heaviest movement: +€510k month-on-month.
+              </div>
+            </Card>
+          </div>
         </SlideFrame>
       );
     }
@@ -389,13 +474,13 @@
             <Card icon={TicketIcon} title="Marketing Revenue, Tickets" accent>
               <div className="space-y-4 text-sm">
                 <MetricRow label="Protected Floor" value="€750,000 net" />
-                <MetricRow label="Modelled Target" note="1,000 paid tickets" value="~€1.20M-€1.25M net" valueClass="text-[#ffcf33] text-lg" />
+                <MetricRow label="Working Target" note="1,000 paid tickets: 900 Full Event / 100 VIP" value="€1.25M net" valueClass="text-[#ffcf33] text-lg" />
               </div>
             </Card>
             <Card icon={Award} title="Sales Revenue, B2B" accent>
               <div className="space-y-4 flex-1 flex flex-col justify-center">
-                <MetricRow label="Base Target" value="€1,350,000" valueClass="text-white text-2xl" />
-                <MetricRow label="Stretch Target" value="€1,800,000" valueClass="text-[#ffcf33] text-2xl" />
+                <MetricRow label="Committed Target" value="€1,350,000" valueClass="text-white text-2xl" />
+                <MetricRow label="Internal Stretch" value="€1,800,000" valueClass="text-gray-400 text-xl" />
               </div>
             </Card>
           </div>
@@ -404,7 +489,7 @@
             <Card title="Year-One Financial Performance" className="lg:col-span-2 bg-[#111]">
               <div className="space-y-3">
                 <MetricRow label="Base commission" note="10% of €1.35M" value="~€135,000" valueClass="text-[#ffcf33]" />
-                <MetricRow label="Stretch commission" note="10% of €1.80M" value="~€180,000" />
+                <MetricRow label="Internal stretch commission" note="10% of €1.80M if stretch is pursued" value="~€180,000" />
               </div>
             </Card>
             <Card icon={Activity} title="Strategic Launch Value" className="lg:col-span-3 bg-[#111]" accent>
@@ -436,10 +521,11 @@
             <Card icon={TrendingUp} title="Required Cumulative Pacing">
               <div className="space-y-4 flex-1 relative border-l border-[#444] ml-4 pl-6 pb-2">
                 {[
-                  ["Week 4", "€150k-€250k", "25%", "gray"],
-                  ["Week 8", "€400k-€500k", "45%", "rose"],
-                  ["Week 12", "€900k-€1.1M", "75%", "yellow"],
-                  ["Week 16", "€1.35M base / €1.8M stretch", "100%", "green"]
+                  ["May", "€40k", "12%", "gray"],
+                  ["June", "€190k", "28%", "rose"],
+                  ["July", "€700k", "55%", "yellow"],
+                  ["August", "€1.15M", "85%", "yellow"],
+                  ["September", "€1.35M", "100%", "green"]
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-4 relative z-10">
                     <div className={cn("absolute -left-[31px] top-1 w-3 h-3 rounded-full border-2 border-[#111]", item[3] === "rose" ? "bg-rose-500" : item[3] === "yellow" ? "bg-[#ffcf33]" : item[3] === "green" ? "bg-emerald-500" : "bg-gray-500")}></div>
@@ -450,10 +536,10 @@
               </div>
               <div className="mt-6 space-y-3">
                 <div className="p-3 bg-[#ffcf33]/10 border border-[#ffcf33]/30 rounded-lg text-[10px] md:text-xs text-[#ffcf33]">
-                  <strong className="block mb-1">Sponsorship Week 8 Re-Evaluation:</strong> Target €400k-€500k closed, committed or late-stage. If only c.€100k is closed or committed by Week 8, reassess the €1.8M stretch target before defensive discounting begins.
+                  <strong className="block mb-1">Sponsorship Week 8 Re-Evaluation:</strong> Target €190k cumulative by end of June and €700k by end of July. If July is not supported by named late-stage opportunities, re-baseline the ramp before defensive discounting begins.
                 </div>
                 <div className="p-3 bg-[#111] border border-[#444] rounded-lg text-[10px] md:text-xs text-gray-400">
-                  <strong className="text-white block mb-1">Suggested Ticket Pacing:</strong> 25% sold by first major agenda push, 50% by mid-campaign, 75% before late pricing and 100% target by event week.
+                  <strong className="text-white block mb-1">Ticket Pacing Is Separate:</strong> Ticket projection sits on its own curve: 18 in May, 50 in June, 127 in July, 240 in August, 395 in September and 170 in October.
                 </div>
               </div>
             </Card>
@@ -464,23 +550,23 @@
                   headers={[{ label: "Layer" }, { label: "Meaning" }, { label: "Target", align: "right" }]}
                   rows={[
                     { cells: [{ value: "Target Account Universe", className: "font-bold text-white" }, { value: "Companies we want to sell to" }, { value: "€8M-€10M", align: "right", className: "font-mono" }] },
-                    { cells: [{ value: "Qualified Pipeline Coverage", className: "font-bold text-[#ffcf33]" }, { value: "Real account, relevant buyer, value hypothesis and next action" }, { value: "€4.05M base / €5.4M stretch", align: "right", className: "font-mono text-[#ffcf33]" }] },
+                    { cells: [{ value: "Qualified Pipeline Coverage", className: "font-bold text-[#ffcf33]" }, { value: "Real account, relevant buyer, value hypothesis and next action" }, { value: "€4.05M committed target", align: "right", className: "font-mono text-[#ffcf33]" }] },
                     { cells: [{ value: "Late-Stage Close Pipeline", className: "font-bold text-emerald-400" }, { value: "Commit, procurement, contract or decision-stage opportunities after Week 8" }, { value: "€2M-€2.5M", align: "right", className: "font-mono text-emerald-400" }] }
                   ]}
                 />
               </Card>
-              <Card title="Backwards-Built Target Model, €1.8M">
+              <Card title="Backwards-Built Target Model, €1.35M">
                 <SimpleTable
                   headers={[{ label: "Package Type" }, { label: "Quantity" }, { label: "Revenue", align: "right" }]}
                   rows={[
-                    { cells: [{ value: "1 major anchor package", className: "font-bold text-white" }, { value: "1 x €250k-€350k" }, { value: "€250k-€350k", align: "right", className: "font-mono" }] },
+                    { cells: [{ value: "1 anchor package", className: "font-bold text-white" }, { value: "1 x €250k-€350k" }, { value: "€250k-€350k", align: "right", className: "font-mono" }] },
                     { cells: [{ value: "3 strategic packages", className: "font-bold text-white" }, { value: "3 x €100k-€150k" }, { value: "€300k-€450k", align: "right", className: "font-mono" }] },
                     { cells: [{ value: "8 mid/high packages", className: "font-bold text-white" }, { value: "8 x €50k-€90k" }, { value: "€400k-€720k", align: "right", className: "font-mono" }] },
                     { cells: [{ value: "12 smaller packages", className: "font-bold text-white" }, { value: "12 x €20k-€40k" }, { value: "€240k-€480k", align: "right", className: "font-mono" }] }
                   ]}
                 />
                 <p className="text-[10px] text-[#ffcf33] mt-3 font-medium">
-                  This range only works if sales starts from named accounts, senior relationship routes and weekly deal progression.
+                  The €1.35M committed case needs named accounts, senior relationship routes and weekly deal progression. The €1.8M stretch case remains internal.
                 </p>
               </Card>
             </div>
@@ -496,7 +582,7 @@
             <Card icon={TrendingUp} title="Pipeline & Cashflow">
               <ul className="space-y-4 text-xs md:text-sm text-gray-300 flex-1">
                 <Bullet><strong className="text-white block mb-0.5">Commercial Source of Truth:</strong> Final pricing, inventory status, discount permissions and sold/available quantities must sit in one approved pricing tracker.</Bullet>
-                <Bullet><strong className="text-white block mb-0.5">Qualified Pipeline Coverage:</strong> €4.05M required for €1.35M base. €5.4M required for €1.8M stretch.</Bullet>
+                <Bullet><strong className="text-white block mb-0.5">Qualified Pipeline Coverage:</strong> €4.05M required for the €1.35M committed partnership target. Stretch coverage is retained internally.</Bullet>
                 <Bullet><strong className="text-white block mb-0.5">Late-Stage Close Pipeline:</strong> €2M-€2.5M required after Week 8, with named close dates, procurement status and decision-maker confirmation.</Bullet>
                 <Bullet><strong className="text-white block mb-0.5">Cashflow Discipline:</strong> Target 100% upfront where possible, or 50% upfront / 50% pre-event. No major activation goes live without a signed contract and deposit.</Bullet>
                 <Bullet><strong className="text-white block mb-0.5">Signed vs Forecast Revenue:</strong> Weekly reporting must separate contracted, invoiced, procurement commit, proposal issued, qualified pipeline and unqualified opportunity.</Bullet>
@@ -541,17 +627,17 @@
                 </ul>
               </Card>
             </div>
-            <Card icon={TrendingUp} title="$100 Step-Ups: Public Urgency" accent>
+            <Card icon={TrendingUp} title="Date + Batch Price Phases" accent>
               <p className="text-sm text-gray-300 mb-4">
-                $100 increases create regular campaign urgency. These increases must be visible on the site and reflected in campaign copy. Keep the pricing architecture simple: Founder, Early, Standard and Late.
+                Price increases should be driven by date or batch sell-out, whichever comes first. Keep the 2026 ticket architecture simple: Full Event and VIP only.
               </p>
               <div className="flex-1 bg-[#232323] rounded-xl border border-[#444] p-4 flex flex-col">
-                <div className="text-[10px] text-gray-500 uppercase tracking-widest mb-3 font-bold border-b border-[#333] pb-2">Full Event: Campaign Step-Up Example</div>
+                <div className="text-[10px] text-gray-500 uppercase tracking-widest mb-3 font-bold border-b border-[#333] pb-2">Full Event: Approved Price Ladder</div>
                 <div className="space-y-2 text-xs md:text-sm font-mono flex-1">
-                  {[["Founder / Launch", "$1,099", "text-[#ffcf33]"], ["Early opens", "$1,199", "text-white"], ["Early step-up", "$1,299", "text-gray-400 pl-3"], ["Early final call", "$1,399", "text-gray-400 pl-3"], ["Standard", "$1,499", "text-white"], ["Standard step-up", "$1,599", "text-gray-400 pl-3"], ["Standard final call", "$1,699", "text-gray-400 pl-3"], ["Late", "$1,899", "text-rose-300"]].map((r, i) => <div key={i} className={cn("flex justify-between items-center", r[2])}><span>{r[0]}</span><span>{r[1]}</span></div>)}
+                  {[["Founder / Launch", "$1,199", "text-[#ffcf33]"], ["Early", "$1,399", "text-white"], ["Standard", "$1,599", "text-white"], ["Late", "$1,899", "text-rose-300"]].map((r, i) => <div key={i} className={cn("flex justify-between items-center", r[2])}><span>{r[0]}</span><span>{r[1]}</span></div>)}
                 </div>
                 <div className="mt-4 pt-3 border-t border-[#333] text-[10px] text-gray-500 italic">
-                  These are public price movements controlled through the website and campaign calendar. The buyer must never feel pricing is arbitrary or negotiable.
+                  Phases move on the stated date or when the batch sells out. The buyer must never feel pricing is arbitrary or negotiable.
                 </div>
               </div>
             </Card>
@@ -571,9 +657,9 @@
             <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-6">What Must Be True</h2>
             <p className="text-gray-400 mb-8 max-w-2xl mx-auto">For this commercial model to hold, the following must be true:</p>
             <div className="text-left max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-              <NumberedPoint n="1">Marketing delivers 1,000 paid tickets without uncontrolled discounting.</NumberedPoint>
+              <NumberedPoint n="1">Marketing delivers 1,000 paid tickets across Full Event and VIP without uncontrolled discounting.</NumberedPoint>
               <NumberedPoint n="2">Sponsorship sales maintains c.€4.05M qualified pipeline coverage for the base case, with €2M-€2.5M late-stage close pipeline after Week 8.</NumberedPoint>
-              <NumberedPoint n="3">Stretch requires €5.4M qualified pipeline coverage, not vague market interest.</NumberedPoint>
+              <NumberedPoint n="3">The €1.8M stretch case remains internal and requires separate coverage discipline.</NumberedPoint>
               <NumberedPoint n="4">Website pricing remains the single source of truth for tickets.</NumberedPoint>
               <NumberedPoint n="5">Comp passes are governed against operator / platform / institutional buyer density and sponsor value.</NumberedPoint>
               <NumberedPoint n="6">Sponsor deliverables are mapped before packages are sold.</NumberedPoint>
@@ -591,9 +677,9 @@
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-6">
             <Card icon={CheckSquare} title="Recommended for Approval" accent>
               <ul className="space-y-3 text-xs md:text-sm text-gray-300">
-                <Bullet color="text-emerald-400"><strong className="text-white">Sales Target:</strong> €1.35M base forecast and €1.8M stretch.</Bullet>
-                <Bullet color="text-emerald-400"><strong className="text-white">Ticketing:</strong> 1,000 paid tickets as commercial target. €750k net protected as minimum floor.</Bullet>
-                <Bullet color="text-emerald-400"><strong className="text-white">Marketing-Led Ticket Urgency:</strong> Public $100 price-rise mechanics approved where reflected on the website, campaign calendar and registration journey.</Bullet>
+                <Bullet color="text-emerald-400"><strong className="text-white">B2B Sales Target:</strong> €1.35M committed partnership target. €1.8M stretch remains internal only.</Bullet>
+                <Bullet color="text-emerald-400"><strong className="text-white">Ticketing:</strong> 1,000 paid tickets as commercial target, €1.25M net working target and €750k net protected minimum floor.</Bullet>
+                <Bullet color="text-emerald-400"><strong className="text-white">Marketing-Led Ticket Urgency:</strong> Date/batch price phases approved where reflected on the website, campaign calendar and registration journey.</Bullet>
                 <Bullet color="text-emerald-400"><strong className="text-white">Deal Desk:</strong> Strict 15% discount cap. 5% on Power Inventory. Commercial approves pricing rules, caps and codes.</Bullet>
                 <Bullet color="text-emerald-400"><strong className="text-white">Strategic Investment Logic:</strong> Controlled first-year loss tolerance to be pre-agreed, capped and measured against launch-value indicators.</Bullet>
               </ul>
@@ -616,7 +702,7 @@
 
     function SlideResourceRequired() {
       return (
-        <SlideFrame eyebrow="Appendix" title="Resource Required: This Cannot Be Sold Like a Normal Event" subtitle="The €1.8M stretch case requires coordinated execution without weakening proven revenue streams.">
+        <SlideFrame eyebrow="Appendix" title="Resource Required: This Cannot Be Sold Like a Normal Event" subtitle="The internal €1.8M stretch case requires coordinated execution without weakening proven revenue streams.">
           <Card title="Core Operating Requirements" accent className="flex-1">
             <ul className="space-y-4 text-sm text-gray-300">
               <Bullet>NEXTPredict must not distract the sales team from core NEXT.io revenue. Core NEXT.io sales remain the commercial cushion against NEXTPredict launch risk.</Bullet>
@@ -629,7 +715,7 @@
             <div className="mt-auto pt-6">
               <div className="p-4 bg-rose-950/20 border border-rose-900/50 rounded-xl">
                 <p className="text-rose-400 font-medium text-sm text-center">
-                  If the resource model is not controlled, the €1.8M stretch target becomes theatre and core revenue takes unnecessary risk.
+                  If the resource model is not controlled, even the €1.35M committed target becomes theatre and core revenue takes unnecessary risk.
                 </p>
               </div>
             </div>
@@ -640,7 +726,7 @@
 
     function SlideHighLevelGTMStrategy() {
       return (
-        <SlideFrame eyebrow="Appendix" title="High-Level GTM Strategy: Category Capture, Not Event Promotion" subtitle="The €1.8M sponsorship target requires category authority, named-account targeting, partner amplification, senior outreach and weekly execution discipline.">
+        <SlideFrame eyebrow="Appendix" title="High-Level GTM Strategy: Category Capture, Not Event Promotion" subtitle="The €1.35M committed sponsorship target requires category authority, named-account targeting, partner amplification, senior outreach and weekly execution discipline.">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 flex-1 min-h-0">
             <div className="lg:col-span-5 flex flex-col gap-4">
               <Card icon={AlertCircle} title="Why Passive Marketing Is Not Enough" danger>
@@ -648,17 +734,17 @@
                   <Bullet color="text-rose-400">First-year event with no renewal base.</Bullet>
                   <Bullet color="text-rose-400">New category with limited existing buyer intent.</Bullet>
                   <Bullet color="text-rose-400">High sponsorship target relative to market maturity.</Bullet>
-                  <Bullet color="text-rose-400">€1.8M requires deliberate pipeline creation.</Bullet>
+                  <Bullet color="text-rose-400">€1.35M requires deliberate pipeline creation; €1.8M remains internal stretch.</Bullet>
                   <Bullet color="text-rose-400">Waiting for inbound demand is not a strategy.</Bullet>
                 </ul>
                 <div className="p-3 bg-rose-500/10 rounded border border-rose-500/20 text-[10px] md:text-[11px] text-rose-200">
-                  <strong>Commercial warning:</strong> Marketing creates awareness and urgency, but it cannot generate €5.4M of qualified pipeline without a named-account GTM motion.
+                  <strong>Commercial warning:</strong> Marketing creates awareness and urgency, but it cannot generate €4.05M of qualified pipeline without a named-account GTM motion.
                 </div>
               </Card>
               <Card title="Pipeline Rules" className="bg-[#111]">
                 <ul className="space-y-2 text-xs text-gray-300 font-medium">
-                  <Bullet>€1.35M base target = c.€4.05M qualified pipeline coverage required at 3x.</Bullet>
-                  <Bullet>€1.8M stretch target = c.€5.4M qualified pipeline coverage required at 3x.</Bullet>
+                  <Bullet>€1.35M committed target = c.€4.05M qualified pipeline coverage required at 3x.</Bullet>
+                  <Bullet>€1.8M stretch target = c.€5.4M qualified pipeline coverage required at 3x, retained internally.</Bullet>
                   <Bullet>After Week 8, late-stage close pipeline must reach €2M-€2.5M.</Bullet>
                   <Bullet>Every Tier 1 account needs a named owner and next action.</Bullet>
                 </ul>
@@ -739,8 +825,8 @@
                 {[
                   "Contracted revenue",
                   "Late-stage close pipeline",
-                  "Qualified pipeline coverage against €4.05M / €5.4M requirements",
-                  "Ticket sales pacing",
+                  "Qualified pipeline coverage against the €4.05M committed-target requirement",
+                  "Ticket sales pacing, separate from B2B ramp",
                   "Price resistance feedback",
                   "ICP mix and audience acquisition",
                   "Marketing campaign performance",
@@ -874,7 +960,7 @@
               <MetricRow label="NEXTworking / Networking" value="€400k exclusive ceiling" valueClass="text-gray-300 text-xl md:text-2xl" note="Modelled exclusive inventory only; fallback non-exclusive inventory excluded." />
               <div className="pt-4 bg-[#ffcf33]/10 p-4 rounded-xl border border-[#ffcf33]/30 mt-8">
                 <span className="block text-lg md:text-2xl font-black text-white uppercase tracking-wider mb-2">Commercial display rule</span>
-                <span className="block text-sm md:text-base text-gray-300">Show Base and Stretch targets externally. Keep full inventory ceiling, stress, downside and upper-base revenue views inside the internal model.</span>
+                <span className="block text-sm md:text-base text-gray-300">Show the committed €1.35M B2B target and the separate €1.25M net ticket target. Keep stretch, stress, downside and upper-base revenue views inside the internal model.</span>
               </div>
             </div>
             <div className="mt-6 space-y-2">
@@ -1064,6 +1150,8 @@
       SlideBreakEven,
       SlideStrategicLaunchInvestmentLogic,
       SlideTicketing,
+      SlideTicketProjection,
+      SlideVIPValue,
       SlidePartnershipForecast,
       SlideScorecard,
       SlideSalesRamp,
