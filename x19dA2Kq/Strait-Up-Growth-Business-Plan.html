@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Strategy – Strait Up Growth Pte. Ltd.</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%234A0E0E'/><text y='70' x='20' font-family='serif' font-size='70' fill='%23FAF9F6'>S</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oxblood: #4A0E0E;
+            --oxblood-light: #611616;
+            --teal: #00A89C;
+            --gold: #B8935A;
+            --off-white: #FAF9F6;
+            --ivory: #F2F0E9;
+            --text-black: #1A1A1A;
+            --text-gray: #4B4B4B;
+            --border-tan: #D6D2C9;
+        }
+
+        /* --- General Layout --- */
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body { font-family: 'Inter', -apple-system, sans-serif; color: var(--text-black); background-color: var(--off-white); margin: 0; padding: 0; line-height: 1.75; overflow-x: hidden; }
+
+        @page { size: A4; margin: 16mm; }
+
+        /* --- Cover Page Logic --- */
+        .cover-page { display: none; }
+        @media print {
+            .cover-page { display: flex !important; flex-direction: column; justify-content: center; align-items: center; height: 100vh; text-align: center; break-after: page; }
+            .cover-page h1 { font-size: 38pt !important; color: var(--oxblood) !important; margin-bottom: 15pt; font-family: 'Libre Baskerville', serif; }
+            .cover-page p { font-size: 14pt !important; color: #333 !important; margin: 5pt 0; }
+            
+            body { background: white !important; }
+            main { max-width: none; padding: 0; }
+            header { background: #fff !important; color: #000 !important; padding: 0 !important; border-bottom: 2px solid #000 !important; }
+            header h1, header p { color: #000 !important; }
+            .meta-grid { margin: 1rem 0 !important; border: 1px solid #000 !important; box-shadow: none !important; grid-template-columns: repeat(4, 1fr) !important; }
+            nav, .print-btn { display: none !important; }
+            
+            section {
+                break-before: auto;
+                break-inside: auto;
+                padding: 2rem 0;
+                border-bottom: 1px solid #000;
+            }
+            main > section + section {
+                break-before: page;
+            }
+            .trust-box, .client-card, .impact-item, .hiring-card, .ai-fluency-col, .salary-card, .statement-box, .risk-box, .table-container {
+                break-inside: avoid;
+                box-shadow: none !important;
+                border: 1px solid #000 !important;
+            }
+        }
+
+        /* --- Sticky Navigation --- */
+        nav { background-color: var(--oxblood); position: fixed; top: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; padding: 0.8rem 0; border-bottom: 2px solid var(--oxblood-light); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .nav-links { display: flex; gap: 1rem; max-width: 1200px; overflow-x: auto; padding: 0 1rem; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+        .nav-links::-webkit-scrollbar { display: none; }
+        .nav-links a { color: var(--off-white); text-decoration: none; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; opacity: 0.75; transition: opacity 0.2s; }
+        .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+        /* --- Hero Section --- */
+        header { background-color: var(--oxblood); color: #FFFFFF; padding: 8rem 1.5rem 5rem 1.5rem; text-align: center; border-bottom: 6px solid var(--oxblood-light); }
+        .header-inner { max-width: 900px; margin: 0 auto; }
+        header h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(1.8rem, 5vw, 2.8rem); margin: 0 0 1rem 0; line-height: 1.1; color: #FFFFFF; }
+        header p { color: rgba(255, 255, 255, 0.9); font-size: clamp(0.9rem, 2vw, 1.1rem); }
+        .header-sub { text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem; color: var(--gold); font-weight: 700; margin-bottom: 0.5rem; display: block; }
+
+        /* --- Meta Grid --- */
+        .meta-grid { max-width: 1000px; margin: -3rem auto 4rem auto; background: white; border: 1px solid var(--border-tan); display: grid; grid-template-columns: repeat(2, 1fr); position: relative; z-index: 10; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        @media (min-width: 768px) { .meta-grid { grid-template-columns: repeat(4, 1fr); } }
+        .meta-box { padding: 1.2rem; border: 0.5px solid var(--border-tan); }
+        .meta-label { display: block; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; color: var(--oxblood); margin-bottom: 0.4rem; letter-spacing: 1px; }
+        .meta-value { font-size: 0.85rem; font-weight: 600; color: var(--text-black); }
+
+        /* --- Main Content --- */
+        main { max-width: 900px; margin: 0 auto; padding: 0 1.25rem 100px 1.25rem; }
+        section { padding: 4rem 0; border-bottom: 1px solid var(--border-tan); scroll-margin-top: 100px; }
+        h2 { font-family: 'Libre Baskerville', serif; font-size: 1.5rem; color: var(--oxblood); margin-bottom: 2rem; display: flex; align-items: center; }
+        h2::after { content: ''; flex-grow: 1; height: 1px; background: var(--border-tan); margin-left: 1.5rem; }
+        h3 { font-family: 'Libre Baskerville', serif; font-size: 1.3rem; color: var(--oxblood-light); margin: 2rem 0 1rem 0; }
+        p, li { font-size: 1.05rem; color: var(--text-gray); margin-bottom: 1.5rem; }
+        ul { padding-left: 1.5rem; margin-bottom: 2rem; }
+        strong { color: var(--text-black); font-weight: 700; }
+
+        /* --- Components --- */
+        .infographic-container { margin: 2rem 0; background: var(--ivory); padding: 1.5rem; border: 1px solid var(--border-tan); }
+        .infographic-title { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--oxblood); margin-bottom: 1.5rem; display: block; }
+        .bar-comparison { display: flex; flex-direction: column; gap: 1rem; }
+        .comp-row { display: grid; grid-template-columns: 1fr; gap: 0.5rem; }
+        @media (min-width: 600px) { .comp-row { grid-template-columns: 140px 1fr 60px; align-items: center; } }
+        .bar-bg { background: white; height: 24px; border-radius: 2px; overflow: hidden; border: 1px solid #ddd; }
+        .bar-fill { height: 100%; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; color: white; font-size: 0.7rem; font-weight: 800; width: 0; transition: width 1.5s ease-out; }
+        .bar-fill.sme { background: #94A3B8; }
+        .bar-fill.non-sme { background: var(--oxblood); }
+
+        .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2.5rem 0; }
+        .trust-box { border: 1px solid var(--border-tan); padding: 1.2rem; background: white; position: relative; border-radius: 2px; }
+        .trust-icon { position: absolute; top: 1rem; right: 1rem; width: 16px; height: 16px; fill: var(--teal); }
+        .trust-title { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; color: var(--text-gray); }
+        .trust-val { font-size: 0.8rem; font-weight: 700; color: var(--oxblood); }
+
+        .charts-flex { display: grid; grid-template-columns: 1fr; gap: 2rem; margin: 3rem 0; align-items: start; }
+        @media (min-width: 850px) { .charts-flex { grid-template-columns: 1fr 240px; gap: 3.5rem; } }
+        
+        .chart-horizontal { display: flex; flex-direction: column; gap: 1.2rem; }
+        .chart-row { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+        .row-meta { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--text-black); }
+        .row-bar-container { background: var(--ivory); height: 32px; border: 1px solid var(--border-tan); border-radius: 2px; overflow: hidden; }
+        .row-bar-fill { background: var(--teal); height: 100%; width: 0; transition: width 2s cubic-bezier(0.16, 1, 0.3, 1); border-right: 3px solid var(--gold); }
+
+        .donut-container { text-align: center; background: white; padding: 2rem; border: 1px solid var(--border-tan); box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .donut-svg { width: 140px; height: 140px; }
+        .donut-ring { fill: transparent; stroke: var(--ivory); stroke-width: 4; }
+        .donut-segment { fill: transparent; stroke: var(--teal); stroke-width: 4; transition: stroke-dasharray 2s cubic-bezier(0.16, 1, 0.3, 1); transform: rotate(-90deg); transform-origin: 50% 50%; stroke-linecap: round; transform-box: fill-box; }
+        .donut-text { font-family: 'Inter', sans-serif; font-size: 9px; text-anchor: middle; fill: var(--oxblood); font-weight: 800; }
+
+        .client-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin: 2.5rem 0; }
+        @media (min-width: 600px) { .client-grid { grid-template-columns: 1fr 1fr; } }
+        .client-card { border: 1px solid var(--border-tan); padding: 2rem; background: white; text-align: center; border-top: 4px solid var(--oxblood); }
+        .client-logo-abstract { width: 60px; height: 60px; margin: 0 auto 1.2rem; background: var(--ivory); display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid var(--gold); }
+        .client-logo-abstract span { font-weight: 800; color: var(--oxblood); font-size: 1.4rem; }
+        .client-name { font-weight: 800; font-size: 1.1rem; color: var(--oxblood); margin-bottom: 0.4rem; }
+        .client-loc { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-gray); margin-bottom: 0.8rem; display: block; font-weight: 600; }
+        .client-quote { font-style: italic; font-size: 0.9rem; color: var(--text-gray); border-top: 1px solid var(--ivory); padding-top: 1rem; }
+
+        .impact-strip { display: grid; grid-template-columns: 1fr; gap: 1rem; margin: 2rem 0; text-align: center; }
+        @media (min-width: 600px) { .impact-strip { grid-template-columns: repeat(3, 1fr); } }
+        .impact-item { padding: 2rem 1rem; background: var(--ivory); border: 1px solid var(--border-tan); position: relative; }
+        .impact-item::after { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gold); }
+        .impact-num { font-family: 'Libre Baskerville', serif; font-size: 2.2rem; font-weight: 700; color: var(--oxblood); display: block; }
+        .impact-label { font-size: 0.7rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; color: var(--text-gray); margin-top: 0.8rem; display: block; }
+        .impact-source { display: block; margin-top: 0.5rem; font-size: 0.65rem; color: var(--text-gray); text-transform: uppercase; letter-spacing: 1px; }
+
+        .salary-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin: 2rem 0; }
+        @media (min-width: 700px) { .salary-grid { grid-template-columns: repeat(4, 1fr); } }
+        .salary-card { background: white; border: 1px solid var(--border-tan); border-top: 4px solid var(--gold); padding: 1.4rem; text-align: center; }
+        .salary-label { display: block; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; color: var(--text-gray); letter-spacing: 1px; margin-bottom: 0.6rem; }
+        .salary-value { display: block; font-family: 'Libre Baskerville', serif; font-size: 1.5rem; color: var(--oxblood); font-weight: 700; margin-bottom: 0.5rem; }
+        .salary-note { display: block; font-size: 0.75rem; color: var(--text-gray); line-height: 1.4; }
+        .risk-box { background: var(--ivory); border-left: 5px solid var(--teal); padding: 1.5rem; margin: 2rem 0; }
+
+        .service-block { margin-bottom: 2.5rem; padding-left: 3.5rem; position: relative; }
+        .service-block::before { content: attr(data-number); position: absolute; left: 0; top: 0; font-family: 'Libre Baskerville', serif; font-size: 1.8rem; font-weight: 700; color: var(--oxblood); opacity: 0.15; }
+
+        .hiring-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2rem; }
+        @media (min-width: 768px) { .hiring-grid { grid-template-columns: 1fr 1fr; } }
+        .hiring-card { border: 1px solid var(--border-tan); background: white; padding: 2rem; border-top: 4px solid var(--oxblood); }
+        .card-row { margin-bottom: 1rem; }
+        .card-label { display: block; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--text-gray); margin-bottom: 0.25rem; }
+        .card-value { font-size: 0.95rem; font-weight: 600; color: var(--text-black); }
+
+        .statement-box { background: radial-gradient(circle at 10% 10%, #EAE8E1 0%, #FAF9F6 100%); border: 1px solid var(--border-tan); padding: 2rem; margin: 3rem 0; position: relative; }
+        @media (min-width: 768px) { .statement-box { padding: 4rem; } }
+        .statement-box::before { content: "Founder's Statement"; position: absolute; top: -14px; left: 20px; background: var(--oxblood); color: white; padding: 4px 15px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+        .founder-avatar { width: 100px; height: 100px; background: var(--oxblood); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 4px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin-bottom: 1.5rem; }
+        @media (min-width: 768px) { .founder-avatar { margin-bottom: 0; margin-right: 2.5rem; } }
+        .founder-avatar span { font-family: 'Libre Baskerville', serif; font-size: 2rem; color: #fff; }
+        .founder-visual { display: flex; flex-direction: column; align-items: center; text-align: center; }
+        @media (min-width: 768px) { .founder-visual { flex-direction: row; text-align: left; align-items: start; } }
+        .pull-quote { font-family: 'Libre Baskerville', serif; font-style: italic; font-size: clamp(1.1rem, 3vw, 1.3rem); color: var(--oxblood); line-height: 1.8; margin: 0; }
+        .pull-quote .accent { color: var(--oxblood-light); border-bottom: 3px solid var(--gold); padding-bottom: 2px; }
+
+        .table-container { margin: 2.5rem 0; border: 1px solid var(--border-tan); background: white; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th { background-color: var(--oxblood); color: white; padding: 1.2rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        td { padding: 1.2rem; border-bottom: 1px solid var(--border-tan); font-size: 0.9rem; vertical-align: top; }
+        tr:nth-child(even) { background-color: var(--ivory); }
+
+        .ai-fluency-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 2rem; }
+        @media (min-width: 768px) { .ai-fluency-grid { grid-template-columns: 1fr 1fr; } }
+        .ai-fluency-col { background: white; border: 1px solid var(--border-tan); padding: 2rem; border-radius: 2px; }
+
+        .submission-note { background: #EAE8E1; padding: 1.5rem; text-align: center; border-radius: 4px; font-size: 0.8rem; color: var(--text-gray); margin-top: 3rem; border: 1px dashed var(--border-tan); }
+
+        .print-btn {
+            position: fixed; bottom: 25px; right: 25px; background: var(--oxblood); color: #fff; border: 1.5px solid var(--gold); padding: 12px 24px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; cursor: pointer; z-index: 2000; box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;
+        }
+        .print-btn:hover { background: var(--teal); border-color: var(--teal); transform: translateY(-2px); }
+
+        footer { background-color: var(--oxblood); color: #fff; padding: 4rem 1.5rem; text-align: center; border-top: 8px solid var(--oxblood-light); }
+        .footer-title { font-family: 'Libre Baskerville', serif; font-size: 1.6rem; margin-bottom: 1rem; }
+        .footer-info { opacity: 0.6; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 0.5rem; }
+    </style>
+</head>
+<body>
+
+    <div class="cover-page">
+        <p style="text-transform: uppercase; letter-spacing: 5px; font-weight: 600; color: var(--text-gray);">Corporate Strategic Brief & Business Plan</p>
+        <h1>Strait Up Growth Pte. Ltd.</h1>
+        <p style="font-family: serif; font-style: italic; margin-top: -10px;">Prepared for Employment Pass application support</p>
+        <p style="margin-top: 20px; font-weight: 500;">May 2026</p>
+    </div>
+
+    <button class="print-btn" onclick="window.print()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+        Print or Save PDF Brief
+    </button>
+
+    <nav>
+        <div class="nav-links">
+            <a href="#executive-summary">Summary</a>
+            <a href="#market-analysis">Market</a>
+            <a href="#service-offering">Services</a>
+            <a href="#delivery-model">Delivery</a>
+            <a href="#revenue-model">Financials</a>
+            <a href="#salary-sustainability">Salary</a>
+            <a href="#operational-plan">Operations</a>
+            <a href="#local-hiring">Hiring</a>
+            <a href="#founder-profile">Founder</a>
+            <a href="#ai-fluency">AI Fluency</a>
+            <a href="#compass-positioning">COMPASS</a>
+            <a href="#national-alignment">Policy</a>
+            <a href="#mom-concerns">MOM Review</a>
+            <a href="#risk-controls">Risks</a>
+            <a href="#conclusion">Conclusion</a>
+            <a href="#evidence-appendix">Evidence</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="header-inner">
+            <span class="header-sub">Strategic Operational Brief</span>
+            <h1>Strait Up Growth Pte. Ltd.</h1>
+            <p>B2B Management Consultancy specialising in Fractional Commercial Leadership & AI Implementation</p>
+        </div>
+    </header>
+
+    <div class="meta-grid">
+        <div class="meta-box"><span class="meta-label">UEN</span><span class="meta-value">202617430Z</span></div>
+        <div class="meta-box"><span class="meta-label">Incorporated</span><span class="meta-value">20 April 2026</span></div>
+        <div class="meta-box"><span class="meta-label">Address</span><span class="meta-value">20 Collyer Quay, #09-01, Singapore 049319</span></div>
+        <div class="meta-box"><span class="meta-label">Capital</span><span class="meta-value">S$100,000</span></div>
+        <div class="meta-box"><span class="meta-label">Primary SSIC</span><span class="meta-value">70201 (Mgmt)</span></div>
+        <div class="meta-box"><span class="meta-label">EP Applicant</span><span class="meta-value">Stuart Brendan Crowley</span></div>
+        <div class="meta-box"><span class="meta-label">Proposed Salary</span><span class="meta-value">S$9,916 / mo</span></div>
+        <div class="meta-box"><span class="meta-label">Prior Singapore FIN</span><span class="meta-value">Available on request</span></div>
+    </div>
+
+    <main>
+        <section id="executive-summary">
+            <h2>1. Executive Summary</h2>
+            <p>Strait Up Growth addresses the gap between national AI ambition and SME operating capacity. Strait Up Growth Pte. Ltd. is a Singapore-incorporated B2B consultancy that embeds fractional commercial leadership and practical AI implementation into lean, growth-stage SMEs.</p>
+            <p>The company is structured around third-party B2B client delivery, not passive self-employment. Revenue is generated through client contracts, implementation work, advisory retainers, and measurable delivery obligations.</p>
+            <div class="trust-grid">
+                <div class="trust-box"><svg class="trust-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg><span class="trust-title">ACRA Status</span><span class="trust-val">Live Company</span></div>
+                <div class="trust-box"><svg class="trust-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg><span class="trust-title">Bank</span><span class="trust-val">OCBC Corporate</span></div>
+                <div class="trust-box"><svg class="trust-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg><span class="trust-title">Prior EP</span><span class="trust-val">Returning Holder</span></div>
+            </div>
+            <p>The founder is a returning Singapore Employment Pass holder with prior Singapore EP history and no known adverse compliance issues, subject to supporting documentation.</p>
+            <p>Strait Up Growth demonstrates commercial substance through S$100,000 in paid-up capital maintained as an operating reserve, an OCBC corporate bank account, identified B2B client engagements including regional subsidiaries of international firms, a defined service offering, and a revenue-linked hiring roadmap.</p>
+        </section>
+
+        <section id="market-analysis">
+            <h2>2. Market Analysis</h2>
+            <h3>2.1 The AI Adoption Gap</h3>
+            <p>Singapore’s SMEs are the backbone of the economy but lag significantly behind larger enterprises in the adoption of AI. According to the IMDA, SME AI adoption was 14.5% in 2024, compared with 62.5% among non-SMEs. This represents a documented implementation gap for SMEs.</p>
+            
+            <div class="infographic-container">
+                <span class="infographic-title">Visualizing the SME AI Capability Gap</span>
+                <div class="bar-comparison">
+                    <div class="comp-row"><span class="bar-label">SMEs</span><div class="bar-bg"><div class="bar-fill sme" data-width="14.5%">14.5%</div></div></div>
+                    <div class="comp-row"><span class="bar-label">Non-SMEs</span><div class="bar-bg"><div class="bar-fill non-sme" data-width="62.5%">62.5%</div></div></div>
+                </div>
+            </div>
+
+            <p>MOM’s 2026 firm-level survey found that 71.5% of Singapore firms had not adopted AI, with cost and lack of in-house expertise cited as top barriers. Among firms with fewer than 25 employees, adoption was just 23.9%. This confirms that the SME AI gap is an implementation problem.</p>
+            <p>This means Singapore’s stated ambition (AI integration into 10,000 enterprises) will require both local workforce development and experienced implementation support. The market requires embedded, practical AI operators who can deliver results immediately while training local teams. Strait Up Growth is structured to be exactly that.</p>
+
+            <h3>2.1.1 Talent Constraints Behind the AI Adoption Gap</h3>
+            <div style="background: var(--ivory); padding: 2rem; margin: 1.5rem 0; border-radius: 4px;">
+                <p>Singapore’s enterprise AI targets require both local workforce development and experienced implementation support. The gap is especially acute for SMEs that lack internal AI, data, and transformation teams.</p>
+                <ul>
+                    <li><strong>Skilled Talent Scarcity:</strong> 71% of Singapore employers report difficulty hiring skilled talent. AI model and application development (26%) and AI literacy (25%) are Singapore’s hardest-to-find skills (ManpowerGroup 2026).</li>
+                </ul>
+            </div>
+
+            <h3>2.2 The Fractional Leadership Opportunity</h3>
+            <p>Growth-stage SMEs across APAC face a commercial leadership gap. They are too large for the founder to manage revenue operations alone, but too small to afford a full-time Commercial Director. A fractional model is a practical model for SMEs before revenue scale supports a full-time senior hire, giving them access to senior commercial and AI implementation expertise.</p>
+        </section>
+
+        <section id="service-offering">
+            <h2>3. Service Offering</h2>
+            <div class="service-list">
+                <div class="service-block" data-number="01">
+                    <strong>Fractional Commercial Leadership</strong>
+                    <p>Acts as an embedded Commercial Director for 6 to 12 month engagements, building pipelines, forecasting, and reporting infrastructure that the founder-led sales teams have outgrown.</p>
+                </div>
+                <div class="service-block" data-number="02">
+                    <strong>AI Workflows & Operational Efficiency</strong>
+                    <p>Practical operationalisation of existing AI tools into SME workflows. Focuses on agentic workflow platforms, CRM automation, and lead enrichment to recover lost commercial capacity.</p>
+                </div>
+                <div class="service-block" data-number="03">
+                    <strong>Growth, GTM & Market Expansion</strong>
+                    <p>Building the go-to-market architecture for market entry or new product launches, providing a deliverable playbook the client's team can run independently post-engagement.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="delivery-model">
+            <h2>3.1 Client Delivery Model</h2>
+            <p>Each engagement follows a structured delivery process designed for SME implementation.</p>
+            <ul>
+                <li><strong>Diagnostic:</strong> Review revenue operations, workflows, CRM setup, content operations, and AI readiness.</li>
+                <li><strong>Implementation plan:</strong> Define the workflows, tools, data inputs, and commercial metrics to improve.</li>
+                <li><strong>Build and embed:</strong> Configure workflows, automate repeatable tasks, and train client teams.</li>
+                <li><strong>Transfer:</strong> Leave the client with documentation, reporting dashboards, and operating routines.</li>
+            </ul>
+        </section>
+
+        <section id="revenue-model">
+            <h2>4. Revenue Model & Financials</h2>
+            <h3>4.1 Contracted Revenue (Current Base)</h3>
+            <div class="client-grid">
+                <div class="client-card">
+                    <div class="client-logo-abstract"><span>iG</span></div>
+                    <span class="client-loc">B2B Media & Events</span>
+                    <div class="client-name">iGaming Idol Ltd</div>
+                    <div class="client-quote">"Anchor B2B services contract for operational efficiency, AI workflow implementation, and commercial growth support."</div>
+                </div>
+                <div class="client-card">
+                    <div class="client-logo-abstract"><span>CW</span></div>
+                    <span class="client-loc">SG Subsidiary (China Parent)</span>
+                    <div class="client-name">COL Web Pte Ltd</div>
+                    <div class="client-quote">"Phase 1 contract: S$4,000 for commercial systems advisory. Phase 2 scope is under discussion and will be recognised only if supported by signed documentation."</div>
+                </div>
+            </div>
+
+            <div class="charts-flex">
+                <div class="chart-horizontal">
+                    <span class="infographic-title" style="margin-bottom: 0.5rem; display: block;">Revenue Forecast (S$)</span>
+                    <div class="chart-row">
+                        <div class="row-meta"><span>Year 1 (Anchor + Conservative Pipeline)</span><span>S$182k</span></div>
+                        <div class="row-bar-container"><div class="row-bar-fill" data-width="43%"></div></div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="row-meta"><span>Year 2 (Target Growth)</span><span>S$310k</span></div>
+                        <div class="row-bar-container"><div class="row-bar-fill" data-width="74%"></div></div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="row-meta"><span>Year 3 (Target Growth)</span><span>S$420k</span></div>
+                        <div class="row-bar-container"><div class="row-bar-fill" data-width="100%"></div></div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-gray); margin-top: 0.75rem;">
+                        Revenue figures are based on confirmed contracts, current pipeline, and conservative conversion assumptions. Supporting contracts, statements of work, invoices, and bank records will be included in the application pack.
+                    </p>
+                </div>
+                <div class="donut-container">
+                    <span class="infographic-title" style="margin-bottom: 1rem; display: block;">Year 1 Security</span>
+                    <svg viewBox="0 0 42 42" class="donut-svg">
+                        <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954"></circle>
+                        <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" style="stroke-dasharray: 77 23;"></circle>
+                        <text x="21" y="21" dy=".3em" class="donut-text" data-target="77" data-suffix="%">77%</text>
+                    </svg>
+                    <p style="font-size: 0.75rem; font-weight: 800; margin-top: 0.8rem; color: var(--oxblood); text-transform: uppercase; letter-spacing: 0.5px;">Contracted Base</p>
+                </div>
+            </div>
+
+            <div class="impact-strip">
+                <div class="impact-item">
+                    <span class="impact-num" data-target="240" data-prefix="S$" data-suffix="k">0</span>
+                    <span class="impact-label">Confirmed Revenue + Reserve</span>
+                    <span style="display: block; font-size: 0.65rem; color: var(--text-gray); margin-top: 0.5rem;">S$140k confirmed base + S$100k paid-up capital</span>
+                </div>
+                <div class="impact-item"><span class="impact-num" data-target="420" data-prefix="S$" data-suffix="k">0</span><span class="impact-label">Revenue Target Y3</span></div>
+                <div class="impact-item"><span class="impact-num" data-target="2">0</span><span class="impact-label">Local PMET Hires</span></div>
+            </div>
+
+            <div class="impact-strip" style="margin-top: 1rem;">
+                <div class="impact-item" style="background: var(--ivory);">
+                    <span class="impact-num" data-target="52" data-suffix="%">0</span>
+                    <span class="impact-label">Average cost savings from AI-enabled PSG solutions</span>
+                    <span class="impact-source">IMDA</span>
+                </div>
+                <div class="impact-item" style="background: var(--ivory);">
+                    <span class="impact-num" data-target="70.7" data-suffix="%">0</span>
+                    <span class="impact-label">AI-using firms reporting productivity gains</span>
+                    <span class="impact-source">MOM</span>
+                </div>
+                <div class="impact-item" style="background: var(--ivory);">
+                    <span class="impact-num" data-target="39" data-suffix="%">0</span>
+                    <span class="impact-label">SMEs seeking expert AI advice</span>
+                    <span class="impact-source">DBS</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="salary-sustainability">
+            <h2>4.2 Founder Salary Sustainability</h2>
+            <p>The proposed founder salary is S$9,916 per month, approximately S$119,000 per year. This salary reflects the founder’s active role as Executive Director, principal revenue generator, client delivery lead, AI implementation adviser, business development owner, and company manager.</p>
+            <p>The proposed salary is intended to satisfy the EP qualifying salary and COMPASS salary assessment for the declared role, age, and sector, subject to confirmation through MOM’s Self-Assessment Tool.</p>
+            
+            <div class="salary-grid">
+                <div class="salary-card">
+                    <span class="salary-label">Founder Salary</span>
+                    <span class="salary-value">S$119k</span>
+                    <span class="salary-note">Approx. S$9.9k/mo</span>
+                </div>
+                <div class="salary-card">
+                    <span class="salary-label">Confirmed Base</span>
+                    <span class="salary-value">S$140k</span>
+                    <span class="salary-note">Anchor contract + Phase 1 COL</span>
+                </div>
+                <div class="salary-card">
+                    <span class="salary-label">Year 1 Forecast</span>
+                    <span class="salary-value">S$182k</span>
+                    <span class="salary-note">Conservative pipeline assumption</span>
+                </div>
+                <div class="salary-card">
+                    <span class="salary-label">Paid-up Capital</span>
+                    <span class="salary-value">S$100k</span>
+                    <span class="salary-note">Operating reserve</span>
+                </div>
+            </div>
+            
+            <p style="font-size: 0.85rem; color: var(--text-gray); margin-bottom: 2rem; text-align: center;">The S$100,000 operating reserve provides additional runway beyond confirmed revenue and reduces dependence on immediate pipeline conversion.</p>
+
+            <p>The salary is commercially supported by three safeguards. First, the company has S$100,000 in paid-up capital maintained as an operating reserve. Second, the company has confirmed contracted revenue. Third, the Year 1 forecast is based on confirmed revenue plus conservative pipeline conversion.</p>
+            
+            <p>The Year 1 cash-flow forecast will include founder salary, corporate secretary fees, accounting, software, insurance, legal fees, marketing, travel, subcontractor costs, tax reserve, and the first local hiring trigger. The company will maintain a monthly cash-flow forecast covering these obligations.</p>
+            
+            <p>The company will preserve the declared fixed monthly salary through confirmed revenue, capital reserves, and disciplined operating cost control. If business conditions materially change, the company will check continued EP eligibility and any MOM notification requirements before making employment-term changes.</p>
+            
+            <p>The declared salary will be treated as fixed monthly salary and supported through payroll records, bank transfers, accounting entries, and tax filings where applicable.</p>
+
+            <div class="risk-box">
+                <strong>Salary sustainability position:</strong>
+                <p style="margin-bottom: 0;">The proposed salary is not a passive director fee. It is tied to active revenue generation, client delivery, AI implementation, and company management. The company will maintain sufficient reserves to meet salary, statutory, and operating obligations.</p>
+            </div>
+            <p>The company recognises that salary sustainability and commercial substance will remain relevant at renewal. The founder will maintain accounting records, invoice history, bank statements, tax filings, and local hiring records to support future renewal assessment.</p>
+        </section>
+
+        <section id="operational-plan">
+            <h2>5. Operational Plan</h2>
+            <p><strong>Infrastructure:</strong> Registered address is 20 Collyer Quay, #09-01, Singapore 049319. Evidence of workspace access and service agreements will be included in the appendix, where available. All banking is facilitated through OCBC Corporate with S$100,000 in paid-up capital maintained as an operating reserve.</p>
+            
+            <h3>5.1 Resident Director and Corporate Governance</h3>
+            <ul>
+                <li>The Singapore resident director appointment is documented through proper corporate records and service documentation maintained by the appointed corporate services provider.</li>
+                <li>Corporate administration is supported by appointed service providers in line with Singapore company compliance requirements.</li>
+                <li>Board and company records will be maintained in accordance with Singapore company compliance requirements.</li>
+            </ul>
+        </section>
+
+        <section id="local-hiring">
+            <h2>6. Local Hiring Roadmap</h2>
+            <div class="hiring-grid">
+                <div class="hiring-card">
+                    <h4>First Hire (Target: Q2 2027)</h4>
+                    <div class="card-row"><span class="card-label">Role</span><span class="card-value">Operations Associate</span></div>
+                    <div class="card-row"><span class="card-label">Trigger</span><span class="card-value">Revenue > S$15k/mo</span></div>
+                    <div class="card-row"><span class="card-label">Target Salary</span><span class="card-value">S$4,000 to S$5,500 per month</span></div>
+                    <div class="card-row"><span class="card-label">Skills Transfer</span><span class="card-value">CRM operations, AI workflow documentation, client reporting, and project coordination</span></div>
+                </div>
+                <div class="hiring-card">
+                    <h4>Second Hire (Target: 2028)</h4>
+                    <div class="card-row"><span class="card-label">Role</span><span class="card-value">Junior Consultant</span></div>
+                    <div class="card-row"><span class="card-label">Trigger</span><span class="card-value">Annual > S$300,000</span></div>
+                    <div class="card-row"><span class="card-label">Target Salary</span><span class="card-value">S$4,500 to S$6,500 per month</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="founder-profile">
+            <h2>7. Founder Profile</h2>
+            <p>Stuart Crowley combines B2B commercial leadership, APAC and EMEA market experience, and practical AI implementation capability. He holds a Master’s degree from the University of Sheffield. His prior Singapore EP tenure provides relevant local operating familiarity, business network depth, and compliance history.</p>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr><th>Role</th><th>Company</th><th>Key Achievement</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Commercial Director</td><td>NEXT.io</td><td>Integrated HubSpot and Monday.com. Reported 120%+ YoY revenue acceleration (internal metrics).</td></tr>
+                        <tr><td>Head of Media</td><td>NEXT.io</td><td>Reported 200% traffic increase through AI-powered content strategy.</td></tr>
+                        <tr><td>Global Marketing Manager</td><td>CloserStill Media</td><td>Delivered significant website traffic growth. Bridged EMEA and Singapore.</td></tr>
+                        <tr><td>Head of Brand & Content</td><td>Microgaming</td><td>Led brand and content transformation across APAC iGaming markets.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="statement-box">
+                <div class="founder-visual">
+                    <div class="founder-avatar"><span>SC</span></div>
+                    <div class="pull-quote">
+                        <p>"Singapore has the policy framework, grant support, and enterprise appetite to accelerate AI adoption. <span class="accent">Strait Up Growth is designed to help SMEs convert that support into working systems, trained teams, and measurable commercial outcomes.</span>"</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="edge-box" style="background: white; border-left: 5px solid var(--teal); padding: 2rem; margin: 2rem 0; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
+                <h3 style="margin-top: 0; color: var(--oxblood);">Founder Differentiation</h3>
+                <p><strong>A multidisciplinary profile combining commercial leadership, content-led growth, AI workflow implementation, and APAC market experience.</strong></p>
+                <p>Stuart Crowley brings a multidisciplinary background that is commercially relevant to this market gap:</p>
+                <ul>
+                    <li><strong>Journalism-trained storyteller</strong> who built SEO-driven content engines, reporting 200% traffic growth and securing Google News accreditation.</li>
+                    <li><strong>Hands-on Commercial Director</strong> who rebuilt pricing frameworks and delivered 120%+ YoY revenue growth.</li>
+                    <li><strong>AI implementation practitioner</strong> who embeds agentic workflows and CRM automation directly into client operations.</li>
+                    <li><strong>Cross-border operator</strong> with a deep existing network in Singapore's technology sectors.</li>
+                </ul>
+                <p>This combination (editorial, commercial, technical, and regional) would be difficult to source quickly through a single local hire, particularly at SME-accessible advisory rates.</p>
+                <p>The pricing model is designed for SMEs that need senior implementation support but cannot yet justify a full-time senior commercial or AI transformation hire.</p>
+            </div>
+        </section>
+
+        <section id="ai-fluency">
+            <h2>8. AI Fluency & Founder Differentiation</h2>
+            <p>AI Fluency is the ability to select, implement, and operationalise AI tools inside real businesses. This capability helps SMEs move from AI awareness to implemented workflows, staff training, and measurable operating outcomes.</p>
+            
+            <div class="ai-fluency-grid">
+                <div class="ai-fluency-col">
+                    <h3 style="margin-top: 0;">Founder's Implementation Stack</h3>
+                    <ul>
+                        <li>Prompt Engineering for content and outreach.</li>
+                        <li>CRM Automation for pipeline intelligence.</li>
+                        <li>Workflow Automation to recover commercial capacity.</li>
+                    </ul>
+                    <p><strong>Strait Up Growth provides implementation-led advisory, focused on embedding AI workflows into SME operations, rather than only delivering strategic presentations.</strong></p>
+                </div>
+                <div class="ai-fluency-col">
+                    <h3 style="margin-top: 0;">National Data Context</h3>
+                    <ul>
+                        <li><strong>Scarcity:</strong> 71% of Singapore employers report difficulty hiring skilled talent.</li>
+                        <li><strong>Gap:</strong> Only 14.5% of SMEs have adopted AI vs. 62.5% of large firms (IMDA).</li>
+                        <li><strong>Demand:</strong> 39% of SMEs are seeking expert advice on AI integration (DBS).</li>
+                        <li><strong>AI adoption urgency:</strong> 71.5% of all Singapore firms have not adopted AI; only 23.9% of small firms have (MOM 2026).</li>
+                    </ul>
+                    <p style="font-style: italic;">Singapore has the funding and the ambition. What the market requires is enough practitioners who can walk into an SME and make AI work, without requiring large enterprise transformation teams. Strait Up Growth exists to be that practitioner.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="compass-positioning">
+            <h2>9. COMPASS Positioning</h2>
+            <p>The application is expected to meet the EP two-stage framework through salary eligibility and COMPASS scoring, subject to confirmation through MOM’s Self-Assessment Tool.</p>
+            <p>The MOM Self-Assessment Tool result will be retained as the controlling eligibility check before submission.</p>
+            <ul>
+                <li><strong>C1 Salary:</strong> Proposed salary of approximately S$9,916 per month. Subject to SAT result for age, role, salary, and sector.</li>
+                <li><strong>C2 Qualifications:</strong> Master’s degree from the University of Sheffield. Qualification points subject to degree verification and MOM acceptance.</li>
+                <li><strong>C3 Diversity:</strong> Small-company profile expected to receive default small-firm treatment where applicable.</li>
+                <li><strong>C4 Local Employment Support:</strong> Small-company profile expected to receive default small-firm treatment where applicable.</li>
+                <li><strong>C5 Skills Bonus:</strong> No Shortage Occupation List bonus claimed.</li>
+                <li><strong>C6 Strategic Economic Priorities:</strong> No Strategic Economic Priorities bonus claimed.</li>
+            </ul>
+        </section>
+
+        <section id="national-alignment">
+            <h2>10. National Alignment</h2>
+            <p>Strait Up Growth aligns with Singapore’s National AI Impact Programme, which was launched by MDDI and IMDA in March 2026 to support 10,000 enterprises over three years and train 100,000 AI Bilingual workers by 2029.</p>
+            <p>The company’s service model supports this agenda by helping SMEs identify viable AI use cases, implement workflows, train internal teams, and convert grant-supported tools into operational outcomes.</p>
+            <ul>
+                <li><strong>Enterprise Innovation Scheme (EIS):</strong> 400% tax deduction on AI expenditure, capped at S$50,000 per YA (IRAS YA 2027 to 2028).</li>
+                <li><strong>Productivity Solutions Grant (PSG):</strong> Expanded to cover more AI-enabled solutions, funding up to 50% of eligible costs.</li>
+                <li><strong>DBS Spark GenAI programme:</strong> Enhanced (April 2026) specifically because SMEs demanded practical expert guidance.</li>
+                <li><strong>Enterprise adoption:</strong> Supports SMEs that lack in-house AI teams.</li>
+                <li><strong>Workforce development:</strong> Transfers skills to client teams during implementation.</li>
+                <li><strong>Productivity:</strong> Focuses on cost savings, workflow redesign, and commercial capacity recovery.</li>
+                <li><strong>Local hiring:</strong> Links PMET hiring to revenue milestones.</li>
+            </ul>
+        </section>
+
+        <section id="mom-concerns">
+            <h2>11. MOM Review Considerations</h2>
+            <p>The company has addressed the main review considerations relevant to a newly incorporated founder-led EP application.</p>
+            
+            <h3>11.1 B2B Contract Structure and Disguised Employment Controls</h3>
+            <ul>
+                <li>The iGaming Idol Ltd. relationship is structured as a B2B services relationship, not employment.</li>
+                <li>Services are or will be documented through commercial contract and statement-of-work documentation, subject to final signed terms.</li>
+                <li>Work is deliverable-based. Strait Up Growth invoices as a Singapore company.</li>
+                <li>The company retains operational independence. There is no HR integration, and no employment benefits from the client.</li>
+                <li>The company will retain the ability to serve multiple clients, subject only to ordinary confidentiality and conflict-of-interest terms.</li>
+                <li>Right of substitution or subcontracting applies where contractually permitted.</li>
+                <li>The company retains project documentation, invoices, bank records, and deliverables.</li>
+                <li>The company maintains a multiple-client diversification plan in Year 1.</li>
+            </ul>
+
+            <h3>11.2 iGaming Idol B2B Scope Controls</h3>
+            <p>iGaming Idol Ltd. is an anchor B2B media and events client. Strait Up Growth’s work for this client is limited to B2B commercial strategy, content operations, event/media operations, CRM/process improvement, AI workflow implementation, and technology advisory. Strait Up Growth will not operate gambling services, promote gambling services to players, handle player acquisition, process or receive player funds, sell to players, manage wagering activity, operate betting accounts, or run Singapore-facing gambling campaigns. The engagement is B2B, operational, and advisory in nature.</p>
+        </section>
+
+        <section id="risk-controls">
+            <h2>12. Risk Controls</h2>
+            <ul>
+                <li><strong>Revenue concentration:</strong> The company will reduce reliance on the anchor client by converting two to three additional SME retainers within Year 1.</li>
+                <li><strong>Salary sustainability:</strong> Founder salary will be supported through confirmed revenue, capital reserves, and disciplined operating cost control. If business conditions materially change, the company will check continued EP eligibility and any MOM notification requirements before making employment-term changes.</li>
+                <li><strong>Delivery capacity:</strong> Specialist subcontractors will be used for technical build work before the first local hire is triggered.</li>
+                <li><strong>Client evidence:</strong> The company will retain signed contracts, invoices, bank records, project documentation, and client deliverables from month one.</li>
+                <li><strong>Sector scope:</strong> iGaming Idol work will remain limited to B2B media, event/media operations, commercial advisory, CRM/process improvement, AI workflow implementation, and technology/process support. Strait Up Growth will not sell to players, acquire players, process player funds, operate betting accounts, manage wagering activity, or run Singapore-facing gambling campaigns.</li>
+                <li><strong>Renewal readiness:</strong> The company will maintain financial records, contracts, invoices, and client delivery evidence from month one.</li>
+            </ul>
+        </section>
+
+        <section id="conclusion">
+            <h2>13. Conclusion</h2>
+            <p>Strait Up Growth Pte. Ltd. (UEN: 202617430Z) is a newly incorporated but commercially substantive Singapore company. The business is supported by documented SME AI adoption gaps, confirmed client revenue, paid-up capital, founder expertise, and a revenue-linked local hiring roadmap.</p>
+            <p>The proposed founder salary is commercially proportionate to the role and supported by confirmed contracted revenue, paid-up capital, and a cash-flow plan. The founder will remain responsible for revenue generation, client delivery, AI implementation, business development, and company management.</p>
+            <p>This brief is submitted in support of the Employment Pass application for Stuart Brendan Crowley, the proposed Executive Director and EP applicant.</p>
+            <p><strong>Operational Compliance:</strong> The company will comply with applicable Fair Consideration Framework requirements, including MyCareersFuture advertising where required, and will retain evidence of any exemption or employment-agent guidance relied upon.</p>
+            
+            <div class="submission-note">
+                This strategic brief is true and accurate as of May 2026.
+            </div>
+        </section>
+
+        <section id="evidence-appendix">
+            <h2>14. Evidence Appendix</h2>
+            <h3>Company & Financial Evidence</h3>
+            <ul>
+                <li>ACRA BizFile for Strait Up Growth Pte. Ltd.</li>
+                <li>OCBC corporate account confirmation.</li>
+                <li>Bank statement showing paid-up capital of S$100,000.</li>
+                <li>Registered office / workspace service agreement or membership confirmation.</li>
+                <li>Resident director appointment records and corporate service provider documentation, where applicable.</li>
+                <li>Year 1 cash-flow forecast showing salary, operating costs, tax reserve, and capital runway.</li>
+                <li>Founder salary sustainability note.</li>
+                <li>Draft employment contract or board resolution approving founder salary.</li>
+                <li>Payroll processing plan.</li>
+                <li>Accounting treatment for founder salary and operating expenses.</li>
+                <li>Signed iGaming Idol commercial agreement / SOW.</li>
+                <li>Signed COL Web contract / invoice / purchase order.</li>
+                <li>Invoices and bank receipts for confirmed revenue.</li>
+                <li>Internal iGaming Idol B2B scope control note.</li>
+                <li>Client SOWs showing B2B media, advisory, operational, CRM, AI workflow, and technology/process scope only.</li>
+                <li>Client contract clauses confirming B2B service scope, where available.</li>
+            </ul>
+            <h3>Founder & Research Evidence</h3>
+            <ul>
+                <li>Founder CV and LinkedIn profile.</li>
+                <li>Degree certificate.</li>
+                <li>Degree verification report from MOM-recognised verification provider.</li>
+                <li>Prior Singapore FIN record available on request, with prior EP approval and compliance evidence, if available.</li>
+                <li>Reference letters or employer confirmations for reported metrics.</li>
+                <li>IMDA Singapore Digital Economy Report 2025.</li>
+                <li>MOM 2026 firm-level AI adoption release.</li>
+                <li>ManpowerGroup 2026 Talent Shortage Survey.</li>
+                <li>DBS Spark GenAI / Business Pulse Check Survey.</li>
+                <li>MDDI and IMDA National AI Impact Programme announcement.</li>
+                <li>IRAS Enterprise Innovation Scheme guidance.</li>
+                <li>EnterpriseSG Productivity Solutions Grant guidance.</li>
+                <li>MOM SAT result showing EP eligibility based on declared role, age, salary, sector, and qualifications.</li>
+            </ul>
+            
+            <div class="table-container">
+                <h3 style="padding: 1.2rem; margin: 0; background: var(--ivory); font-size: 0.8rem; text-transform: uppercase;">Submission Pack Checklist</h3>
+                <table>
+                    <tbody>
+                        <tr><td>Business brief</td><td>Founder salary sustainability note</td></tr>
+                        <tr><td>Cash-flow forecast</td><td>Signed contracts and statements of work</td></tr>
+                        <tr><td>Bank proof and paid-up capital evidence</td><td>ACRA BizFile</td></tr>
+                        <tr><td>Founder CV</td><td>Degree verification report</td></tr>
+                        <tr><td>Prior EP record, if available</td><td>Internal iGaming Idol B2B scope control note</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-title">Strait Up Growth Pte. Ltd.</div>
+        <div class="footer-info">UEN: 202617430Z | 20 Collyer Quay, #09-01, Singapore 049319</div>
+        <div class="footer-info">straitupgrowth.com</div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                    const target = entry.target;
+                    target.classList.add('animated');
+                    
+                    if (target.classList.contains('impact-strip')) {
+                        target.querySelectorAll('.impact-num').forEach(n => animateNumber(n));
+                    }
+                    if (target.hasAttribute('data-width')) {
+                        target.style.width = target.getAttribute('data-width');
+                    }
+                    if (target.classList.contains('donut-container')) {
+                        const donutSeg = target.querySelector('.donut-segment');
+                        const donutText = target.querySelector('.donut-text');
+                        if (donutSeg && donutText) {
+                            const targetVal = parseFloat(donutText.getAttribute('data-target')) || 77;
+                            donutSeg.style.strokeDasharray = `${targetVal} ${100 - targetVal}`;
+                        }
+                        if (donutText) animateNumber(donutText);
+                    }
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.donut-container').forEach(container => {
+            const seg = container.querySelector('.donut-segment');
+            const txt = container.querySelector('.donut-text');
+            if (seg) seg.style.strokeDasharray = "0 100";
+            if (txt) txt.textContent = "0%";
+        });
+
+        document.querySelectorAll('.bar-fill, .row-bar-fill, .impact-strip, .donut-container').forEach(el => observer.observe(el));
+
+        function animateNumber(el) {
+            const targetAttr = el.getAttribute('data-target');
+            if (!targetAttr) return;
+            
+            const target = parseFloat(targetAttr);
+            const prefix = el.getAttribute('data-prefix') || '';
+            const suffix = el.getAttribute('data-suffix') || '';
+            const decimals = target % 1 === 0 ? 0 : 1;
+            
+            if (isNaN(target)) return;
+            let current = 0;
+            const step = target / 50;
+            const intv = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    el.textContent = prefix + target.toFixed(decimals) + suffix;
+                    clearInterval(intv);
+                } else { 
+                    el.textContent = prefix + current.toFixed(decimals) + suffix; 
+                }
+            }, 20);
+        }
+
+        window.addEventListener('beforeprint', () => {
+            document.querySelectorAll('[data-width]').forEach(el => {
+                el.style.width = el.getAttribute('data-width');
+            });
+            document.querySelectorAll('.donut-container').forEach(container => {
+                const seg = container.querySelector('.donut-segment');
+                const txt = container.querySelector('.donut-text');
+                if (txt) {
+                    const targetVal = parseFloat(txt.getAttribute('data-target')) || 77;
+                    if (seg) seg.style.strokeDasharray = `${targetVal} ${100 - targetVal}`;
+                    txt.textContent = targetVal + (txt.getAttribute('data-suffix') || '');
+                }
+            });
+            document.querySelectorAll('.impact-num').forEach(el => {
+                const targetText = el.getAttribute('data-target');
+                if (!targetText) return;
+                const target = parseFloat(targetText);
+                const prefix = el.getAttribute('data-prefix') || '';
+                const suffix = el.getAttribute('data-suffix') || '';
+                const decimals = target % 1 === 0 ? 0 : 1;
+                el.textContent = prefix + target.toFixed(decimals) + suffix;
+            });
+        });
+    </script>
+</body>
+</html>
