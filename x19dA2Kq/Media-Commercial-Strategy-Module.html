@@ -1,0 +1,1405 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Media Commercial Strategy Module</title>
+  <style>
+    :root {
+      --ink: #101827;
+      --muted: #536070;
+      --line: #d7dde6;
+      --soft: #f4f6f8;
+      --softer: #fafbfc;
+      --dark: #101827;
+      --blue: #dbeafe;
+      --green: #dcfce7;
+      --amber: #fef3c7;
+      --red: #fee2e2;
+      --purple: #ede9fe;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #ffffff;
+      line-height: 1.48;
+      font-size: 15px;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 44px 36px 72px;
+    }
+
+    header {
+      border-bottom: 4px solid var(--ink);
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 40px;
+      line-height: 1.08;
+      margin: 0 0 14px;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      font-size: 25px;
+      margin: 36px 0 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin: 20px 0 8px;
+    }
+
+    h4 {
+      font-size: 13px;
+      margin: 16px 0 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+
+    p { margin: 0 0 12px; }
+
+    ul {
+      margin: 8px 0 16px 21px;
+      padding: 0;
+    }
+
+    li { margin: 5px 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 22px;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: var(--soft);
+      font-weight: 700;
+    }
+
+    .lead {
+      font-size: 17px;
+      max-width: 900px;
+      color: #1f2937;
+      font-weight: 700;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .grid-three {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: var(--softer);
+      padding: 16px;
+      border-radius: 12px;
+    }
+
+    .card h3, .card h4 { margin-top: 0; }
+
+    .callout {
+      border-left: 5px solid var(--ink);
+      background: var(--soft);
+      padding: 14px 16px;
+      margin: 16px 0 22px;
+      font-weight: 700;
+    }
+
+    .dark-box {
+      background: var(--dark);
+      color: #ffffff;
+      padding: 18px;
+      border-radius: 12px;
+      margin: 18px 0;
+    }
+
+    .dark-box h3, .dark-box h4 { color: #ffffff; margin-top: 0; }
+
+    .stage {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0 22px;
+      background: #ffffff;
+      box-shadow: 0 1px 0 rgba(16, 24, 39, 0.03);
+    }
+
+    .stage-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .stage-head h3 { margin: 0; }
+
+    .duration {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .small {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .tag {
+      display: inline-block;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      margin: 2px 4px 2px 0;
+    }
+
+    .green { background: var(--green); }
+    .amber { background: var(--amber); }
+    .red { background: var(--red); }
+    .blue { background: var(--blue); }
+    .purple { background: var(--purple); }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin: 18px 0 24px;
+    }
+
+    .timeline-step {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      background: var(--softer);
+      min-height: 130px;
+    }
+
+    .timeline-step strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .checkpoint {
+      border: 1px solid var(--line);
+      border-left: 6px solid var(--ink);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 12px 0 22px;
+      background: var(--soft);
+    }
+
+    .checkpoint h3 { margin-top: 0; }
+
+    .print-button {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: var(--ink);
+      color: #ffffff;
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 16px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    }
+
+    .footer-note {
+      margin-top: 38px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media print {
+      .print-button { display: none; }
+      body { font-size: 12px; }
+      .page { padding: 20px; max-width: none; }
+      .stage, .card, .dark-box, .checkpoint { break-inside: avoid; }
+      h2 { break-after: avoid; }
+    }
+
+    @media (max-width: 980px) {
+      .timeline { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 820px) {
+      .grid-two, .grid-three, .timeline { grid-template-columns: 1fr; }
+      .stage-head { display: block; }
+      .duration { display: block; margin-top: 6px; }
+      h1 { font-size: 31px; }
+      .page { padding: 28px 18px 54px; }
+    }
+  </style>
+</head>
+<body>
+<button class="print-button" onclick="window.print()">Print or save PDF</button>
+<main class="page">
+  <header>
+    <div class="eyebrow">Media module</div>
+    <h1>Media Commercial Strategy Module</h1>
+    <p class="lead">A practical module for commercialising news, newsletters, podcasts, video, editorial products, media sponsorships and branded content campaigns.</p>
+    <div class="pill-row">
+      <span class="pill">Sits under the master operating model</span>
+      <span class="pill">Applies to media products</span>
+      <span class="pill">Owner: Commercial</span>
+      <span class="pill">Use for annual planning and media launches</span>
+    </div>
+  </header>
+
+  <section class="grid-two">
+    <div class="card">
+      <h3>Purpose</h3>
+      <p>This module explains how media products move from evidence to commercial strategy, GTM, sales, marketing, CRM, collateral, campaign delivery and performance review.</p>
+      <p>It exists because media products have specific commercial dependencies: audience quality, editorial authority, publishing cadence, format inventory, production capacity, sponsor fit, campaign reporting and proof of performance.</p>
+    </div>
+    <div class="card">
+      <h3>What this module is not</h3>
+      <ul>
+        <li>It is not an editorial calendar.</li>
+        <li>It is not a content strategy document.</li>
+        <li>It is not a campaign delivery plan.</li>
+        <li>It is not a brainstorming document.</li>
+        <li>It is not a replacement for the master operating model.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>1. Scope</h2>
+    <p>This module applies to news products, newsletters, podcasts, video series, editorial verticals, sponsored content, media sponsorships, lead generation products, report-led campaigns and new media launches.</p>
+    <div class="callout">The master model sets the company sequence. This module explains what that sequence means for media.</div>
+    <p>The planning depth changes by revenue ambition, audience maturity, editorial risk, production complexity and commercial importance. The order of decisions should stay consistent.</p>
+  </section>
+
+  <section>
+    <h2>2. Media planning levels</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Media product type</th>
+          <th>Planning level</th>
+          <th>What this means</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Major media product or new vertical</td>
+          <td>Detailed planning</td>
+          <td>Full evidence pack, audience validation, editorial proposition, commercial model, inventory plan, senior approval and full launch readiness check.</td>
+        </tr>
+        <tr>
+          <td>Newsletter or news sponsorship product</td>
+          <td>Standard planning</td>
+          <td>Audience data, format inventory, rate card, sponsor fit, delivery rules, reporting model and renewal logic confirmed before Sales scales.</td>
+        </tr>
+        <tr>
+          <td>Podcast or video series</td>
+          <td>Detailed or standard planning</td>
+          <td>Host or talent model, episode cadence, guest pipeline, production capacity, sponsor reads, clips, distribution and proof model confirmed.</td>
+        </tr>
+        <tr>
+          <td>Sponsored content or branded editorial campaign</td>
+          <td>Standard planning</td>
+          <td>Editorial rules, sponsor fit, production workflow, approval process, delivery timeline and reporting model confirmed.</td>
+        </tr>
+        <tr>
+          <td>Report-led or lead generation campaign</td>
+          <td>Detailed or standard planning</td>
+          <td>Audience proposition, gated asset, data capture, consent rules, lead quality criteria, sponsor value and CRM reporting confirmed.</td>
+        </tr>
+        <tr>
+          <td>Small tactical media campaign</td>
+          <td>Simplified planning</td>
+          <td>Short evidence pack, clear commercial assumption, named approver, basic inventory check and simple delivery readiness check.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>3. Media operating sequence</h2>
+    <div class="timeline">
+      <div class="timeline-step">
+        <strong>0. Confirm media type</strong>
+        <p class="small">Agree product type, ambition, risk, timeline and planning level.</p>
+      </div>
+      <div class="timeline-step">
+        <strong>1. Media evidence</strong>
+        <p class="small">Collect audience, editorial, production, sales and campaign performance evidence.</p>
+      </div>
+      <div class="timeline-step">
+        <strong>2. Commercial model</strong>
+        <p class="small">Set formats, pricing, inventory, monthly pacing and financial logic.</p>
+      </div>
+      <div class="timeline-step">
+        <strong>3. Media GTM</strong>
+        <p class="small">Define positioning, buyer groups, sales direction, marketing direction and handoffs.</p>
+      </div>
+      <div class="timeline-step">
+        <strong>4. Setup</strong>
+        <p class="small">Prepare sales, marketing, CRM, media kit, production workflows and reporting.</p>
+      </div>
+      <div class="timeline-step">
+        <strong>5. Launch and review</strong>
+        <p class="small">Sell, publish, distribute, report and feed learning into the next cycle.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>4. Media roles and responsibilities</h2>
+    <p>Use one owner wherever possible. Supporting contributors can provide input, but the owner is accountable for getting the answer, decision or delivery item completed.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th>Current owner example</th>
+          <th>Provides</th>
+          <th>When involved</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Commercial Lead</td>
+          <td>Stuart</td>
+          <td>Commercial strategy, pricing, media package logic, monthly sales pacing, GTM framework, Sales Lead KPIs and Marketing Lead KPIs.</td>
+          <td>All stages.</td>
+        </tr>
+        <tr>
+          <td>Executive Sponsor</td>
+          <td>Ana</td>
+          <td>Company priority, conflict resolution, compressed route approval and major operating trade offs.</td>
+          <td>Stage 0, escalations and major approval points.</td>
+        </tr>
+        <tr>
+          <td>Commercial Approver</td>
+          <td>Pierre</td>
+          <td>Approval of major product, pricing, revenue, EBITA, margin and sensitive commercial decisions.</td>
+          <td>Commercial approval and escalation.</td>
+        </tr>
+        <tr>
+          <td>Director of Media</td>
+          <td>Kim</td>
+          <td>Media product feasibility, audience proof, publishing cadence, media product structure, commercial media opportunities and delivery alignment.</td>
+          <td>Stages 0, 1, 2, 3 and 4.</td>
+        </tr>
+        <tr>
+          <td>Global Editor in Chief</td>
+          <td>Jake</td>
+          <td>Editorial proposition, editorial boundaries, content quality, audience trust, sponsored content standards and brand risk.</td>
+          <td>Stages 1, 2, 3 and 4.</td>
+        </tr>
+        <tr>
+          <td>Production Lead</td>
+          <td>Lorena</td>
+          <td>Production capacity, delivery timeline, format feasibility, resourcing needs, supplier needs and quality control.</td>
+          <td>Stages 1, 2, 4 and 5.</td>
+        </tr>
+        <tr>
+          <td>Sales Lead</td>
+          <td>Will</td>
+          <td>Sales performance, client feedback, advertiser objections, renewal risk, category demand, account priorities, sales strategy and sales team KPIs.</td>
+          <td>Stages 1, 2, 3, 4 and 5.</td>
+        </tr>
+        <tr>
+          <td>Client Success Lead</td>
+          <td>Lorena for Podcast and Spotlight. Amy for ad banners, newsletter banners, promoted content and PR support.</td>
+          <td>Client delivery insight, campaign fulfilment, proof capture, client feedback, handoff requirements and renewal risk. One Client Success Lead should be named per product or campaign.</td>
+          <td>Stages 1, 2, 3, 4 and 5.</td>
+        </tr>
+        <tr>
+          <td>Marketing Lead</td>
+          <td>James or interim owner</td>
+          <td>Audience growth, distribution plan, campaign support, sponsor demand support, landing pages, creative direction and marketing team KPIs.</td>
+          <td>Stages 3, 4 and 5.</td>
+        </tr>
+        <tr>
+          <td>CRM Lead</td>
+          <td>Future Head of CRM, Jo for setup</td>
+          <td>Source tracking, lead capture, sponsor enquiry tracking, campaign attribution, dashboards, consent rules and reporting setup.</td>
+          <td>Stages 2, 3 and 4.</td>
+        </tr>
+        <tr>
+          <td>Finance Lead</td>
+          <td>Finance</td>
+          <td>EBITA targets, expected costs, margin assumptions, cash timing, tax, FX, fees, supplier costs and payment logic.</td>
+          <td>Stages 0, 1 and 2.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>5. Non negotiables for media</h2>
+    <ul>
+      <li>Media products should not be sold without evidence of audience value, delivery capacity and sponsor fit.</li>
+      <li>Editorial authority must not be traded for short term revenue.</li>
+      <li>Final media kits and rate cards should not be created before formats, inventory, pricing and reporting promises are approved.</li>
+      <li>Commercial strategy needs input from Sales, Director of Media, Global Editor in Chief, Production, CRM, Marketing, Finance and Client Success.</li>
+      <li>Jake must approve any product that affects editorial quality, audience trust, sponsored content boundaries or editorial standards. Kim must approve media product feasibility, audience proof and publishing cadence.</li>
+      <li>Lorena must approve any product that creates production load, supplier dependency, talent dependency or delivery risk.</li>
+      <li>Monthly media sales targets and renewal targets are set during Stage 2.</li>
+      <li>CRM and reporting must be ready before sponsor campaigns, lead generation or paid distribution scale.</li>
+      <li>Renewal conversations can start before final collateral, but formal renewals need approved pricing, product scope and proof of delivery.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>6. Stage detail</h2>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Stage 0: Confirm media product type and planning level</h3>
+        <span class="duration">1 to 2 working days</span>
+      </div>
+      <p><strong>Purpose:</strong> Agree what kind of media product this is, how commercially important it is, how much planning it needs and who needs to approve decisions.</p>
+      <div class="grid-two">
+        <div>
+          <h4>Inputs required</h4>
+          <ul>
+            <li>Media product type</li>
+            <li>Audience or market being served</li>
+            <li>Current or proposed publishing cadence</li>
+            <li>Revenue ambition</li>
+            <li>Expected EBITA or profit contribution</li>
+            <li>Expected costs or major production costs</li>
+            <li>Strategic importance</li>
+            <li>Commercial risk</li>
+            <li>Editorial or brand risk</li>
+            <li>Production complexity</li>
+            <li>Timeline pressure</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Outputs</h4>
+          <ul>
+            <li>Media product type confirmed</li>
+            <li>Planning level agreed</li>
+            <li>Approval owner named</li>
+            <li>Required input list</li>
+            <li>Expected timeline</li>
+            <li>Fast track eligibility</li>
+            <li>Known strategic decisions listed, such as new vertical, new show, format change or sponsor category expansion</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="checkpoint">
+      <h3>Checkpoint after Stage 0: Planning route confirmed</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Decision owner</th>
+            <th>Decision required</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Commercial Lead, with Executive Sponsor or Commercial Approver where needed</td>
+            <td>What type of media product is this, how much planning does it need and who must approve it?</td>
+            <td>Planning level agreed, required inputs confirmed, owner map clear and timeline started.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Stage 1: Media evidence and input pack</h3>
+        <span class="duration">5 to 10 working days</span>
+      </div>
+      <p><strong>Purpose:</strong> Collect the evidence Commercial needs before media formats, pricing, packages and GTM are built.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Input</th>
+            <th>Owner</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Audience size, audience quality, traffic, newsletter opens/clicks, podcast downloads, video views, engagement and source mix</td>
+            <td>Director of Media</td>
+            <td>Shows whether the product has a real audience and whether that audience is commercially valuable.</td>
+          </tr>
+          <tr>
+            <td>Previous media sales, sold price, list price, discounting, advertiser objections and renewal risk</td>
+            <td>Sales Lead</td>
+            <td>Shows real advertiser demand, pricing resistance and commercial leakage.</td>
+          </tr>
+          <tr>
+            <td>Client feedback, sponsor feedback, campaign performance and proof gaps</td>
+            <td>Client Success Lead</td>
+            <td>Shows what advertisers value, what disappointed them and what proof is needed for renewal.</td>
+          </tr>
+          <tr>
+            <td>Editorial proposition, content quality, audience trust, sponsored content limits and brand risk</td>
+            <td>Global Editor in Chief</td>
+            <td>Protects credibility and prevents Commercial selling products that damage the audience relationship.</td>
+          </tr>
+          <tr>
+            <td>Production capacity, publishing cadence, design/video/audio workload, supplier needs and delivery risk</td>
+            <td>Production Lead</td>
+            <td>Confirms what can realistically be produced and delivered.</td>
+          </tr>
+          <tr>
+            <td>Expected costs, EBITA expectations, margin assumptions, supplier costs, cash timing and payment risk</td>
+            <td>Finance Lead</td>
+            <td>Protects profit and cash before revenue targets are finalised.</td>
+          </tr>
+          <tr>
+            <td>Competitor intel, media rate benchmarks, advertiser category movement and buyer behaviour changes</td>
+            <td>Commercial Lead</td>
+            <td>Shows how the product should be positioned and priced against the market.</td>
+          </tr>
+          <tr>
+            <td>CRM, consent, attribution and reporting requirements</td>
+            <td>CRM Lead</td>
+            <td>Ensures lead generation, sponsor enquiry and campaign reporting can be tracked properly.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="dark-box">
+        <h3>Input completion rule</h3>
+        <p>If required inputs are incomplete after the agreed window, Commercial proceeds using named assumptions. Missing inputs become owned risks. Late inputs do not reopen approved strategy unless Stuart, Ana or Pierre confirm material impact.</p>
+      </div>
+    </div>
+
+    <div class="checkpoint">
+      <h3>Checkpoint after Stage 1: Input readiness</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Decision owner</th>
+            <th>Decision required</th>
+            <th>Allowed outcomes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Commercial Lead</td>
+            <td>Are inputs complete enough to build the media commercial model, or should Commercial proceed with assumptions?</td>
+            <td>Proceed. Proceed with assumptions. Pause only the affected decision. Escalate a critical blocker.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Stage 2: Media commercial model</h3>
+        <span class="duration">1 to 3 weeks</span>
+      </div>
+      <p><strong>Purpose:</strong> Build the commercial foundation for the media product before GTM, media kit, CRM, production and campaign execution scale.</p>
+      <div class="grid-two">
+        <div>
+          <h4>Work covered</h4>
+          <ul>
+            <li>Media commercial thesis</li>
+            <li>Audience value review</li>
+            <li>Editorial proposition and sponsor fit review</li>
+            <li>Format and inventory review</li>
+            <li>Newsletter, podcast, video, display, report, lead generation or branded content package review</li>
+            <li>Rate card and pricing review</li>
+            <li>Recommended revenue target</li>
+            <li>Monthly media sales targets</li>
+            <li>Renewal and upsell targets</li>
+            <li>EBITA and financial health check</li>
+            <li>Margin and expected cost review</li>
+            <li>Discount and makegood rules</li>
+            <li>CRM and reporting requirements draft</li>
+            <li>Structural revenue leak review</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Outputs</h4>
+          <ul>
+            <li>Commercial thesis</li>
+            <li>Recommended media product catalogue</li>
+            <li>Recommended sponsorship and advertising packages</li>
+            <li>Rate card and pricing logic</li>
+            <li>Approved inventory and delivery capacity</li>
+            <li>Recommended revenue target after formats, pricing and major strategy decisions are clear</li>
+            <li>Monthly media sales target</li>
+            <li>Renewal and upsell target</li>
+            <li>EBITA, margin, cash and expected cost assumptions</li>
+            <li>Approved, provisional and rejected product list</li>
+            <li>CRM requirements draft</li>
+            <li>Risk register and decision log update</li>
+          </ul>
+        </div>
+      </div>
+      <h4>Media level KPIs set in this stage</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>KPI or target</th>
+            <th>Who sets it</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Recommended revenue target</td>
+            <td>Commercial Lead, with Commercial Approver input</td>
+            <td>Revenue target recommended after formats, pricing, inventory and major strategy decisions are clear.</td>
+          </tr>
+          <tr>
+            <td>EBITA, margin and financial health targets</td>
+            <td>Commercial Lead with Commercial Approver and Finance input</td>
+            <td>Financial scoreboard for the media product.</td>
+          </tr>
+          <tr>
+            <td>Monthly media sales target</td>
+            <td>Commercial Lead with Sales Lead input</td>
+            <td>Monthly close target for media revenue.</td>
+          </tr>
+          <tr>
+            <td>Renewal and upsell target</td>
+            <td>Commercial Lead</td>
+            <td>Target for retained revenue, upgraded packages and repeat campaigns.</td>
+          </tr>
+          <tr>
+            <td>Discount and makegood tolerance</td>
+            <td>Commercial Lead, Commercial Approver, Finance</td>
+            <td>Approved boundaries for discounting, bonus inventory and makegoods before Sales activity scales.</td>
+          </tr>
+          <tr>
+            <td>Pipeline coverage expectation</td>
+            <td>Commercial Lead with Sales Lead input</td>
+            <td>Pipeline required to support monthly media sales targets.</td>
+          </tr>
+        </tbody>
+      </table>
+      <h4>Media product status</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Approved for base forecast</td>
+            <td>Reliable enough to include in the core revenue target.</td>
+          </tr>
+          <tr>
+            <td>Approved for stretch</td>
+            <td>Sellable, but not dependable enough for the base target.</td>
+          </tr>
+          <tr>
+            <td>Approved as upside</td>
+            <td>Useful if sold, but not central to the plan.</td>
+          </tr>
+          <tr>
+            <td>Subject to Global Editor in Chief approval</td>
+            <td>Editorial quality, audience trust or sponsored content boundaries need confirmation from Jake.</td>
+          </tr>
+          <tr>
+            <td>Subject to Production Lead approval</td>
+            <td>Production feasibility, resource, supplier or timing needs confirmation from Lorena.</td>
+          </tr>
+          <tr>
+            <td>Subject to CRM approval</td>
+            <td>Lead capture, attribution, consent or reporting needs confirmation.</td>
+          </tr>
+          <tr>
+            <td>Reprice</td>
+            <td>Value exists, but the price is wrong.</td>
+          </tr>
+          <tr>
+            <td>Repackage</td>
+            <td>Product has value, but the structure needs changing.</td>
+          </tr>
+          <tr>
+            <td>Retire</td>
+            <td>Do not carry into the next cycle.</td>
+          </tr>
+          <tr>
+            <td>Not approved</td>
+            <td>Cannot be sold responsibly.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="checkpoint">
+      <h3>Checkpoint after Stage 2: Commercial approval</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Decision owner</th>
+            <th>Decision required</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Commercial Approver with Commercial Lead</td>
+            <td>Are media formats, pricing, packages, inventory, revenue, EBITA, margin, monthly pacing and risk assumptions approved?</td>
+            <td>Approved commercial foundation, approved with conditions, or rejected with required changes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Stage 3: Media GTM strategy</h3>
+        <span class="duration">1 to 2 weeks</span>
+      </div>
+      <p><strong>Purpose:</strong> Translate the approved media commercial model into clear market direction for Sales, Marketing, CRM, Media / Editorial, Production and Client Success.</p>
+      <div class="grid-two">
+        <div>
+          <h4>Inputs required</h4>
+          <ul>
+            <li>Approved or near approved commercial model</li>
+            <li>Approved pricing, inventory or guardrails</li>
+            <li>Monthly media sales targets from Stage 2</li>
+            <li>Sales account insight, client feedback and competitor intel</li>
+            <li>Audience insight and distribution insight</li>
+            <li>Media product direction from Director of Media</li>
+            <li>Editorial proposition and content boundaries from Global Editor in Chief</li>
+            <li>Production constraints from Production Lead</li>
+            <li>Client handoff requirements from the named Client Success Lead</li>
+            <li>CRM reporting requirements draft</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Outputs</h4>
+          <ul>
+            <li>Media positioning</li>
+            <li>Target buyer groups</li>
+            <li>Priority advertiser and sponsor categories</li>
+            <li>Audience and distribution priorities</li>
+            <li>Sales Lead KPIs</li>
+            <li>Marketing Lead KPIs</li>
+            <li>Sales direction</li>
+            <li>Marketing direction</li>
+            <li>Renewal and upsell approach</li>
+            <li>Handover map</li>
+            <li>Reporting requirements</li>
+          </ul>
+        </div>
+      </div>
+      <h4>KPI decisions set in this stage</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>KPI level</th>
+            <th>Who sets it</th>
+            <th>Examples</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sales Lead KPIs</td>
+            <td>Commercial Lead</td>
+            <td>Media revenue, monthly close targets, renewal target, upsell target, pipeline coverage, weighted pipeline, discount discipline.</td>
+          </tr>
+          <tr>
+            <td>Marketing Lead KPIs</td>
+            <td>Commercial Lead</td>
+            <td>Audience growth contribution, lead targets, source quality, conversion targets, sponsor demand support, landing page conversion, paid efficiency.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout">Stuart sets KPIs for the Sales Lead and Marketing Lead during Stage 3, once the media GTM direction is clear.</div>
+      <div class="callout">The media GTM explains how the approved commercial model goes to market. It should not reopen the product, pricing or revenue model unless a material issue is found.</div>
+    </div>
+
+    <div class="checkpoint">
+      <h3>Checkpoint after Stage 3: Execution dependency approval</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Decision owner</th>
+            <th>Decision required</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Commercial Lead</td>
+            <td>Are editorial boundaries, production dependencies, client handoffs, reporting needs and delivery requirements clear enough for Sales, Marketing, CRM and collateral to move forward? Commercial Lead confirms this with Kim, Jake, Lorena, Amy or CRM where their area is affected.</td>
+            <td>Approved execution dependencies, named blockers, owner and deadline for unresolved items.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Stage 4: Media execution setup</h3>
+        <span class="duration">1 to 3 weeks</span>
+      </div>
+      <p><strong>Purpose:</strong> Turn the approved media strategy into sales, marketing, CRM, media kit, production, reporting and client delivery workflows before activity scales.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Workstream</th>
+            <th>Owner</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sales strategy and sales team KPIs</td>
+            <td>Sales Lead</td>
+            <td>Named account plan, renewal plan, advertiser category plan, pipeline coverage, rep targets, proposal rules, close targets, pipeline hygiene and discount discipline.</td>
+          </tr>
+          <tr>
+            <td>Marketing strategy and marketing team KPIs</td>
+            <td>Marketing Lead</td>
+            <td>Audience growth plan, sponsor demand plan, channel plan, landing page plan, creative route, lead targets, audience quality targets and conversion targets.</td>
+          </tr>
+          <tr>
+            <td>CRM setup and reporting KPIs</td>
+            <td>CRM Lead with Commercial Lead</td>
+            <td>Sponsor enquiry tracking, lead capture, source tracking, product tagging, renewal fields, campaign attribution, dashboards, data completeness and handover workflows.</td>
+          </tr>
+          <tr>
+            <td>Media kit and enablement</td>
+            <td>Commercial Lead</td>
+            <td>Media kit, rate card, audience one pagers, package one pagers, proposal templates, objection handling and proof assets.</td>
+          </tr>
+          <tr>
+            <td>Editorial and production workflow</td>
+            <td>Production Lead</td>
+            <td>Publishing cadence, production timeline, briefing workflow, sponsor approval process, editorial boundaries, QA process and delivery owners. Lorena owns the workflow and confirms editorial boundaries with Jake where required.</td>
+          </tr>
+          <tr>
+            <td>Client delivery workflow</td>
+            <td>Client Success Lead</td>
+            <td>Sales to delivery handoff, campaign checklist, proof capture plan, reporting dates, renewal notes and escalation route.</td>
+          </tr>
+          <tr>
+            <td>Reporting setup</td>
+            <td>Commercial and CRM Lead</td>
+            <td>Weekly commercial dashboard, sales pacing, renewal pipeline, audience quality, campaign delivery, source reporting and risk tracking.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout">The Sales Lead sets KPIs for the sales team during Stage 4. The Marketing Lead sets KPIs for the marketing team during Stage 4. Commercial and CRM set CRM and reporting KPIs before activity scales.</div>
+    </div>
+
+    <div class="checkpoint">
+      <h3>Checkpoint after Stage 4: Launch readiness</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Decision owner</th>
+            <th>Decision required</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Functional leads with Commercial Lead</td>
+            <td>Are Sales, Marketing, CRM, media kit, production workflow, client delivery, team KPIs and reporting ready to scale?</td>
+            <td>Launch approval, conditional launch with named fixes, or blocker escalation.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Stage 5: Media launch, optimisation and review</h3>
+        <span class="duration">Project specific</span>
+      </div>
+      <p><strong>Purpose:</strong> Launch sales and campaigns, publish or distribute media, track performance, protect delivery quality and feed learning into the next media cycle.</p>
+      <div class="grid-two">
+        <div>
+          <h4>Launch inputs required</h4>
+          <ul>
+            <li>Approved pricing, inventory or guardrails</li>
+            <li>Sales strategy and team KPIs</li>
+            <li>Marketing strategy and team KPIs</li>
+            <li>CRM setup</li>
+            <li>Media kit and landing pages</li>
+            <li>Tracking links, consent rules and source rules</li>
+            <li>Editorial and production workflow</li>
+            <li>Client delivery handoff process</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Outputs</h4>
+          <ul>
+            <li>Sales activity</li>
+            <li>Renewal and upsell activity</li>
+            <li>Campaign delivery</li>
+            <li>Publishing or distribution activity</li>
+            <li>Weekly commercial reporting</li>
+            <li>Client delivery tracking</li>
+            <li>Audience and campaign performance reporting</li>
+            <li>Post campaign or post cycle review</li>
+            <li>Next cycle input pack</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="checkpoint">
+      <h3>Checkpoint after Stage 5: Performance review</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Decision owner</th>
+            <th>Decision required</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Commercial Lead with relevant functional leads</td>
+            <td>What sold, what delivered, what underperformed, what needs to change and what evidence feeds the next media cycle?</td>
+            <td>Performance review, next cycle input pack and updated decision log.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>7. Renewal and campaign timing</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Commercial motion</th>
+          <th>Timing</th>
+          <th>Owner</th>
+          <th>Rule</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Soft renewal conversation</td>
+          <td>During campaign delivery or immediately after reporting</td>
+          <td>Sales Lead</td>
+          <td>Capture sentiment, understand repeat potential and identify upgrade paths. Do not promise unapproved pricing or inventory.</td>
+        </tr>
+        <tr>
+          <td>Renewal intelligence</td>
+          <td>Within 5 to 10 working days after campaign report</td>
+          <td>Sales Lead</td>
+          <td>Classify renew, upgrade, at risk, churn, new opportunity and needs senior support.</td>
+        </tr>
+        <tr>
+          <td>Formal renewal</td>
+          <td>After approved pricing, product scope and proof of delivery</td>
+          <td>Sales Lead</td>
+          <td>Issue formal renewal proposal, upgrade package or next campaign plan.</td>
+        </tr>
+        <tr>
+          <td>Strategic media partnership</td>
+          <td>As early as possible once guardrails exist</td>
+          <td>Sales Lead with Commercial Lead and Commercial Approver where needed</td>
+          <td>Use senior support for high value, sensitive or category defining deals.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>8. Sales and marketing start timing by media type</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Media type</th>
+          <th>Commercial strategy should start</th>
+          <th>Sales cycle should start</th>
+          <th>Marketing or audience execution should start</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Major media product or new vertical</td>
+          <td>3 to 6 months before launch, longer if market education is needed.</td>
+          <td>Once commercial model, audience proof and pricing guardrails exist.</td>
+          <td>Once positioning, landing page, tracking and distribution plan are ready.</td>
+        </tr>
+        <tr>
+          <td>Newsletter sponsorship product</td>
+          <td>1 to 3 months before launch or annual sales cycle.</td>
+          <td>Once audience proof, rate card and inventory are approved.</td>
+          <td>Once audience growth plan and tracking are ready.</td>
+        </tr>
+        <tr>
+          <td>Podcast or video series</td>
+          <td>2 to 4 months before launch or new season.</td>
+          <td>Once format, production cadence, sponsor package and proof model are approved.</td>
+          <td>Once trailer, clips, distribution plan and publishing cadence are ready.</td>
+        </tr>
+        <tr>
+          <td>Sponsored content or branded editorial campaign</td>
+          <td>4 to 8 weeks before sales push.</td>
+          <td>Once editorial rules, production workflow and pricing are approved.</td>
+          <td>Once content production and distribution workflow are ready.</td>
+        </tr>
+        <tr>
+          <td>Report-led or lead generation campaign</td>
+          <td>2 to 4 months before launch.</td>
+          <td>Once audience proposition, lead criteria, consent rules and sponsor value are approved.</td>
+          <td>Once asset plan, landing page, tracking and follow-up flow are ready.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>9. Media kit and collateral timing</h2>
+    <p>Media kit and sales collateral should follow approved formats, pricing, inventory, delivery capacity and reporting promises.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Collateral item</th>
+          <th>When it should be ready</th>
+          <th>Dependency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Collateral requirements list</td>
+          <td>During Stage 3</td>
+          <td>GTM direction and commercial model.</td>
+        </tr>
+        <tr>
+          <td>Media kit structure</td>
+          <td>Stage 3 or early Stage 4</td>
+          <td>Audience proof, product direction, positioning and buyer narrative.</td>
+        </tr>
+        <tr>
+          <td>Final media kit</td>
+          <td>Stage 4</td>
+          <td>Approved products, pricing, inventory, delivery capacity and proof metrics.</td>
+        </tr>
+        <tr>
+          <td>Rate card</td>
+          <td>Stage 4</td>
+          <td>Approved pricing, inventory and discount rules.</td>
+        </tr>
+        <tr>
+          <td>Proposal templates</td>
+          <td>Stage 4</td>
+          <td>Approved package logic and sales process.</td>
+        </tr>
+        <tr>
+          <td>Audience one pager</td>
+          <td>Stage 4</td>
+          <td>Approved audience data, buyer segments and proof points.</td>
+        </tr>
+        <tr>
+          <td>Campaign proof assets</td>
+          <td>Stage 4 and Stage 5</td>
+          <td>CRM, Media, Marketing, Production and Client Success evidence.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout">Final media collateral should not be forced before formats, pricing, inventory, reporting and delivery boundaries are approved. The brief can be ready earlier. The final asset should not be built on assumptions.</div>
+  </section>
+
+  <section>
+    <h2>10. Performance review detail</h2>
+    <p>The media commercial process should feed the next cycle. Reviews should happen within 5 to 10 working days after a campaign closes, or monthly for always-on media products.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Review area</th>
+          <th>Owner</th>
+          <th>Output</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Media sales and pipeline</td>
+          <td>Sales Lead</td>
+          <td>Closed won, lost, churn, renewal risk, upgrade opportunity, pricing resistance and advertiser objections.</td>
+        </tr>
+        <tr>
+          <td>Audience performance</td>
+          <td>Director of Media</td>
+          <td>Audience growth, engagement, source mix, quality, open rates, clicks, downloads, views and conversion performance.</td>
+        </tr>
+        <tr>
+          <td>Campaign delivery</td>
+          <td>Client Success Lead</td>
+          <td>Fulfilment performance, proof capture, makegoods, delivery issues and renewal risk.</td>
+        </tr>
+        <tr>
+          <td>Editorial performance</td>
+          <td>Global Editor in Chief</td>
+          <td>Content quality, audience trust, editorial issues, sponsor integration issues and authority proof.</td>
+        </tr>
+        <tr>
+          <td>Marketing and distribution performance</td>
+          <td>Marketing Lead</td>
+          <td>Campaign performance, landing page conversion, content proof, audience growth and distribution learnings.</td>
+        </tr>
+        <tr>
+          <td>Financial performance</td>
+          <td>Finance Lead and Commercial Lead</td>
+          <td>Revenue, EBITA, margin, costs, cash, refunds, FX, supplier costs and payment issues.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>11. Escalation logic</h2>
+    <div class="dark-box">
+      <h3>Approval window rule</h3>
+      <p>Approval owners have 5 working days to approve, approve with conditions or reject with required changes. If no decision is received, Stuart escalates to Ana or Pierre.</p>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Issue</th>
+          <th>Default action</th>
+          <th>Escalates to</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Low risk decision delayed</td>
+          <td>Proceed with documented assumption.</td>
+          <td>Commercial Lead</td>
+        </tr>
+        <tr>
+          <td>Pricing, EBITA, margin, cash, monthly sales target or revenue decision delayed</td>
+          <td>Escalate. Do not treat silence as approval.</td>
+          <td>Commercial Approver</td>
+        </tr>
+        <tr>
+          <td>Cross team conflict</td>
+          <td>Escalate with options and recommendation.</td>
+          <td>Executive Sponsor</td>
+        </tr>
+        <tr>
+          <td>Editorial, production, client delivery or reporting risk</td>
+          <td>Escalate with operational impact and commercial recommendation.</td>
+          <td>Commercial Lead first. Then Kim, Jake, Lorena, Amy, CRM Lead or Executive Sponsor depending on the issue.</td>
+        </tr>
+        <tr>
+          <td>Fast track route requested</td>
+          <td>Record assumption, risk accepted, decision owner and next checkpoint.</td>
+          <td>Stuart, Ana or Pierre</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>12. RAG status: Red, Amber, Green</h2>
+    <p>RAG means Red, Amber, Green. It gives Ana and the leadership team a quick view of whether a media product is ready, at risk or blocked.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Meaning</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tag green">Green</span></td>
+          <td>Inputs complete, commercial foundation approved, GTM ready, execution setup on track.</td>
+          <td>Proceed.</td>
+        </tr>
+        <tr>
+          <td><span class="tag amber">Amber</span></td>
+          <td>Inputs partial, commercial foundation close, blockers named and owned.</td>
+          <td>Proceed with assumptions or conditional approval.</td>
+        </tr>
+        <tr>
+          <td><span class="tag red">Red</span></td>
+          <td>Missing inputs, unapproved pricing, missing EBITA or margin targets, unclear ownership, editorial risk, production risk or reporting risk.</td>
+          <td>Escalate and resolve the affected decision.</td>
+        </tr>
+        <tr>
+          <td><span class="tag blue">Blue</span></td>
+          <td>Fast track route approved.</td>
+          <td>Track risk, owner and next checkpoint.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>13. Decision log</h2>
+    <p>Every priority media product should maintain a decision log. The Commercial Lead owns it. The Director of Media keeps it updated where decisions relate to media product structure, audience proof or publishing cadence. Jake owns updates where decisions relate to editorial quality, editorial standards or audience trust. Lorena owns updates where decisions relate to production or Podcast and Spotlight delivery. Amy owns updates where decisions relate to ad banners, newsletter banners, promoted content or PR support delivery.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Decision</th>
+          <th>Owner</th>
+          <th>Date required</th>
+          <th>Status</th>
+          <th>Risk if delayed</th>
+          <th>Final decision</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Example: Media product format approved</td>
+          <td>Commercial Lead</td>
+          <td>Insert date</td>
+          <td>Pending</td>
+          <td>Commercial model and production assumptions remain unstable</td>
+          <td>Insert decision</td>
+        </tr>
+        <tr>
+          <td>Example: Monthly media sales target approved</td>
+          <td>Commercial Lead</td>
+          <td>Insert date</td>
+          <td>Pending</td>
+          <td>Sales cannot plan pipeline coverage properly</td>
+          <td>Insert decision</td>
+        </tr>
+        <tr>
+          <td>Example: Rate card approved</td>
+          <td>Commercial Lead and Commercial Approver</td>
+          <td>Insert date</td>
+          <td>Pending</td>
+          <td>Sales cannot issue formal proposals</td>
+          <td>Insert decision</td>
+        </tr>
+        <tr>
+          <td>Example: Sponsored content boundary approved</td>
+          <td>Global Editor in Chief</td>
+          <td>Insert date</td>
+          <td>Pending</td>
+          <td>Editorial trust or brand risk</td>
+          <td>Insert decision</td>
+        </tr>
+        <tr>
+          <td>Example: Reporting model approved</td>
+          <td>CRM Lead and Commercial Lead</td>
+          <td>Insert date</td>
+          <td>Pending</td>
+          <td>Client proof and renewal risk</td>
+          <td>Insert decision</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>14. Change control</h2>
+    <p>After commercial approval, format, pricing, package, inventory, editorial boundary, production scope and reporting changes require a change request.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Change request field</th>
+          <th>Required detail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Requested change</td>
+          <td>What needs to change.</td>
+        </tr>
+        <tr>
+          <td>Commercial reason</td>
+          <td>Why the change matters.</td>
+        </tr>
+        <tr>
+          <td>Impact</td>
+          <td>Effect on revenue, EBITA, margin, cash, delivery, Sales, Marketing, CRM, Media / Editorial, Production and collateral.</td>
+        </tr>
+        <tr>
+          <td>Approval required</td>
+          <td>Commercial Lead and Commercial Approver for major changes. Kim, Jake, Lorena, Amy, CRM or Client Success where their area is affected.</td>
+        </tr>
+        <tr>
+          <td>Decision</td>
+          <td>Approved, approved with conditions or rejected.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>15. Meeting rule</h2>
+    <ul>
+      <li>Pre read required.</li>
+      <li>Brainstorming should happen asynchronously before the meeting.</li>
+      <li>Ideas should be submitted as recommendations with evidence, impact and owner where possible.</li>
+      <li>Meetings approve, reject or assign.</li>
+      <li>No open brainstorming in approval meetings.</li>
+      <li>Every blocker gets an owner and deadline.</li>
+      <li>Every meeting ends with a decision log update.</li>
+    </ul>
+  </section>
+
+  <div class="footer-note">
+    <p>Document owner: Commercial. This media module sits under the Project Commercialisation Operating Model. Dated delivery plans and deadline specific trackers should sit in separate implementation documents.</p>
+  </div>
+</main>
+</body>
+</html>
