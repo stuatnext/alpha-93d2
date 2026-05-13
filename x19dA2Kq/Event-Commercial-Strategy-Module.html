@@ -1,0 +1,1413 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Event Commercial Strategy Module</title>
+  <style>
+    :root {
+      --ink: #101827;
+      --muted: #536070;
+      --line: #d7dde6;
+      --soft: #f4f6f8;
+      --softer: #fafbfc;
+      --dark: #101827;
+      --blue: #dbeafe;
+      --green: #dcfce7;
+      --amber: #fef3c7;
+      --red: #fee2e2;
+      --purple: #ede9fe;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #ffffff;
+      line-height: 1.48;
+      font-size: 15px;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 44px 36px 72px;
+    }
+
+    header {
+      border-bottom: 4px solid var(--ink);
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 40px;
+      line-height: 1.08;
+      margin: 0 0 14px;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      font-size: 25px;
+      margin: 36px 0 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin: 20px 0 8px;
+    }
+
+    h4 {
+      font-size: 13px;
+      margin: 16px 0 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+
+    p { margin: 0 0 12px; }
+
+    ul {
+      margin: 8px 0 16px 21px;
+      padding: 0;
+    }
+
+    li { margin: 5px 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 22px;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: var(--soft);
+      font-weight: 700;
+    }
+
+    .lead {
+      font-size: 17px;
+      max-width: 900px;
+      color: #1f2937;
+      font-weight: 700;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .grid-three {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: var(--softer);
+      padding: 16px;
+      border-radius: 12px;
+    }
+
+    .card h3, .card h4 { margin-top: 0; }
+
+    .callout {
+      border-left: 5px solid var(--ink);
+      background: var(--soft);
+      padding: 14px 16px;
+      margin: 16px 0 22px;
+      font-weight: 700;
+    }
+
+    .dark-box {
+      background: var(--dark);
+      color: #ffffff;
+      padding: 18px;
+      border-radius: 12px;
+      margin: 18px 0;
+    }
+
+    .dark-box h3, .dark-box h4 { color: #ffffff; margin-top: 0; }
+
+    .stage {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0 22px;
+      background: #ffffff;
+      box-shadow: 0 1px 0 rgba(16, 24, 39, 0.03);
+    }
+
+    .stage-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .stage-head h3 { margin: 0; }
+
+    .duration {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .small {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .tag {
+      display: inline-block;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      margin: 2px 4px 2px 0;
+    }
+
+    .green { background: var(--green); }
+    .amber { background: var(--amber); }
+    .red { background: var(--red); }
+    .blue { background: var(--blue); }
+    .purple { background: var(--purple); }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin: 18px 0 24px;
+    }
+
+    .timeline-step {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      background: var(--softer);
+      min-height: 130px;
+    }
+
+    .timeline-step strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .checkpoint {
+      border: 1px solid var(--line);
+      border-left: 6px solid var(--ink);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 12px 0 22px;
+      background: var(--soft);
+    }
+
+    .checkpoint h3 { margin-top: 0; }
+
+    .print-button {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: var(--ink);
+      color: #ffffff;
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 16px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    }
+
+    .footer-note {
+      margin-top: 38px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media print {
+      .print-button { display: none; }
+      body { font-size: 12px; }
+      .page { padding: 20px; max-width: none; }
+      .stage, .card, .dark-box, .checkpoint { break-inside: avoid; }
+      h2 { break-after: avoid; }
+    }
+
+    @media (max-width: 980px) {
+      .timeline { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 820px) {
+      .grid-two, .grid-three, .timeline { grid-template-columns: 1fr; }
+      .stage-head { display: block; }
+      .duration { display: block; margin-top: 6px; }
+      h1 { font-size: 31px; }
+      .page { padding: 28px 18px 54px; }
+    }
+  </style>
+</head>
+<body>
+<button class="print-button" onclick="window.print()">Print or save PDF</button>
+<main class="page">
+  <header>
+    <div class="eyebrow">Event module</div>
+    <h1>Event Commercial Strategy Module</h1>
+    <p class="lead">A practical module for commercialising conferences, summits, awards, exhibitions, focus events and new event launches.</p>
+    <div class="pill-row">
+      <span class="pill">Sits under the master operating model</span>
+      <span class="pill">Applies to events</span>
+      <span class="pill">Owner: Commercial</span>
+      <span class="pill">Use for annual planning and event cycles</span>
+    </div>
+  </header>
+
+  <section class="grid-two">
+    <div class="card">
+      <h3>Purpose</h3>
+      <p>This module explains how event projects move from evidence to commercial strategy, GTM, sales, marketing, CRM, collateral, rebooking, delivery and post event review.</p>
+      <p>It exists because events have specific commercial dependencies: venue choice, agenda quality, speaker access, sponsor inventory, ticket pricing, delivery capacity, floorplan, rebooking and onsite proof.</p>
+    </div>
+    <div class="card">
+      <h3>What this module is not</h3>
+      <ul>
+        <li>It is not a GTM playbook.</li>
+        <li>It is not a marketing calendar.</li>
+        <li>It is not a project delivery plan.</li>
+        <li>It is not a brainstorming document.</li>
+        <li>It is not a replacement for the master operating model.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>1. Scope</h2>
+    <p>This module applies to conferences, summits, awards, exhibitions, focus events, retreats, regional events and new event launches.</p>
+    <div class="callout">The master model sets the company sequence. This module explains what that sequence means for events.</div>
+    <p>The planning depth changes by event size, revenue ambition, strategic importance and risk. The order of decisions should stay consistent.</p>
+  </section>
+
+  <section>
+    <h2>2. Event planning levels</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Event type</th>
+          <th>Planning level</th>
+          <th>What this means</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Flagship event</td>
+          <td>Detailed planning</td>
+          <td>Full evidence pack, senior approval, full commercial model, monthly ticket and partnerships pacing, full GTM and full launch readiness check.</td>
+        </tr>
+        <tr>
+          <td>Large regional event</td>
+          <td>Detailed or standard planning</td>
+          <td>Products, pricing, sponsor inventory, ticketing, venue and operational assumptions confirmed before Sales and Marketing scale.</td>
+        </tr>
+        <tr>
+          <td>Focus event</td>
+          <td>Standard planning</td>
+          <td>Sharper buyer focus, leaner inventory, clear sponsor value and shorter sales and marketing timeline.</td>
+        </tr>
+        <tr>
+          <td>Awards</td>
+          <td>Standard planning</td>
+          <td>Category strategy, sponsor category fit, table sales logic, judging integrity, ticket strategy and ceremony delivery clarity.</td>
+        </tr>
+        <tr>
+          <td>New event launch</td>
+          <td>Detailed planning</td>
+          <td>Market validation, competitor review, audience proof, category thesis, revenue assumptions and higher scrutiny on risk.</td>
+        </tr>
+        <tr>
+          <td>Small tactical event</td>
+          <td>Simplified planning</td>
+          <td>Short evidence pack, clear commercial assumption, named approver, basic CRM tracking and simple launch readiness check.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>3. Event operating sequence</h2>
+    <div class="timeline">
+      <div class="timeline-step">
+        <strong>0. Confirm event type</strong>
+        <p class="small">Agree size, ambition, risk, timeline and planning level.</p>
+      </div>
+      <div class="timeline-step">
+        <strong>1. Event evidence</strong>
+        <p class="small">Collect performance, feedback, costs, delivery and market evidence.</p>
+      </div>
+      <div class="timeline-step">
+        <strong>2. Commercial model</strong>
+        <p class="small">Set products, pricing, packages, inventory, monthly pacing and financial logic.</p>
+      </div>
+      <div class="timeline-step">
+        <strong>3. Event GTM</strong>
+        <p class="small">Define positioning, buyer groups, sales direction, marketing direction and handoffs.</p>
+      </div>
+      <div class="timeline-step">
+        <strong>4. Setup</strong>
+        <p class="small">Prepare sales, marketing, CRM, collateral, sponsor delivery and event workflows.</p>
+      </div>
+      <div class="timeline-step">
+        <strong>5. Launch and review</strong>
+        <p class="small">Sell, market, deliver, report and feed learning into the next cycle.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>4. Event roles and responsibilities</h2>
+    <p>Use roles first. Add names in brackets for the current working version.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th>Current owner example</th>
+          <th>Provides</th>
+          <th>When involved</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Commercial Lead</td>
+          <td>Stuart</td>
+          <td>Commercial strategy, pricing, packages, monthly sales pacing, GTM framework, Sales Lead KPIs and Marketing Lead KPIs.</td>
+          <td>All stages.</td>
+        </tr>
+        <tr>
+          <td>Executive Sponsor</td>
+          <td>Ana</td>
+          <td>Company priority, conflict resolution, compressed route approval and major operating trade offs.</td>
+          <td>Stage 0, escalations and major approval points.</td>
+        </tr>
+        <tr>
+          <td>Commercial Approver</td>
+          <td>Pierre</td>
+          <td>Approval of major product, pricing, revenue, EBITA, margin and sensitive commercial decisions.</td>
+          <td>Commercial approval and escalation.</td>
+        </tr>
+        <tr>
+          <td>Project Owner</td>
+          <td>Project Manager, such as Desi for Valletta</td>
+          <td>Project brief, event timeline, dependencies, operational constraints, key dates, delivery risks and execution sign off.</td>
+          <td>Stages 0, 1, 3 and 4.</td>
+        </tr>
+        <tr>
+          <td>Sales Lead</td>
+          <td>Will</td>
+          <td>Sales performance, client feedback, pricing resistance, churn risk, rebooking list, account priorities, sales strategy and sales team KPIs.</td>
+          <td>Stages 1, 2, 3, 4 and 5.</td>
+        </tr>
+        <tr>
+          <td>Partnerships Lead</td>
+          <td>Olivia</td>
+          <td>Sponsor delivery insight, sponsor feedback, handoff requirements, fulfilment issues, proof capture needs and sponsor delivery approval.</td>
+          <td>Stages 1, 2, 3, 4 and 5.</td>
+        </tr>
+        <tr>
+          <td>Conference Content Lead</td>
+          <td>Rory</td>
+          <td>Agenda integrity, speaker access, content quality, sponsor integration risk, paid content fit and event positioning input.</td>
+          <td>Stages 1, 2 and 3.</td>
+        </tr>
+        <tr>
+          <td>Marketing Lead</td>
+          <td>James or interim owner</td>
+          <td>Campaign strategy, channel plan, ticket demand plan, audience targeting, website needs, creative direction and marketing team KPIs.</td>
+          <td>Stages 3, 4 and 5.</td>
+        </tr>
+        <tr>
+          <td>CRM Lead</td>
+          <td>Future Head of CRM, Jo for setup</td>
+          <td>Fields, source tracking, dashboards, ticket and sponsor tracking, attribution, handover workflows and reporting setup.</td>
+          <td>Stages 2, 3 and 4.</td>
+        </tr>
+        <tr>
+          <td>Finance Lead</td>
+          <td>Finance</td>
+          <td>EBITA targets, expected costs, margin assumptions, cash timing, tax, FX, fees, payment logic and refund exposure.</td>
+          <td>Stages 0, 1 and 2.</td>
+        </tr>
+        <tr>
+          <td>Media and Content Leads</td>
+          <td>Kim, Media and relevant content owners</td>
+          <td>Website performance, editorial proof, content learnings, audience data, media proof assets and campaign proof.</td>
+          <td>Stages 1, 3, 4 and 5.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>5. Non negotiables for events</h2>
+    <ul>
+      <li>Event products should not roll forward because they existed last year.</li>
+      <li>Final collateral should not be built before products, pricing, packages and delivery boundaries are approved.</li>
+      <li>Commercial strategy needs input from Sales, Partnerships, Project Owner, Finance, Conference Content, Marketing, Media and clients.</li>
+      <li>Rory must be involved where event products affect agenda, speaker value, content quality or sponsor integration.</li>
+      <li>Olivia must sign off the sponsor handoff and delivery model before sponsor fulfilment scales.</li>
+      <li>Project Owners sign off execution dependencies. They do not write the GTM.</li>
+      <li>Monthly partnerships sales targets and monthly ticket sales targets are set during Stage 2.</li>
+      <li>CRM tracking must be ready before Sales and Marketing activity scales.</li>
+      <li>Soft rebooking can start onsite and post event. Formal rebooking needs approved pricing or guardrails.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>6. Stage detail</h2>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Stage 0: Confirm event type and planning level</h3>
+        <span class="duration">1 to 2 working days</span>
+      </div>
+      <p><strong>Purpose:</strong> Agree what kind of event this is, how commercially important it is, how much planning it needs and who needs to approve decisions.</p>
+      <div class="grid-two">
+        <div>
+          <h4>Inputs required</h4>
+          <ul>
+            <li>Event type and format</li>
+            <li>Event date or target window</li>
+            <li>Venue strategy or known venue constraints</li>
+            <li>Revenue ambition</li>
+            <li>Expected EBITA or profit contribution</li>
+            <li>Expected costs or major cost changes</li>
+            <li>Strategic importance</li>
+            <li>Commercial risk</li>
+            <li>Delivery complexity</li>
+            <li>Timeline pressure</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Outputs</h4>
+          <ul>
+            <li>Event type confirmed</li>
+            <li>Planning level agreed</li>
+            <li>Approval owner named</li>
+            <li>Required input list</li>
+            <li>Expected timeline</li>
+            <li>Fast track eligibility</li>
+            <li>Known strategic decisions listed, such as venue move or format change</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="checkpoint">
+      <h3>Checkpoint after Stage 0: Planning route confirmed</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Decision owner</th>
+            <th>Decision required</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Commercial Lead, with Executive Sponsor or Commercial Approver where needed</td>
+            <td>What type of event is this, how much planning does it need and who must approve it?</td>
+            <td>Planning level agreed, required inputs confirmed, owner map clear and timeline started.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Stage 1: Event evidence and input pack</h3>
+        <span class="duration">5 to 10 working days</span>
+      </div>
+      <p><strong>Purpose:</strong> Collect the evidence Commercial needs before products, pricing, packages and GTM are built.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Input</th>
+            <th>Owner</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>What sold, what did not sell, list price versus sold price, discounting and sales objections</td>
+            <td>Sales Lead</td>
+            <td>Shows real market demand, pricing resistance and margin leakage.</td>
+          </tr>
+          <tr>
+            <td>Client and sponsor feedback, churn risk, renewal appetite and upgrade potential</td>
+            <td>Sales Lead and Partnerships Lead</td>
+            <td>Shows what needs protecting, changing or upgrading next cycle.</td>
+          </tr>
+          <tr>
+            <td>Sponsor delivery issues, fulfilment risk, proof capture gaps and handoff issues</td>
+            <td>Partnerships Lead</td>
+            <td>Prevents Commercial selling products the company cannot deliver properly.</td>
+          </tr>
+          <tr>
+            <td>Event timeline, venue, supplier, staffing, production, registration and onsite constraints</td>
+            <td>Project Owner</td>
+            <td>Defines what the event can realistically support.</td>
+          </tr>
+          <tr>
+            <td>Agenda performance, speaker access, content gaps, paid content risk and content led product opportunities</td>
+            <td>Conference Content Lead</td>
+            <td>Protects agenda quality and prevents sponsor products damaging event credibility.</td>
+          </tr>
+          <tr>
+            <td>Audience mix, buyer quality, delegate behaviour, ticket buyer feedback and website performance</td>
+            <td>Marketing Lead, CRM Lead, Media and Content Leads</td>
+            <td>Shows whether the event attracted the right people and where conversion can improve.</td>
+          </tr>
+          <tr>
+            <td>Expected costs, EBITA expectations, margin assumptions, cash timing and payment risks</td>
+            <td>Finance Lead</td>
+            <td>Protects profit and cash before revenue targets are finalised.</td>
+          </tr>
+          <tr>
+            <td>Competitor intel, market movement, pricing benchmarks and buyer behaviour changes</td>
+            <td>Commercial Lead with Sales, Marketing and Content input</td>
+            <td>Shows how the event should be positioned and priced against the market.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="dark-box">
+        <h3>Input completion rule</h3>
+        <p>If required inputs are incomplete after the agreed window, Commercial proceeds using named assumptions. Missing inputs become owned risks. Late inputs do not reopen approved strategy unless Stuart, Ana or Pierre confirm material impact.</p>
+      </div>
+    </div>
+
+    <div class="checkpoint">
+      <h3>Checkpoint after Stage 1: Input readiness</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Decision owner</th>
+            <th>Decision required</th>
+            <th>Allowed outcomes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Commercial Lead</td>
+            <td>Are inputs complete enough to build the event commercial model, or should Commercial proceed with assumptions?</td>
+            <td>Proceed. Proceed with assumptions. Pause only the affected decision. Escalate a critical blocker.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Stage 2: Event commercial model</h3>
+        <span class="duration">1 to 3 weeks</span>
+      </div>
+      <p><strong>Purpose:</strong> Build the commercial foundation for the event before GTM, collateral, CRM and execution scale.</p>
+      <div class="grid-two">
+        <div>
+          <h4>Work covered</h4>
+          <ul>
+            <li>Event commercial thesis</li>
+            <li>Venue or format strategy where this affects revenue, costs, audience quality or sponsor value</li>
+            <li>Product review</li>
+            <li>Event product discussion with Rory where agenda, speakers, content quality or sponsor integration affects commercial value</li>
+            <li>Sponsor package review</li>
+            <li>Ticket pricing review</li>
+            <li>Inventory logic</li>
+            <li>Recommended revenue target</li>
+            <li>Monthly partnerships sales targets</li>
+            <li>Monthly ticket sales targets</li>
+            <li>EBITA and financial health check</li>
+            <li>Margin and expected cost review</li>
+            <li>Discount rules</li>
+            <li>Rebooking and upgrade logic</li>
+            <li>CRM requirements draft</li>
+            <li>Structural revenue leak review</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Outputs</h4>
+          <ul>
+            <li>Commercial thesis</li>
+            <li>Recommended product catalogue</li>
+            <li>Recommended sponsor packages</li>
+            <li>Ticket price ladder</li>
+            <li>Recommended revenue target after products, pricing and major strategy decisions are clear</li>
+            <li>Monthly partnerships sales target</li>
+            <li>Monthly ticket sales target</li>
+            <li>EBITA, margin, cash and expected cost assumptions</li>
+            <li>Approved, provisional and rejected product list</li>
+            <li>CRM requirements draft</li>
+            <li>Risk register and decision log update</li>
+          </ul>
+        </div>
+      </div>
+      <h4>Event level KPIs set in this stage</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>KPI or target</th>
+            <th>Who sets it</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Recommended revenue target</td>
+            <td>Commercial Lead, with Commercial Approver input</td>
+            <td>Revenue target recommended after products, pricing, packages and major strategy decisions are clear.</td>
+          </tr>
+          <tr>
+            <td>EBITA, margin and financial health targets</td>
+            <td>Commercial Lead with Commercial Approver and Finance input</td>
+            <td>Financial scoreboard for the event.</td>
+          </tr>
+          <tr>
+            <td>Monthly partnerships sales target</td>
+            <td>Commercial Lead with Sales Lead input</td>
+            <td>Monthly close target for partnership revenue.</td>
+          </tr>
+          <tr>
+            <td>Monthly ticket sales target</td>
+            <td>Commercial Lead with Sales Lead, Marketing Lead and Finance input</td>
+            <td>Monthly ticket volume and ticket revenue pacing.</td>
+          </tr>
+          <tr>
+            <td>Discount tolerance</td>
+            <td>Commercial Lead, Commercial Approver, Finance</td>
+            <td>Approved boundaries for discounting before Sales activity scales.</td>
+          </tr>
+          <tr>
+            <td>Pipeline coverage expectation</td>
+            <td>Commercial Lead with Sales Lead input</td>
+            <td>Pipeline required to support monthly partnerships sales targets.</td>
+          </tr>
+        </tbody>
+      </table>
+      <h4>Event product status</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Approved for base forecast</td>
+            <td>Reliable enough to include in the core revenue target.</td>
+          </tr>
+          <tr>
+            <td>Approved for stretch</td>
+            <td>Sellable, but not dependable enough for base target.</td>
+          </tr>
+          <tr>
+            <td>Approved as upside</td>
+            <td>Useful if sold, but not central to the plan.</td>
+          </tr>
+          <tr>
+            <td>Subject to Project Owner approval</td>
+            <td>Delivery feasibility, timing or operational capacity needs confirmation.</td>
+          </tr>
+          <tr>
+            <td>Subject to Partnerships approval</td>
+            <td>Sponsor handoff, fulfilment, proof capture or scope needs confirmation.</td>
+          </tr>
+          <tr>
+            <td>Subject to Conference Content approval</td>
+            <td>Agenda, speaker, content quality or sponsor integration needs confirmation.</td>
+          </tr>
+          <tr>
+            <td>Reprice</td>
+            <td>Value exists, but the price is wrong.</td>
+          </tr>
+          <tr>
+            <td>Repackage</td>
+            <td>Product has value, but the structure needs changing.</td>
+          </tr>
+          <tr>
+            <td>Retire</td>
+            <td>Do not carry into the next cycle.</td>
+          </tr>
+          <tr>
+            <td>Not approved</td>
+            <td>Cannot be sold responsibly.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="checkpoint">
+      <h3>Checkpoint after Stage 2: Commercial approval</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Decision owner</th>
+            <th>Decision required</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Commercial Approver with Commercial Lead</td>
+            <td>Are products, pricing, packages, revenue, EBITA, margin, monthly pacing and risk assumptions approved?</td>
+            <td>Approved commercial foundation, approved with conditions, or rejected with required changes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Stage 3: Event GTM strategy</h3>
+        <span class="duration">1 to 2 weeks</span>
+      </div>
+      <p><strong>Purpose:</strong> Translate the approved commercial model into clear market direction for Sales, Marketing, CRM, Projects, Partnerships, Conference Content and Media.</p>
+      <div class="grid-two">
+        <div>
+          <h4>Inputs required</h4>
+          <ul>
+            <li>Approved or near approved commercial model</li>
+            <li>Approved pricing or guardrails</li>
+            <li>Monthly partnerships sales and ticket sales targets from Stage 2</li>
+            <li>Sales account insight, client feedback and competitor intel</li>
+            <li>Audience and ticket buyer insight</li>
+            <li>Agenda and speaker direction from Conference Content Lead</li>
+            <li>Operational constraints from Project Owner</li>
+            <li>Sponsor handoff requirements from Partnerships Lead</li>
+            <li>CRM reporting requirements draft</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Outputs</h4>
+          <ul>
+            <li>Event positioning</li>
+            <li>Target buyer groups</li>
+            <li>Priority sponsor categories</li>
+            <li>Ticket buyer priorities</li>
+            <li>Sales Lead KPIs</li>
+            <li>Marketing Lead KPIs</li>
+            <li>Sales direction</li>
+            <li>Marketing direction</li>
+            <li>Rebooking and upgrade approach</li>
+            <li>Handover map</li>
+            <li>Reporting requirements</li>
+          </ul>
+        </div>
+      </div>
+      <h4>KPI decisions set in this stage</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>KPI level</th>
+            <th>Who sets it</th>
+            <th>Examples</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sales Lead KPIs</td>
+            <td>Commercial Lead</td>
+            <td>Partnerships revenue, monthly close targets, rebooking target, upsell target, pipeline coverage, weighted pipeline, discount discipline.</td>
+          </tr>
+          <tr>
+            <td>Marketing Lead KPIs</td>
+            <td>Commercial Lead</td>
+            <td>Ticket demand contribution, lead targets, source quality, conversion targets, buyer quality, website conversion, paid efficiency.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout">Stuart sets KPIs for the Sales Lead and Marketing Lead during Stage 3, once the GTM direction is clear.</div>
+      <div class="callout">The GTM explains how the approved commercial model goes to market. It should not reopen the product, pricing or revenue model unless a material issue is found.</div>
+    </div>
+
+    <div class="checkpoint">
+      <h3>Checkpoint after Stage 3: Execution dependency approval</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Decision owner</th>
+            <th>Decision required</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Project Owner, Partnerships Lead and Conference Content Lead where relevant</td>
+            <td>Are delivery dependencies, sponsor handoffs, content risks and fulfilment requirements clear enough for Sales, Marketing, CRM and collateral to move forward?</td>
+            <td>Approved execution dependencies, named blockers, owner and deadline for unresolved items.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Stage 4: Event execution setup</h3>
+        <span class="duration">1 to 3 weeks</span>
+      </div>
+      <p><strong>Purpose:</strong> Turn the approved event strategy into sales, marketing, CRM, collateral, reporting and delivery workflows before market activity scales.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Workstream</th>
+            <th>Owner</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sales strategy and sales team KPIs</td>
+            <td>Sales Lead</td>
+            <td>Named account plan, rebooking plan, upgrade plan, pipeline coverage, rep targets, proposal rules, close targets, pipeline hygiene and discount discipline.</td>
+          </tr>
+          <tr>
+            <td>Marketing strategy and marketing team KPIs</td>
+            <td>Marketing Lead</td>
+            <td>Ticket campaign plan, sponsor demand plan, channel plan, website plan, creative route, lead targets, buyer quality targets and conversion targets.</td>
+          </tr>
+          <tr>
+            <td>CRM setup and reporting KPIs</td>
+            <td>CRM Lead with Commercial Lead</td>
+            <td>Ticket source tracking, sponsor enquiry tracking, product tagging, rebooking fields, discount tracking, dashboards, data completeness and handover workflows.</td>
+          </tr>
+          <tr>
+            <td>Collateral and enablement</td>
+            <td>Commercial, Sales and Marketing</td>
+            <td>Sales deck, rate card, product one pagers, proposal template, objection handling, ticket one pager and proof assets.</td>
+          </tr>
+          <tr>
+            <td>Sponsor delivery workflow</td>
+            <td>Partnerships Lead</td>
+            <td>Sales to Partnerships handoff, Monday.com workflow, fulfilment checklist, proof capture plan and escalation route.</td>
+          </tr>
+          <tr>
+            <td>Project delivery workflow</td>
+            <td>Project Owner</td>
+            <td>Critical path, owner map, meeting cadence, production deadlines, registration dependencies and onsite responsibilities.</td>
+          </tr>
+          <tr>
+            <td>Content and agenda alignment</td>
+            <td>Conference Content Lead</td>
+            <td>Speaker safe sponsor integration, agenda proof points, content risks, paid content boundaries and event authority messages.</td>
+          </tr>
+          <tr>
+            <td>Reporting setup</td>
+            <td>Commercial and CRM Lead</td>
+            <td>Weekly commercial dashboard, ticket pacing, partnership pipeline, buyer quality, discounting, source reporting and risk tracking.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout">The Sales Lead sets KPIs for the sales team during Stage 4. The Marketing Lead sets KPIs for the marketing team during Stage 4. Commercial and CRM set CRM and reporting KPIs before activity scales.</div>
+    </div>
+
+    <div class="checkpoint">
+      <h3>Checkpoint after Stage 4: Launch readiness</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Decision owner</th>
+            <th>Decision required</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Functional leads with Commercial Lead</td>
+            <td>Are Sales, Marketing, CRM, collateral, sponsor delivery, team KPIs and reporting ready to scale?</td>
+            <td>Launch approval, conditional launch with named fixes, or blocker escalation.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Stage 5: Event launch, optimisation and review</h3>
+        <span class="duration">Project specific</span>
+      </div>
+      <p><strong>Purpose:</strong> Launch sales and marketing, track performance, protect delivery quality and feed learning into the next event cycle.</p>
+      <div class="grid-two">
+        <div>
+          <h4>Launch inputs required</h4>
+          <ul>
+            <li>Approved pricing or guardrails</li>
+            <li>Sales strategy and team KPIs</li>
+            <li>Marketing strategy and team KPIs</li>
+            <li>CRM setup</li>
+            <li>Sales collateral and landing pages</li>
+            <li>Ticket journey and tracking</li>
+            <li>Sponsor delivery handoff process</li>
+            <li>Project critical path</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Outputs</h4>
+          <ul>
+            <li>Rebooking and new business activity</li>
+            <li>Ticket campaign activity</li>
+            <li>Weekly commercial reporting</li>
+            <li>Sponsor delivery tracking</li>
+            <li>Buyer quality reporting</li>
+            <li>Discount and pricing review</li>
+            <li>Post event review</li>
+            <li>Next cycle input pack</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="checkpoint">
+      <h3>Checkpoint after Stage 5: Post event review</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Decision owner</th>
+            <th>Decision required</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Commercial Lead with relevant functional leads</td>
+            <td>What sold, what failed, what needs to change and what evidence feeds the next event cycle?</td>
+            <td>Post event review, next cycle input pack and updated decision log.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>7. Rebooking timing</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Rebooking stage</th>
+          <th>Timing</th>
+          <th>Owner</th>
+          <th>Rule</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Soft rebooking</td>
+          <td>Onsite and immediately post event</td>
+          <td>Sales Lead with Commercial and Partnerships support</td>
+          <td>Protect the relationship, capture intent, collect feedback and identify upgrade potential. Do not promise unapproved products or pricing.</td>
+        </tr>
+        <tr>
+          <td>Rebooking intelligence</td>
+          <td>Within 1 to 3 weeks post event</td>
+          <td>Sales Lead and Partnerships Lead</td>
+          <td>Classify renew, upgrade, at risk, churn, new opportunity and needs senior support.</td>
+        </tr>
+        <tr>
+          <td>Formal rebooking</td>
+          <td>After approved pricing or approved guardrails</td>
+          <td>Sales Lead</td>
+          <td>Issue formal offers, renewal proposals and upgrade paths.</td>
+        </tr>
+        <tr>
+          <td>Strategic sponsor renewal</td>
+          <td>As early as possible once guardrails exist</td>
+          <td>Sales Lead with Commercial Lead and Commercial Approver where needed</td>
+          <td>Use senior support for high value, sensitive or category defining deals.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>8. Sales and marketing start timing by event type</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Event type</th>
+          <th>Commercial strategy should start</th>
+          <th>Sales cycle should start</th>
+          <th>Marketing execution should start</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Flagship event</td>
+          <td>Within 2 to 3 weeks after previous event inputs are collected.</td>
+          <td>9 to 12 months before event for strategic sponsorship.</td>
+          <td>Once GTM, landing pages, tracking and campaign plan are ready.</td>
+        </tr>
+        <tr>
+          <td>Large regional event</td>
+          <td>6 to 9 months before event, earlier if sponsorship target is high.</td>
+          <td>6 to 9 months before event.</td>
+          <td>3 to 6 months before event, depending on ticket strategy.</td>
+        </tr>
+        <tr>
+          <td>Focus event</td>
+          <td>4 to 6 months before event.</td>
+          <td>4 to 6 months before event.</td>
+          <td>2 to 3 months before event.</td>
+        </tr>
+        <tr>
+          <td>Awards</td>
+          <td>6 to 9 months before event.</td>
+          <td>6 to 9 months before event for sponsorship and tables.</td>
+          <td>3 to 6 months before event, depending on category and entry timeline.</td>
+        </tr>
+        <tr>
+          <td>New event launch</td>
+          <td>6 to 9 months before event, longer if market education is needed.</td>
+          <td>6 to 9 months before event, longer for strategic sponsor development.</td>
+          <td>Once positioning, buyer journey and proof plan are ready.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>9. Collateral timing</h2>
+    <p>Collateral should follow approved products, pricing, packages and delivery boundaries.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Collateral item</th>
+          <th>When it should be ready</th>
+          <th>Dependency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Collateral requirements list</td>
+          <td>During Stage 3</td>
+          <td>GTM direction and commercial model.</td>
+        </tr>
+        <tr>
+          <td>Sales deck structure</td>
+          <td>Stage 3 or early Stage 4</td>
+          <td>Product direction, positioning and buyer narrative.</td>
+        </tr>
+        <tr>
+          <td>Final sponsor sales deck</td>
+          <td>Stage 4</td>
+          <td>Approved products, pricing, packages and sponsor delivery boundaries.</td>
+        </tr>
+        <tr>
+          <td>Rate card</td>
+          <td>Stage 4</td>
+          <td>Approved pricing and discount rules.</td>
+        </tr>
+        <tr>
+          <td>Proposal templates</td>
+          <td>Stage 4</td>
+          <td>Approved package logic and sales process.</td>
+        </tr>
+        <tr>
+          <td>Ticket campaign assets</td>
+          <td>Stage 4 or Stage 5</td>
+          <td>Approved ticket pricing, landing pages, tracking and marketing strategy.</td>
+        </tr>
+        <tr>
+          <td>Proof assets</td>
+          <td>Stage 4 and Stage 5</td>
+          <td>Media, Content, Partnerships and CRM evidence.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout">Final collateral should not be forced before products, pricing and delivery boundaries are approved. The brief can be ready earlier. The asset should not be final too early.</div>
+  </section>
+
+  <section>
+    <h2>10. Post event review detail</h2>
+    <p>The event commercial process should feed the next cycle. This review should happen within 2 weeks of the event closing for major events and within 5 working days for smaller events.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Review area</th>
+          <th>Owner</th>
+          <th>Output</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Partnership revenue and pipeline</td>
+          <td>Sales Lead</td>
+          <td>Closed won, lost, churn, renewal risk, upgrade opportunity and pricing resistance.</td>
+        </tr>
+        <tr>
+          <td>Ticket performance</td>
+          <td>Commercial Lead, Marketing Lead and CRM Lead</td>
+          <td>Paid tickets, source mix, buyer type, average price, discount use and conversion performance.</td>
+        </tr>
+        <tr>
+          <td>Sponsor delivery</td>
+          <td>Partnerships Lead</td>
+          <td>Fulfilment performance, proof capture, delivery issues and renewal risk.</td>
+        </tr>
+        <tr>
+          <td>Project delivery</td>
+          <td>Project Owner</td>
+          <td>Operational issues, timeline misses, supplier issues, staffing gaps and critical path learnings.</td>
+        </tr>
+        <tr>
+          <td>Conference content</td>
+          <td>Conference Content Lead</td>
+          <td>Agenda quality, speaker performance, content value, sponsor integration issues and authority proof.</td>
+        </tr>
+        <tr>
+          <td>Marketing and media performance</td>
+          <td>Marketing Lead, Media and Content Leads</td>
+          <td>Campaign performance, website conversion, content proof, media assets and audience learnings.</td>
+        </tr>
+        <tr>
+          <td>Financial performance</td>
+          <td>Finance Lead and Commercial Lead</td>
+          <td>Revenue, EBITA, margin, costs, cash, refunds, FX and payment issues.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>11. Escalation logic</h2>
+    <div class="dark-box">
+      <h3>Approval window rule</h3>
+      <p>Approval owners have 5 working days to approve, approve with conditions or reject with required changes. If no decision is received, Stuart escalates to Ana or Pierre.</p>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Issue</th>
+          <th>Default action</th>
+          <th>Escalates to</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Low risk decision delayed</td>
+          <td>Proceed with documented assumption.</td>
+          <td>Commercial Lead</td>
+        </tr>
+        <tr>
+          <td>Pricing, EBITA, margin, cash, monthly sales target or revenue decision delayed</td>
+          <td>Escalate. Do not treat silence as approval.</td>
+          <td>Commercial Approver</td>
+        </tr>
+        <tr>
+          <td>Cross team conflict</td>
+          <td>Escalate with options and recommendation.</td>
+          <td>Executive Sponsor</td>
+        </tr>
+        <tr>
+          <td>Delivery, sponsor fulfilment or conference content risk</td>
+          <td>Escalate with operational impact and commercial recommendation.</td>
+          <td>Project Owner, Partnerships Lead, Conference Content Lead, Executive Sponsor if unresolved</td>
+        </tr>
+        <tr>
+          <td>Fast track route requested</td>
+          <td>Record assumption, risk accepted, decision owner and next checkpoint.</td>
+          <td>Stuart, Ana or Pierre</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>12. RAG status: Red, Amber, Green</h2>
+    <p>RAG means Red, Amber, Green. It gives Ana and the leadership team a quick view of whether an event is ready, at risk or blocked.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Meaning</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tag green">Green</span></td>
+          <td>Inputs complete, commercial foundation approved, GTM ready, execution setup on track.</td>
+          <td>Proceed.</td>
+        </tr>
+        <tr>
+          <td><span class="tag amber">Amber</span></td>
+          <td>Inputs partial, commercial foundation close, blockers named and owned.</td>
+          <td>Proceed with assumptions or conditional approval.</td>
+        </tr>
+        <tr>
+          <td><span class="tag red">Red</span></td>
+          <td>Missing inputs, unapproved pricing, missing EBITA or margin targets, unclear ownership or unresolved delivery risk.</td>
+          <td>Escalate and resolve the affected decision.</td>
+        </tr>
+        <tr>
+          <td><span class="tag blue">Blue</span></td>
+          <td>Fast track route approved.</td>
+          <td>Track risk, owner and next checkpoint.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>13. Decision log</h2>
+    <p>Every priority event should maintain a decision log. The Commercial Lead owns it. The Project Owner keeps it updated where decisions relate to delivery, dependencies or event timing.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Decision</th>
+          <th>Owner</th>
+          <th>Date required</th>
+          <th>Status</th>
+          <th>Risk if delayed</th>
+          <th>Final decision</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Example: Venue or format decision confirmed</td>
+          <td>Executive Sponsor and Commercial Lead</td>
+          <td>Insert date</td>
+          <td>Pending</td>
+          <td>Commercial model and event delivery assumptions remain unstable</td>
+          <td>Insert decision</td>
+        </tr>
+        <tr>
+          <td>Example: Monthly partnerships sales target approved</td>
+          <td>Commercial Lead</td>
+          <td>Insert date</td>
+          <td>Pending</td>
+          <td>Sales cannot plan pipeline coverage properly</td>
+          <td>Insert decision</td>
+        </tr>
+        <tr>
+          <td>Example: Monthly ticket sales target approved</td>
+          <td>Commercial Lead</td>
+          <td>Insert date</td>
+          <td>Pending</td>
+          <td>Marketing and ticket sales pacing remains unclear</td>
+          <td>Insert decision</td>
+        </tr>
+        <tr>
+          <td>Example: Sponsor handoff process approved</td>
+          <td>Partnerships Lead</td>
+          <td>Insert date</td>
+          <td>Pending</td>
+          <td>Delivery risk after sale</td>
+          <td>Insert decision</td>
+        </tr>
+        <tr>
+          <td>Example: Agenda related sponsor product approved</td>
+          <td>Conference Content Lead</td>
+          <td>Insert date</td>
+          <td>Pending</td>
+          <td>Agenda quality or speaker relationship risk</td>
+          <td>Insert decision</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>14. Change control</h2>
+    <p>After commercial approval, product, pricing, package, venue, format and sponsor inventory changes require a change request.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Change request field</th>
+          <th>Required detail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Requested change</td>
+          <td>What needs to change.</td>
+        </tr>
+        <tr>
+          <td>Commercial reason</td>
+          <td>Why the change matters.</td>
+        </tr>
+        <tr>
+          <td>Impact</td>
+          <td>Effect on revenue, EBITA, margin, cash, delivery, Sales, Marketing, CRM, Partnerships, Conference Content and collateral.</td>
+        </tr>
+        <tr>
+          <td>Approval required</td>
+          <td>Commercial Lead and Commercial Approver for major changes. Project Owner, Partnerships Lead or Conference Content Lead where their area is affected.</td>
+        </tr>
+        <tr>
+          <td>Decision</td>
+          <td>Approved, approved with conditions or rejected.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>15. Meeting rule</h2>
+    <ul>
+      <li>Pre read required.</li>
+      <li>Brainstorming should happen asynchronously before the meeting.</li>
+      <li>Ideas should be submitted as recommendations with evidence, impact and owner where possible.</li>
+      <li>Meetings approve, reject or assign.</li>
+      <li>No open brainstorming in approval meetings.</li>
+      <li>Every blocker gets an owner and deadline.</li>
+      <li>Every meeting ends with a decision log update.</li>
+    </ul>
+  </section>
+
+  <div class="footer-note">
+    <p>Document owner: Commercial. This event module sits under the Project Commercialisation Operating Model. Dated delivery plans and deadline specific trackers should sit in separate implementation documents.</p>
+  </div>
+</main>
+</body>
+</html>
