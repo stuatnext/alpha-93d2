@@ -1,0 +1,1247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project Commercialisation Operating Model</title>
+  <style>
+    :root {
+      --ink: #101827;
+      --muted: #536070;
+      --line: #d7dde6;
+      --soft: #f4f6f8;
+      --softer: #fafbfc;
+      --dark: #101827;
+      --blue: #dbeafe;
+      --green: #dcfce7;
+      --amber: #fef3c7;
+      --red: #fee2e2;
+      --purple: #ede9fe;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #ffffff;
+      line-height: 1.48;
+      font-size: 15px;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 44px 36px 72px;
+    }
+
+    header {
+      border-bottom: 4px solid var(--ink);
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 40px;
+      line-height: 1.08;
+      margin: 0 0 14px;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      font-size: 25px;
+      margin: 36px 0 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin: 20px 0 8px;
+    }
+
+    h4 {
+      font-size: 13px;
+      margin: 16px 0 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+
+    p { margin: 0 0 12px; }
+
+    ul {
+      margin: 8px 0 16px 21px;
+      padding: 0;
+    }
+
+    li { margin: 5px 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 22px;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: var(--soft);
+      font-weight: 700;
+    }
+
+    .lead {
+      font-size: 17px;
+      max-width: 900px;
+      color: #1f2937;
+      font-weight: 700;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .grid-three {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: var(--softer);
+      padding: 16px;
+      border-radius: 12px;
+    }
+
+    .card h3, .card h4 { margin-top: 0; }
+
+    .callout {
+      border-left: 5px solid var(--ink);
+      background: var(--soft);
+      padding: 14px 16px;
+      margin: 16px 0 22px;
+      font-weight: 700;
+    }
+
+    .dark-box {
+      background: var(--dark);
+      color: #ffffff;
+      padding: 18px;
+      border-radius: 12px;
+      margin: 18px 0;
+    }
+
+    .dark-box h3, .dark-box h4 { color: #ffffff; margin-top: 0; }
+
+    .stage {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0 22px;
+      background: #ffffff;
+      box-shadow: 0 1px 0 rgba(16, 24, 39, 0.03);
+    }
+
+    .stage-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .stage-head h3 { margin: 0; }
+
+    .duration {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .small {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .tag {
+      display: inline-block;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      margin: 2px 4px 2px 0;
+    }
+
+    .green { background: var(--green); }
+    .amber { background: var(--amber); }
+    .red { background: var(--red); }
+    .blue { background: var(--blue); }
+    .purple { background: var(--purple); }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin: 18px 0 24px;
+    }
+
+    .timeline-step {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      background: var(--softer);
+      min-height: 130px;
+    }
+
+    .timeline-step strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .print-button {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: var(--ink);
+      color: #ffffff;
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 16px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    }
+
+    .footer-note {
+      margin-top: 38px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media print {
+      .print-button { display: none; }
+      body { font-size: 12px; }
+      .page { padding: 20px; max-width: none; }
+      .stage, .card, .dark-box { break-inside: avoid; }
+      h2 { break-after: avoid; }
+    }
+
+    @media (max-width: 980px) {
+      .timeline { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 820px) {
+      .grid-two, .grid-three, .timeline { grid-template-columns: 1fr; }
+      .stage-head { display: block; }
+      .duration { display: block; margin-top: 6px; }
+      h1 { font-size: 31px; }
+      .page { padding: 28px 18px 54px; }
+    }
+  </style>
+</head>
+<body>
+<button class="print-button" onclick="window.print()">Print or save PDF</button>
+<main class="page">
+  <header>
+    <div class="eyebrow">Company operating model</div>
+    <h1>Project Commercialisation Operating Model</h1>
+    <p class="lead">A standard route for moving projects from evidence to commercial model, market strategy, execution setup, launch and review.</p>
+    <div class="pill-row">
+      <span class="pill">Evergreen model</span>
+      <span class="pill">Applies to events and media</span>
+      <span class="pill">Owner: Commercial</span>
+      <span class="pill">Use with product modules</span>
+    </div>
+  </header>
+
+  <section class="grid-two">
+    <div class="card">
+      <h3>Purpose</h3>
+      <p>This model gives the company one operating route for commercialising projects. It defines the sequence, ownership, required inputs, approval checkpoints and escalation rules.</p>
+      <p>It is designed to stop teams scaling sales, marketing, CRM, collateral and delivery activity before the commercial foundation is stable.</p>
+    </div>
+    <div class="card">
+      <h3>What this is not</h3>
+      <ul>
+        <li>It is not a GTM playbook.</li>
+        <li>It is not a marketing calendar.</li>
+        <li>It is not a project delivery plan.</li>
+        <li>It is not a replacement for event, media, podcast or news modules.</li>
+        <li>It is not a brainstorming document. Ideas should be gathered before approval meetings and presented as clear recommendations.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>1. Scope</h2>
+    <p>This operating model applies to all commercial projects, including events, media products, podcasts, news products, newsletters, video series, sponsored campaigns, commercial launches and new product ideas.</p>
+    <div class="callout">Project type changes the depth and timing of the process. It does not change the order of decisions.</div>
+    <p>Large, high risk or high revenue projects need the most detail. Smaller projects need less detail, but they should still follow the same basic sequence.</p>
+  </section>
+
+  <section>
+    <h2>2. Core logic</h2>
+    <div class="timeline">
+      <div class="timeline-step">
+        <strong>0. Confirm project type</strong>
+        <p class="small">Agree what kind of project it is and how much planning it needs.</p>
+      </div>
+      <div class="timeline-step">
+        <strong>1. Evidence</strong>
+        <p class="small">Collect inputs before strategy work starts.</p>
+      </div>
+      <div class="timeline-step">
+        <strong>2. Commercial model</strong>
+        <p class="small">Build thesis, pricing, packages, revenue pacing and financial logic.</p>
+      </div>
+      <div class="timeline-step">
+        <strong>3. Market strategy</strong>
+        <p class="small">Turn the commercial model into GTM direction and functional KPIs.</p>
+      </div>
+      <div class="timeline-step">
+        <strong>4. Execution setup</strong>
+        <p class="small">Prepare sales, marketing, CRM, collateral and workflows.</p>
+      </div>
+      <div class="timeline-step">
+        <strong>5. Launch and review</strong>
+        <p class="small">Execute, optimise, report and feed the next cycle.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Non negotiables</h2>
+    <div class="grid-three">
+      <div class="card">
+        <h4>Evidence before strategy</h4>
+        <p>Commercial recommendations need evidence from sales, delivery, partnerships, finance, audience, content, media, marketing, competitors and clients.</p>
+      </div>
+      <div class="card">
+        <h4>Strategy before scale</h4>
+        <p>Sales, marketing, CRM and collateral should not scale until the commercial model is stable.</p>
+      </div>
+      <div class="card">
+        <h4>Decisions before assets</h4>
+        <p>Final sales and campaign assets require approved products, pricing, packages or clear guardrails.</p>
+      </div>
+    </div>
+    <ul>
+      <li>Sales and marketing execute the approved direction. They do not reopen commercial strategy.</li>
+      <li>CRM requirements start during commercial model development.</li>
+      <li>Board level financial targets should be known before the commercial model is approved. This includes EBITA, margin, cash, revenue ambition and acceptable investment risk.</li>
+      <li>Monthly partnerships sales targets and monthly ticket sales targets are set during Stage 2 once products, pricing, packages and major strategy decisions are clear.</li>
+      <li>Missing inputs become named risks.</li>
+      <li>Late inputs do not reopen approved strategy by default.</li>
+      <li>Every approval has an owner, deadline and escalation route.</li>
+      <li>Every blocker has an owner, deadline and consequence.</li>
+      <li>Fast track routes require approval from Stuart, Ana or Pierre.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>4. Role model</h2>
+    <p>Use roles as the primary reference. Add names in brackets in the working version. This keeps the model useful when responsibilities change.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th>Core responsibility</th>
+          <th>Current owner example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Commercial Lead</td>
+          <td>Owns commercial strategy, pricing, package logic, commercial thesis, GTM framework, monthly commercial pacing and functional KPI recommendations.</td>
+          <td>Stuart</td>
+        </tr>
+        <tr>
+          <td>Executive Sponsor</td>
+          <td>Approves compressed routes, resolves major conflicts and confirms company level priorities.</td>
+          <td>Ana</td>
+        </tr>
+        <tr>
+          <td>Commercial Approver</td>
+          <td>Approves major pricing, product, revenue, financial and sensitive commercial decisions.</td>
+          <td>Pierre</td>
+        </tr>
+        <tr>
+          <td>Project Owner</td>
+          <td>Coordinates project inputs, delivery constraints, critical path, operational risks and execution dependencies.</td>
+          <td>Project manager, such as Desi for Valletta</td>
+        </tr>
+        <tr>
+          <td>Sales Lead</td>
+          <td>Provides sales evidence, sales intel, account insight, churn risk, pricing resistance and sales execution strategy. Sets KPIs for the sales team after Commercial sets the Sales Lead KPIs.</td>
+          <td>Will</td>
+        </tr>
+        <tr>
+          <td>Partnerships Lead</td>
+          <td>Provides sponsor fulfilment insight, handoff requirements, proof capture needs and delivery risk.</td>
+          <td>Olivia</td>
+        </tr>
+        <tr>
+          <td>Marketing Lead</td>
+          <td>Owns marketing strategy, campaign plan, channel plan, creative direction and execution calendar. Sets KPIs for the marketing team after Commercial sets the Marketing Lead KPIs.</td>
+          <td>James or interim owner</td>
+        </tr>
+        <tr>
+          <td>CRM Lead</td>
+          <td>Owns fields, forms, workflows, dashboards, source tracking, attribution and reporting execution.</td>
+          <td>Future Head of CRM, Jo for setup</td>
+        </tr>
+        <tr>
+          <td>Finance Lead</td>
+          <td>Provides EBITA targets, margin expectations, expected costs, payment assumptions, cash impact, tax, FX, fees and refund logic where relevant.</td>
+          <td>Finance</td>
+        </tr>
+        <tr>
+          <td>Conference Content Lead</td>
+          <td>Provides event product input where content, speaker access, agenda integrity, paid content, sponsor integration or conference positioning affects the commercial model.</td>
+          <td>Rory</td>
+        </tr>
+        <tr>
+          <td>Content and Media Leads</td>
+          <td>Provide performance insight, editorial proof, audience insight, content learnings and proof assets.</td>
+          <td>Content and Media</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>5. Board and financial target inputs</h2>
+    <p>Commercial decisions need board level financial context. Revenue alone is not enough. A project can hit revenue and still damage profit, cash or delivery capacity.</p>
+    <div class="callout">Before the commercial model is approved, Commercial should understand the financial health targets leadership will use to judge the project.</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Financial input</th>
+          <th>Why Commercial needs it</th>
+          <th>Owner</th>
+          <th>Timing</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>EBITA target</td>
+          <td>Shows the profit expectation behind the project, not only the sales ambition.</td>
+          <td>Executive Sponsor, Commercial Approver, Finance</td>
+          <td>Stage 1, before commercial approval</td>
+        </tr>
+        <tr>
+          <td>Revenue ambition</td>
+          <td>Gives Commercial a starting point for the size of the opportunity. The final revenue target is recommended after products, pricing, packages and major strategy choices are clear.</td>
+          <td>Commercial Lead, Commercial Approver</td>
+          <td>Early ambition in Stage 1. Final recommendation in Stage 2.</td>
+        </tr>
+        <tr>
+          <td>Monthly partnerships sales target</td>
+          <td>Shows how much partnership revenue needs to be closed each month to hit the approved commercial model.</td>
+          <td>Commercial Lead with Sales Lead input</td>
+          <td>Stage 2</td>
+        </tr>
+        <tr>
+          <td>Monthly ticket sales target</td>
+          <td>Shows how many paid tickets and how much ticket revenue need to be delivered each month.</td>
+          <td>Commercial Lead with Sales Lead, Marketing Lead and Finance input</td>
+          <td>Stage 2</td>
+        </tr>
+        <tr>
+          <td>Gross margin or contribution margin target</td>
+          <td>Prevents product and package decisions that look strong on revenue but weak on profit.</td>
+          <td>Finance, Commercial Lead</td>
+          <td>Stage 1</td>
+        </tr>
+        <tr>
+          <td>Expected costs</td>
+          <td>Shows the likely spend, major cost lines and cost risks so Commercial can protect profit.</td>
+          <td>Finance, Project Owner, Commercial Lead</td>
+          <td>Stage 1</td>
+        </tr>
+        <tr>
+          <td>Cash and payment expectations</td>
+          <td>Clarifies payment timing, invoicing risk, refund exposure and cash flow pressure.</td>
+          <td>Finance</td>
+          <td>Stage 1</td>
+        </tr>
+        <tr>
+          <td>Discount tolerance</td>
+          <td>Sets the boundary for discounting before Sales starts creating margin leakage.</td>
+          <td>Commercial Lead, Commercial Approver, Finance</td>
+          <td>Stage 2</td>
+        </tr>
+        <tr>
+          <td>Strategic investment tolerance</td>
+          <td>Clarifies whether leadership accepts lower short term profit for strategic growth, category entry, venue change, audience repositioning or market positioning.</td>
+          <td>Executive Sponsor, Commercial Approver</td>
+          <td>Stage 1 or Stage 2</td>
+        </tr>
+        <tr>
+          <td>Financial red lines</td>
+          <td>Defines what cannot be breached, such as minimum margin, maximum spend, unacceptable cash exposure or non-negotiable EBITA contribution.</td>
+          <td>Executive Sponsor, Commercial Approver, Finance</td>
+          <td>Before commercial approval</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>If these targets are not available, Commercial should proceed with named assumptions and flag the decision risk. Leadership should not later judge the strategy against financial targets that were not provided during the model build.</p>
+  </section>
+
+  <section>
+    <h2>6. Standard route overview</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Stage</th>
+          <th>Typical duration</th>
+          <th>Primary owner</th>
+          <th>Main output</th>
+          <th>Approval checkpoint</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0. Confirm project type and planning level</td>
+          <td>1 to 2 working days</td>
+          <td>Commercial Lead</td>
+          <td>Project type, planning level, required inputs and approval owner</td>
+          <td>Planning route confirmed</td>
+        </tr>
+        <tr>
+          <td>1. Evidence and inputs</td>
+          <td>5 to 10 working days</td>
+          <td>Project Owner coordinates. Commercial validates.</td>
+          <td>Input pack, missing inputs, risks and assumptions</td>
+          <td>Input readiness</td>
+        </tr>
+        <tr>
+          <td>2. Commercial model</td>
+          <td>1 to 3 weeks</td>
+          <td>Commercial Lead</td>
+          <td>Commercial thesis, pricing, package model, monthly partnerships sales and ticket sales targets, financial health view and CRM requirements draft</td>
+          <td>Commercial approval</td>
+        </tr>
+        <tr>
+          <td>3. Market strategy</td>
+          <td>1 to 2 weeks</td>
+          <td>Commercial Lead</td>
+          <td>GTM framework, positioning, buyer priorities, functional KPI direction, handover map and reporting needs</td>
+          <td>Execution dependency approval</td>
+        </tr>
+        <tr>
+          <td>4. Execution setup</td>
+          <td>1 to 3 weeks</td>
+          <td>Functional leads</td>
+          <td>Sales plan, marketing plan, CRM setup, collateral brief, team KPIs and workflow setup</td>
+          <td>Launch readiness</td>
+        </tr>
+        <tr>
+          <td>5. Launch, optimisation and review</td>
+          <td>Project specific</td>
+          <td>Functional leads</td>
+          <td>Sales activity, campaign activity, reporting, renewals and next cycle learning</td>
+          <td>Performance review</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>7. Stage detail</h2>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Stage 0: Confirm project type and planning level</h3>
+        <span class="duration">1 to 2 working days</span>
+      </div>
+      <p><strong>Purpose:</strong> Make the project easy to plan from the start. This stage confirms what kind of project it is, how commercially important it is, how much detail the planning needs and who needs to approve decisions.</p>
+      <div class="grid-two">
+        <div>
+          <h4>Inputs required</h4>
+          <ul>
+            <li>Project type</li>
+            <li>Revenue ambition</li>
+            <li>EBITA target or expected profit contribution</li>
+            <li>Margin expectation</li>
+            <li>Expected costs</li>
+            <li>Cash or investment sensitivity</li>
+            <li>Strategic importance</li>
+            <li>Commercial risk</li>
+            <li>Delivery complexity</li>
+            <li>Timeline pressure</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Outputs</h4>
+          <ul>
+            <li>Project type confirmed</li>
+            <li>Planning level agreed</li>
+            <li>Approval owner named</li>
+            <li>Required input list</li>
+            <li>Expected timeline</li>
+            <li>Fast track eligibility</li>
+          </ul>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Project type</th>
+            <th>Planning level</th>
+            <th>Typical approval level</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Flagship event, major launch, high value media product</td>
+            <td>Detailed planning: full evidence pack, full commercial model, full approval process and full launch readiness check.</td>
+            <td>Commercial Lead, Executive Sponsor and Commercial Approver</td>
+          </tr>
+          <tr>
+            <td>Regional event, existing media product, podcast season, strategic campaign</td>
+            <td>Standard planning: core evidence pack, commercial model, approval from relevant owners and standard launch readiness check.</td>
+            <td>Commercial Lead with relevant functional approval</td>
+          </tr>
+          <tr>
+            <td>Small campaign, tactical sponsorship, minor product update</td>
+            <td>Simplified planning: short evidence pack, clear commercial assumption, named approver and basic launch readiness check.</td>
+            <td>Commercial Lead or delegated owner</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Stage 1: Evidence and inputs</h3>
+        <span class="duration">5 to 10 working days</span>
+      </div>
+      <p><strong>Purpose:</strong> Gather the evidence Commercial needs before strategy work starts.</p>
+      <div class="grid-two">
+        <div>
+          <h4>Inputs required</h4>
+          <ul>
+            <li>Sales performance, churn, objections, pricing resistance, discounts and sales team insight</li>
+            <li>Client, sponsor, advertiser or partner feedback, fulfilment issues and handoff issues</li>
+            <li>Operational constraints, capacity and critical path</li>
+            <li>Expected costs, EBITA expectations, margin assumptions, fees, tax and payment issues</li>
+            <li>Content, audience, media, marketing and website performance</li>
+            <li>Competitor intel, market movement and buyer behaviour changes</li>
+            <li>Known risks, dependencies and missing data</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Outputs</h4>
+          <ul>
+            <li>Completed input pack</li>
+            <li>Missing input list</li>
+            <li>Known delivery risks</li>
+            <li>Baseline assumptions</li>
+            <li>Initial RAG status</li>
+            <li>Commercial readiness decision</li>
+          </ul>
+        </div>
+      </div>
+      <div class="dark-box">
+        <h3>Input completion rule</h3>
+        <p>If required inputs are incomplete after the agreed window, Commercial proceeds using named assumptions. Missing inputs become owned risks. Late inputs do not reopen approved strategy unless Stuart, Ana or Pierre confirm material impact.</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Input status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Complete</td>
+            <td>Move into commercial model build.</td>
+          </tr>
+          <tr>
+            <td>Partial</td>
+            <td>Proceed with stated assumptions and named risk owner.</td>
+          </tr>
+          <tr>
+            <td>Missing</td>
+            <td>Proceed unless the missing input blocks pricing, margin, delivery viability or contractual risk.</td>
+          </tr>
+          <tr>
+            <td>Critical blocker</td>
+            <td>Escalate within 24 hours. Options are to approve an assumption, delay only the affected decision, or assign a final deadline.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Stage 2: Commercial model</h3>
+        <span class="duration">1 to 3 weeks</span>
+      </div>
+      <p><strong>Purpose:</strong> Build the commercial foundation before GTM, collateral, CRM and execution scale.</p>
+      <div class="grid-two">
+        <div>
+          <h4>Work covered</h4>
+          <ul>
+            <li>Product, format or inventory review</li>
+            <li>Event product discussion with Conference Content Lead where agenda, speakers, content quality or sponsor integration affects commercial value</li>
+            <li>Pricing review</li>
+            <li>Package structure</li>
+            <li>Revenue model and monthly pacing</li>
+            <li>Monthly partnerships sales targets</li>
+            <li>Monthly ticket sales targets</li>
+            <li>EBITA and financial health check</li>
+            <li>Margin check</li>
+            <li>Discount rules</li>
+            <li>Rebooking or renewal logic</li>
+            <li>Structural revenue leak review</li>
+            <li>CRM requirements draft</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Outputs</h4>
+          <ul>
+            <li>Commercial thesis</li>
+            <li>Product, format or package recommendation</li>
+            <li>Pricing and discount rules</li>
+            <li>Recommended revenue target and assumptions after products, pricing, packages and major strategy decisions are clear</li>
+            <li>Monthly partnerships sales target</li>
+            <li>Monthly ticket sales target</li>
+            <li>EBITA, margin, cash and expected cost assumptions</li>
+            <li>Inventory model</li>
+            <li>Risk register</li>
+            <li>CRM requirements draft</li>
+            <li>Decision log update</li>
+          </ul>
+        </div>
+      </div>
+      <h4>Commercial thesis template</h4>
+      <table>
+        <tbody>
+          <tr><th>Target buyer</th><td>Who buys, influences and blocks the decision.</td></tr>
+          <tr><th>Commercial problem</th><td>The problem the project solves for the buyer and the company.</td></tr>
+          <tr><th>Revenue model</th><td>How the project makes money.</td></tr>
+          <tr><th>Monthly pacing</th><td>How partnerships revenue, ticket sales or other revenue need to build month by month.</td></tr>
+          <tr><th>EBITA and financial health logic</th><td>How the project contributes to profit, margin, cash and wider financial health.</td></tr>
+          <tr><th>Primary sponsor, advertiser or buyer categories</th><td>The strongest commercial categories and why they fit.</td></tr>
+          <tr><th>Pricing logic</th><td>Why the price is defensible.</td></tr>
+          <tr><th>Margin risk</th><td>Costs, delivery load or fulfilment risks that threaten margin.</td></tr>
+          <tr><th>Growth bet</th><td>The specific commercial upside being pursued.</td></tr>
+          <tr><th>Reason to win</th><td>The strongest reason the project should perform in market.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Stage 3: Market strategy</h3>
+        <span class="duration">1 to 2 weeks</span>
+      </div>
+      <p><strong>Purpose:</strong> Translate the approved commercial model into market direction for Sales, Marketing, CRM, Project Owners, Partnerships, Content and Media.</p>
+      <div class="grid-two">
+        <div>
+          <h4>Inputs required</h4>
+          <ul>
+            <li>Approved or near approved commercial model</li>
+            <li>Approved financial targets or assumptions</li>
+            <li>Approved pricing or guardrails</li>
+            <li>Monthly partnerships sales and ticket sales targets from Stage 2</li>
+            <li>Sales account insight, client feedback and competitor intel</li>
+            <li>Marketing and audience insight</li>
+            <li>Operational constraints</li>
+            <li>Sponsor, advertiser or partner handoff requirements</li>
+            <li>CRM reporting requirements draft</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Outputs</h4>
+          <ul>
+            <li>GTM framework</li>
+            <li>Positioning</li>
+            <li>Buyer and audience priorities</li>
+            <li>Functional KPI direction for Sales Lead and Marketing Lead</li>
+            <li>Sales direction</li>
+            <li>Marketing direction</li>
+            <li>Rebooking or renewal approach</li>
+            <li>Handover points</li>
+            <li>Reporting requirements</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout">The GTM should explain how the approved commercial model goes to market. It should not reopen the product, pricing or revenue model unless a material issue is found.</div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Stage 4: Execution setup</h3>
+        <span class="duration">1 to 3 weeks</span>
+      </div>
+      <p><strong>Purpose:</strong> Turn strategy into functional plans, workflows, assets and reporting before market activity scales.</p>
+      <p>This stage runs as parallel workstreams. CRM should not sit behind Sales and Marketing as late admin.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Workstream</th>
+            <th>Owner</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sales strategy</td>
+            <td>Sales Lead</td>
+            <td>Sales plan, account priorities, renewal or rebooking plan, NRR target, price increase target, monthly sales pacing and discount boundaries.</td>
+          </tr>
+          <tr>
+            <td>Marketing strategy</td>
+            <td>Marketing Lead</td>
+            <td>Campaign plan, channel plan, website requirements, creative direction, launch calendar, lead targets, audience quality targets and conversion targets.</td>
+          </tr>
+          <tr>
+            <td>CRM setup</td>
+            <td>CRM Lead</td>
+            <td>Fields, forms, source tracking, dashboards, workflows, handover stages and reporting cadence.</td>
+          </tr>
+          <tr>
+            <td>Collateral and enablement</td>
+            <td>Commercial, Sales and Marketing</td>
+            <td>Collateral brief, deck structure, rate card, one pagers, proposal templates and objection handling.</td>
+          </tr>
+          <tr>
+            <td>Delivery workflow</td>
+            <td>Project Owner and Partnerships Lead</td>
+            <td>Handover process, fulfilment requirements, proof capture and owner map.</td>
+          </tr>
+          <tr>
+            <td>Reporting setup</td>
+            <td>Commercial and CRM Lead</td>
+            <td>Weekly report structure, dashboard views, source reporting and risk tracking.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Stage 5: Launch, optimisation and review</h3>
+        <span class="duration">Project specific</span>
+      </div>
+      <p><strong>Purpose:</strong> Move into market activity, track performance and feed learning into the next cycle.</p>
+      <div class="grid-two">
+        <div>
+          <h4>Inputs required</h4>
+          <ul>
+            <li>Approved pricing or guardrails</li>
+            <li>Sales and marketing plans</li>
+            <li>Sales team and marketing team KPIs</li>
+            <li>CRM setup</li>
+            <li>Collateral and landing pages</li>
+            <li>Tracking links and source rules</li>
+            <li>Delivery handoff process</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Outputs</h4>
+          <ul>
+            <li>Sales launch</li>
+            <li>Campaign launch</li>
+            <li>Weekly reporting</li>
+            <li>Sponsor, advertiser or buyer feedback</li>
+            <li>Renewal or rebooking pipeline</li>
+            <li>Performance review</li>
+            <li>Next cycle input pack</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout">The model does not end at launch. Performance review creates the evidence base for the next commercial cycle.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>8. KPI ownership and timing</h2>
+    <p>KPIs should follow the commercial model. They should not be invented separately by each function.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>KPI level</th>
+          <th>Who sets it</th>
+          <th>When it is set</th>
+          <th>Examples</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Project level commercial KPIs</td>
+          <td>Commercial Lead, with Commercial Approver and Finance input where needed</td>
+          <td>Stage 2</td>
+          <td>Revenue target, EBITA target, margin target, monthly partnerships sales target, monthly ticket sales target, discount tolerance, pipeline coverage.</td>
+        </tr>
+        <tr>
+          <td>Sales Lead KPIs</td>
+          <td>Commercial Lead</td>
+          <td>Stage 3, once the GTM direction is clear</td>
+          <td>Partnerships revenue, monthly close targets, rebooking target, upsell target, pipeline coverage, weighted pipeline, discount discipline, strategic account progress.</td>
+        </tr>
+        <tr>
+          <td>Marketing Lead KPIs</td>
+          <td>Commercial Lead</td>
+          <td>Stage 3, once the GTM direction is clear</td>
+          <td>Ticket demand contribution, lead targets, source quality, conversion targets, audience quality, campaign reporting, website conversion, paid efficiency.</td>
+        </tr>
+        <tr>
+          <td>Sales team KPIs</td>
+          <td>Sales Lead</td>
+          <td>Stage 4, when the sales strategy is built</td>
+          <td>Rep targets, account ownership, activity targets, proposal targets, close targets, renewal targets, pipeline hygiene.</td>
+        </tr>
+        <tr>
+          <td>Marketing team KPIs</td>
+          <td>Marketing Lead</td>
+          <td>Stage 4, when the marketing strategy is built</td>
+          <td>Campaign output, channel targets, creative testing, lead volume, buyer quality, conversion support, reporting cadence.</td>
+        </tr>
+        <tr>
+          <td>CRM and reporting KPIs</td>
+          <td>Commercial Lead and CRM Lead</td>
+          <td>Stage 4, before activity scales</td>
+          <td>Data completeness, source tracking, dashboard accuracy, handover compliance, reporting cadence.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout">Stuart sets KPIs for the Sales Lead and Marketing Lead. The Sales Lead then sets KPIs for the sales team. The Marketing Lead then sets KPIs for the marketing team.</div>
+  </section>
+
+  <section>
+    <h2>9. Approval checkpoints</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Approval checkpoint</th>
+          <th>Decision owner</th>
+          <th>Decision required</th>
+          <th>Output</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Checkpoint A: Input readiness</td>
+          <td>Commercial Lead</td>
+          <td>Are inputs complete enough to build strategy, or should Commercial proceed with assumptions?</td>
+          <td>Proceed, proceed with assumptions, pause affected decision or escalate.</td>
+        </tr>
+        <tr>
+          <td>Checkpoint B: Commercial approval</td>
+          <td>Commercial Approver with Commercial Lead</td>
+          <td>Are product, pricing, package, revenue, EBITA, margin, cash, monthly sales pacing and risk assumptions approved?</td>
+          <td>Approved commercial foundation or required changes.</td>
+        </tr>
+        <tr>
+          <td>Checkpoint C: Execution dependency approval</td>
+          <td>Project Owner and Partnerships Lead</td>
+          <td>Are delivery dependencies, handoffs and fulfilment requirements clear?</td>
+          <td>Approved execution dependencies and named blockers.</td>
+        </tr>
+        <tr>
+          <td>Checkpoint D: Launch readiness</td>
+          <td>Functional leads</td>
+          <td>Are sales, marketing, CRM, collateral, team KPIs and reporting ready to scale?</td>
+          <td>Launch approval, conditional launch or blocker escalation.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Allowed decision outcomes</h3>
+    <ul>
+      <li><strong>Approved:</strong> Move to the next stage.</li>
+      <li><strong>Approved with conditions:</strong> Move forward with named conditions, owner and deadline.</li>
+      <li><strong>Rejected with required changes:</strong> Do not move forward until the required change is made.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>10. Escalation logic</h2>
+    <div class="dark-box">
+      <h3>Approval window rule</h3>
+      <p>Approval owners have 5 working days to approve, approve with conditions or reject with required changes. If no decision is received, Stuart escalates to Ana or Pierre.</p>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Issue</th>
+          <th>Default action</th>
+          <th>Escalates to</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Low risk decision delayed</td>
+          <td>Proceed with documented assumption.</td>
+          <td>Commercial Lead</td>
+        </tr>
+        <tr>
+          <td>Pricing, EBITA, margin, cash, monthly sales target or revenue decision delayed</td>
+          <td>Escalate. Do not treat silence as approval.</td>
+          <td>Commercial Approver</td>
+        </tr>
+        <tr>
+          <td>Cross team conflict</td>
+          <td>Escalate with options and recommendation.</td>
+          <td>Executive Sponsor</td>
+        </tr>
+        <tr>
+          <td>Delivery or sponsor fulfilment risk</td>
+          <td>Escalate with operational impact and commercial recommendation.</td>
+          <td>Project Owner, Partnerships Lead, Executive Sponsor if unresolved</td>
+        </tr>
+        <tr>
+          <td>Fast track route requested</td>
+          <td>Record assumption, risk accepted, decision owner and next checkpoint.</td>
+          <td>Stuart, Ana or Pierre</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>11. Fast track rule</h2>
+    <p>Stuart, Ana or Pierre may approve a compressed route when speed matters.</p>
+    <p>Every compressed route must record:</p>
+    <ul>
+      <li>The reason speed matters.</li>
+      <li>The assumption being made.</li>
+      <li>The risk accepted.</li>
+      <li>The decision owner.</li>
+      <li>The next checkpoint.</li>
+    </ul>
+    <div class="callout">Fast track does not mean no governance. It means fewer steps, clearer risk ownership and faster decisions.</div>
+  </section>
+
+  <section>
+    <h2>12. RAG status: Red, Amber, Green</h2>
+    <p>RAG means Red, Amber, Green. It gives Ana and the leadership team a quick view of whether a project is ready, at risk or blocked.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Meaning</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tag green">Green</span></td>
+          <td>Inputs complete, commercial foundation approved, market strategy ready, execution setup on track.</td>
+          <td>Proceed.</td>
+        </tr>
+        <tr>
+          <td><span class="tag amber">Amber</span></td>
+          <td>Inputs partial, commercial foundation close, blockers named and owned.</td>
+          <td>Proceed with assumptions or conditional approval.</td>
+        </tr>
+        <tr>
+          <td><span class="tag red">Red</span></td>
+          <td>Missing inputs, unapproved pricing, missing EBITA or margin targets, unclear ownership or unresolved delivery risk.</td>
+          <td>Escalate and resolve the affected decision.</td>
+        </tr>
+        <tr>
+          <td><span class="tag blue">Blue</span></td>
+          <td>Fast track route approved.</td>
+          <td>Track risk, owner and next checkpoint.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>13. Decision log</h2>
+    <p>Every priority project should maintain a decision log. The Commercial Lead owns it. The Project Owner keeps it updated where decisions relate to delivery, dependencies or project timing. This prevents strategy being reopened by memory, opinion or late feedback.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Decision</th>
+          <th>Owner</th>
+          <th>Date required</th>
+          <th>Status</th>
+          <th>Risk if delayed</th>
+          <th>Final decision</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Example: EBITA and margin target confirmed</td>
+          <td>Commercial Approver and Finance Lead</td>
+          <td>Insert date</td>
+          <td>Pending</td>
+          <td>Commercial model may optimise for revenue over profit</td>
+          <td>Insert decision</td>
+        </tr>
+        <tr>
+          <td>Example: Monthly ticket sales target approved</td>
+          <td>Commercial Lead</td>
+          <td>Insert date</td>
+          <td>Pending</td>
+          <td>Marketing and Sales cannot plan pacing properly</td>
+          <td>Insert decision</td>
+        </tr>
+        <tr>
+          <td>Example: Monthly partnerships sales target approved</td>
+          <td>Commercial Lead</td>
+          <td>Insert date</td>
+          <td>Pending</td>
+          <td>Sales team cannot plan pipeline coverage properly</td>
+          <td>Insert decision</td>
+        </tr>
+        <tr>
+          <td>Example: Pricing guardrail approved</td>
+          <td>Commercial Approver</td>
+          <td>Insert date</td>
+          <td>Pending</td>
+          <td>Sales cannot issue formal proposals</td>
+          <td>Insert decision</td>
+        </tr>
+        <tr>
+          <td>Example: Sponsor handoff process approved</td>
+          <td>Partnerships Lead</td>
+          <td>Insert date</td>
+          <td>Pending</td>
+          <td>Delivery risk after sale</td>
+          <td>Insert decision</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>14. Change control</h2>
+    <p>After commercial approval, product, format, pricing and package changes require a change request.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Change request field</th>
+          <th>Required detail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Requested change</td>
+          <td>What needs to change.</td>
+        </tr>
+        <tr>
+          <td>Commercial reason</td>
+          <td>Why the change matters.</td>
+        </tr>
+        <tr>
+          <td>Impact</td>
+          <td>Effect on revenue, EBITA, margin, cash, delivery, Sales, Marketing, CRM and collateral.</td>
+        </tr>
+        <tr>
+          <td>Approval required</td>
+          <td>Commercial Lead and Commercial Approver for major changes.</td>
+        </tr>
+        <tr>
+          <td>Decision</td>
+          <td>Approved, approved with conditions or rejected.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>15. Meeting rule</h2>
+    <ul>
+      <li>Pre read required.</li>
+      <li>Brainstorming should happen asynchronously before the meeting.</li>
+      <li>Ideas should be submitted as recommendations with evidence, impact and owner where possible.</li>
+      <li>Meetings approve, reject or assign.</li>
+      <li>No open brainstorming in approval meetings.</li>
+      <li>Every blocker gets an owner and deadline.</li>
+      <li>Every meeting ends with a decision log update.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>16. Product modules</h2>
+    <p>This model should be supported by product specific modules. Each module should use the same stage structure and adapt the inputs, owners, outputs and timing.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Module</th>
+          <th>Used for</th>
+          <th>Special focus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Event module</td>
+          <td>Conferences, summits, awards, exhibitions and focus events.</td>
+          <td>Sponsors, booths, packages, floorplan, delegate model, ops, rebooking, conference content, speaker value and delivery.</td>
+        </tr>
+        <tr>
+          <td>Media module</td>
+          <td>News, newsletters, podcasts, video, editorial products and media campaigns.</td>
+          <td>Audience, formats, publishing cadence, distribution, ad inventory, sponsorship and production.</td>
+        </tr>
+        <tr>
+          <td>Podcast module</td>
+          <td>New podcasts, seasons, branded series and event linked shows.</td>
+          <td>Host strategy, guest pipeline, episodes, sponsor reads, clips, distribution and renewals.</td>
+        </tr>
+        <tr>
+          <td>News product module</td>
+          <td>News sites, editorial verticals, newsletter led products and sponsored content models.</td>
+          <td>Editorial beats, traffic model, advertiser categories, lead generation and commercial content rules.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="footer-note">
+    <p>Document owner: Commercial. This master model should stay evergreen. Dated delivery plans and deadline specific trackers should sit in separate implementation documents.</p>
+  </div>
+</main>
+</body>
+</html>
