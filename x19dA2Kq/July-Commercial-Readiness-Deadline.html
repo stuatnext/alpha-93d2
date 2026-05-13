@@ -1,0 +1,1206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>31 July Commercial Readiness Deadline</title>
+  <style>
+    :root {
+      --ink: #101827;
+      --muted: #536070;
+      --line: #d7dde6;
+      --soft: #f4f6f8;
+      --softer: #fafbfc;
+      --dark: #101827;
+      --green: #dcfce7;
+      --amber: #fef3c7;
+      --red: #fee2e2;
+      --blue: #dbeafe;
+      --purple: #ede9fe;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #ffffff;
+      line-height: 1.48;
+      font-size: 15px;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 44px 36px 72px;
+    }
+
+    header {
+      border-bottom: 4px solid var(--ink);
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 40px;
+      line-height: 1.08;
+      margin: 0 0 14px;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      font-size: 25px;
+      margin: 36px 0 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin: 20px 0 8px;
+    }
+
+    h4 {
+      font-size: 13px;
+      margin: 16px 0 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+
+    p { margin: 0 0 12px; }
+
+    ul {
+      margin: 8px 0 16px 21px;
+      padding: 0;
+    }
+
+    li { margin: 5px 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 22px;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: var(--soft);
+      font-weight: 700;
+    }
+
+    .lead {
+      font-size: 17px;
+      max-width: 920px;
+      color: #1f2937;
+      font-weight: 700;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .grid-three {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: var(--softer);
+      padding: 16px;
+      border-radius: 12px;
+    }
+
+    .card h3, .card h4 { margin-top: 0; }
+
+    .callout {
+      border-left: 5px solid var(--ink);
+      background: var(--soft);
+      padding: 14px 16px;
+      margin: 16px 0 22px;
+      font-weight: 700;
+    }
+
+    .dark-box {
+      background: var(--dark);
+      color: #ffffff;
+      padding: 18px;
+      border-radius: 12px;
+      margin: 18px 0;
+    }
+
+    .dark-box h3, .dark-box h4 { color: #ffffff; margin-top: 0; }
+
+    .stage {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0 22px;
+      background: #ffffff;
+      box-shadow: 0 1px 0 rgba(16, 24, 39, 0.03);
+    }
+
+    .stage-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .stage-head h3 { margin: 0; }
+
+    .duration {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .small {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .tag {
+      display: inline-block;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      margin: 2px 4px 2px 0;
+    }
+
+    .green { background: var(--green); }
+    .amber { background: var(--amber); }
+    .red { background: var(--red); }
+    .blue { background: var(--blue); }
+    .purple { background: var(--purple); }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin: 18px 0 24px;
+    }
+
+    .timeline-step {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      background: var(--softer);
+      min-height: 130px;
+    }
+
+    .timeline-step strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .checkpoint {
+      border: 1px solid var(--line);
+      border-left: 6px solid var(--ink);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 12px 0 22px;
+      background: var(--soft);
+    }
+
+    .checkpoint h3 { margin-top: 0; }
+
+    .print-button {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: var(--ink);
+      color: #ffffff;
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 16px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    }
+
+    .footer-note {
+      margin-top: 38px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media print {
+      .print-button { display: none; }
+      body { font-size: 12px; }
+      .page { padding: 20px; max-width: none; }
+      .stage, .card, .dark-box, .checkpoint { break-inside: avoid; }
+      h2 { break-after: avoid; }
+    }
+
+    @media (max-width: 980px) {
+      .timeline { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 820px) {
+      .grid-two, .grid-three, .timeline { grid-template-columns: 1fr; }
+      .stage-head { display: block; }
+      .duration { display: block; margin-top: 6px; }
+      h1 { font-size: 31px; }
+      .page { padding: 28px 18px 54px; }
+    }
+  </style>
+</head>
+<body>
+<button class="print-button" onclick="window.print()">Print or save PDF</button>
+<main class="page">
+  <header>
+    <div class="eyebrow">Deadline interpretation note</div>
+    <h1>31 July Commercial Readiness Deadline</h1>
+    <p class="lead">A project-by-project timeline for reaching commercial readiness by 31 July, covering events, media products, communities and marketing-led commercial projects.</p>
+    <div class="pill-row">
+      <span class="pill">Deadline: 31 July</span>
+      <span class="pill">Starting point: 13 May</span>
+      <span class="pill">Owners: Project setup + Commercial outputs</span>
+      <span class="pill">Applies to all priority projects</span>
+    </div>
+  </header>
+
+  <section class="grid-two">
+    <div class="card">
+      <h3>Purpose</h3>
+      <p>This document explains what needs to happen by 31 July across project briefs, input packs, commercial strategy, GTM strategy, Sales strategy, Marketing strategy, CRM, collateral, rebooking and execution planning.</p>
+      <p>It also shows when broader project kickoff meetings need to start. These should not be Commercial-only meetings. Project Owners should set them up, make sure the right people are in the room and still deliver the same required outputs. Because the current date is 13 May, the work needs to begin now, especially for Media, where year-round products need clearer commercial structure and ownership.</p>
+    </div>
+    <div class="card">
+      <h3>Core position</h3>
+      <p><strong>The 31 July deadline should lock the commercial foundation and collateral requirements. It should not force premature final collateral production where products, pricing, packages or delivery boundaries are still unapproved.</strong></p>
+      <p>Project briefs and input packs should be complete. Final polished collateral should only be included where the commercial model has already been approved.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>1. What 31 July is for</h2>
+    <p>The 31 July deadline should be treated as a <strong>commercial readiness deadline</strong>, not a final asset production deadline for every project.</p>
+    <div class="callout">By 31 July, the business should know what is being sold, why it is being sold, who it is for, what it should cost, what the financial ambition is, what the delivery risks are, and what collateral needs to be created.</div>
+    <p>Where product, pricing and package decisions are approved early enough, final sales collateral can be produced before 31 July. Where those decisions are not approved, the right 31 July output is a collateral brief and production plan, not a fake final deck.</p>
+  </section>
+
+  <section>
+    <h2>2. Required interpretation</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Recommended answer</th>
+          <th>Reason</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Should project briefs be included in the 31 July deadline?</td>
+          <td>Yes.</td>
+          <td>Commercial needs project briefs and input packs before it can make defensible recommendations on products, pricing, packages, financial assumptions, GTM and execution dependencies.</td>
+        </tr>
+        <tr>
+          <td>Should sales collateral be included in the 31 July deadline?</td>
+          <td>Partly.</td>
+          <td>Collateral requirements, sales narrative, positioning and deck structure should be included. Final polished collateral should only be included where product, pricing, package and delivery decisions are already approved.</td>
+        </tr>
+        <tr>
+          <td>Should final campaign assets be included in the 31 July deadline?</td>
+          <td>No, unless the project is imminent or already approved.</td>
+          <td>Campaign assets should follow approved GTM, approved pricing, landing pages, tracking requirements and marketing strategy.</td>
+        </tr>
+        <tr>
+          <td>Can rebooking or renewal conversations start before 31 July?</td>
+          <td>Yes, but only with guardrails.</td>
+          <td>Soft rebooking and renewal conversations can happen early. Formal proposals need approved pricing, product scope or agreed commercial guardrails.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>3. Projects covered by the 31 July deadline</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Project</th>
+          <th>Timing / cadence</th>
+          <th>31 July focus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Event</td>
+          <td>NEXT Summit New York 2027</td>
+          <td>March 2027</td>
+          <td>Commercial strategy already ready. Focus should be GTM readiness, execution sign-off, CRM, collateral plan and sales launch readiness.</td>
+        </tr>
+        <tr>
+          <td>Event</td>
+          <td>NEXT Summit Valletta 2027</td>
+          <td>May 2027</td>
+          <td>Post-Valletta input pack, product performance data, commercial model, pricing, packages, GTM framework and rebooking approach.</td>
+        </tr>
+        <tr>
+          <td>Event</td>
+          <td>Retreats: Cyprus and Cancun</td>
+          <td>October and November 2027</td>
+          <td>Commercial thesis, product definition, target buyer profile, pricing logic, delivery constraints and sales approach.</td>
+        </tr>
+        <tr>
+          <td>Event / Community</td>
+          <td>HR Connect</td>
+          <td>Membership community with small events</td>
+          <td>Membership model, event model, pricing, benefits, renewal logic, community value proposition and CRM tracking.</td>
+        </tr>
+        <tr>
+          <td>Event</td>
+          <td>NEXTPredict 2027</td>
+          <td>October 2027</td>
+          <td>Use NEXTPredict 2026 strategy and GTM learnings as the base. Define 2027 commercial assumptions, product evolution, pricing, sponsor categories and renewal path.</td>
+        </tr>
+        <tr>
+          <td>Media</td>
+          <td>News</td>
+          <td>Year-round</td>
+          <td>Commercial model for ad banners, newsletter banners, promoted content and PR support. Rate card, inventory, owner map, delivery workflow and reporting model.</td>
+        </tr>
+        <tr>
+          <td>Media</td>
+          <td>Podcast</td>
+          <td>Year-round</td>
+          <td>Commercial model, sponsorship packages, episode inventory, production capacity, delivery ownership, renewal model and media kit.</td>
+        </tr>
+        <tr>
+          <td>Media</td>
+          <td>Spotlight</td>
+          <td>Year-round paid-for video interviews / vlogs</td>
+          <td>Product definition, pricing, production capacity, client success workflow, proof model, sales narrative and collateral requirements.</td>
+        </tr>
+        <tr>
+          <td>Media</td>
+          <td>Research Reports</td>
+          <td>Year-round white papers</td>
+          <td>Report product model, sponsor value, editorial boundaries, lead generation logic, pricing, production workflow and CRM reporting.</td>
+        </tr>
+        <tr>
+          <td>Marketing project</td>
+          <td>Community</td>
+          <td>Year-round</td>
+          <td>Commercial role of community, value proposition, KPIs, CRM tracking, audience quality and handoff to Sales or Marketing.</td>
+        </tr>
+        <tr>
+          <td>Marketing / Community</td>
+          <td>marketingNEXT</td>
+          <td>Marketing professionals community, equivalent to HR Connect</td>
+          <td>Community model, membership value proposition, event layer, pricing, partner categories, GTM and CRM tracking.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout">Media needs to start immediately. These are year-round products, so waiting until July to define commercial model, inventory, owners and rate cards creates sales drag for the rest of the year.</div>
+  </section>
+
+  <section>
+    <h2>4. Current status assumptions</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Project</th>
+          <th>Known status</th>
+          <th>31 July implication</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>NEXT Summit New York 2027</td>
+          <td>Commercial strategy already ready.</td>
+          <td>Do not restart commercial strategy. Move into GTM, execution sign-off, CRM, collateral production plan and sales readiness.</td>
+        </tr>
+        <tr>
+          <td>NEXTPredict 2026</td>
+          <td>Commercial strategy ready. GTM strategy draft built on 13 May.</td>
+          <td>Use this as a live example of the operating model. 2026 execution should also generate the evidence base for NEXTPredict 2027.</td>
+        </tr>
+        <tr>
+          <td>NEXTPredict 2027</td>
+          <td>Not the same project as the 2026 live execution plan.</td>
+          <td>Start 2027 commercial assumptions before 31 July, but use 2026 performance and GTM learnings as they become available.</td>
+        </tr>
+        <tr>
+          <td>Media products</td>
+          <td>Year-round products need immediate commercial structuring.</td>
+          <td>News, Podcast, Spotlight and Research Reports should start their input and commercial model meetings in May, not July.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>5. Meeting start timeline to hit 31 July</h2>
+    <p>This timeline starts from 13 May. Dates are deliberately front-loaded because the work cannot all be left to July.</p>
+    <div class="callout">Kickoff meetings should be broader project readiness meetings, not Commercial-only sessions. Project Owners are responsible for setting them up, coordinating attendance and making sure the required outputs are captured. Commercial still owns the commercial model, GTM framework and commercial recommendations.</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Timing</th>
+          <th>Meeting / workstream</th>
+          <th>Projects covered</th>
+          <th>Setup owner</th>
+          <th>Required output</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>13 to 17 May</td>
+          <td>Confirm project list, owners, planning level and input templates.</td>
+          <td>All projects.</td>
+          <td>Commercial Lead</td>
+          <td>Agreed project list, owner map and input pack structure.</td>
+        </tr>
+        <tr>
+          <td>13 to 24 May</td>
+          <td>Media project readiness kickoff meetings.</td>
+          <td>News, Podcast, Spotlight, Research Reports.</td>
+          <td>Director of Media / relevant Product Owner</td>
+          <td>Media product scope, owners, current inventory, rate card gaps, delivery constraints, evidence required and commercial model inputs.</td>
+        </tr>
+        <tr>
+          <td>20 to 31 May</td>
+          <td>Event project readiness kickoff meetings.</td>
+          <td>NYC 2027, Valletta 2027, Retreats, HR Connect, NEXTPredict 2027.</td>
+          <td>Project Owner</td>
+          <td>Confirm which projects need full commercial strategy, which need GTM, which need input packs first, and what each project must deliver by 31 July.</td>
+        </tr>
+        <tr>
+          <td>20 to 31 May</td>
+          <td>Marketing and community project readiness kickoff meetings.</td>
+          <td>Community, marketingNEXT.</td>
+          <td>Project / Community Owner</td>
+          <td>Define whether each project is commercial, marketing-led, community-led or hybrid, and what commercial output is required by 31 July.</td>
+        </tr>
+        <tr>
+          <td>27 May to 7 June</td>
+          <td>Evidence and input collection.</td>
+          <td>All projects, with Media prioritised.</td>
+          <td>Project / Product Owner</td>
+          <td>Input packs completed or missing inputs named with owner and deadline.</td>
+        </tr>
+        <tr>
+          <td>3 to 14 June</td>
+          <td>Media commercial model build.</td>
+          <td>News, Podcast, Spotlight, Research Reports.</td>
+          <td>Commercial Lead</td>
+          <td>Media product catalogue, pricing, inventory, delivery model, ownership, monthly sales targets and collateral requirements.</td>
+        </tr>
+        <tr>
+          <td>10 to 21 June</td>
+          <td>Event commercial model build.</td>
+          <td>Valletta 2027, Retreats, HR Connect, NEXTPredict 2027. NYC moves to GTM/execution.</td>
+          <td>Commercial Lead</td>
+          <td>Commercial model drafts, product decisions, pricing assumptions, rebooking logic and financial assumptions.</td>
+        </tr>
+        <tr>
+          <td>17 to 28 June</td>
+          <td>Commercial approval sessions.</td>
+          <td>Media first, then events and communities.</td>
+          <td>Commercial Approver / Commercial Lead</td>
+          <td>Approved or conditionally approved commercial foundations.</td>
+        </tr>
+        <tr>
+          <td>24 June to 12 July</td>
+          <td>GTM framework build.</td>
+          <td>Priority projects with approved commercial models.</td>
+          <td>Commercial Lead</td>
+          <td>Positioning, target buyers, sales direction, marketing direction, CRM requirements and handover points.</td>
+        </tr>
+        <tr>
+          <td>8 to 19 July</td>
+          <td>Sales strategy build and execution dependency sign-off.</td>
+          <td>All priority projects.</td>
+          <td>Sales Lead for Sales strategy. Project / Product Owner for dependency sign-off.</td>
+          <td>Sales strategy, account focus, sales pacing, renewal / rebooking approach, delivery boundaries, sponsor or client handoffs, CRM requirements and blockers.</td>
+        </tr>
+        <tr>
+          <td>15 to 26 July</td>
+          <td>Marketing strategy build, CRM setup plan, collateral requirements and readiness review.</td>
+          <td>All priority projects.</td>
+          <td>Marketing Lead for Marketing strategy. Commercial Lead for collateral requirements. CRM Lead for CRM setup plan.</td>
+          <td>Marketing strategy, campaign direction, audience priorities, CRM setup plan, collateral brief, deck structure, rate card needs, proposal template needs and production sequence.</td>
+        </tr>
+        <tr>
+          <td>29 to 31 July</td>
+          <td>Commercial readiness review.</td>
+          <td>All projects.</td>
+          <td>Commercial Lead</td>
+          <td>Green / Amber / Red / Blue status, decision log, Sales strategy status, Marketing strategy status, next actions and post-31 July production plan.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>6. Sales and Marketing strategy deadlines</h2>
+    <p>Sales and Marketing strategies sit below the GTM framework. They should not be built in isolation, but they do need clear deadlines so the 31 July process does not stop at strategy theory.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Project</th>
+          <th>Sales strategy deadline</th>
+          <th>Marketing strategy deadline</th>
+          <th>Owner logic</th>
+          <th>Minimum output required</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>NYC 2027</td>
+          <td>28 June</td>
+          <td>12 July</td>
+          <td>Will owns Sales strategy. Marketing Lead / interim Marketing owner owns Marketing strategy.</td>
+          <td>Sales account plan, target pacing, priority packages, CRM requirements, campaign direction and collateral requirements.</td>
+        </tr>
+        <tr>
+          <td>Valletta 2027</td>
+          <td>19 July</td>
+          <td>26 July</td>
+          <td>Will owns Sales strategy. Marketing Lead / interim Marketing owner owns Marketing strategy.</td>
+          <td>Rebooking plan, upgrade paths, sales priorities, ticket / sponsor campaign direction and CRM tracking requirements.</td>
+        </tr>
+        <tr>
+          <td>Retreats: Cyprus and Cancun</td>
+          <td>19 July</td>
+          <td>26 July</td>
+          <td>Will owns Sales strategy. Marketing Lead / interim Marketing owner owns Marketing strategy.</td>
+          <td>Target account list, premium buyer profile, outreach plan, campaign direction and collateral requirements.</td>
+        </tr>
+        <tr>
+          <td>HR Connect</td>
+          <td>19 July</td>
+          <td>26 July</td>
+          <td>Will owns Sales strategy where commercial sales are involved. Marketing / Community owner owns Marketing strategy.</td>
+          <td>Membership sales approach, renewal logic, partner opportunities, community campaign direction and CRM tracking.</td>
+        </tr>
+        <tr>
+          <td>NEXTPredict 2027</td>
+          <td>26 July</td>
+          <td>31 July</td>
+          <td>Will owns Sales strategy. Marketing Lead / interim Marketing owner owns Marketing strategy.</td>
+          <td>Early sponsor category plan, renewal path from 2026, target accounts, audience strategy and initial campaign direction.</td>
+        </tr>
+        <tr>
+          <td>News</td>
+          <td>28 June</td>
+          <td>12 July</td>
+          <td>Will owns Sales strategy. Marketing Lead / Media owner owns Marketing strategy where audience growth or campaign support is required.</td>
+          <td>Media sales plan, advertiser categories, rate card use, inventory rules, campaign support plan and CRM reporting.</td>
+        </tr>
+        <tr>
+          <td>Podcast</td>
+          <td>28 June</td>
+          <td>12 July</td>
+          <td>Will owns Sales strategy. Marketing Lead / Media owner owns Marketing strategy where audience growth or campaign support is required.</td>
+          <td>Sponsor package sales plan, target advertisers, renewal path, distribution support and proof requirements.</td>
+        </tr>
+        <tr>
+          <td>Spotlight</td>
+          <td>28 June</td>
+          <td>12 July</td>
+          <td>Will owns Sales strategy. Marketing Lead / Media owner owns Marketing strategy where campaign support is required.</td>
+          <td>Target buyer list, package narrative, price handling, production handoff, promotion plan and proof model.</td>
+        </tr>
+        <tr>
+          <td>Research Reports</td>
+          <td>28 June</td>
+          <td>12 July</td>
+          <td>Will owns Sales strategy. Marketing Lead / Media owner owns Marketing strategy where lead generation or campaign support is required.</td>
+          <td>Sponsor sales plan, report themes, lead generation plan, distribution plan, CRM requirements and reporting proof.</td>
+        </tr>
+        <tr>
+          <td>Community</td>
+          <td>19 July, if commercialised</td>
+          <td>26 July</td>
+          <td>Will owns Sales strategy only if there is a commercial sales motion. Marketing / Community owner owns Marketing strategy.</td>
+          <td>Community growth plan, commercial handoff rules, audience quality targets, CRM tracking and operating cadence.</td>
+        </tr>
+        <tr>
+          <td>marketingNEXT</td>
+          <td>19 July</td>
+          <td>26 July</td>
+          <td>Will owns Sales strategy where membership, sponsorship or partner sales exist. Marketing / Community owner owns Marketing strategy.</td>
+          <td>Membership sales logic, partner categories, audience growth strategy, event layer campaign direction and CRM requirements.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout">Sales strategy should usually be delivered first because Marketing needs to understand priority buyers, packages, objection points and sales pacing. Marketing strategy should then translate the GTM and sales priorities into audience, campaign, channel, content and conversion plans.</div>
+  </section>
+
+  <section>
+    <h2>7. Project-by-project kickoff plan</h2>
+    <p>These kickoff meetings should be broad project readiness meetings. The setup owner is responsible for arranging the meeting and gathering the right contributors. Commercial still owns the commercial recommendations and GTM outputs.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Project</th>
+          <th>First meeting should happen</th>
+          <th>Setup owner</th>
+          <th>Why this timing</th>
+          <th>31 July target state</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>NEXT Summit New York 2027</td>
+          <td>20 to 31 May</td>
+          <td>Project Owner</td>
+          <td>Commercial strategy is already ready, so the meeting should focus on GTM, CRM, execution sign-off and collateral production.</td>
+          <td>GTM framework, sales direction, marketing direction, CRM requirements, collateral brief and execution dependencies ready.</td>
+        </tr>
+        <tr>
+          <td>NEXT Summit Valletta 2027</td>
+          <td>Immediately after Valletta post-event data starts coming in</td>
+          <td>Project Owner</td>
+          <td>The 2027 commercial strategy depends on what sold, what churned, what resisted pricing, product performance data and delivery issues from Valletta.</td>
+          <td>Input pack complete, commercial model approved or conditionally approved, rebooking approach and GTM framework ready.</td>
+        </tr>
+        <tr>
+          <td>Retreats: Cyprus and Cancun</td>
+          <td>20 to 31 May</td>
+          <td>Project Owner</td>
+          <td>These are later in 2027, but the product model, buyer profile and pricing logic need early clarity because the sales cycle for premium retreat products can be long.</td>
+          <td>Commercial thesis, target buyer profile, pricing logic, product structure, delivery constraints and sales approach ready.</td>
+        </tr>
+        <tr>
+          <td>HR Connect</td>
+          <td>20 to 31 May</td>
+          <td>Project / Community Owner</td>
+          <td>It is both a membership community and a small-events product, so the commercial model needs to define what is being sold before GTM or collateral.</td>
+          <td>Membership model, event layer, pricing, benefits, sponsor / partner opportunities, CRM tracking and renewal logic ready.</td>
+        </tr>
+        <tr>
+          <td>NEXTPredict 2027</td>
+          <td>10 to 21 June</td>
+          <td>Project Owner</td>
+          <td>The 2026 commercial strategy and GTM draft already provide a base, but 2027 assumptions need to be separated from 2026 execution.</td>
+          <td>2027 commercial assumptions, product evolution, sponsor categories, renewal logic and draft GTM direction ready.</td>
+        </tr>
+        <tr>
+          <td>News</td>
+          <td>13 to 24 May</td>
+          <td>Director of Media / Product Owner</td>
+          <td>Year-round revenue products cannot wait for July. Inventory, rate cards, ownership and delivery workflows need to be clarified now.</td>
+          <td>Commercial model for ad banners, newsletter banners, promoted content and PR support, with rate card, inventory, delivery owner and reporting model.</td>
+        </tr>
+        <tr>
+          <td>Podcast</td>
+          <td>13 to 24 May</td>
+          <td>Director of Media / Product Owner</td>
+          <td>Podcast is year-round and has production and client success dependencies. Packages, inventory, delivery and proof need to be defined early.</td>
+          <td>Commercial model, sponsorship packages, rate card, production capacity, client success workflow and collateral brief ready.</td>
+        </tr>
+        <tr>
+          <td>Spotlight</td>
+          <td>13 to 24 May</td>
+          <td>Director of Media / Product Owner</td>
+          <td>Spotlight needs clear product definition, pricing, production workflow and proof model before Sales can scale it properly.</td>
+          <td>Product definition, pricing, production capacity, client success workflow, proof model and sales narrative ready.</td>
+        </tr>
+        <tr>
+          <td>Research Reports</td>
+          <td>13 to 24 May</td>
+          <td>Director of Media / Product Owner</td>
+          <td>Reports need editorial, lead generation, sponsor value, CRM and production alignment. This is commercially important and should not drift.</td>
+          <td>Report product model, sponsor value, editorial boundaries, pricing, lead generation logic, CRM reporting and production workflow ready.</td>
+        </tr>
+        <tr>
+          <td>Community</td>
+          <td>20 to 31 May</td>
+          <td>Community Owner</td>
+          <td>Community needs clarity on whether it is audience growth, engagement, commercial pipeline, sponsor value or all three.</td>
+          <td>Role of Community, KPIs, commercial handoff, CRM tracking, audience quality definition and operating rhythm ready.</td>
+        </tr>
+        <tr>
+          <td>marketingNEXT</td>
+          <td>20 to 31 May</td>
+          <td>Project / Community Owner</td>
+          <td>This needs the same discipline as HR Connect: community model, member value, partner value, events layer and pricing logic.</td>
+          <td>Community model, membership value proposition, event layer, partner categories, pricing logic, GTM framework and CRM tracking ready.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>8. By 31 July: required deliverables</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Deliverable</th>
+          <th>31 July status</th>
+          <th>Owner</th>
+          <th>Why it is needed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Project brief or product brief</td>
+          <td><span class="tag green">Required</span></td>
+          <td>Project / Product Owner</td>
+          <td>Gives Commercial the project context, key dates, dependencies, delivery constraints and operational assumptions.</td>
+        </tr>
+        <tr>
+          <td>Commercial input pack</td>
+          <td><span class="tag green">Required</span></td>
+          <td>Project / Product Owner coordinates. Functional owners contribute.</td>
+          <td>Creates the evidence base for product, pricing, package and GTM decisions.</td>
+        </tr>
+        <tr>
+          <td>Sales evidence</td>
+          <td><span class="tag green">Required</span></td>
+          <td>Sales Lead</td>
+          <td>Shows what sold, what did not sell, pricing resistance, discounting, churn risk and buyer feedback.</td>
+        </tr>
+        <tr>
+          <td>Client, sponsor or advertiser feedback</td>
+          <td><span class="tag green">Required</span></td>
+          <td>Sales Lead / Client Success or Partnerships Lead</td>
+          <td>Shows what needs protecting, changing, renewing, upgrading or removing.</td>
+        </tr>
+        <tr>
+          <td>Product performance data</td>
+          <td><span class="tag green">Required where available</span></td>
+          <td>Project / Product Owner</td>
+          <td>Shows whether products actually delivered value. For events, this includes footfall, scans, session attendance, WiFi access, website traffic, brand reach, app engagement and survey data. For media, this includes audience, engagement, campaign delivery and reporting proof.</td>
+        </tr>
+        <tr>
+          <td>Delivery constraints</td>
+          <td><span class="tag green">Required</span></td>
+          <td>Project / Product Owner</td>
+          <td>Prevents Commercial selling products the business cannot deliver properly.</td>
+        </tr>
+        <tr>
+          <td>Competitor intel and market movement</td>
+          <td><span class="tag green">Required</span></td>
+          <td>Commercial Lead</td>
+          <td>Helps price, position and package products against the market.</td>
+        </tr>
+        <tr>
+          <td>Board and financial context</td>
+          <td><span class="tag green">Required or stated assumption</span></td>
+          <td>Commercial Approver / Finance / Executive Sponsor</td>
+          <td>Clarifies EBITA, margin, cash, expected costs, investment tolerance and financial red lines.</td>
+        </tr>
+        <tr>
+          <td>Commercial strategy</td>
+          <td><span class="tag green">Required for priority projects</span></td>
+          <td>Commercial Lead</td>
+          <td>Locks what is being sold, how it is priced, what is included, what is not approved and what the financial model assumes.</td>
+        </tr>
+        <tr>
+          <td>GTM framework</td>
+          <td><span class="tag green">Required for priority projects where commercial model is approved</span></td>
+          <td>Commercial Lead</td>
+          <td>Defines how the approved commercial model goes to market.</td>
+        </tr>
+        <tr>
+          <td>Collateral requirements list</td>
+          <td><span class="tag green">Required</span></td>
+          <td>Commercial Lead</td>
+          <td>Defines what assets need to be produced after the commercial model is approved.</td>
+        </tr>
+        <tr>
+          <td>CRM and reporting requirements</td>
+          <td><span class="tag green">Required</span></td>
+          <td>Commercial Lead / CRM Lead</td>
+          <td>Confirms what must be tracked before Sales and Marketing scale activity.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>9. Not required as final by 31 July</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>31 July status</th>
+          <th>Why it should not be forced</th>
+          <th>When it should be completed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Final polished sales collateral for every project</td>
+          <td><span class="tag amber">Only where approved early enough</span></td>
+          <td>Final collateral depends on approved products, pricing, packages, inventory and delivery boundaries.</td>
+          <td>After commercial approval and GTM direction.</td>
+        </tr>
+        <tr>
+          <td>Final campaign assets for every project</td>
+          <td><span class="tag red">Not required</span></td>
+          <td>Campaign assets depend on marketing strategy, launch calendar, landing pages, tracking and approved CTAs.</td>
+          <td>According to each project launch calendar.</td>
+        </tr>
+        <tr>
+          <td>Final CRM workflows for every project</td>
+          <td><span class="tag amber">Core requirements required, full build not always required</span></td>
+          <td>CRM fields, dashboards and workflows depend on final GTM, sales process and campaign setup.</td>
+          <td>Before Sales and Marketing activity scales.</td>
+        </tr>
+        <tr>
+          <td>Final website updates for every project</td>
+          <td><span class="tag amber">Brief required, final pages not always required</span></td>
+          <td>Website pages need approved positioning, pricing, ticket strategy, sponsor products and tracking requirements.</td>
+          <td>Before public launch or campaign push.</td>
+        </tr>
+        <tr>
+          <td>Final marketing execution plans for every project</td>
+          <td><span class="tag amber">Framework required, detailed execution follows</span></td>
+          <td>Marketing strategy sits below GTM and depends on approved commercial direction, audience priorities, website readiness and channel plan.</td>
+          <td>After GTM and before campaign launch.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>10. Stage expectation by 31 July</h2>
+    <p>This shows where each priority project should ideally be by 31 July. Not every project will be at exactly the same stage, but the sequence should remain consistent.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Stage</th>
+          <th>31 July expectation</th>
+          <th>Owner</th>
+          <th>Minimum acceptable output</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Stage 0: Confirm project type and planning level</td>
+          <td><span class="tag green">Complete</span></td>
+          <td>Commercial Lead</td>
+          <td>Project type, planning level, approval owner, required inputs and expected timeline confirmed.</td>
+        </tr>
+        <tr>
+          <td>Stage 1: Evidence and input pack</td>
+          <td><span class="tag green">Complete</span></td>
+          <td>Project / Product Owner coordinates. Functional owners contribute.</td>
+          <td>Project or product brief, input pack, missing input list, assumptions and known risks.</td>
+        </tr>
+        <tr>
+          <td>Stage 2: Commercial model</td>
+          <td><span class="tag green">Complete or close to approval for priority projects</span></td>
+          <td>Commercial Lead</td>
+          <td>Product, pricing, packages, financial assumptions, revenue recommendation, monthly pacing and CRM requirements draft.</td>
+        </tr>
+        <tr>
+          <td>Stage 3: GTM framework</td>
+          <td><span class="tag green">Complete for priority projects where commercial model is approved</span></td>
+          <td>Commercial Lead</td>
+          <td>Positioning, target buyers, sales direction, marketing direction, renewal / rebooking approach, reporting requirements and handover points.</td>
+        </tr>
+        <tr>
+          <td>Stage 4: Execution setup</td>
+          <td><span class="tag amber">Started, not necessarily complete</span></td>
+          <td>Functional leads</td>
+          <td>Sales strategy, marketing strategy, CRM setup, collateral brief and production plan started from approved GTM.</td>
+        </tr>
+        <tr>
+          <td>Stage 5: Launch and review</td>
+          <td><span class="tag blue">Project specific</span></td>
+          <td>Functional leads</td>
+          <td>Only relevant for projects already in market or close to launch.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>11. Collateral rule</h2>
+    <div class="dark-box">
+      <h3>Collateral follows commercial approval</h3>
+      <p>Collateral should not lead the strategy. If products, pricing, packages, inventory and delivery boundaries are not approved, final collateral will become rework.</p>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Collateral item</th>
+          <th>31 July expectation</th>
+          <th>Dependency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Collateral requirements list</td>
+          <td><span class="tag green">Complete</span></td>
+          <td>Stage 2 commercial model and Stage 3 GTM framework.</td>
+        </tr>
+        <tr>
+          <td>Sales narrative</td>
+          <td><span class="tag green">Complete for priority projects</span></td>
+          <td>Approved positioning and buyer priorities.</td>
+        </tr>
+        <tr>
+          <td>Draft deck structure or media kit structure</td>
+          <td><span class="tag green">Complete for priority projects</span></td>
+          <td>Product direction, package logic and GTM narrative.</td>
+        </tr>
+        <tr>
+          <td>Rate cards</td>
+          <td><span class="tag amber">Complete where approval allows</span></td>
+          <td>Approved pricing, inventory and delivery boundaries.</td>
+        </tr>
+        <tr>
+          <td>Final sponsor deck or media kit</td>
+          <td><span class="tag amber">Only where approved early enough</span></td>
+          <td>Approved product catalogue, price list, packages, proof points and delivery boundaries.</td>
+        </tr>
+        <tr>
+          <td>Campaign assets</td>
+          <td><span class="tag red">Not a blanket 31 July requirement</span></td>
+          <td>Marketing strategy, launch calendar, landing pages, tracking and approved CTAs.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>12. Renewal and rebooking rule</h2>
+    <p>Renewal and rebooking should not wait for every final asset, but it needs clear guardrails.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Stage</th>
+          <th>Timing</th>
+          <th>Owner</th>
+          <th>31 July implication</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Soft rebooking / renewal</td>
+          <td>Onsite, post-event or after campaign delivery</td>
+          <td>Sales Lead</td>
+          <td>Can happen before final collateral. Sales can protect the relationship, capture intent and gather feedback.</td>
+        </tr>
+        <tr>
+          <td>Renewal intelligence</td>
+          <td>1 to 3 weeks after event or campaign</td>
+          <td>Sales Lead</td>
+          <td>Should feed the 31 July input pack and commercial model.</td>
+        </tr>
+        <tr>
+          <td>Guardrail offers</td>
+          <td>After provisional pricing or commercial guardrails</td>
+          <td>Commercial Lead / Sales Lead</td>
+          <td>Allows renewal conversations without giving Sales permission to invent next year's pricing or product scope.</td>
+        </tr>
+        <tr>
+          <td>Formal rebooking / renewal</td>
+          <td>After product and pricing approval</td>
+          <td>Sales Lead</td>
+          <td>Formal proposals should only go out once pricing, product scope and upgrade paths are approved.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>13. Commercial readiness tracker</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Project</th>
+          <th>First meeting</th>
+          <th>Input pack</th>
+          <th>Commercial model</th>
+          <th>GTM framework</th>
+          <th>Collateral brief</th>
+          <th>Final collateral</th>
+          <th>Status</th>
+          <th>Owner / next action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>NYC 2027</td><td>20 to 31 May</td><td>Review only</td><td>Ready</td><td>Build / approve</td><td>Required</td><td>If approved</td><td>Amber</td><td>Move to GTM and execution sign-off.</td></tr>
+        <tr><td>Valletta 2027</td><td>Post-event input meeting</td><td>Required</td><td>Build</td><td>Build after approval</td><td>Required</td><td>If approved</td><td>Amber</td><td>Collect post-Valletta evidence.</td></tr>
+        <tr><td>Retreats</td><td>20 to 31 May</td><td>Required</td><td>Build</td><td>Build</td><td>Required</td><td>Not required yet</td><td>Amber</td><td>Define product, buyer and pricing logic.</td></tr>
+        <tr><td>HR Connect</td><td>20 to 31 May</td><td>Required</td><td>Build</td><td>Build</td><td>Required</td><td>If approved</td><td>Amber</td><td>Define membership and small-event model.</td></tr>
+        <tr><td>NEXTPredict 2027</td><td>10 to 21 June</td><td>Required</td><td>Build from 2026 base</td><td>Draft</td><td>Required</td><td>Not required yet</td><td>Amber</td><td>Separate 2027 assumptions from 2026 execution.</td></tr>
+        <tr><td>News</td><td>13 to 24 May</td><td>Required</td><td>Build urgently</td><td>Build</td><td>Required</td><td>Rate card / media kit if approved</td><td>Red</td><td>Start immediately. Define products, owners, rate card and workflow.</td></tr>
+        <tr><td>Podcast</td><td>13 to 24 May</td><td>Required</td><td>Build urgently</td><td>Build</td><td>Required</td><td>Media kit if approved</td><td>Red</td><td>Start immediately. Define packages, production capacity and proof model.</td></tr>
+        <tr><td>Spotlight</td><td>13 to 24 May</td><td>Required</td><td>Build urgently</td><td>Build</td><td>Required</td><td>Media kit / one-pager if approved</td><td>Red</td><td>Start immediately. Define product, price, proof and delivery workflow.</td></tr>
+        <tr><td>Research Reports</td><td>13 to 24 May</td><td>Required</td><td>Build urgently</td><td>Build</td><td>Required</td><td>Media kit / one-pager if approved</td><td>Red</td><td>Start immediately. Define sponsor value, editorial boundaries and CRM reporting.</td></tr>
+        <tr><td>Community</td><td>20 to 31 May</td><td>Required</td><td>Define commercial role</td><td>Build</td><td>Required if commercialised</td><td>Not required yet</td><td>Amber</td><td>Clarify whether Community is growth, engagement or commercial pipeline.</td></tr>
+        <tr><td>marketingNEXT</td><td>20 to 31 May</td><td>Required</td><td>Build</td><td>Build</td><td>Required</td><td>If approved</td><td>Amber</td><td>Define community model, membership value and event layer.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>14. Status definitions</h2>
+    <p>Each project should be given a simple status so leadership can see what is ready, what is conditional and what is blocked.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Meaning</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tag green">Green</span></td>
+          <td>Input pack complete, commercial model approved, GTM framework ready, collateral requirements clear.</td>
+          <td>Move into execution setup and collateral production.</td>
+        </tr>
+        <tr>
+          <td><span class="tag amber">Amber</span></td>
+          <td>Input pack partial or commercial model close, but one or more approvals, data points or delivery assumptions still need confirming.</td>
+          <td>Proceed with assumptions or conditional approval. Name owner and deadline.</td>
+        </tr>
+        <tr>
+          <td><span class="tag red">Red</span></td>
+          <td>Missing critical inputs, unapproved pricing, missing financial targets, unresolved delivery risk or unclear owner.</td>
+          <td>Escalate and resolve before scaling Sales, Marketing or collateral production.</td>
+        </tr>
+        <tr>
+          <td><span class="tag blue">Blue</span></td>
+          <td>Fast track route approved because speed matters.</td>
+          <td>Track assumption, risk accepted, owner and next checkpoint.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>15. Decision log for 31 July</h2>
+    <p>The Commercial Lead owns the decision log. Project, product and functional owners update decisions in their area.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Decision</th>
+          <th>Owner</th>
+          <th>Needed by</th>
+          <th>Status</th>
+          <th>Risk if delayed</th>
+          <th>Final decision</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Project or product brief completed</td>
+          <td>Project / Product Owner</td>
+          <td>Before Stage 2</td>
+          <td>Pending</td>
+          <td>Commercial model built on incomplete project assumptions</td>
+          <td>Insert decision</td>
+        </tr>
+        <tr>
+          <td>EBITA, margin and financial assumptions confirmed</td>
+          <td>Commercial Approver / Finance</td>
+          <td>Before commercial approval</td>
+          <td>Pending</td>
+          <td>Commercial model may optimise for revenue over profit</td>
+          <td>Insert decision</td>
+        </tr>
+        <tr>
+          <td>Product and pricing approved</td>
+          <td>Commercial Approver / Commercial Lead</td>
+          <td>Before final collateral</td>
+          <td>Pending</td>
+          <td>Collateral and sales proposals may need rewriting</td>
+          <td>Insert decision</td>
+        </tr>
+        <tr>
+          <td>Delivery boundaries approved</td>
+          <td>Project / Product Owner</td>
+          <td>Before GTM execution sign-off</td>
+          <td>Pending</td>
+          <td>Sales may promise products that create operational risk</td>
+          <td>Insert decision</td>
+        </tr>
+        <tr>
+          <td>Renewal or rebooking guardrails approved</td>
+          <td>Commercial Lead / Sales Lead</td>
+          <td>Before formal renewal offers</td>
+          <td>Pending</td>
+          <td>Sales may create next cycle pricing or scope issues</td>
+          <td>Insert decision</td>
+        </tr>
+        <tr>
+          <td>Collateral production approved</td>
+          <td>Commercial Lead / Marketing Lead</td>
+          <td>After product and pricing approval</td>
+          <td>Pending</td>
+          <td>Collateral may be produced too early and need rework</td>
+          <td>Insert decision</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>16. Meeting rule</h2>
+    <ul>
+      <li>Brainstorming should happen asynchronously before approval meetings.</li>
+      <li>Ideas should be submitted as recommendations with evidence, impact and owner where possible.</li>
+      <li>Meetings should approve, reject or assign.</li>
+      <li>No open brainstorming in approval meetings.</li>
+      <li>Every blocker gets an owner and deadline.</li>
+      <li>Every meeting ends with a decision log update.</li>
+    </ul>
+  </section>
+
+  <div class="footer-note">
+    <p>Document owner: Commercial. This deadline note should sit alongside the Project Commercialisation Operating Model and relevant product modules. It is a 31 July interpretation document, not a replacement for project-specific delivery trackers.</p>
+  </div>
+</main>
+</body>
+</html>
