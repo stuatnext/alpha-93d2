@@ -1,0 +1,5139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NEXT.io — Head of CRM · Practical Task</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --panel2:#1e222b; --line:#2a2f3a;
+    --ink:#e8eaed; --mut:#9aa3b2; --accent:#4f8cff; --accent2:#27c093;
+    --warn:#ffb454; --bad:#ff6b6b; --chip:#232834;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+  a{color:var(--accent)}
+  header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,#10131a,#10131aee);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;gap:16px;padding:12px 20px;max-width:1180px;margin:0 auto}
+  .brand{font-weight:700;letter-spacing:.2px}
+  .brand small{display:block;font-weight:500;color:var(--mut);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+  nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+  nav button{background:transparent;border:1px solid transparent;color:var(--mut);padding:8px 12px;border-radius:8px;cursor:pointer;font:inherit}
+  nav button:hover{color:var(--ink)}
+  nav button.active{background:var(--panel2);color:var(--ink);border-color:var(--line)}
+  .save{font-size:12px;color:var(--mut);white-space:nowrap}
+  .save b{color:var(--accent2)}
+  main{max-width:1180px;margin:0 auto;padding:24px 20px 80px}
+  section{display:none;animation:fade .2s ease}
+  section.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  h1{font-size:24px;margin:0 0 6px}
+  h2{font-size:18px;margin:28px 0 10px}
+  h3{font-size:15px;margin:0 0 6px}
+  p.lead{color:var(--mut);max-width:760px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:14px 0}
+  .grid{display:grid;gap:14px}
+  .cols-2{grid-template-columns:1fr 1fr}
+  .cols-3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:820px){.cols-2,.cols-3{grid-template-columns:1fr}}
+  .pill{display:inline-block;background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:2px 10px;font-size:12px;color:var(--mut);margin:0 6px 6px 0}
+  .stat{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .stat .n{font-size:26px;font-weight:700}
+  .stat .l{color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+  ol.hard{counter-reset:h;list-style:none;padding-left:0}
+  ol.hard li{position:relative;padding:12px 0 12px 44px;border-top:1px solid var(--line)}
+  ol.hard li:before{counter-increment:h;content:counter(h);position:absolute;left:0;top:12px;width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700}
+  .toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 12px}
+  .toolbar input[type=search]{flex:1;min-width:220px}
+  input,select,textarea{background:var(--panel2);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:8px 10px;font:inherit}
+  textarea{width:100%;resize:vertical;min-height:90px}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px}
+  .subtabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px}
+  .subtabs button{background:var(--panel2);border:1px solid var(--line);color:var(--mut);padding:6px 12px;border-radius:8px;cursor:pointer;font:inherit}
+  .subtabs button.active{color:var(--ink);border-color:var(--accent)}
+  .tablewrap{overflow:auto;border:1px solid var(--line);border-radius:10px;max-height:62vh}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;white-space:nowrap}
+  th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left}
+  th{position:sticky;top:0;background:var(--panel2);cursor:pointer;user-select:none;z-index:1}
+  th:hover{color:var(--accent)}
+  tbody tr:hover{background:#1b1f28}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  .miss{color:var(--bad);font-style:italic}
+  .flagsel{padding:3px 6px;font-size:12px}
+  .flagnote{font-size:12px;min-width:140px}
+  tr.flagged{background:#1d2433 !important}
+  .badge{font-size:11px;padding:1px 7px;border-radius:999px;border:1px solid var(--line)}
+  .b-won{color:var(--accent2);border-color:#2c4} .b-lost{color:var(--bad)} .b-open{color:var(--warn)}
+  .task{border-left:3px solid var(--accent)}
+  .task .prompt{color:var(--mut);margin:2px 0 12px}
+  .field label{display:block;font-size:13px;color:var(--mut);margin:10px 0 4px}
+  .btn{background:var(--accent);color:#fff;border:none;border-radius:9px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer}
+  .btn.alt{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .muted{color:var(--mut)} .small{font-size:12.5px}
+  .note{background:#16202b;border:1px solid #234;border-radius:10px;padding:12px 14px;color:#bcd}
+  .ok{color:var(--accent2)} .progress{height:6px;background:var(--panel2);border-radius:999px;overflow:hidden}
+  .progress > i{display:block;height:100%;background:var(--accent2);width:0}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <div class="brand">NEXT.io<small>Head of CRM · Practical task</small></div>
+    <nav id="nav">
+      <button data-tab="brief" class="active">Brief</button>
+      <button data-tab="explore">Explore the data</button>
+      <button data-tab="tasks">Your analysis</button>
+      <button data-tab="submit">Submit</button>
+    </nav>
+    <div class="save" id="saveState">Saved locally · <b id="saveDot">●</b></div>
+  </div>
+</header>
+
+<main>
+  <!-- BRIEF -->
+  <section id="brief" class="active">
+    <h1>Head of CRM — practical task</h1>
+    <p class="lead">This file is your sandbox. It contains a small, synthetic version of our HubSpot — a B2B
+      <b>events + media</b> business in iGaming (sponsorship, exhibition, content/media, and rev-share /
+      partnerships, across recurring annual events). It's fabricated data, but it's modelled on the real shape and
+      the real problems of our CRM. Explore it, then write up what you'd do. <b>No account, no install</b> — everything
+      runs in this page, and your work auto-saves to this browser.</p>
+
+    <div class="grid cols-3" style="margin-top:16px">
+      <div class="stat"><div class="n" id="stCompanies">–</div><div class="l">Companies</div></div>
+      <div class="stat"><div class="n" id="stContacts">–</div><div class="l">Contacts</div></div>
+      <div class="stat"><div class="n" id="stDeals">–</div><div class="l">Deals · 3 pipelines</div></div>
+    </div>
+
+    <div class="card">
+      <h3>How it works</h3>
+      <p class="small muted" style="margin:4px 0 0">
+        ① <b>Explore the data</b> — search, sort, and flag records you'd act on (mark them keep / merge / delete / fix
+        and leave a note). ② <b>Your analysis</b> — answer the prompts; go deep on what matters. ③ <b>Submit</b> —
+        download a single file and send it back to us. Aim for <b>~2 hours</b>; we're testing judgement, not endurance.
+        We'd far rather see one or two hard problems genuinely cracked than everything skimmed.
+      </p>
+    </div>
+
+    <h2>Where the real complexity lives</h2>
+    <p class="muted small">Anyone can spot a duplicate. We care most about the problems specific to an events + media
+      business — the ones with no button in HubSpot. These are what a great answer goes after:</p>
+    <ol class="hard">
+      <li><b>Renewal &amp; retention across an annual event portfolio.</b> The same sponsor buys across events and
+        comes back — or doesn't — year on year. Some brands here bought in 2025 <b>and</b> 2026; some have a 2027 deal,
+        some have silently churned. Can you surface renewal, net revenue retention, and a churn list the team can act on
+        <i>before</i> the next event?</li>
+      <li><b>The account model for multi-brand operators.</b> Our customers are groups trading under many
+        brands/entities/domains. One "customer" can be several companies. When is that parent-child to model, and when
+        is it a duplicate to merge — without losing the detail?</li>
+      <li><b>Audience vs. buyer.</b> Most contacts are event <i>attendees</i>, not buyers. How do you build a lifecycle
+        and segmentation that serves both, so the few who buy don't drown in the noise?</li>
+      <li><b>Bundled deliverables.</b> A sponsorship deal is a bundle — booth + panel + content + badge (see the line
+        items). How should it be modelled so you can report <i>sold</i> vs. <i>delivered</i> and price/renew well?</li>
+      <li><b>Three commercial motions, one CRM.</b> Event sales, media, and rev-share / partnerships behave
+        differently and sit in three inconsistent pipelines. How do you make them coherent enough to forecast?</li>
+      <li><b>Lead scoring &amp; routing — unblock the team.</b> Marketing creates leads but the CRM doesn't score
+        them, and routing is manual: most pile on one person while hot inbound sits unassigned for weeks. How would you
+        score leads (fit + intent) and route them automatically, with SLAs, so no one is a bottleneck — and what does
+        HubSpot need set up for marketing to actually run on it?</li>
+    </ol>
+    <div class="note small">Tip: state your assumptions — there's no single right answer, and what you'd want that we
+      haven't given you is useful signal too. Don't mass-delete; show us the <i>method</i>.</div>
+    <div class="row" style="margin-top:16px">
+      <button class="btn" onclick="go('explore')">Start exploring →</button>
+    </div>
+  </section>
+
+  <!-- EXPLORE -->
+  <section id="explore">
+    <h1>Explore the data</h1>
+    <p class="muted small">Search and sort each object. Found something you'd act on? Set a <b>flag</b> on the row
+      (keep / merge / delete / fix / review) and add a note — your flags are saved and included in your submission.</p>
+    <div class="subtabs" id="objTabs">
+      <button data-obj="companies" class="active">Companies</button>
+      <button data-obj="contacts">Contacts</button>
+      <button data-obj="deals">Deals</button>
+      <button data-obj="lineItems">Line items</button>
+    </div>
+    <div class="toolbar">
+      <input type="search" id="search" placeholder="Search…" />
+      <label class="small muted" id="groupWrap" style="display:none"><input type="checkbox" id="groupByCo" /> group deals by company</label>
+      <span class="small muted" id="rowCount"></span>
+      <span class="small" style="margin-left:auto">flagged: <b id="flagCount" class="ok">0</b></span>
+    </div>
+    <div class="tablewrap"><table id="tbl"><thead></thead><tbody></tbody></table></div>
+  </section>
+
+  <!-- TASKS -->
+  <section id="tasks">
+    <h1>Your analysis</h1>
+    <p class="muted small">Respond to as many as you can in the time. Concise beats comprehensive — write what you'd
+      actually send a CEO. Your progress bar fills as you go.</p>
+    <div class="progress" style="margin:10px 0 18px"><i id="taskBar"></i></div>
+    <div id="taskList"></div>
+  </section>
+
+  <!-- SUBMIT -->
+  <section id="submit">
+    <h1>Submit</h1>
+    <p class="muted small">Add your details, then download your submission as a single file and email it back to us.
+      Everything — your flags and every answer — is captured in that file.</p>
+    <div class="card grid cols-2">
+      <div class="field"><label>Your name</label><input id="mName" placeholder="Jane Candidate" style="width:100%"/></div>
+      <div class="field"><label>Your email</label><input id="mEmail" placeholder="jane@example.com" style="width:100%"/></div>
+    </div>
+    <div class="card">
+      <div class="row">
+        <div class="stat" style="min-width:150px"><div class="n" id="sumFlags">0</div><div class="l">records flagged</div></div>
+        <div class="stat" style="min-width:150px"><div class="n" id="sumAnswered">0</div><div class="l">prompts answered</div></div>
+      </div>
+      <div class="row" style="margin-top:16px">
+        <button class="btn" id="dl">⬇ Download my submission</button>
+        <button class="btn alt" id="saveBtn">Save progress</button>
+        <label class="btn alt" style="cursor:pointer">Resume from a file<input type="file" id="resume" accept=".html,.json" hidden></label>
+        <button class="btn alt" id="reset" style="margin-left:auto">Reset</button>
+      </div>
+      <p class="small muted" style="margin:14px 0 0">Your work also auto-saves to this browser. "Resume from a file"
+        re-loads a submission you previously downloaded — handy if you switch machines.</p>
+    </div>
+  </section>
+</main>
+
+<script id="dataset" type="application/json">{
+  "generatedAt": "2026-06-04",
+  "companies": [
+    {
+      "id": "C1",
+      "name": "Aurora Holdings",
+      "domain": "auroraholdings.com",
+      "industry": "Gambling",
+      "country": "Malta",
+      "type": "PARTNER",
+      "lifecycle": "customer"
+    },
+    {
+      "id": "C2",
+      "name": "Aurora Gaming",
+      "domain": "auroragaming.io",
+      "industry": "Gambling",
+      "country": "Malta",
+      "type": "PARTNER",
+      "lifecycle": "customer"
+    },
+    {
+      "id": "C3",
+      "name": "Aurora Gaming Ltd",
+      "domain": "aurora-gaming.bet",
+      "industry": "Gaming",
+      "country": "Malta",
+      "type": "",
+      "lifecycle": "opportunity"
+    },
+    {
+      "id": "C4",
+      "name": "Aurora Studios",
+      "domain": "aurorastudios.games",
+      "industry": "Gambling",
+      "country": "Cyprus",
+      "type": "PARTNER",
+      "lifecycle": "customer"
+    },
+    {
+      "id": "C5",
+      "name": "Lunar Bet",
+      "domain": "lunarbet.com",
+      "industry": "Gambling",
+      "country": "Curacao",
+      "type": "PARTNER",
+      "lifecycle": "customer"
+    },
+    {
+      "id": "C6",
+      "name": "Lunar Bet Group",
+      "domain": "Lunar",
+      "industry": "Gambling",
+      "country": "Curacao",
+      "type": "",
+      "lifecycle": "customer"
+    },
+    {
+      "id": "C7",
+      "name": "lunar bet ltd",
+      "domain": "",
+      "industry": "",
+      "country": "",
+      "type": "",
+      "lifecycle": "lead"
+    },
+    {
+      "id": "C8",
+      "name": "Cobalt Casino",
+      "domain": "B2B",
+      "industry": "Gambling",
+      "country": "Isle of Man",
+      "type": "PARTNER",
+      "lifecycle": "customer"
+    },
+    {
+      "id": "C9",
+      "name": "Vega Interactive",
+      "domain": "vega interactive",
+      "industry": "Gaming",
+      "country": "Gibraltar",
+      "type": "PARTNER",
+      "lifecycle": "opportunity"
+    },
+    {
+      "id": "C10",
+      "name": "test co",
+      "domain": "test.com",
+      "industry": "",
+      "country": "",
+      "type": "",
+      "lifecycle": "lead"
+    },
+    {
+      "id": "C11",
+      "name": "nextpred test2 co",
+      "domain": "",
+      "industry": "",
+      "country": "",
+      "type": "",
+      "lifecycle": "lead"
+    },
+    {
+      "id": "C12",
+      "name": "asdf",
+      "domain": "asdf",
+      "industry": "",
+      "country": "",
+      "type": "",
+      "lifecycle": "lead"
+    },
+    {
+      "id": "C13",
+      "name": "Meridian Play Group",
+      "domain": "meridianplay.bet",
+      "industry": "Media",
+      "country": "Gibraltar",
+      "type": "PROSPECT",
+      "lifecycle": "customer"
+    },
+    {
+      "id": "C14",
+      "name": "Helios Bet",
+      "domain": "heliosbet.bet",
+      "industry": "Gaming",
+      "country": "Sweden",
+      "type": "PROSPECT",
+      "lifecycle": "subscriber"
+    },
+    {
+      "id": "C15",
+      "name": "Nimbus Gaming Holdings",
+      "domain": "nimbusgaming.co",
+      "industry": "Media",
+      "country": "Brazil",
+      "type": "VENDOR",
+      "lifecycle": "opportunity"
+    },
+    {
+      "id": "C16",
+      "name": "Orion Play Ltd",
+      "domain": "orionplay.co",
+      "industry": "Gaming",
+      "country": "Malta",
+      "type": "PROSPECT",
+      "lifecycle": "lead"
+    },
+    {
+      "id": "C17",
+      "name": "Solstice Betting Group",
+      "domain": "solsticebetting.co",
+      "industry": "iGaming",
+      "country": "Isle of Man",
+      "type": "PARTNER",
+      "lifecycle": "opportunity"
+    },
+    {
+      "id": "C18",
+      "name": "Tundra Slots",
+      "domain": "tundraslots.com",
+      "industry": "iGaming",
+      "country": "Gibraltar",
+      "type": "",
+      "lifecycle": "opportunity"
+    },
+    {
+      "id": "C19",
+      "name": "Zephyr Gaming",
+      "domain": "Zephyr",
+      "industry": "Affiliate",
+      "country": "Gibraltar",
+      "type": "VENDOR",
+      "lifecycle": "customer"
+    },
+    {
+      "id": "C20",
+      "name": "Marble Stack Studios",
+      "domain": "",
+      "industry": "Media",
+      "country": "Curacao",
+      "type": "PARTNER",
+      "lifecycle": "lead"
+    },
+    {
+      "id": "C21",
+      "name": "Quasar Live",
+      "domain": "quasarlive.com",
+      "industry": "Gambling",
+      "country": "Brazil",
+      "type": "PARTNER",
+      "lifecycle": "subscriber"
+    },
+    {
+      "id": "C22",
+      "name": "Pioneer Pay International",
+      "domain": "pioneerpay.gg",
+      "industry": "Affiliate",
+      "country": "Curacao",
+      "type": "",
+      "lifecycle": "customer"
+    },
+    {
+      "id": "C23",
+      "name": "Cascade Affiliates",
+      "domain": "cascadeaffiliates.games",
+      "industry": "Payments",
+      "country": "Cyprus",
+      "type": "",
+      "lifecycle": "customer"
+    },
+    {
+      "id": "C24",
+      "name": "Halcyon Media",
+      "domain": "halcyonmedia.com",
+      "industry": "Affiliate",
+      "country": "Malta",
+      "type": "VENDOR",
+      "lifecycle": "opportunity"
+    },
+    {
+      "id": "C25",
+      "name": "Drift Networks",
+      "domain": "driftnetworks.io",
+      "industry": "Gaming",
+      "country": "Malta",
+      "type": "",
+      "lifecycle": "customer"
+    },
+    {
+      "id": "C26",
+      "name": "Northwind Partners",
+      "domain": "northwindpartners.bet",
+      "industry": "Media",
+      "country": "Gibraltar",
+      "type": "PARTNER",
+      "lifecycle": "customer"
+    },
+    {
+      "id": "C27",
+      "name": "Sable Studios",
+      "domain": "sablestudios.com",
+      "industry": "Media",
+      "country": "UK",
+      "type": "PARTNER",
+      "lifecycle": "subscriber"
+    },
+    {
+      "id": "C28",
+      "name": "Ember Gaming",
+      "domain": "",
+      "industry": "Affiliate",
+      "country": "Brazil",
+      "type": "VENDOR",
+      "lifecycle": "subscriber"
+    },
+    {
+      "id": "C29",
+      "name": "Ironwood Group International",
+      "domain": "ironwoodgroup.co",
+      "industry": "Media",
+      "country": "Isle of Man",
+      "type": "PROSPECT",
+      "lifecycle": "subscriber"
+    },
+    {
+      "id": "C30",
+      "name": "Falcon Pay",
+      "domain": "falconpay.co",
+      "industry": "iGaming",
+      "country": "Cyprus",
+      "type": "PROSPECT",
+      "lifecycle": "lead"
+    },
+    {
+      "id": "C31",
+      "name": "Lattice Labs",
+      "domain": "latticelabs.com",
+      "industry": "Gaming",
+      "country": "Isle of Man",
+      "type": "PARTNER",
+      "lifecycle": "subscriber"
+    },
+    {
+      "id": "C32",
+      "name": "Monsoon Media",
+      "domain": "monsoonmedia.com",
+      "industry": "Gaming",
+      "country": "Malta",
+      "type": "VENDOR",
+      "lifecycle": "lead"
+    },
+    {
+      "id": "C33",
+      "name": "Pelican Partners Interactive",
+      "domain": "Pelican",
+      "industry": "iGaming",
+      "country": "Gibraltar",
+      "type": "PROSPECT",
+      "lifecycle": "subscriber"
+    },
+    {
+      "id": "C34",
+      "name": "Basalt Gaming",
+      "domain": "Basalt",
+      "industry": "Gambling",
+      "country": "Isle of Man",
+      "type": "VENDOR",
+      "lifecycle": "opportunity"
+    },
+    {
+      "id": "C35",
+      "name": "Cinder Studios Interactive",
+      "domain": "cinderstudios.co",
+      "industry": "iGaming",
+      "country": "Isle of Man",
+      "type": "PARTNER",
+      "lifecycle": "customer"
+    },
+    {
+      "id": "C36",
+      "name": "Driftwood Bet",
+      "domain": "driftwoodbet.com",
+      "industry": "Payments",
+      "country": "Isle of Man",
+      "type": "PROSPECT",
+      "lifecycle": "subscriber"
+    },
+    {
+      "id": "C37",
+      "name": "Estuary Play",
+      "domain": "estuaryplay.io",
+      "industry": "Gaming",
+      "country": "Malta",
+      "type": "PROSPECT",
+      "lifecycle": "subscriber"
+    },
+    {
+      "id": "C38",
+      "name": "Foxglove Media Ltd",
+      "domain": "Foxglove",
+      "industry": "Gaming",
+      "country": "Brazil",
+      "type": "PROSPECT",
+      "lifecycle": "opportunity"
+    }
+  ],
+  "contacts": [
+    {
+      "id": "P1",
+      "firstname": "Marco Rossi",
+      "lastname": "Rossi",
+      "email": "marco.rossi@auroragaming.io",
+      "jobtitle": "Head of Partnerships",
+      "company": "Aurora Gaming",
+      "source": "Referral",
+      "lifecycle": "customer",
+      "owner": "Rhys Jones",
+      "created": "2025-11-12"
+    },
+    {
+      "id": "P2",
+      "firstname": "Elena ",
+      "lastname": " Novak",
+      "email": "elena.novak@lunarbet.com",
+      "jobtitle": "CRM",
+      "company": "Lunar Bet",
+      "source": "Event registration",
+      "lifecycle": "customer",
+      "owner": "Heidi Lofthus",
+      "created": "2025-09-03"
+    },
+    {
+      "id": "P3",
+      "firstname": "Daniel",
+      "lastname": "Fabregas",
+      "email": "DANIEL.FABREGAS@cobaltcasino.bet",
+      "jobtitle": "CMO",
+      "company": "Cobalt Casino",
+      "source": "Demo request",
+      "lifecycle": "customer",
+      "owner": "Ana Hitzfitz",
+      "created": "2026-01-18"
+    },
+    {
+      "id": "P4",
+      "firstname": "Daniel",
+      "lastname": "Fabregas",
+      "email": "daniel.fabregas@cobaltcasino.bet",
+      "jobtitle": "Chief Marketing Officer",
+      "company": "Cobalt Casino",
+      "source": "Content download",
+      "lifecycle": "opportunity",
+      "owner": "",
+      "created": "2026-02-02"
+    },
+    {
+      "id": "P5",
+      "firstname": "",
+      "lastname": "",
+      "email": "info@vegainteractive.com",
+      "jobtitle": "",
+      "company": "Vega Interactive",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-03-21"
+    },
+    {
+      "id": "P6",
+      "firstname": "Sofia",
+      "lastname": "Marchetti",
+      "email": "",
+      "jobtitle": "Events Manager",
+      "company": "Meridian Play",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-04-09"
+    },
+    {
+      "id": "P7",
+      "firstname": "Priya",
+      "lastname": "Nair",
+      "email": "priya.nair@meridianplay.com",
+      "jobtitle": "CMO",
+      "company": "Meridian Play",
+      "source": "Demo request",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-01-09"
+    },
+    {
+      "id": "P8",
+      "firstname": "Tomas",
+      "lastname": "Berg",
+      "email": "tomas.berg@helios-bet.com",
+      "jobtitle": "Head of Growth",
+      "company": "Helios Bet",
+      "source": "Demo request",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-02-14"
+    },
+    {
+      "id": "P9",
+      "firstname": "Aisha",
+      "lastname": "Haddad",
+      "email": "aisha.haddad@orionplay.io",
+      "jobtitle": "VP Marketing",
+      "company": "Orion Play",
+      "source": "Demo request",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-01-27"
+    },
+    {
+      "id": "P10",
+      "firstname": "Lukas",
+      "lastname": "Olsen",
+      "email": "lukas.olsen@nimbusgaming.com",
+      "jobtitle": "Commercial Director",
+      "company": "Nimbus Gaming",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-02-20"
+    },
+    {
+      "id": "P11",
+      "firstname": "Carla",
+      "lastname": "Reyes",
+      "email": "carla.reyes@solsticebetting.com",
+      "jobtitle": "CEO",
+      "company": "Solstice Betting",
+      "source": "Referral",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-03-05"
+    },
+    {
+      "id": "P12",
+      "firstname": "Daniel",
+      "lastname": "Haddad",
+      "email": "daniel.haddad@auroraholdings.com",
+      "jobtitle": "VP Marketing",
+      "company": "Aurora Holdings",
+      "source": "Referral",
+      "lifecycle": "customer",
+      "owner": "Mathias Massoue",
+      "created": "2026-04-20"
+    },
+    {
+      "id": "P13",
+      "firstname": "Riku",
+      "lastname": "Berg",
+      "email": "riku.berg@auroraholdings.com",
+      "jobtitle": "Affiliate Manager",
+      "company": "Aurora Holdings",
+      "source": "Sales Navigator",
+      "lifecycle": "customer",
+      "owner": "Rhys Jones",
+      "created": "2026-06-16"
+    },
+    {
+      "id": "P14",
+      "firstname": "Aisha",
+      "lastname": "Haddad",
+      "email": "aisha.haddad@auroraholdings.com",
+      "jobtitle": "Head of Partnerships",
+      "company": "Aurora Holdings",
+      "source": "Content download",
+      "lifecycle": "customer",
+      "owner": "",
+      "created": "2026-01-04"
+    },
+    {
+      "id": "P15",
+      "firstname": "Ovi",
+      "lastname": "Antila",
+      "email": "ovi.antila@auroragaming.io",
+      "jobtitle": "Marketing Director",
+      "company": "Aurora Gaming",
+      "source": "Event registration",
+      "lifecycle": "customer",
+      "owner": "Mathias Massoue",
+      "created": "2026-02-21"
+    },
+    {
+      "id": "P16",
+      "firstname": "Carla",
+      "lastname": "Mensah",
+      "email": "carla.mensah@auroragaming.io",
+      "jobtitle": "Head of Growth",
+      "company": "Aurora Gaming",
+      "source": "Referral",
+      "lifecycle": "customer",
+      "owner": "Mathias Massoue",
+      "created": "2026-02-05"
+    },
+    {
+      "id": "P17",
+      "firstname": "Ovi",
+      "lastname": "Cruz",
+      "email": "ovi.cruz@auroragaming.io",
+      "jobtitle": "Head of Partnerships",
+      "company": "Aurora Gaming",
+      "source": "Content download",
+      "lifecycle": "customer",
+      "owner": "Heidi Lofthus",
+      "created": "2026-01-20"
+    },
+    {
+      "id": "P18",
+      "firstname": "Pavel",
+      "lastname": "Dlamini",
+      "email": "pavel.dlamini@aurora-gaming.bet",
+      "jobtitle": "Events Manager",
+      "company": "Aurora Gaming Ltd",
+      "source": "Content download",
+      "lifecycle": "marketingqualifiedlead",
+      "owner": "",
+      "created": "2026-02-05"
+    },
+    {
+      "id": "P19",
+      "firstname": "Mara",
+      "lastname": "Ilves",
+      "email": "mara.ilves@aurora-gaming.bet",
+      "jobtitle": "Head of Partnerships",
+      "company": "Aurora Gaming Ltd",
+      "source": "Demo request",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-05-18"
+    },
+    {
+      "id": "P20",
+      "firstname": "Lukas",
+      "lastname": "Olsen",
+      "email": "lukas.olsen@aurora-gaming.bet",
+      "jobtitle": "Affiliate Manager",
+      "company": "Aurora Gaming Ltd",
+      "source": "Event registration",
+      "lifecycle": "marketingqualifiedlead",
+      "owner": "Angie Benitez",
+      "created": "2026-03-13"
+    },
+    {
+      "id": "P21",
+      "firstname": "Aisha",
+      "lastname": "Costa",
+      "email": "aisha.costa@aurorastudios.games",
+      "jobtitle": "Events Manager",
+      "company": "Aurora Studios",
+      "source": "Webinar",
+      "lifecycle": "customer",
+      "owner": "Rhys Jones",
+      "created": "2026-04-01"
+    },
+    {
+      "id": "P22",
+      "firstname": "Carla",
+      "lastname": "Rossi",
+      "email": "carla.rossi@aurorastudios.games",
+      "jobtitle": "VP Marketing",
+      "company": "Aurora Studios",
+      "source": "Sales Navigator",
+      "lifecycle": "customer",
+      "owner": "",
+      "created": "2026-02-19"
+    },
+    {
+      "id": "P23",
+      "firstname": "Sofia",
+      "lastname": "Dlamini",
+      "email": "sofia.dlamini@lunarbet.com",
+      "jobtitle": "Events Manager",
+      "company": "Lunar Bet",
+      "source": "Demo request",
+      "lifecycle": "customer",
+      "owner": "Rhys Jones",
+      "created": "2026-04-19"
+    },
+    {
+      "id": "P24",
+      "firstname": "Daniel",
+      "lastname": "Reyes",
+      "email": "daniel.reyes@lunarbet.com",
+      "jobtitle": "Affiliate Manager",
+      "company": "Lunar Bet",
+      "source": "Event registration",
+      "lifecycle": "customer",
+      "owner": "",
+      "created": "2026-06-16"
+    },
+    {
+      "id": "P25",
+      "firstname": "Riku",
+      "lastname": "Cruz",
+      "email": "riku.cruz@lunarbet.com",
+      "jobtitle": "Brand Manager",
+      "company": "Lunar Bet",
+      "source": "Sales Navigator",
+      "lifecycle": "customer",
+      "owner": "Heidi Lofthus",
+      "created": "2026-06-19"
+    },
+    {
+      "id": "P26",
+      "firstname": "Riku",
+      "lastname": "Olsen",
+      "email": "riku.olsen@example.com",
+      "jobtitle": "Brand Manager",
+      "company": "Lunar Bet Group",
+      "source": "Sales Navigator",
+      "lifecycle": "customer",
+      "owner": "",
+      "created": "2026-01-18"
+    },
+    {
+      "id": "P27",
+      "firstname": "Dominique",
+      "lastname": "Dlamini",
+      "email": "dominique.dlamini@example.com",
+      "jobtitle": "Events Manager",
+      "company": "lunar bet ltd",
+      "source": "Event registration",
+      "lifecycle": "marketingqualifiedlead",
+      "owner": "",
+      "created": "2026-05-03"
+    },
+    {
+      "id": "P28",
+      "firstname": "Elena",
+      "lastname": "Mensah",
+      "email": "elena.mensah@example.com",
+      "jobtitle": "Head of Partnerships",
+      "company": "lunar bet ltd",
+      "source": "Demo request",
+      "lifecycle": "lead",
+      "owner": "Angie Benitez",
+      "created": "2026-05-28"
+    },
+    {
+      "id": "P29",
+      "firstname": "Tomas",
+      "lastname": "Antila",
+      "email": "tomas.antila@example.com",
+      "jobtitle": "Affiliate Manager",
+      "company": "lunar bet ltd",
+      "source": "Content download",
+      "lifecycle": "marketingqualifiedlead",
+      "owner": "Will Purchase",
+      "created": "2026-04-15"
+    },
+    {
+      "id": "P30",
+      "firstname": "Priya",
+      "lastname": "Dlamini",
+      "email": "priya.dlamini@example.com",
+      "jobtitle": "CMO",
+      "company": "Cobalt Casino",
+      "source": "Content download",
+      "lifecycle": "customer",
+      "owner": "Ana Hitzfitz",
+      "created": "2026-05-27"
+    },
+    {
+      "id": "P31",
+      "firstname": "Tomas",
+      "lastname": "Antila",
+      "email": "tomas.antila@example.com",
+      "jobtitle": "CEO",
+      "company": "Vega Interactive",
+      "source": "Demo request",
+      "lifecycle": "opportunity",
+      "owner": "Will Purchase",
+      "created": "2026-04-28"
+    },
+    {
+      "id": "P32",
+      "firstname": "Priya",
+      "lastname": "Haddad",
+      "email": "priya.haddad@example.com",
+      "jobtitle": "CMO",
+      "company": "Vega Interactive",
+      "source": "Content download",
+      "lifecycle": "opportunity",
+      "owner": "Klara Schoonraad",
+      "created": "2026-02-13"
+    },
+    {
+      "id": "P33",
+      "firstname": "Niko",
+      "lastname": "Reyes",
+      "email": "niko.reyes@meridianplay.bet",
+      "jobtitle": "CEO",
+      "company": "Meridian Play Group",
+      "source": "Demo request",
+      "lifecycle": "customer",
+      "owner": "",
+      "created": "2026-04-22"
+    },
+    {
+      "id": "P34",
+      "firstname": "Carla",
+      "lastname": "Antila",
+      "email": "carla.antila@meridianplay.bet",
+      "jobtitle": "Marketing Director",
+      "company": "Meridian Play Group",
+      "source": "Event registration",
+      "lifecycle": "customer",
+      "owner": "Mathias Massoue",
+      "created": "2026-05-14"
+    },
+    {
+      "id": "P35",
+      "firstname": "Lukas",
+      "lastname": "Costa",
+      "email": "lukas.costa@meridianplay.bet",
+      "jobtitle": "CEO",
+      "company": "Meridian Play Group",
+      "source": "Content download",
+      "lifecycle": "customer",
+      "owner": "Heidi Lofthus",
+      "created": "2026-03-28"
+    },
+    {
+      "id": "P36",
+      "firstname": "Sofia",
+      "lastname": "Marchetti",
+      "email": "sofia.marchetti@heliosbet.bet",
+      "jobtitle": "CMO",
+      "company": "Helios Bet",
+      "source": "Referral",
+      "lifecycle": "lead",
+      "owner": "Angie Benitez",
+      "created": "2026-02-15"
+    },
+    {
+      "id": "P37",
+      "firstname": "Greta",
+      "lastname": "Tan",
+      "email": "greta.tan@heliosbet.bet",
+      "jobtitle": "Affiliate Manager",
+      "company": "Helios Bet",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-01-21"
+    },
+    {
+      "id": "P38",
+      "firstname": "Carla",
+      "lastname": "Whitebread",
+      "email": "carla.whitebread@heliosbet.bet",
+      "jobtitle": "CMO",
+      "company": "Helios Bet",
+      "source": "Content download",
+      "lifecycle": "opportunity",
+      "owner": "Will Purchase",
+      "created": "2026-06-28"
+    },
+    {
+      "id": "P39",
+      "firstname": "Carla",
+      "lastname": "Fabregas",
+      "email": "carla.fabregas@nimbusgaming.co",
+      "jobtitle": "CEO",
+      "company": "Nimbus Gaming Holdings",
+      "source": "Webinar",
+      "lifecycle": "opportunity",
+      "owner": "",
+      "created": "2026-03-10"
+    },
+    {
+      "id": "P40",
+      "firstname": "Hassan",
+      "lastname": "Novak",
+      "email": "hassan.novak@orionplay.co",
+      "jobtitle": "Affiliate Manager",
+      "company": "Orion Play Ltd",
+      "source": "Demo request",
+      "lifecycle": "marketingqualifiedlead",
+      "owner": "",
+      "created": "2026-01-07"
+    },
+    {
+      "id": "P41",
+      "firstname": "Marco",
+      "lastname": "Novak",
+      "email": "marco.novak@solsticebetting.co",
+      "jobtitle": "Affiliate Manager",
+      "company": "Solstice Betting Group",
+      "source": "Sales Navigator",
+      "lifecycle": "opportunity",
+      "owner": "Will Purchase",
+      "created": "2026-03-17"
+    },
+    {
+      "id": "P42",
+      "firstname": "Dominique",
+      "lastname": "Berg",
+      "email": "dominique.berg@solsticebetting.co",
+      "jobtitle": "Commercial Director",
+      "company": "Solstice Betting Group",
+      "source": "Sales Navigator",
+      "lifecycle": "marketingqualifiedlead",
+      "owner": "Will Purchase",
+      "created": "2026-05-03"
+    },
+    {
+      "id": "P43",
+      "firstname": "Elena",
+      "lastname": "Berg",
+      "email": "elena.berg@solsticebetting.co",
+      "jobtitle": "CEO",
+      "company": "Solstice Betting Group",
+      "source": "Sales Navigator",
+      "lifecycle": "opportunity",
+      "owner": "Klara Schoonraad",
+      "created": "2026-02-17"
+    },
+    {
+      "id": "P44",
+      "firstname": "Mara",
+      "lastname": "Reyes",
+      "email": "mara.reyes@tundraslots.com",
+      "jobtitle": "Commercial Director",
+      "company": "Tundra Slots",
+      "source": "Demo request",
+      "lifecycle": "opportunity",
+      "owner": "Will Purchase",
+      "created": "2026-03-05"
+    },
+    {
+      "id": "P45",
+      "firstname": "Yuki",
+      "lastname": "Lindqvist",
+      "email": "yuki.lindqvist@tundraslots.com",
+      "jobtitle": "Head of Growth",
+      "company": "Tundra Slots",
+      "source": "Event registration",
+      "lifecycle": "opportunity",
+      "owner": "",
+      "created": "2026-04-01"
+    },
+    {
+      "id": "P46",
+      "firstname": "Niko",
+      "lastname": "Whitebread",
+      "email": "niko.whitebread@tundraslots.com",
+      "jobtitle": "Events Manager",
+      "company": "Tundra Slots",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-06-24"
+    },
+    {
+      "id": "P47",
+      "firstname": "Lukas",
+      "lastname": "Cruz",
+      "email": "lukas.cruz@example.com",
+      "jobtitle": "Head of Growth",
+      "company": "Zephyr Gaming",
+      "source": "Event registration",
+      "lifecycle": "customer",
+      "owner": "Heidi Lofthus",
+      "created": "2026-02-12"
+    },
+    {
+      "id": "P48",
+      "firstname": "Carla",
+      "lastname": "Ilves",
+      "email": "carla.ilves@example.com",
+      "jobtitle": "Head of Growth",
+      "company": "Zephyr Gaming",
+      "source": "Sales Navigator",
+      "lifecycle": "customer",
+      "owner": "Ana Hitzfitz",
+      "created": "2026-01-09"
+    },
+    {
+      "id": "P49",
+      "firstname": "Sofia",
+      "lastname": "Antila",
+      "email": "sofia.antila@example.com",
+      "jobtitle": "Brand Manager",
+      "company": "Marble Stack Studios",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-01-23"
+    },
+    {
+      "id": "P50",
+      "firstname": "Aisha",
+      "lastname": "Kovac",
+      "email": "aisha.kovac@example.com",
+      "jobtitle": "Brand Manager",
+      "company": "Marble Stack Studios",
+      "source": "Event registration",
+      "lifecycle": "marketingqualifiedlead",
+      "owner": "Will Purchase",
+      "created": "2026-02-15"
+    },
+    {
+      "id": "P51",
+      "firstname": "Ines",
+      "lastname": "Vaughn",
+      "email": "ines.vaughn@quasarlive.com",
+      "jobtitle": "CMO",
+      "company": "Quasar Live",
+      "source": "Sales Navigator",
+      "lifecycle": "marketingqualifiedlead",
+      "owner": "",
+      "created": "2026-04-26"
+    },
+    {
+      "id": "P52",
+      "firstname": "Bruno",
+      "lastname": "Berg",
+      "email": "bruno.berg@pioneerpay.gg",
+      "jobtitle": "Affiliate Manager",
+      "company": "Pioneer Pay International",
+      "source": "Webinar",
+      "lifecycle": "customer",
+      "owner": "Heidi Lofthus",
+      "created": "2026-02-17"
+    },
+    {
+      "id": "P53",
+      "firstname": "Riku",
+      "lastname": "Ilves",
+      "email": "riku.ilves@cascadeaffiliates.games",
+      "jobtitle": "Head of Partnerships",
+      "company": "Cascade Affiliates",
+      "source": "Demo request",
+      "lifecycle": "customer",
+      "owner": "Heidi Lofthus",
+      "created": "2026-05-27"
+    },
+    {
+      "id": "P54",
+      "firstname": "Niko",
+      "lastname": "Whitebread",
+      "email": "niko.whitebread@cascadeaffiliates.games",
+      "jobtitle": "Events Manager",
+      "company": "Cascade Affiliates",
+      "source": "Referral",
+      "lifecycle": "customer",
+      "owner": "Rhys Jones",
+      "created": "2026-06-21"
+    },
+    {
+      "id": "P55",
+      "firstname": "Sofia",
+      "lastname": "Lindqvist",
+      "email": "sofia.lindqvist@halcyonmedia.com",
+      "jobtitle": "Events Manager",
+      "company": "Halcyon Media",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-01-03"
+    },
+    {
+      "id": "P56",
+      "firstname": "Daniel",
+      "lastname": "Cruz",
+      "email": "daniel.cruz@halcyonmedia.com",
+      "jobtitle": "VP Marketing",
+      "company": "Halcyon Media",
+      "source": "Event registration",
+      "lifecycle": "marketingqualifiedlead",
+      "owner": "Klara Schoonraad",
+      "created": "2026-02-17"
+    },
+    {
+      "id": "P57",
+      "firstname": "Mara",
+      "lastname": "Kovac",
+      "email": "mara.kovac@driftnetworks.io",
+      "jobtitle": "Affiliate Manager",
+      "company": "Drift Networks",
+      "source": "Webinar",
+      "lifecycle": "customer",
+      "owner": "Ana Hitzfitz",
+      "created": "2026-01-23"
+    },
+    {
+      "id": "P58",
+      "firstname": "Tomas",
+      "lastname": "Novak",
+      "email": "tomas.novak@northwindpartners.bet",
+      "jobtitle": "Marketing Director",
+      "company": "Northwind Partners",
+      "source": "Referral",
+      "lifecycle": "customer",
+      "owner": "Heidi Lofthus",
+      "created": "2026-03-26"
+    },
+    {
+      "id": "P59",
+      "firstname": "Greta",
+      "lastname": "Ilves",
+      "email": "greta.ilves@northwindpartners.bet",
+      "jobtitle": "Head of Partnerships",
+      "company": "Northwind Partners",
+      "source": "Sales Navigator",
+      "lifecycle": "customer",
+      "owner": "Ana Hitzfitz",
+      "created": "2026-04-28"
+    },
+    {
+      "id": "P60",
+      "firstname": "Hassan",
+      "lastname": "Cruz",
+      "email": "hassan.cruz@northwindpartners.bet",
+      "jobtitle": "Affiliate Manager",
+      "company": "Northwind Partners",
+      "source": "Event registration",
+      "lifecycle": "customer",
+      "owner": "Rhys Jones",
+      "created": "2026-04-04"
+    },
+    {
+      "id": "P61",
+      "firstname": "Priya",
+      "lastname": "Vaughn",
+      "email": "priya.vaughn@sablestudios.com",
+      "jobtitle": "Commercial Director",
+      "company": "Sable Studios",
+      "source": "Sales Navigator",
+      "lifecycle": "lead",
+      "owner": "Angie Benitez",
+      "created": "2026-04-13"
+    },
+    {
+      "id": "P62",
+      "firstname": "Tomas",
+      "lastname": "Cruz",
+      "email": "tomas.cruz@sablestudios.com",
+      "jobtitle": "CEO",
+      "company": "Sable Studios",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "Klara Schoonraad",
+      "created": "2026-01-16"
+    },
+    {
+      "id": "P63",
+      "firstname": "Yuki",
+      "lastname": "Cruz",
+      "email": "yuki.cruz@sablestudios.com",
+      "jobtitle": "Head of Partnerships",
+      "company": "Sable Studios",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Angie Benitez",
+      "created": "2026-02-07"
+    },
+    {
+      "id": "P64",
+      "firstname": "Priya",
+      "lastname": "Fabregas",
+      "email": "priya.fabregas@example.com",
+      "jobtitle": "Brand Manager",
+      "company": "Ember Gaming",
+      "source": "Event registration",
+      "lifecycle": "marketingqualifiedlead",
+      "owner": "",
+      "created": "2026-04-16"
+    },
+    {
+      "id": "P65",
+      "firstname": "Aisha",
+      "lastname": "Petrova",
+      "email": "aisha.petrova@example.com",
+      "jobtitle": "Head of Partnerships",
+      "company": "Ember Gaming",
+      "source": "Event registration",
+      "lifecycle": "opportunity",
+      "owner": "Will Purchase",
+      "created": "2026-06-08"
+    },
+    {
+      "id": "P66",
+      "firstname": "Niko",
+      "lastname": "Dlamini",
+      "email": "niko.dlamini@ironwoodgroup.co",
+      "jobtitle": "CMO",
+      "company": "Ironwood Group International",
+      "source": "Demo request",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-06-26"
+    },
+    {
+      "id": "P67",
+      "firstname": "Daniel",
+      "lastname": "Olsen",
+      "email": "daniel.olsen@ironwoodgroup.co",
+      "jobtitle": "VP Marketing",
+      "company": "Ironwood Group International",
+      "source": "Event registration",
+      "lifecycle": "marketingqualifiedlead",
+      "owner": "",
+      "created": "2026-01-14"
+    },
+    {
+      "id": "P68",
+      "firstname": "Pavel",
+      "lastname": "Whitebread",
+      "email": "pavel.whitebread@ironwoodgroup.co",
+      "jobtitle": "Affiliate Manager",
+      "company": "Ironwood Group International",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-05-09"
+    },
+    {
+      "id": "P69",
+      "firstname": "Tomas",
+      "lastname": "Vaughn",
+      "email": "tomas.vaughn@falconpay.co",
+      "jobtitle": "VP Marketing",
+      "company": "Falcon Pay",
+      "source": "Demo request",
+      "lifecycle": "marketingqualifiedlead",
+      "owner": "",
+      "created": "2026-01-02"
+    },
+    {
+      "id": "P70",
+      "firstname": "Riku",
+      "lastname": "Mensah",
+      "email": "riku.mensah@latticelabs.com",
+      "jobtitle": "Marketing Director",
+      "company": "Lattice Labs",
+      "source": "Sales Navigator",
+      "lifecycle": "marketingqualifiedlead",
+      "owner": "",
+      "created": "2026-05-01"
+    },
+    {
+      "id": "P71",
+      "firstname": "Sofia",
+      "lastname": "Vaughn",
+      "email": "sofia.vaughn@monsoonmedia.com",
+      "jobtitle": "Events Manager",
+      "company": "Monsoon Media",
+      "source": "Demo request",
+      "lifecycle": "marketingqualifiedlead",
+      "owner": "",
+      "created": "2026-02-17"
+    },
+    {
+      "id": "P72",
+      "firstname": "Carla",
+      "lastname": "Rossi",
+      "email": "carla.rossi@monsoonmedia.com",
+      "jobtitle": "CEO",
+      "company": "Monsoon Media",
+      "source": "Event registration",
+      "lifecycle": "opportunity",
+      "owner": "Will Purchase",
+      "created": "2026-02-10"
+    },
+    {
+      "id": "P73",
+      "firstname": "Priya",
+      "lastname": "Petrova",
+      "email": "priya.petrova@monsoonmedia.com",
+      "jobtitle": "CEO",
+      "company": "Monsoon Media",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-03-02"
+    },
+    {
+      "id": "P74",
+      "firstname": "Riku",
+      "lastname": "Cruz",
+      "email": "riku.cruz@example.com",
+      "jobtitle": "Commercial Director",
+      "company": "Pelican Partners Interactive",
+      "source": "Demo request",
+      "lifecycle": "opportunity",
+      "owner": "Angie Benitez",
+      "created": "2026-04-11"
+    },
+    {
+      "id": "P75",
+      "firstname": "Carla",
+      "lastname": "Lindqvist",
+      "email": "carla.lindqvist@example.com",
+      "jobtitle": "Affiliate Manager",
+      "company": "Basalt Gaming",
+      "source": "Content download",
+      "lifecycle": "opportunity",
+      "owner": "",
+      "created": "2026-04-28"
+    },
+    {
+      "id": "P76",
+      "firstname": "Bruno",
+      "lastname": "Olsen",
+      "email": "bruno.olsen@example.com",
+      "jobtitle": "Commercial Director",
+      "company": "Basalt Gaming",
+      "source": "Referral",
+      "lifecycle": "marketingqualifiedlead",
+      "owner": "Angie Benitez",
+      "created": "2026-04-19"
+    },
+    {
+      "id": "P77",
+      "firstname": "Dominique",
+      "lastname": "Cruz",
+      "email": "dominique.cruz@example.com",
+      "jobtitle": "Events Manager",
+      "company": "Basalt Gaming",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-01-03"
+    },
+    {
+      "id": "P78",
+      "firstname": "Bruno",
+      "lastname": "Petrova",
+      "email": "bruno.petrova@cinderstudios.co",
+      "jobtitle": "VP Marketing",
+      "company": "Cinder Studios Interactive",
+      "source": "Referral",
+      "lifecycle": "customer",
+      "owner": "Mathias Massoue",
+      "created": "2026-02-25"
+    },
+    {
+      "id": "P79",
+      "firstname": "Carla",
+      "lastname": "Costa",
+      "email": "carla.costa@driftwoodbet.com",
+      "jobtitle": "VP Marketing",
+      "company": "Driftwood Bet",
+      "source": "Sales Navigator",
+      "lifecycle": "opportunity",
+      "owner": "",
+      "created": "2026-02-13"
+    },
+    {
+      "id": "P80",
+      "firstname": "Dominique",
+      "lastname": "Whitebread",
+      "email": "dominique.whitebread@driftwoodbet.com",
+      "jobtitle": "Head of Partnerships",
+      "company": "Driftwood Bet",
+      "source": "Demo request",
+      "lifecycle": "marketingqualifiedlead",
+      "owner": "Will Purchase",
+      "created": "2026-01-03"
+    },
+    {
+      "id": "P81",
+      "firstname": "Carla",
+      "lastname": "Tan",
+      "email": "carla.tan@estuaryplay.io",
+      "jobtitle": "Events Manager",
+      "company": "Estuary Play",
+      "source": "Referral",
+      "lifecycle": "marketingqualifiedlead",
+      "owner": "Will Purchase",
+      "created": "2026-02-06"
+    },
+    {
+      "id": "P82",
+      "firstname": "Daniel",
+      "lastname": "Whitebread",
+      "email": "daniel.whitebread@example.com",
+      "jobtitle": "VP Marketing",
+      "company": "Foxglove Media Ltd",
+      "source": "Webinar",
+      "lifecycle": "marketingqualifiedlead",
+      "owner": "Will Purchase",
+      "created": "2026-05-24"
+    },
+    {
+      "id": "P83",
+      "firstname": "Daniel",
+      "lastname": "Reyes",
+      "email": "daniel.reyes@example.com",
+      "jobtitle": "Brand Manager",
+      "company": "Foxglove Media Ltd",
+      "source": "Content download",
+      "lifecycle": "opportunity",
+      "owner": "Will Purchase",
+      "created": "2026-06-18"
+    },
+    {
+      "id": "P84",
+      "firstname": "Lukas",
+      "lastname": "Kovac",
+      "email": "lukas.kovac@example.com",
+      "jobtitle": "Events Manager",
+      "company": "Foxglove Media Ltd",
+      "source": "Demo request",
+      "lifecycle": "lead",
+      "owner": "Angie Benitez",
+      "created": "2026-01-27"
+    },
+    {
+      "id": "P85",
+      "firstname": "Niko",
+      "lastname": "Mensah",
+      "email": "niko.mensah65@gmail.com",
+      "jobtitle": "Head of Growth",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-02-19"
+    },
+    {
+      "id": "P86",
+      "firstname": "Ovi",
+      "lastname": "Reyes",
+      "email": "ovi.reyes49@meridianplay.com",
+      "jobtitle": "CEO",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-05-21"
+    },
+    {
+      "id": "P87",
+      "firstname": "Greta",
+      "lastname": "Vaughn",
+      "email": "greta.vaughn1@outlook.com",
+      "jobtitle": "Delegate",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-06-03"
+    },
+    {
+      "id": "P88",
+      "firstname": "Tomas",
+      "lastname": "Kovac",
+      "email": "tomas.kovac46@proton.me",
+      "jobtitle": "Brand Manager",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-05-01"
+    },
+    {
+      "id": "P89",
+      "firstname": "Mara",
+      "lastname": "Reyes",
+      "email": "mara.reyes40@outlook.com",
+      "jobtitle": "Head of Growth",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-01-14"
+    },
+    {
+      "id": "P90",
+      "firstname": "Riku",
+      "lastname": "Dlamini",
+      "email": "riku.dlamini80@outlook.com",
+      "jobtitle": "Commercial Director",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-06-25"
+    },
+    {
+      "id": "P91",
+      "firstname": "Bruno",
+      "lastname": "Lindqvist",
+      "email": "bruno.lindqvist50@outlook.com",
+      "jobtitle": "Commercial Director",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-04-25"
+    },
+    {
+      "id": "P92",
+      "firstname": "Ines",
+      "lastname": "Haddad",
+      "email": "ines.haddad80@gmail.com",
+      "jobtitle": "Brand Manager",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "Klara Schoonraad",
+      "created": "2026-05-15"
+    },
+    {
+      "id": "P93",
+      "firstname": "Marco",
+      "lastname": "Vaughn",
+      "email": "marco.vaughn34@gmail.com",
+      "jobtitle": "Affiliate Manager",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Klara Schoonraad",
+      "created": "2026-02-13"
+    },
+    {
+      "id": "P94",
+      "firstname": "Carla",
+      "lastname": "Petrova",
+      "email": "carla.petrova38@gmail.com",
+      "jobtitle": "VP Marketing",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-04-27"
+    },
+    {
+      "id": "P95",
+      "firstname": "Tomas",
+      "lastname": "Ilves",
+      "email": "tomas.ilves63@proton.me",
+      "jobtitle": "CEO",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-05-20"
+    },
+    {
+      "id": "P96",
+      "firstname": "Priya",
+      "lastname": "Mensah",
+      "email": "priya.mensah66@outlook.com",
+      "jobtitle": "",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-01-02"
+    },
+    {
+      "id": "P97",
+      "firstname": "Lukas",
+      "lastname": "Petrova",
+      "email": "lukas.petrova47@outlook.com",
+      "jobtitle": "Marketing Director",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-01-14"
+    },
+    {
+      "id": "P98",
+      "firstname": "Niko",
+      "lastname": "Mensah",
+      "email": "niko.mensah37@foxglovemedia.com",
+      "jobtitle": "Head of Partnerships",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-02-19"
+    },
+    {
+      "id": "P99",
+      "firstname": "Elena",
+      "lastname": "Vaughn",
+      "email": "elena.vaughn64@cobaltcasino.com",
+      "jobtitle": "Head of Partnerships",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-02-27"
+    },
+    {
+      "id": "P100",
+      "firstname": "Dominique",
+      "lastname": "Whitebread",
+      "email": "dominique.whitebread39@gmail.com",
+      "jobtitle": "Events Manager",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-05-17"
+    },
+    {
+      "id": "P101",
+      "firstname": "Mara",
+      "lastname": "Ilves",
+      "email": "mara.ilves30@gmail.com",
+      "jobtitle": "Head of Partnerships",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-01-04"
+    },
+    {
+      "id": "P102",
+      "firstname": "Riku",
+      "lastname": "Costa",
+      "email": "riku.costa76@cinderstudios.com",
+      "jobtitle": "Attendee",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-06-23"
+    },
+    {
+      "id": "P103",
+      "firstname": "Greta",
+      "lastname": "Ilves",
+      "email": "greta.ilves30@northwindpartners.com",
+      "jobtitle": "Events Manager",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-02-01"
+    },
+    {
+      "id": "P104",
+      "firstname": "Yuki",
+      "lastname": "Petrova",
+      "email": "yuki.petrova83@gmail.com",
+      "jobtitle": "Head of Growth",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-05-21"
+    },
+    {
+      "id": "P105",
+      "firstname": "Riku",
+      "lastname": "Mensah",
+      "email": "riku.mensah71@outlook.com",
+      "jobtitle": "Marketing Director",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-05-19"
+    },
+    {
+      "id": "P106",
+      "firstname": "Ovi",
+      "lastname": "Reyes",
+      "email": "ovi.reyes57@gmail.com",
+      "jobtitle": "Attendee",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-01-13"
+    },
+    {
+      "id": "P107",
+      "firstname": "Ovi",
+      "lastname": "Vaughn",
+      "email": "ovi.vaughn13@outlook.com",
+      "jobtitle": "Player",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-03-24"
+    },
+    {
+      "id": "P108",
+      "firstname": "Priya",
+      "lastname": "Fabregas",
+      "email": "priya.fabregas57@proton.me",
+      "jobtitle": "CMO",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-02-04"
+    },
+    {
+      "id": "P109",
+      "firstname": "Lukas",
+      "lastname": "Whitebread",
+      "email": "lukas.whitebread85@pioneerpay.com",
+      "jobtitle": "CEO",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-01-22"
+    },
+    {
+      "id": "P110",
+      "firstname": "Priya",
+      "lastname": "Petrova",
+      "email": "priya.petrova79@gmail.com",
+      "jobtitle": "Delegate",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-01-11"
+    },
+    {
+      "id": "P111",
+      "firstname": "Daniel",
+      "lastname": "Berg",
+      "email": "daniel.berg57@gmail.com",
+      "jobtitle": "Events Manager",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-02-01"
+    },
+    {
+      "id": "P112",
+      "firstname": "Priya",
+      "lastname": "Whitebread",
+      "email": "priya.whitebread93@ironwoodgroup.com",
+      "jobtitle": "Affiliate Manager",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-06-16"
+    },
+    {
+      "id": "P113",
+      "firstname": "Niko",
+      "lastname": "Reyes",
+      "email": "niko.reyes43@embergaming.com",
+      "jobtitle": "Brand Manager",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-06-16"
+    },
+    {
+      "id": "P114",
+      "firstname": "Greta",
+      "lastname": "Whitebread",
+      "email": "greta.whitebread28@proton.me",
+      "jobtitle": "Affiliate Manager",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "Angie Benitez",
+      "created": "2026-02-18"
+    },
+    {
+      "id": "P115",
+      "firstname": "Pavel",
+      "lastname": "Antila",
+      "email": "pavel.antila57@driftnetworks.com",
+      "jobtitle": "CEO",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-04-11"
+    },
+    {
+      "id": "P116",
+      "firstname": "Ovi",
+      "lastname": "Dlamini",
+      "email": "ovi.dlamini79@outlook.com",
+      "jobtitle": "Affiliate Manager",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-02-22"
+    },
+    {
+      "id": "P117",
+      "firstname": "Marco",
+      "lastname": "Costa",
+      "email": "marco.costa80@lunarbet.com",
+      "jobtitle": "Player",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-04-03"
+    },
+    {
+      "id": "P118",
+      "firstname": "Priya",
+      "lastname": "Rossi",
+      "email": "priya.rossi36@gmail.com",
+      "jobtitle": "Commercial Director",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-06-10"
+    },
+    {
+      "id": "P119",
+      "firstname": "Tomas",
+      "lastname": "Mensah",
+      "email": "tomas.mensah31@outlook.com",
+      "jobtitle": "Delegate",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-04-21"
+    },
+    {
+      "id": "P120",
+      "firstname": "Hassan",
+      "lastname": "Rossi",
+      "email": "hassan.rossi1@outlook.com",
+      "jobtitle": "Marketing Director",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-02-11"
+    },
+    {
+      "id": "P121",
+      "firstname": "Bruno",
+      "lastname": "Reyes",
+      "email": "bruno.reyes38@outlook.com",
+      "jobtitle": "VP Marketing",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-05-11"
+    },
+    {
+      "id": "P122",
+      "firstname": "Yuki",
+      "lastname": "Fabregas",
+      "email": "yuki.fabregas71@proton.me",
+      "jobtitle": "",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "Angie Benitez",
+      "created": "2026-02-19"
+    },
+    {
+      "id": "P123",
+      "firstname": "Tomas",
+      "lastname": "Kovac",
+      "email": "tomas.kovac11@pelicanpartners.com",
+      "jobtitle": "Affiliate Manager",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-05-27"
+    },
+    {
+      "id": "P124",
+      "firstname": "Niko",
+      "lastname": "Cruz",
+      "email": "niko.cruz18@proton.me",
+      "jobtitle": "Events Manager",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-04-20"
+    },
+    {
+      "id": "P125",
+      "firstname": "Bruno",
+      "lastname": "Whitebread",
+      "email": "bruno.whitebread38@outlook.com",
+      "jobtitle": "Head of Partnerships",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-02-08"
+    },
+    {
+      "id": "P126",
+      "firstname": "Lukas",
+      "lastname": "Rossi",
+      "email": "lukas.rossi56@gmail.com",
+      "jobtitle": "VP Marketing",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "Klara Schoonraad",
+      "created": "2026-05-06"
+    },
+    {
+      "id": "P127",
+      "firstname": "Ines",
+      "lastname": "Petrova",
+      "email": "ines.petrova33@auroragaming.com",
+      "jobtitle": "Attendee",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-05-12"
+    },
+    {
+      "id": "P128",
+      "firstname": "Marco",
+      "lastname": "Fabregas",
+      "email": "marco.fabregas70@outlook.com",
+      "jobtitle": "Head of Growth",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-01-05"
+    },
+    {
+      "id": "P129",
+      "firstname": "Tomas",
+      "lastname": "Berg",
+      "email": "tomas.berg10@gmail.com",
+      "jobtitle": "Delegate",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Klara Schoonraad",
+      "created": "2026-06-09"
+    },
+    {
+      "id": "P130",
+      "firstname": "Lukas",
+      "lastname": "Olsen",
+      "email": "lukas.olsen52@cinderstudios.com",
+      "jobtitle": "Head of Growth",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "Klara Schoonraad",
+      "created": "2026-05-27"
+    },
+    {
+      "id": "P131",
+      "firstname": "Dominique",
+      "lastname": "Tan",
+      "email": "dominique.tan31@falconpay.com",
+      "jobtitle": "Affiliate Manager",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-04-22"
+    },
+    {
+      "id": "P132",
+      "firstname": "Daniel",
+      "lastname": "Olsen",
+      "email": "daniel.olsen39@proton.me",
+      "jobtitle": "",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-01-01"
+    },
+    {
+      "id": "P133",
+      "firstname": "Aisha",
+      "lastname": "Kovac",
+      "email": "aisha.kovac29@zephyrgaming.com",
+      "jobtitle": "Brand Manager",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-01-09"
+    },
+    {
+      "id": "P134",
+      "firstname": "Carla",
+      "lastname": "Kovac",
+      "email": "carla.kovac44@gmail.com",
+      "jobtitle": "Head of Growth",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-04-28"
+    },
+    {
+      "id": "P135",
+      "firstname": "Marco",
+      "lastname": "Petrova",
+      "email": "marco.petrova9@gmail.com",
+      "jobtitle": "Brand Manager",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-06-21"
+    },
+    {
+      "id": "P136",
+      "firstname": "Mara",
+      "lastname": "Reyes",
+      "email": "mara.reyes16@proton.me",
+      "jobtitle": "Delegate",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-06-23"
+    },
+    {
+      "id": "P137",
+      "firstname": "Hassan",
+      "lastname": "Lindqvist",
+      "email": "hassan.lindqvist34@gmail.com",
+      "jobtitle": "CMO",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-02-04"
+    },
+    {
+      "id": "P138",
+      "firstname": "Ovi",
+      "lastname": "Lindqvist",
+      "email": "ovi.lindqvist80@proton.me",
+      "jobtitle": "Student",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-01-06"
+    },
+    {
+      "id": "P139",
+      "firstname": "Marco",
+      "lastname": "Mensah",
+      "email": "marco.mensah25@proton.me",
+      "jobtitle": "",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-02-20"
+    },
+    {
+      "id": "P140",
+      "firstname": "Marco",
+      "lastname": "Fabregas",
+      "email": "marco.fabregas34@gmail.com",
+      "jobtitle": "CMO",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-06-24"
+    },
+    {
+      "id": "P141",
+      "firstname": "Carla",
+      "lastname": "Haddad",
+      "email": "carla.haddad48@outlook.com",
+      "jobtitle": "",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-06-23"
+    },
+    {
+      "id": "P142",
+      "firstname": "Priya",
+      "lastname": "Antila",
+      "email": "priya.antila78@gmail.com",
+      "jobtitle": "VP Marketing",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-04-09"
+    },
+    {
+      "id": "P143",
+      "firstname": "Niko",
+      "lastname": "Berg",
+      "email": "niko.berg21@proton.me",
+      "jobtitle": "Brand Manager",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-04-05"
+    },
+    {
+      "id": "P144",
+      "firstname": "Dominique",
+      "lastname": "Costa",
+      "email": "dominique.costa16@meridianplay.com",
+      "jobtitle": "Events Manager",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Klara Schoonraad",
+      "created": "2026-03-16"
+    },
+    {
+      "id": "P145",
+      "firstname": "Sofia",
+      "lastname": "Kovac",
+      "email": "sofia.kovac76@gmail.com",
+      "jobtitle": "Marketing Director",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-04-04"
+    },
+    {
+      "id": "P146",
+      "firstname": "Niko",
+      "lastname": "Antila",
+      "email": "niko.antila11@outlook.com",
+      "jobtitle": "Student",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-01-01"
+    },
+    {
+      "id": "P147",
+      "firstname": "Sofia",
+      "lastname": "Dlamini",
+      "email": "sofia.dlamini83@outlook.com",
+      "jobtitle": "CEO",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-02-19"
+    },
+    {
+      "id": "P148",
+      "firstname": "Aisha",
+      "lastname": "Dlamini",
+      "email": "aisha.dlamini68@proton.me",
+      "jobtitle": "Affiliate Manager",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-03-18"
+    },
+    {
+      "id": "P149",
+      "firstname": "Greta",
+      "lastname": "Kovac",
+      "email": "greta.kovac66@driftnetworks.com",
+      "jobtitle": "Student",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-04-10"
+    },
+    {
+      "id": "P150",
+      "firstname": "Ines",
+      "lastname": "Mensah",
+      "email": "ines.mensah92@proton.me",
+      "jobtitle": "",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-01-16"
+    },
+    {
+      "id": "P151",
+      "firstname": "Riku",
+      "lastname": "Reyes",
+      "email": "riku.reyes84@gmail.com",
+      "jobtitle": "Player",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-01-06"
+    },
+    {
+      "id": "P152",
+      "firstname": "Carla",
+      "lastname": "Kovac",
+      "email": "carla.kovac49@gmail.com",
+      "jobtitle": "CMO",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "Klara Schoonraad",
+      "created": "2026-06-02"
+    },
+    {
+      "id": "P153",
+      "firstname": "Marco",
+      "lastname": "Fabregas",
+      "email": "marco.fabregas83@gmail.com",
+      "jobtitle": "Head of Growth",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-03-26"
+    },
+    {
+      "id": "P154",
+      "firstname": "Elena",
+      "lastname": "Whitebread",
+      "email": "elena.whitebread34@outlook.com",
+      "jobtitle": "Brand Manager",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-05-04"
+    },
+    {
+      "id": "P155",
+      "firstname": "Yuki",
+      "lastname": "Dlamini",
+      "email": "yuki.dlamini50@outlook.com",
+      "jobtitle": "Affiliate Manager",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-01-01"
+    },
+    {
+      "id": "P156",
+      "firstname": "Aisha",
+      "lastname": "Fabregas",
+      "email": "aisha.fabregas40@gmail.com",
+      "jobtitle": "Brand Manager",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-04-07"
+    },
+    {
+      "id": "P157",
+      "firstname": "Dominique",
+      "lastname": "Whitebread",
+      "email": "dominique.whitebread71@proton.me",
+      "jobtitle": "Head of Growth",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "Angie Benitez",
+      "created": "2026-01-19"
+    },
+    {
+      "id": "P158",
+      "firstname": "Pavel",
+      "lastname": "Whitebread",
+      "email": "pavel.whitebread93@gmail.com",
+      "jobtitle": "VP Marketing",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-01-25"
+    },
+    {
+      "id": "P159",
+      "firstname": "Priya",
+      "lastname": "Whitebread",
+      "email": "priya.whitebread68@gmail.com",
+      "jobtitle": "Head of Growth",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Angie Benitez",
+      "created": "2026-05-15"
+    },
+    {
+      "id": "P160",
+      "firstname": "Dominique",
+      "lastname": "Costa",
+      "email": "dominique.costa68@outlook.com",
+      "jobtitle": "Delegate",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-01-23"
+    },
+    {
+      "id": "P161",
+      "firstname": "Aisha",
+      "lastname": "Cruz",
+      "email": "aisha.cruz86@proton.me",
+      "jobtitle": "Events Manager",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-01-28"
+    },
+    {
+      "id": "P162",
+      "firstname": "Aisha",
+      "lastname": "Tan",
+      "email": "aisha.tan88@gmail.com",
+      "jobtitle": "VP Marketing",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-05-04"
+    },
+    {
+      "id": "P163",
+      "firstname": "Aisha",
+      "lastname": "Mensah",
+      "email": "aisha.mensah46@gmail.com",
+      "jobtitle": "Events Manager",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-04-22"
+    },
+    {
+      "id": "P164",
+      "firstname": "Mara",
+      "lastname": "Mensah",
+      "email": "mara.mensah78@foxglovemedia.com",
+      "jobtitle": "Head of Growth",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-04-20"
+    },
+    {
+      "id": "P165",
+      "firstname": "Carla",
+      "lastname": "Haddad",
+      "email": "carla.haddad14@proton.me",
+      "jobtitle": "Events Manager",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-02-21"
+    },
+    {
+      "id": "P166",
+      "firstname": "Carla",
+      "lastname": "Fabregas",
+      "email": "carla.fabregas63@proton.me",
+      "jobtitle": "Events Manager",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-04-05"
+    },
+    {
+      "id": "P167",
+      "firstname": "Niko",
+      "lastname": "Petrova",
+      "email": "niko.petrova51@proton.me",
+      "jobtitle": "CEO",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-02-05"
+    },
+    {
+      "id": "P168",
+      "firstname": "Pavel",
+      "lastname": "Rossi",
+      "email": "pavel.rossi81@cinderstudios.com",
+      "jobtitle": "Commercial Director",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "Klara Schoonraad",
+      "created": "2026-04-20"
+    },
+    {
+      "id": "P169",
+      "firstname": "Ovi",
+      "lastname": "Ilves",
+      "email": "ovi.ilves20@halcyonmedia.com",
+      "jobtitle": "Brand Manager",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-06-25"
+    },
+    {
+      "id": "P170",
+      "firstname": "Dominique",
+      "lastname": "Dlamini",
+      "email": "dominique.dlamini32@proton.me",
+      "jobtitle": "Marketing Director",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-03-11"
+    },
+    {
+      "id": "P171",
+      "firstname": "Priya",
+      "lastname": "Fabregas",
+      "email": "priya.fabregas41@outlook.com",
+      "jobtitle": "Player",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-03-06"
+    },
+    {
+      "id": "P172",
+      "firstname": "Priya",
+      "lastname": "Costa",
+      "email": "priya.costa62@gmail.com",
+      "jobtitle": "Player",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-03-05"
+    },
+    {
+      "id": "P173",
+      "firstname": "Riku",
+      "lastname": "Tan",
+      "email": "riku.tan67@outlook.com",
+      "jobtitle": "Brand Manager",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-01-08"
+    },
+    {
+      "id": "P174",
+      "firstname": "Priya",
+      "lastname": "Costa",
+      "email": "priya.costa86@outlook.com",
+      "jobtitle": "Delegate",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-03-23"
+    },
+    {
+      "id": "P175",
+      "firstname": "Dominique",
+      "lastname": "Olsen",
+      "email": "dominique.olsen98@gmail.com",
+      "jobtitle": "Attendee",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-01-07"
+    },
+    {
+      "id": "P176",
+      "firstname": "Daniel",
+      "lastname": "Marchetti",
+      "email": "daniel.marchetti42@cascadeaffiliates.com",
+      "jobtitle": "Brand Manager",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-05-26"
+    },
+    {
+      "id": "P177",
+      "firstname": "Sofia",
+      "lastname": "Fabregas",
+      "email": "sofia.fabregas35@outlook.com",
+      "jobtitle": "Head of Partnerships",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-06-25"
+    },
+    {
+      "id": "P178",
+      "firstname": "Marco",
+      "lastname": "Novak",
+      "email": "marco.novak50@latticelabs.com",
+      "jobtitle": "CEO",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-03-05"
+    },
+    {
+      "id": "P179",
+      "firstname": "Daniel",
+      "lastname": "Whitebread",
+      "email": "daniel.whitebread80@proton.me",
+      "jobtitle": "Commercial Director",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-04-04"
+    },
+    {
+      "id": "P180",
+      "firstname": "Sofia",
+      "lastname": "Marchetti",
+      "email": "sofia.marchetti26@proton.me",
+      "jobtitle": "Attendee",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-05-17"
+    },
+    {
+      "id": "P181",
+      "firstname": "Greta",
+      "lastname": "Vaughn",
+      "email": "greta.vaughn46@gmail.com",
+      "jobtitle": "Affiliate Manager",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-04-21"
+    },
+    {
+      "id": "P182",
+      "firstname": "Niko",
+      "lastname": "Tan",
+      "email": "niko.tan7@marblestackstudios.com",
+      "jobtitle": "CEO",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-05-17"
+    },
+    {
+      "id": "P183",
+      "firstname": "Sofia",
+      "lastname": "Tan",
+      "email": "sofia.tan41@ironwoodgroup.com",
+      "jobtitle": "CMO",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-05-09"
+    },
+    {
+      "id": "P184",
+      "firstname": "Pavel",
+      "lastname": "Novak",
+      "email": "pavel.novak46@lunarbet.com",
+      "jobtitle": "Attendee",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "Klara Schoonraad",
+      "created": "2026-05-28"
+    },
+    {
+      "id": "P185",
+      "firstname": "Sofia",
+      "lastname": "Olsen",
+      "email": "sofia.olsen73@gmail.com",
+      "jobtitle": "CMO",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "Angie Benitez",
+      "created": "2026-06-12"
+    },
+    {
+      "id": "P186",
+      "firstname": "Marco",
+      "lastname": "Antila",
+      "email": "marco.antila77@proton.me",
+      "jobtitle": "Events Manager",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-06-21"
+    },
+    {
+      "id": "P187",
+      "firstname": "Bruno",
+      "lastname": "Haddad",
+      "email": "bruno.haddad54@outlook.com",
+      "jobtitle": "Attendee",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Angie Benitez",
+      "created": "2026-01-18"
+    },
+    {
+      "id": "P188",
+      "firstname": "Riku",
+      "lastname": "Dlamini",
+      "email": "riku.dlamini55@gmail.com",
+      "jobtitle": "VP Marketing",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-02-12"
+    },
+    {
+      "id": "P189",
+      "firstname": "Pavel",
+      "lastname": "Petrova",
+      "email": "pavel.petrova77@proton.me",
+      "jobtitle": "CEO",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-02-28"
+    },
+    {
+      "id": "P190",
+      "firstname": "Carla",
+      "lastname": "Whitebread",
+      "email": "carla.whitebread47@pelicanpartners.com",
+      "jobtitle": "Player",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-06-07"
+    },
+    {
+      "id": "P191",
+      "firstname": "Niko",
+      "lastname": "Cruz",
+      "email": "niko.cruz97@outlook.com",
+      "jobtitle": "Events Manager",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-05-13"
+    },
+    {
+      "id": "P192",
+      "firstname": "Riku",
+      "lastname": "Tan",
+      "email": "riku.tan40@outlook.com",
+      "jobtitle": "Delegate",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-04-22"
+    },
+    {
+      "id": "P193",
+      "firstname": "Yuki",
+      "lastname": "Dlamini",
+      "email": "yuki.dlamini58@proton.me",
+      "jobtitle": "Head of Growth",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-04-20"
+    },
+    {
+      "id": "P194",
+      "firstname": "Lukas",
+      "lastname": "Rossi",
+      "email": "lukas.rossi11@proton.me",
+      "jobtitle": "VP Marketing",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Angie Benitez",
+      "created": "2026-03-03"
+    },
+    {
+      "id": "P195",
+      "firstname": "Sofia",
+      "lastname": "Antila",
+      "email": "sofia.antila64@proton.me",
+      "jobtitle": "Head of Growth",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-05-04"
+    },
+    {
+      "id": "P196",
+      "firstname": "Pavel",
+      "lastname": "Reyes",
+      "email": "pavel.reyes34@zephyrgaming.com",
+      "jobtitle": "Marketing Director",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-03-09"
+    },
+    {
+      "id": "P197",
+      "firstname": "Ovi",
+      "lastname": "Ilves",
+      "email": "ovi.ilves38@gmail.com",
+      "jobtitle": "Brand Manager",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-05-22"
+    },
+    {
+      "id": "P198",
+      "firstname": "Niko",
+      "lastname": "Vaughn",
+      "email": "niko.vaughn26@proton.me",
+      "jobtitle": "Head of Growth",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-06-26"
+    },
+    {
+      "id": "P199",
+      "firstname": "Hassan",
+      "lastname": "Whitebread",
+      "email": "hassan.whitebread70@proton.me",
+      "jobtitle": "Player",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-03-17"
+    },
+    {
+      "id": "P200",
+      "firstname": "Yuki",
+      "lastname": "Petrova",
+      "email": "yuki.petrova25@proton.me",
+      "jobtitle": "Commercial Director",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-03-25"
+    },
+    {
+      "id": "P201",
+      "firstname": "Yuki",
+      "lastname": "Vaughn",
+      "email": "yuki.vaughn76@gmail.com",
+      "jobtitle": "Head of Partnerships",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-06-22"
+    },
+    {
+      "id": "P202",
+      "firstname": "Hassan",
+      "lastname": "Vaughn",
+      "email": "hassan.vaughn8@outlook.com",
+      "jobtitle": "Head of Partnerships",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-02-12"
+    },
+    {
+      "id": "P203",
+      "firstname": "Greta",
+      "lastname": "Marchetti",
+      "email": "greta.marchetti9@proton.me",
+      "jobtitle": "Student",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-03-18"
+    },
+    {
+      "id": "P204",
+      "firstname": "Sofia",
+      "lastname": "Ilves",
+      "email": "sofia.ilves63@gmail.com",
+      "jobtitle": "Affiliate Manager",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-02-19"
+    },
+    {
+      "id": "P205",
+      "firstname": "Riku",
+      "lastname": "Antila",
+      "email": "riku.antila76@outlook.com",
+      "jobtitle": "Affiliate Manager",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "Klara Schoonraad",
+      "created": "2026-03-23"
+    },
+    {
+      "id": "P206",
+      "firstname": "Mara",
+      "lastname": "Ilves",
+      "email": "mara.ilves51@outlook.com",
+      "jobtitle": "Brand Manager",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-01-11"
+    },
+    {
+      "id": "P207",
+      "firstname": "Ines",
+      "lastname": "Marchetti",
+      "email": "ines.marchetti84@outlook.com",
+      "jobtitle": "",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "Angie Benitez",
+      "created": "2026-02-21"
+    },
+    {
+      "id": "P208",
+      "firstname": "Bruno",
+      "lastname": "Tan",
+      "email": "bruno.tan67@proton.me",
+      "jobtitle": "CEO",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-02-18"
+    },
+    {
+      "id": "P209",
+      "firstname": "Niko",
+      "lastname": "Kovac",
+      "email": "niko.kovac79@gmail.com",
+      "jobtitle": "Player",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-02-09"
+    },
+    {
+      "id": "P210",
+      "firstname": "Daniel",
+      "lastname": "Whitebread",
+      "email": "daniel.whitebread76@outlook.com",
+      "jobtitle": "Delegate",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-05-18"
+    },
+    {
+      "id": "P211",
+      "firstname": "Sofia",
+      "lastname": "Whitebread",
+      "email": "sofia.whitebread41@proton.me",
+      "jobtitle": "Affiliate Manager",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-06-08"
+    },
+    {
+      "id": "P212",
+      "firstname": "Daniel",
+      "lastname": "Antila",
+      "email": "daniel.antila39@proton.me",
+      "jobtitle": "Head of Growth",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-06-23"
+    },
+    {
+      "id": "P213",
+      "firstname": "Dominique",
+      "lastname": "Lindqvist",
+      "email": "dominique.lindqvist56@outlook.com",
+      "jobtitle": "Head of Growth",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "Angie Benitez",
+      "created": "2026-05-04"
+    },
+    {
+      "id": "P214",
+      "firstname": "Elena",
+      "lastname": "Berg",
+      "email": "elena.berg70@gmail.com",
+      "jobtitle": "CMO",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-03-10"
+    },
+    {
+      "id": "P215",
+      "firstname": "Carla",
+      "lastname": "Lindqvist",
+      "email": "carla.lindqvist73@proton.me",
+      "jobtitle": "Head of Partnerships",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "Angie Benitez",
+      "created": "2026-02-12"
+    },
+    {
+      "id": "P216",
+      "firstname": "Yuki",
+      "lastname": "Kovac",
+      "email": "yuki.kovac36@lunarbet.com",
+      "jobtitle": "Student",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-05-18"
+    },
+    {
+      "id": "P217",
+      "firstname": "Aisha",
+      "lastname": "Berg",
+      "email": "aisha.berg86@proton.me",
+      "jobtitle": "Brand Manager",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-05-16"
+    },
+    {
+      "id": "P218",
+      "firstname": "Mara",
+      "lastname": "Lindqvist",
+      "email": "mara.lindqvist38@proton.me",
+      "jobtitle": "Student",
+      "company": "",
+      "source": "Newsletter signup",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-06-17"
+    },
+    {
+      "id": "P219",
+      "firstname": "Sofia",
+      "lastname": "Berg",
+      "email": "sofia.berg69@proton.me",
+      "jobtitle": "Player",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-04-04"
+    },
+    {
+      "id": "P220",
+      "firstname": "Riku",
+      "lastname": "Antila",
+      "email": "riku.antila38@gmail.com",
+      "jobtitle": "",
+      "company": "",
+      "source": "Webinar",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-03-26"
+    },
+    {
+      "id": "P221",
+      "firstname": "Mara",
+      "lastname": "Petrova",
+      "email": "mara.petrova19@gmail.com",
+      "jobtitle": "Brand Manager",
+      "company": "",
+      "source": "List import",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-04-02"
+    },
+    {
+      "id": "P222",
+      "firstname": "Tomas",
+      "lastname": "Fabregas",
+      "email": "tomas.fabregas65@cobaltcasino.com",
+      "jobtitle": "Marketing Director",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "Will Purchase",
+      "created": "2026-04-03"
+    },
+    {
+      "id": "P223",
+      "firstname": "Greta",
+      "lastname": "Antila",
+      "email": "greta.antila19@proton.me",
+      "jobtitle": "CEO",
+      "company": "",
+      "source": "Event registration",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-01-25"
+    },
+    {
+      "id": "P224",
+      "firstname": "Aisha",
+      "lastname": "Olsen",
+      "email": "aisha.olsen7@falconpay.com",
+      "jobtitle": "Delegate",
+      "company": "",
+      "source": "Content download",
+      "lifecycle": "lead",
+      "owner": "",
+      "created": "2026-05-11"
+    }
+  ],
+  "deals": [
+    {
+      "id": "D1",
+      "name": "Aurora Holdings 2025 NEXTPredict",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 70242,
+      "currency": "EUR",
+      "closedate": "2025-09-30",
+      "owner": "Heidi Lofthus",
+      "company": "Aurora Holdings",
+      "domain": "auroraholdings.com"
+    },
+    {
+      "id": "D2",
+      "name": "Aurora Holdings 2026 NEXTPredict",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 84754,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Ana Hitzfitz",
+      "company": "Aurora Holdings",
+      "domain": "auroraholdings.com"
+    },
+    {
+      "id": "D3",
+      "name": "Aurora Holdings - Sponsorship - NEXT Valletta 2027",
+      "pipeline": "NEXT Deals",
+      "stage": "Proposal Sent",
+      "amount": 77266,
+      "currency": "EUR",
+      "closedate": "2027-03-31",
+      "owner": "Heidi Lofthus",
+      "company": "Aurora Holdings",
+      "domain": "auroraholdings.com"
+    },
+    {
+      "id": "D4",
+      "name": "Aurora Gaming - Leadership stage - NEXT Valletta 2025",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 31290,
+      "currency": "EUR",
+      "closedate": "2025-09-30",
+      "owner": "Heidi Lofthus",
+      "company": "Aurora Gaming",
+      "domain": "auroragaming.io"
+    },
+    {
+      "id": "D5",
+      "name": "Aurora Gaming - NEXT Valletta 2026 - Sponsorship",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 33109,
+      "currency": "EUR",
+      "closedate": "2026-09-30",
+      "owner": "Ana Hitzfitz",
+      "company": "Aurora Gaming",
+      "domain": "auroragaming.io"
+    },
+    {
+      "id": "D6",
+      "name": "Aurora Gaming - NEXT Valletta 2027 - Leadership stage",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 34419,
+      "currency": "EUR",
+      "closedate": "2027-06-30",
+      "owner": "Heidi Lofthus",
+      "company": "Aurora Gaming",
+      "domain": "auroragaming.io"
+    },
+    {
+      "id": "D7",
+      "name": "aurora gaming ltd  -  nextpredict 2025 - networking dinner",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 74232,
+      "currency": "EUR",
+      "closedate": "2025-06-30",
+      "owner": "Rhys Jones",
+      "company": "Aurora Gaming Ltd",
+      "domain": "aurora-gaming.bet"
+    },
+    {
+      "id": "D8",
+      "name": "Aurora Gaming Ltd - NEXTPredict 2026 - Lanyard sponsor",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 76639,
+      "currency": "EUR",
+      "closedate": "2026-03-31",
+      "owner": "Ana Hitzfitz",
+      "company": "Aurora Gaming Ltd",
+      "domain": "aurora-gaming.bet"
+    },
+    {
+      "id": "D9",
+      "name": "aurora studios  -  nextpredict 2025 - 6x3m booth",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 43080,
+      "currency": "EUR",
+      "closedate": "2025-03-31",
+      "owner": "Rhys Jones",
+      "company": "Aurora Studios",
+      "domain": "aurorastudios.games"
+    },
+    {
+      "id": "D10",
+      "name": "aurora studios  -  nextpredict 2026 - sponsorship",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 52645,
+      "currency": "EUR",
+      "closedate": "2026-03-31",
+      "owner": "Rhys Jones",
+      "company": "Aurora Studios",
+      "domain": "aurorastudios.games"
+    },
+    {
+      "id": "D11",
+      "name": "Aurora Studios - Leadership stage - NEXT Valletta 2027",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 47388,
+      "currency": "EUR",
+      "closedate": "2027-03-31",
+      "owner": "Rhys Jones",
+      "company": "Aurora Studios",
+      "domain": "aurorastudios.games"
+    },
+    {
+      "id": "D12",
+      "name": "Lunar Bet 2025 NEXTPredict",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 37086,
+      "currency": "EUR",
+      "closedate": "2025-09-30",
+      "owner": "Heidi Lofthus",
+      "company": "Lunar Bet",
+      "domain": "lunarbet.com"
+    },
+    {
+      "id": "D13",
+      "name": "Lunar Bet - NEXTPredict 2026 - 3x3m booth",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 36441,
+      "currency": "EUR",
+      "closedate": "2026-09-30",
+      "owner": "Ana Hitzfitz",
+      "company": "Lunar Bet",
+      "domain": "lunarbet.com"
+    },
+    {
+      "id": "D14",
+      "name": "Lunar Bet - NEXT Valletta 2027 - 6x3m booth",
+      "pipeline": "NEXT Deals",
+      "stage": "Proposal Sent",
+      "amount": 40795,
+      "currency": "EUR",
+      "closedate": "2027-03-31",
+      "owner": "Ana Hitzfitz",
+      "company": "Lunar Bet",
+      "domain": "lunarbet.com"
+    },
+    {
+      "id": "D15",
+      "name": "Lunar Bet Group - NEXTPredict 2025 - 3x3m booth",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 38878,
+      "currency": "EUR",
+      "closedate": "2025-06-30",
+      "owner": "Heidi Lofthus",
+      "company": "Lunar Bet Group",
+      "domain": ""
+    },
+    {
+      "id": "D16",
+      "name": "Lunar Bet Group - 3x3m booth - NEXTPredict 2026",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 35947,
+      "currency": "EUR",
+      "closedate": "2026-03-31",
+      "owner": "Heidi Lofthus",
+      "company": "Lunar Bet Group",
+      "domain": ""
+    },
+    {
+      "id": "D17",
+      "name": "lunar bet ltd  -  nextpredict 2025 - badge sponsor",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 26123,
+      "currency": "EUR",
+      "closedate": "2025-09-30",
+      "owner": "Heidi Lofthus",
+      "company": "lunar bet ltd",
+      "domain": ""
+    },
+    {
+      "id": "D18",
+      "name": "lunar bet ltd  -  nextpredict 2026 - networking dinner",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 30449,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "",
+      "company": "lunar bet ltd",
+      "domain": ""
+    },
+    {
+      "id": "D19",
+      "name": "lunar bet ltd  -  next valletta 2027 - 6x3m booth",
+      "pipeline": "NEXT Deals",
+      "stage": "Negotiation / Review",
+      "amount": 28735,
+      "currency": "EUR",
+      "closedate": "2027-03-31",
+      "owner": "",
+      "company": "lunar bet ltd",
+      "domain": ""
+    },
+    {
+      "id": "D20",
+      "name": "Cobalt Casino - NEXT Valletta 2025 - Networking dinner",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 15680,
+      "currency": "EUR",
+      "closedate": "2025-06-30",
+      "owner": "",
+      "company": "Cobalt Casino",
+      "domain": ""
+    },
+    {
+      "id": "D21",
+      "name": "Cobalt Casino - NEXT Valletta 2026 - Leadership stage",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 15337,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Rhys Jones",
+      "company": "Cobalt Casino",
+      "domain": ""
+    },
+    {
+      "id": "D22",
+      "name": "Cobalt Casino 2027 NEXT Valletta",
+      "pipeline": "NEXT Deals",
+      "stage": "Negotiation / Review",
+      "amount": 17248,
+      "currency": "EUR",
+      "closedate": "2027-06-30",
+      "owner": "Mathias Massoue",
+      "company": "Cobalt Casino",
+      "domain": ""
+    },
+    {
+      "id": "D23",
+      "name": "Vega Interactive - 3x3m booth - NEXT Valletta 2025",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 57701,
+      "currency": "EUR",
+      "closedate": "2025-09-30",
+      "owner": "Mathias Massoue",
+      "company": "Vega Interactive",
+      "domain": ""
+    },
+    {
+      "id": "D24",
+      "name": "Vega Interactive - Networking dinner - NEXT Valletta 2026",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 57600,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Rhys Jones",
+      "company": "Vega Interactive",
+      "domain": ""
+    },
+    {
+      "id": "D25",
+      "name": "meridian play group  -  next valletta 2025 - networking dinner",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 48637,
+      "currency": "EUR",
+      "closedate": "2025-06-30",
+      "owner": "Mathias Massoue",
+      "company": "Meridian Play Group",
+      "domain": "meridianplay.bet"
+    },
+    {
+      "id": "D26",
+      "name": "Meridian Play Group 2026 NEXT Valletta",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 55446,
+      "currency": "EUR",
+      "closedate": "2026-03-31",
+      "owner": "Rhys Jones",
+      "company": "Meridian Play Group",
+      "domain": "meridianplay.bet"
+    },
+    {
+      "id": "D27",
+      "name": "Meridian Play Group - NEXT Valletta 2027 - Sponsorship",
+      "pipeline": "NEXT Deals",
+      "stage": "Negotiation / Review",
+      "amount": 53501,
+      "currency": "EUR",
+      "closedate": "2027-03-31",
+      "owner": "Mathias Massoue",
+      "company": "Meridian Play Group",
+      "domain": "meridianplay.bet"
+    },
+    {
+      "id": "D28",
+      "name": "Helios Bet - NEXT Valletta 2025 - Non-Branded Panel",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 66730,
+      "currency": "EUR",
+      "closedate": "2025-06-30",
+      "owner": "Rhys Jones",
+      "company": "Helios Bet",
+      "domain": "heliosbet.bet"
+    },
+    {
+      "id": "D29",
+      "name": "Helios Bet 2026 NEXT Valletta",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 71424,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Heidi Lofthus",
+      "company": "Helios Bet",
+      "domain": "heliosbet.bet"
+    },
+    {
+      "id": "D30",
+      "name": "Helios Bet - NEXT Valletta 2027 - Badge sponsor",
+      "pipeline": "NEXT Deals",
+      "stage": "Negotiation / Review",
+      "amount": 73403,
+      "currency": "EUR",
+      "closedate": "2027-06-30",
+      "owner": "Rhys Jones",
+      "company": "Helios Bet",
+      "domain": "heliosbet.bet"
+    },
+    {
+      "id": "D31",
+      "name": "Nimbus Gaming Holdings - NEXT Valletta 2025 - 3x3m booth",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 25607,
+      "currency": "EUR",
+      "closedate": "2025-06-30",
+      "owner": "",
+      "company": "Nimbus Gaming Holdings",
+      "domain": "nimbusgaming.co"
+    },
+    {
+      "id": "D32",
+      "name": "Nimbus Gaming Holdings - NEXT Valletta 2026 - Non-Branded Panel",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 24236,
+      "currency": "EUR",
+      "closedate": "2026-09-30",
+      "owner": "Mathias Massoue",
+      "company": "Nimbus Gaming Holdings",
+      "domain": "nimbusgaming.co"
+    },
+    {
+      "id": "D33",
+      "name": "Nimbus Gaming Holdings 2027 NEXT Valletta",
+      "pipeline": "NEXT Deals",
+      "stage": "Negotiation / Review",
+      "amount": 28168,
+      "currency": "EUR",
+      "closedate": "2027-06-30",
+      "owner": "Ana Hitzfitz",
+      "company": "Nimbus Gaming Holdings",
+      "domain": "nimbusgaming.co"
+    },
+    {
+      "id": "D34",
+      "name": "Aurora Holdings - Media 2026 - content article 1x",
+      "pipeline": "NEXT Deals",
+      "stage": "Contract Sent",
+      "amount": 6830,
+      "currency": "EUR",
+      "closedate": "2026-08-31",
+      "owner": "Rhys Jones",
+      "company": "Aurora Holdings",
+      "domain": "auroraholdings.com"
+    },
+    {
+      "id": "D35",
+      "name": "Aurora Holdings x NEXT - Strategic Partnership",
+      "pipeline": "Strategic Partnerships",
+      "stage": "Initial discussion",
+      "amount": 86654,
+      "currency": "EUR",
+      "closedate": "2026-04-30",
+      "owner": "Mathias Massoue",
+      "company": "Aurora Holdings",
+      "domain": "auroraholdings.com"
+    },
+    {
+      "id": "D36",
+      "name": "Aurora Gaming - Media 2026 - newsletter takeover",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 12658,
+      "currency": "EUR",
+      "closedate": "2026-02-28",
+      "owner": "Rhys Jones",
+      "company": "Aurora Gaming",
+      "domain": "auroragaming.io"
+    },
+    {
+      "id": "D37",
+      "name": "Aurora Gaming x NEXT - Strategic Partnership",
+      "pipeline": "Strategic Partnerships",
+      "stage": "Initial discussion",
+      "amount": 71582,
+      "currency": "EUR",
+      "closedate": "2026-04-30",
+      "owner": "",
+      "company": "Aurora Gaming",
+      "domain": "auroragaming.io"
+    },
+    {
+      "id": "D38",
+      "name": "Aurora Gaming Ltd - Media 2026 - video feature",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 11515,
+      "currency": "EUR",
+      "closedate": "2026-08-31",
+      "owner": "Rhys Jones",
+      "company": "Aurora Gaming Ltd",
+      "domain": "aurora-gaming.bet"
+    },
+    {
+      "id": "D39",
+      "name": "Aurora Gaming Ltd x NEXT - Strategic Partnership",
+      "pipeline": "Strategic Partnerships",
+      "stage": "Deliverables agreed",
+      "amount": 101688,
+      "currency": "EUR",
+      "closedate": "2026-10-31",
+      "owner": "Mathias Massoue",
+      "company": "Aurora Gaming Ltd",
+      "domain": "aurora-gaming.bet"
+    },
+    {
+      "id": "D40",
+      "name": "Aurora Studios - Media 2026 - webinar",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 3323,
+      "currency": "EUR",
+      "closedate": "2026-05-31",
+      "owner": "Heidi Lofthus",
+      "company": "Aurora Studios",
+      "domain": "aurorastudios.games"
+    },
+    {
+      "id": "D41",
+      "name": "Aurora Studios x NEXT - Strategic Partnership",
+      "pipeline": "Strategic Partnerships",
+      "stage": "Initial discussion",
+      "amount": 76286,
+      "currency": "EUR",
+      "closedate": "2026-07-31",
+      "owner": "Ana Hitzfitz",
+      "company": "Aurora Studios",
+      "domain": "aurorastudios.games"
+    },
+    {
+      "id": "D42",
+      "name": "Lunar Bet - Media 2026 - newsletter takeover",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 4118,
+      "currency": "EUR",
+      "closedate": "2026-02-28",
+      "owner": "Mathias Massoue",
+      "company": "Lunar Bet",
+      "domain": "lunarbet.com"
+    },
+    {
+      "id": "D43",
+      "name": "Lunar Bet x NEXT - Strategic Partnership",
+      "pipeline": "Strategic Partnerships",
+      "stage": "Initial discussion",
+      "amount": 95157,
+      "currency": "EUR",
+      "closedate": "2026-07-31",
+      "owner": "Ana Hitzfitz",
+      "company": "Lunar Bet",
+      "domain": "lunarbet.com"
+    },
+    {
+      "id": "D44",
+      "name": "Orion Play Ltd - Rev Share Agreement",
+      "pipeline": "Rev Share",
+      "stage": "Actively Generating",
+      "amount": null,
+      "currency": "EUR",
+      "closedate": "2026-05-31",
+      "owner": "Rhys Jones",
+      "company": "Orion Play Ltd",
+      "domain": "orionplay.co"
+    },
+    {
+      "id": "D45",
+      "name": "Solstice Betting Group - Rev Share Agreement",
+      "pipeline": "Rev Share",
+      "stage": "Agreement Signed",
+      "amount": null,
+      "currency": "EUR",
+      "closedate": "2026-11-30",
+      "owner": "",
+      "company": "Solstice Betting Group",
+      "domain": "solsticebetting.co"
+    },
+    {
+      "id": "D46",
+      "name": "Tundra Slots - Rev Share Agreement",
+      "pipeline": "Rev Share",
+      "stage": "Actively Generating",
+      "amount": 8319,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Ana Hitzfitz",
+      "company": "Tundra Slots",
+      "domain": "tundraslots.com"
+    },
+    {
+      "id": "D47",
+      "name": "Zephyr Gaming - Rev Share Agreement",
+      "pipeline": "Rev Share",
+      "stage": "Partner Identified",
+      "amount": null,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Mathias Massoue",
+      "company": "Zephyr Gaming",
+      "domain": ""
+    },
+    {
+      "id": "D48",
+      "name": "Marble Stack Studios - Rev Share Agreement",
+      "pipeline": "Rev Share",
+      "stage": "Actively Generating",
+      "amount": null,
+      "currency": "EUR",
+      "closedate": "2026-10-31",
+      "owner": "",
+      "company": "Marble Stack Studios",
+      "domain": ""
+    },
+    {
+      "id": "D49",
+      "name": "Quasar Live - Rev Share Agreement",
+      "pipeline": "Rev Share",
+      "stage": "Partner Identified",
+      "amount": null,
+      "currency": "EUR",
+      "closedate": "2026-05-31",
+      "owner": "Ana Hitzfitz",
+      "company": "Quasar Live",
+      "domain": "quasarlive.com"
+    },
+    {
+      "id": "D50",
+      "name": "Pioneer Pay International - Rev Share Agreement",
+      "pipeline": "Rev Share",
+      "stage": "Terms Proposed",
+      "amount": 21232,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Heidi Lofthus",
+      "company": "Pioneer Pay International",
+      "domain": "pioneerpay.gg"
+    },
+    {
+      "id": "D51",
+      "name": "Cascade Affiliates - Rev Share Agreement",
+      "pipeline": "Rev Share",
+      "stage": "Partner Identified",
+      "amount": 14312,
+      "currency": "EUR",
+      "closedate": "2026-01-31",
+      "owner": "",
+      "company": "Cascade Affiliates",
+      "domain": "cascadeaffiliates.games"
+    },
+    {
+      "id": "D52",
+      "name": "Halcyon Media - Rev Share Agreement",
+      "pipeline": "Rev Share",
+      "stage": "Actively Generating",
+      "amount": null,
+      "currency": "EUR",
+      "closedate": "2026-09-30",
+      "owner": "Ana Hitzfitz",
+      "company": "Halcyon Media",
+      "domain": "halcyonmedia.com"
+    },
+    {
+      "id": "D53",
+      "name": "Drift Networks - Rev Share Agreement",
+      "pipeline": "Rev Share",
+      "stage": "Agreement Signed",
+      "amount": 12075,
+      "currency": "EUR",
+      "closedate": "2026-12-31",
+      "owner": "Mathias Massoue",
+      "company": "Drift Networks",
+      "domain": "driftnetworks.io"
+    },
+    {
+      "id": "D54",
+      "name": "Foxglove Media Ltd - New Deal",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 1,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "",
+      "company": "Foxglove Media Ltd",
+      "domain": ""
+    },
+    {
+      "id": "D55",
+      "name": "Estuary Play - New Deal",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 1,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Mathias Massoue",
+      "company": "Estuary Play",
+      "domain": "estuaryplay.io"
+    },
+    {
+      "id": "D56",
+      "name": "Driftwood Bet - New Deal",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 1,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Mathias Massoue",
+      "company": "Driftwood Bet",
+      "domain": "driftwoodbet.com"
+    },
+    {
+      "id": "D57",
+      "name": "Cinder Studios Interactive - New Deal",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 1,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Heidi Lofthus",
+      "company": "Cinder Studios Interactive",
+      "domain": "cinderstudios.co"
+    },
+    {
+      "id": "D58",
+      "name": "Basalt Gaming - New Deal",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 1,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Mathias Massoue",
+      "company": "Basalt Gaming",
+      "domain": ""
+    },
+    {
+      "id": "D59",
+      "name": "Pelican Partners Interactive - New Deal",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 1,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Ana Hitzfitz",
+      "company": "Pelican Partners Interactive",
+      "domain": ""
+    },
+    {
+      "id": "D60",
+      "name": "Monsoon Media - New Deal",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 1,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Mathias Massoue",
+      "company": "Monsoon Media",
+      "domain": "monsoonmedia.com"
+    },
+    {
+      "id": "D61",
+      "name": "Lattice Labs - New Deal",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 1,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Heidi Lofthus",
+      "company": "Lattice Labs",
+      "domain": "latticelabs.com"
+    },
+    {
+      "id": "D62",
+      "name": "Falcon Pay - New Deal",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 1,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Heidi Lofthus",
+      "company": "Falcon Pay",
+      "domain": "falconpay.co"
+    },
+    {
+      "id": "D63",
+      "name": "Ironwood Group International - New Deal",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 1,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "",
+      "company": "Ironwood Group International",
+      "domain": "ironwoodgroup.co"
+    },
+    {
+      "id": "D64",
+      "name": "Ember Gaming - New Deal",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 1,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Ana Hitzfitz",
+      "company": "Ember Gaming",
+      "domain": ""
+    },
+    {
+      "id": "D65",
+      "name": "Sable Studios - New Deal",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 1,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Rhys Jones",
+      "company": "Sable Studios",
+      "domain": "sablestudios.com"
+    },
+    {
+      "id": "D66",
+      "name": "Northwind Partners - New Deal",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 1,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Ana Hitzfitz",
+      "company": "Northwind Partners",
+      "domain": "northwindpartners.bet"
+    },
+    {
+      "id": "D67",
+      "name": "Drift Networks - New Deal",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 1,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Rhys Jones",
+      "company": "Drift Networks",
+      "domain": "driftnetworks.io"
+    },
+    {
+      "id": "D68",
+      "name": "Halcyon Media - New Deal",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 1,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "",
+      "company": "Halcyon Media",
+      "domain": "halcyonmedia.com"
+    },
+    {
+      "id": "D69",
+      "name": "Cascade Affiliates - New Deal",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 1,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Ana Hitzfitz",
+      "company": "Cascade Affiliates",
+      "domain": "cascadeaffiliates.games"
+    },
+    {
+      "id": "D70",
+      "name": "Aurora Holdings 2027 NEXT Valletta",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 22818,
+      "currency": "EUR",
+      "closedate": "2027-09-30",
+      "owner": "Heidi Lofthus",
+      "company": "Aurora Holdings",
+      "domain": "auroraholdings.com"
+    },
+    {
+      "id": "D71",
+      "name": "Aurora Gaming Ltd 2026 NEXT Valletta",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 28808,
+      "currency": "EUR",
+      "closedate": "2026-12-31",
+      "owner": "Mathias Massoue",
+      "company": "Aurora Gaming Ltd",
+      "domain": "aurora-gaming.bet"
+    },
+    {
+      "id": "D72",
+      "name": "Lunar Bet - NEXT Valletta 2026 - 6x3m booth",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Lost",
+      "amount": 12749,
+      "currency": "EUR",
+      "closedate": "2026-09-30",
+      "owner": "Rhys Jones",
+      "company": "Lunar Bet",
+      "domain": "lunarbet.com"
+    },
+    {
+      "id": "D73",
+      "name": "Lunar Bet Group - 6x3m booth - NEXT Valletta 2025",
+      "pipeline": "NEXT Deals",
+      "stage": "Contract Sent",
+      "amount": 4052,
+      "currency": "EUR",
+      "closedate": "2025-03-31",
+      "owner": "Heidi Lofthus",
+      "company": "Lunar Bet Group",
+      "domain": ""
+    },
+    {
+      "id": "D74",
+      "name": "lunar bet group  -  next retreat europe 2026 - non-branded panel",
+      "pipeline": "NEXT Deals",
+      "stage": "Proposal Sent",
+      "amount": null,
+      "currency": "EUR",
+      "closedate": "2026-03-31",
+      "owner": "Ana Hitzfitz",
+      "company": "Lunar Bet Group",
+      "domain": ""
+    },
+    {
+      "id": "D75",
+      "name": "lunar bet ltd - NEXT Retrat Europe 2026 - Sponsorship",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 30778,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "",
+      "company": "lunar bet ltd",
+      "domain": ""
+    },
+    {
+      "id": "D76",
+      "name": "Vega Interactive 2027 NEXT Valletta",
+      "pipeline": "NEXT Deals",
+      "stage": "Contract Sent",
+      "amount": 42191,
+      "currency": "EUR",
+      "closedate": "2027-09-30",
+      "owner": "",
+      "company": "Vega Interactive",
+      "domain": ""
+    },
+    {
+      "id": "D77",
+      "name": "Vega Interactive - Badge sponsor - NEXT NYC 2027",
+      "pipeline": "NEXT Deals",
+      "stage": "Contract Sent",
+      "amount": null,
+      "currency": "EUR",
+      "closedate": "2027-03-31",
+      "owner": "Rhys Jones",
+      "company": "Vega Interactive",
+      "domain": ""
+    },
+    {
+      "id": "D78",
+      "name": "nimbus gaming holdings  -  nextpredict 2025 - networking dinner",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 36083,
+      "currency": "EUR",
+      "closedate": "2025-06-30",
+      "owner": "Rhys Jones",
+      "company": "Nimbus Gaming Holdings",
+      "domain": "nimbusgaming.co"
+    },
+    {
+      "id": "D79",
+      "name": "Nimbus Gaming Holdings - NEXT Retrat Europe 2026 - 3x3m booth",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 46317,
+      "currency": "EUR",
+      "closedate": "2026-03-31",
+      "owner": "",
+      "company": "Nimbus Gaming Holdings",
+      "domain": "nimbusgaming.co"
+    },
+    {
+      "id": "D80",
+      "name": "orion play ltd  -  next retreat europe 2026 - leadership stage",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 43738,
+      "currency": "EUR",
+      "closedate": "2026-12-31",
+      "owner": "",
+      "company": "Orion Play Ltd",
+      "domain": "orionplay.co"
+    },
+    {
+      "id": "D81",
+      "name": "solstice betting group  -  next nyc 2027 - non-branded panel",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 36260,
+      "currency": "EUR",
+      "closedate": "2027-09-30",
+      "owner": "Heidi Lofthus",
+      "company": "Solstice Betting Group",
+      "domain": "solsticebetting.co"
+    },
+    {
+      "id": "D82",
+      "name": "Solstice Betting Group - NEXT Retrat Europe 2026 - Sponsorship",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 25054,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Mathias Massoue",
+      "company": "Solstice Betting Group",
+      "domain": "solsticebetting.co"
+    },
+    {
+      "id": "D83",
+      "name": "Tundra Slots 2025 NEXTPredict",
+      "pipeline": "NEXT Deals",
+      "stage": "Proposal Sent",
+      "amount": 45035,
+      "currency": "EUR",
+      "closedate": "2025-12-31",
+      "owner": "Rhys Jones",
+      "company": "Tundra Slots",
+      "domain": "tundraslots.com"
+    },
+    {
+      "id": "D84",
+      "name": "tundra slots  -  next retreat europe 2026 - badge sponsor",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 26867,
+      "currency": "EUR",
+      "closedate": "2026-09-30",
+      "owner": "Ana Hitzfitz",
+      "company": "Tundra Slots",
+      "domain": "tundraslots.com"
+    },
+    {
+      "id": "D85",
+      "name": "zephyr gaming  -  next valletta 2025 - lanyard sponsor",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 33102,
+      "currency": "EUR",
+      "closedate": "2025-12-31",
+      "owner": "Rhys Jones",
+      "company": "Zephyr Gaming",
+      "domain": ""
+    },
+    {
+      "id": "D86",
+      "name": "Marble Stack Studios - Non-Branded Panel - NEXTPredict 2025",
+      "pipeline": "NEXT Deals",
+      "stage": "Negotiation / Review",
+      "amount": 18229,
+      "currency": "EUR",
+      "closedate": "2025-03-31",
+      "owner": "Heidi Lofthus",
+      "company": "Marble Stack Studios",
+      "domain": ""
+    },
+    {
+      "id": "D87",
+      "name": "marble stack studios  -  next nyc 2026 - lanyard sponsor",
+      "pipeline": "NEXT Deals",
+      "stage": "Proposal Sent",
+      "amount": null,
+      "currency": "EUR",
+      "closedate": "2026-09-30",
+      "owner": "",
+      "company": "Marble Stack Studios",
+      "domain": ""
+    },
+    {
+      "id": "D88",
+      "name": "Quasar Live 2026 NEXT NYC",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 4979,
+      "currency": "EUR",
+      "closedate": "2026-03-31",
+      "owner": "Mathias Massoue",
+      "company": "Quasar Live",
+      "domain": "quasarlive.com"
+    },
+    {
+      "id": "D89",
+      "name": "pioneer pay international  -  next retreat europe 2026 - 3x3m booth",
+      "pipeline": "NEXT Deals",
+      "stage": "Proposal Sent",
+      "amount": 34868,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Heidi Lofthus",
+      "company": "Pioneer Pay International",
+      "domain": "pioneerpay.gg"
+    },
+    {
+      "id": "D90",
+      "name": "Pioneer Pay International - 3x3m booth - NEXT Valletta 2027",
+      "pipeline": "NEXT Deals",
+      "stage": "Proposal Sent",
+      "amount": 49320,
+      "currency": "EUR",
+      "closedate": "2027-06-30",
+      "owner": "Ana Hitzfitz",
+      "company": "Pioneer Pay International",
+      "domain": "pioneerpay.gg"
+    },
+    {
+      "id": "D91",
+      "name": "northwind partners  -  nextpredict 2025 - badge sponsor",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 42393,
+      "currency": "EUR",
+      "closedate": "2025-12-31",
+      "owner": "Heidi Lofthus",
+      "company": "Northwind Partners",
+      "domain": "northwindpartners.bet"
+    },
+    {
+      "id": "D92",
+      "name": "Northwind Partners 2027 NEXT NYC",
+      "pipeline": "NEXT Deals",
+      "stage": "Negotiation / Review",
+      "amount": 1,
+      "currency": "EUR",
+      "closedate": "2027-06-30",
+      "owner": "",
+      "company": "Northwind Partners",
+      "domain": "northwindpartners.bet"
+    },
+    {
+      "id": "D93",
+      "name": "Sable Studios - NEXT Retrat Europe 2026 - Badge sponsor",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": null,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "",
+      "company": "Sable Studios",
+      "domain": "sablestudios.com"
+    },
+    {
+      "id": "D94",
+      "name": "Sable Studios - NEXT Retreat Europe 2026 - Lanyard sponsor",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 15572,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "",
+      "company": "Sable Studios",
+      "domain": "sablestudios.com"
+    },
+    {
+      "id": "D95",
+      "name": "ember gaming  -  next valletta 2026 - 3x3m booth",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 7663,
+      "currency": "EUR",
+      "closedate": "2026-12-31",
+      "owner": "",
+      "company": "Ember Gaming",
+      "domain": ""
+    },
+    {
+      "id": "D96",
+      "name": "Falcon Pay - NEXT Valletta 2025 - Non-Branded Panel",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 47482,
+      "currency": "EUR",
+      "closedate": "2025-03-31",
+      "owner": "Mathias Massoue",
+      "company": "Falcon Pay",
+      "domain": "falconpay.co"
+    },
+    {
+      "id": "D97",
+      "name": "Falcon Pay 2026 NEXT Retreat Europe",
+      "pipeline": "NEXT Deals",
+      "stage": "Contract Sent",
+      "amount": 19988,
+      "currency": "EUR",
+      "closedate": "2026-09-30",
+      "owner": "Rhys Jones",
+      "company": "Falcon Pay",
+      "domain": "falconpay.co"
+    },
+    {
+      "id": "D98",
+      "name": "monsoon media  -  next valletta 2027 - leadership stage",
+      "pipeline": "NEXT Deals",
+      "stage": "Contract Sent",
+      "amount": 29119,
+      "currency": "EUR",
+      "closedate": "2027-09-30",
+      "owner": "Ana Hitzfitz",
+      "company": "Monsoon Media",
+      "domain": "monsoonmedia.com"
+    },
+    {
+      "id": "D99",
+      "name": "Pelican Partners Interactive - NEXTPredict 2026 - Networking dinner",
+      "pipeline": "NEXT Deals",
+      "stage": "Contract Sent",
+      "amount": 28267,
+      "currency": "EUR",
+      "closedate": "2026-12-31",
+      "owner": "",
+      "company": "Pelican Partners Interactive",
+      "domain": ""
+    },
+    {
+      "id": "D100",
+      "name": "Pelican Partners Interactive - Sponsorship - NEXT Retreat Europe 2026",
+      "pipeline": "NEXT Deals",
+      "stage": "Contract Sent",
+      "amount": 44721,
+      "currency": "EUR",
+      "closedate": "2026-09-30",
+      "owner": "Mathias Massoue",
+      "company": "Pelican Partners Interactive",
+      "domain": ""
+    },
+    {
+      "id": "D101",
+      "name": "basalt gaming  -  next valletta 2025 - lanyard sponsor",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 40148,
+      "currency": "EUR",
+      "closedate": "2025-12-31",
+      "owner": "Heidi Lofthus",
+      "company": "Basalt Gaming",
+      "domain": ""
+    },
+    {
+      "id": "D102",
+      "name": "Basalt Gaming - NEXT NYC 2027 - 3x3m booth",
+      "pipeline": "NEXT Deals",
+      "stage": "Negotiation / Review",
+      "amount": 40071,
+      "currency": "EUR",
+      "closedate": "2027-09-30",
+      "owner": "Rhys Jones",
+      "company": "Basalt Gaming",
+      "domain": ""
+    },
+    {
+      "id": "D103",
+      "name": "Driftwood Bet - Lanyard sponsor - NEXT NYC 2026",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Lost",
+      "amount": 18709,
+      "currency": "EUR",
+      "closedate": "2026-09-30",
+      "owner": "Heidi Lofthus",
+      "company": "Driftwood Bet",
+      "domain": "driftwoodbet.com"
+    },
+    {
+      "id": "D104",
+      "name": "Driftwood Bet - NEXT Retrat Europe 2026 - Networking dinner",
+      "pipeline": "NEXT Deals",
+      "stage": "Contract Sent",
+      "amount": null,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Ana Hitzfitz",
+      "company": "Driftwood Bet",
+      "domain": "driftwoodbet.com"
+    },
+    {
+      "id": "D105",
+      "name": "estuary play  -  nextpredict 2026 - leadership stage",
+      "pipeline": "NEXT Deals",
+      "stage": "Negotiation / Review",
+      "amount": 22833,
+      "currency": "EUR",
+      "closedate": "2026-03-31",
+      "owner": "Mathias Massoue",
+      "company": "Estuary Play",
+      "domain": "estuaryplay.io"
+    },
+    {
+      "id": "D106",
+      "name": "Foxglove Media Ltd - NEXT NYC 2026 - Leadership stage",
+      "pipeline": "NEXT Deals",
+      "stage": "Needs Analysis",
+      "amount": 31455,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Heidi Lofthus",
+      "company": "Foxglove Media Ltd",
+      "domain": ""
+    },
+    {
+      "id": "D107",
+      "name": "Aurora Holdings - NEXT Valletta 2026 - Sponsorship Package",
+      "pipeline": "NEXT Deals",
+      "stage": "Proposal Sent",
+      "amount": 45133,
+      "currency": "EUR",
+      "closedate": "2026-03-31",
+      "owner": "Ana Hitzfitz",
+      "company": "Aurora Holdings",
+      "domain": "auroraholdings.com"
+    },
+    {
+      "id": "D108",
+      "name": "Aurora Gaming - NEXT NYC 2026 - Sponsorship Package",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 18500,
+      "currency": "EUR",
+      "closedate": "2026-09-30",
+      "owner": "Ana Hitzfitz",
+      "company": "Aurora Gaming",
+      "domain": "auroragaming.io"
+    },
+    {
+      "id": "D109",
+      "name": "Aurora Gaming Ltd - NEXTPredict 2026 - Sponsorship Package",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 49000,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Rhys Jones",
+      "company": "Aurora Gaming Ltd",
+      "domain": "aurora-gaming.bet"
+    },
+    {
+      "id": "D110",
+      "name": "Aurora Studios - NEXTPredict 2026 - Sponsorship Package",
+      "pipeline": "NEXT Deals",
+      "stage": "Contract Sent",
+      "amount": 37306,
+      "currency": "EUR",
+      "closedate": "2026-03-31",
+      "owner": "Heidi Lofthus",
+      "company": "Aurora Studios",
+      "domain": "aurorastudios.games"
+    },
+    {
+      "id": "D111",
+      "name": "Lunar Bet - NEXT Retreat Europe 2026 - Sponsorship Package",
+      "pipeline": "NEXT Deals",
+      "stage": "Proposal Sent",
+      "amount": 75000,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Mathias Massoue",
+      "company": "Lunar Bet",
+      "domain": "lunarbet.com"
+    },
+    {
+      "id": "D112",
+      "name": "Lunar Bet Group - NEXT Valletta 2026 - Sponsorship Package",
+      "pipeline": "NEXT Deals",
+      "stage": "Contract Sent",
+      "amount": 43036,
+      "currency": "EUR",
+      "closedate": "2026-09-30",
+      "owner": "Mathias Massoue",
+      "company": "Lunar Bet Group",
+      "domain": ""
+    },
+    {
+      "id": "D113",
+      "name": "lunar bet ltd - NEXTPredict 2026 - Sponsorship Package",
+      "pipeline": "NEXT Deals",
+      "stage": "Closed Won",
+      "amount": 30500,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Heidi Lofthus",
+      "company": "lunar bet ltd",
+      "domain": ""
+    },
+    {
+      "id": "D114",
+      "name": "Cobalt Casino - NEXTPredict 2026 - Sponsorship Package",
+      "pipeline": "NEXT Deals",
+      "stage": "Proposal Sent",
+      "amount": 22500,
+      "currency": "EUR",
+      "closedate": "2026-06-30",
+      "owner": "Rhys Jones",
+      "company": "Cobalt Casino",
+      "domain": ""
+    },
+    {
+      "id": "D115",
+      "name": "Vega Interactive - NEXT Retreat Europe 2026 - Sponsorship Package",
+      "pipeline": "NEXT Deals",
+      "stage": "Proposal Sent",
+      "amount": 31996,
+      "currency": "EUR",
+      "closedate": "2026-03-31",
+      "owner": "",
+      "company": "Vega Interactive",
+      "domain": ""
+    },
+    {
+      "id": "D116",
+      "name": "Meridian Play Group - NEXT Valletta 2026 - Sponsorship Package",
+      "pipeline": "NEXT Deals",
+      "stage": "Contract Sent",
+      "amount": 20219,
+      "currency": "EUR",
+      "closedate": "2026-03-31",
+      "owner": "Mathias Massoue",
+      "company": "Meridian Play Group",
+      "domain": "meridianplay.bet"
+    }
+  ],
+  "lineItems": [
+    {
+      "id": "L1",
+      "deal": "Aurora Holdings - NEXT Valletta 2026 - Sponsorship Package",
+      "name": "Leadership stage",
+      "quantity": 1,
+      "price": 38000,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L2",
+      "deal": "Aurora Holdings - NEXT Valletta 2026 - Sponsorship Package",
+      "name": "Delegate passes (5)",
+      "quantity": 1,
+      "price": 2500,
+      "currency": "EUR",
+      "fulfilment": "Cancelled"
+    },
+    {
+      "id": "L3",
+      "deal": "Aurora Holdings - NEXT Valletta 2026 - Sponsorship Package",
+      "name": "Content series x3",
+      "quantity": 1,
+      "price": 5000,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L4",
+      "deal": "Aurora Holdings - NEXT Valletta 2026 - Sponsorship Package",
+      "name": "Content article 1x",
+      "quantity": 3,
+      "price": 1800,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L5",
+      "deal": "Aurora Gaming - NEXT NYC 2026 - Sponsorship Package",
+      "name": "Delegate passes (5)",
+      "quantity": 1,
+      "price": 2500,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L6",
+      "deal": "Aurora Gaming - NEXT NYC 2026 - Sponsorship Package",
+      "name": "Panel slot",
+      "quantity": 1,
+      "price": 16000,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L7",
+      "deal": "Aurora Gaming Ltd - NEXTPredict 2026 - Sponsorship Package",
+      "name": "Video feature",
+      "quantity": 1,
+      "price": 6000,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L8",
+      "deal": "Aurora Gaming Ltd - NEXTPredict 2026 - Sponsorship Package",
+      "name": "Networking dinner",
+      "quantity": 1,
+      "price": 20000,
+      "currency": "EUR",
+      "fulfilment": "Pending"
+    },
+    {
+      "id": "L9",
+      "deal": "Aurora Gaming Ltd - NEXTPredict 2026 - Sponsorship Package",
+      "name": "6x3m booth",
+      "quantity": 1,
+      "price": 23000,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L10",
+      "deal": "Aurora Studios - NEXTPredict 2026 - Sponsorship Package",
+      "name": "6x3m booth",
+      "quantity": 1,
+      "price": 23000,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L11",
+      "deal": "Aurora Studios - NEXTPredict 2026 - Sponsorship Package",
+      "name": "Badge sponsor",
+      "quantity": 1,
+      "price": 23000,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L12",
+      "deal": "Lunar Bet - NEXT Retreat Europe 2026 - Sponsorship Package",
+      "name": "3x3m booth",
+      "quantity": 1,
+      "price": 14500,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L13",
+      "deal": "Lunar Bet - NEXT Retreat Europe 2026 - Sponsorship Package",
+      "name": "Newsletter takeover",
+      "quantity": 1,
+      "price": 7500,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L14",
+      "deal": "Lunar Bet - NEXT Retreat Europe 2026 - Sponsorship Package",
+      "name": "Leadership stage",
+      "quantity": 1,
+      "price": 38000,
+      "currency": "EUR",
+      "fulfilment": "Pending"
+    },
+    {
+      "id": "L15",
+      "deal": "Lunar Bet - NEXT Retreat Europe 2026 - Sponsorship Package",
+      "name": "Content series x3",
+      "quantity": 3,
+      "price": 5000,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L16",
+      "deal": "Lunar Bet Group - NEXT Valletta 2026 - Sponsorship Package",
+      "name": "Newsletter takeover",
+      "quantity": 1,
+      "price": 7500,
+      "currency": "EUR",
+      "fulfilment": "Pending"
+    },
+    {
+      "id": "L17",
+      "deal": "Lunar Bet Group - NEXT Valletta 2026 - Sponsorship Package",
+      "name": "Lanyard sponsor",
+      "quantity": 1,
+      "price": 16000,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L18",
+      "deal": "Lunar Bet Group - NEXT Valletta 2026 - Sponsorship Package",
+      "name": "6x3m booth",
+      "quantity": 1,
+      "price": 23000,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L19",
+      "deal": "Lunar Bet Group - NEXT Valletta 2026 - Sponsorship Package",
+      "name": "Video feature",
+      "quantity": 1,
+      "price": 6000,
+      "currency": "EUR",
+      "fulfilment": "Pending"
+    },
+    {
+      "id": "L20",
+      "deal": "lunar bet ltd - NEXTPredict 2026 - Sponsorship Package",
+      "name": "Badge sponsor",
+      "quantity": 1,
+      "price": 23000,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L21",
+      "deal": "lunar bet ltd - NEXTPredict 2026 - Sponsorship Package",
+      "name": "Newsletter takeover",
+      "quantity": 1,
+      "price": 7500,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L22",
+      "deal": "Cobalt Casino - NEXTPredict 2026 - Sponsorship Package",
+      "name": "Delegate passes (5)",
+      "quantity": 1,
+      "price": 2500,
+      "currency": "EUR",
+      "fulfilment": "Cancelled"
+    },
+    {
+      "id": "L23",
+      "deal": "Cobalt Casino - NEXTPredict 2026 - Sponsorship Package",
+      "name": "Networking dinner",
+      "quantity": 1,
+      "price": 20000,
+      "currency": "EUR",
+      "fulfilment": "Cancelled"
+    },
+    {
+      "id": "L24",
+      "deal": "Vega Interactive - NEXT Retreat Europe 2026 - Sponsorship Package",
+      "name": "3x3m booth",
+      "quantity": 1,
+      "price": 14500,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L25",
+      "deal": "Vega Interactive - NEXT Retreat Europe 2026 - Sponsorship Package",
+      "name": "Content article 1x",
+      "quantity": 1,
+      "price": 1800,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L26",
+      "deal": "Vega Interactive - NEXT Retreat Europe 2026 - Sponsorship Package",
+      "name": "Content series x3",
+      "quantity": 1,
+      "price": 5000,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L27",
+      "deal": "Vega Interactive - NEXT Retreat Europe 2026 - Sponsorship Package",
+      "name": "Panel slot",
+      "quantity": 1,
+      "price": 16000,
+      "currency": "EUR",
+      "fulfilment": "Delivered"
+    },
+    {
+      "id": "L28",
+      "deal": "Meridian Play Group - NEXT Valletta 2026 - Sponsorship Package",
+      "name": "Newsletter takeover",
+      "quantity": 1,
+      "price": 7500,
+      "currency": "EUR",
+      "fulfilment": "Cancelled"
+    },
+    {
+      "id": "L29",
+      "deal": "Meridian Play Group - NEXT Valletta 2026 - Sponsorship Package",
+      "name": "Panel slot",
+      "quantity": 1,
+      "price": 16000,
+      "currency": "EUR",
+      "fulfilment": "Cancelled"
+    }
+  ]
+}</script>
+<script>
+"use strict";
+const DATA = JSON.parse(document.getElementById("dataset").textContent);
+const LS_KEY = "nextos-headcrm-task-v1";
+
+/* ---------- state ---------- */
+const S = load() || { meta:{name:"",email:""}, flags:{}, answers:{} };
+function load(){ try { return JSON.parse(localStorage.getItem(LS_KEY)); } catch(e){ return null; } }
+let saveTimer;
+function save(flash){
+  try{ localStorage.setItem(LS_KEY, JSON.stringify(S)); }catch(e){}
+  const dot=document.getElementById("saveDot");
+  if(flash){ dot.textContent="● saved"; clearTimeout(saveTimer); saveTimer=setTimeout(()=>dot.textContent="●",1200); }
+  refreshCounts();
+}
+
+/* ---------- nav ---------- */
+function go(tab){
+  document.querySelectorAll("section").forEach(s=>s.classList.toggle("active",s.id===tab));
+  document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));
+  window.scrollTo(0,0);
+}
+document.getElementById("nav").addEventListener("click",e=>{ if(e.target.dataset.tab) go(e.target.dataset.tab); });
+
+/* ---------- brief stats ---------- */
+document.getElementById("stCompanies").textContent = DATA.companies.length;
+document.getElementById("stContacts").textContent = DATA.contacts.length;
+document.getElementById("stDeals").textContent = DATA.deals.length;
+
+/* ---------- explore tables ---------- */
+const COLS = {
+  companies:[["name","Name"],["domain","Domain"],["industry","Industry"],["country","Country"],["type","Type"],["lifecycle","Lifecycle"]],
+  contacts:[["firstname","First"],["lastname","Last"],["email","Email"],["jobtitle","Job title"],["company","Company"],["source","Source"],["lifecycle","Lifecycle"],["owner","Owner"],["created","Created"]],
+  deals:[["name","Deal name"],["pipeline","Pipeline"],["stage","Stage"],["amount","Amount"],["closedate","Close date"],["owner","Owner"],["company","Company"]],
+  lineItems:[["deal","Deal"],["name","Item"],["quantity","Qty"],["price","Unit price"],["fulfilment","Fulfilment"]],
+};
+const NUMCOL = {amount:1,price:1,quantity:1};
+let curObj="companies", sortKey=null, sortDir=1, groupBy=false;
+
+document.getElementById("objTabs").addEventListener("click",e=>{
+  if(!e.target.dataset.obj) return;
+  curObj=e.target.dataset.obj; sortKey=null; sortDir=1;
+  document.querySelectorAll("#objTabs button").forEach(b=>b.classList.toggle("active",b.dataset.obj===curObj));
+  document.getElementById("search").value="";
+  document.getElementById("groupWrap").style.display = curObj==="deals"?"inline":"none";
+  renderTable();
+});
+document.getElementById("search").addEventListener("input",renderTable);
+document.getElementById("groupByCo").addEventListener("change",e=>{ groupBy=e.target.checked; renderTable(); });
+
+function fmt(v,key){
+  if(v===null||v===undefined||v===""){ return key==="amount"||key==="owner" ? '<span class="miss">— missing</span>' : ""; }
+  if(key==="amount"||key==="price") return "€"+Number(v).toLocaleString();
+  return String(v).replace(/</g,"&lt;");
+}
+function stageBadge(stage){
+  const s=(stage||"").toLowerCase();
+  const cls = s.includes("won")?"b-won": s.includes("lost")?"b-lost":"b-open";
+  return '<span class="badge '+cls+'">'+(stage||"")+"</span>";
+}
+function rows(){
+  let r = DATA[curObj].slice();
+  const q = document.getElementById("search").value.trim().toLowerCase();
+  if(q) r = r.filter(o=>Object.values(o).some(v=>String(v).toLowerCase().includes(q)));
+  if(sortKey) r.sort((a,b)=>{
+    let x=a[sortKey], y=b[sortKey];
+    if(NUMCOL[sortKey]){ x=Number(x)||0; y=Number(y)||0; return (x-y)*sortDir; }
+    return String(x).localeCompare(String(y))*sortDir;
+  });
+  return r;
+}
+function renderTable(){
+  const thead=document.querySelector("#tbl thead"), tbody=document.querySelector("#tbl tbody");
+  if(curObj==="deals" && groupBy){ return renderGrouped(thead,tbody); }
+  const cols=COLS[curObj];
+  thead.innerHTML="<tr>"+cols.map(c=>'<th data-k="'+c[0]+'">'+c[1]+(sortKey===c[0]?(sortDir>0?" ▲":" ▼"):"")+"</th>").join("")
+    +'<th style="cursor:default">Flag</th><th style="cursor:default">Note</th></tr>';
+  const data=rows();
+  document.getElementById("rowCount").textContent=data.length+" rows";
+  tbody.innerHTML=data.map(o=>{
+    const key=curObj+":"+o.id, f=S.flags[key]||{};
+    const cells=cols.map(c=>{
+      let val = c[0]==="stage" ? stageBadge(o[c[0]]) : fmt(o[c[0]],c[0]);
+      return '<td class="'+(NUMCOL[c[0]]?"num":"")+'">'+val+"</td>";
+    }).join("");
+    return '<tr class="'+(f.action?"flagged":"")+'" data-key="'+key+'">'+cells
+      +'<td>'+flagSelect(f.action)+'</td>'
+      +'<td><input class="flagnote" data-note="'+key+'" value="'+(f.note||"").replace(/"/g,"&quot;")+'" placeholder="why / what you\'d do"></td></tr>';
+  }).join("");
+}
+function renderGrouped(thead,tbody){
+  thead.innerHTML="<tr><th>Company</th><th>Deals</th><th>Years</th><th>Won (€)</th><th>Open (€)</th><th>Deal names</th></tr>";
+  const by={};
+  rows().forEach(d=>{ (by[d.company]=by[d.company]||[]).push(d); });
+  const out=Object.keys(by).sort().map(co=>{
+    const ds=by[co];
+    const years=[...new Set(ds.map(d=>(d.closedate||"").slice(0,4)).filter(Boolean))].sort().join(", ");
+    const won=ds.filter(d=>/won/i.test(d.stage)).reduce((s,d)=>s+(d.amount||0),0);
+    const open=ds.filter(d=>!/won|lost/i.test(d.stage)).reduce((s,d)=>s+(d.amount||0),0);
+    const names=ds.map(d=>d.name).join(" · ");
+    return "<tr><td>"+(co||'<span class="miss">— none</span>')+"</td><td class='num'>"+ds.length+"</td><td>"+years
+      +"</td><td class='num'>€"+won.toLocaleString()+"</td><td class='num'>€"+open.toLocaleString()
+      +"</td><td class='small muted'>"+names.replace(/</g,"&lt;")+"</td></tr>";
+  }).join("");
+  tbody.innerHTML=out;
+  document.getElementById("rowCount").textContent=Object.keys(by).length+" companies";
+}
+function flagSelect(v){
+  const opts=["","keep","merge","delete","fix","review"];
+  return '<select class="flagsel" data-flag="1">'+opts.map(o=>'<option value="'+o+'"'+(o===v?" selected":"")+'>'+(o||"—")+"</option>").join("")+"</select>";
+}
+document.querySelector("#tbl").addEventListener("click",e=>{ const th=e.target.closest("th"); if(th&&th.dataset.k){ const k=th.dataset.k; sortDir = sortKey===k? -sortDir : 1; sortKey=k; renderTable(); }});
+document.querySelector("#tbl").addEventListener("change",e=>{
+  const tr=e.target.closest("tr"); if(!tr) return; const key=tr.dataset.key; if(!key) return;
+  const f=S.flags[key]||(S.flags[key]={});
+  if(e.target.dataset.flag){ f.action=e.target.value; tr.classList.toggle("flagged",!!f.action); }
+  if(!f.action && !f.note) delete S.flags[key];
+  save(true);
+});
+document.querySelector("#tbl").addEventListener("input",e=>{
+  if(!e.target.dataset.note) return; const key=e.target.dataset.note;
+  const f=S.flags[key]||(S.flags[key]={}); f.note=e.target.value;
+  if(!f.action && !f.note) delete S.flags[key];
+  clearTimeout(saveTimer); saveTimer=setTimeout(()=>save(true),400);
+});
+
+/* ---------- tasks ---------- */
+const TASKS=[
+  {id:"renewal", title:"1 · Renewal & retention across the event portfolio", prompt:"Which customers bought in a prior year but have NOT renewed for the next event? How did you find them, what's your read on net revenue retention, and what would you do about it before the next event?",
+   fields:[{k:"churned",label:"Churned / at-risk accounts (list them)",t:"area"},{k:"method",label:"How you identified renewal vs. churn (your method)",t:"area"},{k:"action",label:"What you'd do about it — and the NRR story for leadership",t:"area"}]},
+  {id:"accounts", title:"2 · Multi-brand operator account model", prompt:"Where is one real customer split across several company records? Which are genuine parent/child entities to associate, and which are duplicates to merge? Give your rule and your safe method.",
+   fields:[{k:"findings",label:"Groups / duplicates you found (name the records)",t:"area"},{k:"rule",label:"Your dedup + account-rollup rule, and how you'd merge without losing detail",t:"area"}]},
+  {id:"lifecycle", title:"3 · Audience vs. buyer", prompt:"Most contacts are event attendees, not buyers. Define a lifecycle/segmentation that serves both, and the first segment + automation you'd ship.",
+   fields:[{k:"model",label:"Your lifecycle / segmentation model for an events + media business",t:"area"},{k:"ship",label:"The one segment + one automation you'd ship first, and the result it targets",t:"area"}]},
+  {id:"bundles", title:"4 · Bundled deliverables — sold vs. delivered", prompt:"Look at the Sponsorship Package deals and their line items. What doesn't reconcile, and how would you model bundles so we can report sold vs. delivered and renew intelligently?",
+   fields:[{k:"recon",label:"What doesn't reconcile (deal value vs. line items; delivered vs. sold)",t:"area"},{k:"model",label:"How you'd model bundles + fulfilment, and how it informs renewal pricing",t:"area"}]},
+  {id:"pipelines", title:"5 · Three pipelines, one forecast", prompt:"The three pipelines use inconsistent stages. Propose a coherent model (or justify keeping them separate) with entry/exit criteria, and how you'd make the forecast trustworthy.",
+   fields:[{k:"stages",label:"Your stage model + entry/exit criteria (or the case for separate pipelines)",t:"area"},{k:"forecast",label:"What's wrong with the forecast today (amounts, close dates) and the rules you'd add",t:"area"}]},
+  {id:"leads", title:"6 · Lead scoring & routing (unblock the team)", prompt:"Marketing generates leads but HubSpot isn't set up to act on them: there's no scoring, and routing is a manual bottleneck — one person (Will) holds most leads while many sit unassigned for weeks, including hot inbound. Look at Contacts: owner, source, job title, lifecycle, created date. Design how you'd fix it.",
+   fields:[{k:"diagnosis",label:"What's wrong today — quantify the routing bottleneck and the unrouted/aging leads (who, how many)",t:"area"},{k:"scoring",label:"Your lead-scoring model: the signals you'd score on (fit + intent) and the MQL→SQL threshold",t:"area"},{k:"routing",label:"Your routing model: rules / round-robin / territory + SLAs, so no one is a single point of failure",t:"area"},{k:"enablement",label:"What HubSpot needs set up for marketing to work (properties, lifecycle, source tracking, reporting/handoff)",t:"area"}]},
+  {id:"triage", title:"Data triage — summary", prompt:"Summarise the data-quality problems you flagged in Explore. Quantify them and rank by commercial cost. (Your individual flags are captured automatically.)",
+   fields:[{k:"summary",label:"Top problems, rough scale, and why each costs us money or a bad forecast",t:"area"}]},
+  {id:"dashboard", title:"Leadership dashboard (max 6 widgets)", prompt:"Describe the single weekly dashboard you'd put in front of commercial leadership who don't open HubSpot. For each widget: what it shows and what decision it drives.",
+   fields:[{k:"w1",label:"Widget 1"},{k:"w2",label:"Widget 2"},{k:"w3",label:"Widget 3"},{k:"w4",label:"Widget 4"},{k:"w5",label:"Widget 5"},{k:"w6",label:"Widget 6"}]},
+  {id:"plan", title:"Your first 90 days", prompt:"How you'd sequence it, what you'd deliberately not touch yet, and the one metric you'd be judged on at day 90.",
+   fields:[{k:"p1",label:"Weeks 1–2",t:"area"},{k:"p2",label:"Weeks 3–6",t:"area"},{k:"p3",label:"Weeks 7–12 + your day-90 metric + how you bring deal owners along",t:"area"}]},
+];
+function renderTasks(){
+  const host=document.getElementById("taskList");
+  host.innerHTML=TASKS.map(t=>{
+    const a=S.answers[t.id]||{};
+    const fields=t.fields.map(f=>{
+      const v=(a[f.k]||"").replace(/</g,"&lt;");
+      const ctl = f.t==="area"
+        ? '<textarea data-task="'+t.id+'" data-field="'+f.k+'">'+v+'</textarea>'
+        : '<input style="width:100%" data-task="'+t.id+'" data-field="'+f.k+'" value="'+v.replace(/"/g,"&quot;")+'">';
+      return '<div class="field"><label>'+f.label+'</label>'+ctl+'</div>';
+    }).join("");
+    return '<div class="card task"><h3>'+t.title+'</h3><p class="prompt small">'+t.prompt+'</p>'+fields+'</div>';
+  }).join("");
+}
+document.getElementById("taskList").addEventListener("input",e=>{
+  const id=e.target.dataset.task, k=e.target.dataset.field; if(!id) return;
+  (S.answers[id]=S.answers[id]||{})[k]=e.target.value;
+  clearTimeout(saveTimer); saveTimer=setTimeout(()=>save(true),400);
+  updateTaskBar();
+});
+function answeredCount(){
+  let n=0; TASKS.forEach(t=>{ const a=S.answers[t.id]||{}; if(t.fields.some(f=>(a[f.k]||"").trim())) n++; }); return n;
+}
+function updateTaskBar(){ document.getElementById("taskBar").style.width=Math.round(answeredCount()/TASKS.length*100)+"%"; }
+
+/* ---------- submit ---------- */
+const mName=document.getElementById("mName"), mEmail=document.getElementById("mEmail");
+mName.value=S.meta.name||""; mEmail.value=S.meta.email||"";
+mName.addEventListener("input",()=>{S.meta.name=mName.value; save();});
+mEmail.addEventListener("input",()=>{S.meta.email=mEmail.value; save();});
+function refreshCounts(){
+  const fc=Object.keys(S.flags).length, ac=answeredCount();
+  document.getElementById("flagCount").textContent=fc;
+  document.getElementById("sumFlags").textContent=fc;
+  document.getElementById("sumAnswered").textContent=ac+" / "+TASKS.length;
+}
+document.getElementById("saveBtn").addEventListener("click",()=>save(true));
+document.getElementById("reset").addEventListener("click",()=>{ if(confirm("Clear all your answers and flags on this device?")){ localStorage.removeItem(LS_KEY); location.reload(); }});
+document.getElementById("dl").addEventListener("click",downloadSubmission);
+document.getElementById("resume").addEventListener("change",resumeFromFile);
+
+function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function nl(s){ return esc(s).replace(/\n/g,"<br>"); }
+function downloadSubmission(){
+  const flagRows=Object.keys(S.flags).map(k=>{
+    const [type,id]=k.split(":"); const rec=(DATA[type]||[]).find(o=>o.id===id)||{};
+    const label=rec.name|| ((rec.firstname||"")+" "+(rec.lastname||"")).trim() || rec.email || id;
+    const f=S.flags[k];
+    return "<tr><td>"+esc(type)+"</td><td>"+esc(label)+"</td><td><b>"+esc(f.action||"")+"</b></td><td>"+esc(f.note||"")+"</td></tr>";
+  }).join("");
+  const taskHtml=TASKS.map(t=>{
+    const a=S.answers[t.id]||{};
+    const body=t.fields.map(f=>(a[f.k]||"").trim()?("<p class='q'>"+esc(f.label)+"</p><p class='ans'>"+nl(a[f.k])+"</p>"):"").join("");
+    return body?("<h2>"+esc(t.title)+"</h2>"+body):"";
+  }).join("");
+  const doc='<!doctype html><html><head><meta charset="utf-8"><title>Head of CRM submission — '+esc(S.meta.name||"candidate")
+    +'</title><style>body{font:15px/1.6 -apple-system,Segoe UI,Roboto,Arial,sans-serif;max-width:820px;margin:40px auto;padding:0 20px;color:#1a1a1a}'
+    +'h1{margin:0 0 4px}h2{margin:28px 0 8px;border-bottom:2px solid #4f8cff;padding-bottom:4px}.q{color:#666;font-weight:600;margin:14px 0 2px}'
+    +'.ans{white-space:normal;background:#f6f8fc;border-left:3px solid #4f8cff;padding:10px 14px;border-radius:6px}'
+    +'table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #ddd;padding:6px 9px;text-align:left}th{background:#f0f3f9}'
+    +'.meta{color:#666}</style></head><body>'
+    +'<h1>Head of CRM — practical task submission</h1>'
+    +'<p class="meta">'+esc(S.meta.name||"(no name)")+' · '+esc(S.meta.email||"(no email)")+' · submitted '+new Date().toISOString().slice(0,10)
+    +' · dataset '+esc(DATA.generatedAt)+'</p>'
+    + (taskHtml||"<p><i>No written answers.</i></p>")
+    + '<h2>Flagged records ('+Object.keys(S.flags).length+')</h2>'
+    + (flagRows?'<table><tr><th>Object</th><th>Record</th><th>Action</th><th>Note</th></tr>'+flagRows+"</table>":"<p><i>None flagged.</i></p>")
+    + '<script id="nextos-submission" type="application/json">'+JSON.stringify(S).replace(/<\//g,"<\\/")+'<\/script>'
+    + '</body></html>';
+  const slug=(S.meta.name||"candidate").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"candidate";
+  const blob=new Blob([doc],{type:"text/html"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="head-of-crm-submission-"+slug+".html"; a.click();
+  URL.revokeObjectURL(a.href);
+}
+function resumeFromFile(e){
+  const file=e.target.files[0]; if(!file) return;
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      let txt=r.result, json;
+      const m=txt.match(/<script id="nextos-submission"[^>]*>([\s\S]*?)<\/script>/);
+      json = m ? m[1].replace(/<\\\//g,"</") : txt;
+      const parsed=JSON.parse(json);
+      if(!parsed.answers||!parsed.flags) throw new Error("not a submission file");
+      Object.assign(S,parsed); save(); location.reload();
+    }catch(err){ alert("Couldn't read that file as a submission.\n"+err.message); }
+  };
+  r.readAsText(file);
+}
+
+/* ---------- init ---------- */
+renderTable(); renderTasks(); updateTaskBar(); refreshCounts();
+</script>
+</body>
+</html>
