@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>September Drive Readiness View v3</title>
+  <title>September Drive Readiness View v7</title>
   <style>
     :root{
       --bg:#f6f3ed;
@@ -509,8 +509,8 @@
   <div class="topbar">
     <div class="topbar-inner">
       <div class="brand">
-        <strong>September Drive Readiness View</strong>
-        <span>Discussion support for the 2027 planning rhythm</span>
+        <strong>September Drive Readiness View v7</strong>
+        <span>Discussion support for the 2027 planning rhythm and August request cycle</span>
       </div>
       <div class="tabs" role="tablist">
         <button class="tab active" data-tab="overview">Overview</button>
@@ -537,7 +537,9 @@
           <span class="pill">31 July is a planning input deadline</span>
           <span class="pill">Strategy becomes rolling, not rushed</span>
           <span class="pill">Next output: one-page timeline and decision log</span>
+          <span class="pill">August requests need clear fidelity levels</span>
         </div>
+        <div class="side-note"><strong>After this meeting:</strong> I will produce a one-page owner timeline and a decision log. No more long packs.</div>
       </div>
       <aside class="panel hero-side">
         <div class="dark-card">
@@ -548,7 +550,7 @@
           <div class="metric-grid">
             <div class="metric"><b>3</b><span>decisions needed</span></div>
             <div class="metric"><b>31 Jul</b><span>input standard</span></div>
-            <div class="metric"><b>Aug</b><span>execution build</span></div>
+            <div class="metric"><b>Aug</b><span>budget, headcount and execution readouts</span></div>
             <div class="metric"><b>Sep</b><span>alignment and announce</span></div>
           </div>
         </div>
@@ -615,8 +617,12 @@
           <div class="label">By 31 July, clear means</div>
           <ul class="check-list">
             <li>Product or package is in the catalogue.</li>
-            <li>Price is on the rate card or approved pricing route.</li>
-            <li>Revenue target and margin guardrail are named.</li>
+            <li>Delivery cost model is named for events, including major venue, production, supplier and fulfilment assumptions.</li>
+            <li>Cost-to-serve is named for media products, including editorial, production, distribution and sponsor fulfilment capacity.</li>
+            <li>Price is on the rate card or approved pricing route, based on cost, margin and market value.</li>
+            <li>Revenue target and preliminary margin guardrail are named.</li>
+            <li>Budget and headcount request level is clear: final request, budget envelope, or assumption-based placeholder.</li>
+            <li>Finance provides preliminary guardrails, with final validation following the normal budget cycle.</li>
             <li>Delivery boundary is signed off by the relevant project owner or functional lead.</li>
             <li>Collateral requirements are clear enough for Marketing and Sales to brief.</li>
             <li>CRM and reporting requirements are clear enough to set up tracking.</li>
@@ -638,7 +644,25 @@
       <div class="divider-title">Approval test</div>
       <div class="callout light">
         <div class="icon">3</div>
-        <p><strong>Approved means three things:</strong> the product or package is in the catalogue, the price is on the rate card, and the delivery boundary is signed off by the relevant project owner or functional lead. If those three things are not true, it is not approved.</p>
+        <p><strong>Approved means four things:</strong> the product or package is in the catalogue, the cost and delivery assumptions are named, the price is on the rate card or approved pricing route, and the delivery boundary is signed off by the relevant project owner or functional lead. If those four things are not true, it is not approved.</p>
+      </div>
+
+      <div class="divider-title">Cost before price</div>
+      <div class="callout light">
+        <div class="icon">€</div>
+        <p><strong>Pricing and targets cannot float above delivery reality:</strong> event costs and media fulfilment costs must be visible before pricing, revenue targets or budget requests are treated as decision-grade. If the cost base is unknown, the August presentation should use a budget envelope or scenario, not a final approval request.</p>
+      </div>
+
+      <div class="divider-title">Input quality standard</div>
+      <div class="callout light">
+        <div class="icon">Q</div>
+        <p><strong>Who checks the standard:</strong> the Ops Lead confirms each project's planning inputs meet the defined standard by 31 July. Stuart provides pricing, packaging and revenue inputs, but does not gatekeep other teams' input quality.</p>
+      </div>
+
+      <div class="divider-title">Budget-cycle guardrail</div>
+      <div class="callout light">
+        <div class="icon">F</div>
+        <p><strong>Finance guardrail:</strong> Finance provides preliminary cost, margin and resourcing guardrails by 31 July. Event cost assumptions and media delivery costs must be visible enough to support pricing, revenue targets and budget envelopes. Final budget and headcount validation follows the normal budget cycle. Any material change after 31 July uses the exception path rather than reopening the whole rhythm.</p>
       </div>
 
       <div class="divider-title">Risk if this slips</div>
@@ -681,14 +705,14 @@
           <div class="date">31 July</div>
           <div class="body">
             <h3>Sign off planning inputs</h3>
-            <p>Agree products, pricing, packages, targets, delivery boundaries, CRM needs and collateral requirements. This is the handshake point, not the start of feasibility debate.</p>
+            <p>Agree products, cost assumptions, pricing, packages, targets, delivery boundaries, CRM needs and collateral requirements. This is the handshake point, not the start of feasibility debate.</p>
           </div>
         </div>
         <div class="timeline-card">
           <div class="date">August</div>
           <div class="body">
             <h3>Build execution plans</h3>
-            <p>Sales, Marketing and CRM build from signed-off inputs. Critical findings use a lightweight exception path instead of reopening the whole rhythm.</p>
+            <p>Sales, Marketing and CRM build from signed-off inputs. August presentations should show execution plans, budget requests and headcount asks at the right fidelity level: final for locked inputs, envelopes for architectural locks and explicit assumptions where detail is not ready.</p>
           </div>
         </div>
         <div class="timeline-card">
@@ -700,16 +724,51 @@
         </div>
       </div>
 
+
+      <div class="divider-title">August budget and headcount reality</div>
+      <div class="callout">
+        <div class="icon">!</div>
+        <p><strong>Important catch:</strong> if budget and headcount requests are expected in August, then the 31 July point cannot be treated as the day planning begins. It must be the day the input quality is clear enough for Sales, Marketing, CRM and Ops to present honest requests. Where inputs are not mature enough, the August output should be a budget envelope or scenario, not a fake final plan.</p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Readiness tier</th><th>Applies to</th><th>31 July expectation</th><th>August budget and headcount output</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>A · Locked inputs</strong></td><td>Projects with advanced strategy already in place.</td><td>Product, cost assumptions, price, package, target, delivery boundary, CRM needs and collateral requirements approved.</td><td>Budget request and headcount ask based on approved inputs.</td></tr>
+            <tr><td><strong>B · Architectural lock</strong></td><td>Projects that need direction but lack full product, cost and pricing depth.</td><td>Audience, ambition, route to market, major cost assumptions and delivery constraints agreed.</td><td>Budget envelope, headcount scenario and clear date for final cost, pricing and packaging.</td></tr>
+            <tr><td><strong>C · Later cycle</strong></td><td>Items too unformed to support credible August requests.</td><td>Decision date, owner and evidence needed are named.</td><td>Not presented as a final budget or headcount request. Logged as later-cycle work.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout light">
+        <div class="icon">↔</div>
+        <p><strong>Revenue linkage:</strong> if an August budget or headcount request is reduced, the related revenue target, launch scope or delivery ambition should be reviewed at the same time. Otherwise teams are being asked to hit the original target with fewer resources.</p>
+      </div>
+
       <div class="divider-title">Scope guardrail</div>
       <div class="grid-2">
         <div class="card calm">
           <h3>Spring events and year-round products</h3>
-          <p>Need product, pricing, target, package, inventory and delivery boundaries early because sales and marketing runway depends on them.</p>
+          <p>Need product, delivery cost, pricing, target, package, inventory and delivery boundaries early because sales and marketing runway depends on them.</p>
         </div>
         <div class="card calm">
           <h3>Later-cycle events</h3>
-          <p>Need an architectural lock by 31 July: audience, broad ambition, route to market and major delivery assumptions. Final pricing and packaging should update after the next evidence cycle.</p>
+          <p>Need an architectural lock by 31 July: audience, broad ambition, route to market, major cost assumptions and delivery assumptions. Final cost base, pricing and packaging should update after the next evidence cycle.</p>
         </div>
+      </div>
+
+      <div class="callout light">
+        <div class="icon">T</div>
+        <p><strong>2026 triage principle:</strong> not every project should be forced to the same depth by 31 July. The honest move is to confirm which items need full locked inputs, which need architectural direction only, and which should move into a later cycle. This protects the August budget and headcount request process from false certainty.</p>
+      </div>
+
+      <div class="callout light">
+        <div class="icon">?</div>
+        <p><strong>Question for Ana:</strong> for each August presentation, are we approving final budget and headcount requests, or are we approving a budget envelope and resourcing scenario that will be validated after final cost, pricing, packaging and delivery assumptions are complete?</p>
       </div>
 
       <div class="callout light">
@@ -736,14 +795,76 @@
       <div class="sequence">
         <div class="seq-step"><b>1. Review evidence</b><span>Within 2 to 4 weeks after each major event or campaign, capture what worked, what sold, what caused friction and what should change.</span></div>
         <div class="seq-step"><b>2. Shape the portfolio</b><span>Keep, improve, retire, test or reprice products using evidence from Sales, sponsors, audience, Ops, Media and Finance.</span></div>
-        <div class="seq-step"><b>3. Prepare planning inputs</b><span>Products, pricing, packages, targets, delivery boundaries, CRM needs and collateral requirements are prepared before execution planning scales.</span></div>
-        <div class="seq-step"><b>4. Confirm feasibility</b><span>Ops, Finance and Leadership confirm workload, margin, staffing, operational risk and priority trade-offs before the 31 July input standard is treated as locked.</span></div>
+        <div class="seq-step"><b>3. Prepare planning inputs</b><span>Products, cost assumptions, pricing, packages, targets, delivery boundaries, CRM needs and collateral requirements are prepared before execution planning scales.</span></div>
+        <div class="seq-step"><b>4. Confirm feasibility</b><span>Ops, Finance and Leadership confirm workload, margin, staffing, budget envelope, headcount implications, operational risk and priority trade-offs before the 31 July input standard is treated as locked.</span></div>
         <div class="seq-step"><b>5. Build and announce</b><span>August builds the execution layer. September becomes the alignment and announcement moment, not the month where the strategy gets invented.</span></div>
       </div>
 
       <div class="callout light">
         <div class="icon">✓</div>
-        <p><strong>Execution principle:</strong> For 2027, the goal is to have evidence from each event within 2 to 4 weeks, not months later. That means post-event reviews are scheduled before the event happens, not after.</p>
+        <p><strong>Execution principle:</strong> For 2027, the goal is to have evidence from each event within 2 to 4 weeks, not months later. That means post-event reviews are scheduled before the event happens, not after. The rolling rhythm continues year-round; the September Drive is its most visible output, not its endpoint.</p>
+      </div>
+
+      <div class="divider-title">Example 2027 cycle for the 2028 vision</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Planning point</th><th>What should happen</th><th>Why it matters</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>January to March 2027</strong></td><td>Refresh the year-round media model, external project intake rules and early assumptions for the full 2028 portfolio.</td><td>Gives the business a baseline before the Spring events produce new evidence.</td></tr>
+            <tr><td><strong>Within 2 to 4 weeks after New York 2027</strong></td><td>Complete the New York evidence pack and identify what changes for New York 2028.</td><td>New York 2028 happens in April, so it needs the earliest full planning lock.</td></tr>
+            <tr><td><strong>Within 2 to 4 weeks after Valletta 2027</strong></td><td>Complete the Valletta evidence pack and identify what changes for Valletta 2028.</td><td>Valletta 2028 happens in May, so evidence from 2027 should feed decisions before July.</td></tr>
+            <tr><td><strong>By 30 June 2027</strong></td><td>Have a draft 2028 portfolio shape: keep, improve, retire, test or reprice.</td><td>Prevents July becoming the month where every strategic debate starts from zero.</td></tr>
+            <tr><td><strong>By 31 July 2027</strong></td><td>Lock decision-grade inputs for Spring 2028 and year-round products. Lock architectural direction for Fall 2028 projects.</td><td>Gives August budget and headcount presentations enough substance without forcing fake certainty.</td></tr>
+            <tr><td><strong>August 2027</strong></td><td>Present execution plans, budget envelopes and headcount scenarios at the right fidelity level for each project.</td><td>Leadership gets usable requests, with assumptions clearly marked where detail is not ready.</td></tr>
+            <tr><td><strong>September 2027</strong></td><td>Use the September Drive to align internally and present the 2028 vision externally.</td><td>The Drive becomes the reveal moment for prepared decisions, not the place strategy is invented.</td></tr>
+            <tr><td><strong>Q4 2027</strong></td><td>Use evidence from NEXTPredict, retreats, media performance and external projects to finalise Fall 2028 details.</td><td>Fall 2028 should not be fully priced before the relevant 2027 evidence exists.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="divider-title">Project-specific readiness guide</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Project type</th><th>2028 timing</th><th>Ready by 31 July 2027</th><th>August 2027 presentation standard</th><th>After September</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>New York 2028</strong></td><td>April 2028</td><td>Full decision-grade foundation: product catalogue, cost assumptions, pricing route, revenue target, delivery boundary, CRM needs and collateral requirements.</td><td>Approval-ready budget and headcount request, because the 2027 evidence should already exist.</td><td>Refine tactical messaging and campaign sequencing, but avoid reopening the core model unless a critical exception appears.</td></tr>
+            <tr><td><strong>Valletta 2028</strong></td><td>May 2028</td><td>Full decision-grade foundation, using evidence from Valletta 2027 collected by late June.</td><td>Approval-ready budget and headcount request if the evidence pack lands on time. Otherwise, budget envelope with named assumptions.</td><td>Refine execution details, sponsor bundles and tactical campaign plans.</td></tr>
+            <tr><td><strong>Media products</strong><br><span class="muted">Podcast, Spotlight, News</span></td><td>Year-round</td><td>Annual commercial model, inventory rules, cost-to-serve, sponsor fulfilment capacity, pricing route and quarterly review cadence.</td><td>Budget and headcount request tied to revenue ambition, production capacity and editorial boundaries.</td><td>Review quarterly using sales, audience, sponsor and production evidence.</td></tr>
+            <tr><td><strong>External projects</strong></td><td>Year-round and ad hoc</td><td>Opportunity intake rules, approval criteria, minimum margin standard, owner model and decision path.</td><td>Resource envelope or scenario only. Do not pretend every ad hoc project has a full annual plan.</td><td>Each confirmed opportunity gets its own brief, owner, budget route and decision date.</td></tr>
+            <tr><td><strong>NEXTPredict 2028</strong></td><td>October 2028</td><td>Architectural lock: audience, category thesis, broad revenue ambition, venue or format assumption, key cost drivers and route to market.</td><td>Scenario request, not final line-item budget. Pricing and packages should update after NEXTPredict 2027 evidence.</td><td>Finalise cost base, pricing and packaging within 2 to 4 weeks after NEXTPredict 2027.</td></tr>
+            <tr><td><strong>Retreats 2028</strong></td><td>October and November 2028</td><td>Architectural lock: target audience, location logic, capacity assumption, margin ambition, sponsorship logic and delivery constraints.</td><td>Budget envelope and headcount scenario. Final detail follows the 2027 retreat evidence cycle.</td><td>Finalise pricing, inclusions and delivery model within 2 to 4 weeks after each 2027 retreat.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <div class="icon">→</div>
+        <p><strong>Practical rule:</strong> Spring 2028 and year-round products need decision-grade inputs before the September 2027 Drive. Fall 2028 projects need a credible architectural lock before the Drive, then final pricing and packaging after the relevant 2027 evidence exists.</p>
+      </div>
+
+      <div class="divider-title">Minimum evidence pack</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Evidence area</th><th>Minimum input</th><th>Owner</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Sales</strong></td><td>What sold, what stalled, objections, lost reasons and renewal signals.</td><td>Sales lead</td></tr>
+            <tr><td><strong>Sponsors</strong></td><td>Satisfaction, requested changes, ROI proof, rebooking signals and fulfilment issues.</td><td>Project Owner</td></tr>
+            <tr><td><strong>Audience</strong></td><td>Attendance, engagement, feedback, demand signals and content gaps.</td><td>Project Owner / Marketing</td></tr>
+            <tr><td><strong>Marketing</strong></td><td>Traffic, conversion, campaign performance, content performance and channel learnings.</td><td>Marketing lead</td></tr>
+            <tr><td><strong>Ops</strong></td><td>Delivery pain, capacity limits, supplier risks, onsite friction and resourcing gaps.</td><td>Ops Lead</td></tr>
+            <tr><td><strong>Finance</strong></td><td>Margin, cost assumptions, payment behaviour and profitability signals.</td><td>Finance</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout light">
+        <div class="icon">R</div>
+        <p><strong>Review standard:</strong> each post-event review should follow the same lightweight template: what we expected, what happened, what changed, and what we would do differently. Ops owns the review schedule. The Project Owner delivers the evidence pack.</p>
       </div>
 
       <div class="divider-title">2026 compressed route vs 2027 target rhythm</div>
@@ -767,10 +888,29 @@
         <p><strong>Planning principle:</strong> The September Drive is right for narrative, company alignment and market signalling. It is wrong as the only planning mechanism. The business needs a rolling rhythm feeding one strong annual moment.</p>
       </div>
 
+      <div class="divider-title">Frozen vs flexible after September</div>
+      <div class="grid-2">
+        <div class="card good">
+          <h3>Frozen after the Drive</h3>
+          <p>Event names, dates, high-level positioning, headline product categories and the public narrative.</p>
+        </div>
+        <div class="card calm">
+          <h3>Still flexible after the Drive</h3>
+          <p>Pricing refinements, inventory caps, sponsor bundles, campaign sequencing, sales targets and tactical messaging.</p>
+        </div>
+      </div>
+
+      <div class="divider-title">Success measures</div>
+      <div class="grid-3">
+        <div class="card calm"><h3>Inputs approved on time</h3><p>Track the percentage of September Drive inputs approved by 31 July.</p></div>
+        <div class="card calm"><h3>Assumption-based plans</h3><p>Target: zero plans presented as approved when the inputs are still assumptions.</p></div>
+        <div class="card calm"><h3>Evidence delivered on time</h3><p>Track post-event evidence packs completed within the 2 to 4 week window.</p></div>
+      </div>
+
       <div class="divider-title">Ongoing owner</div>
       <div class="callout light">
         <div class="icon">1</div>
-        <p><strong>Owner principle:</strong> Ops should own the rolling rhythm and the master timeline. Stuart provides the planning inputs needed from pricing, packaging, revenue logic and GTM. The rhythm should sit inside a standing planning review, not live as a standalone document.</p>
+        <p><strong>Owner principle:</strong> Ops should own the rolling rhythm and the master timeline. Stuart provides the planning inputs needed from pricing, packaging, revenue logic and GTM. The rhythm should sit inside a monthly planning review, not live as a standalone document.</p>
       </div>
     </section>
 
@@ -799,7 +939,7 @@
             <tr><td><strong>Campaign windows and content requirements</strong></td><td>Marketing</td><td>Prevents late creative rebuilds and inconsistent messaging.</td></tr>
             <tr><td><strong>Tracking, list and reporting requirements</strong></td><td>CRM</td><td>Prevents attribution and reporting being patched after campaigns go live.</td></tr>
             <tr><td><strong>Inventory, editorial boundaries and production limits</strong></td><td>Media</td><td>Protects editorial trust and avoids overselling production capacity.</td></tr>
-            <tr><td><strong>Cost and margin guardrails</strong></td><td>Finance</td><td>Prevents plans being designed without cost reality.</td></tr>
+            <tr><td><strong>Event costs, media delivery costs, margin, budget and headcount guardrails</strong></td><td>Finance / Ops / Project Owner</td><td>Prevents pricing, targets and requests being designed without delivery reality.</td></tr>
             <tr><td><strong>Clear approval asks</strong></td><td>Leadership</td><td>Stops unclear or half-built proposals reaching approval meetings.</td></tr>
           </tbody>
         </table>
@@ -810,10 +950,16 @@
         <p><strong>Alignment principle:</strong> Teams keep their ownership. The shared objective is to make dependencies visible early enough that Sales, Marketing, CRM, Ops and Media are not solving the same problem separately.</p>
       </div>
 
+      <div class="divider-title">Single-view capacity check</div>
+      <div class="callout light">
+        <div class="icon">C</div>
+        <p><strong>Capacity principle:</strong> events, retreats and year-round media should be checked in one view before September plans are finalised. Shared constraints include design, CRM, sponsor delivery, content production, email inventory, social output, website updates, leadership attention and headcount. Moving planning earlier does not add work; it moves work out of the September-October crunch. If capacity is a constraint, discuss it now, not in August.</p>
+      </div>
+
       <div class="divider-title">Behaviour standard</div>
       <div class="callout">
         <div class="icon">✓</div>
-        <p><strong>No surprises at the Drive:</strong> teams should not present assumption-based plans as approved plans. If an input is not approved, it should be marked as an assumption, a risk or a later-cycle item.</p>
+        <p><strong>No surprises at the Drive:</strong> teams should not present assumption-based plans as approved plans. If an input is not approved, it should be marked as an assumption, a risk or a later-cycle item. The three decisions should be reviewed monthly in the planning review, and non-adherence should be treated as a planning risk, not a personal failure.</p>
       </div>
     </section>
 
@@ -831,7 +977,7 @@
           <div class="decision-no">1</div>
           <div>
             <h3>What does 31 July mean?</h3>
-            <p>Agree that 31 July means approved planning inputs and collateral requirements, not final polished assets for every project.</p>
+            <p>Agree that 31 July means approved planning inputs, collateral requirements, and the right fidelity level for August budget and headcount requests, not final polished assets for every project.</p>
           </div>
         </div>
         <div class="decision-box">
@@ -845,16 +991,34 @@
           <div class="decision-no">3</div>
           <div>
             <h3>What sequence do teams build from?</h3>
-            <p>Agree that GTM, Sales, Marketing and CRM plans follow approved products, pricing, targets and delivery boundaries, with a clear exception path for critical August findings.</p>
+            <p>Agree that GTM, Sales, Marketing and CRM plans follow approved products, cost assumptions, pricing, targets and delivery boundaries where they exist, or architectural locks with explicit assumptions where they do not.</p>
           </div>
         </div>
+      </div>
+
+      <div class="divider-title">Decision rights map</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Decision</th><th>Recommends</th><th>Approves</th><th>If unresolved</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Product exists in the 2027 portfolio</strong></td><td>Project Owner and Stuart</td><td>Ana / Pierre</td><td>Mark as at risk or move to later cycle.</td></tr>
+            <tr><td><strong>Price and package</strong></td><td>Stuart, with Sales input</td><td>Pierre, with Finance guardrails</td><td>Use default model, reduce scope or hold.</td></tr>
+            <tr><td><strong>Delivery boundary</strong></td><td>Project Owner / Ops</td><td>Ana</td><td>Cannot be sold as final.</td></tr>
+            <tr><td><strong>Capacity conflict</strong></td><td>Ops Lead</td><td>Ana / Leadership</td><td>Sequence, reduce or defer work.</td></tr>
+            <tr><td><strong>Budget or headcount request</strong></td><td>Functional Lead, with Finance input</td><td>Ana / Pierre</td><td>Approve, envelope, defer or revise target and scope.</td></tr>
+            <tr><td><strong>Critical August exception</strong></td><td>Named item owner</td><td>Ana / Pierre, depending on impact</td><td>Adjust scope, adjust price, delay or keep with named risk.</td></tr>
+            <tr><td><strong>External narrative</strong></td><td>Marketing, with Stuart and Leadership input</td><td>Ana / Leadership</td><td>Cannot be presented externally as final.</td></tr>
+          </tbody>
+        </table>
       </div>
 
       <div class="script-box">
         <h3>Suggested opening</h3>
         <p>“I am not trying to change the September Drive. I want to protect it.”</p>
         <p>“September should stay the moment where we align the company and present the 2027 vision. The issue is what needs to be true before September, so Sales, Marketing and CRM are not forced to build plans from assumptions.”</p>
-        <p>“I want us to agree three things today: what 31 July means, who owns the master timeline and rolling rhythm, and whether GTM, Sales, Marketing and CRM planning should follow approved planning inputs rather than run ahead of them.”</p>
+        <p>“I want us to agree three things today: what 31 July means, who owns the master timeline and rolling rhythm, and what fidelity August budget and headcount requests should have when some inputs are fully costed and others are still architectural.”</p>
       </div>
 
       <div class="divider-title">After the meeting</div>
@@ -866,9 +1030,11 @@
           <tbody>
             <tr><td><strong>Send one-page decision summary</strong></td><td>Stuart</td><td>Same day</td><td>Three decisions, changes agreed, owners and next dates.</td></tr>
             <tr><td><strong>Create a simple decision log</strong></td><td>Ops Lead</td><td>Within 24 hours</td><td>Decision, owner, date agreed, status and next review date.</td></tr>
-            <tr><td><strong>Build August execution template</strong></td><td>Ops Lead, Finance and Stuart</td><td>Before July intensifies</td><td>Signed-off inputs, execution plan, critical exceptions and owner actions.</td></tr>
+            <tr><td><strong>Build August execution template</strong></td><td>Ops Lead, Finance and Stuart</td><td>Before July intensifies</td><td>Signed-off inputs, execution plan, budget envelope, headcount ask, assumptions, critical exceptions and owner actions.</td></tr>
+            <tr><td><strong>Confirm August presentation fidelity</strong></td><td>Ops Lead</td><td>Immediately after alignment</td><td>Each presentation marked as final request, budget envelope, scenario or later-cycle item.</td></tr>
             <tr><td><strong>Turn this into an owner timeline</strong></td><td>Ops Lead</td><td>After alignment</td><td>One-page timeline with owners, dates and dependency checks.</td></tr>
             <tr><td><strong>Embed decision log in standing review</strong></td><td>Ops Lead</td><td>Next planning review</td><td>Decision log becomes part of the monthly planning rhythm, not a separate file that fades.</td></tr>
+            <tr><td><strong>Review the behaviour standard and success measures</strong></td><td>Ops Lead</td><td>Monthly</td><td>Track late inputs, open assumptions, critical exceptions and evidence packs delivered on time.</td></tr>
           </tbody>
         </table>
       </div>
