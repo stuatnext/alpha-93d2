@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXTPredict x Bitwise Call Briefing - Updated</title>
+  <style>
+    :root{
+      --bg:#0b0c10;--panel:#15171d;--panel2:#20232c;--text:#f7f2e8;--muted:#b8afa0;--dim:#7d766a;--line:#30343f;
+      --gold:#ffcf33;--gold2:rgba(255,207,51,.13);--gold3:rgba(255,207,51,.42);
+      --green:#62d98b;--green2:rgba(98,217,139,.12);--red:#ff6b6b;--red2:rgba(255,107,107,.11);
+      --blue:#7facff;--blue2:rgba(127,172,255,.12);--purple:#b99cff;--purple2:rgba(185,156,255,.12);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;background:radial-gradient(circle at top left,rgba(255,207,51,.13),transparent 32%),radial-gradient(circle at 88% 12%,rgba(127,172,255,.11),transparent 30%),var(--bg);
+      color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55;
+    }
+    .topbar{position:sticky;top:0;z-index:30;background:rgba(11,12,16,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+    .topbar-inner{max-width:1220px;margin:0 auto;padding:13px 24px;display:flex;justify-content:space-between;gap:18px;align-items:center}
+    .brand strong{display:block;color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.13em}.brand span{display:block;color:var(--dim);font-size:12px}
+    nav{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}nav a{color:var(--muted);font-size:12px;text-decoration:none;padding:7px 10px;border-radius:999px;border:1px solid transparent}nav a:hover{color:var(--text);border-color:var(--line);background:rgba(255,255,255,.04)}
+    .shell{max-width:1220px;margin:0 auto;padding:0 24px 64px}
+    header{padding:72px 0 44px;display:grid;grid-template-columns:1.12fr .88fr;gap:30px;align-items:end;border-bottom:1px solid var(--line)}
+    .eyebrow{display:inline-flex;color:var(--gold);border:1px solid var(--gold3);background:var(--gold2);border-radius:999px;padding:7px 11px;font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:20px}
+    h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:clamp(42px,6vw,72px);letter-spacing:-.045em;line-height:.98;margin:0 0 22px}
+    h1 em{color:var(--gold);font-style:italic}.lead{font-size:18px;color:var(--muted);margin:0;max-width:840px}
+    .hero-card,.card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:24px;padding:22px}
+    .hero-card{box-shadow:0 26px 70px rgba(0,0,0,.36)}
+    .stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}.stat{background:rgba(0,0,0,.2);border:1px solid var(--line);border-radius:16px;padding:15px}.stat b{display:block;color:var(--gold);font-size:25px;line-height:1}.stat span{display:block;color:var(--dim);font-size:12px;margin-top:7px}
+    section{padding:52px 0;border-bottom:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:24px}.kicker{color:var(--gold);font-size:11px;letter-spacing:.13em;text-transform:uppercase;margin-bottom:8px}
+    h2{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.035em;line-height:1.04;font-size:clamp(30px,3.8vw,46px);margin:0}.section-note{color:var(--muted);font-size:14px;max-width:650px;margin:0}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+    .card.gold{border-color:var(--gold3);background:linear-gradient(180deg,rgba(255,207,51,.10),rgba(21,23,29,.94))}.card.green{border-color:rgba(98,217,139,.38);background:linear-gradient(180deg,var(--green2),rgba(21,23,29,.94))}.card.red{border-color:rgba(255,107,107,.38);background:linear-gradient(180deg,var(--red2),rgba(21,23,29,.94))}.card.blue{border-color:rgba(127,172,255,.38);background:linear-gradient(180deg,var(--blue2),rgba(21,23,29,.94))}.card.purple{border-color:rgba(185,156,255,.38);background:linear-gradient(180deg,var(--purple2),rgba(21,23,29,.94))}
+    .label{color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:9px}.card h3{margin:0 0 8px;color:#fff;font-size:17px}.card p{margin:0;color:var(--muted);font-size:14px}.card ul{margin:12px 0 0;padding-left:18px;color:var(--muted);font-size:14px}.card li{margin:6px 0}
+    .callout{margin-top:16px;border:1px solid var(--gold3);background:var(--gold2);color:#f7df88;border-radius:16px;padding:15px 17px;font-size:14px}.callout strong{color:#fff}.callout.red{border-color:rgba(255,107,107,.38);background:var(--red2);color:#ffc5c5}.callout.blue{border-color:rgba(127,172,255,.38);background:var(--blue2);color:#dbe7ff}
+    .matrix{overflow:auto;border:1px solid var(--line);border-radius:20px;background:var(--panel)}table{width:100%;border-collapse:collapse;min-width:880px}th,td{padding:13px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);font-size:13px}th{background:var(--panel2);color:var(--dim);text-transform:uppercase;letter-spacing:.1em;font-size:10px}td{color:var(--muted)}td strong{color:#fff}tr:last-child td{border-bottom:0}
+    .pill{display:inline-flex;border:1px solid var(--line);background:rgba(255,255,255,.035);border-radius:999px;padding:4px 8px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}.pill.gold{border-color:var(--gold3);background:var(--gold2);color:var(--gold)}.pill.green{border-color:rgba(98,217,139,.38);background:var(--green2);color:var(--green)}.pill.red{border-color:rgba(255,107,107,.38);background:var(--red2);color:var(--red)}
+    .quote{white-space:pre-wrap;background:#0f1117;border:1px solid var(--line);border-radius:20px;padding:22px;color:var(--muted);font-size:14px}.footer{display:flex;justify-content:space-between;align-items:center;gap:18px;color:var(--dim);font-size:12px;padding:28px 0 0}.print-button{border:1px solid var(--gold3);background:var(--gold2);color:var(--gold);border-radius:999px;padding:9px 13px;font-weight:800;font-size:12px;cursor:pointer}
+    @media(max-width:980px){nav{display:none}header,.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}.section-head{display:block}.section-note{margin-top:12px}.shell,.topbar-inner{padding-left:16px;padding-right:16px}header{padding-top:48px}}
+    @media print{body{background:#fff;color:#111}.topbar,.print-button{display:none}.shell{max-width:none;padding:0}.card,.hero-card,.matrix,.quote{background:#fff!important;color:#111!important;border-color:#ddd!important;box-shadow:none!important}.lead,.section-note,.card p,.card ul,.card li,td,.quote{color:#333!important}h1,h2,h3,.card h3,td strong{color:#111!important}.eyebrow,.kicker,.label,.stat b{color:#7a5a00!important}}
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="topbar-inner"><div class="brand"><strong>NEXTPredict x Bitwise</strong><span>Updated call briefing for Will and Oliver</span></div><nav><a href="#read">Read</a><a href="#cheatsheet">Bitwise cheat sheet</a><a href="#options">Options</a><a href="#products">Products</a><a href="#questions">Questions</a><a href="#redlines">Red lines</a><a href="#followup">Follow-up</a></nav></div></div>
+  <main class="shell">
+    <header>
+      <div>
+        <div class="eyebrow">Internal sales briefing · Leadership Stage Presenter sold</div>
+        <h1>Bitwise is still a sales opportunity.<br><em>The anchor just changes.</em></h1>
+        <p class="lead">Leadership Stage Presenter is no longer available, so the call should not be built around a premium solo presentation. The stronger routes are now Leadership Stage Custom Session, Curated Workshop, Media Lounge and controlled private meeting inventory.</p>
+      </div>
+      <aside class="hero-card">
+        <h3 style="margin:0 0 6px;color:#fff;">Updated opening anchor</h3>
+        <div class="stat-grid">
+          <div class="stat"><b>€150k</b><span>Custom Session + Media Lounge + Meeting Room</span></div>
+          <div class="stat"><b>€135k+</b><span>Diamond threshold, strategic status</span></div>
+          <div class="stat"><b>€85k</b><span>Curated Workshop route</span></div>
+          <div class="stat"><b>€60k</b><span>Leadership Stage Custom Session</span></div>
+        </div>
+        <div class="callout"><strong>Core rule:</strong> do not apologise that the Presenter slot is sold. Scarcity strengthens the sell.</div>
+      </aside>
+    </header>
+
+    <section id="read">
+      <div class="section-head"><div><div class="kicker">01 · Executive read</div><h2>Scarcity helps us here</h2></div><p class="section-note">The sold Presenter slot should be framed as proof that the main-stage inventory is scarce, not as a problem.</p></div>
+      <div class="grid-4">
+        <div class="card gold"><div class="label">Best commercial read</div><h3>They want narrative authority</h3><p>Bitwise wants to be seen as an educator in the prediction-market ETF conversation.</p></div>
+        <div class="card blue"><div class="label">Best live stage fit</div><h3>Leadership Stage Custom Session</h3><p>Matt can still anchor a premium moderated fireside or tailored session.</p></div>
+        <div class="card green"><div class="label">Best strategic fit</div><h3>Curated Workshop</h3><p>Ideal if the real need is institutional education with selected stakeholders.</p></div>
+        <div class="card red"><div class="label">Risk</div><h3>Free speaker drift</h3><p>If we convert scarcity into a free exception, we destroy pricing discipline.</p></div>
+      </div>
+      <div class="callout blue"><strong>Positioning line:</strong> “The premium Presenter slot has already gone, which tells you there is real demand for the topic. The strongest fit now is either a tailored Leadership Stage session or a more targeted Curated Workshop route.”</div>
+    </section>
+
+
+    <section id="cheatsheet">
+      <div class="section-head">
+        <div>
+          <div class="kicker">02 · Bitwise cheat sheet</div>
+          <h2>Who they are and why they matter</h2>
+        </div>
+        <p class="section-note">Use this as the two-minute briefing before the call. The goal is to understand why Bitwise has a credible strategic reason to care about NEXTPredict.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="card gold">
+          <div class="label">What Bitwise is</div>
+          <h3>Crypto asset manager</h3>
+          <p>Bitwise is a global crypto asset manager with around $11bn in client assets, over 70 investment products and a product set spanning ETFs, SMAs, private funds, hedge strategies and staking.</p>
+        </div>
+        <div class="card blue">
+          <div class="label">Who they sell to</div>
+          <h3>Wealth and institutional channels</h3>
+          <p>They serve private wealth teams, RIAs, family offices, institutional investors, banks and broker-dealers. This means their buyer universe overlaps with serious finance, not retail hype.</p>
+        </div>
+        <div class="card green">
+          <div class="label">Why Matt matters</div>
+          <h3>ETF credibility</h3>
+          <p>Matt Hougan is Bitwise CIO. He was previously CEO of ETF.com, CEO at Inside ETFs and co-authored the CFA Institute monograph on ETFs.</p>
+        </div>
+        <div class="card purple">
+          <div class="label">Why now</div>
+          <h3>Prediction-market ETFs</h3>
+          <p>Bitwise has been reported as one of the asset managers filing for ETFs tied to prediction-market outcomes. That gives them a live reason to educate the market.</p>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top: 16px;">
+        <div class="card gold">
+          <div class="label">How they relate to NEXTPredict</div>
+          <h3>The bridge from crypto ETFs to event-contract ETFs</h3>
+          <ul>
+            <li>They understand how to package a new asset class for mainstream investors.</li>
+            <li>They have ETF credibility, which gives the prediction-market ETF topic weight.</li>
+            <li>They need education, media credibility and institutional framing around a new product category.</li>
+            <li>NEXTPredict gives them a room with platforms, operators, investors, legal, compliance, media and infrastructure stakeholders.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="label">The commercial interpretation</div>
+          <h3>This is not a crypto sponsor lead</h3>
+          <ul>
+            <li>Do not frame Bitwise as a crypto logo looking for a speaking slot.</li>
+            <li>Frame them as an asset manager trying to define the institutional story around prediction-market ETFs.</li>
+            <li>The sell is education, authority, media visibility and selected relationship-building.</li>
+            <li>The strongest package should connect stage presence with media or curated stakeholder access.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="matrix" style="margin-top: 18px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Bitwise fact</th>
+              <th>Why it matters commercially</th>
+              <th>How Will / Oliver should use it</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>$11bn client assets, over 70 products</strong></td>
+              <td>They are big enough to have serious product, marketing and education needs.</td>
+              <td>Do not treat them like a free speaker prospect. They have budget logic.</td>
+            </tr>
+            <tr>
+              <td><strong>Private wealth, RIA, family office and institutional reach</strong></td>
+              <td>Their core audience fits an institutional prediction-markets conversation.</td>
+              <td>Ask which audience matters most: advisors, investors, platforms, media or policy-adjacent stakeholders.</td>
+            </tr>
+            <tr>
+              <td><strong>Matt Hougan has deep ETF background</strong></td>
+              <td>He makes the ETF angle credible and mainstream enough for a serious stage.</td>
+              <td>Use Matt to anchor a tailored session, not a generic panel.</td>
+            </tr>
+            <tr>
+              <td><strong>Prediction-market ETF filings have public attention</strong></td>
+              <td>They need to shape perception before the market gets crowded or misunderstood.</td>
+              <td>Sell category education and narrative ownership.</td>
+            </tr>
+            <tr>
+              <td><strong>Bitwise creates education and expert content</strong></td>
+              <td>They already understand content-led distribution and advisor education.</td>
+              <td>Push Media Lounge, pre-event Q&A, post-event video and workshop routes.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <strong>One-line call prep:</strong> Bitwise is a crypto asset manager with ETF credibility and a live prediction-market ETF narrative. NEXTPredict gives them the stage, media layer and stakeholder room to make that narrative feel institutional.
+      </div>
+
+      <div class="callout blue">
+        <strong>Best opening question:</strong> “Is Bitwise mainly looking for Matt to contribute editorially, or are you building a wider education and positioning campaign around prediction-market ETFs?”
+      </div>
+    </section>
+
+
+    <section id="options">
+      <div class="section-head"><div><div class="kicker">03 · Recommended commercial options</div><h2>Three routes, all using live inventory</h2></div><p class="section-note">These are cleaner than inventing an “ETF partner” package on the call.</p></div>
+      <div class="grid-3">
+        <div class="card gold">
+          <div class="label">Option A · preferred</div><h3>Institutional ETF Authority Route</h3><p><span class="pill gold">€150,000 list</span></p>
+          <ul>
+            <li>Leadership Stage Custom Session, €60,000.</li>
+            <li>Media Lounge, €65,000.</li>
+            <li>Private Meeting Room 4p, €25,000.</li>
+            <li>Best if they want public authority, media association and controlled follow-up.</li>
+            <li>Gets them to Diamond-level strategic status if tier logic starts at €135k.</li>
+          </ul>
+        </div>
+        <div class="card green">
+          <div class="label">Option B · education-led</div><h3>ETF Education Workshop Route</h3><p><span class="pill green">€123,500 to €148,500</span></p>
+          <ul>
+            <li>Curated Workshop + 5 Curated Opt-In Invites, €85,000.</li>
+            <li>Private Meeting Room 8p, €38,500, or Media Lounge add-on if budget allows.</li>
+            <li>Best if they want deep education with investors, platforms, legal/compliance and media.</li>
+            <li>Needs clear wording: facilitated invites, not guaranteed attendance.</li>
+          </ul>
+        </div>
+        <div class="card blue">
+          <div class="label">Option C · content fallback</div><h3>Stage-Only Route</h3><p><span class="pill">€60,000 or €58,000</span></p>
+          <ul>
+            <li>Leadership Stage Custom Session, €60,000, if still available.</li>
+            <li>Stage 2 Partner Presentation, €58,000, if Leadership Stage is too constrained.</li>
+            <li>No media ownership, no private meeting support, no category title.</li>
+            <li>Use only if they cannot support a wider partnership.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout red"><strong>Do not offer:</strong> Leadership Stage Presenter, free keynote, free private meetings, or a made-up category title unless it is attached to paid value.</div>
+    </section>
+
+    <section id="products">
+      <div class="section-head"><div><div class="kicker">04 · Product fit table</div><h2>Live product map for Bitwise</h2></div><p class="section-note">Will and Oliver should use this as the call cheat sheet.</p></div>
+      <div class="matrix">
+        <table>
+          <thead><tr><th>Product</th><th>Price</th><th>Status / use</th><th>Why it fits Bitwise</th><th>Watch-out</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Leadership Stage Presenter</strong></td><td>€90,000</td><td><span class="pill red">Sold</span></td><td>Would have been the cleanest Matt solo / executive interview route.</td><td>Do not reference as available. Use scarcity to support urgency.</td></tr>
+            <tr><td><strong>Leadership Stage Custom Session</strong></td><td>€60,000</td><td><span class="pill gold">Primary live content route</span></td><td>Allows a tailored fireside around prediction-market ETFs and institutional adoption.</td><td>Needs programme approval and a strong moderator or guest.</td></tr>
+            <tr><td><strong>Media Lounge</strong></td><td>€65,000</td><td><span class="pill gold">Best visibility upsell</span></td><td>Connects Bitwise to press, podcasts and creators, which suits market education.</td><td>Do not imply editorial control or guaranteed coverage.</td></tr>
+            <tr><td><strong>Curated Workshop + 5 Curated Opt-In Invites</strong></td><td>€85,000</td><td><span class="pill green">Best strategic depth route</span></td><td>Strong fit for ETF education with selected institutional, platform, legal and media targets.</td><td>Facilitated invitations only. No guaranteed attendance unless separately contracted.</td></tr>
+            <tr><td><strong>Private Meeting Room 8p</strong></td><td>€38,500</td><td>Add-on</td><td>Gives Matt and Bitwise a controlled place for high-value follow-up meetings.</td><td>Keep as paid add-on. Do not throw it in casually.</td></tr>
+            <tr><td><strong>Private Meeting Room 4p</strong></td><td>€25,000</td><td>Add-on</td><td>Smaller follow-up room for ETF, media or investor conversations.</td><td>Good package builder if they resist the 8p room.</td></tr>
+            <tr><td><strong>Stage 2 Partner Presentation</strong></td><td>€58,000</td><td>Fallback stage route</td><td>Still credible for a more technical ETF education session.</td><td>Should not be the first offer if Matt is confirmed.</td></tr>
+            <tr><td><strong>Advertisement Video</strong></td><td>€13,500</td><td>Small add-on / get</td><td>Useful amplification for a clear ETF education message.</td><td>Helpful sweetener, not a serious partnership by itself.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="questions">
+      <div class="section-head"><div><div class="kicker">05 · Questions</div><h2>Use the answers to route the deal</h2></div><p class="section-note">The call should reveal whether they need public authority, media visibility or targeted education.</p></div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="label">Authority route</div><h3>Push Custom Session</h3>
+          <ul><li>Is Matt personally confirmed for 22 to 23 October?</li><li>Would he be open to a moderated fireside or tailored institutional discussion?</li><li>What message should Bitwise own after the session?</li><li>Would Bitwise promote the session before and after the event?</li></ul>
+        </div>
+        <div class="card gold">
+          <div class="label">Media route</div><h3>Push Media Lounge</h3>
+          <ul><li>Is media education part of the prediction-market ETF plan?</li><li>Do you need content assets for investor, advisor or public education?</li><li>Do you want to be associated with the media layer of the event?</li><li>Who internally owns PR, comms and thought-leadership budget?</li></ul>
+        </div>
+        <div class="card green">
+          <div class="label">Depth route</div><h3>Push Workshop</h3>
+          <ul><li>Which stakeholders matter most: investors, platforms, operators, legal, compliance or media?</li><li>Would a curated workshop be more useful than broad visibility?</li><li>What would make the event commercially valuable after the session ends?</li><li>Who would Bitwise want invited if we facilitate targeted opt-in invitations?</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="redlines">
+      <div class="section-head"><div><div class="kicker">06 · Red lines and gets</div><h2>Protect pricing after the sold slot</h2></div><p class="section-note">The temptation will be to “make room” for Matt. Do not do that without value coming back.</p></div>
+      <div class="grid-2">
+        <div class="card red"><div class="label">Do not agree</div><h3>On the call, avoid these</h3><ul><li>No free Leadership Stage exception.</li><li>No “prediction-market ETF partner” title without paid commitment.</li><li>No Media Lounge access unless purchased.</li><li>No private meeting support without a paid product attached.</li><li>No stage promise without Rory/content sign-off.</li><li>No VIP access as a casual sweetener.</li></ul></div>
+        <div class="card gold"><div class="label">If they resist price</div><h3>Ask for value back</h3><ul><li>Matt confirmed in writing.</li><li>Pre-event Q&A or quote.</li><li>Bitwise promotion to their audience.</li><li>Post-event amplification.</li><li>Fast signature and payment.</li><li>Case study / sponsor success permission.</li><li>2027 renewal or first-refusal conversation.</li><li>Introductions to relevant ETF or institutional contacts.</li></ul></div>
+      </div>
+    </section>
+
+    <section id="talktrack">
+      <div class="section-head"><div><div class="kicker">07 · Talk track</div><h2>Suggested wording for Will</h2></div><p class="section-note">Use this after Oliver has warmed up the relationship.</p></div>
+      <div class="quote">“Matt is clearly relevant for NEXTPredict, especially given the prediction-market ETF angle. The premium Presenter slot has already gone, so I would not want to force him into the wrong format.
+
+The best fit depends on what Bitwise wants to achieve. If the priority is public authority, we can look at a tailored Leadership Stage Custom Session. If the priority is media education and visibility, we should look at Media Lounge alongside the content route. If the priority is stakeholder education and relationship-building, the Curated Workshop may actually be more valuable.
+
+What would make this commercially useful for Bitwise: broad visibility, targeted education, media positioning, or relationship-building?”</div>
+    </section>
+
+    <section id="followup">
+      <div class="section-head"><div><div class="kicker">08 · Follow-up draft</div><h2>Send this after a positive call</h2></div><p class="section-note">This version avoids sold inventory and maps to live routes.</p></div>
+      <div class="quote">Subject: Bitwise x NEXTPredict
+
+Hi [Name],
+
+Thanks again for the call.
+
+It feels like there is a strong fit between Bitwise’s prediction-market ETF work and what we are building with NEXTPredict in New York.
+
+As discussed, the premium Leadership Stage Presenter route has already been taken, so rather than forcing Matt into the wrong format, we think there are three cleaner options:
+
+1. A Leadership Stage Custom Session built around Matt’s perspective on prediction-market ETFs and institutional adoption.
+
+2. A broader visibility route combining content with Media Lounge positioning, if media education and category visibility are priorities.
+
+3. A Curated Workshop route, if targeted education and selected stakeholder engagement are more valuable than broad stage exposure.
+
+We will send over a clean proposal and then align on which route best fits Bitwise’s goals.
+
+Best,
+[Name]</div>
+    </section>
+
+
+    <section id="source-notes">
+      <div class="section-head">
+        <div>
+          <div class="kicker">09 · Source confidence</div>
+          <h2>What the cheat sheet is based on</h2>
+        </div>
+        <p class="section-note">Use these points internally. Do not overstate regulatory approval or imply any ETF product is live unless Bitwise confirms it.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="label">Official Bitwise source</div>
+          <h3>Company scale and team</h3>
+          <p>Bitwise’s own site describes the firm as a global crypto asset manager with $11bn in client assets, over 70 products and more than 200 technology and investment professionals.</p>
+        </div>
+        <div class="card">
+          <div class="label">Official Bitwise source</div>
+          <h3>Matt Hougan</h3>
+          <p>Bitwise lists Matt Hougan as Chief Investment Officer and notes his previous roles at ETF.com, Inside ETFs and Informa Global Finance.</p>
+        </div>
+        <div class="card">
+          <div class="label">Market coverage</div>
+          <h3>Prediction-market ETF angle</h3>
+          <p>Recent financial press has reported Bitwise among asset managers filing for ETFs tied to prediction-market outcomes. Treat this as a strategic talking point, not a product approval claim.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <div class="footer"><div>NEXTPredict x Bitwise · Updated internal briefing</div><button class="print-button" onclick="window.print()">Print or save as PDF</button></div>
+  </main>
+</body>
+</html>
