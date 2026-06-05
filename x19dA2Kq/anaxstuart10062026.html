@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Commercial Readiness Alignment View</title>
+  <style>
+    :root{
+      --bg:#f6f3ed;
+      --paper:#fffaf0;
+      --ink:#141821;
+      --muted:#667085;
+      --line:#ded7ca;
+      --soft:#f1eadc;
+      --softer:#fbf8f1;
+      --gold:#ffcf33;
+      --gold-dark:#9c6b00;
+      --green:#dff3e6;
+      --green-line:#a8d8b5;
+      --blue:#e4ecfb;
+      --blue-line:#b9c9ef;
+      --red:#fde5e1;
+      --red-line:#e8aaa0;
+      --purple:#ece7fa;
+      --purple-line:#c7b9ee;
+      --dark:#111827;
+      --shadow:0 22px 70px rgba(20,24,33,.12);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 0 0, rgba(255,207,51,.24), transparent 28%),
+        radial-gradient(circle at 92% 6%, rgba(17,24,39,.08), transparent 30%),
+        var(--bg);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height:1.45;
+      font-size:15px;
+    }
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:30;
+      background:rgba(246,243,237,.88);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(222,215,202,.75);
+    }
+    .topbar-inner{
+      max-width:1320px;
+      margin:0 auto;
+      padding:13px 28px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+    .brand strong{
+      display:block;
+      font-size:13px;
+      letter-spacing:.12em;
+      color:#111827;
+      text-transform:uppercase;
+    }
+    .brand span{
+      display:block;
+      margin-top:2px;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .tabs{
+      display:flex;
+      flex-wrap:wrap;
+      gap:7px;
+      justify-content:flex-end;
+    }
+    .tab{
+      border:1px solid rgba(20,24,33,.12);
+      background:rgba(255,255,255,.52);
+      color:#475467;
+      padding:8px 11px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:700;
+      font-size:12px;
+    }
+    .tab.active{
+      background:#111827;
+      color:#fff;
+      border-color:#111827;
+    }
+    .shell{
+      max-width:1320px;
+      margin:0 auto;
+      padding:34px 28px 80px;
+    }
+    .hero{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:22px;
+      align-items:stretch;
+      margin-bottom:22px;
+    }
+    .hero-main,
+    .panel{
+      background:rgba(255,250,240,.84);
+      border:1px solid var(--line);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+    }
+    .hero-main{
+      padding:34px;
+      min-height:340px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-main:after{
+      content:"";
+      position:absolute;
+      right:-90px;
+      top:-110px;
+      width:280px;
+      height:280px;
+      background:rgba(255,207,51,.26);
+      border-radius:50%;
+      filter:blur(3px);
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      width:max-content;
+      color:#7a5500;
+      background:rgba(255,207,51,.20);
+      border:1px solid rgba(156,107,0,.25);
+      border-radius:999px;
+      padding:7px 10px;
+      font-size:11px;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+      font-weight:800;
+      margin-bottom:20px;
+    }
+    h1{
+      font-family:Georgia, "Times New Roman", serif;
+      font-weight:500;
+      font-size:clamp(42px,6vw,72px);
+      line-height:.98;
+      letter-spacing:-.052em;
+      margin:0 0 18px;
+      max-width:780px;
+      position:relative;
+      z-index:1;
+    }
+    .lead{
+      color:#475467;
+      font-size:18px;
+      max-width:850px;
+      margin:0;
+      position:relative;
+      z-index:1;
+    }
+    .hero-actions{
+      display:flex;
+      gap:9px;
+      flex-wrap:wrap;
+      margin-top:26px;
+      position:relative;
+      z-index:1;
+    }
+    .pill{
+      display:inline-flex;
+      gap:7px;
+      align-items:center;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.55);
+      color:#344054;
+      border-radius:999px;
+      padding:8px 10px;
+      font-size:12px;
+      font-weight:700;
+    }
+    .hero-side{
+      padding:24px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+    .status-card{
+      background:#111827;
+      color:#fff;
+      border-radius:24px;
+      padding:22px;
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .status-card h2{
+      margin:0 0 10px;
+      font-size:22px;
+      letter-spacing:-.03em;
+    }
+    .status-card p{
+      margin:0;
+      color:#d0d5dd;
+      font-size:14px;
+    }
+    .metric-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:10px;
+    }
+    .metric{
+      background:rgba(255,255,255,.09);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:16px;
+      padding:14px;
+    }
+    .metric b{
+      display:block;
+      color:var(--gold);
+      font-size:24px;
+      line-height:1;
+      margin-bottom:6px;
+    }
+    .metric span{
+      color:#d0d5dd;
+      font-size:12px;
+    }
+    .section{
+      display:none;
+      animation:fade .25s ease-out;
+    }
+    .section.active{display:block}
+    @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:24px;
+      margin:28px 0 18px;
+    }
+    .section-head h2{
+      font-family:Georgia, "Times New Roman", serif;
+      font-weight:500;
+      letter-spacing:-.04em;
+      font-size:clamp(30px,4vw,48px);
+      line-height:1.04;
+      margin:0;
+    }
+    .section-head p{
+      max-width:620px;
+      color:var(--muted);
+      margin:0;
+      font-size:14px;
+    }
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .card{
+      background:rgba(255,250,240,.88);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:20px;
+      min-height:100%;
+      box-shadow:0 10px 34px rgba(20,24,33,.06);
+    }
+    .card h3{
+      margin:0 0 8px;
+      font-size:18px;
+      letter-spacing:-.015em;
+    }
+    .card p{
+      margin:0;
+      color:#475467;
+      font-size:14px;
+    }
+    .card ul{
+      margin:10px 0 0 18px;
+      padding:0;
+      color:#475467;
+      font-size:14px;
+    }
+    .card li{margin:6px 0}
+    .label{
+      font-size:11px;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+      color:#667085;
+      font-weight:800;
+      margin-bottom:10px;
+    }
+    .good{background:linear-gradient(180deg,var(--green),rgba(255,250,240,.88));border-color:var(--green-line)}
+    .calm{background:linear-gradient(180deg,var(--blue),rgba(255,250,240,.88));border-color:var(--blue-line)}
+    .watch{background:linear-gradient(180deg,var(--red),rgba(255,250,240,.88));border-color:var(--red-line)}
+    .future{background:linear-gradient(180deg,var(--purple),rgba(255,250,240,.88));border-color:var(--purple-line)}
+    .gold{background:linear-gradient(180deg,rgba(255,207,51,.26),rgba(255,250,240,.88));border-color:rgba(156,107,0,.25)}
+    .callout{
+      border:1px solid rgba(20,24,33,.14);
+      background:#111827;
+      color:#fff;
+      border-radius:22px;
+      padding:18px 20px;
+      margin:18px 0;
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:14px;
+      align-items:start;
+    }
+    .callout .icon{
+      width:32px;
+      height:32px;
+      border-radius:12px;
+      background:var(--gold);
+      color:#111827;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+    }
+    .callout p{margin:0;color:#f2f4f7}
+    .flow{
+      display:grid;
+      grid-template-columns:repeat(8,1fr);
+      gap:10px;
+      margin:18px 0;
+    }
+    .flow-step{
+      background:rgba(255,250,240,.9);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:13px;
+      min-height:132px;
+      position:relative;
+    }
+    .flow-step:after{
+      content:"→";
+      position:absolute;
+      right:-13px;
+      top:42%;
+      color:#9aa2b2;
+      font-weight:900;
+      z-index:1;
+    }
+    .flow-step:last-child:after{content:""}
+    .flow-step b{
+      display:block;
+      font-size:13px;
+      line-height:1.15;
+      margin-bottom:7px;
+    }
+    .flow-step span{
+      color:var(--muted);
+      font-size:12px;
+      display:block;
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:4px 8px;
+      font-size:12px;
+      font-weight:800;
+      white-space:nowrap;
+      background:#fff;
+    }
+    .tag.green{background:var(--green);border-color:var(--green-line)}
+    .tag.blue{background:var(--blue);border-color:var(--blue-line)}
+    .tag.red{background:var(--red);border-color:var(--red-line)}
+    .tag.gold{background:rgba(255,207,51,.28);border-color:rgba(156,107,0,.25)}
+    .table-wrap{
+      overflow:auto;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:rgba(255,250,240,.9);
+      box-shadow:0 10px 34px rgba(20,24,33,.05);
+    }
+    table{
+      border-collapse:collapse;
+      width:100%;
+      min-width:880px;
+      font-size:13px;
+    }
+    th,td{
+      border-bottom:1px solid var(--line);
+      padding:12px 13px;
+      text-align:left;
+      vertical-align:top;
+    }
+    th{
+      background:var(--soft);
+      color:#475467;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+    td{color:#475467}
+    td strong{color:#111827}
+    tr:last-child td{border-bottom:0}
+    .timeline-board{
+      display:grid;
+      grid-template-columns:1.05fr 1fr 1fr 1fr;
+      gap:14px;
+      margin-top:16px;
+    }
+    .time-col{
+      border:1px solid var(--line);
+      background:rgba(255,250,240,.92);
+      border-radius:22px;
+      padding:18px;
+      min-height:280px;
+    }
+    .time-col h3{
+      margin:0 0 4px;
+      font-size:18px;
+    }
+    .time-col .date{
+      color:var(--muted);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:12px;
+    }
+    .task{
+      border:1px solid var(--line);
+      background:#fffdf8;
+      border-radius:14px;
+      padding:11px;
+      margin:9px 0;
+    }
+    .task b{display:block;font-size:13px;margin-bottom:4px}
+    .task span{display:block;color:var(--muted);font-size:12px}
+    .divider-title{
+      font-family:Georgia, "Times New Roman", serif;
+      font-weight:500;
+      letter-spacing:-.03em;
+      font-size:30px;
+      margin:34px 0 12px;
+    }
+    .source-note{
+      margin-top:26px;
+      padding-top:16px;
+      border-top:1px solid var(--line);
+      color:#667085;
+      font-size:12px;
+    }
+    .decision-box{
+      display:grid;
+      grid-template-columns:56px 1fr;
+      gap:14px;
+      padding:16px;
+      border:1px solid var(--line);
+      background:#fffdf8;
+      border-radius:18px;
+      min-height:100%;
+    }
+    .decision-no{
+      width:42px;height:42px;border-radius:14px;background:#111827;color:#fff;
+      display:flex;align-items:center;justify-content:center;font-weight:900;
+    }
+    .decision-box h3{margin:0 0 5px;font-size:16px}
+    .decision-box p{margin:0;color:#475467;font-size:14px}
+    .print-btn{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      z-index:50;
+      border:0;
+      border-radius:999px;
+      background:#111827;
+      color:#fff;
+      padding:12px 16px;
+      font-weight:800;
+      box-shadow:0 14px 40px rgba(20,24,33,.22);
+      cursor:pointer;
+    }
+    @media(max-width:1180px){
+      .hero,.grid-2,.grid-3,.grid-4,.timeline-board{grid-template-columns:1fr}
+      .flow{grid-template-columns:repeat(2,1fr)}
+      .flow-step:after{content:""}
+      .tabs{display:none}
+    }
+    @media(max-width:720px){
+      .shell{padding:22px 16px 70px}
+      .topbar-inner{padding:12px 16px}
+      .hero-main{padding:24px}
+      .flow{grid-template-columns:1fr}
+      h1{font-size:38px}
+      .print-btn{display:none}
+    }
+    @media print{
+      .topbar,.print-btn{display:none}
+      body{background:#fff;font-size:12px}
+      .shell{padding:0}
+      .hero{display:block}
+      .hero-main,.panel,.card,.time-col,.decision-box,.table-wrap{box-shadow:none;break-inside:avoid}
+      .section{display:block;margin-top:26px;page-break-before:auto}
+      .section:not(.active){display:block}
+      .flow{grid-template-columns:repeat(4,1fr)}
+      .flow-step:after{content:""}
+      .timeline-board{grid-template-columns:repeat(2,1fr)}
+      table{font-size:10px;min-width:0}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <strong>Commercial Readiness Alignment View</strong>
+        <span>Existing planning process + Commercial readiness layer</span>
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="overview">Overview</button>
+        <button class="tab" data-tab="process">Merged process</button>
+        <button class="tab" data-tab="recovery">2026 recovery</button>
+        <button class="tab" data-tab="future">Future rhythm</button>
+        <button class="tab" data-tab="ownership">Ownership</button>
+        <button class="tab" data-tab="decisions">Decision asks</button>
+      </div>
+    </div>
+  </div>
+  <button class="print-btn" onclick="window.print()">Print or save PDF</button>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-main">
+        <div>
+          <div class="eyebrow">Working draft for alignment, 5 June 2026</div>
+          <h1>One planning flow, clearer commercial gates.</h1>
+          <p class="lead">This view brings together the current product planning process and the commercial readiness work needed from Sales, Marketing and CRM. The aim is alignment, not a replacement of the September Drive framework.</p>
+        </div>
+        <div class="hero-actions">
+          <span class="pill">Not replacing September Drive</span>
+          <span class="pill">Not moving project ownership into Commercial</span>
+          <span class="pill">Clarifies dependencies before activity scales</span>
+        </div>
+      </div>
+      <aside class="panel hero-side">
+        <div class="status-card">
+          <div>
+            <h2>Planning summary</h2>
+            <p>Commercial should not own every project decision. Commercial should make dependencies visible early, so Sales, Marketing and CRM only scale after products, pricing, positioning, targets and delivery boundaries are clear.</p>
+          </div>
+          <div class="metric-grid" style="margin-top:22px;">
+            <div class="metric"><b>31 Jul</b><span>Commercial readiness point</span></div>
+            <div class="metric"><b>Aug</b><span>Review, approval, feedback</span></div>
+            <div class="metric"><b>Sep</b><span>Drive narrative and external alignment</span></div>
+            <div class="metric"><b>2027</b><span>Earlier gates, less rush</span></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section active" id="overview">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">01 · Overview</div>
+          <h2>What this is and what it is not</h2>
+        </div>
+        <p>This page makes the scope explicit and keeps the current planning process as the base layer.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card good">
+          <div class="label">This is</div>
+          <h3>A consolidation view</h3>
+          <p>It combines the current product planning process with the Commercial layer needed for Sales, Marketing and CRM readiness.</p>
+        </div>
+        <div class="card calm">
+          <div class="label">This is</div>
+          <h3>A decision-gate map</h3>
+          <p>It shows which decisions need to happen before GTM, Sales, Marketing, CRM setup and collateral production scale.</p>
+        </div>
+        <div class="card gold">
+          <div class="label">This is</div>
+          <h3>A recovery plan for 2026</h3>
+          <p>Because today is 5 June, the current cycle is already compressed. The goal is to align on a realistic route to 31 July.</p>
+        </div>
+      </div>
+      <div class="divider-title">What this does not do</div>
+      <div class="grid-4">
+        <div class="card watch"><h3>Does not replace September Drive</h3><p>September remains the alignment and announcement moment.</p></div>
+        <div class="card watch"><h3>Does not move Ops ownership</h3><p>Project Owners still own project coordination, dependencies and operational delivery.</p></div>
+        <div class="card watch"><h3>Does not tell Media how to deliver</h3><p>Media keeps ownership of editorial boundaries, production feasibility and product delivery.</p></div>
+        <div class="card watch"><h3>Does not force premature assets</h3><p>Final collateral only follows approved product, pricing, package and delivery decisions.</p></div>
+      </div>
+      <div class="callout">
+        <div class="icon">✓</div>
+        <p><strong>Suggested meeting frame:</strong> This view keeps the existing product planning process as the base and adds the Commercial readiness layer, so we can agree what needs to be ready by 31 July and what belongs in August or September.</p>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">02 · Merged process</div>
+          <h2>Current process with the Commercial layer added</h2>
+        </div>
+        <p>The flow below preserves the original product planning logic while showing where Commercial, Sales, Marketing and CRM plug in.</p>
+      </div>
+
+      <div class="flow">
+        <div class="flow-step"><b>1. Project vision</b><span>Purpose, audience, ambition, project type, owner and planning level.</span></div>
+        <div class="flow-step"><b>2. Evidence and inputs</b><span>Sales, client, audience, delivery, finance, competitor and product data.</span></div>
+        <div class="flow-step"><b>3. Commercial foundation</b><span>Products, pricing, packages, targets, positioning, delivery boundaries and discount rules.</span></div>
+        <div class="flow-step"><b>4. Approval gate</b><span>Revenue, COS, margin and commercial assumptions reviewed and approved.</span></div>
+        <div class="flow-step"><b>5. GTM framework</b><span>Commercial route to market, buyer groups, message, handoffs and proof needs.</span></div>
+        <div class="flow-step"><b>6. Functional strategies</b><span>Sales strategy, Marketing strategy and CRM strategy built from the GTM.</span></div>
+        <div class="flow-step"><b>7. Setup readiness</b><span>CRM, reporting, collateral brief, landing pages, sales decks, workflows and delivery handoffs.</span></div>
+        <div class="flow-step"><b>8. Review and launch</b><span>August review, September narrative, execution, reporting and next-cycle learning.</span></div>
+      </div>
+
+      <div class="divider-title">Product process mapped to the Commercial readiness layer</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Current planning phase</th>
+              <th>What it does</th>
+              <th>Commercial layer added</th>
+              <th>Output needed before moving on</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Kickoff workshop</strong></td><td>Clarifies the project, audience, expectations and goals.</td><td>Commercial captures early revenue ambition, audience promise, positioning questions and evidence gaps.</td><td>Project concept hypothesis, owner map and missing-input list.</td></tr>
+            <tr><td><strong>Product review and new ideas proposal</strong></td><td>Reviews existing products and proposed new ideas.</td><td>Commercial tests each product against buyer value, delivery feasibility, margin, proof and pricing power.</td><td>Recommended product list, retire / retain / change view and pricing assumptions.</td></tr>
+            <tr><td><strong>Rebooking collateral</strong></td><td>Prepares the material needed for renewal or rebooking conversations.</td><td>Commercial defines guardrails so soft rebooking does not create promises before approval.</td><td>Rebooking rate card, approved pricing or agreed commercial guardrails.</td></tr>
+            <tr><td><strong>Rebooking campaign starts</strong></td><td>Sales begins controlled rebooking activity.</td><td>Sales strategy and CRM tracking must be clear before activity scales.</td><td>Pipeline view, inventory setup, rebooking list, next-action ownership.</td></tr>
+            <tr><td><strong>New ideas alignment and revenue target consolidation</strong></td><td>Aligns new ideas with revenue and cost assumptions.</td><td>Commercial consolidates products, packages, targets, discount rules, margin logic and GTM implications.</td><td>Commercial foundation ready for approval.</td></tr>
+            <tr><td><strong>Revenue and COS approval</strong></td><td>COO / MD approval point for revenue and cost assumptions.</td><td>Finance and Commercial validate whether targets are credible before Sales and Marketing scale.</td><td>Approved or conditionally approved revenue, COS and commercial assumptions.</td></tr>
+            <tr><td><strong>Product portfolio consolidation</strong></td><td>Final portfolio adjustments before broader execution.</td><td>GTM, Sales, Marketing and CRM translate the approved foundation into execution plans.</td><td>Readiness pack for August review and September narrative.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <div class="icon">i</div>
+        <p><strong>Planning principle:</strong> This is not a new process. It is the current process with clearer commercial checkpoints inserted, so downstream teams are not forced to invent products, prices, messages or tracking while activity is already live.</p>
+      </div>
+    </section>
+
+    <section class="section" id="recovery">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">03 · 2026 recovery mode</div>
+          <h2>How this works this year</h2>
+        </div>
+        <p>Because it is already 5 June, this year is not the ideal model. It is a controlled recovery route to 31 July, then August review and September alignment.</p>
+      </div>
+      <div class="timeline-board">
+        <div class="time-col watch">
+          <h3>Fast-tracked already</h3>
+          <div class="date">May to early June</div>
+          <div class="task"><b>NYC 2027 commercial strategy</b><span>Moved quickly because venue move and rebooking needed product and pricing guardrails.</span></div>
+          <div class="task"><b>NEXTPredict 2026 commercial strategy</b><span>Moved quickly because the October launch needed products, pricing and sponsor structure.</span></div>
+          <div class="task"><b>NEXTPredict 2026 GTM draft</b><span>Used as a live example of how commercial foundation becomes execution direction.</span></div>
+        </div>
+        <div class="time-col gold">
+          <h3>Recovery sprint</h3>
+          <div class="date">5 June to 31 July</div>
+          <div class="task"><b>Confirm project list and scope</b><span>Agree what is genuinely in the 31 July deadline.</span></div>
+          <div class="task"><b>Close evidence gaps</b><span>Project, Sales, Marketing, CRM, Finance, Ops and Media inputs gathered or logged as assumptions.</span></div>
+          <div class="task"><b>Lock commercial foundations</b><span>Products, pricing, packages, revenue targets, discount rules and delivery boundaries.</span></div>
+          <div class="task"><b>Build GTM and functional plans</b><span>Commercial GTM, then Sales strategy, Marketing strategy and CRM setup plan.</span></div>
+        </div>
+        <div class="time-col calm">
+          <h3>Review and approval</h3>
+          <div class="date">August</div>
+          <div class="task"><b>Leadership review</b><span>Review commercial foundations, GTM logic and delivery risks.</span></div>
+          <div class="task"><b>Finance and Ops validation</b><span>Confirm cost, margin, delivery, staffing and timing implications.</span></div>
+          <div class="task"><b>Feedback and amendments</b><span>Adjust before commitments become public or Sales activity scales too far.</span></div>
+          <div class="task"><b>Budget and headcount view</b><span>Review portfolio workload and resource needs after the commercial plans are visible.</span></div>
+        </div>
+        <div class="time-col good">
+          <h3>September Drive</h3>
+          <div class="date">September</div>
+          <div class="task"><b>Internal alignment</b><span>Leadership, teams and owners aligned around approved project direction.</span></div>
+          <div class="task"><b>External narrative</b><span>Vision and announcements built from approved plans, not rushed assumptions.</span></div>
+          <div class="task"><b>Execution begins cleanly</b><span>Sales, Marketing and CRM act from an agreed foundation.</span></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="icon">!</div>
+        <p><strong>Key message:</strong> This year is already compressed. The proposal is not to pretend we are in the ideal process. The proposal is to align on a recovery route and avoid carrying the same pressure into the next planning cycle.</p>
+      </div>
+    </section>
+
+    <section class="section" id="future">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">04 · Future rhythm</div>
+          <h2>How this should work from 2027 onward</h2>
+        </div>
+        <p>The future version should create enough runway for proper strategy, budget-cycle conversations, functional planning and delivery readiness.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card good"><div class="label">After each event or cycle</div><h3>Evidence within 2 to 4 weeks</h3><p>What sold, what resisted, what delivered, what underperformed, what buyers asked for and what data is missing.</p></div>
+        <div class="card gold"><div class="label">Before sales scales</div><h3>Commercial foundation approved</h3><p>Products, pricing, packages, targets, margin logic, discount rules and delivery boundaries approved before broad outreach.</p></div>
+        <div class="card calm"><div class="label">Before campaigns scale</div><h3>GTM and CRM agreed</h3><p>GTM, Sales, Marketing and CRM strategies built from the same approved commercial foundation.</p></div>
+      </div>
+      <div class="divider-title">Recommended future gate sequence</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Gate</th><th>Purpose</th><th>Decision owner</th><th>Minimum output</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Gate 0: Planning route</strong></td><td>Confirm project type, ambition, owner, timeline and approval route.</td><td>COO / Project Owner, with Commercial input</td><td>Project route, owner map, input list, early risk register.</td></tr>
+            <tr><td><strong>Gate 1: Evidence complete</strong></td><td>Make sure decisions are based on data, feedback and known assumptions.</td><td>Project Owner</td><td>Evidence pack or named assumption list.</td></tr>
+            <tr><td><strong>Gate 2: Commercial foundation</strong></td><td>Approve products, pricing, packages, revenue, margin and rules.</td><td>Commercial Director, Finance, Commercial Approver</td><td>Approved commercial foundation.</td></tr>
+            <tr><td><strong>Gate 3: GTM framework</strong></td><td>Define the market route before functions build detailed plans.</td><td>Commercial Director</td><td>GTM framework, buyer groups, handoffs and proof needs.</td></tr>
+            <tr><td><strong>Gate 4: Functional readiness</strong></td><td>Sales, Marketing and CRM turn GTM into execution.</td><td>Sales Director, Marketing Director, CRM Lead</td><td>Sales strategy, Marketing strategy, CRM plan and reporting needs.</td></tr>
+            <tr><td><strong>Gate 5: Portfolio approval</strong></td><td>Review workload, budget, headcount and priority trade-offs across the portfolio.</td><td>COO / MD / Finance / Department leads</td><td>Approved budget, resource view and execution priorities.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <div class="icon">→</div>
+        <p><strong>Planning principle:</strong> Finance and Ops should provide early constraints, then final budget and headcount decisions should happen after the portfolio workload is visible. This avoids designing plans that cannot be resourced, while still allowing the commercial logic to be built properly.</p>
+      </div>
+    </section>
+
+    <section class="section" id="ownership">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">05 · Ownership</div>
+          <h2>Clear ownership without taking over other teams</h2>
+        </div>
+        <p>The ownership view protects Ops, Finance, Media and delivery ownership while clarifying Commercial dependencies.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>Owns</th>
+              <th>Commercial needs from them</th>
+              <th>Commercial does not own</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>COO / Ops</strong></td><td>Master planning rhythm, project coordination, trade-offs, dependency visibility.</td><td>Timeline ownership, escalation route, agreement on what 31 July means.</td><td>Commercial does not own the company planning framework.</td></tr>
+            <tr><td><strong>Commercial Director</strong></td><td>Commercial foundation, pricing, packaging, revenue logic, GTM framework and alignment.</td><td>Inputs, approval gates, delivery constraints and feedback from functional owners.</td><td>Day-to-day Ops delivery, Media production, final Finance approval or HR decisions.</td></tr>
+            <tr><td><strong>Sales Director</strong></td><td>Sales strategy, account focus, pipeline plan, rebooking motion, sales KPIs and objections.</td><td>Priority accounts, buyer feedback, discount pressure, revenue pacing and collateral needs.</td><td>Commercial should not micromanage rep activity.</td></tr>
+            <tr><td><strong>Marketing Director</strong></td><td>Marketing strategy, campaign calendar, audience plan, content needs, conversion path and demand plan.</td><td>Campaign feasibility, channel plan, ticket demand assumptions and launch critical path.</td><td>Commercial should not build the marketing calendar in detail.</td></tr>
+            <tr><td><strong>CRM</strong></td><td>Data architecture, source tracking, attribution, reporting, dashboards and handover flows.</td><td>Fields, naming rules, source logic, campaign tracking and reporting feasibility before activity scales.</td><td>CRM should not receive tracking requirements after campaigns are already live.</td></tr>
+            <tr><td><strong>Event Ops / Project Owner</strong></td><td>Project brief, critical path, venue, suppliers, production, delivery constraints and onsite feasibility.</td><td>Delivery boundaries, capacity limits, sponsor fulfilment risks and approval route.</td><td>Commercial should not dictate operational delivery.</td></tr>
+            <tr><td><strong>Media</strong></td><td>Media product feasibility, editorial boundaries, audience proof, production capacity and delivery workflow.</td><td>Inventory capacity, editorial risk, production constraints, proof model and client success needs.</td><td>Commercial should not sell media products that damage trust or overrun production.</td></tr>
+            <tr><td><strong>Finance</strong></td><td>Cost envelope, margin logic, budget review, cash timing, tax, FX and approval support.</td><td>Early constraints and final validation before targets are locked.</td><td>Commercial should not set final budgets alone.</td></tr>
+            <tr><td><strong>Leadership</strong></td><td>Final approval, priority calls, resource trade-offs and strategic decisions.</td><td>Clear decision papers and a small number of specific asks.</td><td>Leadership should not be asked to approve unclear or half-built proposals.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <div class="icon">✓</div>
+        <p><strong>Suggested wording:</strong> I am not trying to expand Commercial ownership. I am trying to define Commercial dependency, so teams know what needs to be decided before Sales, Marketing and CRM are expected to scale.</p>
+      </div>
+    </section>
+
+    <section class="section" id="decisions">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">06 · Decision asks</div>
+          <h2>What to align on in the meeting</h2>
+        </div>
+        <p>Keep the ask focused. The meeting should align the planning interpretation and next step, not approve every supporting module.</p>
+      </div>
+      <div class="grid-3">
+        <div class="decision-box">
+          <div class="decision-no">1</div>
+          <div><h3>Confirm the purpose of 31 July</h3><p>Agree that 31 July means commercial readiness and collateral requirements, not final polished asset completion for every project.</p></div>
+        </div>
+        <div class="decision-box">
+          <div class="decision-no">2</div>
+          <div><h3>Confirm ownership of the master timeline</h3><p>Agree whether Ops owns it, Commercial co-owns it, or it sits as a shared planning view with clear update rules.</p></div>
+        </div>
+        <div class="decision-box">
+          <div class="decision-no">3</div>
+          <div><h3>Confirm the gating sequence</h3><p>Agree that GTM, Sales, Marketing and CRM strategies should follow approved products, pricing, targets and delivery boundaries.</p></div>
+        </div>
+      </div>
+      <div class="divider-title">Alignment note</div>
+      <div class="card gold">
+        <p><strong>Purpose:</strong> Bring the current planning process and Commercial readiness layer into one shared view.</p>
+        <p style="margin-top:12px;"><strong>Clarification:</strong> This does not replace the September Drive or move project ownership into Commercial. It clarifies what Sales, Marketing and CRM need before activity scales.</p>
+        <p style="margin-top:12px;"><strong>Output:</strong> After alignment, this can be simplified into a timeline and owner map.</p>
+      </div>
+      <div class="divider-title">Suggested next step after the meeting</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Action</th><th>Owner</th><th>Timing</th><th>Output</th></tr></thead>
+          <tbody>
+            <tr><td>Agree final project list for 31 July</td><td>COO + Commercial Director</td><td>This week</td><td>Single scope list, with excluded items named.</td></tr>
+            <tr><td>Turn this view into a simple owner timeline</td><td>Commercial Director, with COO feedback</td><td>After meeting</td><td>One page timeline with gates, owners and dates.</td></tr>
+            <tr><td>Confirm project readiness meetings</td><td>Project Owners</td><td>Immediately after alignment</td><td>Meetings with input owners and output expectations.</td></tr>
+            <tr><td>Prepare August review pack structure</td><td>COO + Commercial Director + Finance</td><td>Before July sprint intensifies</td><td>Template for review, approval, feedback and budget implications.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <p class="source-note">Internal source inputs used: Product Planning Process ODS, 31 July Commercial Readiness Deadline, Event Commercial Strategy Module, Media Commercial Strategy Module, 2028 Commercial Readiness Timeline and the 15/9 Drive 2026 deck. External method references used conceptually: stage-gate planning and RACI-style responsibility mapping.</p>
+  </main>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const sections = document.querySelectorAll('.section');
+    function activate(id){
+      tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === id));
+      sections.forEach(s => s.classList.toggle('active', s.id === id));
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+    tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.tab)));
+  </script>
+</body>
+</html>
