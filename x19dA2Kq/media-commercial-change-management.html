@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>2027 Media Transition Brief</title>
+<style>
+:root{
+  --bg:#0b0f14;
+  --panel:#121923;
+  --panel2:#172231;
+  --ink:#eef3f7;
+  --muted:#aab8c5;
+  --line:#2a394a;
+  --accent:#f5d34d;
+  --accent2:#58c7ff;
+  --ok:#8be28b;
+  --risk:#ff9c7a;
+  --white:#ffffff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#081018 0%,#0b0f14 42%,#0d1117 100%);color:var(--ink);font-family:Inter,Arial,sans-serif;line-height:1.48}
+.wrapper{max-width:1180px;margin:0 auto;padding:44px 28px 72px}
+.hero{border:1px solid var(--line);background:radial-gradient(circle at 20% 0%,rgba(88,199,255,.18),transparent 28%),radial-gradient(circle at 80% 0%,rgba(245,211,77,.12),transparent 28%),var(--panel);border-radius:26px;padding:38px 40px;margin-bottom:26px;box-shadow:0 20px 60px rgba(0,0,0,.28)}
+.eyebrow{color:var(--accent);text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:800;margin-bottom:10px}
+h1{font-size:44px;line-height:1.06;margin:0 0 16px;letter-spacing:-.04em}
+.hero p{max-width:880px;color:#d7e0ea;font-size:18px;margin:0 0 22px}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.badge{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);border-radius:999px;padding:8px 12px;color:#dfe8f1;font-size:13px;font-weight:700}
+section{background:rgba(18,25,35,.92);border:1px solid var(--line);border-radius:22px;padding:30px;margin:22px 0;box-shadow:0 10px 32px rgba(0,0,0,.16)}
+h2{font-size:28px;margin:0 0 16px;letter-spacing:-.03em}.sub{color:var(--muted);margin-top:-4px;margin-bottom:20px;max-width:900px}.grid{display:grid;gap:16px}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{border:1px solid var(--line);background:linear-gradient(180deg,var(--panel2),rgba(23,34,49,.72));border-radius:18px;padding:20px}.card h3{font-size:18px;margin:0 0 10px}.card p{color:#cfdae4;margin:0}.num{font-size:38px;font-weight:900;color:var(--accent);line-height:1;margin-bottom:8px}.mini{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent2);font-weight:800;margin-bottom:8px}
+.callout{border-left:4px solid var(--accent);background:rgba(245,211,77,.08);padding:16px 18px;border-radius:12px;margin:18px 0;color:#f4f0d5}.callout strong{color:#fff}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;margin-top:18px}table{width:100%;border-collapse:collapse;min-width:900px;background:rgba(10,15,22,.54)}th,td{padding:14px 15px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}th{color:#fff;background:#101722;font-size:13px;text-transform:uppercase;letter-spacing:.08em}td{color:#dbe4ec}tr:last-child td{border-bottom:0}.pill{display:inline-block;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:800;margin:2px 4px 2px 0;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05)}.pill.blue{color:#9de0ff}.pill.yellow{color:#ffe46d}.pill.green{color:#9df2a0}.pill.red{color:#ffb49b}
+ul{margin:10px 0 0;padding-left:20px;color:#d8e2ea}li{margin:6px 0}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:20px 0}.step{border:1px solid var(--line);background:#0f1722;border-radius:16px;padding:16px;position:relative}.step b{display:block;color:#fff;margin-bottom:7px}.step span{color:#b7c6d4;font-size:14px}.arrow{display:none}.quote{font-size:20px;line-height:1.35;color:#fff;background:rgba(88,199,255,.08);border:1px solid rgba(88,199,255,.25);border-radius:18px;padding:20px;margin:18px 0}.priority{border:1px solid rgba(245,211,77,.34);background:linear-gradient(180deg,rgba(245,211,77,.09),rgba(18,25,35,.9));border-radius:20px;padding:22px;margin:18px 0}.priority h3{font-size:22px;margin:0 0 6px}.meta{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}.meta span{border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 10px;color:#d8e2ea;font-size:13px;background:rgba(255,255,255,.04)}.bridge{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:14px}.bridge .box{border:1px solid var(--line);border-radius:14px;background:#0e1620;padding:15px}.box h4{margin:0 0 8px;color:#fff;font-size:14px;text-transform:uppercase;letter-spacing:.08em}.box p{margin:0;color:#d2dee8}.small{font-size:13px;color:var(--muted)}.footer{color:#8fa1b2;text-align:center;margin-top:36px;font-size:13px}
+@media(max-width:900px){.grid.three,.grid.two,.grid.four,.flow,.bridge{grid-template-columns:1fr}.wrapper{padding:24px 16px}.hero{padding:28px 22px}h1{font-size:34px}section{padding:22px}.table-wrap table{min-width:760px}}
+@media print{body{background:#fff;color:#111}.wrapper{max-width:none;padding:20px}.hero,section{box-shadow:none;background:#fff;color:#111;border-color:#bbb}.hero p,.card p,.sub,td,li,.box p{color:#222}h1,h2,h3,th{color:#111}.footer{color:#444}.table-wrap{overflow:visible}table{min-width:0;background:#fff}.badge,.pill,.meta span{border-color:#aaa;color:#111;background:#f7f7f7}}
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="hero">
+    <div class="eyebrow">NEXT.io Media, 2027 transition</div>
+    <h1>Media transition brief</h1>
+    <p>The 2027 media model needs to turn scattered product buying into clearer annual partnerships. The plan should give sales one story, give delivery one rule set, and give priority clients a bridge from what they bought before into a cleaner model.</p>
+    <div class="badges">
+      <span class="badge">Broad strategy first</span>
+      <span class="badge">Client migration logic</span>
+      <span class="badge">No invented inventory numbers</span>
+      <span class="badge">Actions to close the plan</span>
+    </div>
+  </div>
+
+  <section>
+    <h2>Executive read</h2>
+    <p class="sub">The strategy works if the transition is sold as consolidation, not replacement. Clients should not hear, "you used to buy this, now buy this other thing." They should hear, "your existing activity has been consolidated into a stronger annual media position with clearer ownership, better storytelling and better proof of value."</p>
+    <div class="grid three">
+      <div class="card"><div class="mini">What is strong</div><h3>The direction is commercially right</h3><p>Moving away from low-quality ad clutter gives sales a more premium story and gives the media team more control over quality.</p></div>
+      <div class="card"><div class="mini">What needs work</div><h3>The bridge needs to feel specific</h3><p>Priority clients need account-level migration plans. A generic product map will not protect Pragmatic, BetConstruct, SOFTSWISS or other large accounts.</p></div>
+      <div class="card"><div class="mini">What comes next</div><h3>Product rules before sales launch</h3><p>The product list, rights, category rules, rotation logic, reporting standard and legacy exit rules need to be settled before sales starts renewal conversations.</p></div>
+    </div>
+    <div class="callout"><strong>Core point:</strong> 2027 should be framed as the shift from buying media placements to owning a clearer market position across editorial, video, newsletter, research and site visibility.</div>
+  </section>
+
+  <section>
+    <h2>3 projects, 2 client types, 1 sales story</h2>
+    <p class="sub">This remains the cleanest structure. It keeps the plan simple enough for sales while giving the media team room to define products properly.</p>
+    <div class="grid three">
+      <div class="card"><div class="num">3</div><h3>Three projects</h3><p><span class="pill yellow">Multi-Media</span> Podcast and Spotlight.<br><span class="pill blue">Global Markets</span> NEXT.io and regional publications.<br><span class="pill green">Emerging Verticals</span> NEXTPredict and niche market coverage.</p></div>
+      <div class="card"><div class="num">2</div><h3>Two client types</h3><p><span class="pill yellow">Protect and transition</span> legacy media buyers with expectations to manage.<br><span class="pill blue">Grow and shape</span> accounts suited to the new model with less baggage.</p></div>
+      <div class="card"><div class="num">1</div><h3>One sales story</h3><p>Fewer low-value ads. More ownership. Stronger editorial association. Better reporting. Less clutter. Clearer commercial value.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Sales framing</h2>
+    <p class="sub">Sales needs the story before the product sheet. The product sheet supports the story. It should not become the story.</p>
+    <div class="quote">"We are moving from fragmented media placements into annual media positions. You will get fewer disconnected assets and a clearer platform for category presence, thought leadership, distribution and performance reporting."</div>
+    <div class="grid two">
+      <div class="card"><h3>Old sales motion</h3><ul><li>Renew the same banner.</li><li>Sell a podcast slot.</li><li>Add Spotlight as a bolt-on.</li><li>Use PR support or articles to close gaps.</li><li>Discount placements when value is unclear.</li></ul></div>
+      <div class="card"><h3>New sales motion</h3><ul><li>Map the client’s current media behaviour.</li><li>Identify the buyer outcome they care about.</li><li>Move them into one primary 2027 lane.</li><li>Add supporting products only where they strengthen the lane.</li><li>Use quarterly reporting to protect renewal value.</li></ul></div>
+    </div>
+    <div class="callout"><strong>Sales rule:</strong> no priority account should receive a product list first. They should receive a bridge from their current buying pattern to a 2027 position.</div>
+  </section>
+
+  <section>
+    <h2>The 2027 bridge</h2>
+    <p class="sub">The bridge is the missing commercial layer. It connects the old buying pattern to the new product model. It should appear in every priority account plan.</p>
+    <div class="flow">
+      <div class="step"><b>1. Current behaviour</b><span>What they bought in 2025 and 2026.</span></div>
+      <div class="step"><b>2. Buyer intent</b><span>What the spend suggests they value.</span></div>
+      <div class="step"><b>3. Primary lane</b><span>The 2027 position they should move into.</span></div>
+      <div class="step"><b>4. Support layer</b><span>The add-ons that make the position credible.</span></div>
+      <div class="step"><b>5. Proof</b><span>The report, data or review that protects renewal.</span></div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Old buying pattern</th><th>What it tells us</th><th>2027 bridge</th><th>What needs defining</th></tr></thead>
+        <tbody>
+          <tr><td>Podcast headline, guest participation and Spotlight series</td><td>The client buys authority, executive presence and recurring storytelling.</td><td>Move to a Multi-Media Authority Partnership with podcast format ownership, Spotlight series and structured distribution.</td><td>Podcast rights, episode cadence, host involvement, series structure and reporting.</td></tr>
+          <tr><td>Mega banner, skyscraper, MPU, leaderboard and newsletter</td><td>The client buys visibility, share of voice and constant presence.</td><td>Move to Global Markets Headline, Sticky Banner or Category Sponsorship with newsletter support.</td><td>Category rights, rotation logic, placement rules and competitor conflict policy.</td></tr>
+          <tr><td>Research reports, white papers and content series</td><td>The client buys credibility, education and association with market insight.</td><td>Move to Research and Intelligence Partner with clear editorial rules and distribution.</td><td>Editorial control, data rights, publication location and sponsor visibility.</td></tr>
+          <tr><td>Promoted articles, PR support and backlinks</td><td>The client buys distribution and SEO support, but this does not carry premium positioning alone.</td><td>Keep as a support layer inside a larger partnership, not as the hero product.</td><td>Editorial acceptance rules, labelling, quality bar and limits.</td></tr>
+          <tr><td>Mixed event and media exposure</td><td>The client relationship has broader strategic value, but media value needs clean separation.</td><td>Build an account plan with a media lane and an event lane, then connect them through campaign narrative.</td><td>What counts as media value, what sits in event sponsorship and who owns delivery.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Priority client transition view</h2>
+    <p class="sub">The goal is not to give every client the same recommendation. The goal is to protect revenue while moving each client into the lane that matches their real buying behaviour.</p>
+
+    <div class="priority">
+      <h3>Pragmatic Group</h3>
+      <div class="meta"><span>Podcast headline exclusive</span><span>Connected With / Spotlight</span><span>Research and reports</span><span>Media and banners</span></div>
+      <div class="bridge">
+        <div class="box"><h4>Current pattern</h4><p>Pragmatic has bought recurring authority products, not only media placements. The relationship sits around podcast ownership, Spotlight / Connected With storytelling, research/report association and supporting media visibility.</p></div>
+        <div class="box"><h4>2027 bridge</h4><p>Build a consolidated Multi-Media Authority Partnership. The centre should be podcast and Spotlight continuity, with research as the intelligence layer and newsletter/site distribution as the support layer. This is not a banner migration. It is an annual authority platform.</p></div>
+        <div class="box"><h4>Why this works</h4><p>The podcast transition creates risk if the conversation focuses on episode count. The safer commercial story is format ownership, senior audience access, continuity of Connected With, distribution and quarterly proof.</p></div>
+      </div>
+      <div class="callout"><strong>Suggested move:</strong> create a bespoke Pragmatic bridge proposal with two options. Option one protects the existing podcast and Spotlight value. Option two expands into research and distribution, with stronger reporting and fewer fragmented placements.</div>
+    </div>
+
+    <div class="priority">
+      <h3>BetConstruct</h3>
+      <div class="meta"><span>€328k across 2025 and 2026</span><span>Mega banner</span><span>Podcast</span><span>Spotlight</span><span>Magazine</span><span>Content</span></div>
+      <div class="bridge">
+        <div class="box"><h4>Current pattern</h4><p>BetConstruct has the broadest clean media footprint. They have bought site visibility, content, podcast, Spotlight and magazine. This suggests they value sustained market presence more than a single format.</p></div>
+        <div class="box"><h4>2027 bridge</h4><p>Move them toward a Global Markets Anchor or Category Headline position, supported by Spotlight or podcast content and quarterly performance reporting.</p></div>
+        <div class="box"><h4>Why this works</h4><p>This gives sales a premium alternative to renewing a basket of ad formats. It also gives media a way to reduce clutter without reducing perceived value.</p></div>
+      </div>
+      <div class="callout"><strong>Suggested move:</strong> define whether BetConstruct gets first conversation on a broad Global Markets position or a narrower category lane. Do not offer the same scarce lane to other platform accounts until this is resolved.</div>
+    </div>
+
+    <div class="priority">
+      <h3>SOFTSWISS</h3>
+      <div class="meta"><span>2025 Mega Banner</span><span>2026 banners</span><span>PR support</span><span>Backlink content</span><span>Performance scrutiny</span></div>
+      <div class="bridge">
+        <div class="box"><h4>Current pattern</h4><p>SOFTSWISS has bought high-visibility placements and has shown interest in performance detail. They will not accept a premium migration without proof.</p></div>
+        <div class="box"><h4>2027 bridge</h4><p>Move them into a proof-led visibility package. This could sit as Category Headline, Sticky Banner or an Emerging Verticals lane where the fit is credible, supported by quarterly reporting.</p></div>
+        <div class="box"><h4>Why this works</h4><p>The bridge protects the commercial value of banners while giving the client a cleaner reason to pay for fewer, stronger placements.</p></div>
+      </div>
+      <div class="callout"><strong>Suggested move:</strong> prepare the SOFTSWISS plan with a sample performance report. Lead with visibility quality, audience fit and reporting, not the removal of old banners.</div>
+    </div>
+
+    <div class="priority">
+      <h3>Play’n GO</h3>
+      <div class="meta"><span>Newsletter headline</span><span>Upper leaderboard</span><span>Pop-up</span><span>Spotlight</span><span>Content package</span></div>
+      <div class="bridge">
+        <div class="box"><h4>Current pattern</h4><p>Play’n GO buys visibility and storytelling. Their spend is better suited to a content-led position than a scarce general Global Markets exclusive.</p></div>
+        <div class="box"><h4>2027 bridge</h4><p>Move them into a Content and Spotlight Authority package with newsletter support and selected site visibility.</p></div>
+        <div class="box"><h4>Why this works</h4><p>It gives them market presence without consuming the top platform position needed for broader supplier or technology accounts.</p></div>
+      </div>
+      <div class="callout"><strong>Suggested move:</strong> pitch Play’n GO around creative authority, executive storytelling and newsletter reach. Keep Global Markets exclusive as a fallback only if category fit and conflict rules allow it.</div>
+    </div>
+
+    <div class="priority">
+      <h3>Playtech</h3>
+      <div class="meta"><span>2026 Mega Banner</span><span>Platform account</span><span>Premium visibility replacement</span></div>
+      <div class="bridge">
+        <div class="box"><h4>Current pattern</h4><p>Playtech looks like a cleaner banner-transition account. The risk is simpler than Pragmatic. They need a better replacement for premium web presence.</p></div>
+        <div class="box"><h4>2027 bridge</h4><p>Move them into Category Headline, Sticky Banner or Global Markets support, depending on exclusivity availability.</p></div>
+        <div class="box"><h4>Why this works</h4><p>The bridge is easy to explain. The old product was premium visibility. The new product should be premium visibility with better context and less clutter.</p></div>
+      </div>
+      <div class="callout"><strong>Suggested move:</strong> build a direct old-to-new value comparison. Keep the story simple and avoid overcomplicating the account with unrelated products.</div>
+    </div>
+
+    <div class="priority">
+      <h3>Evolution, Imagine Live and other content-led suppliers</h3>
+      <div class="meta"><span>Podcast</span><span>Spotlight</span><span>Mega banner</span><span>Magazine</span><span>Visual storytelling</span></div>
+      <div class="bridge">
+        <div class="box"><h4>Current pattern</h4><p>These accounts have stronger fit with storytelling, product launches and executive visibility than with generic site ownership.</p></div>
+        <div class="box"><h4>2027 bridge</h4><p>Move them toward Spotlight Studio, Podcast Theme Sponsorship or Multi-Media Partner packages, with distribution attached.</p></div>
+        <div class="box"><h4>Why this works</h4><p>It protects value if paid guest participation changes and gives suppliers a richer format for product narrative.</p></div>
+      </div>
+      <div class="callout"><strong>Suggested move:</strong> create one supplier storytelling template. Use it for Evolution, Imagine Live and similar accounts, then tailor by category.</div>
+    </div>
+
+    <div class="priority">
+      <h3>Hub88, Stake, Plaee and mixed relationship accounts</h3>
+      <div class="meta"><span>Mixed event and media exposure</span><span>Newsletter</span><span>Spotlight</span><span>Banners</span><span>Strategic relationship value</span></div>
+      <div class="bridge">
+        <div class="box"><h4>Current pattern</h4><p>These accounts risk being misread if media and event value are blended too loosely. Some have strong strategic value but not all of it belongs in the media plan.</p></div>
+        <div class="box"><h4>2027 bridge</h4><p>Create two-lane account plans. One lane covers media products. The other covers event and relationship value. The narrative connects them, but the commercial ownership stays clear.</p></div>
+        <div class="box"><h4>Why this works</h4><p>It protects the media strategy from inflated assumptions and gives sales a cleaner way to package strategic accounts.</p></div>
+      </div>
+      <div class="callout"><strong>Suggested move:</strong> include these accounts in transition planning, but avoid treating their full relationship value as media spend.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Priority account spend and exposure</h2>
+    <p class="sub">These figures are directional for transition planning. The purpose is to identify who needs bespoke handling and what product behaviour needs to be bridged.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Priority account</th><th>Known 2025 to 2026 media value</th><th>Current product exposure</th><th>Transition implication</th></tr></thead>
+        <tbody>
+          <tr><td>Pragmatic Group</td><td>c. €375k plus</td><td>Podcast headline exclusive, Connected With / Spotlight, research/report, 2026 media and supporting visibility.</td><td>Bespoke Multi-Media Authority bridge. Protect against podcast value objection.</td></tr>
+          <tr><td>BetConstruct</td><td>€328k</td><td>Mega banner, pop-up, MPU, skyscraper, newsletter, podcast, Spotlight, magazine, PR and content.</td><td>Broadest clean transition account. Candidate for Global Markets anchor, subject to category rules.</td></tr>
+          <tr><td>SOFTSWISS</td><td>€55.05k pure media, €205.05k with mixed exposure</td><td>2025 Mega Banner, 2026 banners, PR, backlink content and wider 2026 mixed sponsorship exposure.</td><td>Important performance-led banner-transition account. Needs reporting proof.</td></tr>
+          <tr><td>Hub88</td><td>€33.2k pure media, €197.7k with mixed exposure</td><td>Skyscraper, newsletter, bespoke content, Spotlight and wider event sponsorship.</td><td>Good candidate for newsletter, research or data-led narrative. Keep media and mixed value separate.</td></tr>
+          <tr><td>Play’n GO</td><td>€117.7k confirmed in merged export</td><td>Newsletter headline, upper leaderboard, pop-up, Spotlight and content package.</td><td>Strong content and storytelling account. Better fit for Spotlight and newsletter than scarce exclusive ownership.</td></tr>
+          <tr><td>Imagine Live</td><td>€87.5k</td><td>Mega banner, Spotlight, skyscraper, content, PR, magazine and podcast.</td><td>Strong Multi-Media and Spotlight candidate.</td></tr>
+          <tr><td>Evolution Gaming</td><td>€75.5k</td><td>Mega banner and podcast participation.</td><td>Needs a premium alternative to paid podcast participation if the podcast product changes.</td></tr>
+          <tr><td>Playtech</td><td>€66k</td><td>2026 Mega Banner.</td><td>Clean banner migration account. Needs a premium web ownership bridge.</td></tr>
+          <tr><td>Fast Track, Evoplay, Sportradar and similar</td><td>Smaller recurring and bridge accounts</td><td>Mega banner, pop-up, skyscraper, MPU, PR and content.</td><td>Use supporting slots and quarterly bridge options. Do not let smaller buyers consume scarce annual ownership positions.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Product migration logic</h2>
+    <p class="sub">This map should sit behind the client plans. It gives sales the logic, but it should not replace account-level recommendations.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Legacy product</th><th>2027 direction</th><th>Decision needed</th></tr></thead>
+        <tbody>
+          <tr><td>Mega Banner</td><td>Move into Sticky Banner, Category Headline or Global Markets ownership.</td><td>Define whether the new asset rotates, carries category rights or stays general.</td></tr>
+          <tr><td>Pop-Up Banner</td><td>Retire or restrict heavily as an exception product.</td><td>Confirm whether it stops fully, remains for sold commitments or becomes event-only.</td></tr>
+          <tr><td>Skyscraper, MPU, Upper Leaderboard, Middle Leaderboard</td><td>Move into supporting slots, newsletter support or category packages.</td><td>Define which formats remain during the transition and which stop.</td></tr>
+          <tr><td>Newsletter banners</td><td>Turn into a more intentional newsletter sponsorship and story-led placement.</td><td>Define premium positions, story formats and reporting.</td></tr>
+          <tr><td>Podcast guest participation</td><td>Move away from simple paid guest slots toward format sponsorship, editorial themes and partner series.</td><td>Agree the client-safe transition path, especially for Pragmatic and other podcast buyers.</td></tr>
+          <tr><td>Spotlight one-offs and series</td><td>Move into Spotlight Feature, Spotlight Series and executive storytelling packages.</td><td>Define format tiers, production scope and what counts as premium.</td></tr>
+          <tr><td>Research and reports</td><td>Make research a defined intelligence product with sponsor rights and publication logic.</td><td>Agree where reports live, especially where NEXTPredict is involved.</td></tr>
+          <tr><td>PR support and promoted articles</td><td>Keep as support, not the core premium product.</td><td>Define editorial acceptance rules and prevent PR from becoming disguised advertorial clutter.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Strategic risks</h2>
+    <p class="sub">The risks are manageable, but only if they are handled before sales starts shaping offers in the old way.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Risk</th><th>Why it matters</th><th>Mitigation</th></tr></thead>
+        <tbody>
+          <tr><td>Exclusivity collision</td><td>Several major clients fit Global Markets or category ownership, but the best positions are scarce.</td><td>Create an account lane map before outreach. Give each priority account a primary lane and fallback lane.</td></tr>
+          <tr><td>Podcast value objection</td><td>Podcast changes may feel like reduced value if sold against episode count.</td><td>Frame the bridge around format ownership, audience seniority, series continuity and distribution.</td></tr>
+          <tr><td>Legacy product drag</td><td>Sales will renew familiar banners if the new model is unclear.</td><td>Set a legacy cut-off date and give sales replacement language by product.</td></tr>
+          <tr><td>Performance proof gap</td><td>Clients such as SOFTSWISS will ask for data before accepting a premium migration.</td><td>Build quarterly reporting into the product. Provide narrative reports by default.</td></tr>
+          <tr><td>Mixed deal confusion</td><td>Event-media hybrid accounts can inflate the perceived media opportunity.</td><td>Keep pure media, mixed exposure and strategic relationship value separate in planning.</td></tr>
+          <tr><td>Editorial trust risk</td><td>Premium media loses value if commercial placement weakens editorial credibility.</td><td>Agree labelling, editorial acceptance, PR limits and report governance before sales launch.</td></tr>
+          <tr><td>Delivery overload</td><td>A premium product with unclear delivery ownership will create stress for media, marketing and sales.</td><td>Assign a delivery owner, approval owner and reporting owner for each product.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Decisions to close</h2>
+    <p class="sub">These actions do not require inventory numbers in this document. They require clear product rules, rights, mock-ups and guardrails. Once these decisions are made, commercial can turn them into sales materials and account plans.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Action</th><th>Question to answer</th><th>Output needed</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td>Confirm the product architecture</td><td>What sits under Multi-Media, Global Markets and Emerging Verticals?</td><td>Final product names, definitions and delivery owners.</td><td>Prevents sales from mixing old and new products.</td></tr>
+          <tr><td>Define sticky banner rules</td><td>Is it exclusive, rotating, category-led, publication-led or share-of-voice?</td><td>Placement logic, rotation logic, category logic and reporting expectation.</td><td>Turns the biggest banner replacement into something sellable.</td></tr>
+          <tr><td>Define category rights</td><td>What is the difference between Exclusive, Headline, Supporting and Partner?</td><td>Rights, limitations, competitor rules and fallback options.</td><td>Prevents five clients being promised the same premium position.</td></tr>
+          <tr><td>Build the category taxonomy</td><td>Which categories exist, and where do edge cases go?</td><td>Agreed category list with examples, exclusions and escalation route.</td><td>Gives sales confidence and protects delivery.</td></tr>
+          <tr><td>Map legacy products to 2027 products</td><td>Which products continue, rename, replace, retire or become exception-only?</td><td>Old-to-new migration map with sales language.</td><td>Protects renewals without extending the old site model forever.</td></tr>
+          <tr><td>Define podcast transition rules</td><td>What replaces paid guest participation and how does headline sponsorship work?</td><td>Podcast product rules, sponsor rights and account handling notes.</td><td>Protects Pragmatic and other podcast buyers from feeling value has been reduced.</td></tr>
+          <tr><td>Define Spotlight tiers</td><td>Is Spotlight a one-off interview, a series, a content studio product or all three?</td><td>Format tiers, production scope, rights, distribution and renewal path.</td><td>Turns Spotlight into a premium product rather than a dumping ground for rejected podcast guests.</td></tr>
+          <tr><td>Clarify research and report rules</td><td>How does research sit across NEXT.io, NEXTPredict and regional publications?</td><td>Sponsor role, editorial control rules, data rights, hosting and sales positioning.</td><td>Lets research become a credible intelligence product.</td></tr>
+          <tr><td>Define newsletter role</td><td>Is newsletter a premium product, support channel or bundled distribution layer?</td><td>Placement types, sponsor visibility, story formats and reporting.</td><td>Prevents newsletter from being underused or thrown in for free.</td></tr>
+          <tr><td>Create the reporting standard</td><td>What does every client get as proof of value?</td><td>Quarterly report template, data points, narrative rules and raw-data policy.</td><td>Makes reporting a renewal asset, not a reactive favour.</td></tr>
+          <tr><td>Create the mock-up pack</td><td>What does the new model look like?</td><td>Sticky banner, category page, newsletter, Spotlight and podcast sponsor examples.</td><td>Makes the product real before the sales workshop.</td></tr>
+          <tr><td>Agree sales launch rules</td><td>When do old products stop being quoted, and who approves exceptions?</td><td>Cut-off date, exception owner and approval route.</td><td>Stops the new model and old model running in conflict.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Proposed working session</h2>
+    <p class="sub">The next meeting should close decisions, not reopen the full strategy.</p>
+    <div class="grid four">
+      <div class="card"><div class="mini">1</div><h3>Product truth</h3><p>Confirm what exists, what changes name, what retires and what needs a new definition.</p></div>
+      <div class="card"><div class="mini">2</div><h3>Inventory rules</h3><p>Agree rule types for each product. Exclusive, rotating, share of voice, category-based or publication-based.</p></div>
+      <div class="card"><div class="mini">3</div><h3>Client protection</h3><p>Map priority clients to primary and fallback lanes before renewal conversations start.</p></div>
+      <div class="card"><div class="mini">4</div><h3>Sales readiness</h3><p>List the mock-ups, scripts, objection handling and reporting proof needed before launch.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Final commercial position</h2>
+    <p>The commercial move is not to replace every banner with a new banner. The move is to convert product buyers into annual media partners.</p>
+    <p>The strongest 2027 plan will protect revenue, reduce site clutter, create cleaner premium inventory and give sales account-specific bridges for the biggest clients.</p>
+    <div class="callout"><strong>Best next step:</strong> finalise product rules and mock-ups, then build account bridge plans for the priority clients before the sales workshop.</div>
+  </section>
+
+  <div class="footer">Prepared for internal NEXT.io media transition planning, 2027.</div>
+</div>
+</body>
+</html>
