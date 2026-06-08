@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXT Summit Valletta 2027 — Commercial Model</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{color-scheme:dark}
+body{background:#020617;color:#e2e8f0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0}
+.wrap{max-width:1240px;margin:0 auto;padding:32px 20px 80px}
+h1{font-size:2rem;font-weight:800;letter-spacing:-.02em;margin:0 0 6px;background:linear-gradient(120deg,#fff,#94a3b8);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:1.25rem;font-weight:700;margin:38px 0 12px;color:#f1f5f9;border-bottom:1px solid #1e293b;padding-bottom:8px}
+h3{font-size:1.02rem;font-weight:700;margin:26px 0 10px;color:#cbd5e1;display:flex;align-items:center;gap:8px}
+h3 .count{font-size:.7rem;font-weight:600;background:#1e293b;color:#94a3b8;padding:2px 8px;border-radius:999px}
+.sub{color:#94a3b8;font-size:.95rem;margin:0 0 22px}
+.tablewrap{overflow-x:auto;border:1px solid #1e293b;border-radius:12px;background:#0b1220}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:1080px}
+thead th{background:#0f172a;color:#94a3b8;text-align:left;padding:9px 10px;font-weight:600;border-bottom:1px solid #1e293b;white-space:nowrap;vertical-align:bottom}
+.th-sub{font-weight:400;color:#64748b;font-size:10px}
+tbody td{padding:9px 10px;border-bottom:1px solid #131c2e;vertical-align:top}
+tbody tr:hover{background:#0f1a2e}
+.pname{font-weight:600;color:#e2e8f0;min-width:210px}
+.num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap;font-weight:600}
+.rebook{color:#94a3b8} .list{color:#fbbf24} .floor{color:#34d399}
+.small{font-size:11px;color:#cbd5e1;max-width:230px}
+.dim{color:#7c8aa3} .note{color:#9aa7bd;max-width:300px}
+.na{color:#475569}
+.tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;border:1px solid;white-space:nowrap}
+.flag{font-size:11px;cursor:help} .flag-warn{color:#fbbf24} .flag-ops{color:#fb7185}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin:16px 0 6px;font-size:12px;color:#94a3b8}
+.legend .tag{margin-right:6px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:14px 0}
+.card{background:#0b1220;border:1px solid #1e293b;border-radius:12px;padding:16px}
+.card .k{font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:.06em}
+.card .v{font-size:1.5rem;font-weight:800;margin-top:4px}
+.card .v.amber{color:#fbbf24} .card .v.green{color:#34d399} .card .v.slate{color:#cbd5e1}
+.card .d{font-size:11px;color:#94a3b8;margin-top:6px}
+ul.q{margin:8px 0 0;padding-left:18px} ul.q li{margin:7px 0;color:#cbd5e1;font-size:13px;line-height:1.45}
+.panel{background:#0b1220;border:1px solid #1e293b;border-radius:12px;padding:18px 20px}
+.panel.will{border-left:3px solid #f59e0b} .panel.ops{border-left:3px solid #fb7185} .panel.rory{border-left:3px solid #22d3ee} .panel.ana{border-left:3px solid #34d399}
+.panel h4{margin:0 0 4px;font-size:1.05rem;color:#f1f5f9}
+.panel .who{font-size:11px;color:#64748b;margin-bottom:6px}
+.tbd li{margin:9px 0;font-size:13px;color:#cbd5e1;line-height:1.5}
+.foot{margin-top:40px;color:#64748b;font-size:11px;border-top:1px solid #1e293b;padding-top:14px;line-height:1.6}
+.pill{display:inline-block;background:#1e293b;color:#cbd5e1;border-radius:999px;padding:3px 10px;font-size:11px;margin:2px 4px 2px 0}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:8px 0 6px}
+.tier{border:1px solid #1e293b;border-radius:12px;padding:16px;background:#0b1220}
+.tier .tname{font-weight:800;font-size:1.05rem;display:flex;align-items:center;gap:8px}
+.tier .ex{font-size:10px;font-weight:600;color:#94a3b8}
+.tier .tprice{font-size:1.15rem;font-weight:800;margin:6px 0 8px;color:#fbbf24}
+.tier .tprice .tsub{font-size:10px;font-weight:500;color:#94a3b8}
+.tier .tdesc{font-size:11px;color:#9aa7bd;line-height:1.5}
+.tier-diamond{border-color:#22d3ee88;background:linear-gradient(180deg,#06212b,#0b1220);box-shadow:0 0 0 1px #22d3ee22}
+.tier-diamond .tname{color:#67e8f9}
+.newbadge{font-size:9px;font-weight:800;background:#22d3ee;color:#021018;padding:2px 6px;border-radius:5px;letter-spacing:.05em}
+b{color:#e2e8f0}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0}
+@media(max-width:760px){.opts{grid-template-columns:1fr}}
+.opt{border:1px solid #1e293b;border-radius:12px;padding:16px;background:#0b1220}
+.opt-h{font-weight:800;font-size:1rem;margin-bottom:10px;color:#f1f5f9;display:flex;gap:8px;align-items:center}
+.rec{font-size:9px;font-weight:800;background:#22d3ee;color:#021018;padding:2px 6px;border-radius:5px}
+.pc{font-size:11px;color:#9aa7bd;line-height:1.5;margin-top:6px}
+.pc.lean{color:#fbbf24;margin-top:8px;font-style:italic}
+.bundles{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:14px;margin:8px 0}
+.bundle{border:1px solid #1e293b;border-radius:12px;padding:16px;background:#0b1220;display:flex;flex-direction:column}
+.bundle-tier{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+.bundle-name{font-size:1.05rem;font-weight:800;color:#f1f5f9;margin:2px 0}
+.bundle-who{font-size:11px;color:#94a3b8;margin-bottom:10px;min-height:30px}
+.bc-list{border-top:1px solid #1e293b;padding-top:8px}
+.bc-row{display:flex;justify-content:space-between;font-size:11px;color:#cbd5e1;padding:3px 0;gap:10px}
+.bc-p{color:#94a3b8;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bc-sum{display:flex;justify-content:space-between;font-size:11px;color:#64748b;margin-top:8px;padding-top:6px;border-top:1px solid #131c2e}
+.bc-price{display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-top:4px;color:#e2e8f0;align-items:baseline}
+.bc-price .bp{color:#fbbf24;font-size:1.15rem}
+.bc-save{font-size:10px;color:#34d399;margin-top:6px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 24px;border-bottom:1px solid #1e293b}.tb{background:transparent;border:1px solid #1e293b;border-bottom:none;color:#94a3b8;font-weight:600;font-size:13px;padding:10px 16px;border-radius:8px 8px 0 0;cursor:pointer}.tb:hover{color:#e2e8f0;background:#0b1220}.tb.active{color:#fbbf24;background:#0b1220;border-color:#f59e0b66;position:relative;top:1px}.pane{display:none} .pane.active{display:block;animation:fade .2s ease}@keyframes fade{from{opacity:0}to{opacity:1}}
+</style></head>
+<body><div class="wrap">
+
+<h1>NEXT Summit Valletta 2027 — Commercial Model</h1>
+<p class="sub">Suggested pricing, open questions and operational TBDs. MCC Valletta · ~5,000–6,000 delegates · built on 2026 actuals, NYC 2027 internal benchmark, and public SiGMA Malta benchmarks. <b>Working draft for discussion — not a final rate card.</b></p>
+
+<div class="cards">
+<div class="card"><div class="k">2026 achieved</div><div class="v slate">€1.87m</div><div class="d">vs €2.19m target (85%)</div></div>
+<div class="card"><div class="k">Provisional 2027 target</div><div class="v amber">€2.35m</div><div class="d">+26% vs 2026 achieved (€1.87m); +7% vs 2026 target (€2.19m) · pending Ana</div></div>
+<div class="card"><div class="k">Catalogue list value</div><div class="v green">+20%</div><div class="d">2027 list vs 2026 rebook (one-of-each; true capacity higher — volume SKUs repeat)</div></div>
+<div class="card"><div class="k">Pricing model</div><div class="v slate">3-layer</div><div class="d">Rebook · List · Floor</div></div>
+<div class="card"><div class="k">Target basis</div><div class="v slate" style="font-size:0.9rem;line-height:1.3">2026 actual + rebook + 2027 repricing + conservative sell-through</div><div class="d">cost base pending Ana</div></div>
+</div>
+
+<nav class="tabs" id="tabnav"><button class="tb active" data-t="overview">Overview</button><button class="tb" data-t="bundles">Bundles</button><button class="tb" data-t="pricing">Product pricing</button><button class="tb" data-t="tickets">Tickets</button><button class="tb" data-t="model">Revenue &amp; Cost</button><button class="tb" data-t="decisions">Decisions</button></nav>
+<section class="pane active" id="overview">
+<h2>How to read this</h2>
+<div class="legend">
+<span><span class="tag bg-slate-500/10 text-slate-300 border-slate-500/40">Rebook</span> existing sponsor, identical scope → 2026 price (legacy protection)</span>
+<span><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">2027 List</span> public anchor for new sales / upgrades</span>
+<span><span class="tag bg-emerald-500/10 text-emerald-300 border-emerald-500/40">Floor</span> lowest before director approval</span>
+</div>
+<div class="legend">
+<span><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span> scarce/premium — don't casually bundle or discount</span>
+<span><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span> raise, demand-led</span>
+<span><span class="tag bg-violet-500/10 text-violet-300 border-violet-500/40">Clean</span> fix naming / minimums / odd prices</span>
+<span><span class="tag bg-rose-500/10 text-rose-300 border-rose-500/40">Ask Ops</span> needs Desi/Olivia sign-off</span>
+<span><span class="flag flag-warn">⚠</span> unproven in 2026 &nbsp; <span class="flag flag-ops">⚙</span> ops-dependent</span>
+</div>
+
+<p class="sub" style="font-size:12px">SiGMA is a <b>directional</b> Malta iGaming benchmark, not a like-for-like comparator — it runs 12k–30k delegates vs our ~5–6k.</p>
+<h2>Pricing non-negotiables</h2>
+<div class="panel"><ul class="tbd"><li>No single discount &gt;10% without director approval; cumulative discounts (bundle + early-bird + multi-year) capped at 15%.</li><li>No discount below floor without director approval.</li><li>No custom activation sold without Ops approval.</li><li>Rebook price never applies to expanded scope.</li><li>No panel sold without content approval.</li><li>No &quot;Misc&quot; line items; no €0 sponsor assets unless part of a contracted package.</li><li>Commission paid on <b>net realised</b> revenue (after discount), not gross — rewards discount discipline; team bonus for holding ≥92% realisation.</li></ul></div>
+
+<h2>Partnership tiers (proposed 2027)</h2>
+<p class="sub" style="margin-bottom:14px">2026 ran a 3-tier ladder (Platinum €60k+ / Gold / Silver). For 2027 the ladder is led by a new <b>Diamond</b> apex tier, creating a clear path to a marquee partner and pulling premium spend upward. (The standalone Headline tier has been removed.)</p>
+<div class="tiers">
+  <div class="tier tier-diamond"><div class="tname">Diamond <span class="newbadge">NEW</span></div><div class="tprice">€120,000+ <span class="tsub">total investment</span></div><div class="tdesc">Senior account lead / concierge servicing · curated executive introductions (ABM matchmaking) · VIP hospitality upgrades · premium onsite placement · pre-event strategy session.</div></div>
+  <div class="tier tier-plat"><div class="tname">Platinum</div><div class="tprice">€60,000 – €119,000</div><div class="tdesc">Premium logo placement, headline exposure on event materials, prime positioning — presence is unmissable.</div></div>
+  <div class="tier tier-gold"><div class="tname">Gold</div><div class="tprice">€15,000 – €59,000</div><div class="tdesc">Strong visibility throughout the venue — key signage placements and digital promotion.</div></div>
+  <div class="tier tier-silver"><div class="tname">Silver</div><div class="tprice">under €15,000</div><div class="tdesc">Strategic branding in designated areas; valuable entry-level exposure.</div></div>
+</div>
+
+</section>
+<section class="pane" id="bundles">
+<h2>Signature bundles — lead with these</h2><p class="sub" style="margin-bottom:8px">81 line items is too much to sell from. Reps lead with <b>six signature packages</b> (two per tier), built from existing inventory; the full catalogue becomes the a-la-carte add-on menu for customisation. Bundle savings stay within the 15% discount ceiling, so they do not breach deal-desk rules, and each package lands a clear tier. Illustrative packaging — not modelled as incremental revenue.</p><div class="bundles"><div class="bundle">
+<div class="bundle-tier" style="color:#67e8f9">Diamond</div>
+<div class="bundle-name">The Category Leader</div>
+<div class="bundle-who">For suppliers wanting category authority, senior visibility and a high-footfall base for meetings</div>
+<div class="bc-list"><div class="bc-row"><span>Main Stage Sponsorship</span><span class="bc-p">€60,000</span></div><div class="bc-row"><span>6x3 Exhibition Stand</span><span class="bc-p">€32,000</span></div><div class="bc-row"><span>Media Zone</span><span class="bc-p">€40,000</span></div><div class="bc-row"><span>Advertisement Video</span><span class="bc-p">€10,000</span></div></div>
+<div class="bc-sum"><span>Sum of parts</span><span>€142,000</span></div>
+<div class="bc-price"><span>Bundle price</span><span class="bp">€125,000</span></div>
+<div class="bc-save">Saving €17,000 (12%) &middot; lands Diamond</div>
+</div><div class="bundle">
+<div class="bundle-tier" style="color:#67e8f9">Diamond</div>
+<div class="bundle-name">Experiential Powerhouse</div>
+<div class="bundle-who">For brands wanting to own the festival's social energy and after-hours relationship-building</div>
+<div class="bc-list"><div class="bc-row"><span>Rave Cave</span><span class="bc-p">€60,000</span></div><div class="bc-row"><span>Outdoor Activation Zone</span><span class="bc-p">€55,000</span></div><div class="bc-row"><span>Day 1 Drinks (non-excl)</span><span class="bc-p">€30,000</span></div></div>
+<div class="bc-sum"><span>Sum of parts</span><span>€145,000</span></div>
+<div class="bc-price"><span>Bundle price</span><span class="bp">€128,000</span></div>
+<div class="bc-save">Saving €17,000 (12%) &middot; lands Diamond</div>
+</div><div class="bundle">
+<div class="bundle-tier" style="color:#e2e8f0">Platinum</div>
+<div class="bundle-name">Main Stage Thought Leader</div>
+<div class="bundle-who">For challengers wanting thought-leadership credibility plus a visible expo presence</div>
+<div class="bc-list"><div class="bc-row"><span>Main Stage Presentation</span><span class="bc-p">€56,000</span></div><div class="bc-row"><span>3x3 Exhibition Stand</span><span class="bc-p">€18,000</span></div><div class="bc-row"><span>Advertisement Video</span><span class="bc-p">€10,000</span></div></div>
+<div class="bc-sum"><span>Sum of parts</span><span>€84,000</span></div>
+<div class="bc-price"><span>Bundle price</span><span class="bp">€74,000</span></div>
+<div class="bc-save">Saving €10,000 (12%) &middot; lands Platinum</div>
+</div><div class="bundle">
+<div class="bundle-tier" style="color:#e2e8f0">Platinum</div>
+<div class="bundle-name">The Arrival Takeover</div>
+<div class="bundle-who">For brands wanting unmissable first-impression reach across every delegate</div>
+<div class="bc-list"><div class="bc-row"><span>Registration & Check-In</span><span class="bc-p">€48,000</span></div><div class="bc-row"><span>Badge Sponsor</span><span class="bc-p">€35,000</span></div></div>
+<div class="bc-sum"><span>Sum of parts</span><span>€83,000</span></div>
+<div class="bc-price"><span>Bundle price</span><span class="bp">€72,000</span></div>
+<div class="bc-save">Saving €11,000 (13%) &middot; lands Platinum</div>
+</div><div class="bundle">
+<div class="bundle-tier" style="color:#fbbf24">Gold</div>
+<div class="bundle-name">Exhibit & Speak</div>
+<div class="bundle-who">For mid-market suppliers wanting to be seen and heard without premium spend</div>
+<div class="bc-list"><div class="bc-row"><span>3x3 Exhibition Stand</span><span class="bc-p">€18,000</span></div><div class="bc-row"><span>Track Branded Panel</span><span class="bc-p">€12,000</span></div><div class="bc-row"><span>Advertisement Video</span><span class="bc-p">€10,000</span></div></div>
+<div class="bc-sum"><span>Sum of parts</span><span>€40,000</span></div>
+<div class="bc-price"><span>Bundle price</span><span class="bp">€35,000</span></div>
+<div class="bc-save">Saving €5,000 (12%) &middot; lands Gold</div>
+</div><div class="bundle">
+<div class="bundle-tier" style="color:#fbbf24">Gold</div>
+<div class="bundle-name">Networking Host</div>
+<div class="bundle-who">For suppliers wanting to own a networking moment plus a content slot to drive meetings</div>
+<div class="bc-list"><div class="bc-row"><span>Pre-registration Drinks</span><span class="bc-p">€30,000</span></div><div class="bc-row"><span>Track Branded Panel</span><span class="bc-p">€12,000</span></div></div>
+<div class="bc-sum"><span>Sum of parts</span><span>€42,000</span></div>
+<div class="bc-price"><span>Bundle price</span><span class="bp">€36,000</span></div>
+<div class="bc-save">Saving €6,000 (14%) &middot; lands Gold</div>
+</div></div>
+</section>
+<section class="pane" id="pricing">
+<h2>Suggested 2027 pricing</h2>
+<p class="sub">Every 2027 increase is justified on four levers (shown per product in the Notes column): <b>1. Demand</b> — 2026 sell-through &amp; realised price; <b>2. Benchmark</b> — gap to SiGMA (Malta) and our NYC internal rates; <b>3. Scarcity / exclusivity</b> — how rare and ownable the asset is; <b>4. Value</b> — deliverables attached. Volume anchors (e.g. the 3x3 stand) are deliberately restrained to protect the volume the model relies on; aggression is concentrated on scarce and experiential inventory.</p>
+<section class="cat">
+<h3>Premium &amp; Flagship <span class="count">7</span></h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Product</th><th>Tag</th><th>Rebook<br><span class="th-sub">(2026)</span></th>
+<th>2027<br>List</th><th>Floor</th><th>Actual 2026 sold</th><th>NYC '27</th><th>SiGMA</th><th>Notes</th></tr></thead>
+<tbody><tr>
+<td class="pname">Diamond Partnership (Exclusive)</td>
+<td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span></td>
+<td class="num rebook">€150,000</td>
+<td class="num list">€200,000</td>
+<td class="num floor">€185,000</td>
+<td class="small">1 @ €150k (as Headline)</td>
+<td class="small dim">€280k (NYC &#x27;27); €175k×3 actual NYC &#x27;26</td>
+<td class="small dim">Main sponsor ~€300k</td>
+<td class="small note">Diamond flagship (was the 2026 Headline at €150k). NYC &#x27;26 actually closed headline at €175k×3 — €200k list defensible.</td>
+</tr><tr>
+<td class="pname">Lanyard Sponsorship (Exclusive)</td>
+<td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span></td>
+<td class="num rebook">€20,000</td>
+<td class="num list">€55,000</td>
+<td class="num floor">€40,000</td>
+<td class="small">1 @ €20k</td>
+<td class="small dim">2 × €30k</td>
+<td class="small dim">€35–50k (×2 slots)</td>
+<td class="small note">Every attendee carries it. TBD: keep exclusive @ €55k OR split into A/B @ 2×€30k (see Q for Will).</td>
+</tr><tr>
+<td class="pname">Registration &amp; Check-In Partner</td>
+<td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span></td>
+<td class="num rebook">€40,000</td>
+<td class="num list">€48,000</td>
+<td class="num floor">€40,000</td>
+<td class="small">1 sold @€40k (true 2026 list; brochure €60k was a typo)</td>
+<td class="small dim">€75k</td>
+<td class="small dim">€60k (counter)</td>
+<td class="small note">Martin: ~€48k sellable for 2027. Combine onsite + €0 online-reg into one premium product. TBD: MCC branding rights.</td>
+</tr><tr>
+<td class="pname">Badge Sponsor <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span></td>
+<td class="num rebook">€23,000</td>
+<td class="num list">€35,000</td>
+<td class="num floor">€22,000</td>
+<td class="small">1 @ €18k</td>
+<td class="small dim">€14.5k</td>
+<td class="small dim">€35k (×2)</td>
+<td class="small note">Only 1 sold, @€18k (below list). TBD: productise as segment badges (Operator / Affiliate) — Q for Will.</td>
+</tr><tr>
+<td class="pname">Main Stage Sponsorship (Exclusive)</td>
+<td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span></td>
+<td class="num rebook">€45,000</td>
+<td class="num list">€60,000</td>
+<td class="num floor">€52,000</td>
+<td class="small">1 @ €45k</td>
+<td class="small dim">€75k (Leadership Stage Partner)</td>
+<td class="small dim"></td>
+<td class="small note">Definitive main-stage ownership. €60k = a measured +33% on the single 2026 sale (€45k), below NYC €75k; anchor expected to land near floor.</td>
+</tr><tr>
+<td class="pname">VIP Lounge Sponsorship <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span></td>
+<td class="num rebook">€28,000</td>
+<td class="num list">€50,000</td>
+<td class="num floor">€30,000</td>
+<td class="small">1 @ €0 (comped)</td>
+<td class="small dim">€35k lounge / €85k VIP event</td>
+<td class="small dim">€80k (Platinum/VIP lounge)</td>
+<td class="small note">Raised list per SiGMA/notes, but NO paid sale in 2026 — floor near 2026 price. Open for discussion.</td>
+</tr><tr>
+<td class="pname">Main Stage Custom Panel</td>
+<td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span></td>
+<td class="num rebook">€30,000</td>
+<td class="num list">€40,000</td>
+<td class="num floor">€34,000</td>
+<td class="small">3 @ €30k</td>
+<td class="small dim">€38k (Leadership custom session)</td>
+<td class="small dim"></td>
+<td class="small note">Held at list in 2026; pricing power confirmed. Content team controls topic/title/speakers.</td>
+</tr></tbody></table></div></section><section class="cat">
+<h3>Exhibition &amp; Stands <span class="count">6</span></h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Product</th><th>Tag</th><th>Rebook<br><span class="th-sub">(2026)</span></th>
+<th>2027<br>List</th><th>Floor</th><th>Actual 2026 sold</th><th>NYC '27</th><th>SiGMA</th><th>Notes</th></tr></thead>
+<tbody><tr>
+<td class="pname">3x3 Exhibition Stand – Shell Scheme</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€14,500</td>
+<td class="num list">€18,000</td>
+<td class="num floor">€15,000</td>
+<td class="small">~47 sold, avg €13,961 (min €5k)</td>
+<td class="small dim">€27k (3x2 turnkey)</td>
+<td class="small dim">~€11k entry</td>
+<td class="small note">Runaway #1 seller. +24% on rebook — deliberately restrained vs scarcer items to protect the volume the model relies on; still well below NYC 3x2 €27k. Merge duplicate record.</td>
+</tr><tr>
+<td class="pname">6x3 Exhibition Stand – Shell Scheme</td>
+<td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span></td>
+<td class="num rebook">€23,000</td>
+<td class="num list">€32,000</td>
+<td class="num floor">€27,000</td>
+<td class="small">9 @ €23k</td>
+<td class="small dim">€50k (6x2 turnkey)</td>
+<td class="small dim"></td>
+<td class="small note">Premium booth; demand proven. Merge duplicate record.</td>
+</tr><tr>
+<td class="pname">Lower Level Exhibition Stand</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€6,500</td>
+<td class="num list">€8,000</td>
+<td class="num floor">€6,500</td>
+<td class="small">5 @ €6.5k</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Budget tier, good volume.</td>
+</tr><tr>
+<td class="pname">Exhibition stand – Space Only 4x4</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€14,500</td>
+<td class="num list">€25,000</td>
+<td class="num floor">€18,000</td>
+<td class="small">2 @ €14.5k–€25k</td>
+<td class="small dim">€52k (6x4 space only)</td>
+<td class="small dim"></td>
+<td class="small note">One sold @€25k — above list. Underpriced; uplift supported.</td>
+</tr><tr>
+<td class="pname">Exhibition stand – Space Only 4x8</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€24,000</td>
+<td class="num list">€45,000</td>
+<td class="num floor">€32,000</td>
+<td class="small">1 @ €24k</td>
+<td class="small dim">€85k (8x4 space only)</td>
+<td class="small dim"></td>
+<td class="small note">Scarce large footprint; visibility/scarcity premium not just sqm maths.</td>
+</tr><tr>
+<td class="pname">Exhibition stand – Space Only 6x3 <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€15,000</td>
+<td class="num list">€20,000</td>
+<td class="num floor">€15,000</td>
+<td class="small">0 sold</td>
+<td class="small dim">€95k (8x6 space only)</td>
+<td class="small dim"></td>
+<td class="small note">Unsold in 2026 — modest list, floor at 2026 price.</td>
+</tr></tbody></table></div></section><section class="cat">
+<h3>Content &amp; Stages <span class="count">11</span></h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Product</th><th>Tag</th><th>Rebook<br><span class="th-sub">(2026)</span></th>
+<th>2027<br>List</th><th>Floor</th><th>Actual 2026 sold</th><th>NYC '27</th><th>SiGMA</th><th>Notes</th></tr></thead>
+<tbody><tr>
+<td class="pname">Main Stage Presentation</td>
+<td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span></td>
+<td class="num rebook">€44,000</td>
+<td class="num list">€56,000</td>
+<td class="num floor">€50,000</td>
+<td class="small">3 @ €44k</td>
+<td class="small dim">€58k (Leadership presenter)</td>
+<td class="small dim"></td>
+<td class="small note">Held at list; move toward NYC.</td>
+</tr><tr>
+<td class="pname">Main Stage Branded Panel</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€16,000</td>
+<td class="num list">€22,000</td>
+<td class="num floor">€18,000</td>
+<td class="small">4 @ €16k</td>
+<td class="small dim">€19k</td>
+<td class="small dim"></td>
+<td class="small note">Strong demand.</td>
+</tr><tr>
+<td class="pname">Main Stage Non-Branded Participation</td>
+<td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span></td>
+<td class="num rebook">€8,000</td>
+<td class="num list">€11,000</td>
+<td class="num floor">€9,000</td>
+<td class="small">16 @ €8k</td>
+<td class="small dim">€12k</td>
+<td class="small dim"></td>
+<td class="small note">Top content seller (16). Protected paid inventory — Rory to cap volume vs content quality.</td>
+</tr><tr>
+<td class="pname">Main Track Branded Panel</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€16,000</td>
+<td class="num list">€20,000</td>
+<td class="num floor">€17,000</td>
+<td class="small">3 @ €16k</td>
+<td class="small dim">€16k (Stage 2 branded)</td>
+<td class="small dim"></td>
+<td class="small note"></td>
+</tr><tr>
+<td class="pname">Track Sponsorship (Exclusive)</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€21,000</td>
+<td class="num list">€28,000</td>
+<td class="num floor">€24,000</td>
+<td class="small">8 @ €21k</td>
+<td class="small dim">€45k (Stage 2 hub)</td>
+<td class="small dim"></td>
+<td class="small note">Held at list. MERGE duplicate &#x27;new valletta&#x27; record (this is your double row).</td>
+</tr><tr>
+<td class="pname">Track Presenter Sponsorship</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€14,500</td>
+<td class="num list">€20,000</td>
+<td class="num floor">€16,000</td>
+<td class="small">3 @ €14.5k</td>
+<td class="small dim">€19–38k</td>
+<td class="small dim"></td>
+<td class="small note"></td>
+</tr><tr>
+<td class="pname">Track Branded Panel</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€9,000</td>
+<td class="num list">€12,000</td>
+<td class="num floor">€10,000</td>
+<td class="small">7 @ ~€8.3k (min €6.3k)</td>
+<td class="small dim">€16k</td>
+<td class="small dim"></td>
+<td class="small note">Some discounting; firm floor.</td>
+</tr><tr>
+<td class="pname">Track Non-Branded Participation</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€6,000</td>
+<td class="num list">€7,500</td>
+<td class="num floor">€6,500</td>
+<td class="small">20 @ €6k</td>
+<td class="small dim">€10.5k</td>
+<td class="small dim"></td>
+<td class="small note">Highest-volume content product (20). Protect content quality — Rory to cap.</td>
+</tr><tr>
+<td class="pname">Track Custom Panel</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€12,000</td>
+<td class="num list">€18,000</td>
+<td class="num floor">€14,000</td>
+<td class="small">1 @ €12k</td>
+<td class="small dim">€14–26k</td>
+<td class="small dim"></td>
+<td class="small note">Content team controls agenda.</td>
+</tr><tr>
+<td class="pname">Track Coffee Sponsorship (Exclusive)</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€12,500</td>
+<td class="num list">€14,000</td>
+<td class="num floor">€12,000</td>
+<td class="small">1 @ €12.5k</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note"></td>
+</tr><tr>
+<td class="pname">Live Stream Sponsorship (Exclusive)</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€20,000</td>
+<td class="num list">€30,000</td>
+<td class="num floor">€24,000</td>
+<td class="small">1 @ €20k</td>
+<td class="small dim">€60k (Livestream)</td>
+<td class="small dim"></td>
+<td class="small note">NYC values far higher; moderate Valletta step.</td>
+</tr></tbody></table></div></section><section class="cat">
+<h3>Branding &amp; Utility <span class="count">20</span></h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Product</th><th>Tag</th><th>Rebook<br><span class="th-sub">(2026)</span></th>
+<th>2027<br>List</th><th>Floor</th><th>Actual 2026 sold</th><th>NYC '27</th><th>SiGMA</th><th>Notes</th></tr></thead>
+<tbody><tr>
+<td class="pname">Wi-Fi Sponsorship (Exclusive) <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€18,000</td>
+<td class="num list">€25,000</td>
+<td class="num floor">€18,000</td>
+<td class="small">0 sold</td>
+<td class="small dim">€20k</td>
+<td class="small dim">€25k</td>
+<td class="small note">Raised per SiGMA/notes, but unsold in 2026 — floor at 2026 price. Open for discussion.</td>
+</tr><tr>
+<td class="pname">Restroom Sponsorship (Exclusive) <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€12,500</td>
+<td class="num list">€22,000</td>
+<td class="num floor">€14,000</td>
+<td class="small">0 sold</td>
+<td class="small dim">€18k</td>
+<td class="small dim">€25k</td>
+<td class="small note">Raised per SiGMA/notes, unsold in 2026 — low floor. Open for discussion.</td>
+</tr><tr>
+<td class="pname">Media Zone</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€25,000</td>
+<td class="num list">€40,000</td>
+<td class="num floor">€32,000</td>
+<td class="small">1 @ €25k</td>
+<td class="small dim">€45k (Media Lounge)</td>
+<td class="small dim"></td>
+<td class="small note">Credibility + post-event content value.</td>
+</tr><tr>
+<td class="pname">Online Event Guide (Exclusive)</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€12,000</td>
+<td class="num list">€18,000</td>
+<td class="num floor">€14,000</td>
+<td class="small">1 @ €12k</td>
+<td class="small dim">€25k (Digital guide)</td>
+<td class="small dim"></td>
+<td class="small note"></td>
+</tr><tr>
+<td class="pname">Advertisement Video</td>
+<td><span class="tag bg-violet-500/10 text-violet-300 border-violet-500/40">Clean</span></td>
+<td class="num rebook">€8,625</td>
+<td class="num list">€10,000</td>
+<td class="num floor">€9,000</td>
+<td class="small">9 @ €8,625</td>
+<td class="small dim">€9k</td>
+<td class="small dim"></td>
+<td class="small note">Round the odd €8,625 to €10k. High-margin sweetener.</td>
+</tr><tr>
+<td class="pname">Coffee Station Expo WEST (Exclusive)</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€25,000</td>
+<td class="num list">€27,000</td>
+<td class="num floor">€24,000</td>
+<td class="small">2 @ €25k</td>
+<td class="small dim"></td>
+<td class="small dim">€10k</td>
+<td class="small note">Valletta already above SiGMA&#x27;s coffee price — sense-check.</td>
+</tr><tr>
+<td class="pname">Coffee Station Expo EAST (Exclusive) <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€25,000</td>
+<td class="num list">€25,000</td>
+<td class="num floor">€22,000</td>
+<td class="small">0 sold</td>
+<td class="small dim"></td>
+<td class="small dim">€10k</td>
+<td class="small note">EAST unsold; hold.</td>
+</tr><tr>
+<td class="pname">Branded Water Station (Exclusive)</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€10,000</td>
+<td class="num list">€11,000</td>
+<td class="num floor">€10,000</td>
+<td class="small">1 @ €10k</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note"></td>
+</tr><tr>
+<td class="pname">Registration Entrance Arch Branding</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€8,000</td>
+<td class="num list">€12,000</td>
+<td class="num floor">€9,000</td>
+<td class="small">1 @ €10k (above list)</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Sold above list — underpriced.</td>
+</tr><tr>
+<td class="pname">MCC Outdoor Building (NEXT Exit) Branding</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€22,000</td>
+<td class="num list">€26,000</td>
+<td class="num floor">€22,000</td>
+<td class="small">1 @ €22k</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note"></td>
+</tr><tr>
+<td class="pname">Republic Hall Balcony Branding (Both sides)</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€35,000</td>
+<td class="num list">€40,000</td>
+<td class="num floor">€35,000</td>
+<td class="small">1 @ €35k</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">High-impact.</td>
+</tr><tr>
+<td class="pname">Expo Area Wall Mural (Both sides)</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€45,000</td>
+<td class="num list">€50,000</td>
+<td class="num floor">€45,000</td>
+<td class="small">1 @ €45k</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note"></td>
+</tr><tr>
+<td class="pname">Main Stage Chair Sponsorship (Exclusive) <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€18,000</td>
+<td class="num list">€25,000</td>
+<td class="num floor">€18,000</td>
+<td class="small">4 entries, mostly €0; 1 @ €18k</td>
+<td class="small dim">€30k (Leadership chair)</td>
+<td class="small dim"></td>
+<td class="small note">Mostly comped in 2026; one real @€18k. Raised list, floor at 2026. Open for discussion.</td>
+</tr><tr>
+<td class="pname">Expo Lounge</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€30,000</td>
+<td class="num list">€38,000</td>
+<td class="num floor">€30,000</td>
+<td class="small">1 @ €30k</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note"></td>
+</tr><tr>
+<td class="pname">Republic Hall Door Branding (3 doors) <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€7,500</td>
+<td class="num list">€7,500</td>
+<td class="num floor">€6,500</td>
+<td class="small">0 sold</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Unsold; hold.</td>
+</tr><tr>
+<td class="pname">Expo Area Exit Door Branding <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€6,000</td>
+<td class="num list">€6,000</td>
+<td class="num floor">€5,000</td>
+<td class="small">0 sold</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Unsold; low-value filler.</td>
+</tr><tr>
+<td class="pname">Good Bye Bags <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€10,000</td>
+<td class="num list">€10,000</td>
+<td class="num floor">€9,000</td>
+<td class="small">0 sold</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Unsold; hold.</td>
+</tr><tr>
+<td class="pname">Track Goodie Bag (Exclusive per track) <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€7,000</td>
+<td class="num list">€7,000</td>
+<td class="num floor">€6,000</td>
+<td class="small">0 sold</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Unsold; hold.</td>
+</tr><tr>
+<td class="pname">Lower Level Lunch Area (Exclusive) <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€18,000</td>
+<td class="num list">€18,000</td>
+<td class="num floor">€15,000</td>
+<td class="small">0 sold</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Unsold; hold.</td>
+</tr><tr>
+<td class="pname">Event App Sponsorship</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€20,000</td>
+<td class="num list">€25,000</td>
+<td class="num floor">€20,000</td>
+<td class="small">0 genuine sales</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Brochure confirms a live €20k product (CRM &#x27;App Sponsor (?)&#x27; was internal uncertainty).</td>
+</tr></tbody></table></div></section><section class="cat">
+<h3>Networking &amp; Experiential <span class="count">17</span></h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Product</th><th>Tag</th><th>Rebook<br><span class="th-sub">(2026)</span></th>
+<th>2027<br>List</th><th>Floor</th><th>Actual 2026 sold</th><th>NYC '27</th><th>SiGMA</th><th>Notes</th></tr></thead>
+<tbody><tr>
+<td class="pname">Pre-registration Networking Drinks</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€25,000</td>
+<td class="num list">€30,000</td>
+<td class="num floor">€25,000</td>
+<td class="small">5 @ €25k</td>
+<td class="small dim">€22k (pre-reg non-excl)</td>
+<td class="small dim">€30k (Day-0 takeover)</td>
+<td class="small note">Proven; tier it.</td>
+</tr><tr>
+<td class="pname">Day 1 Rooftop Drinks (Non-Exclusive)</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€25,000</td>
+<td class="num list">€30,000</td>
+<td class="num floor">€25,000</td>
+<td class="small">5 @ €25k</td>
+<td class="small dim">€25k</td>
+<td class="small dim"></td>
+<td class="small note">Proven; tier it.</td>
+</tr><tr>
+<td class="pname">Day 2 Rooftop Drinks (Non-Exclusive) <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€25,000</td>
+<td class="num list">€25,000</td>
+<td class="num floor">€20,000</td>
+<td class="small">0 sold</td>
+<td class="small dim">€20k</td>
+<td class="small dim"></td>
+<td class="small note">Day-2 weaker; hold.</td>
+</tr><tr>
+<td class="pname">Day 1 Rooftop – EXCLUSIVE <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span></td>
+<td class="num rebook">€100,000</td>
+<td class="num list">€85,000</td>
+<td class="num floor">€65,000</td>
+<td class="small">0 sold</td>
+<td class="small dim">€100k (Day 1 excl)</td>
+<td class="small dim"></td>
+<td class="small note">Reset from 2026 list — no genuine paid sale at €100k. TBD: keep reduced or retire.</td>
+</tr><tr>
+<td class="pname">Day 2 Rooftop – EXCLUSIVE <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span></td>
+<td class="num rebook">€100,000</td>
+<td class="num list">€75,000</td>
+<td class="num floor">€55,000</td>
+<td class="small">5 line items all ~€0</td>
+<td class="small dim">€80k (Day 2 excl)</td>
+<td class="small dim"></td>
+<td class="small note">Reset from 2026 list — actuals all ~€0, no genuine paid sale. TBD: keep reduced or retire.</td>
+</tr><tr>
+<td class="pname">Terrace Branding &amp; Drinks</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€40,000</td>
+<td class="num list">€44,000</td>
+<td class="num floor">€38,000</td>
+<td class="small">1 @ €40k</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note"></td>
+</tr><tr>
+<td class="pname">Rave Cave <span class="flag flag-ops" title="Needs Ops sign-off">⚙</span></td>
+<td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span></td>
+<td class="num rebook">€50,000</td>
+<td class="num list">€60,000</td>
+<td class="num floor">€50,000</td>
+<td class="small">1 @ €50k</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Signature closing party.</td>
+</tr><tr>
+<td class="pname">Shisha Lounge <span class="flag flag-ops" title="Needs Ops sign-off">⚙</span></td>
+<td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span></td>
+<td class="num rebook">€50,000</td>
+<td class="num list">€55,000</td>
+<td class="num floor">€48,000</td>
+<td class="small">1 @ €50k</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Premium experiential.</td>
+</tr><tr>
+<td class="pname">Golf Tournament (Exclusive) <span class="flag flag-ops" title="Needs Ops sign-off">⚙</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€35,000</td>
+<td class="num list">€40,000</td>
+<td class="num floor">€35,000</td>
+<td class="small">2 @ €35k</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Offsite; logistics.</td>
+</tr><tr>
+<td class="pname">Padel Tournament <span class="flag flag-ops" title="Needs Ops sign-off">⚙</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€12,000</td>
+<td class="num list">€16,000</td>
+<td class="num floor">€12,000</td>
+<td class="small">6 entries; one @ €25k</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">One sold @€25k — upside. Offsite logistics.</td>
+</tr><tr>
+<td class="pname">Ice Bath &amp; Yoga <span class="flag flag-ops" title="Needs Ops sign-off">⚙</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€19,000</td>
+<td class="num list">€21,000</td>
+<td class="num floor">€18,000</td>
+<td class="small">5 @ €19k</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note"></td>
+</tr><tr>
+<td class="pname">Run Club (Exclusive) <span class="flag flag-ops" title="Needs Ops sign-off">⚙</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€15,000</td>
+<td class="num list">€18,000</td>
+<td class="num floor">€15,000</td>
+<td class="small">1 @ €15k</td>
+<td class="small dim">€18k (Run Club)</td>
+<td class="small dim"></td>
+<td class="small note"></td>
+</tr><tr>
+<td class="pname">Side Event Party <span class="flag flag-ops" title="Needs Ops sign-off">⚙</span></td>
+<td><span class="tag bg-violet-500/10 text-violet-300 border-violet-500/40">Clean</span></td>
+<td class="num rebook"><span class="na">—</span></td>
+<td class="num list">€45,000</td>
+<td class="num floor">€35,000</td>
+<td class="small">7 real sales €32.5k–€100k (median €40k)</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Was a €1 placeholder. Bespoke private party/dinner; floor €35k, upside €100k. Productise.</td>
+</tr><tr>
+<td class="pname">Slots Competition</td>
+<td><span class="tag bg-violet-500/10 text-violet-300 border-violet-500/40">Clean</span></td>
+<td class="num rebook"><span class="na">—</span></td>
+<td class="num list">€12,000</td>
+<td class="num floor">€10,000</td>
+<td class="small">1 @ €11k</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Was POA; real €11k sale found.</td>
+</tr><tr>
+<td class="pname">Affiliate &amp; Operator Dinner <span class="flag flag-ops" title="Needs Ops sign-off">⚙</span></td>
+<td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span></td>
+<td class="num rebook">€30,000</td>
+<td class="num list">€38,000</td>
+<td class="num floor">€30,000</td>
+<td class="small">brochure €30k (not in CRM export)</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Curated dinner. Overlaps with bespoke Side Event Party (median €40k) — confirm relationship. Q for Will.</td>
+</tr><tr>
+<td class="pname">Outdoor Activation Zone <span class="flag flag-ops" title="Needs Ops sign-off">⚙</span></td>
+<td><span class="tag bg-rose-500/10 text-rose-300 border-rose-500/40">Ask Ops</span></td>
+<td class="num rebook">€50,000</td>
+<td class="num list">€55,000</td>
+<td class="num floor">€48,000</td>
+<td class="small">was &#x27;Matcha &amp; Chill Zone&#x27; (brochure €50k)</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Reframe as a flexible outdoor sponsor activation zone (was Matcha &amp; Chill). Build/Ops dependent.</td>
+</tr><tr>
+<td class="pname">Entertainment Zone Sponsorship <span class="flag flag-warn" title="Unproven in 2026">⚠</span> <span class="flag flag-ops" title="Needs Ops sign-off">⚙</span></td>
+<td><span class="tag bg-rose-500/10 text-rose-300 border-rose-500/40">Ask Ops</span></td>
+<td class="num rebook">€40,000</td>
+<td class="num list">€40,000</td>
+<td class="num floor">€32,000</td>
+<td class="small">0 sold</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Unsold; build/floor-plan dependent — Ops to confirm feasibility before pricing.</td>
+</tr></tbody></table></div></section><section class="cat">
+<h3>Summits &amp; Focus Tracks <span class="count">14</span></h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Product</th><th>Tag</th><th>Rebook<br><span class="th-sub">(2026)</span></th>
+<th>2027<br>List</th><th>Floor</th><th>Actual 2026 sold</th><th>NYC '27</th><th>SiGMA</th><th>Notes</th></tr></thead>
+<tbody><tr>
+<td class="pname">Prediction Markets – Headline</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€50,000</td>
+<td class="num list">€55,000</td>
+<td class="num floor">€48,000</td>
+<td class="small">1 @ €50k</td>
+<td class="small dim">€60k (PM headline)</td>
+<td class="small dim"></td>
+<td class="small note">PM event going ahead.</td>
+</tr><tr>
+<td class="pname">Prediction Markets – General Partner</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€16,000</td>
+<td class="num list">€18,000</td>
+<td class="num floor">€15,000</td>
+<td class="small">1 @ €16k</td>
+<td class="small dim">€24k</td>
+<td class="small dim"></td>
+<td class="small note"></td>
+</tr><tr>
+<td class="pname">Focus Crypto – General Partner</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€16,000</td>
+<td class="num list">€18,000</td>
+<td class="num floor">€15,000</td>
+<td class="small">3 @ €16k</td>
+<td class="small dim">€24k (Emerging Verticals Gen)</td>
+<td class="small dim"></td>
+<td class="small note">Best Focus seller.</td>
+</tr><tr>
+<td class="pname">Focus Crypto – Headline <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€40,000</td>
+<td class="num list">€45,000</td>
+<td class="num floor">€38,000</td>
+<td class="small">0 sold</td>
+<td class="small dim">€60k</td>
+<td class="small dim"></td>
+<td class="small note">Per notes €45k, but unsold — open for discussion.</td>
+</tr><tr>
+<td class="pname">Focus Affiliates – General Partner</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€16,000</td>
+<td class="num list">€18,000</td>
+<td class="num floor">€15,000</td>
+<td class="small">1 @ €16k</td>
+<td class="small dim">€24k</td>
+<td class="small dim"></td>
+<td class="small note"></td>
+</tr><tr>
+<td class="pname">Focus Affiliates – Headline <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€40,000</td>
+<td class="num list">€45,000</td>
+<td class="num floor">€38,000</td>
+<td class="small">0 sold</td>
+<td class="small dim">€60k</td>
+<td class="small dim"></td>
+<td class="small note">Unsold; open for discussion.</td>
+</tr><tr>
+<td class="pname">Focus Start-up &amp; Investment – General Partner <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€16,000</td>
+<td class="num list">€18,000</td>
+<td class="num floor">€15,000</td>
+<td class="small">0 sold</td>
+<td class="small dim">€24k</td>
+<td class="small dim"></td>
+<td class="small note"></td>
+</tr><tr>
+<td class="pname">Focus Start-up &amp; Investment – Headline <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€40,000</td>
+<td class="num list">€45,000</td>
+<td class="num floor">€38,000</td>
+<td class="small">0 sold</td>
+<td class="small dim">€60k</td>
+<td class="small dim"></td>
+<td class="small note">Unsold; open for discussion.</td>
+</tr><tr>
+<td class="pname">Investor Summit – General Partnership</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€16,000</td>
+<td class="num list">€18,000</td>
+<td class="num floor">€15,000</td>
+<td class="small">1 @ €16k</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note"></td>
+</tr><tr>
+<td class="pname">Investor Summit – Headline <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€40,000</td>
+<td class="num list">€45,000</td>
+<td class="num floor">€38,000</td>
+<td class="small">0 sold</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Unsold; open for discussion.</td>
+</tr><tr>
+<td class="pname">Social Casino Summit – General Partner</td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€16,000</td>
+<td class="num list">€18,000</td>
+<td class="num floor">€15,000</td>
+<td class="small">1 @ €16k</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note"></td>
+</tr><tr>
+<td class="pname">Social Casino Summit – Headline <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€40,000</td>
+<td class="num list">€45,000</td>
+<td class="num floor">€38,000</td>
+<td class="small">0 sold</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Unsold; open for discussion.</td>
+</tr><tr>
+<td class="pname">HR Connect Track Sponsor (Exclusive) <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-rose-500/10 text-rose-300 border-rose-500/40">Ask Ops</span></td>
+<td class="num rebook">€21,000</td>
+<td class="num list">€21,000</td>
+<td class="num floor">€18,000</td>
+<td class="small">0 sold</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Unsold; confirm format/demand.</td>
+</tr><tr>
+<td class="pname">HR Connect Chair Sponsor (Exclusive) <span class="flag flag-warn" title="Unproven in 2026">⚠</span></td>
+<td><span class="tag bg-cyan-500/10 text-cyan-300 border-cyan-500/40">Increase</span></td>
+<td class="num rebook">€9,000</td>
+<td class="num list">€9,000</td>
+<td class="num floor">€8,000</td>
+<td class="small">0 sold</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Unsold.</td>
+</tr></tbody></table></div></section><section class="cat">
+<h3>Suggested New Products <span class="count">3</span></h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Product</th><th>Tag</th><th>Rebook<br><span class="th-sub">(2026)</span></th>
+<th>2027<br>List</th><th>Floor</th><th>Actual 2026 sold</th><th>NYC '27</th><th>SiGMA</th><th>Notes</th></tr></thead>
+<tbody><tr>
+<td class="pname">Expo Floor Takeover Activation (NEW) <span class="flag flag-ops" title="Needs Ops sign-off">⚙</span></td>
+<td><span class="tag bg-rose-500/10 text-rose-300 border-rose-500/40">Ask Ops</span></td>
+<td class="num rebook"><span class="na">—</span></td>
+<td class="num list">€50,000</td>
+<td class="num floor">€45,000</td>
+<td class="small">SOFTSWISS-style, ~€10k in 2026</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Standard takeover €45–60k; peak-time exclusive €75k+. Needs route/staffing plan + Ops + commercial approval.</td>
+</tr><tr>
+<td class="pname">Operator / Affiliate Segment Badges (NEW)</td>
+<td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span></td>
+<td class="num rebook"><span class="na">—</span></td>
+<td class="num list">€18,000</td>
+<td class="num floor">€15,000</td>
+<td class="small">—</td>
+<td class="small dim">€18k (operator badge, NYC)</td>
+<td class="small dim">€35k (affiliate badge)</td>
+<td class="small note">Split badge by buyer segment if attendee data supports it. Per-slot pricing TBD — Q for Will.</td>
+</tr><tr>
+<td class="pname">Main Entrance / Arrival Partner (NEW)</td>
+<td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span></td>
+<td class="num rebook"><span class="na">—</span></td>
+<td class="num list">€60,000</td>
+<td class="num floor">€50,000</td>
+<td class="small">—</td>
+<td class="small dim"></td>
+<td class="small dim">€60–80k (façade/entrance)</td>
+<td class="small note">Package entrance + arrival + wayfinding + welcome. High pricing power per SiGMA.</td>
+</tr></tbody></table></div></section><section class="cat">
+<h3>Clean / Kill <span class="count">3</span></h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Product</th><th>Tag</th><th>Rebook<br><span class="th-sub">(2026)</span></th>
+<th>2027<br>List</th><th>Floor</th><th>Actual 2026 sold</th><th>NYC '27</th><th>SiGMA</th><th>Notes</th></tr></thead>
+<tbody><tr>
+<td class="pname">Misc.</td>
+<td><span class="tag bg-violet-500/10 text-violet-300 border-violet-500/40">Clean</span></td>
+<td class="num rebook"><span class="na">—</span></td>
+<td class="num list">€15,000</td>
+<td class="num floor">€15,000</td>
+<td class="small">5 @ €2.75k–€20k</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Replace with &#x27;Custom Activation&#x27;, minimum €15k + approval. No more vague misc lines.</td>
+</tr><tr>
+<td class="pname">Online registration branding (Exclusive)</td>
+<td><span class="tag bg-violet-500/10 text-violet-300 border-violet-500/40">Clean</span></td>
+<td class="num rebook"><span class="na">—</span></td>
+<td class="num list"><span class="na">—</span></td>
+<td class="num floor"><span class="na">—</span></td>
+<td class="small">€0 list</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Fold into Registration &amp; Check-In Partner. Was &#x27;€0, dependent on Bizzaboo&#x27;.</td>
+</tr><tr>
+<td class="pname">Delegate Sales (By Month – DO NOT USE)</td>
+<td><span class="tag bg-violet-500/10 text-violet-300 border-violet-500/40">Clean</span></td>
+<td class="num rebook"><span class="na">—</span></td>
+<td class="num list"><span class="na">—</span></td>
+<td class="num floor"><span class="na">—</span></td>
+<td class="small">6 @ avg €19.7k (2025) — IS used!</td>
+<td class="small dim"></td>
+<td class="small dim"></td>
+<td class="small note">Marked DO NOT USE but actually carries ~€19.7k avg sales. Clarify purpose &amp; rename — Q for Will.</td>
+</tr></tbody></table></div></section>
+
+<h2>New deliverable ideas — justifying the 2027 step-up (for discussion)</h2>
+<p class="sub" style="margin-bottom:10px">Price has risen; visible value must rise with it, or buyers ask "what more do I get?" Ideas below, mapped roughly to tiers — all need ops/content capacity to deliver, so treat as a menu to discuss, not commitments.</p>
+<div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+<div class="card"><div class="k">Diamond / Flagship</div><div class="d" style="color:#cbd5e1;margin-top:6px">Curated executive introductions (ABM matchmaking) · dedicated account lead / concierge · pre-event strategy session + post-event ROI review · priority placement &amp; first right of refusal for next year.</div></div>
+<div class="card"><div class="k">Year-round media (NEXT.io engine)</div><div class="d" style="color:#cbd5e1;margin-top:6px">Off-season visibility: editorial feature, podcast guest slot, newsletter inclusion, social campaign — turns a 2-day event into a 12-month partnership.</div></div>
+<div class="card"><div class="k">Data &amp; leads</div><div class="d" style="color:#cbd5e1;margin-top:6px">Badge / lead scanning, facilitated qualified meetings, post-event attendee insight reports — moves the pitch from "logo" to "pipeline".</div></div>
+<div class="card"><div class="k">Content amplification</div><div class="d" style="color:#cbd5e1;margin-top:6px">Onsite filmed interview, full session video package, professional content cut for the sponsor's own channels.</div></div>
+<div class="card"><div class="k">Operator access</div><div class="d" style="color:#cbd5e1;margin-top:6px">Hosted operator introductions / curated dinners tied to spend — leaning into Valletta's 40% operator density, the thing suppliers actually pay for.</div></div>
+<div class="card"><div class="k">Status &amp; experience</div><div class="d" style="color:#cbd5e1;margin-top:6px">VIP hospitality upgrades, speaker-faculty access, premium onsite status — scarce, high-margin, reinforces the tier ladder.</div></div>
+<div class="card" style="border-color:#34d39966"><div class="k">Post-event ROI report (standard, Platinum+)</div><div class="d" style="color:#cbd5e1;margin-top:6px">Badge scans, attendee titles/companies (opt-in), and a pipeline-value estimate — a <b>standard inclusion</b> for Platinum &amp; Diamond, not an upsell. Low cost, high perceived value; directly protects renewals.</div></div>
+</div>
+
+</section>
+<section class="pane" id="tickets">
+
+<h2>Tickets</h2>
+<p class="sub" style="margin-bottom:12px">2026 prices from Bizzabo; 2027 a measured uplift (volume model — Valletta competes on density, not ticket yield). Operators &amp; speakers remain comped — the supplier-funded model.</p>
+<div class="tablewrap" style="margin-bottom:18px"><table style="min-width:560px">
+<thead><tr><th>Pass</th><th>2026</th><th>2027 (proposed)</th><th>Change</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="pname">Full Event Pass</td><td class="num rebook">€399</td><td class="num list">€475</td><td class="small">+19%</td><td class="small note">Core paid pass / revenue engine.</td></tr>
+<tr><td class="pname">Premium Event Pass</td><td class="num rebook">€999</td><td class="num list">€1,149</td><td class="small">+15%</td><td class="small note">All-access bundle: Summit + <b>ALL</b> Focus events + priority.</td></tr>
+<tr><td class="pname">Conference Only Pass</td><td class="num rebook">€95</td><td class="num list">€125</td><td class="small">+32%</td><td class="small note">~172 paid in 2026 (real volume, 2nd-biggest paid line) — moderated to €125 not €145 to retain price-sensitive buyers.</td></tr>
+<tr><td class="pname">Focus Pass (Affiliate / Crypto / Start-up / Prediction Markets)</td><td class="num rebook">€199</td><td class="num list">€245</td><td class="small">+23%</td><td class="small note">Single Focus event (one vertical) only.</td></tr>
+<tr><td class="pname">Day 2 Only Pass</td><td class="num rebook">€199</td><td class="num list">€245</td><td class="small">+23%</td><td class="small note">—</td></tr>
+<tr><td class="pname">Speaker Pass</td><td class="num rebook">€0</td><td class="num list">€0</td><td class="small">—</td><td class="small note">Comped.</td></tr>
+<tr><td class="pname">Operators</td><td class="num rebook na">free</td><td class="num list na">free</td><td class="small">—</td><td class="small note">Comped — the audience suppliers pay to access.</td></tr>
+</tbody></table></div>
+
+<h3>2026 ticket revenue — where it came from</h3>
+<p class="sub" style="margin-bottom:10px">€159,761 ex-VAT across ~7,800 valid tickets — but the vast majority were <b>comped</b> (operators, speakers, partner allocations). Day-2 and most Focus passes were ~100% comped. Full Event Pass is the engine. Tickets stay a secondary line; the comped base <b>is</b> the audience suppliers pay to reach (the supplier-funded model in action).</p>
+<div class="tablewrap" style="margin-bottom:18px"><table style="min-width:420px"><thead><tr><th>2026 paid revenue (ex-VAT)</th><th>€</th><th>Share</th></tr></thead><tbody><tr><td class="pname">Full Event Pass</td><td class="num list">€102.7k</td><td class="small">64%</td></tr><tr><td class="pname">Premium passes</td><td class="num list">€24.5k</td><td class="small">15%</td></tr><tr><td class="pname">Focus passes (all)</td><td class="num list">€16.2k</td><td class="small">10%</td></tr><tr><td class="pname">Conference Only</td><td class="num list">€15.0k</td><td class="small">9%</td></tr><tr><td class="pname">Other (Day-2, showers)</td><td class="num list">€0.5k</td><td class="small">&lt;1%</td></tr><tr style="border-top:1px solid #1e293b"><td class="pname"><b>Total ex-VAT</b></td><td class="num" style="color:#fff"><b>€159.8k</b></td><td></td></tr></tbody></table></div>
+<h3>Sponsor ticket entitlement — calculated on spend</h3>
+<p class="sub" style="margin-bottom:10px">Replaces the ad-hoc per-product counts in the 2026 brochure with one consistent formula: <b>1 Full Event Pass per €8,000 of net partnership spend</b> (rounded), layered with tier-based VIP upgrades. Anchors Headline at 25 passes (= 2026) and scales fairly below. Protects ticket yield (€475 face) while rewarding bigger partners.</p>
+<div class="tablewrap"><table style="min-width:640px">
+<thead><tr><th>Tier</th><th>Spend</th><th>Full Event Passes<br><span class="th-sub">≈ 1 / €8k</span></th><th>VIP / Premium upgrades</th><th>Speaker</th></tr></thead>
+<tbody>
+<tr><td class="pname">Diamond</td><td class="small">€120k+</td><td class="num list">15–25</td><td class="small">4–8</td><td class="small">flagship: 1 slot</td></tr>
+<tr><td class="pname">Platinum</td><td class="small">€60–119k</td><td class="num list">8–13</td><td class="small">2</td><td class="small">—</td></tr>
+<tr><td class="pname">Gold</td><td class="small">€15–59k</td><td class="num list">2–8</td><td class="small">—</td><td class="small">—</td></tr>
+<tr><td class="pname">Silver</td><td class="small">&lt;€15k</td><td class="num list">1–2</td><td class="small">—</td><td class="small">—</td></tr>
+</tbody></table></div>
+
+
+<h3>Ticket structure — two options for discussion</h3>
+<p class="sub" style="margin-bottom:10px">2026 ran ~20 near-duplicate SKUs. Both options collapse that to a clean ladder and make Premium the single all-access bundle. The open question is whether to keep a cheap standalone Focus pass. Common base for both: Day 2 Only €245 · Conference Only €125 · Speaker free · Operators free. <b>Advisers lean Option A</b> (Focus volume feeds sponsor ROI) provided access is fenced — Focus = one vertical, one day, no Summit keynotes/expo, enforced by badge colour &amp; scans.</p>
+<div class="opts">
+  <div class="opt">
+    <div class="opt-h">Option A — Simplified ladder, keep Focus <span class="rec">decoy</span></div>
+    <div class="tablewrap"><table style="min-width:0"><tbody>
+      <tr><td class="pname">Focus Pass <span class="dim">(1 vertical, that day, no Summit)</span></td><td class="num list">€245</td></tr>
+      <tr><td class="pname">Full Event Pass <span class="dim">(Summit: conf + expo)</span></td><td class="num list">€475</td></tr>
+      <tr><td class="pname">Premium / All-Access <span class="dim">(Summit + ALL Focus + priority)</span></td><td class="num list">€1,149</td></tr>
+    </tbody></table></div>
+    <div class="pc"><b>For:</b> low entry point drives volume + affiliate-only / crypto-only acquisition; €1,149 all-access anchors the upsell; keeps 2026's biggest paid-volume driver.</div>
+    <div class="pc"><b>Against:</b> €245 Focus can cannibalise the €475 Full; needs strict access fences (one vertical, that day, no Summit access).</div>
+    <div class="pc lean">Leans: more volume, lower revenue-per-head.</div>
+  </div>
+  <div class="opt">
+    <div class="opt-h">Option B — Bundle only, no standalone Focus</div>
+    <div class="tablewrap"><table style="min-width:0"><tbody>
+      <tr><td class="pname">Full Event Pass <span class="dim">(Summit: conf + expo)</span></td><td class="num list">€475</td></tr>
+      <tr><td class="pname">Premium / All-Access <span class="dim">(Summit + ALL Focus + priority)</span></td><td class="num list">€1,149</td></tr>
+      <tr><td class="pname dim">No standalone Focus pass</td><td class="num na">—</td></tr>
+    </tbody></table></div>
+    <div class="pc"><b>For:</b> simplest structure; higher revenue-per-head; protects the Full pass; cleaner ops.</div>
+    <div class="pc"><b>Against:</b> loses the cheap acquisition tier and focus-only audiences; 2026's volume driver disappears, so likely lower total paid volume.</div>
+    <div class="pc lean">Leans: fewer paid attendees, higher revenue-per-head.</div>
+  </div>
+</div>
+
+
+<h3>Tickets — Marketing-owned revenue target</h3>
+<p class="sub" style="margin-bottom:10px">Tickets are owned by <b>Marketing</b>, separate from Sales' partnership target. 2026 delivered <b>€188,519 gross</b> (~€160k ex-VAT) — but most passes were comped, so the real growth lever isn't price, it's <b>converting the comped base to paid</b> (Full Event Pass above all: only ~300 of 6,110 were paid). That makes a genuinely strong target achievable.</p>
+<div class="cards">
+<div class="card" style="border-color:#f59e0b66"><div class="k">2027 Marketing ticket target</div><div class="v amber">€300k</div><div class="d">+59% vs 2026 (€189k) · +18% price + paid-conversion of the comped base</div></div>
+</div>
+<p class="sub" style="font-size:12px;margin-top:8px"><b>How Marketing gets there:</b> grow paid Full Event volume (the 64% revenue line), convert comped Focus/Day-2 attendees to paid where appropriate, push Premium all-access, and run early-bird urgency. <i>(Price-only, without conversion growth, lands ~€222k — the conversion is the job.)</i> Combined 2027 company view: Sales partnerships ~€2.35m + Marketing tickets €300k ≈ <b>€2.65m</b>.</p>
+<p class="sub" style="font-size:12px;margin-top:4px"><b>Ownership:</b> Sales owns Partnerships (€2.35m, on 5%/10% commission); <b>Marketing owns Tickets</b> (€300k) — no sales commission on ticket revenue. Marketing's job is paid-conversion, not just pricing.</p>
+
+</section>
+<section class="pane" id="model">
+
+<h2>Rebook strategy — containing the leak without reneging</h2>
+<p class="sub" style="margin-bottom:10px">Most sponsors already know their 2026 price; reneging isn't an option and would damage trust. The leak is contained not by hiking the rebook price, but by <b>narrowing what the rebook price covers</b> and channelling all growth to 2027 pricing.</p>
+<div class="panel"><ul class="tbd">
+<li><b>Same product, same scope = 2026 price.</b> The legacy loyalty rate — honoured, no surprises.</li>
+<li><b>Rebook = the 2026 catalogue rate, not a one-off 2026 discount.</b> Any discount last year was a one-time incentive, not a permanent floor — one consistent answer for everyone.</li>
+<li><b>Everything else is 2027 pricing:</b> added products, larger booths, exclusivity upgrades, custom activations, and any renamed / materially expanded product.</li>
+<li><b>Frame 2026 as a loyalty rate</b> against the higher 2027 public anchor — the rebook now visibly feels like a win, which makes the upsell easier rather than defensive.</li>
+<li><b>2027 rebook-discount deadline — mid-August 2026:</b> existing sponsors keep their 2026 rate for identical scope only if they rebook by mid-August 2026; after that, renewals move to 2027 pricing. Growth (upgrades, Diamond, new products) is at 2027 pricing regardless. Communicate the deadline to all 2026 partners in writing now.</li>
+<li><b>Set the rebook discipline for 2028:</b> open 2028 rebooking <b>onsite at the 2027 event</b> with an early-bird window (e.g. signed within 30 days), locking revenue ahead and building genuine renewal urgency for future cycles.</li>
+<li><b>Spend-based ticket entitlement applies to rebookers too</b> — a soft value rebalancing (perks align to the new model) without touching the headline price.</li>
+<li><b>Upsell into Diamond / bundles / new products</b> at 2027 prices — the rebooked core stays flat, the growth is all new-money at the new rate.</li>
+</ul></div>
+<p class="sub" style="font-size:12px;margin-top:6px">Net effect: leakage is limited to identical-scope renewals only; every expansion, upgrade and new buyer is captured at 2027 pricing.</p>
+
+
+<h2>Revenue model — Sales partnership target</h2>
+<p class="sub" style="margin-bottom:14px">One committed target, built from 2026 achieved (€1.87m). <b>Rebook</b> = existing sponsors, same scope, 2026 prices (locked). <b>New &amp; expansion</b> = backfill of churned inventory + upgrades + new products at 2027 pricing. Assumptions are placeholders until Will confirms rebook commitments.</p>
+<div class="cards">
+<div class="card" style="border-color:#f59e0b66"><div class="k">2027 Sales target (partnerships)</div><div class="v amber">€2.35m</div><div class="d">+26% vs 2026 achieved (€1.87m); +7% vs 2026 target (€2.19m)</div></div>
+<div class="card" style="border-left:3px solid #64748b"><div class="k">of which — Rebook (protected)</div><div class="v slate">€1,028,932</div><div class="d">44% · existing sponsors, 2026 prices</div></div>
+<div class="card" style="border-left:3px solid #f59e0b"><div class="k">of which — New &amp; expansion</div><div class="v amber">€1,318,013</div><div class="d">56% · at 2027 pricing</div></div>
+</div>
+<div class="tablewrap" style="margin-top:8px"><table style="min-width:600px">
+<thead><tr><th>Stream</th><th>Basis</th><th>Type</th><th>Amount</th></tr></thead>
+<tbody>
+<tr><td class="pname">Rebook (legacy)</td><td class="small">55% of €1.87m @ 2026 price</td><td><span class="tag bg-slate-500/10 text-slate-300 border-slate-500/40">Rebook</span></td><td class="num rebook">€1,028,932</td></tr>
+<tr><td class="pname">Backfill of churn</td><td class="small">45% freed × 78% fill × 2027 list</td><td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">New</span></td><td class="num list">€794,541</td></tr>
+<tr><td class="pname">Rebooker upgrades / added scope</td><td class="small">+12% on rebook @ 2027</td><td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">New</span></td><td class="num list">€123,472</td></tr>
+<tr><td class="pname">New inventory (Diamond, Outdoor Zone, Floor Takeover, Focus growth)</td><td class="small">incremental</td><td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">New</span></td><td class="num list">€400,000</td></tr>
+<tr style="border-top:2px solid #1e293b"><td class="pname"><b>Target total</b></td><td class="small"></td><td></td><td class="num" style="color:#fff;font-size:14px"><b>€2,346,945</b></td></tr>
+</tbody></table></div>
+<div class="panel" style="margin-top:8px"><b>The single biggest risk — discount discipline.</b> The build-up is at 2027 list; every point of discount below ~95% realisation costs ~€13k (at 90% the number slips ~€130k). Holding it is a deal-desk + comp job — commission on net realised revenue, ≥92% realisation — not a list-price job.</div>
+<div class="cards" style="margin-top:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+<div class="card" style="border-left:3px solid #34d399"><div class="k">Proven demand (rebook + backfill)</div><div class="v green">€1,823,473</div><div class="d">78% of target — sold before</div></div>
+<div class="card" style="border-left:3px solid #94a3b8"><div class="k">Expansion (upgrades)</div><div class="v slate">€123,472</div><div class="d">5%</div></div>
+<div class="card" style="border-left:3px solid #fb7185"><div class="k">Aspirational (new tiers/products)</div><div class="v" style="color:#fb7185">€400,000</div><div class="d">17% — the riskiest slice</div></div>
+</div>
+<p class="sub" style="font-size:12px;margin-top:8px">~78% of the target rests on <b>proven demand</b>; only ~17% on aspirational new inventory (Diamond, Outdoor Zone, Floor Takeover) — mostly grounded, but that slice carries the most risk.</p>
+<div class="panel" style="margin-top:8px"><b>De-risking the €400k aspirational slice:</b><ul class="tbd"><li>Pre-sell one Diamond anchor before committing ops spend — an early-bird / LOI Diamond at ~€110k proves demand.</li><li>Treat ~€200k of it as contingent until the pipeline confirms.</li><li>If unsold ~3 months out, replace with a packaged &quot;Platinum+&quot; upsell to existing top sponsors — lower risk, faster close.</li></ul></div>
+
+
+<h2>Cost &amp; margin — the target must clear the P&amp;L</h2>
+<p class="sub" style="margin-bottom:10px">A revenue target only means something against costs. Commission is known (sales earn <b>5% on existing/rebook business, 10% on new</b>); the rest of the cost base needs Ana. Principle: set the target as <b>cost + required margin</b> (work backwards), not "+€160k on last year".</p>
+<div class="tablewrap"><table style="min-width:560px"><tbody>
+<tr><td class="pname">Sponsorship (2027 target)</td><td class="num list">€2,346,945</td></tr>
+<tr><td class="pname">Tickets (net, conservative floor — Marketing-owned)</td><td class="num list">€209,105</td></tr>
+<tr style="border-top:1px solid #1e293b"><td class="pname"><b>Total revenue (net)</b></td><td class="num" style="color:#fff"><b>€2,556,050</b></td></tr>
+<tr><td class="pname">Less: Commission (5% existing / 10% new)</td><td class="num" style="color:#fb7185">(€170,068)</td></tr>
+<tr><td class="pname">Less: Cost of Sales (venue, build, F&amp;B, AV, production, staffing)</td><td class="num na">TBD — Ana</td></tr>
+<tr><td class="pname">Less: Salaries &amp; overhead</td><td class="num na">TBD — Ana</td></tr>
+<tr style="border-top:2px solid #1e293b"><td class="pname"><b>Operating margin</b></td><td class="num na"><b>TBD</b></td></tr>
+</tbody></table></div>
+<p class="sub" style="font-size:12px;margin-top:8px"><b>Reference shape (NYC 2027, different event — indicative only):</b> Cost of Sales ~€2.0m + Salaries ~€0.56m + Commission ~€0.18m ≈ €2.73m break-even. Valletta's cost base will differ — we need Ana's numbers to confirm whether €2.35m sponsorship + ~€209k tickets actually clears costs with margin, or whether the target should move.</p>
+
+
+</section>
+<section class="pane" id="decisions">
+<h2>TBDs — decisions still open</h2>
+<div class="panel"><ul class="tbd"><li><b>Headline final number</b> — proposed €200k (range €190–220k). Confirm vs revenue target / Ana.</li><li><b>Lanyard</b> — exclusive @ €55k OR split into A/B @ 2×€30k. Decide on demand signal.</li><li><b>Badge</b> — single sponsor vs segment badges (Operator / Affiliate). Needs attendee-segment data.</li><li><b>Registration &amp; Check-In Partner</b> — combine onsite + online (currently €0) into one product; confirm MCC branding rights.</li><li><b>Unproven premium floors</b> (VIP Lounge, Wi-Fi, Restroom, Main Stage Chair, Badge) — list raised per SiGMA/notes but unsold in 2026; floors set near 2026 price. <i>Open for discussion.</i></li><li><b>Rooftop Exclusives (Day 1 &amp; 2)</b> — never genuinely sold at €100k. Keep at reduced list (€85k / €75k) or retire?</li><li><b>Focus / Summit Headlines</b> — €45k per notes but all unsold in 2026. Keep as anchor or trim?</li><li><b>Expo Floor Takeover</b> — new product (€45–75k+); pending Ops feasibility &amp; terms.</li><li><b>Duplicate product records</b> — 'new valletta 2026' duplicates exist for 3x3, 6x3 &amp; Track Sponsorship. Merge in HubSpot.</li><li><b>Speaking quantities</b> per stage (presenter / branded / non-branded) — pending Rory / content capacity.</li><li><b>Ticket entitlement formula</b> — proposed 1 Full Event Pass / €8k spend + tier VIP upgrades. Confirm rate &amp; caps; it replaces the ad-hoc per-product ticket counts.</li><li><b>Revenue model assumptions</b> — rebook rate, backfill fill-rate and new-inventory €0.4m are placeholders. Will's actual rebook commitments will firm this up.</li><li><b>Ticket structure</b> — choose Option A (keep simplified Focus pass + decoy) or Option B (bundle-only). Affects volume vs revenue-per-head.</li><li><b>Ticket SKU sprawl</b> — 2026 ran ~20 ticket types; Full Event drove 64% of ex-VAT revenue while Day-2 &amp; most Focus passes were ~100% comped. Collapse to ~5 clean SKUs and set per-event targets.</li><li><b>Provisional revenue target €2.35m</b> — confirm once rebook exposure is known (2026 achieved €1.87m vs €2.19m target).</li><li><b>Rebook leakage</b> — rebookers get 2026 price for identical scope only; added scope/upgrades use 2027 pricing.</li><li><b>Competitor benchmark gap</b> — we have SiGMA's published prices but not SBC Summit Malta's (our closest competitor by scale + timing, April). Worth sourcing for a like-for-like Malta read.</li><li><b>Sales language</b> — confirm 'Diamond Partnership' replaces 'Headline' everywhere in sponsor-facing materials.</li><li><b>2028 rebook mechanic</b> — confirm the onsite early-bird rebooking window at the 2027 event (the forward-looking deadline that creates real urgency, rather than an artificial 2027 cut-off).</li><li><b>Affiliate &amp; Operator Dinner vs Side Event Party</b> — brochure lists a €30k dinner; CRM has a bespoke side-event (median €40k). Same thing or two products?</li></ul></div>
+
+<h2>Questions</h2>
+<div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
+<div class="panel will"><h4>For Will</h4><div class="who">Sales &amp; HubSpot history</div><ul class="q"><li>Which 2026 products were discounted, bundled, or used as throw-ins?</li><li>Which 2026 sponsors are already rebooking, and what's been verbally promised for 2027?</li><li>How many sponsors bought more than one product? Which products drove the largest deal values?</li><li>Which products sat unsold longest?</li><li>What was the realised discount by product vs list in 2026? (validates the 90% realisation assumption)</li><li>Sponsor concentration — what % of 2026 revenue came from the top 10 accounts? (key-account risk)</li><li>Did 2026 Focus-pass buyers upgrade to Full/Premium? (Bizzabo export)</li><li>Do we have the sales capacity &amp; comp plan to sell Diamond + bundles, and how will the 15% ceiling be enforced on new deals?</li><li>Lanyard: is there appetite for an exclusive @ €55k, or do we split A/B @ 2×€30k?</li><li>Badge: do attendee segments justify Operator / Affiliate badge products?</li><li>'Delegate Sales (DO NOT USE)' carries ~€19.7k avg sales in the data — what is it actually used for, and should it be renamed?</li><li>Matcha &amp; Chill Zone (€50k) and Affiliate &amp; Operator Dinner (€30k) were in the brochure but not the CRM export — did they sell?</li></ul></div>
+<div class="panel ops"><h4>For Desi &amp; Olivia</h4><div class="who">Operations &amp; delivery</div><ul class="q"><li>How many exhibition stands can the MCC floor physically hold (hard cap)? Any per-brand stand cap?</li><li>Prime vs standard floor locations - should we charge placement premiums (corners/entrances)?</li><li>Which 2026 products caused the most delivery pain?</li><li>Which activations created operational risk (venue, staffing, crowd flow, floor-plan)?</li><li>Expo Floor Takeover — is it deliverable at the MCC, and what terms (route, staffing, no-obstruction, conflict rules) are needed?</li><li>Rave Cave / Shisha / Side Event parties — build, H&amp;S and supplier constraints that affect what we can sell?</li><li>Can the MCC support the raised premium activations, or do any need capping?</li><li>Marginal delivery cost per premium activation (Outdoor Zone, Rave Cave, Floor Takeover) — so floors sit above cost, not just commercial logic?</li><li>Sponsor-proof data: footfall by zone/activation, dwell time and badge-scan/lead numbers — the evidence sales needs to sell outcomes and justify premium activation pricing.</li><li>After-movie / PR / social reach metrics per tier, for post-event ROI reporting.</li><li>Which products need new terms of service, clearer deadlines, or an approval workflow before sale?</li><li>Entertainment Zone — feasible as a product, or retire?</li></ul></div>
+<div class="panel rory"><h4>For Rory</h4><div class="who">Content &amp; stage capacity</div><ul class="q"><li>How many paid speaking slots per stage can content support before quality drops?</li><li>How many stages / tracks in 2027, and capacity per stage?</li><li>Translate capacity into a sellable content-revenue ceiling (paid slots × price) — does it match the model's content assumptions?</li><li>Which session formats need editorial control vs sponsor input?</li><li>Are the spend-based non-branded panel volumes (the top content sellers) sustainable for content quality?</li><li>Where does sponsor collaboration end and editorial control begin?</li><li>Can we hold a no-pay-to-play editorial policy on the main stage while still selling paid side-track panels?</li></ul></div>
+<div class="panel ana"><h4>For Ana</h4><div class="who">Finance &amp; target validation</div><ul class="q"><li>At what total net revenue does the event break even, and what operating margin is required?</li><li>Confirm the cost base (Cost of Sales + salaries) so we can validate whether €2.35m is the right target — not just achievable.</li><li>How are payment-processing fees, FX and bad-debt / non-payment treated in net revenue?</li><li>One target, or target + upside scenario for internal planning?</li></ul></div>
+</div>
+
+<h2>Suggested 6-month run-up</h2>
+<div class="tablewrap"><table style="min-width:520px"><thead><tr><th>When</th><th>Action</th></tr></thead><tbody><tr><td class="pname">Now</td><td class="small">Finalise Diamond benefits + €120k threshold; agree rebook rules (same-scope-only); kick off Ana cost model.</td></tr><tr><td class="pname">2 weeks</td><td class="small">Will delivers rebook commitment list + discount history; Ana delivers cost base.</td></tr><tr><td class="pname">1 month</td><td class="small">Launch 2027 rate card and rebook upgrade campaign; begin Diamond outreach.</td></tr><tr><td class="pname">Mid-Aug 2026</td><td class="small">Rebook-discount deadline — 2026 sponsors who have not rebooked move to 2027 pricing.</td></tr><tr><td class="pname">3 months out</td><td class="small">Finalise ops feasibility for new activations; convert pipeline to close.</td></tr><tr><td class="pname">6 weeks out</td><td class="small">Close major sponsors; move remaining inventory to waitlist.</td></tr>
+<tr><td class="pname">At the 2027 event</td><td class="small">Open 2028 rebooking onsite with an early-bird deadline (e.g. signed within 30 days) to lock revenue ahead.</td></tr></tbody></table></div>
+</section>
+<div class="foot">
+Benchmarks: 2026 actuals from HubSpot line items; NYC 2027 from internal commercial deck; SiGMA from public sigma.world exhibit pages (larger events, 12k–30k delegates — directional, not like-for-like). Unproven (⚠) items show a raised list per SiGMA/notes but had no genuine 2026 sale; floors set near 2026 price, open for discussion. Also needs sign-off: <b>Rory</b> (content/stage capacity) · <b>Ana</b> (cost base &amp; revenue target). 2026 list prices, tier structure (Platinum €60k+ / Gold / Silver) and value fences (tier status + ticket allocations per product) sourced from the 2026 partnership brochure. Provisional target and 2026 figures per the 8 Jun 2026 strategy notes.
+</div>
+
+</div><script>(function(){var n=document.getElementById('tabnav');if(!n)return;n.addEventListener('click',function(e){var b=e.target.closest('.tb');if(!b)return;var t=b.getAttribute('data-t');document.querySelectorAll('.tb').forEach(function(x){x.classList.toggle('active',x===b)});document.querySelectorAll('.pane').forEach(function(p){p.classList.toggle('active',p.id===t)});window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>
