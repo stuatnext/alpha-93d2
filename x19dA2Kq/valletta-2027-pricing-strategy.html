@@ -73,24 +73,34 @@ b{color:#e2e8f0}
 .bc-price .bp{color:#fbbf24;font-size:1.15rem}
 .bc-save{font-size:10px;color:#34d399;margin-top:6px}
 .tabs{display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 24px;border-bottom:1px solid #1e293b}.tb{background:transparent;border:1px solid #1e293b;border-bottom:none;color:#94a3b8;font-weight:600;font-size:13px;padding:10px 16px;border-radius:8px 8px 0 0;cursor:pointer}.tb:hover{color:#e2e8f0;background:#0b1220}.tb.active{color:#fbbf24;background:#0b1220;border-color:#f59e0b66;position:relative;top:1px}.pane{display:none} .pane.active{display:block;animation:fade .2s ease}@keyframes fade{from{opacity:0}to{opacity:1}}
-</style></head>
-<body><div class="wrap">
+.deck{max-width:1180px;margin:0 auto;padding:20px 20px 96px}.slide{display:none} .slide.active{display:block;animation:fade .25s ease}.slide-kicker{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#64748b;margin-bottom:4px}.slide h2{margin-top:0}.title-slide{min-height:68vh;display:flex;flex-direction:column;justify-content:center}.title-slide h1{font-size:2.6rem}.navbar{position:fixed;bottom:0;left:0;right:0;background:rgba(11,18,32,.94);backdrop-filter:blur(6px);border-top:1px solid #1e293b;display:flex;align-items:center;justify-content:space-between;padding:10px 18px;z-index:50}.navbar .title{font-size:13px;color:#cbd5e1;font-weight:600}.navbar .controls{display:flex;align-items:center;gap:12px}.navbar button{background:#1e293b;border:1px solid #334155;color:#e2e8f0;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:14px;font-weight:600}.navbar button:disabled{opacity:.4;cursor:default}.navbar .count{font-size:12px;color:#94a3b8;min-width:60px;text-align:center;font-variant-numeric:tabular-nums}</style></head>
+<body>
+<div class="deck">
 
-<h1>NEXT Summit Valletta 2027 — Commercial Model</h1>
-<p class="sub">Suggested pricing, open questions and operational TBDs. MCC Valletta · ~5,000–6,000 delegates · built on 2026 actuals, NYC 2027 internal benchmark, and public SiGMA Malta benchmarks. <b>Working draft for discussion — not a final rate card.</b></p>
+<section class="slide active title-slide" data-title="Title">
+<div class="slide-kicker">Commercial Model · Working draft</div>
+<h1>NEXT Summit Valletta 2027<br>Commercial Model</h1>
+<p class="sub" style="max-width:790px">Pricing, tiers, bundles, tickets and the revenue model — in one deck. MCC Valletta · ~5,000–6,000 delegates · built on 2026 actuals, the NYC 2027 internal benchmark and public SiGMA Malta benchmarks. <b>Working draft for discussion — not a final rate card.</b> Navigate with ‹ › or the arrow keys.</p>
+</section>
 
-<div class="cards">
-<div class="card"><div class="k">2026 achieved</div><div class="v slate">€1.87m</div><div class="d">vs €2.19m target (85%)</div></div>
+<section class="slide" data-title="The 2027 ask">
+<div class="slide-kicker">The numbers</div>
+<h2>The 2027 ask</h2>
+<div class="cards"><div class="card"><div class="k">2026 achieved</div><div class="v slate">€1.87m</div><div class="d">vs €2.19m target (85%)</div></div>
 <div class="card"><div class="k">Provisional 2027 target</div><div class="v amber">€2.35m</div><div class="d">+26% vs 2026 achieved (€1.87m); +7% vs 2026 target (€2.19m) · pending Ana</div></div>
 <div class="card"><div class="k">Catalogue list value</div><div class="v green">+20%</div><div class="d">2027 list vs 2026 rebook (one-of-each; true capacity higher — volume SKUs repeat)</div></div>
 <div class="card"><div class="k">Pricing model</div><div class="v slate">3-layer</div><div class="d">Rebook · List · Floor</div></div>
-<div class="card"><div class="k">Target basis</div><div class="v slate" style="font-size:0.9rem;line-height:1.3">2026 actual + rebook + 2027 repricing + conservative sell-through</div><div class="d">cost base pending Ana</div></div>
+<div class="card"><div class="k">Target basis</div><div class="v slate" style="font-size:0.9rem;line-height:1.3">2026 actual + rebook + 2027 repricing + conservative sell-through</div><div class="d">cost base pending Ana</div></div></div>
+<div class="cards">
+<div class="card" style="border-left:3px solid #f59e0b"><div class="k">Sales — partnerships</div><div class="v amber">€2.35m</div><div class="d">Sales-owned · 5%/10% commission</div></div>
+<div class="card" style="border-left:3px solid #22d3ee"><div class="k">Marketing — tickets</div><div class="v amber">€300k</div><div class="d">Marketing-owned</div></div>
+<div class="card" style="border-left:3px solid #34d399"><div class="k">Combined company view</div><div class="v green">~€2.65m</div><div class="d">sponsorship + tickets</div></div>
 </div>
+</section>
 
-<nav class="tabs" id="tabnav"><button class="tb active" data-t="overview">Overview</button><button class="tb" data-t="bundles">Bundles</button><button class="tb" data-t="pricing">Product pricing</button><button class="tb" data-t="tickets">Tickets</button><button class="tb" data-t="model">Revenue &amp; Cost</button><button class="tb" data-t="decisions">Decisions</button></nav>
-<section class="pane active" id="overview">
-<h2>How to read this</h2>
-<div class="legend">
+<section class="slide" data-title="How to read &amp; rules">
+<div class="slide-kicker">Approach</div>
+<h2>How to read this</h2><div class="legend">
 <span><span class="tag bg-slate-500/10 text-slate-300 border-slate-500/40">Rebook</span> existing sponsor, identical scope → 2026 price (legacy protection)</span>
 <span><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">2027 List</span> public anchor for new sales / upgrades</span>
 <span><span class="tag bg-emerald-500/10 text-emerald-300 border-emerald-500/40">Floor</span> lowest before director approval</span>
@@ -102,10 +112,12 @@ b{color:#e2e8f0}
 <span><span class="tag bg-rose-500/10 text-rose-300 border-rose-500/40">Ask Ops</span> needs Desi/Olivia sign-off</span>
 <span><span class="flag flag-warn">⚠</span> unproven in 2026 &nbsp; <span class="flag flag-ops">⚙</span> ops-dependent</span>
 </div>
-
 <p class="sub" style="font-size:12px">SiGMA is a <b>directional</b> Malta iGaming benchmark, not a like-for-like comparator — it runs 12k–30k delegates vs our ~5–6k.</p>
-<h2>Pricing non-negotiables</h2>
-<div class="panel"><ul class="tbd"><li>No single discount &gt;10% without director approval; cumulative discounts (bundle + early-bird + multi-year) capped at 15%.</li><li>No discount below floor without director approval.</li><li>No custom activation sold without Ops approval.</li><li>Rebook price never applies to expanded scope.</li><li>No panel sold without content approval.</li><li>No &quot;Misc&quot; line items; no €0 sponsor assets unless part of a contracted package.</li><li>Commission paid on <b>net realised</b> revenue (after discount), not gross — rewards discount discipline; team bonus for holding ≥92% realisation.</li></ul></div>
+<h2>Pricing non-negotiables</h2><div class="panel"><ul class="tbd"><li>No single discount &gt;10% without director approval; cumulative discounts (bundle + early-bird + multi-year) capped at 15%.</li><li>No discount below floor without director approval.</li><li>No custom activation sold without Ops approval.</li><li>Rebook price never applies to expanded scope.</li><li>No panel sold without content approval.</li><li>No &quot;Misc&quot; line items; no €0 sponsor assets unless part of a contracted package.</li><li>Commission paid on <b>net realised</b> revenue (after discount), not gross — rewards discount discipline; team bonus for holding ≥92% realisation.</li></ul></div>
+</section>
+
+<section class="slide" data-title="Partnership tiers">
+<div class="slide-kicker">Offer</div>
 
 <h2>Partnership tiers (proposed 2027)</h2>
 <p class="sub" style="margin-bottom:14px">2026 ran a 3-tier ladder (Platinum €60k+ / Gold / Silver). For 2027 the ladder is led by a new <b>Diamond</b> apex tier, creating a clear path to a marquee partner and pulling premium spend upward. (The standalone Headline tier has been removed.)</p>
@@ -117,7 +129,9 @@ b{color:#e2e8f0}
 </div>
 
 </section>
-<section class="pane" id="bundles">
+
+<section class="slide" data-title="Signature bundles">
+<div class="slide-kicker">Offer · lead with these</div>
 <h2>Signature bundles — lead with these</h2><p class="sub" style="margin-bottom:8px">81 line items is too much to sell from. Reps lead with <b>six signature packages</b> (two per tier), built from existing inventory; the full catalogue becomes the a-la-carte add-on menu for customisation. Bundle savings stay within the 15% discount ceiling, so they do not breach deal-desk rules, and each package lands a clear tier. Illustrative packaging — not modelled as incremental revenue.</p><div class="bundles"><div class="bundle">
 <div class="bundle-tier" style="color:#67e8f9">Diamond</div>
 <div class="bundle-name">The Category Leader</div>
@@ -168,16 +182,36 @@ b{color:#e2e8f0}
 <div class="bc-save">Saving €6,000 (14%) &middot; lands Gold</div>
 </div></div>
 </section>
-<section class="pane" id="pricing">
-<h2>Suggested 2027 pricing</h2>
+
+<section class="slide" data-title="Pricing approach">
+<div class="slide-kicker">Pricing</div>
+<h2>How the 2027 prices are set</h2>
 <p class="sub">Every 2027 increase is justified on four levers (shown per product in the Notes column): <b>1. Demand</b> — 2026 sell-through &amp; realised price; <b>2. Benchmark</b> — gap to SiGMA (Malta) and our NYC internal rates; <b>3. Scarcity / exclusivity</b> — how rare and ownable the asset is; <b>4. Value</b> — deliverables attached. Volume anchors (e.g. the 3x3 stand) are deliberately restrained to protect the volume the model relies on; aggression is concentrated on scarce and experiential inventory.</p>
+
+<h2>New deliverable ideas — justifying the 2027 step-up (for discussion)</h2>
+<p class="sub" style="margin-bottom:10px">Price has risen; visible value must rise with it, or buyers ask "what more do I get?" Ideas below, mapped roughly to tiers — all need ops/content capacity to deliver, so treat as a menu to discuss, not commitments.</p>
+<div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+<div class="card"><div class="k">Headline / Diamond</div><div class="d" style="color:#cbd5e1;margin-top:6px">Curated executive introductions (ABM matchmaking) · dedicated account lead / concierge · pre-event strategy session + post-event ROI review · priority placement &amp; first right of refusal for next year.</div></div>
+<div class="card"><div class="k">Year-round media (NEXT.io engine)</div><div class="d" style="color:#cbd5e1;margin-top:6px">Off-season visibility: editorial feature, podcast guest slot, newsletter inclusion, social campaign — turns a 2-day event into a 12-month partnership.</div></div>
+<div class="card"><div class="k">Data &amp; leads</div><div class="d" style="color:#cbd5e1;margin-top:6px">Badge / lead scanning, facilitated qualified meetings, post-event attendee insight reports — moves the pitch from "logo" to "pipeline".</div></div>
+<div class="card"><div class="k">Content amplification</div><div class="d" style="color:#cbd5e1;margin-top:6px">Onsite filmed interview, full session video package, professional content cut for the sponsor's own channels.</div></div>
+<div class="card"><div class="k">Operator access</div><div class="d" style="color:#cbd5e1;margin-top:6px">Hosted operator introductions / curated dinners tied to spend — leaning into Valletta's 40% operator density, the thing suppliers actually pay for.</div></div>
+<div class="card"><div class="k">Status &amp; experience</div><div class="d" style="color:#cbd5e1;margin-top:6px">VIP hospitality upgrades, speaker-faculty access, premium onsite status — scarce, high-margin, reinforces the tier ladder.</div></div>
+<div class="card" style="border-color:#34d39966"><div class="k">Post-event ROI report (standard, Platinum+)</div><div class="d" style="color:#cbd5e1;margin-top:6px">Badge scans, attendee titles/companies (opt-in), and a pipeline-value estimate — a <b>standard inclusion</b> for Platinum &amp; Diamond, not an upsell. Low cost, high perceived value; directly protects renewals.</div></div>
+</div>
+
+</section>
+
+<section class="slide" data-title="Full catalogue">
+<div class="slide-kicker">Pricing · appendix</div>
+<h2>Suggested 2027 pricing — full catalogue</h2>
 <section class="cat">
-<h3>Premium &amp; Flagship <span class="count">7</span></h3>
+<h3>Headline &amp; Premium <span class="count">7</span></h3>
 <div class="tablewrap"><table>
 <thead><tr><th>Product</th><th>Tag</th><th>Rebook<br><span class="th-sub">(2026)</span></th>
 <th>2027<br>List</th><th>Floor</th><th>Actual 2026 sold</th><th>NYC '27</th><th>SiGMA</th><th>Notes</th></tr></thead>
 <tbody><tr>
-<td class="pname">Diamond Partnership (Exclusive)</td>
+<td class="pname">Headline Sponsorship (Exclusive)</td>
 <td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span></td>
 <td class="num rebook">€150,000</td>
 <td class="num list">€200,000</td>
@@ -185,7 +219,7 @@ b{color:#e2e8f0}
 <td class="small">1 @ €150k (as Headline)</td>
 <td class="small dim">€280k (NYC &#x27;27); €175k×3 actual NYC &#x27;26</td>
 <td class="small dim">Main sponsor ~€300k</td>
-<td class="small note">Diamond flagship (was the 2026 Headline at €150k). NYC &#x27;26 actually closed headline at €175k×3 — €200k list defensible.</td>
+<td class="small note">Apex Headline product; a €200k Headline buy sits in the Diamond tier. €150k undersold it; below NYC €280k (NYC &#x27;26 closed headline at €175k×3). €200k defensible.</td>
 </tr><tr>
 <td class="pname">Lanyard Sponsorship (Exclusive)</td>
 <td><span class="tag bg-amber-500/10 text-amber-300 border-amber-500/40">Protect</span></td>
@@ -1022,21 +1056,10 @@ b{color:#e2e8f0}
 <td class="small dim"></td>
 <td class="small note">Marked DO NOT USE but actually carries ~€19.7k avg sales. Clarify purpose &amp; rename — Q for Will.</td>
 </tr></tbody></table></div></section>
-
-<h2>New deliverable ideas — justifying the 2027 step-up (for discussion)</h2>
-<p class="sub" style="margin-bottom:10px">Price has risen; visible value must rise with it, or buyers ask "what more do I get?" Ideas below, mapped roughly to tiers — all need ops/content capacity to deliver, so treat as a menu to discuss, not commitments.</p>
-<div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
-<div class="card"><div class="k">Diamond / Flagship</div><div class="d" style="color:#cbd5e1;margin-top:6px">Curated executive introductions (ABM matchmaking) · dedicated account lead / concierge · pre-event strategy session + post-event ROI review · priority placement &amp; first right of refusal for next year.</div></div>
-<div class="card"><div class="k">Year-round media (NEXT.io engine)</div><div class="d" style="color:#cbd5e1;margin-top:6px">Off-season visibility: editorial feature, podcast guest slot, newsletter inclusion, social campaign — turns a 2-day event into a 12-month partnership.</div></div>
-<div class="card"><div class="k">Data &amp; leads</div><div class="d" style="color:#cbd5e1;margin-top:6px">Badge / lead scanning, facilitated qualified meetings, post-event attendee insight reports — moves the pitch from "logo" to "pipeline".</div></div>
-<div class="card"><div class="k">Content amplification</div><div class="d" style="color:#cbd5e1;margin-top:6px">Onsite filmed interview, full session video package, professional content cut for the sponsor's own channels.</div></div>
-<div class="card"><div class="k">Operator access</div><div class="d" style="color:#cbd5e1;margin-top:6px">Hosted operator introductions / curated dinners tied to spend — leaning into Valletta's 40% operator density, the thing suppliers actually pay for.</div></div>
-<div class="card"><div class="k">Status &amp; experience</div><div class="d" style="color:#cbd5e1;margin-top:6px">VIP hospitality upgrades, speaker-faculty access, premium onsite status — scarce, high-margin, reinforces the tier ladder.</div></div>
-<div class="card" style="border-color:#34d39966"><div class="k">Post-event ROI report (standard, Platinum+)</div><div class="d" style="color:#cbd5e1;margin-top:6px">Badge scans, attendee titles/companies (opt-in), and a pipeline-value estimate — a <b>standard inclusion</b> for Platinum &amp; Diamond, not an upsell. Low cost, high perceived value; directly protects renewals.</div></div>
-</div>
-
 </section>
-<section class="pane" id="tickets">
+
+<section class="slide" data-title="Tickets">
+<div class="slide-kicker">Tickets · Marketing-owned</div>
 
 <h2>Tickets</h2>
 <p class="sub" style="margin-bottom:12px">2026 prices from Bizzabo; 2027 a measured uplift (volume model — Valletta competes on density, not ticket yield). Operators &amp; speakers remain comped — the supplier-funded model.</p>
@@ -1066,6 +1089,10 @@ b{color:#e2e8f0}
 <tr><td class="pname">Silver</td><td class="small">&lt;€15k</td><td class="num list">1–2</td><td class="small">—</td><td class="small">—</td></tr>
 </tbody></table></div>
 
+</section>
+
+<section class="slide" data-title="Ticket structure &amp; target">
+<div class="slide-kicker">Tickets</div>
 
 <h3>Ticket structure — two options for discussion</h3>
 <p class="sub" style="margin-bottom:10px">2026 ran ~20 near-duplicate SKUs. Both options collapse that to a clean ladder and make Premium the single all-access bundle. The open question is whether to keep a cheap standalone Focus pass. Common base for both: Day 2 Only €245 · Conference Only €125 · Speaker free · Operators free. <b>Advisers lean Option A</b> (Focus volume feeds sponsor ROI) provided access is fenced — Focus = one vertical, one day, no Summit keynotes/expo, enforced by badge colour &amp; scans.</p>
@@ -1104,7 +1131,9 @@ b{color:#e2e8f0}
 <p class="sub" style="font-size:12px;margin-top:4px"><b>Ownership:</b> Sales owns Partnerships (€2.35m, on 5%/10% commission); <b>Marketing owns Tickets</b> (€300k) — no sales commission on ticket revenue. Marketing's job is paid-conversion, not just pricing.</p>
 
 </section>
-<section class="pane" id="model">
+
+<section class="slide" data-title="Rebook strategy">
+<div class="slide-kicker">Revenue</div>
 
 <h2>Rebook strategy — containing the leak without reneging</h2>
 <p class="sub" style="margin-bottom:10px">Most sponsors already know their 2026 price; reneging isn't an option and would damage trust. The leak is contained not by hiking the rebook price, but by <b>narrowing what the rebook price covers</b> and channelling all growth to 2027 pricing.</p>
@@ -1120,6 +1149,10 @@ b{color:#e2e8f0}
 </ul></div>
 <p class="sub" style="font-size:12px;margin-top:6px">Net effect: leakage is limited to identical-scope renewals only; every expansion, upgrade and new buyer is captured at 2027 pricing.</p>
 
+</section>
+
+<section class="slide" data-title="Revenue model">
+<div class="slide-kicker">Revenue · Sales</div>
 
 <h2>Revenue model — Sales partnership target</h2>
 <p class="sub" style="margin-bottom:14px">One committed target, built from 2026 achieved (€1.87m). <b>Rebook</b> = existing sponsors, same scope, 2026 prices (locked). <b>New &amp; expansion</b> = backfill of churned inventory + upgrades + new products at 2027 pricing. Assumptions are placeholders until Will confirms rebook commitments.</p>
@@ -1146,6 +1179,10 @@ b{color:#e2e8f0}
 <p class="sub" style="font-size:12px;margin-top:8px">~78% of the target rests on <b>proven demand</b>; only ~17% on aspirational new inventory (Diamond, Outdoor Zone, Floor Takeover) — mostly grounded, but that slice carries the most risk.</p>
 <div class="panel" style="margin-top:8px"><b>De-risking the €400k aspirational slice:</b><ul class="tbd"><li>Pre-sell one Diamond anchor before committing ops spend — an early-bird / LOI Diamond at ~€110k proves demand.</li><li>Treat ~€200k of it as contingent until the pipeline confirms.</li><li>If unsold ~3 months out, replace with a packaged &quot;Platinum+&quot; upsell to existing top sponsors — lower risk, faster close.</li></ul></div>
 
+</section>
+
+<section class="slide" data-title="Cost &amp; margin">
+<div class="slide-kicker">Revenue</div>
 
 <h2>Cost &amp; margin — the target must clear the P&amp;L</h2>
 <p class="sub" style="margin-bottom:10px">A revenue target only means something against costs. Commission is known (sales earn <b>5% on existing/rebook business, 10% on new</b>); the rest of the cost base needs Ana. Principle: set the target as <b>cost + required margin</b> (work backwards), not "+€160k on last year".</p>
@@ -1160,26 +1197,34 @@ b{color:#e2e8f0}
 </tbody></table></div>
 <p class="sub" style="font-size:12px;margin-top:8px"><b>Reference shape (NYC 2027, different event — indicative only):</b> Cost of Sales ~€2.0m + Salaries ~€0.56m + Commission ~€0.18m ≈ €2.73m break-even. Valletta's cost base will differ — we need Ana's numbers to confirm whether €2.35m sponsorship + ~€209k tickets actually clears costs with margin, or whether the target should move.</p>
 
-
 </section>
-<section class="pane" id="decisions">
-<h2>TBDs — decisions still open</h2>
-<div class="panel"><ul class="tbd"><li><b>Headline final number</b> — proposed €200k (range €190–220k). Confirm vs revenue target / Ana.</li><li><b>Lanyard</b> — exclusive @ €55k OR split into A/B @ 2×€30k. Decide on demand signal.</li><li><b>Badge</b> — single sponsor vs segment badges (Operator / Affiliate). Needs attendee-segment data.</li><li><b>Registration &amp; Check-In Partner</b> — combine onsite + online (currently €0) into one product; confirm MCC branding rights.</li><li><b>Unproven premium floors</b> (VIP Lounge, Wi-Fi, Restroom, Main Stage Chair, Badge) — list raised per SiGMA/notes but unsold in 2026; floors set near 2026 price. <i>Open for discussion.</i></li><li><b>Rooftop Exclusives (Day 1 &amp; 2)</b> — never genuinely sold at €100k. Keep at reduced list (€85k / €75k) or retire?</li><li><b>Focus / Summit Headlines</b> — €45k per notes but all unsold in 2026. Keep as anchor or trim?</li><li><b>Expo Floor Takeover</b> — new product (€45–75k+); pending Ops feasibility &amp; terms.</li><li><b>Duplicate product records</b> — 'new valletta 2026' duplicates exist for 3x3, 6x3 &amp; Track Sponsorship. Merge in HubSpot.</li><li><b>Speaking quantities</b> per stage (presenter / branded / non-branded) — pending Rory / content capacity.</li><li><b>Ticket entitlement formula</b> — proposed 1 Full Event Pass / €8k spend + tier VIP upgrades. Confirm rate &amp; caps; it replaces the ad-hoc per-product ticket counts.</li><li><b>Revenue model assumptions</b> — rebook rate, backfill fill-rate and new-inventory €0.4m are placeholders. Will's actual rebook commitments will firm this up.</li><li><b>Ticket structure</b> — choose Option A (keep simplified Focus pass + decoy) or Option B (bundle-only). Affects volume vs revenue-per-head.</li><li><b>Ticket SKU sprawl</b> — 2026 ran ~20 ticket types; Full Event drove 64% of ex-VAT revenue while Day-2 &amp; most Focus passes were ~100% comped. Collapse to ~5 clean SKUs and set per-event targets.</li><li><b>Provisional revenue target €2.35m</b> — confirm once rebook exposure is known (2026 achieved €1.87m vs €2.19m target).</li><li><b>Rebook leakage</b> — rebookers get 2026 price for identical scope only; added scope/upgrades use 2027 pricing.</li><li><b>Competitor benchmark gap</b> — we have SiGMA's published prices but not SBC Summit Malta's (our closest competitor by scale + timing, April). Worth sourcing for a like-for-like Malta read.</li><li><b>Sales language</b> — confirm 'Diamond Partnership' replaces 'Headline' everywhere in sponsor-facing materials.</li><li><b>2028 rebook mechanic</b> — confirm the onsite early-bird rebooking window at the 2027 event (the forward-looking deadline that creates real urgency, rather than an artificial 2027 cut-off).</li><li><b>Affiliate &amp; Operator Dinner vs Side Event Party</b> — brochure lists a €30k dinner; CRM has a bespoke side-event (median €40k). Same thing or two products?</li></ul></div>
 
-<h2>Questions</h2>
-<div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
+<section class="slide" data-title="Decisions (TBDs)">
+<div class="slide-kicker">Decisions</div>
+<h2>TBDs — decisions still open</h2>
+<div class="panel"><ul class="tbd"><li><b>Headline final number</b> — proposed €200k (range €190–220k). Confirm vs revenue target / Ana.</li><li><b>Lanyard</b> — exclusive @ €55k OR split into A/B @ 2×€30k. Decide on demand signal.</li><li><b>Badge</b> — single sponsor vs segment badges (Operator / Affiliate). Needs attendee-segment data.</li><li><b>Registration &amp; Check-In Partner</b> — combine onsite + online (currently €0) into one product; confirm MCC branding rights.</li><li><b>Unproven premium floors</b> (VIP Lounge, Wi-Fi, Restroom, Main Stage Chair, Badge) — list raised per SiGMA/notes but unsold in 2026; floors set near 2026 price. <i>Open for discussion.</i></li><li><b>Rooftop Exclusives (Day 1 &amp; 2)</b> — never genuinely sold at €100k. Keep at reduced list (€85k / €75k) or retire?</li><li><b>Focus / Summit Headlines</b> — €45k per notes but all unsold in 2026. Keep as anchor or trim?</li><li><b>Expo Floor Takeover</b> — new product (€45–75k+); pending Ops feasibility &amp; terms.</li><li><b>Duplicate product records</b> — 'new valletta 2026' duplicates exist for 3x3, 6x3 &amp; Track Sponsorship. Merge in HubSpot.</li><li><b>Speaking quantities</b> per stage (presenter / branded / non-branded) — pending Rory / content capacity.</li><li><b>Ticket entitlement formula</b> — proposed 1 Full Event Pass / €8k spend + tier VIP upgrades. Confirm rate &amp; caps; it replaces the ad-hoc per-product ticket counts.</li><li><b>Revenue model assumptions</b> — rebook rate, backfill fill-rate and new-inventory €0.4m are placeholders. Will's actual rebook commitments will firm this up.</li><li><b>Ticket structure</b> — choose Option A (keep simplified Focus pass + decoy) or Option B (bundle-only). Affects volume vs revenue-per-head.</li><li><b>Ticket SKU sprawl</b> — 2026 ran ~20 ticket types; Full Event drove 64% of ex-VAT revenue while Day-2 &amp; most Focus passes were ~100% comped. Collapse to ~5 clean SKUs and set per-event targets.</li><li><b>Provisional revenue target €2.35m</b> — confirm once rebook exposure is known (2026 achieved €1.87m vs €2.19m target).</li><li><b>Rebook leakage</b> — rebookers get 2026 price for identical scope only; added scope/upgrades use 2027 pricing.</li><li><b>Competitor benchmark gap</b> — we have SiGMA's published prices but not SBC Summit Malta's (our closest competitor by scale + timing, April). Worth sourcing for a like-for-like Malta read.</li><li><b>2028 rebook mechanic</b> — confirm the onsite early-bird rebooking window at the 2027 event (the forward-looking deadline that creates real urgency, rather than an artificial 2027 cut-off).</li><li><b>Affiliate &amp; Operator Dinner vs Side Event Party</b> — brochure lists a €30k dinner; CRM has a bespoke side-event (median €40k). Same thing or two products?</li></ul></div>
+</section>
+
+<section class="slide" data-title="Questions for owners">
+<div class="slide-kicker">Decisions · owners</div>
+<h2>Questions</h2><div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
 <div class="panel will"><h4>For Will</h4><div class="who">Sales &amp; HubSpot history</div><ul class="q"><li>Which 2026 products were discounted, bundled, or used as throw-ins?</li><li>Which 2026 sponsors are already rebooking, and what's been verbally promised for 2027?</li><li>How many sponsors bought more than one product? Which products drove the largest deal values?</li><li>Which products sat unsold longest?</li><li>What was the realised discount by product vs list in 2026? (validates the 90% realisation assumption)</li><li>Sponsor concentration — what % of 2026 revenue came from the top 10 accounts? (key-account risk)</li><li>Did 2026 Focus-pass buyers upgrade to Full/Premium? (Bizzabo export)</li><li>Do we have the sales capacity &amp; comp plan to sell Diamond + bundles, and how will the 15% ceiling be enforced on new deals?</li><li>Lanyard: is there appetite for an exclusive @ €55k, or do we split A/B @ 2×€30k?</li><li>Badge: do attendee segments justify Operator / Affiliate badge products?</li><li>'Delegate Sales (DO NOT USE)' carries ~€19.7k avg sales in the data — what is it actually used for, and should it be renamed?</li><li>Matcha &amp; Chill Zone (€50k) and Affiliate &amp; Operator Dinner (€30k) were in the brochure but not the CRM export — did they sell?</li></ul></div>
 <div class="panel ops"><h4>For Desi &amp; Olivia</h4><div class="who">Operations &amp; delivery</div><ul class="q"><li>How many exhibition stands can the MCC floor physically hold (hard cap)? Any per-brand stand cap?</li><li>Prime vs standard floor locations - should we charge placement premiums (corners/entrances)?</li><li>Which 2026 products caused the most delivery pain?</li><li>Which activations created operational risk (venue, staffing, crowd flow, floor-plan)?</li><li>Expo Floor Takeover — is it deliverable at the MCC, and what terms (route, staffing, no-obstruction, conflict rules) are needed?</li><li>Rave Cave / Shisha / Side Event parties — build, H&amp;S and supplier constraints that affect what we can sell?</li><li>Can the MCC support the raised premium activations, or do any need capping?</li><li>Marginal delivery cost per premium activation (Outdoor Zone, Rave Cave, Floor Takeover) — so floors sit above cost, not just commercial logic?</li><li>Sponsor-proof data: footfall by zone/activation, dwell time and badge-scan/lead numbers — the evidence sales needs to sell outcomes and justify premium activation pricing.</li><li>After-movie / PR / social reach metrics per tier, for post-event ROI reporting.</li><li>Which products need new terms of service, clearer deadlines, or an approval workflow before sale?</li><li>Entertainment Zone — feasible as a product, or retire?</li></ul></div>
 <div class="panel rory"><h4>For Rory</h4><div class="who">Content &amp; stage capacity</div><ul class="q"><li>How many paid speaking slots per stage can content support before quality drops?</li><li>How many stages / tracks in 2027, and capacity per stage?</li><li>Translate capacity into a sellable content-revenue ceiling (paid slots × price) — does it match the model's content assumptions?</li><li>Which session formats need editorial control vs sponsor input?</li><li>Are the spend-based non-branded panel volumes (the top content sellers) sustainable for content quality?</li><li>Where does sponsor collaboration end and editorial control begin?</li><li>Can we hold a no-pay-to-play editorial policy on the main stage while still selling paid side-track panels?</li></ul></div>
 <div class="panel ana"><h4>For Ana</h4><div class="who">Finance &amp; target validation</div><ul class="q"><li>At what total net revenue does the event break even, and what operating margin is required?</li><li>Confirm the cost base (Cost of Sales + salaries) so we can validate whether €2.35m is the right target — not just achievable.</li><li>How are payment-processing fees, FX and bad-debt / non-payment treated in net revenue?</li><li>One target, or target + upside scenario for internal planning?</li></ul></div>
 </div>
-
-<h2>Suggested 6-month run-up</h2>
-<div class="tablewrap"><table style="min-width:520px"><thead><tr><th>When</th><th>Action</th></tr></thead><tbody><tr><td class="pname">Now</td><td class="small">Finalise Diamond benefits + €120k threshold; agree rebook rules (same-scope-only); kick off Ana cost model.</td></tr><tr><td class="pname">2 weeks</td><td class="small">Will delivers rebook commitment list + discount history; Ana delivers cost base.</td></tr><tr><td class="pname">1 month</td><td class="small">Launch 2027 rate card and rebook upgrade campaign; begin Diamond outreach.</td></tr><tr><td class="pname">Mid-Aug 2026</td><td class="small">Rebook-discount deadline — 2026 sponsors who have not rebooked move to 2027 pricing.</td></tr><tr><td class="pname">3 months out</td><td class="small">Finalise ops feasibility for new activations; convert pipeline to close.</td></tr><tr><td class="pname">6 weeks out</td><td class="small">Close major sponsors; move remaining inventory to waitlist.</td></tr>
-<tr><td class="pname">At the 2027 event</td><td class="small">Open 2028 rebooking onsite with an early-bird deadline (e.g. signed within 30 days) to lock revenue ahead.</td></tr></tbody></table></div>
 </section>
-<div class="foot">
-Benchmarks: 2026 actuals from HubSpot line items; NYC 2027 from internal commercial deck; SiGMA from public sigma.world exhibit pages (larger events, 12k–30k delegates — directional, not like-for-like). Unproven (⚠) items show a raised list per SiGMA/notes but had no genuine 2026 sale; floors set near 2026 price, open for discussion. Also needs sign-off: <b>Rory</b> (content/stage capacity) · <b>Ana</b> (cost base &amp; revenue target). 2026 list prices, tier structure (Platinum €60k+ / Gold / Silver) and value fences (tier status + ticket allocations per product) sourced from the 2026 partnership brochure. Provisional target and 2026 figures per the 8 Jun 2026 strategy notes.
+
+<section class="slide" data-title="Run-up &amp; sources">
+<div class="slide-kicker">Plan</div>
+<h2>Suggested 6-month run-up</h2><div class="tablewrap"><table style="min-width:520px"><thead><tr><th>When</th><th>Action</th></tr></thead><tbody><tr><td class="pname">Now</td><td class="small">Finalise Diamond benefits + €120k threshold; agree rebook rules (same-scope-only); kick off Ana cost model.</td></tr><tr><td class="pname">2 weeks</td><td class="small">Will delivers rebook commitment list + discount history; Ana delivers cost base.</td></tr><tr><td class="pname">1 month</td><td class="small">Launch 2027 rate card and rebook upgrade campaign; begin Diamond outreach.</td></tr><tr><td class="pname">Mid-Aug 2026</td><td class="small">Rebook-discount deadline — 2026 sponsors who have not rebooked move to 2027 pricing.</td></tr><tr><td class="pname">3 months out</td><td class="small">Finalise ops feasibility for new activations; convert pipeline to close.</td></tr><tr><td class="pname">6 weeks out</td><td class="small">Close major sponsors; move remaining inventory to waitlist.</td></tr><tr><td class="pname">At the 2027 event</td><td class="small">Open 2028 rebooking onsite with an early-bird deadline (e.g. signed within 30 days) to lock revenue ahead.</td></tr></tbody></table></div>
+<div class="foot">Benchmarks: 2026 actuals from HubSpot line items + Bizzabo; NYC 2027 from internal commercial deck; SiGMA from public sigma.world exhibit pages (larger events — directional, not like-for-like). Unproven (⚠) items show a raised list per SiGMA/notes but had no genuine 2026 sale. Also needs sign-off: <b>Rory</b> (content) · <b>Ana</b> (cost base &amp; target). 2026 list prices, tiers and value fences from the 2026 partnership brochure; targets per the 8 Jun 2026 strategy notes.</div>
+</section>
+
 </div>
 
-</div><script>(function(){var n=document.getElementById('tabnav');if(!n)return;n.addEventListener('click',function(e){var b=e.target.closest('.tb');if(!b)return;var t=b.getAttribute('data-t');document.querySelectorAll('.tb').forEach(function(x){x.classList.toggle('active',x===b)});document.querySelectorAll('.pane').forEach(function(p){p.classList.toggle('active',p.id===t)});window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>
+<div class="navbar">
+<div class="title"><span style="color:#fbbf24">NEXT Valletta 2027</span> · <span id="navtitle"></span></div>
+<div class="controls"><button id="navprev">‹ Prev</button><span class="count" id="navcount"></span><button id="navnext">Next ›</button></div>
+</div>
+<script>(function(){var sl=[].slice.call(document.querySelectorAll('.slide'));var i=0,n=sl.length;var c=document.getElementById('navcount'),t=document.getElementById('navtitle'),p=document.getElementById('navprev'),x=document.getElementById('navnext');function show(k){i=Math.max(0,Math.min(n-1,k));sl.forEach(function(el,j){el.classList.toggle('active',j===i)});c.textContent=(i+1)+' / '+n;t.textContent=sl[i].getAttribute('data-title')||'';p.disabled=i===0;x.disabled=i===n-1;window.scrollTo({top:0});}p.addEventListener('click',function(){show(i-1)});x.addEventListener('click',function(){show(i+1)});document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='PageDown'){show(i+1)}else if(e.key==='ArrowLeft'||e.key==='PageUp'){show(i-1)}});show(0);})();</script></body></html>
