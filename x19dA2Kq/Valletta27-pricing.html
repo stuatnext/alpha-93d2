@@ -1,0 +1,2016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Valletta 2027 Commercial Strategy</title>
+
+  <!-- Load Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Load React and ReactDOM -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- Load Babel to compile JSX in the browser -->
+  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body { background-color: #020617; color: #f8fafc; }
+    /* Beautiful scrollbar for horizontal tables */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #0f172a; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+    /* Prevent table squishing globally */
+    .table-container {
+        -webkit-overflow-scrolling: touch;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    // --- ICON COMPONENTS ---
+    const Icon = ({ p, className }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} dangerouslySetInnerHTML={{ __html: p }} />
+    );
+    const ChevronLeft = (props) => <Icon p='<path d="m15 18-6-6 6-6"/>' {...props} />;
+    const ChevronRight = (props) => <Icon p='<path d="m9 18 6-6-6-6"/>' {...props} />;
+    const Target = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>' {...props} />;
+    const ShieldCheck = (props) => <Icon p='<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>' {...props} />;
+    const TrendingUp = (props) => <Icon p='<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>' {...props} />;
+    const TrendingDown = (props) => <Icon p='<polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/>' {...props} />;
+    const Users = (props) => <Icon p='<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' {...props} />;
+    const Layers = (props) => <Icon p='<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>' {...props} />;
+    const Package = (props) => <Icon p='<line x1="16.5" x2="7.5" y1="9.4" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" x2="12" y1="22" y2="12"/>' {...props} />;
+    const Award = (props) => <Icon p='<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>' {...props} />;
+    const Clock = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>' {...props} />;
+    const AlertCircle = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>' {...props} />;
+    const CheckCircle2 = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>' {...props} />;
+    const FileText = (props) => <Icon p='<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>' {...props} />;
+    const PieChart = (props) => <Icon p='<path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/>' {...props} />;
+    const ArrowRight = (props) => <Icon p='<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>' {...props} />;
+    const Diamond = (props) => <Icon p='<path d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.42 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.42 0Z"/>' {...props} />;
+    const CheckSquare = (props) => <Icon p='<rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/>' {...props} />;
+    const XCircle = (props) => <Icon p='<circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/>' {...props} />;
+    const TicketIcon = (props) => <Icon p='<path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/>' {...props} />;
+    const Calculator = (props) => <Icon p='<rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/>' {...props} />;
+    const Scan = (props) => <Icon p='<path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><line x1="7" x2="17" y1="12" y2="12"/>' {...props} />;
+
+    // Utility for conditional classes
+    function cn(...classes) {
+      return classes.filter(Boolean).join(' ');
+    }
+
+    // --- CORE PRESENTATION SLIDES ---
+
+    function SlideTitle() {
+      return (
+        <div className="flex-1 flex flex-col items-center justify-center text-center animate-in fade-in duration-500">
+          <div className="mb-10">
+            <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-2xl flex items-center justify-center mx-auto shadow-2xl shadow-amber-900/50 mb-6">
+              <Target className="w-10 h-10 md:w-12 md:h-12 text-slate-950" />
+            </div>
+          </div>
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 md:mb-6 bg-gradient-to-br from-white to-slate-400 bg-clip-text text-transparent px-2">
+            Valletta 2027 Commercial Strategy
+          </h1>
+          <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 px-4">
+            A stabilisation-year framework: protect rebooks, repair churn, prove sponsor value, and grow yield without price shock.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl w-full px-4">
+            <div className="bg-slate-900 border border-amber-800/50 rounded-2xl p-4">
+              <div className="text-[10px] md:text-xs text-slate-500 uppercase tracking-widest mb-1">Sales Partnership Target</div>
+              <div className="text-2xl md:text-3xl font-black text-amber-400">€2.30M</div>
+            </div>
+            <div className="bg-slate-900 border border-indigo-800/50 rounded-2xl p-4">
+              <div className="text-[10px] md:text-xs text-slate-500 uppercase tracking-widest mb-1">Marketing Ticket Target</div>
+              <div className="text-2xl md:text-3xl font-black text-indigo-400">€300K</div>
+            </div>
+            <div className="bg-slate-900 border border-emerald-800/50 rounded-2xl p-4">
+              <div className="text-[10px] md:text-xs text-slate-500 uppercase tracking-widest mb-1">Combined View</div>
+              <div className="text-2xl md:text-3xl font-black text-emerald-400">~€2.60M</div>
+            </div>
+          </div>
+          <p className="text-[10px] md:text-xs text-slate-600 mt-10 px-4">Built from 2026 actuals, the 2025-26 churn analysis, the 2027 ops product list and budget projection, NYC 2027 benchmarks, and the June 2026 product review.</p>
+        </div>
+      );
+    }
+
+    function SlideExecutiveSummary() {
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Executive Summary</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">The 2027 commercial architecture: from price escalation to value-led stabilisation.</p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 flex-1">
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-rose-900/30 rounded-lg flex items-center justify-center border border-rose-800/50">
+                  <TrendingDown className="w-5 h-5 text-rose-400" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-slate-200">Stabilisation, Not Escalation</h3>
+              </div>
+              <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-4">
+                Two years of compound price increases (over 50% across 2024-26) pushed volume churn from 40% to <strong>57%</strong> and value churn from 6.8% to <strong>31.6%</strong>. 2027 holds the average catalogue movement to <strong>~15%</strong>, concentrates increases where demand is proven, holds unproven items at 0%, and retires failed SKUs.
+              </p>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-amber-900/30 rounded-lg flex items-center justify-center border border-amber-800/50">
+                  <Layers className="w-5 h-5 text-amber-400" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-slate-200">Value-Led Pricing Architecture</h3>
+              </div>
+              <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-4">
+                A 4-part rate card: <strong>Rebook</strong> (2026 price, identical scope only), <strong>2027 List</strong> (public anchor for new buyers and upgrades), <strong>Floor</strong> (no quote below it without director approval), and <strong>Cost-Led Quote</strong> for side events, takeovers and bespoke activations where venue, F&amp;B and production costs move.
+              </p>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-emerald-900/30 rounded-lg flex items-center justify-center border border-emerald-800/50">
+                  <Scan className="w-5 h-5 text-emerald-400" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-slate-200">Churn Repair Through Proof</h3>
+              </div>
+              <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-4">
+                Every increase ships with evidence. Lead retrieval is now <strong>bundled into every stand</strong>, session badge scanning measures sponsored-room audiences, and footfall, seniority and reach reporting becomes standard. We sell data, not assertions — the gap that lost us Pragmatic Play and BetConstruct.
+              </p>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-yellow-900/30 rounded-lg flex items-center justify-center border border-yellow-800/50">
+                  <ShieldCheck className="w-5 h-5 text-yellow-400" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-slate-200">Margin Defence &amp; Cost Discipline</h3>
+              </div>
+              <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-4">
+                The 2027 cost base is capped at <strong>+10%</strong> (the projection lands at +8%), profit must grow <strong>10-15%</strong>, and discounting is governed: 10% single-deal cap, 15% cumulative cap. Negotiation flexes via <strong>bundles</strong>, not per-deal deliverable swaps that ops cannot track.
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideWhatChanged() {
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">What the 2026 Post-Mortem Changed</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Key shifts from the June 2026 product review that reshape the original pricing proposal.</p>
+
+          <div className="space-y-4">
+            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 md:p-5 flex gap-4">
+              <div className="mt-1"><AlertCircle className="w-5 h-5 text-rose-500" /></div>
+              <div>
+                <h4 className="text-slate-200 font-bold mb-1">The Churn Bill Is Now Quantified</h4>
+                <p className="text-slate-400 text-sm">Partner count fell 82 → 68 (volume churn 57%) and value churn jumped from 6.8% to 31.6%. <strong>€221.6k</strong> walked at the top — Xanada (€60k), Evolution (€56.6k), Pragmatic Play (€55k), Soft2Bet (€50k) — plus a <strong>€75k BetConstruct reduction</strong>, and <strong>€233k</strong> churned across 22 small stand accounts: more than the four big losses combined. Pricing and budget shifts were the primary drivers.</p>
+              </div>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 md:p-5 flex gap-4">
+              <div className="mt-1"><AlertCircle className="w-5 h-5 text-amber-500" /></div>
+              <div>
+                <h4 className="text-slate-200 font-bold mb-1">Price-Shock Inventory Gets Reset, Not Re-Listed</h4>
+                <p className="text-slate-400 text-sm">Both €100k rooftop exclusives blew out their sponsors and ended unsold. They move to <strong>POA / cost-led bespoke takeovers</strong> rather than carrying a failed list price. Stand pricing takes a deliberately restrained +24% after the +40% hike churned the hall. You don't get two bites of the cherry on a price increase.</p>
+              </div>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 md:p-5 flex gap-4">
+              <div className="mt-1"><AlertCircle className="w-5 h-5 text-amber-500" /></div>
+              <div>
+                <h4 className="text-slate-200 font-bold mb-1">Stabilisation Directive From Sales Leadership</h4>
+                <p className="text-slate-400 text-sm">2024-25 averaged +28% and 2025-26 added +15% — a compound increase of over 50% in two years. 2027 is a stabilisation year: <strong>average movement ~15%</strong>, with some reductions and holds factored in. Increases above 20% require a buyer-facing value rationale; above 40% require repositioning and approval.</p>
+              </div>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 md:p-5 flex gap-4">
+              <div className="mt-1"><CheckCircle2 className="w-5 h-5 text-emerald-500" /></div>
+              <div>
+                <h4 className="text-slate-200 font-bold mb-1">Scope Additions Agreed on the Review Call</h4>
+                <p className="text-slate-400 text-sm">Malta Enterprise / Malta Vision 2050 revenue now <strong>counts toward the sales target</strong> (it carries real deliverables). The ticket target rises from €188k achieved to <strong>€300k</strong>. Lead retrieval is included in exhibitor packages. The catalogue gets restructured and bundled rather than extended — no flood of new products.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideChurnReality() {
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8">The Churn Reality</h2>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-8 flex flex-col">
+              <div className="flex items-center gap-3 mb-4 md:mb-6">
+                <PieChart className="w-6 h-6 text-slate-400" />
+                <h3 className="text-lg md:text-xl font-semibold">What 2026 Actually Cost Us</h3>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-center">
+                  <div className="text-3xl md:text-4xl font-black text-rose-400 mb-1">57%</div>
+                  <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">Volume Churn (was 40%)</div>
+                  <div className="text-[10px] text-slate-600 mt-1">Partners 82 → 68</div>
+                </div>
+                <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-center">
+                  <div className="text-3xl md:text-4xl font-black text-rose-400 mb-1">31.6%</div>
+                  <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">Value Churn (was 6.8%)</div>
+                  <div className="text-[10px] text-slate-600 mt-1">Driven by 4 large exits</div>
+                </div>
+                <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-center">
+                  <div className="text-2xl md:text-3xl font-black text-rose-400 mb-1">€221.6k</div>
+                  <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">Large Account Exits</div>
+                  <div className="text-[10px] text-slate-600 mt-1">+ €75k BetConstruct reduction</div>
+                </div>
+                <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-center">
+                  <div className="text-2xl md:text-3xl font-black text-rose-400 mb-1">€233k</div>
+                  <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">22 Small Stand Exits</div>
+                  <div className="text-[10px] text-slate-600 mt-1">Mostly stand losses post-hike</div>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 mb-4">
+                <p className="text-xs md:text-sm text-slate-400 leading-relaxed">
+                  Revenue still grew to €1.87M (+€245k) — but only because new business surged +64% (€462k → €759k) while existing-partner revenue fell €51k. <strong className="text-slate-300">New money replaced old instead of compounding on it</strong>, and the hall-refill consumed the sales bandwidth meant for focus events and premium inventory.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-emerald-950/20 border border-emerald-900/40 mt-auto">
+                <p className="text-xs md:text-sm text-slate-400 leading-relaxed">
+                  <strong className="text-emerald-300">The counterexample:</strong> Hub88 grew +€70.5k (€94k → €164.5k) absorbing a higher headline price, and Gaming Malta grew +€30k on new media zone inventory. <strong className="text-slate-300">Increases stick when value is delivered and evidenced — that is the entire 2027 thesis.</strong>
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-yellow-950/30 border border-yellow-900/50 rounded-2xl p-5 md:p-8 flex flex-col relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-48 h-48 md:w-64 md:h-64 bg-yellow-500/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-yellow-900/50 rounded-xl flex items-center justify-center mb-4 md:mb-6 border border-yellow-800/50">
+                <ShieldCheck className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
+              </div>
+              <h3 className="text-lg md:text-xl font-bold mb-4 text-yellow-100">How We Defend 2027</h3>
+              <ul className="space-y-4 text-yellow-200/80 text-sm md:text-base flex-1">
+                <li className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-yellow-500 mt-2 shrink-0" />
+                  <p><strong className="text-yellow-100">Protect the rebook base:</strong> identical scope renews at 2026 pricing inside the rebook window (one month post-event, flexing to mid-August). Positive signals are already in: MyGamingConsultants, Hammer, LumaLinks, JibTelecom, Tequity and others want to return — if we don't shock them again.</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-yellow-500 mt-2 shrink-0" />
+                  <p><strong className="text-yellow-100">Win the calendar:</strong> SBC Amsterdam (end April) and SiGMA Malta (early May) land immediately before us — three major European conferences in ~a month, with competitors using free-stand incentives to drain budgets first. Even happy partners may cut spend: a budget constraint, not a satisfaction issue. Early rebook conversion is the front line.</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-yellow-500 mt-2 shrink-0" />
+                  <p><strong className="text-yellow-100">Grow density, not volume:</strong> the venue caps near 6,000 attendees. Growth is demonstrated through delegate seniority and quality within that cap — which is exactly the data the proof-of-value programme captures.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideCostBase() {
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Cost Base &amp; Margin Hurdle</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">The 2027 budget projection holds inside the +10% cost cap. Profit must grow 10-15%.</p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6 flex-1">
+
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl flex flex-col">
+              <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6 text-slate-200">The 2027 Event Cost Base</h3>
+
+              <div className="space-y-4 mb-6 md:mb-8">
+                <div className="flex justify-between items-center pb-2 border-b border-slate-800">
+                  <span className="text-slate-400 text-sm md:text-base">Event costs — 2025 actual</span>
+                  <span className="text-slate-200 font-mono text-sm md:text-base">€955,816</span>
+                </div>
+                <div className="flex justify-between items-center pb-2 border-b border-slate-800">
+                  <span className="text-slate-400 text-sm md:text-base">Event costs — 2026 budget</span>
+                  <span className="text-slate-200 font-mono text-sm md:text-base">€1,173,700</span>
+                </div>
+                <div className="flex justify-between items-center pb-2 border-b border-slate-800">
+                  <span className="text-slate-400 text-sm md:text-base">Event costs — 2027 projection <span className="text-emerald-400 text-xs font-bold">(+8%)</span></span>
+                  <span className="text-slate-200 font-mono text-sm md:text-base">€1,267,998</span>
+                </div>
+                <div className="flex justify-between items-center pb-2 border-b border-slate-800">
+                  <span className="text-slate-400 text-sm md:text-base">Sales commission (5% existing / 10% new)</span>
+                  <span className="text-slate-200 font-mono text-sm md:text-base">€165,000</span>
+                </div>
+                <div className="flex justify-between items-center pt-2">
+                  <span className="text-yellow-400 font-bold uppercase tracking-wider text-xs md:text-sm">2027 Cost Base Incl. Commission</span>
+                  <span className="text-yellow-400 font-bold text-lg md:text-xl font-mono">€1,432,998</span>
+                </div>
+              </div>
+
+              <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-auto">
+                <p className="text-xs md:text-sm text-slate-400 leading-relaxed">
+                  The +8% projection sits inside the <strong className="text-slate-200">+10% hard cap</strong> set by Finance. 2026 invoices are still landing, so the base may move slightly. Salaries and central overhead are held separately — Ana to confirm for the full P&amp;L view.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl flex flex-col">
+              <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6 text-slate-200">The Profit-Growth Requirement</h3>
+
+              <div className="space-y-4 mb-6 md:mb-8">
+                <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 flex justify-between items-center">
+                  <div>
+                    <div className="text-slate-300 font-bold mb-1 text-sm md:text-base">2026 Event Contribution</div>
+                    <div className="text-xs text-slate-500">€1.87M sponsorship + €188k tickets − €1.32M costs</div>
+                  </div>
+                  <div className="text-slate-200 font-mono text-lg md:text-xl">~€735k</div>
+                </div>
+
+                <div className="flex justify-center my-2 text-slate-500">
+                  <div className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center font-bold">+</div>
+                </div>
+
+                <div className="p-4 rounded-xl bg-amber-950/20 border border-amber-900/50 flex justify-between items-center shadow-inner">
+                  <div>
+                    <div className="text-amber-400 font-bold mb-1 uppercase tracking-widest text-xs md:text-sm">Required 2027 Contribution (+10-15%)</div>
+                  </div>
+                  <div className="text-amber-400 font-bold font-mono text-xl md:text-2xl">€809k - €845k</div>
+                </div>
+              </div>
+
+              <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-auto">
+                <p className="text-xs md:text-sm text-slate-400 leading-relaxed">
+                  Against the €1.433M cost base, the profit-growth band requires roughly <strong className="text-slate-200">€2.24M - €2.28M total revenue</strong>. The €2.60M combined plan clears it with headroom — and even a conservative downside case still lands at the top of the band (see sensitivity).
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      );
+    }
+
+    function SlideTicketing() {
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Ticketing: €188k → €300k</h2>
+          <p className="text-slate-400 mb-6 text-base md:text-lg">A simplified ladder, measured price steps, and a hard reduction in free-ticket leakage.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6">
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col">
+              <div className="text-xs md:text-sm font-bold text-slate-500 uppercase tracking-widest mb-2">The Entry Anchor</div>
+              <h3 className="text-xl md:text-2xl font-bold text-slate-300 mb-1">Conference Only</h3>
+              <div className="space-y-2 mb-4 flex-1 mt-4">
+                <div className="flex justify-between text-sm"><span className="text-slate-500">2026</span><span className="text-slate-500 font-mono line-through">€95</span></div>
+                <div className="flex justify-between text-sm"><span className="text-slate-500">2027</span><span className="text-slate-300 font-mono">€125</span></div>
+              </div>
+              <div className="text-[11px] md:text-xs text-slate-500 border-t border-slate-800 pt-3">+32% on a low base. Exists to anchor the ladder and convert locals.</div>
+            </div>
+
+            <div className="bg-slate-900 border border-amber-600/50 rounded-2xl p-5 md:p-6 flex flex-col relative overflow-hidden shadow-lg shadow-amber-900/20">
+              <div className="absolute top-0 left-0 w-full h-1 bg-amber-500"></div>
+              <div className="text-xs md:text-sm font-bold text-amber-500 uppercase tracking-widest mb-2">The Revenue Engine</div>
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-1">Full Event Pass</h3>
+              <div className="space-y-2 mb-4 flex-1 mt-4">
+                <div className="flex justify-between text-sm"><span className="text-slate-500">2026</span><span className="text-slate-500 font-mono line-through">€399</span></div>
+                <div className="flex justify-between text-sm"><span className="text-slate-500">2027</span><span className="text-amber-400 font-mono">€475</span></div>
+              </div>
+              <div className="text-[11px] md:text-xs text-amber-200/60 border-t border-slate-700 pt-3">+19%. Core paid product. Volume conversion, not price alone, carries the target.</div>
+            </div>
+
+            <div className="bg-slate-900 border border-indigo-500/30 rounded-2xl p-5 md:p-6 flex flex-col relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-indigo-500"></div>
+              <div className="text-xs md:text-sm font-bold text-indigo-400 uppercase tracking-widest mb-2">The Margin Tier</div>
+              <h3 className="text-xl md:text-2xl font-bold text-indigo-100 mb-1">Premium Event Pass</h3>
+              <div className="space-y-2 mb-4 flex-1 mt-4">
+                <div className="flex justify-between text-sm"><span className="text-slate-500">2026</span><span className="text-slate-500 font-mono line-through">€999</span></div>
+                <div className="flex justify-between text-sm"><span className="text-slate-500">2027</span><span className="text-indigo-300 font-mono">€1,149</span></div>
+              </div>
+              <div className="text-[11px] md:text-xs text-indigo-200/60 border-t border-indigo-900/50 pt-3">+15%. Includes all focus events. Requires a visibly elevated VIP experience to hold the price.</div>
+            </div>
+
+            <div className="bg-slate-900 border border-emerald-500/30 rounded-2xl p-5 md:p-6 flex flex-col relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-emerald-500"></div>
+              <div className="text-xs md:text-sm font-bold text-emerald-400 uppercase tracking-widest mb-2">The Simplifier</div>
+              <h3 className="text-xl md:text-2xl font-bold text-emerald-100 mb-1">Focus Pass</h3>
+              <div className="space-y-2 mb-4 flex-1 mt-4">
+                <div className="flex justify-between text-sm"><span className="text-slate-500">2026 (per event)</span><span className="text-slate-500 font-mono line-through">€199</span></div>
+                <div className="flex justify-between text-sm"><span className="text-slate-500">2027 (all focus events)</span><span className="text-emerald-300 font-mono">€245</span></div>
+              </div>
+              <div className="text-[11px] md:text-xs text-emerald-200/60 border-t border-emerald-900/50 pt-3">One pass, every focus event, properly fenced: no Summit access. Upsell path to Full Event.</div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+            <div className="bg-slate-950 border border-slate-800 rounded-2xl p-5 shadow-inner lg:col-span-2 flex flex-col justify-center">
+              <h3 className="text-base md:text-lg font-semibold text-slate-200 mb-3 flex items-center gap-2">
+                <TrendingUp className="w-5 h-5 text-amber-500" />
+                The €300k Bridge
+              </h3>
+              <div className="space-y-1.5 text-xs md:text-sm font-mono">
+                <div className="flex justify-between py-1 text-slate-300">
+                  <span>2026 ticket revenue (achieved)</span>
+                  <span>€188,000</span>
+                </div>
+                <div className="flex justify-between py-1 text-slate-300">
+                  <span>Price ladder uplift (+15% to +32% by tier)</span>
+                  <span>~ +€35,000</span>
+                </div>
+                <div className="flex justify-between py-1 text-slate-300">
+                  <span>Paid conversion of comped volume + simplified structure</span>
+                  <span>~ +€55,000</span>
+                </div>
+                <div className="flex justify-between py-1 text-slate-300">
+                  <span>Focus Pass consolidation + Premium upsell</span>
+                  <span>~ +€22,000</span>
+                </div>
+                <div className="flex justify-between py-1.5 border-t border-slate-700 mt-1 font-bold text-white text-base">
+                  <span>2027 Marketing Ticket Target</span>
+                  <span className="text-[#50fa7b]">€300,000</span>
+                </div>
+              </div>
+              <p className="text-[10px] text-cyan-400/80 mt-2 font-sans font-medium">
+                *Conservative net floor of €209k is used in the downside sensitivity. Operators and speakers stay free — the comped operator base is part of the sponsor value proposition.*
+              </p>
+            </div>
+
+            <div className="bg-amber-950/20 border border-amber-900/50 rounded-2xl p-5 flex flex-col justify-center">
+              <h3 className="text-xs md:text-sm font-bold text-amber-500 uppercase tracking-widest mb-3">Free Ticket Discipline</h3>
+              <p className="text-xs md:text-sm text-slate-400 leading-relaxed">
+                We give away significant volume today, then market an event "at capacity". 2027 sets an internal comp policy, holds to it, and reports paid-vs-comped mix monthly. Sponsor pass entitlements move to a clean formula: <strong className="text-amber-400">1 Full Event Pass per €8k net spend</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlidePremiumReset() {
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Premium Asset Repricing</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Two corrections in opposite directions: the lanyard goes up with evidence, the rooftop comes off a failed list price.</p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-8">
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-amber-900/30 rounded-lg flex items-center justify-center border border-amber-800/50">
+                  <TrendingUp className="w-5 h-5 text-amber-500" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-slate-200">The Lanyard Correction</h3>
+              </div>
+              <p className="text-slate-400 text-xs md:text-sm mb-4">The most underpriced asset on the 2026 card. Every delegate wears it, all day, both days.</p>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-slate-800">
+                  <span className="text-slate-300 text-xs md:text-sm">2026 list (shared slot)</span>
+                  <div className="text-right">
+                    <div className="text-white font-medium text-xs md:text-sm">€19-20,000</div>
+                    <div className="text-[10px] md:text-xs text-slate-500">sold at ~€14.5k actual</div>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-amber-950/30 rounded-lg border border-amber-900/50 shadow-inner">
+                  <span className="text-amber-200 font-semibold text-xs md:text-sm">2027: Exclusive-first</span>
+                  <div className="text-right">
+                    <div className="text-amber-400 font-bold text-sm md:text-lg">€50,000</div>
+                    <div className="text-[10px] md:text-xs text-amber-400/70 font-mono">Floor €40,000</div>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-slate-800">
+                  <span className="text-slate-300 text-xs md:text-sm">Fallback if soft by agreed deadline</span>
+                  <div className="text-right">
+                    <div className="text-white font-medium text-xs md:text-sm">2 x €30,000 co-sponsor slots</div>
+                  </div>
+                </div>
+              </div>
+              <p className="text-[11px] md:text-sm text-slate-400 mt-5 leading-relaxed">
+                <strong className="text-slate-200">Why it holds:</strong> NYC carries 2 x €30k; SiGMA benchmarks €35-50k per slot. The increase ships with the evidence pack — verified attendance, footfall and seniority data — so sales never again has to defend a number with nothing behind it.
+              </p>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-rose-900/30 rounded-lg flex items-center justify-center border border-rose-800/50">
+                  <TrendingDown className="w-5 h-5 text-rose-500" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-slate-200">The Rooftop Reset</h3>
+              </div>
+              <p className="text-slate-400 text-xs md:text-sm mb-4">Squeezing the rooftop from €55k to €100k cost €55k (Pragmatic Play exit) plus €75k (BetConstruct reduction) — over €130k of churned value from two accounts, with Day 2 left empty.</p>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center p-3 bg-rose-950/30 rounded-lg border border-rose-900/50">
+                  <span className="text-rose-200 text-xs md:text-sm">Day 1 + Day 2 Exclusive @ €100k</span>
+                  <div className="text-right">
+                    <div className="text-rose-400 font-bold text-xs md:text-sm">0 genuine paid sales</div>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-slate-800">
+                  <span className="text-slate-300 text-xs md:text-sm">2027: Exclusive takeover</span>
+                  <div className="text-right">
+                    <div className="text-white font-medium text-xs md:text-sm">POA — cost-led bespoke quote</div>
+                    <div className="text-[10px] md:text-xs text-slate-500">venue, F&amp;B, production costed before proposal</div>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-slate-800">
+                  <span className="text-slate-300 text-xs md:text-sm">2027: Non-exclusive slots</span>
+                  <div className="text-right">
+                    <div className="text-white font-medium text-xs md:text-sm">Retire fixed €25k; rebuild cost-led</div>
+                    <div className="text-[10px] md:text-xs text-slate-500">5 sold @ €25k on Day 1 in 2026</div>
+                  </div>
+                </div>
+              </div>
+              <p className="text-[11px] md:text-sm text-slate-400 mt-5 leading-relaxed">
+                <strong className="text-slate-200">New deliverables in build:</strong> a private VIP networking area through the terrace archway into the second courtyard (queue-jump access, dedicated bar — flagged by sales as an easy premium upsell), drone show options, and the Noma Island floating venue concept give the rooftop a genuinely premium story before any price is re-anchored. Sales also flags rooftop venue fatigue by Day 3 — vary the pre-reg venue.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-slate-950 border-l-8 border-amber-500 rounded-r-2xl p-5 md:p-6 mt-auto shadow-md border border-slate-900 border-l-amber-500">
+            <div className="flex items-center gap-2 mb-2 md:mb-3">
+              <ShieldCheck className="w-4 h-4 md:w-5 md:h-5 text-amber-500" />
+              <h3 className="text-[10px] md:text-xs font-black text-amber-500 uppercase tracking-[0.2em] drop-shadow-sm">Message to Leadership</h3>
+            </div>
+            <p className="text-slate-200 text-sm md:text-lg leading-relaxed italic font-serif">
+              "No evidence, no increase. Every 2027 price move above 20% carries a buyer-facing value rationale, and assets that failed at a list price are re-scoped and cost-led — never silently re-listed."
+            </p>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideStands() {
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Stands: Protect the Volume Engine</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">The 3x3 is the runaway volume product — and the segment that churned hardest after the +40% hike. Restraint is deliberate.</p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6">
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl">
+              <h3 className="text-base md:text-lg font-semibold text-slate-200 mb-4">2027 Stand Pricing</h3>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-slate-800 border-l-4 border-l-amber-500">
+                  <div>
+                    <span className="text-slate-200 text-xs md:text-sm font-semibold">3x3 Shell Scheme</span>
+                    <div className="text-[10px] md:text-xs text-slate-500">~47 sold in 2026, avg €13,961</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-white font-medium text-xs md:text-sm">€14.5k → <span className="text-amber-400 font-bold">€18k</span></div>
+                    <div className="text-[10px] md:text-xs text-slate-500">+24% · floor €15k</div>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-slate-800">
+                  <div>
+                    <span className="text-slate-200 text-xs md:text-sm font-semibold">6x3 Shell Scheme</span>
+                    <div className="text-[10px] md:text-xs text-slate-500">9 sold @ €23k</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-white font-medium text-xs md:text-sm">€23k → <span className="text-amber-400 font-bold">€30k</span></div>
+                    <div className="text-[10px] md:text-xs text-slate-500">+30% · floor €27k</div>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-slate-800">
+                  <div>
+                    <span className="text-slate-200 text-xs md:text-sm font-semibold">Lower Level Stand</span>
+                    <div className="text-[10px] md:text-xs text-slate-500">5 sold @ €6.5k · ops reviewing backdrop-only format</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-white font-medium text-xs md:text-sm">€6.5k → <span className="text-amber-400 font-bold">€8k</span></div>
+                    <div className="text-[10px] md:text-xs text-slate-500">+23% · floor €6.5k</div>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-rose-950/20 rounded-lg border border-rose-900/40 opacity-80">
+                  <div>
+                    <span className="text-rose-200 text-xs md:text-sm font-semibold">Space-Only 4x4 / 6x3 / 4x8</span>
+                    <div className="text-[10px] md:text-xs text-slate-500">cancelled on the 2027 ops product list</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-rose-300 font-medium text-xs md:text-sm">Retired</div>
+                    <div className="text-[10px] md:text-xs text-slate-500">re-introduce only with Ops sign-off</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl flex flex-col">
+              <h3 className="text-base md:text-lg font-semibold text-slate-200 mb-4">What Every Stand Now Includes</h3>
+              <ul className="space-y-3 flex-1">
+                <li className="flex gap-3 text-[11px] md:text-sm text-slate-400 items-start">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0" />
+                  <p><strong className="text-slate-200 font-medium">Lead retrieval scanner included</strong> — low cost to us, immediately answers "I didn't meet the right people" with data, and gives us lead-volume visibility per exhibitor.</p>
+                </li>
+                <li className="flex gap-3 text-[11px] md:text-sm text-slate-400 items-start">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0" />
+                  <p><strong className="text-slate-200 font-medium">Enhanced exhibitor profile</strong> — 250-word profile, logo and attachments on the interactive floor plan (ExpoFP-class tooling) plus a dedicated exhibitor page path on the website. A virtual booth before the event.</p>
+                </li>
+                <li className="flex gap-3 text-[11px] md:text-sm text-slate-400 items-start">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0" />
+                  <p><strong className="text-slate-200 font-medium">AI-matched leads</strong> — exhibitors supply their ideal customer profile and receive a personalised target-attendee hit-list ~1 week before the event. The late-2026 pilot landed well; now productised across exhibitors and sponsors above threshold.</p>
+                </li>
+                <li className="flex gap-3 text-[11px] md:text-sm text-slate-400 items-start">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0" />
+                  <p><strong className="text-slate-200 font-medium">Post-event proof report</strong> — footfall, scans, session attendance estimates and reach, delivered as standard.</p>
+                </li>
+              </ul>
+              <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 mt-4">
+                <p className="text-xs md:text-sm text-slate-400 leading-relaxed">
+                  <strong className="text-slate-200">Downstairs zone:</strong> operator and affiliate stands were given away free or at cost in 2026 (13 stands). Carolina, Ross and Mateus gather paid-intent feedback before we commit the zone to the 2027 model — it stays out of the base case until then.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-amber-950/20 border border-amber-900/50 rounded-xl p-4">
+            <p className="text-xs md:text-sm text-amber-100/80">
+              The small-stand tail lost <strong className="text-amber-400">€233k</strong> in 2026 — more than the four headline account losses combined. The +24% step is the ceiling of what this segment absorbs, and only with the proof bundle attached.
+            </p>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideRevenueRoutes() {
+      const routes = [
+        { route: "1. Protect same-scope rebook", amount: "€1,028,932", how: "Existing sponsors renew the same product and scope at 2026 pricing inside the rebook window.", proof: "Named rebook list with value by account; sales health-check (likely / unlikely / unsure) once the team is back online." },
+        { route: "2. Backfill churned inventory", amount: "€740,000", how: "Freed booth, content and sponsorship inventory resold to new buyers at 2027 pricing.", proof: "Churn-risk list, replacement accounts and weighted pipeline by product." },
+        { route: "3. Expand existing sponsors", amount: "€170,000", how: "Rebookers add larger stands, extra content, premium branding or package upgrades at 2027 list.", proof: "Upgrade plan and next-best package per top account." },
+        { route: "4. Sell scarce premium assets", amount: "€220,000", how: "Headline, main stage, lanyard, badge, media and premium branding sold with the evidence pack.", proof: "Named owner per premium asset; weekly deal movement." },
+        { route: "5. Add controlled new revenue", amount: "€141,068", how: "Side events, floor takeovers, bespoke activations and new productisation, quoted cost-led.", proof: "Ops-approved cost base before proposal; commercial approval before sale." }
+      ];
+
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Routes to €2.30M</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Five controllable routes, each with an owner and a weekly proof point — not one optimistic catalogue number.</p>
+
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden mb-6 shadow-xl">
+            <div className="overflow-x-auto w-full table-container">
+              <table className="w-full text-left text-xs md:text-sm min-w-[860px]">
+                <thead className="bg-slate-950 border-b border-slate-800 text-slate-400 uppercase">
+                  <tr>
+                    <th className="p-4 font-medium min-w-[200px]">Route</th>
+                    <th className="p-4 font-medium text-right min-w-[110px]">Contribution</th>
+                    <th className="p-4 font-medium min-w-[260px]">How It Is Delivered</th>
+                    <th className="p-4 font-medium min-w-[240px]">Proof Required</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-800/50">
+                  {routes.map((r, i) => (
+                    <tr key={i} className="hover:bg-slate-800/30 transition-colors">
+                      <td className="p-4 font-bold text-slate-200">{r.route}</td>
+                      <td className="p-4 font-mono text-amber-400 text-right">{r.amount}</td>
+                      <td className="p-4 text-slate-400 leading-relaxed">{r.how}</td>
+                      <td className="p-4 text-slate-400 leading-relaxed">{r.proof}</td>
+                    </tr>
+                  ))}
+                  <tr className="bg-slate-800/40 font-bold border-t border-slate-700">
+                    <td className="p-4 text-slate-100 uppercase tracking-tighter">Total Sponsorship Target</td>
+                    <td className="p-4 font-mono text-amber-400 text-right">€2,300,000</td>
+                    <td className="p-4 text-slate-500 text-[10px] md:text-xs" colSpan="2">+23% vs €1.87M achieved 2026 · +5% vs the missed €2.19M 2026 target · Malta Enterprise / Vision 2050 revenue now counts toward this number.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <div className="bg-slate-900 border border-emerald-900/50 rounded-2xl p-5 md:p-6">
+              <h3 className="text-base md:text-lg font-bold text-emerald-300 mb-3">Why This Is Achievable</h3>
+              <ul className="space-y-2 text-xs md:text-sm text-slate-400">
+                <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" /><span>Nearly half the target is protected rebook revenue at proven prices, with positive rebook signals already in.</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" /><span>The new-revenue requirement is spread across four routes rather than stacked on price increases.</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" /><span>No route depends on weak-demand products selling at the top of the range.</span></li>
+              </ul>
+            </div>
+            <div className="bg-slate-900 border border-rose-900/50 rounded-2xl p-5 md:p-6">
+              <h3 className="text-base md:text-lg font-bold text-rose-300 mb-3">Where It Can Fail</h3>
+              <ul className="space-y-2 text-xs md:text-sm text-slate-400">
+                <li className="flex items-start gap-2"><XCircle className="w-4 h-4 text-rose-400 mt-0.5 shrink-0" /><span>Rebook commitments not confirmed early enough against the SiGMA / SBC / MAC calendar squeeze.</span></li>
+                <li className="flex items-start gap-2"><XCircle className="w-4 h-4 text-rose-400 mt-0.5 shrink-0" /><span>Sales discounts new inventory back toward 2026 levels, or premium assets sit with no named owner.</span></li>
+                <li className="flex items-start gap-2"><XCircle className="w-4 h-4 text-rose-400 mt-0.5 shrink-0" /><span>Cost-led activations proposed before Ops confirms costs — margin leaks deal by deal.</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideScorecard() {
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">2027 Official Revenue Scorecard</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Clear accountability lines for Sales and Marketing against the €1.433M event cost base.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
+            <div className="bg-slate-900 border border-amber-500/50 rounded-2xl p-5 md:p-6 shadow-xl relative overflow-hidden flex flex-col">
+              <div className="absolute top-0 left-0 w-2 h-full bg-amber-500"></div>
+              <div className="flex items-center gap-3 mb-6 ml-2">
+                <div className="p-2 md:p-3 bg-amber-900/40 rounded-xl border border-amber-500/30">
+                  <Award className="w-5 h-5 md:w-6 md:h-6 text-amber-400" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-slate-200">Sales Revenue Target (Partnerships)</h3>
+              </div>
+              <div className="space-y-4 ml-2 flex-1">
+                <div className="flex justify-between items-end pb-3 border-b border-slate-800">
+                  <div>
+                    <div className="text-xs md:text-sm text-slate-400 font-medium">2026 Achieved</div>
+                    <div className="text-[10px] md:text-[11px] text-slate-500 mt-1">Against a missed €2.19M target</div>
+                  </div>
+                  <div className="text-xl md:text-2xl font-bold font-mono text-slate-400">€1,870,785</div>
+                </div>
+                <div className="flex justify-between items-end pb-2">
+                  <div>
+                    <div className="text-xs md:text-sm text-amber-500 font-bold">2027 Operating Target</div>
+                    <div className="text-[10px] md:text-[11px] text-amber-400/60 mt-1">+23% vs achieved · incl. Malta Enterprise revenue</div>
+                  </div>
+                  <div className="text-xl md:text-2xl font-bold font-mono text-amber-400">€2,300,000</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-slate-900 border border-indigo-500/50 rounded-2xl p-5 md:p-6 shadow-xl relative overflow-hidden flex flex-col">
+              <div className="absolute top-0 left-0 w-2 h-full bg-indigo-500"></div>
+              <div className="flex items-center gap-3 mb-6 ml-2">
+                <div className="p-2 md:p-3 bg-indigo-900/40 rounded-xl border border-indigo-500/30">
+                  <TicketIcon className="w-5 h-5 md:w-6 md:h-6 text-indigo-400" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-slate-200">Marketing Revenue Target (Tickets)</h3>
+              </div>
+              <div className="space-y-4 ml-2 flex-1">
+                <div className="flex justify-between items-end pb-3 border-b border-slate-800">
+                  <div>
+                    <div className="text-xs md:text-sm text-slate-400 font-medium">2026 Achieved</div>
+                    <div className="text-[10px] md:text-[11px] text-slate-500 mt-1">With heavy comped volume</div>
+                  </div>
+                  <div className="text-xl md:text-2xl font-bold font-mono text-slate-400">€188,000</div>
+                </div>
+                <div className="flex justify-between items-end pb-2">
+                  <div>
+                    <div className="text-xs md:text-sm text-indigo-400 font-bold">2027 Operating Target</div>
+                    <div className="text-[10px] md:text-[11px] text-indigo-300/60 mt-1">Conservative net floor €209k in downside case</div>
+                  </div>
+                  <div className="text-xl md:text-2xl font-bold font-mono text-indigo-400">€300,000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-slate-950 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-inner relative overflow-hidden mb-6">
+            <h3 className="text-base md:text-lg font-semibold text-slate-200 mb-4 flex items-center gap-2">
+              <Calculator className="w-5 h-5 text-emerald-500" />
+              The Bottom Line vs. the €1.433M Cost Base
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              <div className="space-y-2">
+                <div className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest mb-3 border-b border-slate-800 pb-2">Conservative Case (Sales −10%, Tickets at Net Floor)</div>
+                <div className="flex justify-between text-xs md:text-sm text-slate-300">
+                  <span>Revenue (€2.07M + €209k)</span>
+                  <span className="font-mono">€2,279,000</span>
+                </div>
+                <div className="flex justify-between text-xs md:text-sm text-rose-400/80">
+                  <span>Event Costs + Commission</span>
+                  <span className="font-mono">(€1,432,998)</span>
+                </div>
+                <div className="flex justify-between pt-2 border-t border-slate-700 font-bold text-sm md:text-base">
+                  <span className="text-white">Event Contribution</span>
+                  <span className="text-emerald-400 font-mono">~€846,000 <span className="text-[10px] text-slate-500">(+15% vs 2026)</span></span>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <div className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest mb-3 border-b border-slate-800 pb-2">If We Hit Both Targets</div>
+                <div className="flex justify-between text-xs md:text-sm text-slate-300">
+                  <span>Revenue (€2.30M + €300k)</span>
+                  <span className="font-mono">€2,600,000</span>
+                </div>
+                <div className="flex justify-between text-xs md:text-sm text-rose-400/80">
+                  <span>Event Costs + Commission</span>
+                  <span className="font-mono">(€1,432,998)</span>
+                </div>
+                <div className="flex justify-between pt-2 border-t border-slate-700 font-bold text-sm md:text-base">
+                  <span className="text-white">Event Contribution</span>
+                  <span className="text-emerald-400 font-mono">~€1,167,000 <span className="text-[10px] text-slate-500">(+59% vs 2026)</span></span>
+                </div>
+              </div>
+            </div>
+            <div className="mt-6 pt-4 border-t border-slate-800 text-center">
+              <p className="text-[10px] md:text-xs text-slate-400 italic">
+                *2026 contribution baseline ~€735k (€2.06M revenue − €1.32M budgeted cost). Revenue per the churn analysis (€1,870,785); the live sales sheet shows €1.89M with late invoices — reconcile before final sign-off. Even the conservative case clears Finance's +10-15% profit-growth requirement. Salaries and central overhead are held separately — Ana to confirm for the full P&amp;L.*
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-lg">
+            <h3 className="text-base md:text-lg font-semibold text-slate-200 mb-4">Sensitivity (Sponsorship Target)</h3>
+            <div className="overflow-x-auto w-full table-container">
+              <table className="w-full text-left text-xs md:text-sm min-w-[500px]">
+                <thead className="border-b border-slate-800 text-slate-400 uppercase">
+                  <tr>
+                    <th className="pb-2 font-medium pl-2">Scenario</th>
+                    <th className="pb-2 font-medium">Adjustment</th>
+                    <th className="pb-2 font-medium text-right pr-2">Sponsorship Revenue</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-800/50 text-slate-300">
+                  <tr className="bg-red-950/10">
+                    <td className="py-2 pl-2">Conservative</td>
+                    <td className="py-2 text-red-400/80">−10% (rebook slippage, slower backfill)</td>
+                    <td className="py-2 pr-2 text-red-400 font-mono text-right">~€2,070,000</td>
+                  </tr>
+                  <tr className="bg-amber-950/20">
+                    <td className="py-2 pl-2 text-amber-50">Operating Target</td>
+                    <td className="py-2 text-slate-400 italic">As modelled across the 5 routes</td>
+                    <td className="py-2 pr-2 text-amber-400 font-mono text-right font-bold underline underline-offset-4 decoration-amber-800">€2,300,000</td>
+                  </tr>
+                  <tr className="bg-yellow-950/10">
+                    <td className="py-2 pl-2">Optimistic</td>
+                    <td className="py-2 text-yellow-400/80">+10% (premium assets land, upside unlocks)</td>
+                    <td className="py-2 pr-2 text-yellow-400 font-mono text-right">~€2,530,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideApprovalRequested() {
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6">Approval Requested Today</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">We are seeking sign-off on the commercial framework, targets and pricing logic — not final ops-dependent inventory confirmation.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-6">
+            <div className="flex flex-col gap-4">
+              <div className="bg-slate-900 border border-indigo-500/30 rounded-xl p-5 md:p-6 shadow-lg relative overflow-hidden h-full">
+                <div className="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
+                <h4 className="font-bold text-white mb-4 flex items-center gap-2 text-base md:text-lg">
+                  <CheckSquare className="w-4 h-4 md:w-5 md:h-5 text-indigo-400" />
+                  Approve Today
+                </h4>
+                <ul className="space-y-3 text-xs md:text-sm text-slate-300">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
+                    <span><strong>Targets:</strong> €2.30M sales partnerships (+23% vs achieved) and €300k marketing tickets, with Malta Enterprise / Vision 2050 revenue counting toward target.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
+                    <span><strong>Pricing model:</strong> 4-part rate card (rebook / 2027 list / floor / cost-led quote) with ~15% average movement and shock controls above +20%.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
+                    <span><strong>Lanyard:</strong> exclusive-first at €50k (floor €40k); fallback to 2 x €30k co-sponsor slots by an agreed deadline.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
+                    <span><strong>Deal desk:</strong> 10% single-deal discount cap, 15% cumulative; floors enforced; negotiation flexes via bundles, not per-deal deliverable swaps.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
+                    <span><strong>Diamond tier:</strong> €120k+ with senior servicing, curated introductions and VIP upgrades — a credible path above €100k.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
+                    <span><strong>Monthly pacing:</strong> phased sales and ticket targets with checkpoints (45% by end Sep, 69% by year-end, 94% by end March) and defined early-warning triggers.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
+                    <span><strong>Forecast governance:</strong> weekly route-level pipeline review, monthly re-forecast to Finance with KPI grid (retention, yield, coverage, paid:comp ratio).</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
+                    <span><strong>Rebooking:</strong> 2026 pricing for identical scope only, window one month post-event (flex to mid-August); 2028 guardrail approved so future renewals anchor to the future rate card.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
+                    <span><strong>Proof-of-value programme:</strong> lead retrieval in every stand, session badge scanning, footfall and seniority reporting, exhibitor profiles, ticket entitlement at 1 pass per €8k net spend.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <div className="bg-slate-900 border border-rose-500/30 rounded-xl p-5 md:p-6 shadow-lg relative overflow-hidden h-full">
+                <div className="absolute top-0 left-0 w-1 h-full bg-rose-500"></div>
+                <h4 className="font-bold text-white mb-4 flex items-center gap-2 text-base md:text-lg">
+                  <XCircle className="w-4 h-4 md:w-5 md:h-5 text-rose-400" />
+                  Deferred / Requires Separate Approval
+                </h4>
+                <ul className="space-y-3 text-xs md:text-sm text-slate-300">
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                    <span><strong>Noma Island floating venue:</strong> exceptional rooftop-adjacent activation (~€50k package, F&amp;B on top). Cost-led quote and Ops feasibility before any sale.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                    <span><strong>Outdoor activation zone relocation:</strong> moving from the parking area to the rooftop terrace (~€25k cost vs €50k price) needs the MCC operational discussion first.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                    <span><strong>Focus event structure:</strong> sales recommends consolidating focus events under the Valletta umbrella as a 3-day event (expo Wed/Thu, conference over three days); the alternative is a single stand-alone day. Strategic partners per event (Malta Enterprise live for Startup &amp; Investor; new affiliate partner needed) and the bank-holiday clash also to be resolved. Decision required.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                    <span><strong>Registration zone footprint:</strong> redundant by ~1pm on Day 1 — shrink it to release additional booth space, respecting the repeat sponsor's artwork investment.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                    <span><strong>NEXTPredict scale:</strong> align with Pier on small side-conference vs 1,000-delegate ambition before pricing the Prediction Markets focus.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                    <span><strong>Badge segmentation:</strong> operator / affiliate segment badges at €18k per slot only if attendee data supports the split.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                    <span><strong>Downstairs operator / affiliate zone:</strong> excluded from base case pending paid-intent feedback from 2026 free exhibitors.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                    <span><strong>Room 9 press lounge + media sponsor:</strong> productise with the media team; natural fit for a government partner.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 md:p-5 flex flex-col justify-center">
+            <p className="text-xs md:text-sm text-slate-300 font-medium mb-3">
+              "This framework is built on 2026 actuals, the quantified churn bill, the +10% cost cap, and the conservative exclusion of unproven upside."
+            </p>
+            <p className="text-[11px] md:text-xs text-amber-500 flex items-start md:items-center gap-2">
+              <Clock className="w-3.5 h-3.5 mt-0.5 md:mt-0 shrink-0" />
+              <span><strong>Next 7 Days:</strong> lock the rebook exposure list, confirm ops costs on packaged products with Desi and Olivia, agree the bundle set, and issue the rate card so sales opens renewals against clean rate-card logic rather than provisional pricing.</span>
+            </p>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideProfitMargin() {
+      const scenarios = [
+        { name: "Conservative", rev: "€2,279,000", cost: "(€1,432,998)", contrib: "€846,000", margin: "37.1%", tone: "text-red-400", bg: "bg-red-950/10", note: "Sales −10%, tickets at net floor" },
+        { name: "Base Plan", rev: "€2,600,000", cost: "(€1,432,998)", contrib: "€1,167,000", margin: "44.9%", tone: "text-amber-400", bg: "bg-amber-950/20", note: "Both targets hit" },
+        { name: "Optimistic", rev: "€2,830,000", cost: "(€1,432,998)", contrib: "€1,397,000", margin: "49.4%", tone: "text-yellow-400", bg: "bg-yellow-950/10", note: "Sales +10%, tickets on target" }
+      ];
+
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Profit Margin</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Margin expands 9 points because revenue grows +26% against a cost base capped at +8% — not because of heroic assumptions.</p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6">
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl">
+              <h3 className="text-base md:text-lg font-semibold text-slate-200 mb-4">Event Contribution Margin by Scenario</h3>
+              <div className="overflow-x-auto w-full table-container">
+                <table className="w-full text-left text-xs md:text-sm min-w-[520px]">
+                  <thead className="border-b border-slate-800 text-slate-400 uppercase">
+                    <tr>
+                      <th className="pb-2 font-medium pl-2">Scenario</th>
+                      <th className="pb-2 font-medium text-right">Revenue</th>
+                      <th className="pb-2 font-medium text-right">Costs + Comm.</th>
+                      <th className="pb-2 font-medium text-right">Contribution</th>
+                      <th className="pb-2 font-medium text-right pr-2">Margin</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-800/50 text-slate-300">
+                    {scenarios.map((s, i) => (
+                      <tr key={i} className={s.bg}>
+                        <td className="py-2.5 pl-2">
+                          <div className="font-semibold text-slate-200">{s.name}</div>
+                          <div className="text-[10px] text-slate-500">{s.note}</div>
+                        </td>
+                        <td className="py-2.5 font-mono text-right">{s.rev}</td>
+                        <td className="py-2.5 font-mono text-right text-rose-400/80">{s.cost}</td>
+                        <td className={cn("py-2.5 font-mono text-right font-bold", s.tone)}>{s.contrib}</td>
+                        <td className={cn("py-2.5 font-mono text-right font-bold pr-2", s.tone)}>{s.margin}</td>
+                      </tr>
+                    ))}
+                    <tr className="border-t border-slate-700">
+                      <td className="py-2.5 pl-2 text-slate-500 text-[11px]" colSpan="3">2026 comparison (€2.059M revenue, €1.324M budgeted cost)</td>
+                      <td className="py-2.5 font-mono text-right text-slate-400">€735,000</td>
+                      <td className="py-2.5 font-mono text-right text-slate-400 pr-2">35.7%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-[10px] text-slate-500 mt-3 italic">*Commission is variable (5% existing / 10% new). The optimistic case adds ~€20k commission and the conservative case saves ~€15k — second-order at this scale, held constant above for clarity.*</p>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl flex flex-col">
+              <h3 className="text-base md:text-lg font-semibold text-slate-200 mb-4">Why Margin Expands</h3>
+              <div className="flex items-center justify-center gap-4 md:gap-6 mb-6">
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-black text-slate-400">35.7%</div>
+                  <div className="text-[10px] md:text-xs text-slate-500 uppercase tracking-widest mt-1">2026</div>
+                </div>
+                <ArrowRight className="w-6 h-6 text-amber-500" />
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-black text-amber-400">44.9%</div>
+                  <div className="text-[10px] md:text-xs text-slate-500 uppercase tracking-widest mt-1">2027 Base</div>
+                </div>
+              </div>
+              <ul className="space-y-3 text-xs md:text-sm text-slate-400 flex-1">
+                <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" /><span><strong className="text-slate-200">Price-led growth is near-zero marginal cost:</strong> repricing branding, content and sponsorship assets adds revenue without adding delivery cost.</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" /><span><strong className="text-slate-200">Ticket growth lands at near-100% incremental margin:</strong> the event cost base is fixed; +€112k of tickets is almost pure contribution.</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" /><span><strong className="text-slate-200">Cost-led quoting protects bespoke margin:</strong> side events, takeovers and activations are only quoted once Ops confirms cost — no more margin leaks deal by deal.</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" /><span><strong className="text-slate-200">The +10% cost cap holds the denominator:</strong> the projection lands at +8% with the 30%+ delivery-cost watchlist as the enforcement mechanism.</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 md:p-5">
+            <p className="text-xs md:text-sm text-slate-400 leading-relaxed">
+              <strong className="text-slate-200">Operating margin view (illustrative):</strong> after an allocated salary line of ~€500k (the unvalidated 2026 budget figure), base-case operating profit is ~€667k, an operating margin of ~25.7%. <span className="text-amber-400">Ana to confirm the salary and overhead allocation</span> — shown for completeness, not committed until the cost base is validated.
+            </p>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideTicketPacing() {
+      const rows = [
+        { m: "Sep '26", t: "€15k", cum: "€15k", pct: 5, note: "Early-bird launch inside the September Drive; agenda v1 live" },
+        { m: "Oct '26", t: "€18k", cum: "€33k", pct: 11, note: "Speaker announcement cadence begins" },
+        { m: "Nov '26", t: "€22k", cum: "€55k", pct: 18, note: "Early-bird deadline spike (30 Nov)" },
+        { m: "Dec '26", t: "€10k", cum: "€65k", pct: 22, note: "Holiday lull — content drops only" },
+        { m: "Jan '27", t: "€25k", cum: "€90k", pct: 30, note: "Standard tier opens; new-year campaigns" },
+        { m: "Feb '27", t: "€35k", cum: "€125k", pct: 42, note: "Focus Pass push behind focus-event partner announcements" },
+        { m: "Mar '27", t: "€50k", cum: "€175k", pct: 58, note: "Late tier announced — urgency window opens" },
+        { m: "Apr '27", t: "€70k", cum: "€245k", pct: 82, note: "Peak conversion month; group offers, no comps" },
+        { m: "May '27", t: "€55k", cum: "€300k", pct: 100, note: "Final tier and onsite sales" }
+      ];
+
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Ticket Sales by Month</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">€300k phased across the cycle. Roughly 58% lands in the final three months — normal for event ticketing. The pacing risk is comp leakage, not curve shape.</p>
+
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl mb-6">
+            <div className="overflow-x-auto w-full table-container">
+              <table className="w-full text-left text-xs md:text-sm min-w-[760px]">
+                <thead className="bg-slate-950 border-b border-slate-800 text-slate-400 uppercase">
+                  <tr>
+                    <th className="p-3 md:p-4 font-medium">Month</th>
+                    <th className="p-3 md:p-4 font-medium text-right">In-Month</th>
+                    <th className="p-3 md:p-4 font-medium text-right">Cumulative</th>
+                    <th className="p-3 md:p-4 font-medium min-w-[140px]">Pace</th>
+                    <th className="p-3 md:p-4 font-medium min-w-[280px]">Milestone / Campaign Beat</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-800/50">
+                  {rows.map((r, i) => (
+                    <tr key={i} className="hover:bg-slate-800/30 transition-colors">
+                      <td className="p-3 md:p-4 font-bold text-slate-200 whitespace-nowrap">{r.m}</td>
+                      <td className="p-3 md:p-4 font-mono text-slate-300 text-right">{r.t}</td>
+                      <td className="p-3 md:p-4 font-mono text-indigo-300 text-right font-bold">{r.cum}</td>
+                      <td className="p-3 md:p-4">
+                        <div className="flex items-center gap-2">
+                          <div className="flex-1 h-1.5 bg-slate-800 rounded-full overflow-hidden"><div className="h-full bg-indigo-500" style={{width: r.pct + '%'}}></div></div>
+                          <span className="text-[10px] text-slate-500 font-mono w-8 text-right">{r.pct}%</span>
+                        </div>
+                      </td>
+                      <td className="p-3 md:p-4 text-slate-400 text-[10px] md:text-xs leading-relaxed">{r.note}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6">
+              <h3 className="text-sm md:text-base font-bold text-slate-200 mb-2">The Volume Reality Check</h3>
+              <p className="text-xs md:text-sm text-slate-400 leading-relaxed">€300k at a blended ~€455 per pass is roughly <strong className="text-indigo-300">660 paid passes</strong>, against roughly 540 in 2026 — a +22% paid-volume ask on top of the price ladder. Achievable, but only if comp conversion is real: the single biggest source of new paid volume is people who attended free last year.</p>
+            </div>
+            <div className="bg-amber-950/20 border border-amber-900/50 rounded-2xl p-5 md:p-6">
+              <h3 className="text-sm md:text-base font-bold text-amber-300 mb-2">Monthly Reporting Line</h3>
+              <p className="text-xs md:text-sm text-slate-400 leading-relaxed">Marketing reports monthly: paid revenue vs pacing, paid:comped ratio, and tier-mix. If cumulative paid falls below 80% of pacing at the end of any month from January onward, the response is campaign and offer-structure escalation — <strong className="text-amber-300">never quiet comping to inflate attendance.</strong></p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideSalesPacing() {
+      const rows = [
+        { m: "Jul '26", t: "€300k", cum: "€300k", pct: 13, focus: "Rate card and bundles live in HubSpot; rebook window opens; top-20 account plans set" },
+        { m: "Aug '26", t: "€450k", cum: "€750k", pct: 33, focus: "Rebook window closes mid-Aug; ≥70% of protected rebook base signed" },
+        { m: "Sep '26", t: "€280k", cum: "€1.03M", pct: 45, focus: "September Drive; rebook stragglers move to 2027 pricing; backfill campaign opens" },
+        { m: "Oct '26", t: "€230k", cum: "€1.26M", pct: 55, focus: "Premium asset push — Headline, Lanyard, Main Stage — named owners report weekly" },
+        { m: "Nov '26", t: "€200k", cum: "€1.46M", pct: 63, focus: "Year-end budget capture; counter-programming around competing event weeks" },
+        { m: "Dec '26", t: "€120k", cum: "€1.58M", pct: 69, focus: "Seasonal slowdown priced in; Q1 pipeline build" },
+        { m: "Jan '27", t: "€220k", cum: "€1.80M", pct: 78, focus: "New-year budgets land; Lanyard gate — fallback to 2 x €30k if exclusive unsold" },
+        { m: "Feb '27", t: "€200k", cum: "€2.00M", pct: 87, focus: "Focus-event headline partners locked" },
+        { m: "Mar '27", t: "€160k", cum: "€2.16M", pct: 94, focus: "Floorplan ≥85% sold; remaining premium inventory moves to waitlist" },
+        { m: "Apr '27", t: "€100k", cum: "€2.26M", pct: 98, focus: "Final inventory at floor discipline — no panic discounting" },
+        { m: "May '27", t: "€40k", cum: "€2.30M", pct: 100, focus: "Event month; onsite 2028 rebooking opens against the approved 2028 rate card" }
+      ];
+
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Sales Targets by Month</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">€2.30M phased across an 11-month cycle, front-loaded by the rebook window so slippage is visible in weeks, not quarters.</p>
+
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl mb-6">
+            <div className="overflow-x-auto w-full table-container">
+              <table className="w-full text-left text-xs md:text-sm min-w-[820px]">
+                <thead className="bg-slate-950 border-b border-slate-800 text-slate-400 uppercase">
+                  <tr>
+                    <th className="p-3 md:p-4 font-medium">Month</th>
+                    <th className="p-3 md:p-4 font-medium text-right">In-Month</th>
+                    <th className="p-3 md:p-4 font-medium text-right">Cumulative</th>
+                    <th className="p-3 md:p-4 font-medium min-w-[140px]">Pace</th>
+                    <th className="p-3 md:p-4 font-medium min-w-[300px]">Focus / Milestone</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-800/50">
+                  {rows.map((r, i) => (
+                    <tr key={i} className="hover:bg-slate-800/30 transition-colors">
+                      <td className="p-3 md:p-4 font-bold text-slate-200 whitespace-nowrap">{r.m}</td>
+                      <td className="p-3 md:p-4 font-mono text-slate-300 text-right">{r.t}</td>
+                      <td className="p-3 md:p-4 font-mono text-amber-400 text-right font-bold">{r.cum}</td>
+                      <td className="p-3 md:p-4">
+                        <div className="flex items-center gap-2">
+                          <div className="flex-1 h-1.5 bg-slate-800 rounded-full overflow-hidden"><div className="h-full bg-amber-500" style={{width: r.pct + '%'}}></div></div>
+                          <span className="text-[10px] text-slate-500 font-mono w-8 text-right">{r.pct}%</span>
+                        </div>
+                      </td>
+                      <td className="p-3 md:p-4 text-slate-400 text-[10px] md:text-xs leading-relaxed">{r.focus}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            <div className="bg-slate-950 border border-slate-800 rounded-2xl p-4 md:p-5 text-center">
+              <div className="text-2xl md:text-3xl font-black text-amber-400 mb-1">45%</div>
+              <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">By End September</div>
+              <p className="text-[10px] md:text-xs text-slate-500 mt-2">Rebook-driven. If the rebook base lands below 70% by end of August, escalate win-back and backfill immediately.</p>
+            </div>
+            <div className="bg-slate-950 border border-slate-800 rounded-2xl p-4 md:p-5 text-center">
+              <div className="text-2xl md:text-3xl font-black text-amber-400 mb-1">69%</div>
+              <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">By Year-End</div>
+              <p className="text-[10px] md:text-xs text-slate-500 mt-2">Premium assets and backfill carry Q4. Each premium asset has a named owner and weekly deal movement.</p>
+            </div>
+            <div className="bg-slate-950 border border-slate-800 rounded-2xl p-4 md:p-5 text-center">
+              <div className="text-2xl md:text-3xl font-black text-amber-400 mb-1">94%</div>
+              <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">By End March</div>
+              <p className="text-[10px] md:text-xs text-slate-500 mt-2">The final 6% is deliberately small: no quarter-end fire sale, floors hold to the last deal.</p>
+            </div>
+          </div>
+
+          <div className="mt-6 bg-amber-950/20 border border-amber-900/50 rounded-xl p-4">
+            <p className="text-xs md:text-sm text-amber-100/80">
+              <strong className="text-amber-400">Early-warning rule:</strong> if cumulative bookings fall below 90% of pacing at any monthly checkpoint, the deal desk convenes — responses are bundle conversion, win-back acceleration, or unlocking approved upside. <strong className="text-amber-400">Sub-floor discounting is never the intervention.</strong>
+            </p>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideSalesPlan() {
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Sales: Strategy, Plan &amp; Needs</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">A fair challenge: pricing does most of the work, volume asks for +7%, and the team gets the tools to defend every number.</p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-6">
+            <div className="bg-slate-900 border border-amber-500/40 rounded-2xl p-5 md:p-6 shadow-xl">
+              <h3 className="text-base md:text-lg font-bold text-slate-200 mb-4">The Maths That Makes It Fair</h3>
+              <div className="space-y-3 mb-4">
+                <div className="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-slate-800">
+                  <span className="text-slate-300 text-xs md:text-sm">2026 achieved basket</span>
+                  <span className="text-slate-200 font-mono text-xs md:text-sm">€1.87M</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-slate-800">
+                  <span className="text-slate-300 text-xs md:text-sm">Same basket repriced at the 2027 card (~+15% avg)</span>
+                  <span className="text-amber-400 font-mono text-xs md:text-sm font-bold">~€2.15M</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-amber-950/30 rounded-lg border border-amber-900/50">
+                  <span className="text-amber-200 text-xs md:text-sm font-semibold">Net volume growth required to hit €2.30M</span>
+                  <span className="text-amber-400 font-mono text-sm md:text-base font-bold">~ +7%</span>
+                </div>
+              </div>
+              <p className="text-[11px] md:text-sm text-slate-400 leading-relaxed">
+                The target is essentially <strong className="text-slate-200">last year's event sold at the new rate card, plus six points of volume</strong>. The price architecture carries the growth; the team is not being asked to repeat 2026's hall-refill grind.
+              </p>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl">
+              <h3 className="text-base md:text-lg font-bold text-slate-200 mb-4">Pipeline Coverage Requirement</h3>
+              <div className="flex items-center justify-center gap-4 md:gap-6 mb-4">
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-black text-slate-300">€1.27M</div>
+                  <div className="text-[10px] md:text-xs text-slate-500 uppercase tracking-widest mt-1">New + Expansion Revenue</div>
+                </div>
+                <div className="text-slate-600 font-bold">×3</div>
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-black text-amber-400">€3.8M</div>
+                  <div className="text-[10px] md:text-xs text-slate-500 uppercase tracking-widest mt-1">Weighted Pipeline by End Sep</div>
+                </div>
+              </div>
+              <p className="text-[11px] md:text-sm text-slate-400 leading-relaxed mb-3">
+                Rebook revenue is protected and visible; the non-rebook €1.27M needs 3x weighted pipeline coverage. Pipeline build is therefore a tracked deliverable from July — not something inspected for the first time in January.
+              </p>
+              <div className="bg-slate-950 p-3 rounded-lg border border-slate-800">
+                <p className="text-[10px] md:text-xs text-slate-400"><strong className="text-slate-200">Win-back programme (inside backfill):</strong> Pragmatic Play, BetConstruct, ADWA, Match Liquidity and Wolt (close to rebooking) get named owners and tailored re-entry offers built on the new bundles — targeting €150-200k of the €740k backfill route. Soft2Bet routes via the US relationship; Evolution via the media-spend bridge; APEX (licence revoked) is not winnable.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6">
+              <h3 className="text-sm md:text-base font-bold text-amber-300 mb-3">Strategy</h3>
+              <ul className="space-y-2 text-[11px] md:text-sm text-slate-400">
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Rebook-first: convert the protected base before SiGMA / SBC / MAC budgets close.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Lead with bundles, negotiate with bundle components — the catalogue is the appendix, not the pitch.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Named owner per premium asset (Headline, Lanyard, Registration, Main Stage, Media Zone).</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Evidence pack in every conversation: footfall, scans, seniority, reach.</span></li>
+              </ul>
+            </div>
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6">
+              <h3 className="text-sm md:text-base font-bold text-amber-300 mb-3">Plan (First 30 Days)</h3>
+              <ul className="space-y-2 text-[11px] md:text-sm text-slate-400">
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Rebook health check — likely / unlikely / unsure per account, with value at risk.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Top-20 account plans with a next-best package per account.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Rate card, bundles and floors loaded into HubSpot; duplicate product records merged.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Win-back owners assigned; discount history and verbally-promised pricing locked down before the card goes live.</span></li>
+              </ul>
+            </div>
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6">
+              <h3 className="text-sm md:text-base font-bold text-amber-300 mb-3">Needs</h3>
+              <ul className="space-y-2 text-[11px] md:text-sm text-slate-400">
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Approved rate card and bundle set by the rebook window — provisional pricing kills renewals.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>The proof-of-value data delivered by marketing and ops (scans, footfall, delegate report).</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Commission scheme confirmed (5% existing / 10% new) — pays more for the hard yards.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Capacity protection: backfill selling staffed separately from premium-asset ownership so neither starves the other.</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideMarketingPlan() {
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Marketing: Strategy, Plan &amp; Needs</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Marketing owns €300k of tickets — and the audience data that makes every sponsorship price defensible.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
+            <div className="bg-slate-900 border border-indigo-500/40 rounded-2xl p-5 md:p-6 shadow-xl">
+              <h3 className="text-base md:text-lg font-bold text-slate-200 mb-4">Strategy: Sell the Audience, Not the Event</h3>
+              <ul className="space-y-3 text-xs md:text-sm text-slate-400">
+                <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-indigo-400 mt-0.5 shrink-0" /><span><strong className="text-slate-200">Audience-quality marketing:</strong> publish delegate seniority and business-mix data early. It sells tickets to buyers who want the room, and it is the same evidence sales uses to defend pricing — one data programme, two revenue lines.</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-indigo-400 mt-0.5 shrink-0" /><span><strong className="text-slate-200">Paid-first funnel:</strong> the comp policy and the 1-pass-per-€8k formula stop free tickets cannibalising the €300k target. The biggest paid-volume pool is 2026's comped attendees, converted with targeted offers.</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-indigo-400 mt-0.5 shrink-0" /><span><strong className="text-slate-200">Ladder discipline:</strong> early-bird, standard and late tiers with real deadlines create three urgency windows; the Focus Pass feeds the Full Event upsell.</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-indigo-400 mt-0.5 shrink-0" /><span><strong className="text-slate-200">Exhibitor amplification:</strong> floor-plan profiles and website exhibitor pages build digital reach we can quote in sales decks — and traffic we can measure.</span></li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-xl">
+              <h3 className="text-base md:text-lg font-bold text-slate-200 mb-4">Plan: The Campaign Spine</h3>
+              <div className="space-y-3">
+                <div className="flex gap-3 p-3 bg-slate-950 rounded-lg border border-slate-800">
+                  <div className="text-indigo-400 font-mono text-[10px] md:text-xs font-bold w-16 shrink-0 mt-0.5">SEP '26</div>
+                  <p className="text-[11px] md:text-sm text-slate-400"><strong className="text-slate-200">September Drive:</strong> full campaign launch — agenda v1, early-bird tickets, focus events announced with strategic partners, 2026 delegate report published.</p>
+                </div>
+                <div className="flex gap-3 p-3 bg-slate-950 rounded-lg border border-slate-800">
+                  <div className="text-indigo-400 font-mono text-[10px] md:text-xs font-bold w-16 shrink-0 mt-0.5">OCT-DEC</div>
+                  <p className="text-[11px] md:text-sm text-slate-400"><strong className="text-slate-200">Proof-point cadence:</strong> weekly speaker and content announcements; early-bird deadline push; exhibitor profile rollout.</p>
+                </div>
+                <div className="flex gap-3 p-3 bg-slate-950 rounded-lg border border-slate-800">
+                  <div className="text-indigo-400 font-mono text-[10px] md:text-xs font-bold w-16 shrink-0 mt-0.5">JAN-MAR</div>
+                  <p className="text-[11px] md:text-sm text-slate-400"><strong className="text-slate-200">Conversion phase:</strong> standard tier, comp-conversion campaigns, Focus Pass push behind partner announcements, late-tier urgency from March.</p>
+                </div>
+                <div className="flex gap-3 p-3 bg-slate-950 rounded-lg border border-slate-800">
+                  <div className="text-indigo-400 font-mono text-[10px] md:text-xs font-bold w-16 shrink-0 mt-0.5">APR-MAY</div>
+                  <p className="text-[11px] md:text-sm text-slate-400"><strong className="text-slate-200">Peak window:</strong> final-tier countdown, group offers, onsite sales — plus the onsite data capture that funds 2028 pricing.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6">
+              <h3 className="text-sm md:text-base font-bold text-indigo-300 mb-3">Needs</h3>
+              <ul className="space-y-2 text-[11px] md:text-sm text-slate-400">
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span><strong className="text-slate-200">Leadership continuity:</strong> interim marketing ownership (Stuart) until James lands — the €300k target has a named owner from day one, with clean handover.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span><strong className="text-slate-200">Budget honesty:</strong> the marketing distribution budget is €49.5k (+10%). A +60% ticket target on a +10% budget assumes conversion efficiency, not reach growth — if paid acquisition is needed, that is a separate ask, raised now rather than in March.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span><strong className="text-slate-200">Infrastructure:</strong> Bizzaboo data hygiene and scan enforcement, website build for exhibitor pages, interactive floor-plan tooling.</span></li>
+              </ul>
+            </div>
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6">
+              <h3 className="text-sm md:text-base font-bold text-indigo-300 mb-3">KPIs Reported Monthly</h3>
+              <ul className="space-y-2 text-[11px] md:text-sm text-slate-400">
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Paid ticket revenue vs pacing; paid:comped ratio; tier mix.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Registration seniority and business-type mix (the sponsor-proof metric).</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Early-bird and comp-conversion rates; web traffic to event and exhibitor pages.</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideGovernance() {
+      const kpis = [
+        { label: "Value Retention", target: "≥ 85%", base: "2026: 68.4%", note: "Of prior-year partner spend retained (value churn 31.6%). The single best test of whether stabilisation worked." },
+        { label: "Partner Count Retention", target: "≥ 60%", base: "2026: 43%", note: "Partners returning year-on-year. The tail matters: small stands churned €233k." },
+        { label: "Realised Yield", target: "≥ 92% of list", base: "2026 3x3: 96%", note: "Average achieved price vs 2027 list, reported monthly by category. Falling yield = hidden discounting." },
+        { label: "Pipeline Coverage", target: "≥ 3x", base: "On €1.27M new business", note: "Weighted pipeline vs remaining new-business target, tracked from July." },
+        { label: "Paid : Comped Tickets", target: "Improve QoQ", base: "2026 baseline from Bizzaboo", note: "The free-ticket leak made 'at capacity' a hollow claim. Now measured." },
+        { label: "Floor Breaches", target: "Zero", base: "Without director sign-off", note: "Every exception logged with rationale. Reviewed at the monthly re-forecast." }
+      ];
+
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Commercial Governance &amp; KPIs</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">How Finance gets confidence between now and May 2027 — measurable, monthly, and with defined interventions.</p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-6">
+            {kpis.map((k, i) => (
+              <div key={i} className="bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-5 flex flex-col">
+                <div className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">{k.label}</div>
+                <div className="text-xl md:text-2xl font-black text-amber-400 mb-1">{k.target}</div>
+                <div className="text-[10px] md:text-xs text-slate-500 font-mono mb-3">{k.base}</div>
+                <p className="text-[10px] md:text-xs text-slate-400 leading-relaxed mt-auto">{k.note}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6">
+              <h3 className="text-sm md:text-base font-bold text-slate-200 mb-3 flex items-center gap-2"><Clock className="w-4 h-4 text-amber-400" /> Forecast Cadence</h3>
+              <ul className="space-y-2 text-[11px] md:text-sm text-slate-400">
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span><strong className="text-slate-200">Weekly:</strong> pipeline review by revenue route (rebook / backfill / expansion / premium / new), in HubSpot as the single source of truth.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span><strong className="text-slate-200">Monthly:</strong> re-forecast to Ana with a bridge to target — committed, best-case and gap, plus the KPI grid above.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span><strong className="text-slate-200">Checkpoint triggers:</strong> below 90% of pacing → deal desk convenes. Interventions are bundles, win-back and approved upside — never sub-floor discounting.</span></li>
+              </ul>
+            </div>
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6">
+              <h3 className="text-sm md:text-base font-bold text-slate-200 mb-3 flex items-center gap-2"><Calculator className="w-4 h-4 text-emerald-400" /> Cash, Not Just Bookings</h3>
+              <ul className="space-y-2 text-[11px] md:text-sm text-slate-400">
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span><strong className="text-slate-200">Payment terms:</strong> 50% deposit on signature, balance no later than 60 days pre-event; tickets are cash-on-purchase.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span><strong className="text-slate-200">Aged-debtor review monthly</strong> against the budget cash-flow sheet, so booked revenue converts before cost peaks hit in Q1 2027.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span><strong className="text-slate-200">No delivery without deposit:</strong> deliverables (especially pre-event posts) start only once the deposit clears.</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // --- APPENDIX SLIDES ---
+
+    function SlidePricingRules() {
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <div className="text-[10px] md:text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Appendix</div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Pricing Rules &amp; Shock Controls</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">The 4-part rate card and the bands that stop 2027 repeating 2026.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6">
+              <h3 className="text-base md:text-lg font-bold text-slate-200 mb-4">Rate-Card Structure</h3>
+              <ul className="space-y-3 text-xs md:text-sm text-slate-400">
+                <li className="flex items-start gap-3"><div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0" /><span><strong className="text-slate-200">Rebook:</strong> 2026 price for identical scope only, inside the window.</span></li>
+                <li className="flex items-start gap-3"><div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0" /><span><strong className="text-slate-200">2027 List:</strong> the public anchor for new sales and upgrades.</span></li>
+                <li className="flex items-start gap-3"><div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0" /><span><strong className="text-slate-200">Floor:</strong> the higher of 2026 list, the approved floor percentage, or cost-plus-margin. Sales opens at list and lands between — never below floor without director approval.</span></li>
+                <li className="flex items-start gap-3"><div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0" /><span><strong className="text-slate-200">Cost-Led Quote:</strong> mandatory for side events, floor takeovers and bespoke activations where venue, F&amp;B, staffing or production costs change.</span></li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6">
+              <h3 className="text-base md:text-lg font-bold text-slate-200 mb-4">Pricing Shock Bands</h3>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-slate-800">
+                  <span className="text-emerald-300 text-xs md:text-sm font-semibold">0% - 20%</span>
+                  <span className="text-slate-400 text-xs md:text-sm">Standard annual increase</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-amber-900/40">
+                  <span className="text-amber-300 text-xs md:text-sm font-semibold">21% - 40%</span>
+                  <span className="text-slate-400 text-xs md:text-sm">Buyer-facing value rationale required</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-slate-950 rounded-lg border border-rose-900/40">
+                  <span className="text-rose-300 text-xs md:text-sm font-semibold">40%+</span>
+                  <span className="text-slate-400 text-xs md:text-sm">Repositioning, extra deliverables, phased selling, approval</span>
+                </div>
+              </div>
+              <p className="text-[10px] md:text-xs text-slate-500 mt-4 italic">Benchmark data supports a price. It does not prove demand on its own — the 2026 rooftop is the case study.</p>
+            </div>
+          </div>
+
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6">
+            <h3 className="text-base md:text-lg font-bold text-slate-200 mb-4">Commercial Controls</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-xs md:text-sm text-slate-400">
+              <div className="flex items-start gap-2 py-1"><CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" /><span>No single discount above 10% without director approval; cumulative cap 15%.</span></div>
+              <div className="flex items-start gap-2 py-1"><CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" /><span>No custom activation without Ops approval; no panel without Content approval.</span></div>
+              <div className="flex items-start gap-2 py-1"><CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" /><span>No vague Misc line items — replaced by Custom Activation, minimum €15k plus approval.</span></div>
+              <div className="flex items-start gap-2 py-1"><CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" /><span>No sponsor asset delivered for €0 unless explicitly included in a signed package.</span></div>
+              <div className="flex items-start gap-2 py-1"><CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" /><span>Contracted session timings carry a guaranteed minimum (25 min) and flex-slot logic so paid sessions are never cut on the day.</span></div>
+              <div className="flex items-start gap-2 py-1"><CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" /><span>Duplicate HubSpot product records merged; retired and renamed products cleaned before the rate card ships.</span></div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideDealDesk() {
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <div className="text-[10px] md:text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Appendix</div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">The 2027 Deal Desk Policy</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Hold the list. Negotiate with structure, not erosion.</p>
+
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-8 mb-6 md:mb-8">
+            <div className="flex items-center gap-3 md:gap-4 mb-6 md:mb-8 pb-4 md:pb-6 border-b border-slate-800">
+              <ShieldCheck className="w-8 h-8 md:w-10 md:h-10 text-amber-500" />
+              <div>
+                <h3 className="text-lg md:text-xl font-bold text-slate-200">Discount Authority Matrix</h3>
+                <p className="text-slate-400 text-sm md:text-base">Open at list, land between list and floor — never start at the floor.</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+              <div className="p-5 md:p-6 rounded-xl bg-slate-950 border border-slate-800">
+                <div className="text-xs md:text-sm font-medium text-slate-500 uppercase tracking-wider mb-2">Sales Reps</div>
+                <div className="text-2xl md:text-3xl font-bold text-slate-200 mb-2">Max 10%</div>
+                <p className="text-xs md:text-sm text-slate-400">Single-deal authority off 2027 list, never below floor.</p>
+              </div>
+              <div className="p-5 md:p-6 rounded-xl bg-slate-950 border border-slate-800">
+                <div className="text-xs md:text-sm font-medium text-slate-500 uppercase tracking-wider mb-2">Cumulative Cap</div>
+                <div className="text-2xl md:text-3xl font-bold text-slate-200 mb-2">15%</div>
+                <p className="text-xs md:text-sm text-slate-400">Across all concessions on an account. Beyond this, director approval.</p>
+              </div>
+              <div className="p-5 md:p-6 rounded-xl bg-slate-950 border border-amber-900/30 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-amber-500"></div>
+                <div className="text-xs md:text-sm font-medium text-amber-500 uppercase tracking-wider mb-2">Below Floor</div>
+                <div className="text-2xl md:text-3xl font-bold text-slate-200 mb-2">Director Only</div>
+                <p className="text-xs md:text-sm text-slate-400">Floors protect existing-product pricing at or above 2026 list.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="p-5 md:p-6 rounded-xl bg-slate-900 border border-slate-800">
+              <h4 className="font-bold text-slate-200 mb-3 flex items-center gap-2 text-base md:text-lg">
+                <Package className="w-5 h-5 text-amber-500" />
+                Negotiate With Bundles, Not Deliverables
+              </h4>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Per-deal deliverable swaps create an ops tracking nightmare across dozens of sponsors. Instead, the negotiation lever is <strong className="text-slate-200">adding or removing whole components from defined bundles</strong> — a clean give-and-take that preserves credibility without bespoke fulfilment. Deliverable variation is permitted only on a short list of price-at-risk products, agreed with Ops in advance.
+              </p>
+            </div>
+            <div className="p-5 md:p-6 rounded-xl bg-slate-900 border border-slate-800">
+              <h4 className="font-bold text-slate-200 mb-3 flex items-center gap-2 text-base md:text-lg">
+                <Award className="w-5 h-5 text-amber-500" />
+                The Sweetener Bank
+              </h4>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                To close deals without touching the core price, reps may pull from high-margin add-ons: <strong className="text-slate-200">Advertisement Videos (€10k list)</strong>, digital inventory, and AI-matched introductions for partners above threshold. Paid content slots (non-branded panels) are protected revenue, not sweeteners.
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideTiers() {
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <div className="text-[10px] md:text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Appendix</div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Partnership Tiering &amp; Status</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Clear thresholds to drive upsells — and a credible path above €100k.</p>
+
+          <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-xl p-5 md:p-6 mb-6 md:mb-8 flex items-start gap-4">
+            <Award className="w-6 h-6 md:w-8 md:h-8 text-yellow-400 shrink-0" />
+            <div>
+              <h3 className="text-base md:text-lg font-bold text-yellow-100 mb-1">The Headline Asset (€200,000)</h3>
+              <p className="text-yellow-200/80 text-xs md:text-sm">
+                A singular, exclusive product above all standard tiering. €150k undersold it in 2026; €200k remains well below the NYC 2027 anchor (€280k) and SiGMA's main-sponsor benchmark (~€300k).
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 flex-1">
+            <div className="bg-slate-900 border border-slate-700 rounded-2xl p-4 md:p-5 flex flex-col">
+              <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Tier 1</div>
+              <h3 className="text-xl md:text-2xl font-extrabold text-cyan-400 mb-1 flex items-center gap-2"><Diamond className="w-4 h-4 md:w-5 md:h-5" /> Diamond</h3>
+              <div className="text-base md:text-lg font-medium text-amber-400 mb-3 md:mb-4">€120,000+</div>
+              <p className="text-[10px] md:text-xs text-slate-400 italic mb-3">Where partnership moves from visibility into structured commercial outcomes.</p>
+              <ul className="space-y-2 text-[10px] md:text-xs text-slate-300 flex-1">
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Senior account lead / concierge servicing</li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Curated double opt-in introductions</li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> VIP hospitality upgrades + VIP networking area access (queue-jump, dedicated bar)</li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Premium placement priority + onsite filmed interview</li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Pre-event strategy session and feature profile</li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-700 rounded-2xl p-4 md:p-5 flex flex-col">
+              <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Tier 2</div>
+              <h3 className="text-xl md:text-2xl font-extrabold text-white mb-1">Platinum</h3>
+              <div className="text-base md:text-lg font-medium text-amber-400 mb-3 md:mb-4">€60,000 - €119,999</div>
+              <ul className="space-y-2 text-[10px] md:text-xs text-slate-300 flex-1">
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> High-visibility sponsorship and premium onsite presence</li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Individual pre-event post</li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Onsite filmed interview</li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-5 flex flex-col">
+              <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Tier 3</div>
+              <h3 className="text-xl md:text-2xl font-extrabold text-amber-500 mb-1">Gold</h3>
+              <div className="text-base md:text-lg font-medium text-amber-400 mb-3 md:mb-4">€15,000 - €59,999</div>
+              <ul className="space-y-2 text-[10px] md:text-xs text-slate-300 flex-1">
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Strong venue visibility, content and networking access</li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Gold status onsite + shared pre-event post</li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-5 flex flex-col">
+              <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Tier 4</div>
+              <h3 className="text-xl md:text-2xl font-extrabold text-slate-300 mb-1">Silver</h3>
+              <div className="text-base md:text-lg font-medium text-amber-400 mb-3 md:mb-4">Below €15,000</div>
+              <ul className="space-y-2 text-[10px] md:text-xs text-slate-300 flex-1">
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Entry-level exposure and smaller branding products</li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-1 shrink-0"/> Silver status onsite + shared pre-event post</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-6 md:mt-8 bg-slate-900 border border-slate-800 rounded-xl p-5 md:p-6">
+            <h3 className="text-base md:text-lg font-bold text-slate-200 mb-2 flex items-center gap-2">
+              <TicketIcon className="w-4 h-4 md:w-5 md:h-5 text-amber-400" />
+              Pass Entitlement Formula
+            </h3>
+            <p className="text-xs md:text-sm text-slate-400">One Full Event Pass per <strong className="text-amber-400">€8k net spend</strong>. Removes ad-hoc comp negotiations and makes ticket leakage controllable.</p>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideBundles() {
+      const bundles = [
+        { tier: "Diamond", tierColor: "text-cyan-400", title: "The Category Leader", items: [["Main Stage Sponsorship", "€60k"], ["6x3 Stand", "€30k"], ["Media Zone", "€35k"], ["Advertisement Video", "€10k"]], price: "€120,000", note: "Apex visibility across stage, floor and media. Creates the credible high anchor." },
+        { tier: "Diamond", tierColor: "text-cyan-400", title: "Experiential Powerhouse", items: [["Rave Cave", "€60k"], ["Outdoor Activation Zone", "€55k"], ["Day 1 Drinks (Non-Excl)", "cost-led"]], price: "€128,000", note: "Owns the social layer of the event. Ops costing precedes contract." },
+        { tier: "Platinum", tierColor: "text-slate-200", title: "Main Stage Thought Leader", items: [["Main Stage Presentation", "€56k"], ["3x3 Stand", "€18k"], ["Advertisement Video", "€10k"]], price: "€74,000", note: "Content-led package for proven main-stage demand." },
+        { tier: "Platinum", tierColor: "text-slate-200", title: "Arrival Takeover", items: [["Registration and Check-In", "€48k"], ["Badge Sponsor", "€32k"]], price: "€70,000", note: "First-touch dominance from arrival to lanyard." },
+        { tier: "Gold", tierColor: "text-amber-400", title: "Exhibit and Speak", items: [["3x3 Stand", "€18k"], ["Track Branded Panel", "€12k"], ["Advertisement Video", "€10k"]], price: "€35,000", note: "The mid-market workhorse: presence plus voice." },
+        { tier: "Gold", tierColor: "text-amber-400", title: "Networking Host", items: [["Pre-Registration Drinks", "€30k"], ["Track Branded Panel", "€12k"]], price: "€36,000", note: "Owns the pre-event networking window." }
+      ];
+
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <div className="text-[10px] md:text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Appendix</div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Signature Bundles</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Sales leads with outcome-based packages instead of an 80-line catalogue. Bundles are also the negotiation lever: components come in or out — the price holds.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {bundles.map((b, i) => (
+              <div key={i} className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col hover:border-yellow-500/50 transition-colors">
+                <div className="w-10 h-10 bg-yellow-900/30 rounded-lg flex items-center justify-center mb-4 border border-yellow-800/50">
+                  <Package className="w-5 h-5 text-yellow-400" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-1">{b.title}</h3>
+                <div className={cn("text-xs md:text-sm font-medium mb-4", b.tierColor)}>{b.tier} Status</div>
+                <div className="space-y-2 mb-6 flex-1">
+                  {b.items.map((it, j) => (
+                    <div key={j} className="flex justify-between text-xs md:text-sm">
+                      <span className="text-slate-400">{it[0]}</span>
+                      <span className="text-slate-500 line-through">{it[1]}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="pt-4 border-t border-slate-800">
+                  <div className="flex justify-between items-end">
+                    <span className="text-[10px] md:text-xs text-slate-500 uppercase tracking-wider">Bundle Price</span>
+                    <span className="text-xl md:text-2xl font-bold text-amber-400">{b.price}</span>
+                  </div>
+                  <p className="text-[10px] md:text-xs text-slate-500 mt-2">{b.note}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 md:mt-4 text-center">
+            <p className="text-[10px] md:text-xs text-slate-500 italic">*Illustrative packaging. Bundles repackage existing inventory and are not modelled as incremental revenue lines.*</p>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideValueProof() {
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <div className="text-[10px] md:text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Appendix</div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">The Proof-of-Value Programme</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">2026 churn happened because we couldn't prove value when buyers asked. This is the fix — and the licence for every future increase.</p>
+
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 mb-6">
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-emerald-900/30 rounded-xl flex items-center justify-center mb-4 md:mb-6 border border-emerald-800/50">
+                <Scan className="w-5 h-5 md:w-6 md:h-6 text-emerald-400" />
+              </div>
+              <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-4">Measure Everything</h3>
+              <ul className="space-y-2 text-xs md:text-sm text-slate-400 flex-1">
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Lead retrieval scanner in every stand package — complimentary, low cost, high signal.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Door scanning at conference sessions with enforced staffing — exposure estimates for every sponsored session.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Beacon-based footfall tracking: explore pricing; pass-through to exhibitors if viable.</span></li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-amber-900/30 rounded-xl flex items-center justify-center mb-4 md:mb-6 border border-amber-800/50">
+                <Users className="w-5 h-5 md:w-6 md:h-6 text-amber-400" />
+              </div>
+              <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-4">Amplify Every Sponsor</h3>
+              <ul className="space-y-2 text-xs md:text-sm text-slate-400 flex-1">
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Rich exhibitor profiles (250 words, logo, attachments) on an interactive floor plan — a virtual booth before the event.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Website exhibitor pages: event page → exhibitor list → individual pages, building sellable digital reach.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>AI-matched leads and curated introductions for partners above threshold — the late-2026 pilot, productised.</span></li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-indigo-900/30 rounded-xl flex items-center justify-center mb-4 md:mb-6 border border-indigo-800/50">
+                <FileText className="w-5 h-5 md:w-6 md:h-6 text-indigo-400" />
+              </div>
+              <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-4">Report It Back</h3>
+              <ul className="space-y-2 text-xs md:text-sm text-slate-400 flex-1">
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Standard post-event proof report per sponsor: footfall, scans, session exposure, reach.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Delegate seniority and business-type mix published early — the justification for premium pricing inside a 6,000 cap.</span></li>
+                <li className="flex items-start gap-2"><div className="w-1 h-1 bg-slate-500 rounded-full mt-2 shrink-0"/><span>Deliverables split pre-event / onsite / post-event in every contract (already restructured by Ops), so expectations are explicit.</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="bg-slate-950 border-l-8 border-emerald-500 rounded-r-2xl p-5 md:p-6 shadow-md border border-slate-900 border-l-emerald-500">
+            <p className="text-slate-200 text-sm md:text-base leading-relaxed italic font-serif">
+              "If we tell a sponsor their price went up and they ask why — sales now has footfall, scans, seniority and reach to answer with. Load the gun before the conversation, not after the churn."
+            </p>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideRebooking() {
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <div className="text-[10px] md:text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Appendix</div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Rebooking Policy &amp; the 2028 Guardrail</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Rebook pricing is a loyalty protection for identical scope — not a general discount.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
+            <div className="bg-slate-900 border border-emerald-900/50 rounded-2xl p-5 md:p-6">
+              <h3 className="text-base md:text-lg font-bold text-emerald-300 mb-4">Allowed at 2026 Pricing</h3>
+              <ul className="space-y-2 text-xs md:text-sm text-slate-400">
+                <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" /><span>Same sponsor, same product, same scope.</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" /><span>Signed inside the rebooking window: one month post-event, flexing to mid-August with written confirmation.</span></li>
+              </ul>
+            </div>
+            <div className="bg-slate-900 border border-amber-900/50 rounded-2xl p-5 md:p-6">
+              <h3 className="text-base md:text-lg font-bold text-amber-300 mb-4">Moves to 2027 Pricing</h3>
+              <ul className="space-y-2 text-xs md:text-sm text-slate-400">
+                <li className="flex items-start gap-2"><ArrowRight className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" /><span>Additional products, larger booths, exclusivity upgrades.</span></li>
+                <li className="flex items-start gap-2"><ArrowRight className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" /><span>Custom activations and renamed or materially expanded products.</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+            <div className="p-5 md:p-6 border-b border-slate-800">
+              <h3 className="text-base md:text-lg font-bold text-slate-200">The 2028 Guardrail</h3>
+              <p className="text-xs md:text-sm text-slate-400 mt-1">Approve 2028 pricing before Valletta 2027 opens, so onsite rebooking anchors to the future rate card — never to legacy underpricing.</p>
+            </div>
+            <div className="overflow-x-auto w-full table-container">
+              <table className="w-full text-left text-xs md:text-sm min-w-[700px]">
+                <thead className="bg-slate-950 border-b border-slate-800 text-slate-400 uppercase">
+                  <tr>
+                    <th className="p-4 font-medium">Rebook Type</th>
+                    <th className="p-4 font-medium">Rule</th>
+                    <th className="p-4 font-medium">Commercial Reason</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-800/50 text-slate-300">
+                  <tr className="hover:bg-slate-800/30">
+                    <td className="p-4 font-bold text-slate-200">Standard renewal</td>
+                    <td className="p-4 text-slate-400">5% off approved 2028 list for same scope, signed within 30 days.</td>
+                    <td className="p-4 text-slate-400">Urgency without locking in old pricing.</td>
+                  </tr>
+                  <tr className="hover:bg-slate-800/30">
+                    <td className="p-4 font-bold text-slate-200">Strategic account</td>
+                    <td className="p-4 text-slate-400">Up to 10% only with a valuable get: multi-event commitment, faster payment, larger package, case study, or senior introductions.</td>
+                    <td className="p-4 text-slate-400">Discount only when the business receives value back.</td>
+                  </tr>
+                  <tr className="hover:bg-slate-800/30">
+                    <td className="p-4 font-bold text-slate-200">Scarce / underpriced assets</td>
+                    <td className="p-4 text-slate-400">No automatic rebook discount. Director approval required.</td>
+                    <td className="p-4 text-slate-400">Protects assets where 2027 demand proves pricing power.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideMarginWatch() {
+      const rows = [
+        { name: "Matcha and Chill Area", price: "€50,000", cost: "€25,000", pct: "50%", action: "Flagged 'OPS Difficulties'. Reframe as the Outdoor Activation Zone; rooftop terrace relocation under discussion with MCC. Cost-led quote before any sale." },
+        { name: "Livestream Sponsorship", price: "€20,000", cost: "€8,000", pct: "40%", action: "Reprice to €30k list — restores margin and still sits at half the NYC benchmark." },
+        { name: "Media Zone", price: "€25,000", cost: "€10,000", pct: "40%", action: "Move to €35k with Room 9 press lounge deliverables attached. Strong government-sponsor fit." },
+        { name: "Shisha Lounge", price: "€50,000", cost: "€15,000", pct: "30%", action: "Hold near list (€55k) but invest part of the margin in the premium feel — direct 2026 sponsor feedback." },
+        { name: "Expo Lounge", price: "€30,000", cost: "€8,000", pct: "27%", action: "€38k list supportable with proof pack." },
+        { name: "Expo Wall Murals", price: "€45,000", cost: "€9,000", pct: "20%", action: "Healthy. €50k list (+11%)." },
+        { name: "Registration Sponsorship", price: "€40,000", cost: "€4,320", pct: "11%", action: "Strong margin. €48k list; returning sponsor expected — protect the relationship, price the upgrade." },
+        { name: "Headline Sponsorship", price: "€150,000", cost: "€10,000", pct: "7%", action: "Apex margin product. €200k list; full ops costing of shared branding assets still in progress (Desi / Olivia)." }
+      ];
+
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <div className="text-[10px] md:text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Appendix</div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Ops Cost &amp; Margin Watchlist</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">First pass at per-product delivery cost from the 2027 ops sheet. Pricing decisions now start from margin, not just list history.</p>
+
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl mb-6">
+            <div className="overflow-x-auto w-full table-container">
+              <table className="w-full text-left text-xs md:text-sm min-w-[820px]">
+                <thead className="bg-slate-950 border-b border-slate-800 text-slate-400 uppercase">
+                  <tr>
+                    <th className="p-4 font-medium min-w-[170px]">Product</th>
+                    <th className="p-4 font-medium text-right">2026 Price</th>
+                    <th className="p-4 font-medium text-right">Ops Cost</th>
+                    <th className="p-4 font-medium text-right">Cost %</th>
+                    <th className="p-4 font-medium min-w-[300px]">2027 Action</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-800/50">
+                  {rows.map((r, i) => (
+                    <tr key={i} className="hover:bg-slate-800/30 transition-colors">
+                      <td className="p-4 font-semibold text-slate-200">{r.name}</td>
+                      <td className="p-4 font-mono text-slate-300 text-right">{r.price}</td>
+                      <td className="p-4 font-mono text-rose-300 text-right">{r.cost}</td>
+                      <td className={cn("p-4 font-mono text-right font-bold", parseInt(r.pct) >= 40 ? "text-rose-400" : parseInt(r.pct) >= 25 ? "text-amber-400" : "text-emerald-400")}>{r.pct}</td>
+                      <td className="p-4 text-slate-400 leading-relaxed text-[10px] md:text-xs">{r.action}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="bg-amber-950/20 border border-amber-900/50 rounded-xl p-4">
+            <p className="text-xs md:text-sm text-amber-100/80">
+              Headline-style packages with logos across many shared assets can't yet be costed line-by-line — staffing, branding and labour allocation is significant work. The interim rule: <strong className="text-amber-400">any product at 30%+ delivery cost requires a cost-led quote review before its 2027 price is final.</strong>
+            </p>
+          </div>
+        </div>
+      );
+    }
+
+    // --- CATALOGUE SLIDES ---
+
+    function CatalogueTable({ title, sections, tableNote }) {
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <div className="text-[10px] md:text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Appendix · 2027 Rate Card</div>
+          <div className="flex items-center gap-3 mb-2">
+            <FileText className="w-6 h-6 md:w-8 md:h-8 text-slate-500" />
+            <h2 className="text-2xl md:text-3xl font-bold">{title}</h2>
+          </div>
+          <p className="text-[10px] md:text-xs text-slate-500 italic mb-4 md:mb-6">{tableNote || "Rebook = 2026 price for identical scope. Floor = no quote below without director approval. Increases above 20% carry a buyer-facing value rationale."}</p>
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden flex-1 flex flex-col">
+            <div className="overflow-x-auto w-full flex-1 table-container">
+              <table className="w-full text-left text-[11px] md:text-sm min-w-[980px]">
+                <thead className="bg-slate-950 border-b border-slate-800 text-slate-400">
+                  <tr>
+                    <th className="p-3 md:p-4 font-medium whitespace-nowrap min-w-[200px]">Product</th>
+                    <th className="p-3 md:p-4 font-medium whitespace-nowrap text-right">Rebook (2026)</th>
+                    <th className="p-3 md:p-4 font-medium whitespace-nowrap text-right">2027 List</th>
+                    <th className="p-3 md:p-4 font-medium whitespace-nowrap text-right">Change</th>
+                    <th className="p-3 md:p-4 font-medium whitespace-nowrap text-right">Floor</th>
+                    <th className="p-3 md:p-4 font-medium whitespace-nowrap min-w-[130px]">2026 Actual</th>
+                    <th className="p-3 md:p-4 font-medium min-w-[260px]">Notes</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-800/50">
+                  {sections.map((item, i) => {
+                    if (item.isHeader) {
+                      return (
+                        <tr key={i} className="bg-slate-800/80 border-y border-slate-700">
+                          <td colSpan="7" className="p-3 font-bold text-slate-200 text-[10px] md:text-xs tracking-wider uppercase">{item.title}</td>
+                        </tr>
+                      );
+                    }
+                    const shock = item.change && (item.change.includes("+2") || item.change.includes("+3") || item.change.includes("+4") || item.change.includes("+5") || item.change.includes("+1") ) && parseInt(item.change.replace(/[^0-9-]/g,'')) > 20;
+                    return (
+                      <tr key={i} className={item.retired ? "bg-rose-950/10 opacity-70 hover:bg-rose-950/20 transition-colors" : "hover:bg-slate-800/30 transition-colors"}>
+                        <td className="p-3 md:p-4 font-semibold text-slate-200">{item.name}</td>
+                        <td className="p-3 md:p-4 font-mono text-slate-400 whitespace-nowrap text-right">{item.rebook}</td>
+                        <td className={cn("p-3 md:p-4 font-mono whitespace-nowrap text-right", item.retired ? "text-rose-300" : "text-amber-400")}>{item.list}</td>
+                        <td className={cn("p-3 md:p-4 font-mono whitespace-nowrap text-right text-[10px] md:text-xs", shock ? "text-amber-300 font-bold" : "text-slate-400")}>{item.change}{shock ? " ⚠" : ""}</td>
+                        <td className="p-3 md:p-4 font-mono text-emerald-400/80 whitespace-nowrap text-right">{item.floor}</td>
+                        <td className="p-3 md:p-4 text-slate-400 text-[10px] md:text-xs">{item.sold}</td>
+                        <td className="p-3 md:p-4 text-slate-400 leading-relaxed text-[10px] md:text-xs">{item.note}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function SlideCataloguePremium() {
+      const sections = [
+        { isHeader: true, title: "Headline and Premium" },
+        { name: "Headline Sponsorship (Exclusive)", rebook: "€150,000", list: "€200,000", change: "+33%", floor: "€185,000", sold: "1 @ €150k", note: "Apex asset and Diamond anchor. NYC '27 lists €280k (NYC '26 closed at €175k x3); SiGMA main sponsor ~€300k. €200k is defensible with the evidence pack." },
+        { name: "Lanyard Sponsorship (Exclusive)", rebook: "€20,000", list: "€50,000", change: "+150%", floor: "€40,000", sold: "1 shared @ ~€14.5k", note: "The underpricing correction. Exclusive first; fallback to 2 x €30k co-sponsor slots if soft by the agreed deadline." },
+        { name: "Registration and Check-In Partner", rebook: "€40,000", list: "€48,000", change: "+20%", floor: "€40,000", sold: "1 @ €40k", note: "True 2026 list €40k (brochure €60k was a typo). Folds €0 online-reg into one premium product. Returning sponsor expected — registration-area redesign must respect their repeat artwork investment." },
+        { name: "Badge Sponsor", rebook: "€23,000", list: "€32,000", change: "+39%", floor: "€25,000", sold: "1 @ €18k", note: "Avoid shock; go higher only if segmented operator / affiliate badges are approved." },
+        { name: "Main Stage Sponsorship (Exclusive)", rebook: "€45,000", list: "€60,000", change: "+33%", floor: "€52,000", sold: "1 @ €45k", note: "Definitive main-stage ownership; below NYC €75k." },
+        { name: "VIP Lounge Sponsorship", rebook: "€28,000", list: "€38,000", change: "+36%", floor: "€28,000", sold: "Comped in 2026", note: "Paid demand unproven. Add VIP deliverables (rooftop VIP zone) before pushing past €40k." },
+        { name: "Main Stage Custom Panel", rebook: "€30,000", list: "€40,000", change: "+33%", floor: "€34,000", sold: "3 @ €30k", note: "Held at list in 2026 — pricing power confirmed. Content team controls topic, title, speakers." },
+        { isHeader: true, title: "Exhibition and Stands" },
+        { name: "3x3 Shell Scheme", rebook: "€14,500", list: "€18,000", change: "+24%", floor: "€15,000", sold: "~47 sold, avg €13,961", note: "Runaway volume product. Restrained uplift to protect sell-through; lead scanner and exhibitor profile now included." },
+        { name: "6x3 Shell Scheme", rebook: "€23,000", list: "€30,000", change: "+30%", floor: "€27,000", sold: "9 @ €23k", note: "Premium booth with proven demand. €30k is a cleaner uplift than €32k." },
+        { name: "Lower Level Stand", rebook: "€6,500", list: "€8,000", change: "+23%", floor: "€6,500", sold: "5 @ €6.5k", note: "Budget tier; ops reviewing a backdrop-only format. Downstairs zone monetisation pending paid-intent feedback." },
+        { name: "Space Only 4x4 / 6x3 / 4x8", rebook: "€14.5k / €15k / €24k", list: "Retired", change: "N/A", floor: "—", sold: "3 sold combined", note: "Cancelled on the 2027 ops product list. Re-introduce only with Ops sign-off and a floorplan case.", retired: true }
+      ];
+      return <CatalogueTable title="Headline, Premium &amp; Stands" sections={sections} />;
+    }
+
+    function SlideCatalogueContent() {
+      const sections = [
+        { isHeader: true, title: "Content and Stages" },
+        { name: "Main Stage Presentation", rebook: "€44,000", list: "€56,000", change: "+27%", floor: "€50,000", sold: "3 @ €44k", note: "Held at list; moves toward the NYC €58k benchmark." },
+        { name: "Main Stage Branded Panel", rebook: "€16,000", list: "€22,000", change: "+38%", floor: "€18,000", sold: "4 @ €16k", note: "Strong demand." },
+        { name: "Main Stage Non-Branded Panel", rebook: "€8,000", list: "€11,000", change: "+38%", floor: "€9,000", sold: "16 @ €8k", note: "Top content seller. Protected paid inventory — Rory caps volume against content quality." },
+        { name: "Main Track Branded Panel", rebook: "€16,000", list: "€20,000", change: "+25%", floor: "€17,000", sold: "3 @ €16k", note: "" },
+        { name: "Track Sponsorship (Exclusive)", rebook: "€21,000", list: "€28,000", change: "+33%", floor: "€24,000", sold: "8 @ €21k", note: "High churn, hard slog. Reinvent: tie the investment track to the Startup and Investor focus; add a distributed research report. Merge duplicate record." },
+        { name: "Track Presenter Sponsorship", rebook: "€14,500", list: "€20,000", change: "+38%", floor: "€16,000", sold: "3 @ €14.5k", note: "" },
+        { name: "Track Branded Panel", rebook: "€9,000", list: "€12,000", change: "+33%", floor: "€10,000", sold: "7 @ ~€8.3k", note: "Some 2026 discounting; firm floor." },
+        { name: "Track Non-Branded Panel", rebook: "€6,000", list: "€7,500", change: "+25%", floor: "€6,500", sold: "20 @ €6k", note: "Highest-volume content product. Cap volume; protect quality." },
+        { name: "Track Custom Panel", rebook: "€12,000", list: "€18,000", change: "+50%", floor: "€14,000", sold: "1 @ €12k", note: "Contracted minimum 25 minutes; flex-slot logic so paid sessions are never cut short on the day." },
+        { name: "Track Coffee Sponsorship (Exclusive)", rebook: "€12,500", list: "€14,000", change: "+12%", floor: "€12,500", sold: "1 @ €12.5k", note: "" },
+        { name: "Livestream Sponsorship (Exclusive)", rebook: "€20,000", list: "€30,000", change: "+50%", floor: "€24,000", sold: "1 @ €20k", note: "Ops cost €8k; NYC values this far higher (€60k). Margin-restoring step." },
+        { isHeader: true, title: "Focus Events and Summits" },
+        { name: "Prediction Markets — Headline", rebook: "€50,000", list: "€55,000", change: "+10%", floor: "€50,000", sold: "1 @ €50k", note: "Align scale with the NEXTPredict vision (Pier) before selling." },
+        { name: "Prediction Markets — General", rebook: "€16,000", list: "€18,000", change: "+12%", floor: "€16,000", sold: "1 @ €16k", note: "" },
+        { name: "Focus Crypto — General", rebook: "€16,000", list: "€18,000", change: "+12%", floor: "€16,000", sold: "3 @ €16k", note: "Best focus seller." },
+        { name: "Focus Crypto — Headline", rebook: "€40,000", list: "€45,000", change: "+12%", floor: "€40,000", sold: "0 sold", note: "Strategic-partner co-build route (FAM-style)." },
+        { name: "Focus Affiliates — General", rebook: "€16,000", list: "€18,000", change: "+12%", floor: "€16,000", sold: "1 @ €16k", note: "" },
+        { name: "Focus Affiliates — Headline", rebook: "€40,000", list: "€45,000", change: "+12%", floor: "€40,000", sold: "0 sold", note: "Needs a new strategic partner; hardest sell (operator-targeted)." },
+        { name: "Startup and Investment — General", rebook: "€16,000", list: "€18,000", change: "+12%", floor: "€16,000", sold: "0 sold", note: "" },
+        { name: "Startup and Investment — Headline", rebook: "€40,000", list: "€45,000", change: "+12%", floor: "€40,000", sold: "0 sold", note: "Malta Enterprise conversation live; betting-startups network as strategic partner candidate." },
+        { name: "Investor Summit — General", rebook: "€16,000", list: "€18,000", change: "+12%", floor: "€16,000", sold: "1 @ €16k", note: "" },
+        { name: "Investor Summit — Headline", rebook: "€40,000", list: "€45,000", change: "+12%", floor: "€40,000", sold: "0 sold", note: "" },
+        { name: "Social Casino Summit — General", rebook: "€16,000", list: "€18,000", change: "+12%", floor: "€16,000", sold: "1 @ €16k", note: "" },
+        { name: "Social Casino Summit — Headline", rebook: "€40,000", list: "€45,000", change: "+12%", floor: "€40,000", sold: "0 sold", note: "" },
+        { name: "HR Connect Track (Exclusive)", rebook: "€21,000", list: "€21,000", change: "0%", floor: "€21,000", sold: "0 sold", note: "Hold. Confirm format and demand before relaunch (personal development track question)." },
+        { name: "HR Connect Chair (Exclusive)", rebook: "€9,000", list: "€9,000", change: "0%", floor: "€9,000", sold: "0 sold", note: "Hold." }
+      ];
+      return <CatalogueTable title="Content, Stages &amp; Focus" sections={sections} tableNote="Focus events: gold-tier headlines hold near 2026 with +12% steps — the growth lever is strategic partners, earlier launch and an earlier attendee list, not price. Structural decision pending: stand-alone day(s) vs consolidation under a 3-day Valletta umbrella (sales recommendation). Avoid the US Memorial Day clash." />;
+    }
+
+    function SlideCatalogueBrandingNetworking() {
+      const sections = [
+        { isHeader: true, title: "Branding and Utility" },
+        { name: "Wi-Fi Sponsorship (Exclusive)", rebook: "€18,000", list: "€22,000", change: "+22%", floor: "€18,000", sold: "0 sold", note: "Unproven — modest uplift only; benchmarks (NYC €20k, SiGMA €25k) support the ceiling." },
+        { name: "Restroom Sponsorship (Exclusive)", rebook: "€12,500", list: "€15,000", change: "+20%", floor: "€12,500", sold: "0 sold", note: "Sell only where placement and creative are strong." },
+        { name: "Media Zone", rebook: "€25,000", list: "€35,000", change: "+40%", floor: "€30,000", sold: "1 @ €25k", note: "Increase carries new deliverables: Room 9 press lounge, interview backdrop, priority filming. Government-sponsor fit." },
+        { name: "Online Event Guide (Exclusive)", rebook: "€12,000", list: "€18,000", change: "+50%", floor: "€14,000", sold: "1 @ €12k", note: "" },
+        { name: "Advertisement Video", rebook: "€8,625", list: "€10,000", change: "+16%", floor: "€9,000", sold: "9 @ €8,625", note: "Rounded from the odd €8,625. High-margin sweetener-bank item." },
+        { name: "Coffee Station Expo West (Exclusive)", rebook: "€25,000", list: "€27,000", change: "+8%", floor: "€25,000", sold: "2 @ €25k", note: "Already above SiGMA's coffee price — sense-check." },
+        { name: "Coffee Station Expo East (Exclusive)", rebook: "€25,000", list: "€25,000", change: "0%", floor: "€25,000", sold: "0 sold", note: "East unsold; hold." },
+        { name: "Branded Water Station (Exclusive)", rebook: "€10,000", list: "€11,000", change: "+10%", floor: "€10,000", sold: "1 @ €10k", note: "" },
+        { name: "Registration Entrance Arch", rebook: "€8,000", list: "€12,000", change: "+50%", floor: "€9,000", sold: "1 @ €10k (above list)", note: "Sold above list in 2026 — underpriced." },
+        { name: "MCC Outdoor Building Branding", rebook: "€22,000", list: "€26,000", change: "+18%", floor: "€22,000", sold: "1 @ €22k", note: "" },
+        { name: "Republic Hall Balcony Branding", rebook: "€35,000", list: "€40,000", change: "+14%", floor: "€35,000", sold: "1 @ €35k", note: "High-impact." },
+        { name: "Expo Area Wall Murals (Both Sides)", rebook: "€45,000", list: "€50,000", change: "+11%", floor: "€45,000", sold: "1 @ €45k", note: "" },
+        { name: "Main Stage Chair Sponsorship", rebook: "€18,000", list: "€22,000", change: "+22%", floor: "€18,000", sold: "Mostly comped; 1 @ €18k", note: "Increase carefully, with clear onsite visibility." },
+        { name: "Expo Lounge", rebook: "€30,000", list: "€38,000", change: "+27%", floor: "€30,000", sold: "1 @ €30k", note: "" },
+        { name: "Republic Hall Door Branding", rebook: "€7,500", list: "€7,500", change: "0%", floor: "€7,500", sold: "0 sold", note: "Hold." },
+        { name: "Expo Exit Door Branding", rebook: "€6,000", list: "€6,000", change: "0%", floor: "€6,000", sold: "0 sold", note: "Low-value filler; hold." },
+        { name: "Goodbye Bags / Track Goodie Bags", rebook: "€10,000 / €7,000", list: "Hold", change: "0%", floor: "As 2026", sold: "0 sold", note: "Hold both at 2026." },
+        { name: "Lower Level Lunch Area (Exclusive)", rebook: "€18,000", list: "€18,000", change: "0%", floor: "€18,000", sold: "0 sold", note: "Lunch sponsorship sells terribly as a sticker product — rework the concept (branded experience, not sandwiches) before re-listing." },
+        { name: "Event App Sponsorship", rebook: "€20,000", list: "€22,000", change: "+10%", floor: "€20,000", sold: "0 genuine sales", note: "Keep close to 2026 until app engagement is proven." },
+        { isHeader: true, title: "Networking and Experiential" },
+        { name: "Pre-Registration Networking Drinks", rebook: "€25,000", list: "€30,000", change: "+20%", floor: "€25,000", sold: "5 @ €25k", note: "Proven; tier it. Consider alternate venue since the rooftop serves both event days." },
+        { name: "Rooftop Day 1 / Day 2 Exclusive", rebook: "€100,000", list: "POA", change: "N/A", floor: "Cost + margin", sold: "0 genuine paid", note: "Failed list price retired. Bespoke takeover only, costed and approved. New VIP-zone and drone-show deliverables in build.", retired: true },
+        { name: "Rooftop Non-Exclusive Slots", rebook: "€25,000", list: "Cost-led", change: "N/A", floor: "Cost + margin", sold: "5 @ €25k (Day 1)", note: "Rebuild as tiered cost-led product; Day 2 unsold in 2026." },
+        { name: "Terrace Branding and Drinks", rebook: "€40,000", list: "€44,000", change: "+10%", floor: "€40,000", sold: "1 @ €40k", note: "" },
+        { name: "Rave Cave", rebook: "€50,000", list: "€60,000", change: "+20%", floor: "€50,000", sold: "1 @ €50k", note: "Signature closing party." },
+        { name: "Shisha Lounge", rebook: "€50,000", list: "€55,000", change: "+10%", floor: "€50,000", sold: "1 @ €50k", note: "Year-one product; reinvest in premium feel per sponsor feedback." },
+        { name: "Golf Tournament (Exclusive)", rebook: "€35,000", list: "€40,000", change: "+14%", floor: "€35,000", sold: "2 @ €35k", note: "" },
+        { name: "Padel Tournament", rebook: "€12,000", list: "€16,000", change: "+33%", floor: "€12,000", sold: "1 @ €25k", note: "One sale above list — upside. Lock a better venue for 2027." },
+        { name: "Ice Bath and Yoga", rebook: "€19,000", list: "€21,000", change: "+11%", floor: "€19,000", sold: "5 @ €19k", note: "" },
+        { name: "Run Club (Exclusive)", rebook: "€15,000", list: "€18,000", change: "+20%", floor: "€15,000", sold: "1 @ €15k", note: "" },
+        { name: "Side Event Party", rebook: "POA", list: "Cost-led", change: "N/A", floor: "Cost + margin", sold: "7 sales €32.5k-€100k (median €40k)", note: "Quote case by case; ops costs confirmed before proposal. Five side events committed for 2027 budgeting." },
+        { name: "Slots Competition", rebook: "—", list: "€12,000", change: "N/A", floor: "€10,000", sold: "1 @ €11k", note: "Was POA; real sale found." },
+        { name: "Affiliate and Operator Dinner", rebook: "€30,000", list: "€38,000", change: "+27%", floor: "€30,000", sold: "Brochure €30k", note: "Confirm relationship with bespoke Side Event Party (median €40k)." },
+        { name: "Outdoor Activation Zone (was Matcha and Chill)", rebook: "€50,000", list: "€55,000", change: "+10%", floor: "€50,000", sold: "Brochure €50k", note: "Ops cost ~€25k; rooftop terrace relocation under discussion. Cost-led until ops confirms." },
+        { name: "Entertainment Zone Sponsorship", rebook: "€40,000", list: "€40,000", change: "0%", floor: "€40,000", sold: "0 sold", note: "Hold; Ops to confirm feasibility before pricing." },
+        { isHeader: true, title: "New and Reinvented Inventory" },
+        { name: "Expo Floor Takeover Activation (NEW)", rebook: "—", list: "Cost-led (€45-60k guide)", change: "N/A", floor: "Cost + margin", sold: "SOFTSWISS-style ~€10k in 2026", note: "€75k+ for peak-time exclusivity. Cleaner, more professional, more controlled than the 2026 version." },
+        { name: "Operator / Affiliate Segment Badges (NEW)", rebook: "—", list: "€18,000", change: "N/A", floor: "€15,000", sold: "—", note: "Only if attendee data supports the split. Decision required." },
+        { name: "Main Entrance / Arrival Partner (NEW)", rebook: "—", list: "€60,000", change: "N/A", floor: "€50,000", sold: "—", note: "Entrance + arrival + wayfinding + welcome packaged. SiGMA benchmarks €60-80k." },
+        { name: "Community Side Events (NEW)", rebook: "—", list: "Cost-led", change: "N/A", floor: "Cost + margin", sold: "—", note: "Sub-community gatherings (e.g. Russian-speaking breakfast). Focus-event purpose for a different segment." },
+        { name: "Noma Island Floating Venue (NEW)", rebook: "—", list: "~€50,000 + F&B", change: "N/A", floor: "Cost + margin", sold: "—", note: "Floating platform docked in the bay below the rooftop, 250-300 pax, boat shuttle, drone-show launch point. Exceptional branding moment — ops feasibility and full costing first.", retired: false },
+        { name: "Speakers Lounge Sponsorship (NEW)", rebook: "—", list: "TBC", change: "N/A", floor: "TBC", sold: "—", note: "On the ops 2027 list (branded merch, backdrops, bar, screen). Price after deliverables are fixed." },
+        { name: "Custom Activation (replaces Misc.)", rebook: "—", list: "Min €15,000", change: "N/A", floor: "€15,000", sold: "5 misc @ €2.75k-€20k", note: "No more vague misc lines. Minimum €15k plus commercial approval." }
+      ];
+      return <CatalogueTable title="Branding, Networking &amp; New" sections={sections} tableNote="City and outdoor inventory (bus sides, airport billboards), treasure hunts and excursions remain exploratory — productise only with a cost base and an owner." />;
+    }
+
+    // --- APP ENTRY POINT ---
+
+    const slides = [
+      SlideTitle,
+      SlideExecutiveSummary,
+      SlideWhatChanged,
+      SlideChurnReality,
+      SlideCostBase,
+      SlideProfitMargin,
+      SlideTicketing,
+      SlideTicketPacing,
+      SlidePremiumReset,
+      SlideStands,
+      SlideRevenueRoutes,
+      SlideSalesPacing,
+      SlideSalesPlan,
+      SlideMarketingPlan,
+      SlideGovernance,
+      SlideScorecard,
+      SlideApprovalRequested,
+      SlidePricingRules,
+      SlideDealDesk,
+      SlideTiers,
+      SlideBundles,
+      SlideValueProof,
+      SlideRebooking,
+      SlideMarginWatch,
+      SlideCataloguePremium,
+      SlideCatalogueContent,
+      SlideCatalogueBrandingNetworking
+    ];
+
+    function App() {
+      const [currentSlide, setCurrentSlide] = useState(0);
+
+      const next = () => setCurrentSlide(s => Math.min(slides.length - 1, s + 1));
+      const prev = () => setCurrentSlide(s => Math.max(0, s - 1));
+
+      const Slide = slides[currentSlide];
+
+      return (
+        <div className="min-h-screen bg-slate-950 text-slate-50 font-sans flex flex-col">
+          <main className="flex-1 flex flex-col max-w-7xl mx-auto w-full p-4 md:p-8">
+            <Slide />
+          </main>
+
+          <footer className="border-t border-slate-900 bg-slate-950/50 p-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Target className="w-5 h-5 md:w-6 md:h-6 text-amber-500" />
+              <div className="text-amber-500/80 text-xs md:text-sm font-medium">Valletta 2027 Commercial Strategy</div>
+            </div>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={prev}
+                disabled={currentSlide === 0}
+                className="p-2 rounded-full hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+              </button>
+              <span className="text-slate-400 font-medium min-w-[3rem] text-center text-sm md:text-base">
+                {currentSlide + 1} / {slides.length}
+              </span>
+              <button
+                onClick={next}
+                disabled={currentSlide === slides.length - 1}
+                className="p-2 rounded-full hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+              </button>
+            </div>
+          </footer>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
