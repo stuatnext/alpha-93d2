@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NEXT Summit: New York 2027 GTM · One Critical Path</title>
+<style>
+:root{
+  --bg:#0b0c0f;--panel:#15171c;--panel2:#1d2027;--ink:#f5efe2;--muted:#aaa295;--dim:#756f66;--line:#30343d;
+  --gold:#ffcf33;--gold2:rgba(255,207,51,.13);--gold3:rgba(255,207,51,.35);
+  --green:#55d98b;--green2:rgba(85,217,139,.11);--blue:#78a9ff;--blue2:rgba(120,169,255,.11);
+  --red:#ff6d6d;--red2:rgba(255,109,109,.11);--purple:#b894ff;--purple2:rgba(184,148,255,.11);--orange:#ffad5c;--orange2:rgba(255,173,92,.11)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 5% 0%,rgba(255,207,51,.11),transparent 30%),radial-gradient(circle at 90% 8%,rgba(120,169,255,.09),transparent 34%),var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+.shell{max-width:1320px;margin:0 auto;padding:0 28px 70px}.topbar{position:sticky;top:0;z-index:20;background:rgba(11,12,15,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:1320px;margin:0 auto;padding:12px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{min-width:260px}.brand strong{display:block;color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.13em}.brand span{display:block;color:var(--dim);font-size:12px;margin-top:2px}
+nav{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}nav a{color:var(--muted);text-decoration:none;font-size:12px;padding:7px 10px;border:1px solid transparent;border-radius:999px}nav a:hover{color:var(--ink);background:rgba(255,255,255,.035);border-color:var(--line)}
+.hero{padding:70px 0 42px;display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:end;border-bottom:1px solid var(--line)}.eyebrow{display:inline-flex;color:var(--gold);background:var(--gold2);border:1px solid var(--gold3);border-radius:999px;padding:7px 10px;font-size:11px;text-transform:uppercase;letter-spacing:.11em;margin-bottom:22px}
+h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:clamp(42px,6vw,76px);line-height:.97;letter-spacing:-.045em;margin:0 0 22px}h1 em{color:var(--gold);font-style:italic}.lead{font-size:18px;color:var(--muted);max-width:860px;margin:0}.hero-card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 24px 80px rgba(0,0,0,.35)}
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat{background:rgba(0,0,0,.18);border:1px solid var(--line);border-radius:16px;padding:15px}.stat b{display:block;color:var(--gold);font-size:28px;line-height:1}.stat span{display:block;color:var(--dim);font-size:12px;margin-top:7px}
+section{padding:54px 0;border-bottom:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;gap:28px;align-items:end;margin-bottom:24px}.kicker{color:var(--gold);font-size:11px;letter-spacing:.13em;text-transform:uppercase;margin-bottom:8px}.section-title{font-family:Georgia,"Times New Roman",serif;font-size:clamp(30px,3.6vw,46px);line-height:1.04;letter-spacing:-.035em;margin:0;font-weight:500}.section-note{color:var(--muted);max-width:700px;font-size:14px;margin:0}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:20px;min-height:100%}.gold{border-color:var(--gold3);background:linear-gradient(180deg,rgba(255,207,51,.09),rgba(21,23,28,.9))}.blue{border-color:rgba(120,169,255,.34);background:linear-gradient(180deg,var(--blue2),rgba(21,23,28,.9))}.green{border-color:rgba(85,217,139,.34);background:linear-gradient(180deg,var(--green2),rgba(21,23,28,.9))}.red{border-color:rgba(255,109,109,.34);background:linear-gradient(180deg,var(--red2),rgba(21,23,28,.9))}.purple{border-color:rgba(184,148,255,.34);background:linear-gradient(180deg,var(--purple2),rgba(21,23,28,.9))}.orange{border-color:rgba(255,173,92,.34);background:linear-gradient(180deg,var(--orange2),rgba(21,23,28,.9))}
+.label{color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:9px}.card h3{font-size:17px;color:#fff;margin:0 0 8px}.card p{font-size:14px;color:var(--muted);margin:0}.card ul{margin:12px 0 0;padding-left:18px;color:var(--muted);font-size:14px}.card li{margin:6px 0}.big-number{font-size:38px;color:#fff;line-height:1;font-weight:750;letter-spacing:-.04em}
+.callout{margin-top:16px;border:1px solid var(--gold3);background:var(--gold2);color:#f5df88;border-radius:16px;padding:15px 17px;font-size:14px}.callout.red{border-color:rgba(255,109,109,.35);background:var(--red2);color:#ffbaba}.callout.blue{border-color:rgba(120,169,255,.35);background:var(--blue2);color:#cfe0ff}.callout.green{border-color:rgba(85,217,139,.35);background:var(--green2);color:#c9f7dd}.callout strong{color:#fff}
+.matrix{overflow:auto;border:1px solid var(--line);border-radius:20px;background:var(--panel)}table{width:100%;border-collapse:collapse;min-width:880px}th,td{padding:13px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);font-size:13px}th{background:var(--panel2);color:var(--dim);text-transform:uppercase;letter-spacing:.1em;font-size:10px}td{color:var(--muted)}td strong{color:#fff}tr:last-child td{border-bottom:0}.matrix ul{margin:0;padding-left:18px}.matrix li{margin:5px 0}.critical-table{min-width:1320px}.nowrap{white-space:nowrap}
+.timeline{display:grid;gap:12px}.timeline-item{display:grid;grid-template-columns:160px 1fr;gap:16px;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:17px}.timeline-item time{color:var(--gold);font-weight:700;text-transform:uppercase;font-size:12px;letter-spacing:.08em}.timeline-item h3{margin:0 0 8px;color:#fff;font-size:17px}.timeline-item p{margin:0;color:var(--muted);font-size:14px}.dash{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px}.dash span{display:block;color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:.08em}.dash b{display:block;color:#fff;font-size:20px;margin-top:5px}.dash small{display:block;color:var(--muted);font-size:12px;margin-top:4px}.subhead{margin:34px 0 16px}.subhead h3{font-family:Georgia,"Times New Roman",serif;font-size:30px;line-height:1.1;letter-spacing:-.03em;margin:0;color:#fff;font-weight:500}.subhead p{margin:8px 0 0;color:var(--muted);font-size:14px;max-width:820px}.footer{display:flex;justify-content:space-between;gap:18px;color:var(--dim);font-size:12px;padding:30px 0 10px}
+@media(max-width:1100px){.hero,.grid-2,.grid-3,.grid-4,.grid-5{grid-template-columns:1fr}.section-head{display:block}.section-note{margin-top:12px}.timeline-item{grid-template-columns:1fr}nav{display:none}table{min-width:720px}.shell{padding:0 16px 50px}.topbar-inner{padding:12px 16px}.hero{padding-top:44px}section{padding:42px 0}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topbar-inner"><div class="brand"><strong>NEXT Summit: New York 2027</strong><span>Execution GTM · one critical path, owner actions, approval to rebooking</span></div><nav>
+<a href="#mission">Mission</a><a href="#winning">Winning</a><a href="#scoreboard">Scoreboard</a><a href="#rights">Decision rights</a><a href="#path">Critical path</a><a href="#actions">Immediate actions</a>
+</nav></div></div>
+
+<main class="shell">
+<header class="hero">
+  <div><div class="eyebrow">Internal GTM brief · execution view</div><h1>NYC 2027.<br/>The premium room. <em>Density, not volume.</em></h1>
+  <p class="lead">This GTM turns the approved NYC 2027 commercial strategy — Manhattan premium pricing, strict deal-desk governance and curated executive density — into weekly execution. The critical path runs from conditional approval and the rebook window, through the NEXTPredict 2026 protection window, to event delivery in March 2027 and 2028 rebooking. Each row shows the phase, target, owner actions and escalation points.</p></div>
+  <aside class="hero-card"><h2 style="margin:0 0 14px;font-size:16px;color:#fff;">GTM structure</h2><div class="stat-grid">
+    <div class="stat"><b>1</b><span>Mission and positioning</span></div><div class="stat"><b>2</b><span>What winning looks like</span></div><div class="stat"><b>3</b><span>Commercial scoreboard</span></div><div class="stat"><b>4</b><span>Decision rights</span></div><div class="stat"><b>5</b><span>Critical path</span></div><div class="stat"><b>6</b><span>Immediate actions</span></div>
+  </div><div class="callout">The pricing is set. The work now is conditional approval, a disciplined rebook window, and weekly execution that survives the NEXTPredict October peak.</div></aside>
+</header>
+
+<section id="mission">
+  <div class="section-head"><div><div class="kicker">01 · Mission and positioning</div><h2 class="section-title">The commercial decision is made</h2></div><p class="section-note">NYC 2027 is a lift-and-shift of the proven 2026 product set, revalued at a Manhattan premium. The team should stop re-debating pricing and start selling against the approved rate card, the deal desk and the scarcity story.</p></div>
+  <div class="grid-4">
+    <div class="card gold"><div class="label">The model</div><h3>Scarcity, not square metres</h3><p>European competitors scale to 30,000+ delegates and commoditise floor space. We sell a capped premium room: 20-stand max floor, max 2 stands per brand, multi-day format engineered around a c.1,500 peak-capacity venue environment.</p></div>
+    <div class="card blue"><div class="label">The proof</div><h3>51.4% executive density</h3><p>Verified 2026 registration data: 30.4% Founders/MDs plus 21% C-Suite. Operators 28.6%, suppliers 22.6%. This concentration of decision-makers is what justifies premium pricing against mass-market events.</p></div>
+    <div class="card green"><div class="label">Strategic continuity</div><h3>Lift and shift, repriced</h3><p>The 2027 physical product set mirrors 2026 to protect operational bandwidth for the NEXTPredict launch. The valuation does not: historically underpriced inventory is rebalanced to reflect genuine scarcity, buyer density and New York delivery value.</p></div>
+    <div class="card red"><div class="label">What it is not</div><h3>Not a discount-led floor</h3><p>Not a volume expo, not a CPM branding play, not a stand bazaar. No steep discounting culture: 15% hard ceiling, 5% on power inventory, sweeteners instead of price erosion.</p></div>
+  </div>
+  <div class="callout">Mission line: <strong>We are selling the densest executive room in the industry's North American calendar — and pricing it like we believe it.</strong></div>
+
+  <div class="subhead"><h3>Value proposition</h3><p>Every buyer type gets a different reason to pay the premium. Sales conversations lead with outcomes, not inventory lists.</p></div>
+  <div class="grid-4">
+    <div class="card gold"><div class="label">Headline / Diamond partners</div><h3>Pipeline, not branding</h3><p>Executive Matchmaking turns partnership into ABM: 10 curated double opt-in introductions at Headline (€280k), up to 5 at Diamond (€135k+). Below €135k receives zero included introductions. This line is non-negotiable.</p></div>
+    <div class="card blue"><div class="label">Exhibitors</div><h3>A quality-filtered floor</h3><p>The €27k floor for a 3x2 stand is a quality filter that biases the room toward well-funded corporate peers. Scarce large stands (€85k–€110k) are priced on placement and exclusivity, not volume discounts.</p></div>
+    <div class="card green"><div class="label">Content partners</div><h3>Authority on three stages</h3><p>Branded sessions, custom sessions, presenter slots and paid non-branded panels across Leadership, Stage 2 and Stage 3 — €1.125M of protected content inventory. Non-branded panels are paid product, never sweeteners.</p></div>
+    <div class="card purple"><div class="label">Attendees</div><h3>The room is the product</h3><p>Full Event is the revenue engine; VIP is a materially elevated hospitality tier (true VIP lounge, premium F&amp;B, hosted networking) — not a lanyard upgrade. Conference Only exists to anchor the premium baseline.</p></div>
+  </div>
+
+  <div class="subhead"><h3>Selling rules</h3><p>Language and behaviour protect the yield. These rules are the 2027 versions of vocabulary control.</p></div>
+  <div class="matrix"><table><thead><tr><th>Do</th><th>Never</th><th>Owners enforcing</th></tr></thead><tbody>
+    <tr><td>Sell <strong>density, scarcity and curated access</strong>. Anchor with Headline (€280k) and the €58k solo keynote so €19k branded panels read as efficient. Close enterprise deals with Sweetener Bank add-ons (advertisement videos, digital inventory).</td><td>Discount past 15% (Stuart approval only), discount power inventory past 5% (Headline, 3x2/6x2 stands, lanyards, Wi-Fi), give matchmaking intros below €135k, treat non-branded panels as sweeteners, or circulate provisional pricing once the rate card is issued.</td><td>Stuart, Will and every deal owner. Maria audits drift through the weekly NYC package review.</td></tr>
+  </tbody></table></div>
+  <div class="callout red"><strong>Banned commercial drift:</strong> no off-rate-card quotes, no Prediction Markets track selling without separate approval (NEXTPredict cannibalisation guard), no Booth 0 / Flagship Pavilion commitments until the floorplan confirms it is incremental inventory.</div>
+</section>
+
+<section id="winning">
+  <div class="section-head"><div><div class="kicker">02 · What winning looks like</div><h2 class="section-title">€2.82M+ with the premium intact</h2></div><p class="section-note">The win is clearing the €2.73M fully loaded cost base on base targets, then driving to stretch — without breaking the discount ceiling or diluting the room.</p></div>
+  <div class="grid-5">
+    <div class="dash"><span>Partnerships</span><b>€2.07M</b><small>sales base target; €2.25M management target</small></div>
+    <div class="dash"><span>Net tickets</span><b>€750k</b><small>marketing base floor; €1.1M stretch (modelled c.€1.13M)</small></div>
+    <div class="dash"><span>Room</span><b>Density</b><small>2,000+ registered, c.1,500 peak; executive mix at or above 51.4%</small></div>
+    <div class="dash"><span>Yield</span><b>Held</b><small>average realised discount under 15%; power inventory under 5%</small></div>
+    <div class="dash"><span>2028</span><b>Start</b><small>rebooking conversations open onsite, before the room clears</small></div>
+  </div>
+  <div class="callout">In March 2027, success looks like a sold floor at the 20-stand cap, three stages of paid content delivered, Headline and Diamond partners with their curated introductions completed, a verified executive-dense room — and 2028 renewal conversations already logged in HubSpot before doors close. Combined base revenue €2.82M clears costs with a thin c.€85k margin. <strong>Base is survival; the stretch case (€3.35M, c.€615k margin) is the operating objective.</strong></div>
+</section>
+
+<section id="scoreboard">
+  <div class="section-head"><div><div class="kicker">03 · Commercial scoreboard</div><h2 class="section-title">Two quotas. One cost base. No blending.</h2></div><p class="section-note">Sales owns partnerships in EUR. Marketing owns net ticket revenue. Ticket revenue is net cash — after Stripe fees (3.52%), early-bird mix and partner/group discounting (~12% blended deductions). Gross USD never gets reported as performance.</p></div>
+  <div class="grid-4">
+    <div class="card gold"><div class="label">Sales · partnerships</div><div class="big-number">€2.07M</div><p style="margin-top:8px">Base target (minimum viable). Management target €2.25M. Modelled working forecast €2.088M at 2026 sell-through — the c.€162k gap to management target closes via renewals discipline, bundle conversion and selectively unlocking approved upside.</p></div>
+    <div class="card blue"><div class="label">Marketing · net tickets</div><div class="big-number">€750k</div><p style="margin-top:8px">Protected floor, not the modelled stretch. Modelled net ticket case c.€1.129M from ~$1.44M gross paid. Stretch target €1.1M. Owner: Oliver, with James accountable for the demand engine from 1 October.</p></div>
+    <div class="card green"><div class="label">Cost base</div><div class="big-number">€2.73M</div><p style="margin-top:8px">Fully loaded: €2.0M cost of sales, €556k salaries, €179k commission. Base targets combined (€2.82M) clear it by c.€85k. Stretch (€3.35M) yields c.€615k operating margin.</p></div>
+    <div class="card purple"><div class="label">Inventory ceiling</div><div class="big-number">€3.14M</div><p style="margin-top:8px">Strict base-case maximum: Branding &amp; Utility €793k, Content &amp; Stages €1.125M, Expo &amp; Networking €1.225M (mutual-exclusivity caps applied). Excludes all conditional upside.</p></div>
+  </div>
+
+  <div class="subhead"><h3>Ticket architecture and pacing</h3><p>The pricing ladder is the urgency lever. Phase switches happen on the date — late discounting is exception handling, never a campaign tactic.</p></div>
+  <div class="matrix"><table><thead><tr><th>Pass type</th><th>Paid volume target</th><th>Early Bird</th><th>Standard</th><th>Late / Final</th><th>Role in model</th></tr></thead><tbody>
+    <tr><td><strong>Conference Only</strong></td><td>~350</td><td>$699</td><td>$899</td><td>$1,099</td><td>The decoy. Exists to anchor the premium baseline.</td></tr>
+    <tr><td><strong>Full Event</strong></td><td>~750</td><td>$1,099</td><td>$1,399</td><td>$1,699</td><td>The revenue engine. Core paid product; Oliver owns conversion and weekly pacing.</td></tr>
+    <tr><td><strong>VIP Pass</strong></td><td>~50</td><td>$2,199</td><td>$2,499</td><td>$2,799</td><td>The margin tier. Only works if the VIP experience is materially elevated. No casual discounting or bundling — Stuart approval required.</td></tr>
+    <tr><td><strong>Focus Pass (EV)</strong></td><td>~350</td><td>$399</td><td colspan="2">$549 – $699</td><td>Focus-track audience volume. Tracked separately from summit passes.</td></tr>
+  </tbody></table></div>
+  <div class="callout"><strong>Ticket phase windows:</strong> Early Bird opens c.15 September 2026 and runs to mid-December · Standard from early January 2027 · Late from c.mid-February to event week. Switch on the date. Gross paid base case c.$1.44M → modelled net c.€1.129M after fees and blended discounting. Prediction Markets passes (~$270k gross potential) stay out of the base case pending the cannibalisation decision.</div>
+
+  <div class="subhead"><h3>Deal desk and discount authority</h3><p>We are holding 2027 list prices. The Sweetener Bank — high-margin add-ons for deals over €50k — replaces price erosion.</p></div>
+  <div class="grid-4">
+    <div class="dash"><span>Sales reps</span><b>Max 10%</b><small>standard authority off 2027 list price</small></div>
+    <div class="dash"><span>Sales Director (Will)</span><b>Max 15%</b><small>requires direct approval</small></div>
+    <div class="dash"><span>Above 15%</span><b>Stuart only</b><small>every exception logged with rationale</small></div>
+    <div class="dash"><span>Power inventory</span><b>Max 5%</b><small>Headline, 3x2/6x2 stands, lanyards, Wi-Fi — hard cap</small></div>
+  </div>
+
+  <div class="subhead"><h3>Partnership tiers and the matchmaking line</h3><p>Tiers define status, passes and the ABM entitlement. Matchmaking is a premium deliverable, not a general benefit.</p></div>
+  <div class="matrix"><table><thead><tr><th>Tier</th><th>Threshold</th><th>Included introductions</th><th>Commercial note</th></tr></thead><tbody>
+    <tr><td><strong>Headline</strong></td><td>€280,000 · singular and exclusive</td><td><strong>10</strong> concierge-led</td><td>Sits above all tiering. Total category capture for one apex buyer. 5% max discount.</td></tr>
+    <tr><td><strong>Diamond / Flagship</strong></td><td>€135,000+</td><td><strong>Up to 5</strong> double opt-in</td><td>First true premium access tier: concierge servicing, x8 passes, x4 VIP upgrades, pre-event strategy session, filmed interview, priority booking windows.</td></tr>
+    <tr><td><strong>Platinum</strong></td><td>€80,000 – €134,999</td><td>0</td><td>Premium visibility without concierge, VIP elevation or ABM support — the upsell pressure to Diamond.</td></tr>
+    <tr><td><strong>Gold</strong></td><td>€30,000 – €79,999</td><td>0</td><td>Entry partnership band above the €27k stand floor.</td></tr>
+  </tbody></table></div>
+
+  <div class="subhead"><h3>Conditional upside — locked out of the base case</h3><p>Each item needs its own approval before a single euro is forecast or sold against it.</p></div>
+  <div class="grid-3">
+    <div class="card orange"><div class="label">Prediction Markets track</div><h3>+ €252k max · BLOCKED</h3><p>Removed from base case to protect the standalone NEXTPredict October event. Unlocking requires an explicit cannibalisation check and Stuart + Pierre sign-off after NEXTPredict 2026 results are read.</p></div>
+    <div class="card orange"><div class="label">Booth 0 / Flagship Pavilion</div><h3>+ €135k max · TBC</h3><p>Only sellable as a fully packaged Anchor Pavilion (turnkey build, 15–20 passes, content, 5 intros). Stays out of the model until the final floorplan proves it is incremental, not replacement, inventory. Space-only 8x4/8x6 stays anchored at €85k–€95k.</p></div>
+    <div class="card orange"><div class="label">Pending venue branding</div><h3>+ €70k max · TBC</h3><p>Upstairs reg desk and projection mapping wait on final venue confirmation. Sell only after the venue contract confirms the inventory exists.</p></div>
+  </div>
+  <div class="callout green">Base-case forecast plus separable upside ≈ €2.41M; plus Booth 0 if genuinely incremental ≈ €2.55M. Upside is how the €2.25M management target gets beaten — never how the €2.07M base gets rescued.</div>
+
+  <div class="subhead"><h3>Weekly reporting spine</h3><p>One war-room view per function. Activity is not momentum: every miss gets an owner, corrective action and deadline.</p></div>
+  <div class="matrix"><table><thead><tr><th>Reporting area</th><th>Owner</th><th>Weekly view</th><th>Decision it drives</th></tr></thead><tbody>
+    <tr><td><strong>Partnership health</strong></td><td>Will</td><td>Closed Won vs €2.07M pacing, weighted pipeline, stuck deals, discount usage vs ceiling, sweetener spend, rebook conversion rate, top accounts with no next action.</td><td>Escalate senior selling, fix follow-up, trigger Stuart on exceptions.</td></tr>
+    <tr><td><strong>Ticket health</strong></td><td>Oliver</td><td>Paid tickets by pass type and phase, required vs actual run rate, source, realised price, abandoned checkout, group/partner discount mix.</td><td>Change outreach, landing page, offer emphasis or recovery work.</td></tr>
+    <tr><td><strong>Campaign health</strong></td><td>James (HPL + Nico until 1 Oct)</td><td>Spend, CPL, purchase starts, purchases, sponsor enquiries, creative quality vs premium guardrails.</td><td>Scale winners, kill weak creative, fix tracking.</td></tr>
+    <tr><td><strong>Content &amp; speakers</strong></td><td>Rory + Kim</td><td>Speaker confirmations, paid content inventory sold vs €1.125M ceiling, proof assets produced for sales use.</td><td>Decide what becomes outreach collateral and campaign proof.</td></tr>
+    <tr><td><strong>Delivery &amp; CRM</strong></td><td>Olivia-Mae + Gerda + Jo</td><td>HubSpot hygiene (no €1 placeholders, correct stages), Bizzabo build state, sponsor handoffs, Monday delivery rows, open blockers.</td><td>Fix handoff and data issues before they hit revenue reporting.</td></tr>
+  </tbody></table></div>
+  <div class="callout red"><strong>Hard rule:</strong> paid summit tickets, Focus passes, sponsor passes and comps are reported separately. Partnership EUR and ticket USD/EUR never get blended into one "revenue" number outside the agreed net bridge.</div>
+</section>
+
+<section id="rights">
+  <div class="section-head"><div><div class="kicker">04 · Decision rights and escalation</div><h2 class="section-title">Move fast inside the rules</h2></div><p class="section-note">Stuart is not the first approver for routine execution. Owners move inside agreed lanes; exceptions escalate same-day. Pierre's approval window is 5 working days — silence is not approval, and overdue approvals get chased as critical-path items.</p></div>
+  <div class="matrix"><table><thead><tr><th>Owner</th><th>Core responsibility</th><th>Decision rights</th><th>Escalate when</th></tr></thead><tbody>
+    <tr><td><strong>Stuart</strong></td><td>Commercial strategy, deal desk, rate card, exception approvals, war-room readout.</td><td>Owns discount exceptions &gt;15%, Sweetener Bank rules, tier entitlements, upside unlock requests and sensitive routing.</td><td>Pricing-framework change, Pierre-level approval needed, or cross-event cannibalisation question.</td></tr>
+    <tr><td><strong>Pierre</strong></td><td>MD. Approves pricing, revenue model, margin, commercial strategy.</td><td>Ratifies the conditional GTM, the rate card and any structural change to targets.</td><td>Any open approval at 5 working days; deferral cost gets stated in weeks of runway.</td></tr>
+    <tr><td><strong>Will</strong></td><td>Partnership revenue, sales-team execution, proposals, renewals/rebooking.</td><td>Standard packages, approved sweeteners, discounts to 15%, account assignment (Neil, Martin, Sammi, Georgia, Rhys, Nikolai).</td><td>Off-menu sweetener, non-standard terms, discount outside deal desk, sensitive account, delivery risk.</td></tr>
+    <tr><td><strong>Oliver</strong></td><td>Paid-ticket sales, lead gen, buyer journey, abandoned-checkout recovery.</td><td>Phase-code discounts on Full Event only inside the approved ladder; bulk paid orders 2–9.</td><td>VIP discount request, 10+ ticket order, off-ladder code, or pacing misses two weeks running.</td></tr>
+    <tr><td><strong>James</strong> (from 1 Jul)</td><td>Marketing strategy and execution calendar; full strategy due 1 Oct.</td><td>Builds the NYC demand plan from this GTM, not a blank brief. Owns channel mix and creative direction from 1 Oct.</td><td>Campaign needs budget change, brand risk, or conflicts with NEXTPredict's October peak.</td></tr>
+    <tr><td><strong>Nico + HPL</strong> (until James ramps)</td><td>Interim brand/creative guardrails and paid execution.</td><td>Scale or kill creative on performance inside premium guardrails.</td><td>Creative drifts cheap, claims lack support, or tracking breaks.</td></tr>
+    <tr><td><strong>Maria</strong></td><td>NYC 2027 project control: strategy package, owner chasing, readiness gates.</td><td>Owns the Monday board, dependency visibility and the 31 Jul readiness checklist.</td><td>Any gate item is ownerless, stalled or red within 10 working days of its date.</td></tr>
+    <tr><td><strong>Martin</strong></td><td>2026 exhibitor rebooking and named NYC accounts.</td><td>Runs the rebook window outreach against the rate card.</td><td>Rebook commitments requested outside the 15% window, or HubSpot records missing for active conversations (Soft2Bet / Altenar / Kambi pattern).</td></tr>
+    <tr><td><strong>Olivia-Mae + Gerda</strong></td><td>Sponsor delivery, fulfilment, proof capture, venue ops.</td><td>Execute contracted deliverables inside scope; run the 72h proof-capture checklist at event.</td><td>Request outside contracted scope, unclear, or commercially risky; venue inventory differs from sold inventory.</td></tr>
+    <tr><td><strong>Rory</strong></td><td>Conference content, speaker approvals, agenda integrity.</td><td>Approves speaker usage and protects paid content slots from free-content creep.</td><td>Content commitment threatens a paid slot or a sensitive relationship.</td></tr>
+    <tr><td><strong>Kim</strong></td><td>Website, GA4, media delivery, audience proof.</td><td>Publishes approved content aligned to ticket and sponsor journeys; produces density-proof assets.</td><td>Claim support, approval route or commercial CTA is missing.</td></tr>
+    <tr><td><strong>Jo</strong></td><td>HubSpot forms, Bizzabo→HubSpot integration, reporting fields.</td><td>Routine forms, approved field mapping, source/code tracking.</td><td>Structural CRM change, consent issue, or any week where deal-data hygiene cannot be trusted. CRM readiness is a named single-point-of-dependency risk — Maria tracks a fallback owner.</td></tr>
+    <tr><td><strong>Amy</strong></td><td>Sponsor assets and creative requests.</td><td>Chases contracted assets on the delivery calendar.</td><td>Asset gaps threaten production deadlines.</td></tr>
+    <tr><td><strong>Ana</strong></td><td>COO. Delivery completion, ownership clarity, process.</td><td>Visibility on readiness gates and post-event proof discipline.</td><td>Gates slip or ownership disputes stall execution.</td></tr>
+    <tr><td><strong>Finance</strong></td><td>Net revenue assumptions, EUR/USD billing, fees, refunds.</td><td>Confirms FX treatment, Stripe fees, invoicing currency (one contract per currency), payment terms.</td><td>Net ticket or partnership revenue cannot be reported with confidence.</td></tr>
+  </tbody></table></div>
+  <div class="callout">Escalation is not failure. Silence is failure. Anything blocking the 31 Jul readiness gate gets raised same-day, not saved for the weekly.</div>
+</section>
+
+<section id="path">
+  <div class="section-head"><div><div class="kicker">05 · Critical path</div><h2 class="section-title">One timeline from approval to rebooking</h2></div><p class="section-note">The operating spine: approval gate → rebook window → open-market sales → ticket launch → NEXTPredict protection window → Q1 sprint → event week → post-event conversion. Every row becomes Monday rows with owner, done-state, dependency and escalation trigger — Maria enforces.</p></div>
+  <div class="matrix"><table class="critical-table"><thead><tr><th class="nowrap">Window</th><th>Phase</th><th class="nowrap">Checkpoint</th><th>Weekly outcome</th><th>Owner actions</th><th>Decisions, TBCs and escalation</th></tr></thead><tbody>
+
+    <tr><td class="nowrap"><strong>Now → 19 Jun 2026</strong></td><td>Approval gate</td><td class="nowrap">GTM ratified</td><td>Convert the conditional ask into a yes and issue the rate card.</td><td>
+      <strong>Stuart:</strong> close the Pierre conditional approval — already 10 working days past the 5-day window. Frame the three testable conditions: venue dual booking confirmed, Soft2Bet / Altenar / Kambi logged in HubSpot, EUR/USD billing structured as one contract per currency. State the deferral cost: every week burned is one of seven to the 31 Jul gate.<br/>
+      <strong>Martin:</strong> create the three missing HubSpot deals and confirm the venue rebooking status — this is a pre-condition, not admin.<br/>
+      <strong>Stuart + Will:</strong> finalise floorplan assumptions, lock the 15% rebook window terms, issue the 2027 rate card so renewals open against clean pricing, not provisional numbers.<br/>
+      <strong>Maria:</strong> stand up the NYC 2027 Monday board mirroring this critical path; name the Bizzabo/Event Ops owner for the 2027 build.<br/>
+      <strong>Finance:</strong> confirm FX, Stripe fee treatment, invoicing currencies and refund policy for the net-revenue bridge.</td><td>
+      If Pierre defers past this window, escalate the breach of the operating model explicitly.<br/>
+      No collateral or quotes circulate before the rate card is issued (historical pattern — monitor).<br/>
+      Booth 0, Prediction Markets and venue branding stay out of every proposal.</td></tr>
+
+    <tr><td class="nowrap"><strong>22 Jun → 31 Jul</strong></td><td>Rebook window</td><td class="nowrap">€350k closed · readiness gate GREEN</td><td>Convert 2026 exhibitors and sponsors at the new rate card, and pass the 31 Jul readiness gate.</td><td>
+      <strong>Will:</strong> open every 2026 NYC renewal inside the 15% rebook window. Named-account plan: owner, package angle, next action per account. Close the in-flight pipeline (Zoot Studios €27k, Clever Advertising €24k, Continent 8 €33.5k) and the three condition accounts.<br/>
+      <strong>Martin:</strong> run rebook outreach; log every conversation in HubSpot same-day — no €1 placeholders, real amounts and stages.<br/>
+      <strong>Stuart:</strong> brief the sales team on deal desk, sweetener bank, tier entitlements and the matchmaking line. Sign off the collateral brief.<br/>
+      <strong>James (starts 1 Jul):</strong> onboard against this GTM; inherit the demand plan skeleton, audience data and 2026 density proof.<br/>
+      <strong>Jo:</strong> CRM ready — pipelines, fields, source tracking, rate-card products in HubSpot.<br/>
+      <strong>Kim + Amy:</strong> produce the sales kit: density proof, tier one-pagers, floorplan, matchmaking explainer.<br/>
+      <strong>Maria:</strong> run the gate checklist weekly: GTM approved, execution sign-off, CRM ready, collateral brief, sales launch readiness.</td><td>
+      <strong>31 Jul is a hard gate.</strong> Any red item escalates to Stuart and Ana two weeks before, not on the day.<br/>
+      Rebook pricing honoured only inside the window — after it closes, list price applies.<br/>
+      If CRM hygiene fails (placeholder amounts, missing deals), pause pipeline reporting until fixed rather than report bad numbers.</td></tr>
+
+    <tr><td class="nowrap"><strong>3 Aug → 11 Sep</strong></td><td>Open market</td><td class="nowrap">€700k closed</td><td>Take the rate card to the full market while marketing builds the ticket engine.</td><td>
+      <strong>Will:</strong> open-market sales sprint — tier-led conversations anchored on Headline/Diamond; weekly pipeline review against €2.07M pacing; sweeteners, not discounts, close enterprise deals.<br/>
+      <strong>Oliver:</strong> build the ticket machine: Bizzabo products for all four pass types, phase codes, source tracking, abandoned-checkout recovery, waitlist segmentation by buyer type.<br/>
+      <strong>James:</strong> NYC demand plan drafted — channel mix, audience segments, creative platform, launch calendar — feeding his 1 Oct full strategy.<br/>
+      <strong>Rory:</strong> speaker spine confirmed for the agenda skeleton; first confirmed names become sales and campaign proof.<br/>
+      <strong>Jo + Oliver:</strong> test purchases pass end-to-end (checkout, confirmation, HubSpot mapping) before any public ticket launch.<br/>
+      <strong>Olivia-Mae:</strong> delivery calendar drafted: production deadlines, artwork cutoffs, sponsor handoff format.</td><td>
+      No public ticket launch until test purchase, tracking and code reporting pass.<br/>
+      Headline (€280k) conversations get senior weight — Stuart joins; Pierre on request.<br/>
+      Any floorplan change that touches sold inventory routes through Stuart same-day.</td></tr>
+
+    <tr><td class="nowrap"><strong>14 Sep → 16 Oct</strong></td><td>Ticket launch · Early Bird</td><td class="nowrap">€1.0M closed · 150 paid tickets</td><td>Launch Early Bird cleanly with premium creative, then hold momentum into the NEXTPredict peak.</td><td>
+      <strong>Oliver:</strong> Early Bird launch c.15 Sep — waitlist email, LinkedIn follow-up on priority names within 24h, recovery sequences live. Weekly pacing vs run rate from day one.<br/>
+      <strong>James:</strong> full marketing strategy lands 1 Oct; NYC campaign launches against it. Optimise for purchase starts and buyer quality, not cheap clicks.<br/>
+      <strong>Kim:</strong> publish the 2027 launch story with the density narrative; agenda and speaker proof feed conversion pages.<br/>
+      <strong>Will:</strong> keep partnership cadence; use early ticket momentum and speaker proof in sponsor conversations.<br/>
+      <strong>Maria:</strong> pre-plan the October bandwidth split — every NYC owner declares what pauses during NEXTPredict event weeks.</td><td>
+      If Early Bird pacing misses two consecutive weeks, Stuart triggers page/offer/outreach correction — not a discount.<br/>
+      NEXTPredict creative and NYC creative never compete in the same channel in the same week — James arbitrates.<br/>
+      VIP sells on experience proof; if the elevated VIP product is not confirmed by venue ops, pause VIP promotion.</td></tr>
+
+    <tr><td class="nowrap"><strong>19 Oct → 30 Oct</strong></td><td>NEXTPredict protection window</td><td class="nowrap">Hold · cross-sell onsite</td><td>Protect NEXTPredict delivery; harvest the New York room for NYC 2027.</td><td>
+      <strong>All:</strong> NYC paid campaigns throttle to maintenance; no launches, no phase switches, no big sends this fortnight.<br/>
+      <strong>Will + sales team:</strong> NEXTPredict is a room full of New York buyers — book NYC 2027 meetings onsite, log every conversation as an NYC deal with next actions before the room clears.<br/>
+      <strong>Stuart:</strong> read NEXTPredict results for the Prediction Markets cannibalisation decision — this is the evidence that unlocks (or permanently parks) the €252k track.<br/>
+      <strong>Kim:</strong> capture New York proof assets that serve both events' renewal stories.</td><td>
+      No NYC commitment that creates NEXTPredict delivery debt.<br/>
+      Prediction Markets track decision goes to Stuart + Pierre within two weeks of NEXTPredict closing — with cannibalisation evidence, not opinion.</td></tr>
+
+    <tr><td class="nowrap"><strong>2 Nov → 18 Dec</strong></td><td>Post-Predict surge</td><td class="nowrap">€1.4M closed · 350 paid tickets</td><td>Convert NEXTPredict momentum and close the year strong.</td><td>
+      <strong>Will:</strong> follow up every onsite NYC conversation within 72 hours of NEXTPredict; year-end close sprint against budget-cycle urgency ("2027 budgets lock now").<br/>
+      <strong>Oliver:</strong> Early Bird close-out push to the mid-December switch; abandoned-checkout and group-sales recovery.<br/>
+      <strong>James:</strong> scale winning creative; density proof and confirmed speakers front and centre.<br/>
+      <strong>Rory:</strong> agenda largely locked; remaining paid content inventory (panels, presenter slots) gets a named seller and a close plan vs the €1.125M ceiling.<br/>
+      <strong>Olivia-Mae:</strong> first sponsor handoffs for early Closed Won deals; delivery calendar live in Monday.<br/>
+      <strong>Stuart:</strong> mid-November forecast review — if pacing is below €1.4M, decide which approved upside (venue branding, Booth 0 if confirmed incremental) unlocks.</td><td>
+      Early Bird does not extend. The phase ladder is the urgency lever; extensions destroy it.<br/>
+      Discount pressure peaks at year-end — deal desk holds; exceptions are Stuart's alone.<br/>
+      If the content ceiling is under-sold, fix the seller and the angle, not the price.</td></tr>
+
+    <tr><td class="nowrap"><strong>4 Jan → 12 Feb 2027</strong></td><td>Q1 sprint · Standard</td><td class="nowrap">€1.8M closed · 700 paid tickets</td><td>Run the biggest conversion window: New Year urgency to Standard-phase close.</td><td>
+      <strong>Oliver:</strong> Standard phase opens with New Year campaign; weekly run-rate management; bulk and group orders worked inside rules (2–9 Oliver, 10+ escalates).<br/>
+      <strong>Will:</strong> floor close-out — target the 20-stand cap sold; remaining large-stand inventory gets senior attention; final tier upsells (Platinum → Diamond on matchmaking value).<br/>
+      <strong>James:</strong> full-funnel push: demand creative plus conversion retargeting; speaker and agenda proof at maximum volume.<br/>
+      <strong>Olivia-Mae + Amy:</strong> sponsor asset chase against production cutoffs; artwork and build deadlines enforced in Monday.<br/>
+      <strong>Gerda:</strong> venue ops plan locked: VIP lounge build, hosted-buyer logistics, registration flow for the multi-day format.<br/>
+      <strong>Stuart:</strong> February forecast vs €2.07M — gap-to-close plan named per account.</td><td>
+      Late-phase pricing discipline: no quiet Standard extensions.<br/>
+      Production deadlines beat sales enthusiasm: a deal that cannot be delivered does not get signed without Olivia-Mae's confirmation.<br/>
+      If paid tickets lag 700 at 12 Feb, recovery is outreach and offer emphasis, not price cuts.</td></tr>
+
+    <tr><td class="nowrap"><strong>15 Feb → event</strong></td><td>Late phase · lock the room</td><td class="nowrap">€2.07M+ closed · 1,150 paid</td><td>Final paid sprint, delivery lock, and onsite commercial plan.</td><td>
+      <strong>Oliver:</strong> Late phase final sprint — logistics-led urgency, direct support for high-value buyers, no broad discounting. Final report template ready: source, phase, pass type, realised price.<br/>
+      <strong>Will:</strong> final inventory close; prepare the onsite 2028 rebooking target list, meeting notes and conversation prompts per partner.<br/>
+      <strong>Stuart + Will:</strong> Diamond/Headline matchmaking lists curated and double opt-ins secured pre-event — intros are scheduled before doors open, not improvised onsite.<br/>
+      <strong>Olivia-Mae:</strong> delivery confirmation per sponsor, content freeze, proof-capture checklist with named owners (the 72h Valletta lesson: capture evidence before venue data purges).<br/>
+      <strong>Kim:</strong> shot list, interview list, quotes plan, recap plan — proof assets mapped to 2028 renewal stories.<br/>
+      <strong>Maria:</strong> onsite owner map: who owns every commercial action at event.</td><td>
+      No new sponsor promise in the final fortnight without Stuart + Olivia-Mae approval.<br/>
+      Late ticket recovery codes: Stuart approval, hard caps, exception handling only.<br/>
+      Every matchmaking commitment has a named concierge owner before event week.</td></tr>
+
+    <tr><td class="nowrap"><strong>Event week · March 2027</strong></td><td>Deliver and pre-sell 2028</td><td class="nowrap">Density delivered</td><td>Deliver the premium room, prove the density, open 2028 onsite.</td><td>
+      <strong>Will + sales team:</strong> 2028 rebooking conversations start onsite; every strategic partner leaves with a logged next action.<br/>
+      <strong>Olivia-Mae + Gerda:</strong> sponsor delivery proof captured live — scans, meetings, photos, fulfilment evidence — same-day, not retrospectively.<br/>
+      <strong>Stuart:</strong> live commercial oversight; Diamond/Headline introductions completed and documented; commercial readout structure owned.<br/>
+      <strong>Kim:</strong> capture executive-density proof for the 2028 rate card story: verified registration mix, buyer quotes, clips.<br/>
+      <strong>Oliver:</strong> final ticket close and live attendance/buyer data integrity.</td><td>
+      Rebooking starts onsite, not after everyone has flown home.<br/>
+      Proof capture is a contractual asset: gaps discovered post-event cannot be recreated.<br/>
+      Registration data export confirmed before the venue relationship goes quiet.</td></tr>
+
+    <tr><td class="nowrap"><strong>Event +1 → +30 days</strong></td><td>Post-event conversion</td><td class="nowrap">2028 pipeline live</td><td>Convert delivery into renewals, proof and the 2028 commercial model.</td><td>
+      <strong>Will:</strong> top renewal follow-ups within 72 hours; rebook window terms for 2028 issued while memory is fresh; renewal likelihood and blockers logged per account.<br/>
+      <strong>Olivia-Mae:</strong> sponsor delivery proof packs complete within 10 working days; gaps and make-goods documented before renewal negotiations.<br/>
+      <strong>Oliver:</strong> final ticket performance report: net revenue bridge actuals vs the €750k/€1.1M targets, source and phase analysis.<br/>
+      <strong>Stuart:</strong> final commercial readout vs €2.73M cost base within 30 working days: partnership actuals, net ticket actuals, discount discipline audit, 2028 improvement list. Feeds the 2028 pricing paper.<br/>
+      <strong>Kim + James:</strong> recap assets and campaign learnings become 2028 launch collateral.</td><td>
+      Sponsor follow-up after 72 hours is late.<br/>
+      The readout creates the 2028 GTM — it does not sit in a folder.<br/>
+      If 2028 pipeline is not active within 30 days, rebooking was treated too late.</td></tr>
+
+  </tbody></table></div>
+  <div class="callout"><strong>Pacing logic:</strong> partnership checkpoints (€350k → €700k → €1.0M → €1.4M → €1.8M → €2.07M+) are cumulative Closed Won against the base target, weighted toward the rebook window and the post-NEXTPredict surge, consistent with 2026 pacing. Ticket checkpoints (150 → 350 → 700 → 1,150) track paid summit passes only; Focus passes, sponsor passes and comps are reported separately. Misses trigger correction at two consecutive weeks, escalation at four.</div>
+</section>
+
+<section id="actions">
+  <div class="section-head"><div><div class="kicker">06 · Immediate actions by owner</div><h2 class="section-title">The next ten working days</h2></div><p class="section-note">These are the moves between now and the end of June. The detail sits in the critical path above. Everything here exists to protect the 31 July readiness gate.</p></div>
+  <div class="matrix"><table><thead><tr><th>Owner</th><th>Immediate action</th><th>Output</th><th>Escalation trigger</th></tr></thead><tbody>
+    <tr><td><strong>Stuart</strong></td><td>Close the Pierre conditional approval against the three named conditions; issue the 2027 rate card and rebook-window terms; brief sales on deal desk, tiers and the matchmaking line.</td><td>GTM ratified, rate card live, sales selling against clean pricing.</td><td>Approval still open after the next Pierre touchpoint — escalate the operating-model breach in writing.</td></tr>
+    <tr><td><strong>Martin</strong></td><td>Log Soft2Bet, Altenar and Kambi in HubSpot with real amounts and stages; confirm venue rebooking status; start the 2026-exhibitor rebook list.</td><td>Approval pre-conditions cleared; rebook outreach ready to fire on rate-card day.</td><td>Any condition account still missing from HubSpot by Friday.</td></tr>
+    <tr><td><strong>Will</strong></td><td>Build the named-account plan: account owners across Neil, Martin, Sammi, Georgia, Rhys and Nikolai; package-to-objective map; objection bank; close plan for Zoot (€27k), Clever (€24k) and Continent 8 (€33.5k).</td><td>Sales team knows who contacts whom, what they sell and when they escalate.</td><td>Any in-flight deal without a next action; any quote issued off rate card.</td></tr>
+    <tr><td><strong>Maria</strong></td><td>Build the NYC 2027 Monday board from this critical path; publish the 31 Jul readiness checklist; name the Bizzabo/Event Ops build owner.</td><td>Single source of truth with owners, done-states, dependencies and escalation triggers.</td><td>Any gate item ownerless after one week; CRM dependency on a single person without a fallback.</td></tr>
+    <tr><td><strong>Jo</strong></td><td>Stand up NYC 2027 CRM structure: pipeline hygiene, rate-card products, source/code tracking, no placeholder amounts.</td><td>Deal reporting Pierre can read directly from HubSpot without translation.</td><td>Deal data cannot be trusted in any weekly run.</td></tr>
+    <tr><td><strong>Kim + Amy</strong></td><td>Produce the sales kit from the 2026 density data: executive-mix proof, tier one-pagers, floorplan visual, matchmaking explainer.</td><td>Minimum viable sales kit before open-market sprint.</td><td>Sales conversations happening without approved collateral.</td></tr>
+    <tr><td><strong>Oliver</strong></td><td>Draft the ticket build spec: four pass types, phase ladder, codes, tracking and recovery flows — build starts August, launch c.15 Sep.</td><td>Ticket engine spec ready for the Bizzabo build window.</td><td>Build owner unnamed, or spec blocked by venue/date confirmation.</td></tr>
+    <tr><td><strong>James</strong> (1 Jul)</td><td>Onboard against this GTM and the pricing strategy; inherit the demand-plan skeleton; calendar the 1 Oct full marketing strategy with NYC as a first-class workstream.</td><td>Marketing strategy built from the GTM, not from a blank brief.</td><td>NYC demand planning still unowned by mid-July.</td></tr>
+    <tr><td><strong>Olivia-Mae + Gerda</strong></td><td>Draft the 2027 delivery calendar and adopt the 72h proof-capture checklist as standard, applying the Valletta lesson before the first NYC deal closes.</td><td>Every sold package has a delivery route and a proof plan.</td><td>A sponsor commitment lands without a delivery owner.</td></tr>
+    <tr><td><strong>Rory</strong></td><td>Confirm the speaker spine and protect the paid content inventory map (12 non-branded panels, presenter slots, custom sessions) from free-content creep.</td><td>Agenda skeleton that sales can sell against by August.</td><td>A paid slot gets promised as a relationship favour.</td></tr>
+    <tr><td><strong>Finance</strong></td><td>Confirm EUR/USD billing structure (one contract per currency), Stripe fee treatment, refund policy and the net-revenue bridge format.</td><td>Net reporting reliable from the first closed deal.</td><td>Any revenue number that cannot be reconciled.</td></tr>
+    <tr><td><strong>Pierre</strong></td><td>Ratify the conditional GTM — a yes against three testable conditions, not a commitment to a RED product.</td><td>Sales opens renewals immediately against approved pricing; weeks 2–4 of the 7-week runway stop burning.</td><td>Five-working-day window; silence is not approval.</td></tr>
+  </tbody></table></div>
+  <div class="callout green"><strong>Already in motion:</strong> c.€84.5k of NYC 2027 pipeline exists today (Zoot Studios, Clever Advertising, Continent 8 — all owned by Neil). The rebook window converts this trickle into the €350k first checkpoint.</div>
+</section>
+
+<div class="footer"><span>NEXT Summit: New York 2027 GTM · Execution view</span><span>Mission · scoreboard · decision rights · one critical path · immediate owner actions</span></div>
+</main>
+</body>
+</html>
