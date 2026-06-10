@@ -153,7 +153,7 @@
                 <h3 className="text-lg md:text-xl font-bold text-slate-200">Margin Defence &amp; Cost Discipline</h3>
               </div>
               <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-4">
-                The 2027 cost base is capped at <strong>+10%</strong> (the projection lands at +8%), profit must grow <strong>10-15%</strong>, and discounting is governed: 10% single-deal cap, 15% cumulative cap. Negotiation flexes via <strong>bundles</strong>, not per-deal deliverable swaps that ops cannot track.
+                The 2027 cost base is capped at <strong>+10%</strong> (the projection lands at +8%), profit must grow <strong>10-15%</strong>, and discounting is governed: 10% single-deal cap, 15% cumulative, every give tied to a get. Negotiation flexes via <strong>pre-priced bundle configurations</strong> — never per-deal deliverable swaps that ops cannot track, and never a visible price climb-down.
               </p>
             </div>
           </div>
@@ -867,7 +867,7 @@
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
-                    <span><strong>Deal desk:</strong> 10% single-deal discount cap, 15% cumulative; floors enforced; negotiation flexes via bundles, not per-deal deliverable swaps.</span>
+                    <span><strong>Deal desk:</strong> 10% single-deal / 15% cumulative caps with every give tied to a get; floors held confidential to the deal desk (not on the sales rate card); negotiation via pre-approved bundle configurations, never per-deal deliverable swaps.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-indigo-400 mt-0.5 shrink-0" />
@@ -1383,7 +1383,7 @@
               <ul className="space-y-3 text-xs md:text-sm text-slate-400">
                 <li className="flex items-start gap-3"><div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0" /><span><strong className="text-slate-200">Rebook:</strong> 2026 price for identical scope only, inside the window.</span></li>
                 <li className="flex items-start gap-3"><div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0" /><span><strong className="text-slate-200">2027 List:</strong> the public anchor for new sales and upgrades.</span></li>
-                <li className="flex items-start gap-3"><div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0" /><span><strong className="text-slate-200">Floor:</strong> the higher of 2026 list, the approved floor percentage, or cost-plus-margin. Sales opens at list and lands between — never below floor without director approval.</span></li>
+                <li className="flex items-start gap-3"><div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0" /><span><strong className="text-slate-200">Floor:</strong> the higher of 2026 list, the approved floor percentage, or cost-plus-margin. Floors are <strong className="text-slate-200">deal-desk controls, not pitch material</strong> — they are not published on the sales rate card, and nothing closes below them without director approval.</span></li>
                 <li className="flex items-start gap-3"><div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0" /><span><strong className="text-slate-200">Cost-Led Quote:</strong> mandatory for side events, floor takeovers and bespoke activations where venue, F&amp;B, staffing or production costs change.</span></li>
               </ul>
             </div>
@@ -1423,6 +1423,62 @@
       );
     }
 
+    function SlidePricingMiddleGround() {
+      return (
+        <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
+          <div className="text-[10px] md:text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Appendix</div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">List vs Floor: The Agreed Middle Ground</h2>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Three valid concerns from the review call — one negotiation architecture that answers all of them.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6">
+            <div className="bg-slate-900 border border-rose-500/30 rounded-2xl p-5 md:p-6 flex flex-col">
+              <div className="text-[10px] md:text-xs font-bold text-rose-400 uppercase tracking-widest mb-2">The Risk (Will)</div>
+              <h3 className="text-base md:text-lg font-bold text-slate-200 mb-3">List/Floor Spreads Leak</h3>
+              <p className="text-xs md:text-sm text-slate-400 leading-relaxed flex-1">Reps default straight to the floor — or open at list, hear a "no", and drop the price. Either way the list was never real, credibility dies, and the deal becomes <em>less</em> likely to close. You don't get two bites of the cherry.</p>
+            </div>
+            <div className="bg-slate-900 border border-indigo-500/30 rounded-2xl p-5 md:p-6 flex flex-col">
+              <div className="text-[10px] md:text-xs font-bold text-indigo-400 uppercase tracking-widest mb-2">The Instinct (Kim)</div>
+              <h3 className="text-base md:text-lg font-bold text-slate-200 mb-3">Trade Scope, Not Price</h3>
+              <p className="text-xs md:text-sm text-slate-400 leading-relaxed flex-1">Open at the top price. If there's pushback, take things out of the package rather than cutting the number. Negotiation best practice — the price holds, the scope flexes.</p>
+            </div>
+            <div className="bg-slate-900 border border-amber-500/30 rounded-2xl p-5 md:p-6 flex flex-col">
+              <div className="text-[10px] md:text-xs font-bold text-amber-400 uppercase tracking-widest mb-2">The Constraint (Stuart + Ops)</div>
+              <h3 className="text-base md:text-lg font-bold text-slate-200 mb-3">Products, Not Deliverables</h3>
+              <p className="text-xs md:text-sm text-slate-400 leading-relaxed flex-1">Per-deal deliverable edits across dozens of sponsors are an ops fulfilment nightmare. The tradable unit must be a <strong className="text-slate-200">whole product inside a bundle</strong> — deliverables within each product stay fixed.</p>
+            </div>
+          </div>
+
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 mb-6 shadow-xl">
+            <h3 className="text-base md:text-lg font-bold text-slate-200 mb-4 flex items-center gap-2"><ShieldCheck className="w-5 h-5 text-emerald-400" /> The Synthesis: Configuration-Based Negotiation</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-4 bg-slate-950 rounded-xl border border-slate-800">
+                <div className="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2">1 · Narrow, Contained Spread</div>
+                <p className="text-[11px] md:text-sm text-slate-400 leading-relaxed">Floors sit 0-15% below list across the card. On the two correction assets (Lanyard, Badge) even the floor is far above 2026 actuals. The worst negotiated outcome is still a yield gain — so a deal landing near floor is contained, not catastrophic.</p>
+              </div>
+              <div className="p-4 bg-slate-950 rounded-xl border border-slate-800">
+                <div className="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2">2 · Floors Are Controls, Not Targets</div>
+                <p className="text-[11px] md:text-sm text-slate-400 leading-relaxed">The sales rate card shows list price and each rep's 10% authority — nothing else. Absolute floors live with the deal desk. Nobody can open at the floor if the floor isn't theirs to see. This removes Will's first failure mode entirely.</p>
+              </div>
+              <div className="p-4 bg-slate-950 rounded-xl border border-slate-800">
+                <div className="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2">3 · Price Moves Only When Configuration Moves</div>
+                <p className="text-[11px] md:text-sm text-slate-400 leading-relaxed">Kim's principle at product altitude: every signature bundle ships with a pre-approved <strong className="text-slate-200">Core configuration</strong> — one product removed, repriced in advance. A budget objection is met with a smaller package, never a cheaper identical one. Credibility intact, ops untouched.</p>
+              </div>
+              <div className="p-4 bg-slate-950 rounded-xl border border-slate-800">
+                <div className="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2">4 · Every Give Has a Get</div>
+                <p className="text-[11px] md:text-sm text-slate-400 leading-relaxed">Within the 10% authority, discounts trade for something: early signature, multi-event commitment, faster payment terms, or case-study rights. A concession with no get goes to the director — and is usually a no.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-slate-950 border-l-8 border-emerald-500 rounded-r-2xl p-5 md:p-6 shadow-md border border-slate-900 border-l-emerald-500">
+            <p className="text-slate-200 text-sm md:text-base leading-relaxed italic font-serif">
+              "What the buyer experiences: identical scope rebooks at last year's price; new prices arrive with evidence; and a budget objection gets a smaller configuration — never a visible climb-down. No sticker shock, no two bites of the cherry."
+            </p>
+          </div>
+        </div>
+      );
+    }
+
     function SlideDealDesk() {
       return (
         <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
@@ -1435,7 +1491,7 @@
               <ShieldCheck className="w-8 h-8 md:w-10 md:h-10 text-amber-500" />
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-slate-200">Discount Authority Matrix</h3>
-                <p className="text-slate-400 text-sm md:text-base">Open at list, land between list and floor — never start at the floor.</p>
+                <p className="text-slate-400 text-sm md:text-base">Reps pitch from list with their own authority. Absolute floors are deal-desk controls — not pitch material.</p>
               </div>
             </div>
 
@@ -1443,7 +1499,7 @@
               <div className="p-5 md:p-6 rounded-xl bg-slate-950 border border-slate-800">
                 <div className="text-xs md:text-sm font-medium text-slate-500 uppercase tracking-wider mb-2">Sales Reps</div>
                 <div className="text-2xl md:text-3xl font-bold text-slate-200 mb-2">Max 10%</div>
-                <p className="text-xs md:text-sm text-slate-400">Single-deal authority off 2027 list, never below floor.</p>
+                <p className="text-xs md:text-sm text-slate-400">Single-deal authority off 2027 list — and only in exchange for a documented get.</p>
               </div>
               <div className="p-5 md:p-6 rounded-xl bg-slate-950 border border-slate-800">
                 <div className="text-xs md:text-sm font-medium text-slate-500 uppercase tracking-wider mb-2">Cumulative Cap</div>
@@ -1463,11 +1519,17 @@
             <div className="p-5 md:p-6 rounded-xl bg-slate-900 border border-slate-800">
               <h4 className="font-bold text-slate-200 mb-3 flex items-center gap-2 text-base md:text-lg">
                 <Package className="w-5 h-5 text-amber-500" />
-                Negotiate With Bundles, Not Deliverables
+                The Concession Ladder
               </h4>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Per-deal deliverable swaps create an ops tracking nightmare across dozens of sponsors. Instead, the negotiation lever is <strong className="text-slate-200">adding or removing whole components from defined bundles</strong> — a clean give-and-take that preserves credibility without bespoke fulfilment. Deliverable variation is permitted only on a short list of price-at-risk products, agreed with Ops in advance.
+              <p className="text-slate-400 text-sm leading-relaxed mb-3">
+                When a buyer pushes back, reps work down this ladder in order — price is the last rung, never the first:
               </p>
+              <ol className="space-y-2 text-xs md:text-sm text-slate-400 list-none">
+                <li className="flex items-start gap-2"><span className="text-amber-400 font-mono font-bold shrink-0">1.</span><span><strong className="text-slate-200">Add a sweetener</strong> — high-margin extras (ad video, AI-matched intros) at no charge.</span></li>
+                <li className="flex items-start gap-2"><span className="text-amber-400 font-mono font-bold shrink-0">2.</span><span><strong className="text-slate-200">Re-tier the bundle</strong> — offer the pre-approved Core configuration: a whole product removed, repriced in advance. Deliverables inside products never change (limited exceptions only on a short Ops-agreed at-risk list).</span></li>
+                <li className="flex items-start gap-2"><span className="text-amber-400 font-mono font-bold shrink-0">3.</span><span><strong className="text-slate-200">Trade for commitment</strong> — defined % for multi-event deals, early signature, or faster payment.</span></li>
+                <li className="flex items-start gap-2"><span className="text-amber-400 font-mono font-bold shrink-0">4.</span><span><strong className="text-slate-200">Price within authority</strong> — max 10%, with the get documented in HubSpot. Below that: deal desk.</span></li>
+              </ol>
             </div>
             <div className="p-5 md:p-6 rounded-xl bg-slate-900 border border-slate-800">
               <h4 className="font-bold text-slate-200 mb-3 flex items-center gap-2 text-base md:text-lg">
@@ -1572,7 +1634,7 @@
         <div className="flex-1 flex flex-col animate-in fade-in duration-500 overflow-y-auto pr-2 md:pr-4 pb-8">
           <div className="text-[10px] md:text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Appendix</div>
           <h2 className="text-2xl md:text-3xl font-bold mb-2">Signature Bundles</h2>
-          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Sales leads with outcome-based packages instead of an 80-line catalogue. Bundles are also the negotiation lever: components come in or out — the price holds.</p>
+          <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Sales leads with outcome-based packages instead of an 80-line catalogue. Each bundle ships with a pre-approved <strong className="text-slate-200">Core configuration</strong> (one product removed, repriced in advance) so a budget objection has a planned next offer — and the Core carries a slightly smaller bundle benefit, so upgrading to the full package always pays.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {bundles.map((b, i) => (
@@ -1955,6 +2017,7 @@
       SlideScorecard,
       SlideApprovalRequested,
       SlidePricingRules,
+      SlidePricingMiddleGround,
       SlideDealDesk,
       SlideTiers,
       SlideBundles,
