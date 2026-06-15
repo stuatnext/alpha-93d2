@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Valletta 2027 Commercial Strategy, 272K Ticket Target</title>
+  <title>Valletta 2027 Commercial Strategy, Will Revenue Update</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -42,7 +42,7 @@ const calibrationLog = [
     probability: "Unanchored. Do not treat as calibrated until reference class closes.",
     referenceClass: "Comparable B2B event sponsorship recovery after 30%+ value churn. Required before final forecast confidence is scored.",
     baseRate: "Open. Temporary planning floor uses 70% retention, severe left tail uses 65%, target band is 80% to 85%.",
-    owner: "Will Green, with Finance validation",
+    owner: "Will Purchase, with Finance validation",
     reviewCadence: "Monthly, then weekly from March 2027"
   },
   {
@@ -136,7 +136,7 @@ function SlideOutsideView(){
       <Card className="mb-6 border-amber-900/50">
         <div className="text-xs uppercase tracking-widest text-amber-400 font-black mb-3">Reference class status</div>
         <p className="text-sm md:text-base text-slate-300 leading-relaxed">
-          Current public sponsorship data reports broad retention ranges, not year-after-churn rebound after a 30%+ value-churn event. Until a proper comparable-event reference class is closed, use 80% as the minimum stabilisation band, 85% as target, and 65% as the severe left tail.
+          Will confirmed historic churn was roughly 15% before the CRM switch, though the data series is imperfect. That makes the 80% to 85% value-retention band a recovery target toward prior operating levels, not a random aspiration. The external reference class still needs closing before forecast confidence is scored.
         </p>
       </Card>
       <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
@@ -301,7 +301,7 @@ function SlideTicketing(){
   return (
     <div className="flex-1 flex flex-col overflow-y-auto pb-8">
       <h2 className="text-2xl md:text-3xl font-bold mb-2">Ticketing: €188K to €272K</h2>
-      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">One ticket target. Lower than €272K, but cleaner, more defensible and still materially above 2026.</p>
+      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">One ticket target. Lower than €300K, cleaner, more defensible and still materially above 2026.</p>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <Metric label="Conference only" value="€125" tone="text-slate-300" sub="Entry anchor. +32% on low base." />
         <Metric label="Full event pass" value="€475" tone="text-amber-400" sub="Main revenue engine. +19%." />
@@ -349,16 +349,22 @@ function SlideTicketing(){
 
 function SlideRevenueRoutes(){
   const routes = [
-    ["Protect same-scope rebook", "€1,028,932", "Existing sponsors renew identical scope at 2026 pricing inside the rebook window.", "Value retention ≥85% is the lead metric."],
-    ["Backfill churned inventory", "€740,000", "Freed booth, content and sponsorship inventory resold to new buyers at 2027 pricing.", "Weighted pipeline by product and churn source."],
-    ["Expand existing sponsors", "€170,000", "Rebookers add larger stands, content, branding or package upgrades.", "Next-best package per top account."],
-    ["Sell scarce premium assets", "€220,000", "Headline, lanyard, badge, media, main stage and premium branding sold with evidence pack.", "Named owner per premium asset."],
-    ["Controlled new revenue", "€141,068", "Side events, floor takeovers and bespoke activations quoted cost-led.", "Ops cost approval before proposal."],
+    ["Protect same-scope rebook", "€1,028,932", "Existing sponsors renew identical scope at 2026 pricing inside the rebook window.", "Value retention 80% minimum, 85% target. Finance validates same-account numerator and denominator."],
+    ["Backfill churned inventory", "€640,000", "Freed booth, content and sponsorship inventory resold to new buyers at 2027 pricing.", "Weighted pipeline by product and churn source. Do not assume every saved rebook also creates new-rate-card upside."],
+    ["Expand retained sponsors", "€220,000", "Rebookers add larger stands, extra content, digital guide, premium branding or package upgrades at 2027 pricing.", "Next-best package per top account. This is the main answer to Will's rebook-cannibalisation caveat."],
+    ["Sell scarce premium assets", "€240,000", "Headline, lanyard, badge, media, main stage, registration and major branding sold with evidence packs.", "Named owner per premium asset. Lanyard reset to €40K, not €50K."],
+    ["Cost-led and controlled new revenue", "€171,068", "Side events, floor takeovers, restored space-only 4x4 inventory, outdoor branding uplift and bespoke activations quoted cost-led.", "Ops cost approval before proposal. Lower-level operator/affiliate zone excluded until paid-intent evidence is clear."],
   ];
   return (
     <div className="flex-1 flex flex-col overflow-y-auto pb-8">
       <h2 className="text-2xl md:text-3xl font-bold mb-2">Routes to €2.30M</h2>
-      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">The target is now a scored forecast. It is not a claim of certainty.</p>
+      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Updated after Will review. The target stays, but the route now reflects the rebook versus 2027-rate-card trade-off.</p>
+      <div className="bg-slate-950 border border-amber-900/50 rounded-2xl p-5 mb-6">
+        <div className="text-xs uppercase tracking-widest text-amber-400 font-black mb-2">Sales caveat now built into the model</div>
+        <p className="text-sm md:text-base text-slate-300 leading-relaxed">
+          The better the rebook campaign performs, the less inventory lands at 2027 list pricing. The target therefore cannot rely on retention alone. It needs retained-account upgrades, named premium-asset ownership and disciplined backfill at the new card.
+        </p>
+      </div>
       <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl mb-6">
         <div className="overflow-x-auto table-container">
           <table className="w-full text-left text-xs md:text-sm min-w-[900px]">
@@ -367,7 +373,7 @@ function SlideRevenueRoutes(){
                 <th className="p-4">Route</th>
                 <th className="p-4 text-right">Contribution</th>
                 <th className="p-4 min-w-[300px]">How</th>
-                <th className="p-4 min-w-[240px]">Proof</th>
+                <th className="p-4 min-w-[260px]">Proof</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800/50">
@@ -382,7 +388,7 @@ function SlideRevenueRoutes(){
               <tr className="bg-slate-800/40 font-bold">
                 <td className="p-4 text-white uppercase">Target forecast</td>
                 <td className="p-4 text-right font-mono text-amber-400">€2,300,000</td>
-                <td className="p-4 text-slate-400" colSpan="2">Forecast confidence is unanchored until reference class and base rate close. Use the target for accountability, not as calibrated certainty.</td>
+                <td className="p-4 text-slate-400" colSpan="2">The number is unchanged. The mix is more honest: less assumed backfill, more retained-account expansion and named premium ownership.</td>
               </tr>
             </tbody>
           </table>
@@ -391,7 +397,7 @@ function SlideRevenueRoutes(){
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Metric label="Forecast confidence" value="Unanchored" tone="text-rose-400" sub="Do not treat as calibrated until the outside-view work closes." />
         <Metric label="Reference class" value="Open" tone="text-rose-400" sub="Comparable post-30% value-churn recovery set required." />
-        <Metric label="Base-rate floor" value="70%" tone="text-slate-300" sub="Planning proxy only." />
+        <Metric label="Base-rate support" value="~15% historic churn" tone="text-slate-300" sub="Will's internal baseline, imperfect due to CRM switch." />
       </div>
     </div>
   );
@@ -405,7 +411,7 @@ function SlideDealDesk(){
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
         <Card className="border-amber-900/50">
           <div className="text-xs uppercase tracking-widest text-amber-400 font-black mb-2">Owner</div>
-          <h3 className="text-2xl font-black text-slate-100 mb-3">Will Green</h3>
+          <h3 className="text-2xl font-black text-slate-100 mb-3">Will Purchase</h3>
           <p className="text-sm text-slate-400 leading-relaxed">Chairs weekly deal-desk review, owns discount discipline and flags sub-floor exceptions to director approval.</p>
         </Card>
         <Card>
@@ -713,7 +719,7 @@ function SlideProductPricingPremium(){
   const rows = [
     {section:"Headline and premium inventory"},
     {product:"Headline Sponsorship", rebook:"€150K", list:"€200K", change:"+33%", floor:"€160K", actual:"1 @ €112.5K", notes:"Apex anchor. Hub88 renewal needs a director-led account plan, not normal rate-card mechanics."},
-    {product:"Lanyard Sponsorship", rebook:"€20K", list:"€50K", change:"+150%", floor:"€40K", actual:"1 shared @ €14.5K", notes:"Exclusive first. Hard gate at end-November, then fallback to 2 x €30K co-sponsor slots."},
+    {product:"Lanyard Sponsorship", rebook:"€20K", list:"€40K", change:"+100%", floor:"€30K", actual:"1 shared @ €14.5K", notes:"Will aligned on €40K exclusive list. If existing sponsor rebooks at €20K, accept and use the 2027 list as the 2028 reset. Split lanyard remains a fallback."},
     {product:"Registration and Check-In Partner", rebook:"€40K", list:"€48K", change:"+20%", floor:"€40K", actual:"1 @ €32K", notes:"True 2026 list was €40K. Returning sponsor risk needs account handling."},
     {product:"Badge Sponsor", rebook:"€23K", list:"€28K", change:"+22%", floor:"€23K", actual:"1 @ €18K", notes:"Softened from €32K. Segmented badges only if attendee data supports the split."},
     {product:"Main Stage Sponsorship", rebook:"€45K", list:"€52K", change:"+16%", floor:"€45K", actual:"1 @ €37K", notes:"Softened from €60K. NYC benchmark is the ceiling story, not the opening ask."},
@@ -722,8 +728,8 @@ function SlideProductPricingPremium(){
     {section:"Exhibition and stands"},
     {product:"3x3 Shell Scheme", rebook:"€14.5K", list:"€16.5K", change:"+14%", floor:"€14.5K", actual:"16 @ avg €11.4K", notes:"Volume engine. Scanner, profile and proof report included. Realised target is at least old list."},
     {product:"6x3 Shell Scheme", rebook:"€23K", list:"€28K", change:"+22%", floor:"€25K", actual:"6 @ avg €21K", notes:"Best stand yield on the floor. Real demand at this tier."},
-    {product:"Lower Level Stand", rebook:"€6.5K", list:"€8K", change:"+23%", floor:"€6.5K", actual:"2 paid", notes:"Ops reviewing backdrop-only format. Downstairs monetisation excluded from base case until paid-intent feedback closes."},
-    {product:"Space-Only 4x4 / 6x3 / 4x8", rebook:"€14.5K / €15K / €24K", list:"Retired", change:"N/A", floor:"—", actual:"3 sales", notes:"Cancelled on the 2027 ops product list. Re-introduce only with Ops sign-off.", retired:true}
+    {product:"Lower Level Stand", rebook:"€6.5K", list:"€8K guide", change:"+23%", floor:"€6.5K", actual:"2 paid", notes:"Strategic decision required. Excluded from base-case revenue until paid-intent and delegate-value evidence confirms whether this is revenue inventory or audience-value inventory."},
+    {product:"Space-Only 4x4", rebook:"€14.5K", list:"€18.5K", change:"+28%", floor:"€16.5K", actual:"Loyal 4x4 demand", notes:"Restore commercially. Removing it creates avoidable revenue loss and complicates loyal rebooks such as Internet Vikings and Techquity. Ops to confirm floorplan and fire-exit constraints."}
   ];
   return <ProductPricingTable title="Product Pricing: Premium, Headline & Stands" subtitle="The products most likely to carry the €2.30M target. This is where price shock, retention risk and yield discipline matter most." rows={rows} />;
 }
@@ -731,7 +737,7 @@ function SlideProductPricingPremium(){
 function SlideProductPricingContent(){
   const rows = [
     {section:"Content and stages"},
-    {product:"Main Stage Presentation", rebook:"€44K", list:"€50K", change:"+14%", floor:"€44K", actual:"2 paid, 1 comped", notes:"Softened from €56K. No more comped presentations outside priced bundles."},
+    {product:"Main Stage Presentation", rebook:"€44K", list:"€48K", change:"+9%", floor:"€44K", actual:"2 paid, 1 comped", notes:"Will challenged the €50K ask. Keep this as a price anchor for custom panels without over-squeezing a 25-minute slot."},
     {product:"Main Stage Branded Panel", rebook:"€16K", list:"€18K", change:"+13%", floor:"€15K", actual:"2 @ avg €13.3K", notes:"Softened from €22K after ledger review."},
     {product:"Main Stage Non-Branded Panel", rebook:"€8K", list:"€11K", change:"+38%", floor:"€9K", actual:"13 slots, 7 comped", notes:"Biggest content leak. If included in a bundle, the bundle price must show the value."},
     {product:"Main Track Branded Panel", rebook:"€16K", list:"€16K", change:"0%", floor:"€12K", actual:"2 @ avg €9.7K", notes:"Worst yield in content. Fix discounting before any increase."},
@@ -758,29 +764,28 @@ function SlideProductPricingContent(){
     {product:"HR Connect Track", rebook:"€21K", list:"€21K", change:"0%", floor:"€21K", actual:"0 sold", notes:"Hold until format and demand are confirmed."},
     {product:"HR Connect Chair", rebook:"€9K", list:"€9K", change:"0%", floor:"€9K", actual:"0 sold", notes:"Hold."}
   ];
-  return <ProductPricingTable title="Product Pricing: Content, Stages & Focus" subtitle="Content pricing is mostly yield repair. Keep the catalogue tight, stop comp leakage and sell focus events through strategic partners." rows={rows} />;
+  return <ProductPricingTable title="Product Pricing: Content, Stages & Focus" subtitle="Content pricing is mostly yield repair. Focus events need ICP, attendee thesis, campaign timeline, relationship support and partner briefs before headline sponsorship is pushed." rows={rows} />;
 }
 
 function SlideProductPricingBranding(){
   const rows = [
     {section:"Branding and utility"},
-    {product:"Media Zone", rebook:"€25K", list:"€35K", change:"+40%", floor:"€30K", actual:"1 @ €25K", notes:"Add Room 9 press lounge, interview backdrop and priority filming. Government-sponsor fit."},
+    {product:"Media Zone", rebook:"€25K", list:"€35K", change:"+40%", floor:"€30K", actual:"1 @ €25K", notes:"Good asset now that content exists. Sell on interviews, output and views. Press lounge or Room 9 access subject to Ops confirmation, not promised."},
     {product:"Registration Entrance Arch", rebook:"€8K", list:"€12K", change:"+50%", floor:"€9K", actual:"1 @ €10K", notes:"Sold above list in 2026. Genuinely underpriced."},
     {product:"Branded Water Station", rebook:"€10K", list:"€11K", change:"+10%", floor:"€10K", actual:"1 @ €9K", notes:"Simple utility product."},
     {product:"Advertisement Video", rebook:"€8.625K", list:"€10K", change:"+16%", floor:"€9K", actual:"4 paid, 2 comped", notes:"Sweetener-bank item. Comped videos must be logged as bundle value."},
     {product:"Coffee Station Expo West", rebook:"€25K", list:"€25K", change:"0%", floor:"€21K", actual:"1 @ €20K", notes:"Hold list and fix yield."},
     {product:"Coffee Station Expo East", rebook:"€25K", list:"Bundle", change:"N/A", floor:"—", actual:"0 sold", notes:"Stop selling East alone. Offer East + West Coffee Takeover at €40K or use as bundle filler.", retired:true},
-    {product:"MCC Outdoor Building Branding", rebook:"€22K", list:"€22K", change:"0%", floor:"€18K", actual:"1 @ €15K", notes:"Hold list. Fix yield first."},
+    {product:"MCC Outdoor Building Branding", rebook:"€22K", list:"€28K", change:"+27%", floor:"€22K", actual:"1 @ €15K", notes:"Will pushed to squeeze this. Big, visible, all-event branding with photo and social value. Increase with proof, hold old list as floor."},
     {product:"Republic Hall Balcony Branding", rebook:"€35K", list:"€38K", change:"+9%", floor:"€32K", actual:"1 @ €30K", notes:"High-impact. Softened from €40K."},
     {product:"Expo Area Wall Murals", rebook:"€45K", list:"€45K", change:"0%", floor:"€38K", actual:"1 @ €32K", notes:"Hold list and fix yield."},
     {product:"Main Stage Chair Sponsorship", rebook:"€18K", list:"€18K", change:"0%", floor:"€14K", actual:"1 @ €14K", notes:"Held because realised was below list and buyer is reduce-risk."},
     {product:"Expo Lounge", rebook:"€30K", list:"€34K", change:"+13%", floor:"€28K", actual:"1 @ €25K", notes:"Softened from €38K."},
-    {product:"Online Event Guide", rebook:"€12K", list:"€15K", change:"+25%", floor:"€12K", actual:"1 @ €10.8K", notes:"Fold Event App into this digital companion logic."},
+    {product:"Digital Event Guide + App Partner", rebook:"€12K", list:"€23K", change:"+92%", floor:"€18K", actual:"Guide sold @ €10.8K, app unsold", notes:"Combine agenda, Bizzabo branding, app visibility and traffic proof. Marketing ownership makes the value story stronger."},
     {product:"Wi-Fi Sponsorship", rebook:"€18K", list:"€18K", change:"0%", floor:"€18K", actual:"0 sold", notes:"Final season at list. Unsold again means cut for 2028."},
     {product:"Restroom / Doors / Expo Exit", rebook:"€12.5K / €7.5K / €6K", list:"Cut", change:"N/A", floor:"—", actual:"0 sold", notes:"Remove from rate card. Keep only as bundle filler or comp recognition.", retired:true},
     {product:"Goodbye Bags / Track Goodie Bags", rebook:"€10K / €7K", list:"Fold", change:"N/A", floor:"—", actual:"0 sold", notes:"Fold into sweetener bank.", retired:true},
     {product:"Lower Level Lunch Area", rebook:"€18K", list:"Rework", change:"N/A", floor:"—", actual:"0 sold", notes:"Re-scope as a branded experience or drop.", retired:true},
-    {product:"Event App Sponsorship", rebook:"€20K", list:"Fold", change:"N/A", floor:"—", actual:"0 genuine sales", notes:"Fold into Digital Event Guide.", retired:true},
     {section:"Networking and experiential"},
     {product:"Pre-Registration Drinks", rebook:"€25K", list:"€27K", change:"+8%", floor:"€22K", actual:"4 @ avg €19.2K", notes:"Real demand around €20K. Yield discipline first."},
     {product:"Rooftop Day 1 / Day 2 Exclusive", rebook:"€100K", list:"POA", change:"N/A", floor:"Cost + margin", actual:"0 genuine paid", notes:"Failed list price retired. Bespoke takeover only, costed and approved.", retired:true},
