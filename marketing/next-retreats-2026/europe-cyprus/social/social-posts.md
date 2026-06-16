@@ -1,92 +1,86 @@
 # Social posts — NEXT Retreat Europe 2026 (Cyprus · 12–14 October)
 
-Pair each with a banner from `../banners/` (Megabanner or PopUp work best as social
-creative; Skyscraper for stories). Link: https://next.io/next-retreats/europe-cyprus/
+Current focus: **selling sponsorships.** Primary CTA = *Become a sponsor*. Operator
+posts drive complimentary-invite interest (operators attend free; sponsors pay).
+Pair each with a banner from `../banners/`. Link: https://next.io/next-retreats/europe-cyprus/
 
 ---
 
 ## LinkedIn
 
-**Post 1 — Announcement**
-> 50 operators. 50 suppliers. One island. Zero distractions.
+**Post 1 — Sponsorship announcement (lead)**
+> Want your brand in front of 50 senior European operators — with no expo hall in the
+> way?
 >
-> NEXT Retreat Europe returns to Cyprus, 12–14 October 2026 — invitation-only,
-> closed-door, and built for the conversations that actually move iGaming forward.
+> NEXT Retreat Europe returns to Cyprus, 12–14 October 2026: invitation-only,
+> closed-door, 50 operators and 50 suppliers, three days at Cap St George Resort.
 >
-> No expo hall. No stages. Just the people shaping European markets, three days at
-> Cap St George Resort.
+> Sponsorship places are strictly limited — one Headline slot, twenty General, a
+> handful of Activity sponsors.
 >
-> Operator passes are complimentary and limited. Partnerships are strictly capped.
+> 👉 Become a sponsor: {{link}}
 >
-> 👉 Apply to attend or partner: {{link}}
->
-> #iGaming #NEXTRetreat #iGamingEurope
+> #iGaming #NEXTRetreat #iGamingEurope #Sponsorship
 
-**Post 2 — Operator pull**
+**Post 2 — The sponsor case**
 > The best deals in iGaming don't happen at a booth.
 >
 > They happen over dinner, on the third day, when 50 operators and 50 suppliers have
 > spent three days in the same room with nothing competing for their attention.
 >
-> That's NEXT Retreat Europe. Cyprus, 12–14 October. Invitation only.
+> That's what sponsoring NEXT Retreat Europe puts you inside. Cyprus, 12–14 October.
 >
-> Operators — apply for a complimentary pass: {{link}}
->
-> #iGaming #iGamingEurope #NEXTRetreat
-
-**Post 3 — Supplier pull**
-> Suppliers: how much unhurried time will you get with senior European operators this
-> year?
->
-> At NEXT Retreat Europe, it's three days with up to 50 of them — closed-door, 50/50,
-> no expo-hall noise. One Headline slot. Twenty General. Five Activity partners.
->
-> Cyprus, 12–14 October 2026. Limited and first-come.
->
-> 👉 {{link}}
+> Limited sponsorships 👉 {{link}}
 >
 > #iGaming #iGamingSuppliers #NEXTRetreat
 
-**Post 4 — Countdown / scarcity (closer to date)**
-> The Europe guest list is nearly closed.
+**Post 3 — Scarcity / closer**
+> One Headline slot. Twenty General. Five Activity sponsors. That's the entire room.
 >
-> 50 operators. 50 suppliers. By invitation only. Cyprus, 12–14 October.
+> NEXT Retreat Europe — Cyprus, 12–14 October 2026. Secure your sponsorship before
+> your tier is gone 👉 {{link}}
 >
-> If you're not on it yet, now's the moment 👉 {{link}}
+> #iGaming #iGamingEurope #Sponsorship
+
+**Post 4 — Operator invite (audience-balancing)**
+> Operators: NEXT Retreat Europe is invitation-only, closed-door, and complimentary
+> for you — three days in Cyprus with the suppliers actually worth your time.
+>
+> Request your invite 👉 {{link}}
 
 ---
 
 ## X / Twitter
 
-1. > 50 operators. 50 suppliers. One island. 🇨🇾
-> NEXT Retreat Europe — Cyprus, 12–14 Oct 2026. Invitation only, closed-door, zero noise.
-> Apply 👉 {{link}}
+1. > Your brand. 50 European operators. One island. 🇨🇾
+> Sponsor NEXT Retreat Europe — Cyprus, 12–14 Oct 2026. Closed-door, zero noise.
+> Limited sponsorships 👉 {{link}}
 > #iGaming
 
-2. > No expo hall. No stages. Just three days with the people who run iGaming in Europe.
-> NEXT Retreat Europe · Cyprus · 12–14 Oct. {{link}}
+2. > No expo hall. No stages. Three days with the people who run iGaming in Europe.
+> Sponsorship places are strictly limited. {{link}}
 
-3. > Operators: complimentary pass. Suppliers: limited partnerships.
-> 50 + 50, by invitation only. Cyprus, October. {{link}}
+3. > One Headline slot. Twenty General. Five Activity. That's the whole room.
+> NEXT Retreat Europe · Cyprus · 12–14 Oct. Become a sponsor 👉 {{link}}
 > #iGamingEurope
 
-4. > The room is capped. The deals aren't.
-> NEXT Retreat Europe — apply before the list closes 👉 {{link}}
+4. > Operators attend free, by invitation. Suppliers sponsor.
+> 50 + 50, closed-door, Cyprus, October. {{link}}
 
 ---
 
 ## Instagram (caption + on-image text)
 
-**On-image:** use `PopUp_640x360.png` or `Megabanner` crop — "RETREAT EUROPE · CYPRUS / 12–14 OCTOBER 2026".
+**On-image:** "RETREAT EUROPE · CYPRUS / 12–14 OCTOBER 2026 / BECOME A SPONSOR".
 
-**Caption 1**
+**Caption 1 (sponsor lead)**
 > Where iGaming's leaders meet the Med. 🌊
-> NEXT Retreat Europe returns to Cyprus, 12–14 October 2026. Invitation-only.
-> 50 operators · 50 suppliers · closed-door · zero distractions.
-> Link in bio to apply.
-> #iGaming #NEXTRetreat #Cyprus #iGamingEurope #iGamingEvents
+> Sponsor NEXT Retreat Europe — Cyprus, 12–14 October 2026. Invitation-only,
+> closed-door, 50 operators · 50 suppliers. Strictly limited sponsorships.
+> Link in bio.
+> #iGaming #NEXTRetreat #Cyprus #iGamingEurope #Sponsorship
 
 **Caption 2 (stories, 3 frames)**
-> Frame 1: "50 operators."
-> Frame 2: "50 suppliers."
-> Frame 3: "Cyprus · 12–14 Oct · by invitation only → swipe up / link in bio."
+> Frame 1: "50 operators. In one room."
+> Frame 2: "One Headline slot. Twenty General."
+> Frame 3: "Cyprus · 12–14 Oct · become a sponsor → link in bio."

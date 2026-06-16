@@ -25,9 +25,14 @@ and entertainment at a luxury resort. One region in focus at a time (Europe =
 emerging European markets; LatAm = the Latin American market). **Closed-door, no
 media.** Where business meets pleasure and the people who shape iGaming actually talk.
 
-- **Operators** attend on a **complimentary pass** → CTA: *Apply to attend*
-- **Suppliers** join via **paid partnership** → CTA: *Apply to partner / sponsor*
-- Partnership tiers: **Headline €85k (×1)**, **General €35k (×20)**, **Activity €10–20k (×5)**
+**Current campaign focus = selling sponsorships.** Primary CTA across the pack is
+**"Become a sponsor"** — deliberately *not* "apply" (implies free) or "partnership"
+(also gets misread as free). A price anchor is used in the sponsor emails to make the
+commercial nature unmistakable.
+
+- **Sponsors (suppliers)** buy a **paid sponsorship package** → CTA: *Become a sponsor*
+- **Operators** attend **free, by invitation** → secondary CTA: *Request your invite*
+- Sponsorship packages: **Headline €85k (×1)**, **General €35k (×20)**, **Activity €10–20k (×5)**
 
 **Brand:** near-black canvas (`#080808`), signature yellow (`#FFCF33`), white
 `NEXT>.io` wordmark, condensed display type. Region accents — Europe: Aegean
@@ -42,9 +47,10 @@ next-retreats-2026/
 ├── brand/                      NEXT logo + colour reference
 ├── europe-cyprus/
 │   ├── banners/                6 display sizes (PNG)
-│   ├── emails/                 Operator + supplier lead-gen sequences
+│   ├── emails/                 sponsors-sequence + operators-attend-sequence
 │   └── social/                 LinkedIn, X, Instagram copy
 ├── latam-cancun/               (same structure)
+├── chatgpt-prompts.md          Image-gen prompts (photo-based banners)
 └── _scripts/
     └── generate_banners.py     Regenerates every banner from one config
 ```

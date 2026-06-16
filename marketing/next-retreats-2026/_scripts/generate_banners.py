@@ -74,7 +74,8 @@ EDITIONS = {
 
 # Shared positioning line
 SUBLINE = "50 operators · 50 suppliers · by invitation only"
-CTA_ATTEND = "APPLY TO ATTEND"
+CTA = "BECOME A SPONSOR"      # full pill (paid sell — never "apply"/"partner")
+CTA_SHORT = "SPONSOR"          # tight formats (MPU / SlideIn)
 
 
 # ----------------------------------------------------------------------------
@@ -188,7 +189,7 @@ def mpu_300x250(ed, path):
     d.line([(s(22), s(190)), (s(60), s(190))], fill=YELLOW, width=s(3))
     draw_text(d, (s(20), s(198)), ed["dates"], font(F_BOLD, 13), WHITE)
     draw_text(d, (s(20), s(216)), "By invitation only", font(F_REG, 10.5), MUTED)
-    pill(d, s(228), s(196), "APPLY", font(F_BOLD, 12), pad_x=15, pad_y=9)
+    pill(d, s(208), s(198), CTA_SHORT, font(F_BOLD, 11.5), pad_x=13, pad_y=8)
     finish(img, W, H, path)
 
 
@@ -204,7 +205,7 @@ def leaderboard_728x90(ed, path):
               font(F_DISPLAY, 30), WHITE)
     draw_text(d, (s(193), s(57)), ed["dates"] + "  ·  " + ed["venue"].upper(),
               font(F_MED, 13), ed["accent_b"], tracking=1)
-    pill(d, s(648), s(28), CTA_ATTEND, font(F_BOLD, 13), pad_x=16, pad_y=10)
+    pill(d, s(648), s(28), CTA, font(F_BOLD, 13), pad_x=16, pad_y=10)
     finish(img, W, H, path)
 
 
@@ -226,7 +227,7 @@ def skyscraper_300x600(ed, path):
     draw_text(d, (s(30), s(486)), "50 operators.", font(F_MED, 14), WHITE)
     draw_text(d, (s(30), s(506)), "50 suppliers.", font(F_MED, 14), WHITE)
     draw_text(d, (s(30), s(526)), "By invitation only.", font(F_MED, 14), ed["accent_b"])
-    pill(d, s(150), s(556), CTA_ATTEND, font(F_BOLD, 14), pad_x=20, pad_y=11)
+    pill(d, s(150), s(556), CTA, font(F_BOLD, 14), pad_x=20, pad_y=11)
     finish(img, W, H, path)
 
 
@@ -249,7 +250,7 @@ def megabanner_1400x300(ed, path):
     # --- CTA zone (right): dates + venue + button, well clear of headline ---
     draw_text(d, (s(1356), s(96)), ed["dates"], font(F_BOLD, 25), WHITE, anchor="ra")
     draw_text(d, (s(1356), s(132)), ed["venue"], font(F_MED, 16), MUTED, anchor="ra")
-    pill(d, s(1242), s(180), CTA_ATTEND, font(F_BOLD, 19), pad_x=26, pad_y=15)
+    pill(d, s(1242), s(180), CTA, font(F_BOLD, 19), pad_x=26, pad_y=15)
     finish(img, W, H, path)
 
 
@@ -265,7 +266,7 @@ def slidein_300x300(ed, path):
     d.line([(s(26), s(222)), (s(70), s(222))], fill=YELLOW, width=s(3))
     draw_text(d, (s(24), s(232)), ed["dates"], font(F_BOLD, 14), WHITE)
     draw_text(d, (s(24), s(252)), "Invitation only", font(F_REG, 11), MUTED)
-    pill(d, s(224), s(238), "APPLY", font(F_BOLD, 12.5), pad_x=15, pad_y=9)
+    pill(d, s(214), s(240), CTA_SHORT, font(F_BOLD, 12), pad_x=14, pad_y=8)
     finish(img, W, H, path)
 
 
@@ -285,9 +286,9 @@ def popup_640x360(ed, path):
     draw_text(d, (s(42), s(280)), ed["dates"] + "  ·  " + ed["venue"],
               font(F_BOLD, 17), WHITE)
     draw_text(d, (s(42), s(304)), SUBLINE, font(F_REG, 13), MUTED)
-    pill(d, s(118), s(330)-s(0), CTA_ATTEND, font(F_BOLD, 14), pad_x=20, pad_y=11)
+    pill(d, s(118), s(330)-s(0), CTA, font(F_BOLD, 14), pad_x=20, pad_y=11)
     # second CTA hint for suppliers
-    draw_text(d, (s(250), s(338)), "Suppliers: apply to partner", font(F_MED, 12),
+    draw_text(d, (s(250), s(338)), "Operators attend by invitation", font(F_MED, 12),
               ed["accent_b"])
     finish(img, W, H, path)
 
