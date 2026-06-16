@@ -77,8 +77,8 @@ EDITIONS = {
 }
 
 SUBLINE = "50 operators · 50 suppliers · by invitation only"
-CTA = "BECOME A SPONSOR"
-CTA_SHORT = "SPONSOR"
+CTA = "SPONSOR NOW"
+CTA_SHORT = "SPONSOR NOW"
 
 
 # ----------------------------------------------------------------------------
