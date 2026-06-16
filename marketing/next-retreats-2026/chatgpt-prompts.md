@@ -1,83 +1,93 @@
-# ChatGPT image-generation prompts — NEXT Retreats 2026 banners (BRIGHT / SCENIC)
+# ChatGPT image-generation prompts — NEXT Retreats 2026 banners
 
-Per Martin: **bright and summery, not dark — and more scenic imagery.** Attach a
-scenic venue photo (beach / pool / resort) in the same message; the prompts use it as
-a sun-drenched full-bleed background with only a light scrim for text.
+Self-contained, drop-in prompts. In the same message, attach (1) your background
+image and (2) the logo — the plain **NEXT.io** logo for Europe, the **new co-branded
+NEXT.io LatAm lockup** for LatAm.
 
-CTA button = **"SPONSOR NOW"**. This is a paid sponsorship sell — no
-"apply" / "partnership".
-
-Paste these two blocks at the top of every prompt:
-
-> **[STYLE]** NEXT.io — premium B2B iGaming events, rendered BRIGHT and SUMMERY (not
-> dark): sun-drenched, airy, optimistic; turquoise sea + white sand + clear-sky
-> palette; travel-magazine editorial quality. Signature yellow #FFCF33 reserved for
-> the CTA button and small accents. Deep teal-navy #0A363D for body/headline text so
-> it stays legible. Generous negative space. A single yellow ">" chevron motif. No
-> clutter, no stock-photo cheese.
->
-> **[PHOTO]** Use the attached scenic photo (resort / beach / pool) as a full-bleed
-> background. Keep it bright and natural — do NOT darken or black-scrim it; apply only
-> a soft *white* low-opacity scrim behind the text zone so the dark text reads.
->
-> **[LOGO]** Composite the attached NEXT.io logo exactly as supplied — do not redraw,
-> re-type or distort it. If the area behind it is busy/light, sit it on a small
-> frosted-white rounded chip OR render the wordmark in deep teal-navy #0A363D; never
-> invent a different logo. **(LatAm: use the NEW co-branded NEXT.io LatAm lockup with
-> the yellow/red interlocking emblem — attach that file, not the plain wordmark.)**
->
-> Place accent colour — **Europe/Cyprus:** Mediterranean azure #0D6C96.
-> **LatAm/Cancún:** Caribbean coral #E44A26.
+Notes baked into every prompt:
+- Background can be anything (scenic or otherwise) — the prompt keeps its natural look
+  and only adds a soft gradient for text legibility, never a heavy dark overlay.
+- Logo goes on exactly as supplied with clear space and an optional subtle drop-shadow
+  — **no chip/box/panel behind it**.
+- A **clean empty strip is reserved across the bottom for partner/sponsor logos** to be
+  added later; the SPONSOR NOW button sits just above it.
+- Text is told to contrast with the background (dark teal-navy on light, white on dark).
+- CTA button = **SPONSOR NOW**.
 
 ---
 
-## NEXT Retreat Europe — Cyprus (attach a bright Cyprus/coast/resort photo)
+## Europe — Cyprus (attach a background image + the NEXT.io logo)
 
-**MPU 300×250** (6:5)
-> [STYLE] [PHOTO] [LOGO] Vertical ad, aspect 6:5. Logo top-left. Stacked headline: "EUROPE" deep teal-navy, "CYPRUS" azure #0D6C96, condensed bold uppercase, small "RETREAT" label above in azure. Bottom: "12–14 OCTOBER 2026" deep teal-navy and a yellow #FFCF33 pill button "SPONSOR NOW". Bright, airy, uncluttered. Export 300×250 px.
+**MPU 300×250**
+```
+Create a premium B2B iGaming event banner with a bright, modern, high-end feel. Use the attached image as a full-bleed background; keep its natural look and do not apply a heavy dark overlay — if needed for legibility add only a soft gradient (never a solid box or panel) behind the text. Composite the attached NEXT.io logo exactly as supplied — do not redraw, re-type, recolor or distort it; place it top-left with clear space, with a subtle soft drop-shadow only if needed; do NOT put any chip, box or panel behind the logo. Vertical layout, aspect ratio 6:5. Stacked headline: "EUROPE" then "CYPRUS" in condensed bold uppercase, with a small "RETREAT" label above; colour "CYPRUS" in Mediterranean azure #0D6C96. Then "12–14 OCTOBER 2026" and a yellow #FFCF33 rounded pill button reading "SPONSOR NOW" in dark text. Reserve a clean empty horizontal strip across the very bottom for partner/sponsor logos to be added later — keep it clear of all other elements (a subtle neutral band is fine); place the button just above this strip. Ensure all text strongly contrasts with the background (deep teal-navy #0A363D on light areas, white on dark). Uncluttered. Export 300×250 px.
+```
 
-**Leaderboard 728×90** (~8:1)
-> [STYLE] [PHOTO] [LOGO] Ultra-wide thin banner, aspect 8:1, three zones, light soft scrim left. Left: logo. Centre: "RETREAT EUROPE · CYPRUS" deep teal-navy bold uppercase with "12–14 OCTOBER 2026" beneath in azure #0D6C96. Right: yellow #FFCF33 pill "SPONSOR NOW". Sunny and legible. Export 728×90 px.
+**Leaderboard 728×90**
+```
+Create a premium B2B iGaming event banner with a bright, modern, high-end feel. Use the attached image as a full-bleed background; keep its natural look and do not apply a heavy dark overlay — if needed add only a soft gradient (never a solid box) behind the left-hand text. Composite the attached NEXT.io logo exactly as supplied — do not redraw, recolor or distort it; place it left with clear space and a subtle soft drop-shadow only if needed; do NOT put any chip, box or panel behind the logo. Ultra-wide thin horizontal banner, aspect ratio 8:1, three clearly separated zones. Left: the logo. Centre: "RETREAT EUROPE · CYPRUS" bold uppercase with "12–14 OCTOBER 2026" beneath in Mediterranean azure #0D6C96. Right: a yellow #FFCF33 rounded pill button reading "SPONSOR NOW" in dark text. (This format is too short for a logo strip — add partner logos on the other sizes.) Ensure strong text contrast (deep teal-navy #0A363D on light, white on dark). Spacious and legible. Export 728×90 px.
+```
 
-**Skyscraper 300×600** (1:2)
-> [STYLE] [PHOTO] [LOGO] Tall skyscraper, aspect 1:2. Top: logo + a small yellow ">" chevron. Mid: huge stacked "EUROPE" teal-navy / "CYPRUS" azure #0D6C96, condensed bold uppercase. Below: "12–14 OCTOBER 2026", "Cap St George Resort", then "Reach 50 operators · limited sponsorships". Bottom: full-width yellow pill "SPONSOR NOW". Bright, breezy, premium. Export 300×600 px.
+**Skyscraper 300×600**
+```
+Create a premium B2B iGaming event banner with a bright, modern, high-end feel. Use the attached image as a full-bleed background; keep its natural look and do not apply a heavy dark overlay — if needed add only a soft gradient (never a solid box) behind the text. Composite the attached NEXT.io logo exactly as supplied — do not redraw, recolor or distort it; place it top with clear space and a subtle soft drop-shadow only if needed; do NOT put any chip, box or panel behind the logo. Tall vertical skyscraper, aspect ratio 1:2. Top: the logo plus a small yellow #FFCF33 ">" chevron. Middle: huge stacked headline "EUROPE" / "CYPRUS" in condensed bold uppercase, with "CYPRUS" in Mediterranean azure #0D6C96. Below: "12–14 OCTOBER 2026", "Cap St George Resort", then "Reach 50 operators · limited sponsorships", then a yellow #FFCF33 pill button reading "SPONSOR NOW" in dark text. Reserve a clean empty horizontal strip across the very bottom for partner/sponsor logos to be added later — keep it clear of all other elements (a subtle neutral band is fine); place the button just above this strip. Ensure strong text contrast (deep teal-navy #0A363D on light, white on dark). Export 300×600 px.
+```
 
-**Megabanner 1400×300** (~14:3)
-> [STYLE] [PHOTO] [LOGO] Wide billboard, aspect 14:3, three balanced zones, lots of light negative space. LEFT: small yellow chevron + logo + grey tagline "THE INVITATION-ONLY iGAMING RETREAT". CENTRE: bold uppercase "EUROPE · CYPRUS" (EUROPE teal-navy, CYPRUS azure #0D6C96). RIGHT: "12–14 OCTOBER 2026" teal-navy + yellow pill "SPONSOR NOW". Sun-drenched, uncluttered. Export 1400×300 px.
+**Megabanner 1400×300**
+```
+Create a premium B2B iGaming event billboard banner with a bright, modern, high-end feel and lots of negative space. Use the attached image as a full-bleed background; keep its natural look and do not apply a heavy dark overlay — if needed add only a soft gradient (never a solid box) where the text sits. Composite the attached NEXT.io logo exactly as supplied — do not redraw, recolor or distort it; place it left with clear space and a subtle soft drop-shadow only if needed; do NOT put any chip, box or panel behind the logo. Wide layout, aspect ratio 14:3, three balanced zones. LEFT: a small yellow #FFCF33 ">" chevron, the logo, and a small grey tagline "THE INVITATION-ONLY iGAMING RETREAT". CENTRE: bold uppercase "EUROPE · CYPRUS" with "CYPRUS" in Mediterranean azure #0D6C96. RIGHT: "12–14 OCTOBER 2026" and a yellow #FFCF33 pill button reading "SPONSOR NOW" in dark text. Reserve a clean empty horizontal strip across the very bottom edge for partner/sponsor logos to be added later — keep it clear of all other elements. Ensure strong text contrast (deep teal-navy #0A363D on light, white on dark). Export 1400×300 px.
+```
 
-**Slide-in 300×300** (1:1)
-> [STYLE] [PHOTO] [LOGO] Square, 1:1. Logo top-left, small azure "RETREAT" label, stacked "EUROPE" teal-navy / "CYPRUS" azure #0D6C96, "12–14 OCTOBER 2026", yellow "SPONSOR NOW" pill bottom. Clean and bright. Export 300×300 px.
+**Slide-in 300×300**
+```
+Create a premium B2B iGaming event banner with a bright, modern, high-end feel. Use the attached image as a full-bleed square background; keep its natural look and do not apply a heavy dark overlay — if needed add only a soft gradient (never a solid box) behind the text. Composite the attached NEXT.io logo exactly as supplied — do not redraw, recolor or distort it; place it top-left with clear space and a subtle soft drop-shadow only if needed; do NOT put any chip, box or panel behind the logo. Square layout, 1:1. A small "RETREAT" label, stacked headline "EUROPE" / "CYPRUS" with "CYPRUS" in Mediterranean azure #0D6C96, "12–14 OCTOBER 2026", then a yellow #FFCF33 pill button reading "SPONSOR NOW" in dark text. Reserve a clean empty horizontal strip across the very bottom for partner/sponsor logos to be added later — keep it clear of all other elements; place the button just above this strip. Ensure strong text contrast (deep teal-navy #0A363D on light, white on dark). Export 300×300 px.
+```
 
-**Pop-up 640×360** (16:9)
-> [STYLE] [PHOTO] [LOGO] 16:9 interstitial. Logo top-left, yellow chevron top-right. Hero headline "EUROPE · CYPRUS" bold uppercase (CYPRUS azure #0D6C96), small azure "RETREAT" label above. Beneath: "12–14 OCTOBER 2026 · Cap St George Resort" and "Reach 50 operators · limited sponsorships". Yellow pill "SPONSOR NOW". Bright, scenic, premium. Export 640×360 px.
+**Pop-up 640×360**
+```
+Create a premium B2B iGaming event pop-up banner with a bright, modern, high-end feel. Use the attached image as a full-bleed background; keep its natural look and do not apply a heavy dark overlay — if needed add only a soft gradient (never a solid box) behind the text. Composite the attached NEXT.io logo exactly as supplied — do not redraw, recolor or distort it; place it top-left with clear space and a subtle soft drop-shadow only if needed; do NOT put any chip, box or panel behind the logo. Layout aspect ratio 16:9. A small yellow #FFCF33 ">" chevron top-right. Hero headline "EUROPE · CYPRUS" bold uppercase with "CYPRUS" in Mediterranean azure #0D6C96 and a small "RETREAT" label above. Beneath: "12–14 OCTOBER 2026 · Cap St George Resort" and "Reach 50 operators · limited sponsorships", then a yellow #FFCF33 pill button reading "SPONSOR NOW" in dark text. Reserve a clean empty horizontal strip across the very bottom for partner/sponsor logos to be added later — keep it clear of all other elements; place the button just above this strip. Ensure strong text contrast (deep teal-navy #0A363D on light, white on dark). Export 640×360 px.
+```
 
 ---
 
-## NEXT Retreat LatAm — Cancún (attach a bright Cancún/Secrets Maroma beach photo; use the NEW LatAm logo)
+## LatAm — Cancún (attach a background image + the NEW co-branded NEXT.io LatAm logo)
 
-**MPU 300×250** (6:5)
-> [STYLE] [PHOTO] [LOGO] Vertical ad, aspect 6:5. NEW NEXT.io LatAm logo top-left. Stacked headline: "LATAM" deep teal-navy, "CANCÚN" coral #E44A26, condensed bold uppercase, small "RETREAT" label above in coral. Bottom: "17–19 NOVEMBER 2026" teal-navy and a yellow #FFCF33 pill "SPONSOR NOW". Bright, tropical, airy. Export 300×250 px.
+**MPU 300×250**
+```
+Create a premium B2B iGaming event banner with a bright, modern, high-end feel. Use the attached image as a full-bleed background; keep its natural look and do not apply a heavy dark overlay — if needed add only a soft gradient (never a solid box) behind the text. Composite the attached NEW NEXT.io LatAm logo (the co-branded lockup with the yellow/red interlocking emblem) exactly as supplied — do not redraw, re-type, recolor or distort it; place it top-left with clear space and a subtle soft drop-shadow only if needed; do NOT put any chip, box or panel behind the logo. Vertical layout, aspect ratio 6:5. Stacked headline: "LATAM" then "CANCÚN" in condensed bold uppercase, with a small "RETREAT" label above; colour "CANCÚN" in Caribbean coral #E44A26. Then "17–19 NOVEMBER 2026" and a yellow #FFCF33 rounded pill button reading "SPONSOR NOW" in dark text. Reserve a clean empty horizontal strip across the very bottom for partner/sponsor logos to be added later — keep it clear of all other elements; place the button just above this strip. Ensure strong text contrast (deep teal-navy #0A363D on light, white on dark). Export 300×250 px.
+```
 
-**Leaderboard 728×90** (~8:1)
-> [STYLE] [PHOTO] [LOGO] Ultra-wide thin banner, aspect 8:1, three zones, light soft scrim left. Left: NEW LatAm logo. Centre: "RETREAT LATAM · CANCÚN" teal-navy bold uppercase with "17–19 NOVEMBER 2026" beneath in coral #E44A26. Right: yellow #FFCF33 pill "SPONSOR NOW". Sunny and legible. Export 728×90 px.
+**Leaderboard 728×90**
+```
+Create a premium B2B iGaming event banner with a bright, modern, high-end feel. Use the attached image as a full-bleed background; keep its natural look and do not apply a heavy dark overlay — if needed add only a soft gradient (never a solid box) behind the left-hand text. Composite the attached NEW NEXT.io LatAm logo (co-branded lockup with the yellow/red interlocking emblem) exactly as supplied — do not redraw, recolor or distort it; place it left with clear space and a subtle soft drop-shadow only if needed; do NOT put any chip, box or panel behind the logo. Ultra-wide thin horizontal banner, aspect ratio 8:1, three separated zones. Left: the LatAm logo. Centre: "RETREAT LATAM · CANCÚN" bold uppercase with "17–19 NOVEMBER 2026" beneath in Caribbean coral #E44A26. Right: a yellow #FFCF33 pill button reading "SPONSOR NOW" in dark text. (This format is too short for a logo strip — add partner logos on the other sizes.) Ensure strong text contrast (deep teal-navy #0A363D on light, white on dark). Export 728×90 px.
+```
 
-**Skyscraper 300×600** (1:2)
-> [STYLE] [PHOTO] [LOGO] Tall skyscraper, aspect 1:2. Top: NEW LatAm logo + small yellow chevron. Mid: huge stacked "LATAM" teal-navy / "CANCÚN" coral #E44A26, condensed bold uppercase. Below: "17–19 NOVEMBER 2026", "Secrets Maroma Beach, Riviera Cancún", then "Reach 50 operators · limited sponsorships". Bottom: full-width yellow pill "SPONSOR NOW". Bright, breezy, premium. Export 300×600 px.
+**Skyscraper 300×600**
+```
+Create a premium B2B iGaming event banner with a bright, modern, high-end feel. Use the attached image as a full-bleed background; keep its natural look and do not apply a heavy dark overlay — if needed add only a soft gradient (never a solid box) behind the text. Composite the attached NEW NEXT.io LatAm logo (co-branded lockup with the yellow/red interlocking emblem) exactly as supplied — do not redraw, recolor or distort it; place it top with clear space and a subtle soft drop-shadow only if needed; do NOT put any chip, box or panel behind the logo. Tall vertical skyscraper, aspect ratio 1:2. Top: the LatAm logo plus a small yellow #FFCF33 ">" chevron. Middle: huge stacked headline "LATAM" / "CANCÚN" in condensed bold uppercase, with "CANCÚN" in Caribbean coral #E44A26. Below: "17–19 NOVEMBER 2026", "Secrets Maroma Beach, Riviera Cancún", then "Reach 50 operators · limited sponsorships", then a yellow #FFCF33 pill button reading "SPONSOR NOW" in dark text. Reserve a clean empty horizontal strip across the very bottom for partner/sponsor logos to be added later — keep it clear of all other elements; place the button just above this strip. Ensure strong text contrast (deep teal-navy #0A363D on light, white on dark). Export 300×600 px.
+```
 
-**Megabanner 1400×300** (~14:3)
-> [STYLE] [PHOTO] [LOGO] Wide billboard, aspect 14:3, three balanced zones, light negative space. LEFT: small yellow chevron + NEW LatAm logo + grey tagline "THE INVITATION-ONLY iGAMING RETREAT". CENTRE: bold uppercase "LATAM · CANCÚN" (LATAM teal-navy, CANCÚN coral #E44A26). RIGHT: "17–19 NOVEMBER 2026" teal-navy + yellow pill "SPONSOR NOW". Sun-drenched, uncluttered. Export 1400×300 px.
+**Megabanner 1400×300**
+```
+Create a premium B2B iGaming event billboard banner with a bright, modern, high-end feel and lots of negative space. Use the attached image as a full-bleed background; keep its natural look and do not apply a heavy dark overlay — if needed add only a soft gradient (never a solid box) where the text sits. Composite the attached NEW NEXT.io LatAm logo (co-branded lockup with the yellow/red interlocking emblem) exactly as supplied — do not redraw, recolor or distort it; place it left with clear space and a subtle soft drop-shadow only if needed; do NOT put any chip, box or panel behind the logo. Wide layout, aspect ratio 14:3, three balanced zones. LEFT: a small yellow #FFCF33 ">" chevron, the LatAm logo, and a small grey tagline "THE INVITATION-ONLY iGAMING RETREAT". CENTRE: bold uppercase "LATAM · CANCÚN" with "CANCÚN" in Caribbean coral #E44A26. RIGHT: "17–19 NOVEMBER 2026" and a yellow #FFCF33 pill button reading "SPONSOR NOW" in dark text. Reserve a clean empty horizontal strip across the very bottom edge for partner/sponsor logos to be added later — keep it clear of all other elements. Ensure strong text contrast (deep teal-navy #0A363D on light, white on dark). Export 1400×300 px.
+```
 
-**Slide-in 300×300** (1:1)
-> [STYLE] [PHOTO] [LOGO] Square, 1:1. NEW LatAm logo top-left, small coral "RETREAT" label, stacked "LATAM" teal-navy / "CANCÚN" coral #E44A26, "17–19 NOVEMBER 2026", yellow "SPONSOR NOW" pill bottom. Clean and bright. Export 300×300 px.
+**Slide-in 300×300**
+```
+Create a premium B2B iGaming event banner with a bright, modern, high-end feel. Use the attached image as a full-bleed square background; keep its natural look and do not apply a heavy dark overlay — if needed add only a soft gradient (never a solid box) behind the text. Composite the attached NEW NEXT.io LatAm logo (co-branded lockup with the yellow/red interlocking emblem) exactly as supplied — do not redraw, recolor or distort it; place it top-left with clear space and a subtle soft drop-shadow only if needed; do NOT put any chip, box or panel behind the logo. Square layout, 1:1. A small "RETREAT" label, stacked headline "LATAM" / "CANCÚN" with "CANCÚN" in Caribbean coral #E44A26, "17–19 NOVEMBER 2026", then a yellow #FFCF33 pill button reading "SPONSOR NOW" in dark text. Reserve a clean empty horizontal strip across the very bottom for partner/sponsor logos to be added later — keep it clear of all other elements; place the button just above this strip. Ensure strong text contrast (deep teal-navy #0A363D on light, white on dark). Export 300×300 px.
+```
 
-**Pop-up 640×360** (16:9)
-> [STYLE] [PHOTO] [LOGO] 16:9 interstitial. NEW LatAm logo top-left, yellow chevron top-right. Hero headline "LATAM · CANCÚN" bold uppercase (CANCÚN coral #E44A26), small coral "RETREAT" label above. Beneath: "17–19 NOVEMBER 2026 · Secrets Maroma Beach" and "Reach 50 operators · limited sponsorships". Yellow pill "SPONSOR NOW". Bright, scenic, tropical. Export 640×360 px.
+**Pop-up 640×360**
+```
+Create a premium B2B iGaming event pop-up banner with a bright, modern, high-end feel. Use the attached image as a full-bleed background; keep its natural look and do not apply a heavy dark overlay — if needed add only a soft gradient (never a solid box) behind the text. Composite the attached NEW NEXT.io LatAm logo (co-branded lockup with the yellow/red interlocking emblem) exactly as supplied — do not redraw, recolor or distort it; place it top-left with clear space and a subtle soft drop-shadow only if needed; do NOT put any chip, box or panel behind the logo. Layout aspect ratio 16:9. A small yellow #FFCF33 ">" chevron top-right. Hero headline "LATAM · CANCÚN" bold uppercase with "CANCÚN" in Caribbean coral #E44A26 and a small "RETREAT" label above. Beneath: "17–19 NOVEMBER 2026 · Secrets Maroma Beach" and "Reach 50 operators · limited sponsorships", then a yellow #FFCF33 pill button reading "SPONSOR NOW" in dark text. Reserve a clean empty horizontal strip across the very bottom for partner/sponsor logos to be added later — keep it clear of all other elements; place the button just above this strip. Ensure strong text contrast (deep teal-navy #0A363D on light, white on dark). Export 640×360 px.
+```
 
 ---
 
 **Tips**
-- Match the crop to the shape: landscape photos for Leaderboard/Megabanner, a portrait
-  shot for the Skyscraper.
-- For pixel-exact text on the thin wide formats, append *"generate the bright scenic
-  background + logo only, leave clear space for text"* and add wording in Canva/Figma.
+- ChatGPT renders text most reliably on square/landscape shapes (MPU, Slide-in, Pop-up,
+  Megabanner). For the thin 8:1 Leaderboard, if text garbles add "generate the
+  background + logo only, leave clear empty space for text" and add wording in Canva.
+- The reserved bottom strip is intentionally empty — drop partner/sponsor logos in there
+  afterwards (Canva/Figma) so you control sizing and spacing.
 - Aspect ratio is reliable; exact pixels aren't — resize/crop the export to spec.
