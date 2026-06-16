@@ -34,9 +34,16 @@ commercial nature unmistakable.
 - **Operators** attend **free, by invitation** → secondary CTA: *Request your invite*
 - Sponsorship packages: **Headline €85k (×1)**, **General €35k (×20)**, **Activity €10–20k (×5)**
 
-**Brand:** near-black canvas (`#080808`), signature yellow (`#FFCF33`), white
-`NEXT>.io` wordmark, condensed display type. Region accents — Europe: Aegean
-teal/Mediterranean blue; LatAm: Caribbean sunset/magenta.
+**Look (summery):** bright, sun-drenched — turquoise-sea→warm-sand gradient (or a
+scenic venue photo), deep teal-navy text (`#0A363D`), signature yellow (`#FFCF33`) on
+the CTA, condensed display type. Place accents — Europe: Mediterranean azure
+(`#0D6C96`); LatAm: Caribbean coral (`#E44A26`). The earlier dark luxury variant is in
+git history.
+
+**Scenic photos / new LatAm logo:** drop a venue photo at `brand/photo-<edition>.jpg`
+and the new co-branded LatAm lockup at `brand/next-logo-latam.png`, then re-run the
+generator — both are wired up (it falls back to a gradient + the default wordmark
+until the files exist).
 
 ---
 
