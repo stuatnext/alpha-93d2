@@ -234,22 +234,22 @@ def megabanner_1400x300(ed, path):
     W, H = 1400, 300
     img = base_canvas(W, H, ed)
     d = ImageDraw.Draw(img)
-    chevron(d, s(64), s(104), s(96), YELLOW)
-    logo = load_logo(220 * SS)
-    img.alpha_composite(logo, (s(138), s(58)))
-    draw_text(d, (s(142), s(150)), "THE INVITATION-ONLY iGAMING RETREAT",
-              font(F_MED, 16), MUTED, tracking=3)
-    draw_text(d, (s(142), s(178)), SUBLINE.upper(), font(F_MED, 14), ed["accent_b"], tracking=2)
-    # divider between brand zone and headline zone
-    d.line([(s(560), s(56)), (s(560), s(244))], fill=(58, 58, 58), width=s(2))
-    # Stacked headline in the centre zone
-    draw_text(d, (s(600), s(58)), "RETREAT", font(F_DISPLAY, 30), YELLOW, tracking=8)
-    draw_text(d, (s(598), s(92)), ed["region"], font(F_DISPLAY, 84), WHITE)
-    draw_text(d, (s(598), s(176)), ed["place"], font(F_DISPLAY, 84), ed["accent_b"])
-    # Right zone: dates + venue + CTA, right-aligned, clear of headline
-    draw_text(d, (s(1356), s(96)), ed["dates"], font(F_BOLD, 26), WHITE, anchor="ra")
-    draw_text(d, (s(1356), s(132)), ed["venue"], font(F_MED, 17), MUTED, anchor="ra")
-    pill(d, s(1240), s(176), CTA_ATTEND, font(F_BOLD, 19), pad_x=26, pad_y=15)
+    # --- Brand zone (left): chevron + logo + one tidy tagline line ---
+    chevron(d, s(60), s(108), s(86), YELLOW)
+    logo = load_logo(210 * SS)
+    img.alpha_composite(logo, (s(132), s(74)))
+    draw_text(d, (s(136), s(150)), "THE INVITATION-ONLY iGAMING RETREAT",
+              font(F_MED, 13), MUTED, tracking=2)
+    draw_text(d, (s(136), s(174)), "50 OPERATORS · 50 SUPPLIERS",
+              font(F_MED, 13), ed["accent_b"], tracking=2)
+    # --- Headline zone (centre): clear of the brand zone, room to breathe ---
+    draw_text(d, (s(636), s(60)), "RETREAT", font(F_DISPLAY, 30), YELLOW, tracking=8)
+    draw_text(d, (s(634), s(94)), ed["region"], font(F_DISPLAY, 86), WHITE)
+    draw_text(d, (s(634), s(180)), ed["place"], font(F_DISPLAY, 86), ed["accent_b"])
+    # --- CTA zone (right): dates + venue + button, well clear of headline ---
+    draw_text(d, (s(1356), s(96)), ed["dates"], font(F_BOLD, 25), WHITE, anchor="ra")
+    draw_text(d, (s(1356), s(132)), ed["venue"], font(F_MED, 16), MUTED, anchor="ra")
+    pill(d, s(1242), s(180), CTA_ATTEND, font(F_BOLD, 19), pad_x=26, pad_y=15)
     finish(img, W, H, path)
 
 
