@@ -74,17 +74,18 @@ function SlideTitle(){
       <p className="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-8 px-4">
         One sales target, held at the bar already set, justified by the event's growth record, and underpinned by a stabilisation framework.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 max-w-7xl w-full px-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-7xl w-full px-4 mb-8">
         <Metric label="Sales target" value="€2.20M" tone="text-amber-400" sub="Single official number. +16.8% on 2026 achieved, level with the 2026 target." className="border-amber-900/60" />
         <Metric label="Ticket target" value="€272K" tone="text-indigo-400" sub="Marketing-owned, unchanged. James from 1 July, delegated interim if needed." className="border-indigo-900/60" />
         <Metric label="Total plan" value="€2.47M" tone="text-emerald-400" sub="Sales plus tickets. Clears the contribution hurdle with ~€200K headroom." className="border-emerald-900/60" />
         <Metric label="Projected contribution" value="€1.04M" tone="text-cyan-300" sub="Total plan minus €1.433M cost base incl. commission." className="border-cyan-900/60" />
+        <Metric label="Contribution margin" value="~42%" tone="text-cyan-300" sub="Projected contribution as a share of total plan." className="border-cyan-900/60" />
         <Metric label="YoY increase needed" value="+€316K" tone="text-slate-200" sub="From €1.884M. Sourced route by route, not assumed." />
       </div>
       <div className="max-w-5xl bg-slate-950 border border-amber-900/50 rounded-2xl p-5 text-left mx-4">
         <div className="text-xs uppercase tracking-widest text-amber-400 font-black mb-2">Summary</div>
         <p className="text-sm md:text-base text-slate-300 leading-relaxed">
-          €2.20M is the target. It holds the bar already set for 2026 rather than raising it. The +16.8% step over 2026 delivered revenue matches the event's two-year average growth rate, ambitious, but consistent with its track record. Value retention of 80-85% is the diagnostic that confirms the number reflects healthy renewals rather than backfill of churned accounts.
+          €2.20M is the sales target. It holds the bar already set for 2026 rather than raising it. With tickets, this is a €2.47M total revenue plan and a projected €1.04M contribution plan, with an estimated 42% contribution margin. Value retention of 80-85% is the diagnostic that confirms the number reflects healthy renewals rather than backfill of churned accounts.
         </p>
       </div>
     </div>
@@ -296,7 +297,7 @@ function SlideCostBase(){
   return (
     <div className="flex-1 flex flex-col overflow-y-auto pb-8">
       <h2 className="text-2xl md:text-3xl font-bold mb-2">Cost Base &amp; Margin Hurdle</h2>
-      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">The profit-coverage check. This is not a second target, it is the floor the single target must clear.</p>
+      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">The contribution-coverage check. This is not a second target, it is the floor the single target must clear.</p>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <Card>
           <h3 className="text-lg font-bold text-slate-100 mb-4">2027 event cost base</h3>
@@ -308,9 +309,10 @@ function SlideCostBase(){
             <div className="flex justify-between border-b border-slate-800 pb-2 text-amber-400 font-bold"><span>Cost base incl. commission</span><span className="font-mono">€1,432,998</span></div>
             <div className="flex justify-between pt-2 text-cyan-300 font-bold"><span>Projected contribution after targets</span><span className="font-mono">€1,039,002</span></div>
           </div>
+          <p className="text-[10px] text-slate-500 mt-4 leading-relaxed">Commission is a planning estimate and needs Finance confirmation before final sign-off.</p>
         </Card>
         <Card>
-          <h3 className="text-lg font-bold text-slate-100 mb-4">Profit-growth requirement</h3>
+          <h3 className="text-lg font-bold text-slate-100 mb-4">Contribution-growth requirement</h3>
           <div className="space-y-4">
             <Metric label="2026 contribution baseline" value="~€735K" tone="text-slate-300" sub="Subject to Finance reconciliation." />
             <Metric label="Required 2027 contribution" value="€809K to €845K" tone="text-amber-400" sub="+10% to +15% contribution growth." />
@@ -320,14 +322,72 @@ function SlideCostBase(){
       </div>
       <Card className="border-emerald-900/50">
         <h3 className="text-xl font-bold text-emerald-300 mb-4">The single target clears the hurdle</h3>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           <Metric label="Sales target" value="€2.20M" tone="text-amber-400" sub="The one number the sales org owns." />
           <Metric label="Plus tickets" value="€272K" tone="text-indigo-400" sub="Marketing-owned, unchanged." />
           <Metric label="Total plan" value="€2.47M" tone="text-emerald-400" sub="~€190K-€230K above the contribution hurdle." />
           <Metric label="Projected contribution" value="€1.04M" tone="text-cyan-300" sub="After event costs and estimated sales commission." />
+          <Metric label="Contribution margin" value="~42%" tone="text-cyan-300" sub="Projected contribution divided by total plan." />
         </div>
-        <p className="text-xs text-slate-500 mt-4 leading-relaxed">This is why the sales number does not need to chase €2.30M for the profit story: €2.20M plus tickets projects ~€1.04M contribution after the current event cost base and estimated sales commission. That is roughly €194K-€230K above the +10-15% contribution-growth hurdle, with headroom to absorb a partial rebooking shortfall.</p>
+        <p className="text-xs text-slate-500 mt-4 leading-relaxed">This is why the sales number does not need to chase €2.30M for the contribution story: €2.20M plus tickets projects ~€1.04M contribution after the current event cost base and estimated sales commission. That is roughly €194K-€230K above the +10-15% contribution-growth hurdle, with headroom to absorb a partial rebooking shortfall.</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+          <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-xs text-slate-400 leading-relaxed"><strong className="text-slate-200">Exclusions:</strong> central overhead, salary allocation beyond sales commission, tax, FX movement, late supplier invoices and unconfirmed incremental delivery costs.</div>
+          <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-xs text-slate-400 leading-relaxed"><strong className="text-slate-200">Commission:</strong> €165K is a planning estimate. Finance should confirm the basis before final margin sign-off.</div>
+          <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-xs text-slate-400 leading-relaxed"><strong className="text-slate-200">Cost-led activations:</strong> bespoke activations count toward contribution forecast only after Ops cost approval.</div>
+        </div>
       </Card>
+    </div>
+  );
+}
+
+function SlideContributionWaterfall(){
+  const rows = [
+    ["Total plan", "€2,472,000", "€2.20M sales target plus €272K ticket target.", "text-emerald-300"],
+    ["Less projected event costs", "-€1,267,998", "2027 event cost base, based on 2026 budget plus 8%.", "text-rose-300"],
+    ["Less sales commission estimate", "-€165,000", "Planning estimate pending Finance confirmation.", "text-rose-300"],
+    ["Projected contribution", "€1,039,002", "Contribution before central overhead, tax, FX and unconfirmed incremental costs.", "text-cyan-300"],
+    ["Contribution margin", "~42%", "Projected contribution divided by total plan.", "text-cyan-300"],
+  ];
+  return (
+    <div className="flex-1 flex flex-col overflow-y-auto pb-8">
+      <h2 className="text-2xl md:text-3xl font-bold mb-2">Contribution Waterfall</h2>
+      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">The cleanest read of the money logic. One target, one total plan, one contribution output.</p>
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl mb-6">
+        <div className="overflow-x-auto table-container">
+          <table className="w-full text-left text-xs md:text-sm min-w-[760px]">
+            <thead className="bg-slate-950 border-b border-slate-800 text-slate-400 uppercase">
+              <tr>
+                <th className="p-4">Line</th>
+                <th className="p-4 text-right">Value</th>
+                <th className="p-4 min-w-[380px]">Basis</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-800/50">
+              {rows.map((r,i)=>(
+                <tr key={i} className={i >= 3 ? "bg-cyan-950/10" : ""}>
+                  <td className="p-4 font-bold text-slate-200">{r[0]}</td>
+                  <td className={cn("p-4 text-right font-mono font-bold whitespace-nowrap", r[3])}>{r[1]}</td>
+                  <td className="p-4 text-slate-400 leading-relaxed">{r[2]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Card className="border-cyan-900/50">
+          <h3 className="text-lg font-bold text-cyan-300 mb-3">Board-level read</h3>
+          <p className="text-sm text-slate-400 leading-relaxed">This is a €2.47M total revenue plan and a projected €1.04M contribution plan. The margin read is ~42% before exclusions.</p>
+        </Card>
+        <Card>
+          <h3 className="text-lg font-bold text-slate-100 mb-3">Finance caveat</h3>
+          <p className="text-sm text-slate-400 leading-relaxed">Contribution excludes central overhead, salary allocation beyond sales commission, tax, FX movement, late supplier invoices and unconfirmed incremental delivery costs.</p>
+        </Card>
+        <Card className="border-amber-900/50">
+          <h3 className="text-lg font-bold text-amber-300 mb-3">Commercial control</h3>
+          <p className="text-sm text-slate-400 leading-relaxed">Bespoke activations should count toward contribution forecast only after Ops confirms cost and delivery scope. Otherwise revenue hides margin risk.</p>
+        </Card>
+      </div>
     </div>
   );
 }
@@ -617,11 +677,12 @@ function SlideScorecard(){
     <div className="flex-1 flex flex-col overflow-y-auto pb-8">
       <h2 className="text-2xl md:text-3xl font-bold mb-2">Official Scorecard</h2>
       <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">One target and one diagnostic, so revenue quality stays visible.</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
         <Metric label="Sales target" value="€2.20M" tone="text-amber-400" sub="Sales partnerships." className="border-amber-900/60" />
         <Metric label="Ticket target" value="€272K" tone="text-indigo-400" sub="Marketing-owned." />
         <Metric label="Total plan" value="€2.47M" tone="text-emerald-400" sub="Clears the margin hurdle." />
         <Metric label="Projected contribution" value="€1.04M" tone="text-cyan-300" sub="After event costs and commission." />
+        <Metric label="Contribution margin" value="~42%" tone="text-cyan-300" sub="Before exclusions." />
         <Metric label="Diagnostic" value="80-85%" tone="text-slate-300" sub="Value retention." />
       </div>
       <Card>
@@ -655,7 +716,7 @@ function SlideDataGate(){
     ["2025 baseline", "€1.678M (prior reporting) vs €1.625M (restated). ~3% gap; immaterial to the target but it moves the YoY headline.", "Finance confirms the final 2025 figure used in the trend."],
     ["Shisha Lounge", "€25K ledger entry vs €50K brochure price.", "Product owner reconciles actual sold scope and price before 2027 pricing."],
     ["Focus Crypto", "Main ledger shows 1 sale; CRM or focus sheets suggest 3.", "Sales ops reconciles main ledger, CRM and focus-event budget sheets."],
-    ["2026 contribution base", "Budgeted costs, late invoices, salary and overhead allocation not fully closed.", "Finance signs the contribution baseline used for 2027 profit targets."],
+    ["2026 contribution base", "Budgeted costs, late invoices, salary and overhead allocation not fully closed.", "Finance signs the contribution baseline used for 2027 contribution targets."],
     ["Premium-asset history", "Several premium assets (lanyard, media, badge) sold below list in 2026, the recovery assumption needs a clean base.", "Confirm 2026 realised price per premium asset before sizing the €250K route."],
   ];
   return (
@@ -981,6 +1042,7 @@ const slides = [
   SlideChurnReality,
   SlideSalesCapacity,
   SlideCostBase,
+  SlideContributionWaterfall,
   SlideTicketing,
   SlideRevenueRoutes,
   SlideDealDesk,
