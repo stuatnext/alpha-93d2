@@ -45,8 +45,8 @@ const calibrationLog = [
   {
     forecast: "Sales partnerships target",
     target: "€2.20M",
-    probability: "Trend-anchored, not yet calibrated. +16.8% on 2026 achieved sits inside our own 2024-2026 growth band; hold probability open until the rebooking base is signed and the reference class closes.",
-    referenceClass: "NEXT Valletta own series 2024-2026 (+20% then +12%, two-year average +16.3%) plus comparable B2B sponsorship recovery after 30%+ value churn.",
+    probability: "Directionally trend-anchored, not yet calibrated. +16.8% on 2026 achieved sits inside the working growth band, but the comparison needs Finance normalisation for government money, side-event attribution and HubSpot gaps before confidence is scored.",
+    referenceClass: "NEXT Valletta own series 2024-2026, normalised for government money, side-event attribution and CXO allocation, plus comparable B2B sponsorship recovery after 30%+ value churn.",
     baseRate: "2026 achieved €1.884M. €2.20M = +€316K / +16.8%. This is the bar the business already set for 2026 (€2.19M target), held flat, not a new reach.",
     owner: "Will Purchase, with Finance validation",
     reviewCadence: "Monthly, then weekly from March 2027"
@@ -72,7 +72,7 @@ function SlideTitle(){
         Valletta 2027 Commercial Strategy
       </h1>
       <p className="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-8 px-4">
-        One sales target, held at the bar already set, justified by the event's growth record, and underpinned by a stabilisation framework.
+        One sales target, held at the bar already set, underpinned by stabilisation, pricing discipline and a cleaner revenue-quality framework.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-7xl w-full px-4 mb-8">
         <Metric label="Sales target" value="€2.20M" tone="text-amber-400" sub="Single official number. +16.8% on 2026 achieved, level with the 2026 target." className="border-amber-900/60" />
@@ -85,7 +85,7 @@ function SlideTitle(){
       <div className="max-w-5xl bg-slate-950 border border-amber-900/50 rounded-2xl p-5 text-left mx-4">
         <div className="text-xs uppercase tracking-widest text-amber-400 font-black mb-2">Summary</div>
         <p className="text-sm md:text-base text-slate-300 leading-relaxed">
-          €2.20M is the sales target. It holds the bar already set for 2026 rather than raising it. With tickets, this is a €2.47M total revenue plan and a projected €1.04M contribution plan, with an estimated 42% contribution margin. Value retention of 80-85% is the diagnostic that confirms the number reflects healthy renewals rather than backfill of churned accounts.
+          €2.20M is the sales target. It holds the bar already set for 2026 rather than raising it. With tickets, this is a €2.47M total revenue plan and a projected €1.04M contribution plan, with an estimated 42% contribution margin. Noma Island and government-contract treatment are shown as sign-off items rather than quietly changing the headline model. Value retention of 80-85% is the diagnostic that confirms the number reflects healthy renewals rather than backfill of churned accounts.
         </p>
       </div>
     </div>
@@ -104,9 +104,9 @@ function SlideTargetRationale(){
           <p className="text-sm text-slate-400 leading-relaxed">€2.20M is +0.5% on the €2.19M already committed to for 2026. Rather than raising the ask after a churn-driven shortfall, the target holds the line while the quality of revenue underneath it is rebuilt.</p>
         </Card>
         <Card className="border-emerald-900/50">
-          <div className="text-xs uppercase tracking-widest text-emerald-400 font-black mb-3">2. It is trend-anchored</div>
-          <h3 className="text-lg font-bold text-slate-100 mb-3">+16.8% = our own record</h3>
-          <p className="text-sm text-slate-400 leading-relaxed">The +€316K step over 2026 achieved is +16.8%, inside the event's demonstrated band (+20% in 2025, +12% in 2026, two-year average +16.3%). It is anchored to the event's own track record rather than an external estimate.</p>
+          <div className="text-xs uppercase tracking-widest text-emerald-400 font-black mb-3">2. It is directionally anchored</div>
+          <h3 className="text-lg font-bold text-slate-100 mb-3">+16.8% stays inside the working band</h3>
+          <p className="text-sm text-slate-400 leading-relaxed">The +€316K step over 2026 achieved is +16.8%, inside the working growth band. The transcript makes the caveat clear: the historic series is not yet apples-to-apples because government money, side-event attribution and CXO allocation need Finance normalisation.</p>
         </Card>
         <Card className="border-rose-900/50">
           <div className="text-xs uppercase tracking-widest text-rose-300 font-black mb-3">3. It removes the reach</div>
@@ -134,7 +134,7 @@ function SlideTrend(){
   return (
     <div className="flex-1 flex flex-col overflow-y-auto pb-8">
       <h2 className="text-2xl md:text-3xl font-bold mb-2">The Number in Context</h2>
-      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">The full record, the year-on-year increase needed, and why €2.20M is the credible step.</p>
+      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">The working record, the year-on-year increase needed, and why €2.20M is the credible step. Historic comparison remains directional until Finance normalises government money, CXO allocation and side-event attribution.</p>
       <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl mb-6">
         <div className="overflow-x-auto table-container">
           <table className="w-full text-left text-xs md:text-sm min-w-[640px]">
@@ -169,11 +169,11 @@ function SlideTrend(){
             <div className="flex justify-between"><span className="text-slate-400">Required 2027 increase</span><span className="text-amber-300">+€316,000</span></div>
             <div className="flex justify-between border-t border-slate-700 pt-2 font-bold"><span className="text-slate-200">2027 sales target</span><span className="text-amber-400">€2,200,000</span></div>
           </div>
-          <p className="text-xs text-slate-500 mt-4 leading-relaxed">+16.8% on achieved. Two-year average growth (2024-2026) is +16.3%, so the step is in line with what the event has delivered, not above it.</p>
+          <p className="text-xs text-slate-500 mt-4 leading-relaxed">+16.8% on achieved. Two-year average growth is used as directional support only until the historic series is normalised for government money, HubSpot gaps and side-event allocation.</p>
         </Card>
         <Card>
           <h3 className="text-lg font-bold text-slate-100 mb-3">Reading the trend</h3>
-          <p className="text-sm text-slate-400 leading-relaxed mb-3">Growth has been decelerating: +20% then +12%. €2.20M lands at +16.8%, between those two years and above last year. In a stabilisation year that is a meaningful stretch, which is why the supporting framework matters.</p>
+          <p className="text-sm text-slate-400 leading-relaxed mb-3">Growth has been decelerating in the working view: +20% then +12%. €2.20M lands at +16.8%, between those two years and above last year. The direction supports the target, but the final growth story should wait for apples-to-apples Finance treatment.</p>
           <div className="bg-slate-950 rounded-xl border border-slate-800 p-3 text-xs text-slate-300">In 2026 the target was set at +31% over the prior year and delivered +12%. €2.20M keeps the ambition while setting a target within a deliverable range.</div>
         </Card>
       </div>
@@ -183,11 +183,11 @@ function SlideTrend(){
 
 function SlideYoYBridge(){
   const bridge = [
-    ["2026 achieved", "€1,884,000", "Starting point. Reported sponsorship sales, pending the Finance reconciliation on slide 16.", "text-slate-200"],
+    ["2026 achieved", "€1,884,000", "Starting point. Reported sponsorship sales, pending Finance normalisation for government money, HubSpot gaps, grants and side-event attribution.", "text-slate-200"],
     ["Rebook recovery at 2027 pricing", "+€110,000", "80-85% of the renewable base rebooked, with retention repaired and identical scope re-priced to the 2027 card.", "text-emerald-300"],
     ["Retained-account expansion", "+€80,000", "Next-best package on top accounts: larger stands, extra content, digital guide, premium branding.", "text-emerald-300"],
     ["Premium-asset sell-through", "+€60,000", "Headline, lanyard (reset to €40K), badge, media and main-stage assets under-sold in 2026, sold with proof.", "text-emerald-300"],
-    ["New product lines", "+€66,000", "Mid-tier hospitality (€25-30K), Focus events with strategic partners, Noma Island and cost-led activations.", "text-emerald-300"],
+    ["New product lines", "+€66,000", "Mid-tier hospitality (€25-30K), Focus events with strategic partners, Noma Island VIP event and cost-led activations. Operator and affiliate dinner removed from the active route.", "text-emerald-300"],
     ["2027 sales target", "€2,200,000", "The single number. Every line above is owned and paced, not assumed.", "text-amber-400"],
   ];
   return (
@@ -297,7 +297,7 @@ function SlideCostBase(){
   return (
     <div className="flex-1 flex flex-col overflow-y-auto pb-8">
       <h2 className="text-2xl md:text-3xl font-bold mb-2">Cost Base &amp; Margin Hurdle</h2>
-      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">The contribution-coverage check. This is not a second target, it is the floor the single target must clear.</p>
+      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">The contribution-coverage check. This is not a second target, it is the floor the single target must clear. Keep the presentation view at total cost level, with Noma Island shown as a pending cost scenario.</p>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <Card>
           <h3 className="text-lg font-bold text-slate-100 mb-4">2027 event cost base</h3>
@@ -306,10 +306,11 @@ function SlideCostBase(){
             <div className="flex justify-between border-b border-slate-800 pb-2"><span className="text-slate-400">2026 budget event costs</span><span className="font-mono text-slate-200">€1,173,700</span></div>
             <div className="flex justify-between border-b border-slate-800 pb-2"><span className="text-slate-400">2027 projection, +8%</span><span className="font-mono text-slate-200">€1,267,998</span></div>
             <div className="flex justify-between border-b border-slate-800 pb-2"><span className="text-slate-400">Sales commission estimate</span><span className="font-mono text-slate-200">€165,000</span></div>
+            <div className="flex justify-between border-b border-slate-800 pb-2"><span className="text-slate-400">Noma Island scenario</span><span className="font-mono text-amber-300">+€60,000 pending</span></div>
             <div className="flex justify-between border-b border-slate-800 pb-2 text-amber-400 font-bold"><span>Cost base incl. commission</span><span className="font-mono">€1,432,998</span></div>
             <div className="flex justify-between pt-2 text-cyan-300 font-bold"><span>Projected contribution after targets</span><span className="font-mono">€1,039,002</span></div>
           </div>
-          <p className="text-[10px] text-slate-500 mt-4 leading-relaxed">Commission is a planning estimate and needs Finance confirmation before final sign-off.</p>
+          <p className="text-[10px] text-slate-500 mt-4 leading-relaxed">Commission is a planning estimate and needs Finance confirmation before final sign-off. Noma Island adds a provisional €60K cost if approved as an all-in VIP event, so it should be paired with an €80K guide price or kept as €50K plus sponsor-covered F&amp;B.</p>
         </Card>
         <Card>
           <h3 className="text-lg font-bold text-slate-100 mb-4">Contribution-growth requirement</h3>
@@ -329,7 +330,7 @@ function SlideCostBase(){
           <Metric label="Projected contribution" value="€1.04M" tone="text-cyan-300" sub="After event costs and estimated sales commission." />
           <Metric label="Contribution margin" value="~42%" tone="text-cyan-300" sub="Projected contribution divided by total plan." />
         </div>
-        <p className="text-xs text-slate-500 mt-4 leading-relaxed">This is why the sales number does not need to chase €2.30M for the contribution story: €2.20M plus tickets projects ~€1.04M contribution after the current event cost base and estimated sales commission. That is roughly €194K-€230K above the +10-15% contribution-growth hurdle, with headroom to absorb a partial rebooking shortfall.</p>
+        <p className="text-xs text-slate-500 mt-4 leading-relaxed">This is why the sales number does not need to chase €2.30M for the contribution story: €2.20M plus tickets projects ~€1.04M contribution after the current event cost base and estimated sales commission. That is roughly €194K-€230K above the +10-15% contribution-growth hurdle before adding the Noma Island cost scenario.</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
           <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-xs text-slate-400 leading-relaxed"><strong className="text-slate-200">Exclusions:</strong> central overhead, salary allocation beyond sales commission, tax, FX movement, late supplier invoices and unconfirmed incremental delivery costs.</div>
           <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-xs text-slate-400 leading-relaxed"><strong className="text-slate-200">Commission:</strong> €165K is a planning estimate. Finance should confirm the basis before final margin sign-off.</div>
@@ -448,7 +449,7 @@ function SlideRevenueRoutes(){
     ["Backfill churned inventory", "€520,000", "Freed booth, content and sponsorship inventory resold to new buyers at 2027 pricing.", "Weighted pipeline by product and churn source. Do not assume every saved rebook also creates new-rate-card upside."],
     ["Expand retained sponsors", "€230,000", "Rebookers add larger stands, extra content, digital guide, premium branding or package upgrades at 2027 pricing.", "Next-best package per top account. This is the main offset to rebook cannibalisation."],
     ["Sell scarce premium assets", "€250,000", "Headline, lanyard, badge, media, main stage, registration and major branding sold with evidence packs.", "Named owner per premium asset. Lanyard reset to €40K."],
-    ["Cost-led and controlled new revenue", "€170,000", "Mid-tier hospitality, side events, floor takeovers, restored space-only 4x4, outdoor branding and bespoke activations quoted cost-led.", "Ops cost approval before proposal. Lower-level operator/affiliate zone excluded until paid-intent evidence is clear."],
+    ["Cost-led and controlled new revenue", "€170,000", "Mid-tier hospitality, Noma Island VIP event, speaker lounge, restroom bundle, coffee station takeover, restored space-only 4x4 and outdoor branding.", "Ops cost approval before proposal. Operator and affiliate dinner, community side events and custom activation SKU removed. Main entrance arrival partner excluded until buyer demand and delivery cost are proven."],
   ];
   return (
     <div className="flex-1 flex flex-col overflow-y-auto pb-8">
@@ -492,6 +493,91 @@ function SlideRevenueRoutes(){
   );
 }
 
+function SlideSponsorshipTiers(){
+  const tiers = [
+    ["Diamond", "€100K+", "For sponsors taking headline, major hospitality, large stand or multi-product packages.", ["x6 full event passes", "x3 VIP hospitality upgrades", "Senior account lead and concierge servicing", "Up to 3 curated introductions, subject to mutual approval", "Premium onsite status and placement priority", "1 onsite filmed interview", "1 advertisement video", "1 dedicated pre-event strategy session", "1 dedicated pre-event feature or profile", "Priority access to a private meeting room, subject to availability"]],
+    ["Platinum", "€65K+", "For premium sponsors that need stronger presence without full Diamond servicing.", ["x5 full event passes", "x2 VIP hospitality upgrades", "Platinum onsite status", "1 onsite filmed interview", "1 advertisement video", "Individual pre-event post"]],
+    ["Gold", "€25K+", "For serious sponsors buying a focused package or smaller hospitality/content route.", ["x3 full event passes", "Gold status onsite", "Shared pre-event post"]],
+    ["Silver", "€0+", "Entry sponsor status for smaller products and add-ons.", ["x1 full event pass unless product states otherwise", "Silver status onsite", "Shared pre-event post"]],
+  ];
+  return (
+    <div className="flex-1 flex flex-col overflow-y-auto pb-8">
+      <h2 className="text-2xl md:text-3xl font-bold mb-2">Sponsorship Tiers: Add Diamond</h2>
+      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">New York uses Diamond at €135K, Platinum at €80K and Gold at €30K. Valletta should sit lower because the total package spend will be lower, but Diamond still matters for service, access and upsell logic.</p>
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-5">
+        {tiers.map((t,i)=>(
+          <Card key={i} className={i===0 ? "border-cyan-900/50" : i===1 ? "border-amber-900/50" : ""}>
+            <div className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-2">{t[0]} tier</div>
+            <div className={cn("text-3xl font-black mb-3", i===0 ? "text-cyan-300" : i===1 ? "text-amber-300" : i===2 ? "text-emerald-300" : "text-slate-300")}>{t[1]}</div>
+            <p className="text-xs text-slate-400 leading-relaxed mb-4">{t[2]}</p>
+            <ul className="space-y-2 text-xs text-slate-400 leading-relaxed">
+              {t[3].map((x,j)=><li key={j}>{x}</li>)}
+            </ul>
+          </Card>
+        ))}
+      </div>
+      <div className="mt-6 bg-slate-950 border border-cyan-900/50 rounded-2xl p-5">
+        <div className="text-xs uppercase tracking-widest text-cyan-300 font-black mb-2">Commercial read</div>
+        <p className="text-sm md:text-base text-slate-300 leading-relaxed">Diamond is not only a badge. It gives Sales a reason to consolidate spend into fewer stronger packages, especially for headline, Noma Island, premium stands, main stage, media and major hospitality combinations.</p>
+      </div>
+    </div>
+  );
+}
+
+function SlideQuantityBenchmarks(){
+  const rows = [
+    ["Speaker lounge", "1", "€24K", "€24K", "HubSpot has NYC 2027 Speakers' Lounge stock at 1 and NYC 2026 Speaker's Lounge list at €30K. User-provided NYC 2027 benchmark is €35K. Valletta price set lower due to lighter deliverables.", "Add to target"],
+    ["Lanyards", "1 exclusive or 2 split", "€40K exclusive / €22K split", "€40K to €44K", "HubSpot Valletta 2026 exclusive lanyard list was €20K and one line item exists at €20K. Split pricing creates two sellable positions without day-one/day-two confusion.", "Add split option"],
+    ["Coffee station takeover", "1 bundle", "€42K", "€42K", "HubSpot has East and West stock at 1 each. Line items found two 2026 West sales at €20K and €22.575K, no East sale found in the line-item query. Bundle both stations rather than sell weak separate SKUs.", "Add to target"],
+    ["Restroom utility bundle", "1", "€18K", "€18K", "HubSpot has Valletta 2026 Restroom stock at 1 and no Valletta 2026 restroom line item found. Historical line items show Valletta 2025 restroom sold at €10K. Bundle restroom, doors and expo exit into one product.", "Add to target"],
+    ["Rooftop Day 1 non-exclusive", "3", "€28K", "€84K", "HubSpot found 6 Valletta 2026 Day 1 line items, 5 paid and 1 zero-value. Keep target at 3 because the raw line-item count likely includes bundled or non-clean records.", "Keep conservative"],
+    ["Rooftop Day 2 non-exclusive", "2", "€22K", "€44K", "HubSpot 2026 Day 2 non-exclusive line item was not cleanly found. Day 2 exclusive records include placeholder values. Price below Day 1 because Day 1 is busier.", "Add to target"],
+    ["3x3 shell scheme", "16-20 guide", "€16.5K", "€264K-€330K", "HubSpot raw line-item quantity found 50, but the existing closed-won baseline says 16 at ~€11.4K average. Do not use raw line items as sold without deal-stage join.", "Validate before target"],
+    ["6x3 shell scheme", "6-8 guide", "€28K", "€168K-€224K", "HubSpot found 9 raw line-item opportunities. Existing deck baseline said 6 at ~€21K average. Target range should follow floorplan capacity and closed-won validation, not raw CRM count.", "Validate before target"],
+    ["Main stage presentation", "2", "€48K", "€96K", "HubSpot found 3 raw line items, including one zero-value record. Existing deck says 2 paid and 1 comped. Keep target at 2 paid slots.", "Keep conservative"],
+    ["Main stage custom panel", "2", "€36K", "€72K", "HubSpot found 3 raw line items. Existing deck says 2 paid. Keep target at 2 unless Conference confirms extra high-quality capacity.", "Keep conservative"],
+    ["Main stage non-branded", "8 paid guide", "€11K", "€88K", "HubSpot found 18 raw line-item quantity, but several are zero-value. Existing deck says 13 slots with 7 comped. The commercial target should be paid conversion, not total appearances.", "Paid conversion focus"],
+    ["Track non-branded", "8-10 guide", "€6.5K", "€52K-€65K", "HubSpot found 19 raw line-item opportunities. Existing deck says 6 paid and 1 comped. Use this as a yield-repair pool rather than proof that 19 paid slots are sellable.", "Paid conversion focus"],
+    ["Track branded panel", "4-6 guide", "€10K", "€40K-€60K", "HubSpot found multiple 2026 branded-panel line items, but the query also pulled main-track and historic records. Keep a controlled quantity to protect content quality.", "Validate before target"],
+    ["NYC 2027 content benchmark", "Mostly 2-4 each", "NYC benchmark", "Reference only", "HubSpot NYC 2027 content inventory shows Leadership Stage non-branded 4, Stage 2 non-branded 4, Stage 3 non-branded 4, custom sessions mostly 2 and presenters mostly 1-2.", "Use as ceiling"],
+    ["Main entrance / arrival partner", "0", "Excluded", "Excluded", "Greyed out until Ops cost and buyer demand are proven.", "Exclude"],
+    ["Community side events", "0", "Removed", "Excluded", "Removed as a SKU.", "Remove"],
+    ["Custom activation", "0", "Removed", "Excluded", "Removed as a SKU. Bespoke unlisted activations still need Ops costing.", "Remove"],
+  ];
+  return (
+    <div className="flex-1 flex flex-col overflow-y-auto pb-8">
+      <h2 className="text-2xl md:text-3xl font-bold mb-2">HubSpot Quantity Audit &amp; Revenue Impact</h2>
+      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">HubSpot retry complete. Product inventory gives planned availability. Line items show opportunity records, but not clean closed-won sold quantities until associated deal stages are joined. Use this slide as a sign-off gate, not as blind target inflation.</p>
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl mb-6">
+        <div className="overflow-x-auto table-container">
+          <table className="w-full text-left text-xs md:text-sm min-w-[1180px]">
+            <thead className="bg-slate-950 border-b border-slate-800 text-slate-400 uppercase">
+              <tr><th className="p-4">Product</th><th className="p-4 text-right">Target quantity</th><th className="p-4 text-right">Price</th><th className="p-4 text-right">Target revenue</th><th className="p-4 min-w-[440px]">HubSpot evidence</th><th className="p-4">Action</th></tr>
+            </thead>
+            <tbody className="divide-y divide-slate-800/50">
+              {rows.map((r,i)=>(
+                <tr key={i} className={r[3]==="Excluded" ? "bg-rose-950/10 opacity-75" : r[5].includes("Validate") ? "bg-amber-950/10" : ""}>
+                  <td className="p-4 font-bold text-slate-200">{r[0]}</td>
+                  <td className="p-4 text-right font-mono text-slate-300">{r[1]}</td>
+                  <td className="p-4 text-right font-mono text-amber-300">{r[2]}</td>
+                  <td className={cn("p-4 text-right font-mono font-bold", r[3]==="Excluded" ? "text-rose-300" : r[3]==="Reference only" ? "text-slate-300" : "text-emerald-300")}>{r[3]}</td>
+                  <td className="p-4 text-slate-400 leading-relaxed">{r[4]}</td>
+                  <td className="p-4 text-slate-300 font-semibold whitespace-nowrap">{r[5]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Metric label="Added clean target revenue" value="€128K" tone="text-emerald-400" sub="Speaker lounge, coffee bundle, restroom bundle and Rooftop Day 2 non-exclusive." />
+        <Metric label="Raw line-item warning" value="Not sold" tone="text-amber-300" sub="Line-item quantity is not the same as closed-won sold quantity until deal stage is joined." />
+        <Metric label="Excluded revenue" value="0" tone="text-rose-300" sub="Main entrance, custom activation and community side events excluded from the target." />
+      </div>
+    </div>
+  );
+}
+
 function SlideDealDesk(){
   return (
     <div className="flex-1 flex flex-col overflow-y-auto pb-8">
@@ -506,7 +592,7 @@ function SlideDealDesk(){
         <Card>
           <div className="text-xs uppercase tracking-widest text-slate-500 font-black mb-2">Escalation</div>
           <h3 className="text-2xl font-black text-slate-100 mb-3">Director approval</h3>
-          <p className="text-sm text-slate-400 leading-relaxed">Required for below-floor deals, cumulative discounts above 15%, or custom activations before Ops cost approval.</p>
+          <p className="text-sm text-slate-400 leading-relaxed">Required for below-floor deals, cumulative discounts above 15%, or bespoke unlisted activations before Ops cost approval.</p>
         </Card>
         <Card>
           <div className="text-xs uppercase tracking-widest text-slate-500 font-black mb-2">Strategy oversight</div>
@@ -537,7 +623,7 @@ function SlidePacing(){
   return (
     <div className="flex-1 flex flex-col overflow-y-auto pb-8">
       <h2 className="text-2xl md:text-3xl font-bold mb-2">Commercial Cadence</h2>
-      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">The cadence makes slippage visible early and removes silent drift. One target, paced.</p>
+      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">The cadence makes slippage visible early and removes silent drift. Monthly partner sales targets follow once the €2.20M target is confirmed.</p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
           <h3 className="text-xl font-bold text-amber-300 mb-4">Sales pacing</h3>
@@ -572,9 +658,9 @@ function SlideMarketingSalesPlan(){
         <Card className="border-amber-900/50">
           <h3 className="text-xl font-bold text-amber-300 mb-4">Sales needs</h3>
           <ul className="space-y-3 text-sm text-slate-400 leading-relaxed">
-            <li>Approved rate card and bundle set before the rebook window.</li>
+            <li>Approved rate card, bundle set and revised Silver / Gold / Platinum bandings before the rebook window.</li>
             <li>Top-20 account plans with next-best package per account.</li>
-            <li>Premium-asset owner list, reviewed weekly by Will.</li>
+            <li>Premium-asset owner list, reviewed weekly by Will. Diamond tier remains a decision after the NEXTPredict package logic is reviewed.</li>
             <li>Proof pack from marketing and ops before price conversations.</li>
             <li>Coaching cadence for the reps carrying the number, and the 2027 pipeline spread beyond one owner.</li>
           </ul>
@@ -712,12 +798,13 @@ function SlideScorecard(){
 
 function SlideDataGate(){
   const conflicts = [
-    ["2026 sponsorship revenue", "Reported ~€1.884M vs HubSpot closed-won of ~€1.37M across 52 deals. The gap is media deals, multi-event splits, untagged deals and grants.", "Finance defines exactly what sits inside the €1.884M baseline the +16.8% is measured against."],
-    ["2025 baseline", "€1.678M (prior reporting) vs €1.625M (restated). ~3% gap; immaterial to the target but it moves the YoY headline.", "Finance confirms the final 2025 figure used in the trend."],
+    ["2026 sponsorship revenue", "Reported ~€1.884M vs HubSpot closed-won of ~€1.37M across 52 deals. The gap is media deals, multi-event splits, untagged deals, grants and government contracts.", "Finance defines exactly what sits inside the €1.884M baseline the +16.8% is measured against."],
+    ["2025 baseline", "€1.678M (prior reporting) vs €1.625M (restated). ~3% gap; side events also moved between CXO and Valletta views, so the YoY headline is not apples-to-apples yet.", "Finance confirms the final 2025 figure and side-event allocation used in the trend."],
     ["Shisha Lounge", "€25K ledger entry vs €50K brochure price.", "Product owner reconciles actual sold scope and price before 2027 pricing."],
     ["Focus Crypto", "Main ledger shows 1 sale; CRM or focus sheets suggest 3.", "Sales ops reconciles main ledger, CRM and focus-event budget sheets."],
     ["2026 contribution base", "Budgeted costs, late invoices, salary and overhead allocation not fully closed.", "Finance signs the contribution baseline used for 2027 contribution targets."],
     ["Premium-asset history", "Several premium assets (lanyard, media, badge) sold below list in 2026, the recovery assumption needs a clean base.", "Confirm 2026 realised price per premium asset before sizing the €250K route."],
+    ["Government contract treatment", "Malta Enterprise, Gaming Malta and other public-sector support carried deliverables and cost. Team consensus is to raise inclusion in the target, but commission treatment is unresolved.", "Take to Ana and Pierre before changing revenue target treatment or commission basis."],
   ];
   return (
     <div className="flex-1 flex flex-col overflow-y-auto pb-8">
@@ -794,6 +881,56 @@ function SlidePreMortem(){
   );
 }
 
+
+function SlideTranscriptAlignment(){
+  const included = [
+    ["Revenue target", "Keep €2.20M as the sales target and €272K as the ticket target."],
+    ["Noma Island", "Add as the VIP event route replacing the operator / affiliate dinner, with €80K all-in guide or €50K plus sponsor-covered F&B."],
+    ["Cost treatment", "Show provisional €60K Noma cost as a scenario, not a silent change to the headline contribution model."],
+    ["Trend caveat", "Mark historic growth as directional until government money, side-event allocation, CXO treatment and HubSpot gaps are normalised."],
+    ["Stands", "Keep only the 4x4 space-only stand. Remove other space-only thinking because wall stands create fire-exit issues."],
+    ["Lanyards", "Show exclusive as the anchor and same-day split lanyards at €22K each as the operational fallback."],
+    ["Speaker lounge", "Add as a new €24K Silver-level product with 1 available slot and 2 full event passes."],
+    ["Diamond tier", "Add a Valletta-specific Diamond tier at a lower threshold than New York because total spend is expected to be lower."],
+  ];
+  const held = [
+    ["Government contracts", "Raise with Ana and Pierre before deciding whether these count inside the target and how commission works."],
+    ["Headline margin", "Do not recalculate the 42% contribution story until the Noma cost and revenue treatment are approved."],
+    ["Monthly sales targets", "Build after the €2.20M target is confirmed."],
+    ["Maximum inventory revenue", "Do not present. It is not useful because inventory overlaps and full sell-through is unrealistic."],
+  ];
+  return (
+    <div className="flex-1 flex flex-col overflow-y-auto pb-8">
+      <h2 className="text-2xl md:text-3xl font-bold mb-2">Transcript Alignment: Safe Updates Only</h2>
+      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Changes made from the catch-up without rewriting the commercial model.</p>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card className="border-emerald-900/50">
+          <h3 className="text-xl font-bold text-emerald-300 mb-4">Included in this version</h3>
+          <div className="space-y-3">
+            {included.map((r,i)=>(
+              <div key={i} className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+                <div className="text-sm font-bold text-slate-100 mb-1">{r[0]}</div>
+                <div className="text-xs text-slate-400 leading-relaxed">{r[1]}</div>
+              </div>
+            ))}
+          </div>
+        </Card>
+        <Card className="border-amber-900/50">
+          <h3 className="text-xl font-bold text-amber-300 mb-4">Held for approval</h3>
+          <div className="space-y-3">
+            {held.map((r,i)=>(
+              <div key={i} className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+                <div className="text-sm font-bold text-slate-100 mb-1">{r[0]}</div>
+                <div className="text-xs text-slate-400 leading-relaxed">{r[1]}</div>
+              </div>
+            ))}
+          </div>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
 function SlideApproval(){
   return (
     <div className="flex-1 flex flex-col overflow-y-auto pb-8">
@@ -842,7 +979,7 @@ function ProductPricingTable({title, subtitle, rows}){
       <p className="text-slate-400 mb-4 md:mb-6 text-base md:text-lg">{subtitle}</p>
       <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden flex-1 flex flex-col shadow-xl">
         <div className="overflow-x-auto w-full flex-1 table-container">
-          <table className="w-full text-left text-[11px] md:text-sm min-w-[1050px]">
+          <table className="w-full text-left text-[11px] md:text-sm min-w-[1240px]">
             <thead className="bg-slate-950 border-b border-slate-800 text-slate-400 uppercase">
               <tr>
                 <th className="p-3 md:p-4 font-medium min-w-[220px]">Product</th>
@@ -850,6 +987,8 @@ function ProductPricingTable({title, subtitle, rows}){
                 <th className="p-3 md:p-4 font-medium text-right whitespace-nowrap">2027 List</th>
                 <th className="p-3 md:p-4 font-medium text-right whitespace-nowrap">Change</th>
                 <th className="p-3 md:p-4 font-medium text-right whitespace-nowrap">Floor</th>
+                <th className="p-3 md:p-4 font-medium text-right whitespace-nowrap">Target Qty</th>
+                <th className="p-3 md:p-4 font-medium text-right whitespace-nowrap">Target Rev</th>
                 <th className="p-3 md:p-4 font-medium min-w-[170px]">2026 Actual</th>
                 <th className="p-3 md:p-4 font-medium min-w-[320px]">Action / Notes</th>
               </tr>
@@ -857,7 +996,7 @@ function ProductPricingTable({title, subtitle, rows}){
             <tbody className="divide-y divide-slate-800/50">
               {rows.map((r,i)=>{
                 if(r.section){
-                  return <tr key={i} className="bg-slate-800/80 border-y border-slate-700"><td colSpan="7" className="p-3 font-bold text-slate-200 text-[10px] md:text-xs tracking-wider uppercase">{r.section}</td></tr>;
+                  return <tr key={i} className="bg-slate-800/80 border-y border-slate-700"><td colSpan="9" className="p-3 font-bold text-slate-200 text-[10px] md:text-xs tracking-wider uppercase">{r.section}</td></tr>;
                 }
                 return (
                   <tr key={i} className={cn(r.retired ? "bg-rose-950/10 opacity-75" : "hover:bg-slate-800/30", "transition-colors")}>
@@ -866,6 +1005,8 @@ function ProductPricingTable({title, subtitle, rows}){
                     <td className={cn("p-3 md:p-4 font-mono text-right whitespace-nowrap", r.retired ? "text-rose-300" : "text-amber-400")}>{r.list}</td>
                     <td className={cn("p-3 md:p-4 font-mono text-right whitespace-nowrap", shock(r.change) ? "text-amber-300 font-bold" : "text-slate-400")}>{r.change}{shock(r.change) ? " ⚠" : ""}</td>
                     <td className="p-3 md:p-4 font-mono text-emerald-400/80 text-right whitespace-nowrap">{r.floor}</td>
+                    <td className="p-3 md:p-4 font-mono text-slate-300 text-right whitespace-nowrap">{r.qty || (r.retired ? "0" : "TBC")}</td>
+                    <td className={cn("p-3 md:p-4 font-mono text-right whitespace-nowrap", r.retired ? "text-rose-300" : "text-emerald-300")}>{r.targetRevenue || (r.retired ? "Excluded" : "TBC")}</td>
                     <td className="p-3 md:p-4 text-slate-400 text-[10px] md:text-xs leading-relaxed">{r.actual}</td>
                     <td className="p-3 md:p-4 text-slate-400 text-[10px] md:text-xs leading-relaxed">{r.notes}</td>
                   </tr>
@@ -883,18 +1024,18 @@ function ProductPricingTable({title, subtitle, rows}){
 function SlideProductPricingPremium(){
   const rows = [
     {section:"Headline and premium inventory"},
-    {product:"Headline Sponsorship", rebook:"€150K", list:"€200K", change:"+33%", floor:"€160K", actual:"1 @ €112.5K", notes:"Apex anchor. Hub88 renewal needs a director-led account plan, not normal rate-card mechanics."},
-    {product:"Lanyard Sponsorship", rebook:"€20K", list:"€40K", change:"+100%", floor:"€30K", actual:"1 shared @ €14.5K", notes:"Set at €40K exclusive list. If the existing sponsor rebooks at €20K, accept and use the 2027 list as the 2028 reset. Split lanyard remains a fallback."},
-    {product:"Registration and Check-In Partner", rebook:"€40K", list:"€48K", change:"+20%", floor:"€40K", actual:"1 @ €32K", notes:"True 2026 list was €40K. Returning sponsor risk needs account handling."},
-    {product:"Badge Sponsor", rebook:"€23K", list:"€28K", change:"+22%", floor:"€23K", actual:"1 @ €18K", notes:"Softened from €32K. Segmented badges only if attendee data supports the split."},
-    {product:"Main Stage Sponsorship", rebook:"€45K", list:"€52K", change:"+16%", floor:"€45K", actual:"1 @ €37K", notes:"Softened from €60K. NYC benchmark is the ceiling story, not the opening ask."},
+    {product:"Headline Sponsorship", rebook:"€150K", list:"€200K", change:"+33%", floor:"€160K", qty:"1", targetRevenue:"€200K", actual:"1 @ €112.5K", notes:"Apex anchor. Hub88 renewal needs a director-led account plan, not normal rate-card mechanics."},
+    {product:"Lanyard Sponsorship", rebook:"€20K", list:"€40K exclusive / €22K split", change:"+100%", floor:"€30K exclusive / €18K split", qty:"1 exclusive or 2 split", targetRevenue:"€40K to €44K", actual:"1 shared @ €14.5K", notes:"Set €40K as the exclusive anchor. Split lanyards available on the same day as Partner A and Partner B at €22K each. Total split value should exceed exclusive value because it adds sales and production complexity."},
+    {product:"Registration and Check-In Partner", rebook:"€40K", list:"€48K", change:"+20%", floor:"€40K", qty:"1", targetRevenue:"€48K", actual:"1 @ €32K", notes:"True 2026 list was €40K. Returning sponsor risk needs account handling."},
+    {product:"Badge Sponsor", rebook:"€23K", list:"€28K", change:"+22%", floor:"€23K", qty:"1", targetRevenue:"€28K", actual:"1 @ €18K", notes:"Softened from €32K. Segmented badges only if attendee data supports the split."},
+    {product:"Main Stage Sponsorship", rebook:"€45K", list:"€52K", change:"+16%", floor:"€45K", qty:"1", targetRevenue:"€52K", actual:"1 @ €37K", notes:"Softened from €60K. NYC benchmark is the ceiling story, not the opening ask."},
     {product:"VIP Lounge Sponsorship", rebook:"€28K", list:"€38K", change:"+36%", floor:"€28K", actual:"Comped", notes:"Sell only once the VIP networking area has real deliverables and proof."},
-    {product:"Main Stage Custom Panel", rebook:"€30K", list:"€36K", change:"+20%", floor:"€30K", actual:"2 @ avg €25.5K", notes:"Content controls topic, title and speaker quality."},
+    {product:"Main Stage Custom Panel", rebook:"€30K", list:"€36K", change:"+20%", floor:"€30K", qty:"2", targetRevenue:"€72K", actual:"2 @ avg €25.5K", notes:"Content controls topic, title and speaker quality."},
     {section:"Exhibition and stands"},
-    {product:"3x3 Shell Scheme", rebook:"€14.5K", list:"€16.5K", change:"+14%", floor:"€14.5K", actual:"16 @ avg €11.4K", notes:"Volume engine. Scanner, profile and proof report included. Realised target is at least old list."},
-    {product:"6x3 Shell Scheme", rebook:"€23K", list:"€28K", change:"+22%", floor:"€25K", actual:"6 @ avg €21K", notes:"Best stand yield on the floor. Real demand at this tier."},
+    {product:"3x3 Shell Scheme", rebook:"€14.5K", list:"€16.5K", change:"+14%", floor:"€14.5K", qty:"16", targetRevenue:"€264K", actual:"16 @ avg €11.4K", notes:"Volume engine. Scanner, profile and proof report included. Realised target is at least old list."},
+    {product:"6x3 Shell Scheme", rebook:"€23K", list:"€28K", change:"+22%", floor:"€25K", qty:"6", targetRevenue:"€168K", actual:"6 @ avg €21K", notes:"Best stand yield on the floor. Real demand at this tier."},
     {product:"Lower Level Stand", rebook:"€6.5K", list:"€8K guide", change:"+23%", floor:"€6.5K", actual:"2 paid", notes:"Strategic decision required. Excluded from base-case revenue until paid-intent and delegate-value evidence confirms whether this is revenue inventory or audience-value inventory."},
-    {product:"Space-Only 4x4", rebook:"€14.5K", list:"€18.5K", change:"+28%", floor:"€16.5K", actual:"Loyal 4x4 demand", notes:"Restore commercially. Removing it creates avoidable revenue loss and complicates loyal rebooks such as Internet Vikings and Techquity. Ops to confirm floorplan and fire-exit constraints."}
+    {product:"Space-Only 4x4", rebook:"€14.5K", list:"€18.5K", change:"+28%", floor:"€16.5K", qty:"2 guide", targetRevenue:"€37K", actual:"Loyal 4x4 demand", notes:"Only retained space-only format. Removing it creates avoidable churn risk with Internet Vikings and Techquity. Other space-only ideas removed because wall stands would block fire exits."}
   ];
   return <ProductPricingTable title="Product Pricing: Premium, Headline & Stands" subtitle="The products most likely to carry the €2.20M target. This is where price shock, retention risk and yield discipline matter most." rows={rows} />;
 }
@@ -902,16 +1043,16 @@ function SlideProductPricingPremium(){
 function SlideProductPricingContent(){
   const rows = [
     {section:"Content and stages"},
-    {product:"Main Stage Presentation", rebook:"€44K", list:"€48K", change:"+9%", floor:"€44K", actual:"2 paid, 1 comped", notes:"The €50K ask was reduced. Keep this as a price anchor for custom panels without overpricing a 25-minute slot."},
-    {product:"Main Stage Branded Panel", rebook:"€16K", list:"€18K", change:"+13%", floor:"€15K", actual:"2 @ avg €13.3K", notes:"Softened from €22K after ledger review."},
-    {product:"Main Stage Non-Branded Panel", rebook:"€8K", list:"€11K", change:"+38%", floor:"€9K", actual:"13 slots, 7 comped", notes:"Biggest content leak. If included in a bundle, the bundle price must show the value."},
+    {product:"Main Stage Presentation", rebook:"€44K", list:"€48K", change:"+9%", floor:"€44K", qty:"2", targetRevenue:"€96K", actual:"2 paid, 1 comped", notes:"The €50K ask was reduced. Keep this as a price anchor for custom panels without overpricing a 25-minute slot."},
+    {product:"Main Stage Branded Panel", rebook:"€16K", list:"€18K", change:"+13%", floor:"€15K", qty:"2", targetRevenue:"€36K", actual:"2 @ avg €13.3K", notes:"Softened from €22K after ledger review."},
+    {product:"Main Stage Non-Branded Panel", rebook:"€8K", list:"€11K", change:"+38%", floor:"€9K", qty:"6 paid target", targetRevenue:"€66K", actual:"13 slots, 7 comped", notes:"Biggest content leak. If included in a bundle, the bundle price must show the value."},
     {product:"Main Track Branded Panel", rebook:"€16K", list:"€16K", change:"0%", floor:"€12K", actual:"2 @ avg €9.7K", notes:"Worst yield in content. Fix discounting before any increase."},
     {product:"Track Sponsorship", rebook:"€21K", list:"€24K", change:"+14%", floor:"€21K", actual:"5 @ avg €17.4K", notes:"Increase requires reinvented deliverables: named partner status, research report and onsite spotlight."},
     {product:"Track Presenter Sponsorship", rebook:"€14.5K", list:"€16K", change:"+10%", floor:"€13K", actual:"1 @ €10.8K", notes:"Softened from €20K."},
     {product:"Track Branded Panel", rebook:"€9K", list:"€10K", change:"+11%", floor:"€8K", actual:"4 @ avg €7.4K", notes:"Firm floor. Keep volume controlled for content quality."},
     {product:"Track Non-Branded Panel", rebook:"€6K", list:"€6.5K", change:"+8%", floor:"€5.5K", actual:"6 paid, 1 comped", notes:"Yield problem, not a price problem."},
-    {product:"Track Custom Panel", rebook:"€12K", list:"€15K", change:"+25%", floor:"€12K", actual:"1 @ €12K", notes:"Contracted minimum 25 minutes. Flex-slot logic protects paid sessions."},
-    {product:"Track Coffee Sponsorship", rebook:"€12.5K", list:"€13K", change:"+4%", floor:"€11K", actual:"1 @ €10K", notes:"Small increase only."},
+    {product:"Track Custom Panel", rebook:"€12K", list:"€15K", change:"+25%", floor:"€12K", qty:"1", targetRevenue:"€15K", actual:"1 @ €12K", notes:"Contracted minimum 25 minutes. Flex-slot logic protects paid sessions."},
+    {product:"Track Coffee Sponsorship", rebook:"€12.5K", list:"€13K", change:"+4%", floor:"€11K", qty:"1", targetRevenue:"€13K", actual:"1 @ €10K", notes:"Small increase only."},
     {product:"Livestream Sponsorship", rebook:"€20K", list:"€25K", change:"+25%", floor:"€20K", actual:"1 @ €18K", notes:"Ops cost €8K. Softened from €30K."},
     {section:"Focus events and summits"},
     {product:"Prediction Markets Headline", rebook:"€50K", list:"€55K", change:"+10%", floor:"€50K", actual:"1 @ €50K", notes:"Align scale with the NEXTPredict ambition before selling."},
@@ -938,9 +1079,8 @@ function SlideProductPricingBranding(){
     {product:"Media Zone", rebook:"€25K", list:"€35K", change:"+40%", floor:"€30K", actual:"1 @ €25K", notes:"Good asset now that content exists. Sell on interviews, output and views. Press lounge or Room 9 access subject to Ops confirmation, not promised."},
     {product:"Registration Entrance Arch", rebook:"€8K", list:"€12K", change:"+50%", floor:"€9K", actual:"1 @ €10K", notes:"Sold above list in 2026. Genuinely underpriced."},
     {product:"Branded Water Station", rebook:"€10K", list:"€11K", change:"+10%", floor:"€10K", actual:"1 @ €9K", notes:"Simple utility product."},
-    {product:"Advertisement Video", rebook:"€8.625K", list:"€10K", change:"+16%", floor:"€9K", actual:"4 paid, 2 comped", notes:"Sweetener-bank item. Comped videos must be logged as bundle value."},
-    {product:"Coffee Station Expo West", rebook:"€25K", list:"€25K", change:"0%", floor:"€21K", actual:"1 @ €20K", notes:"Hold list and fix yield."},
-    {product:"Coffee Station Expo East", rebook:"€25K", list:"Bundle", change:"N/A", floor:"N/A", actual:"0 sold", notes:"Stop selling East alone. Offer East + West Coffee Takeover at €40K or use as bundle filler.", retired:true},
+    {product:"Advertisement Video", rebook:"€8.625K", list:"€10K", change:"+16%", floor:"€9K", qty:"4 paid target", targetRevenue:"€40K", actual:"4 paid, 2 comped", notes:"Sweetener-bank item. Comped videos must be logged as bundle value."},
+    {product:"Coffee Station Takeover, East + West", rebook:"€25K single-station", list:"€42K bundled", change:"+68% vs single", floor:"€35K", qty:"1 bundle", targetRevenue:"€42K", actual:"HubSpot: 2 West line items @ €20K and €22.575K; East not found", notes:"Bundle both stations into one cleaner sponsor product. This improves yield without asking sales to explain two weakly differentiated SKUs."},
     {product:"MCC Outdoor Building Branding", rebook:"€22K", list:"€28K", change:"+27%", floor:"€22K", actual:"1 @ €15K", notes:"Underpriced for its visibility. Big, all-event branding with photo and social value. Increase with proof, hold old list as floor."},
     {product:"Republic Hall Balcony Branding", rebook:"€35K", list:"€38K", change:"+9%", floor:"€32K", actual:"1 @ €30K", notes:"High-impact. Softened from €40K."},
     {product:"Expo Area Wall Murals", rebook:"€45K", list:"€45K", change:"0%", floor:"€38K", actual:"1 @ €32K", notes:"Hold list and fix yield."},
@@ -948,34 +1088,32 @@ function SlideProductPricingBranding(){
     {product:"Expo Lounge", rebook:"€30K", list:"€34K", change:"+13%", floor:"€28K", actual:"1 @ €25K", notes:"Softened from €38K."},
     {product:"Digital Event Guide + App Partner", rebook:"€12K", list:"€23K", change:"+92%", floor:"€18K", actual:"Guide sold @ €10.8K, app unsold", notes:"Combine agenda, Bizzabo branding, app visibility and traffic proof. Marketing ownership makes the value story stronger."},
     {product:"Wi-Fi Sponsorship", rebook:"€18K", list:"€18K", change:"0%", floor:"€18K", actual:"0 sold", notes:"Final season at list. Unsold again means cut for 2028."},
-    {product:"Restroom / Doors / Expo Exit", rebook:"€12.5K / €7.5K / €6K", list:"Cut", change:"N/A", floor:"N/A", actual:"0 sold", notes:"Remove from rate card. Keep only as bundle filler or comp recognition.", retired:true},
+    {product:"Restroom Utility Bundle", rebook:"N/A", list:"€18K", change:"N/A", floor:"€15K", qty:"1", targetRevenue:"€18K", actual:"HubSpot: no Valletta 2026 restroom line item found; 2025 sold @ €10K", notes:"Bundle into one utility branding product and include in target only as a bundle. Avoid three small SKUs that create admin and weak value stories."},
     {product:"Goodbye Bags / Track Goodie Bags", rebook:"€10K / €7K", list:"Fold", change:"N/A", floor:"N/A", actual:"0 sold", notes:"Fold into sweetener bank.", retired:true},
     {product:"Lower Level Lunch Area", rebook:"€18K", list:"Rework", change:"N/A", floor:"N/A", actual:"0 sold", notes:"Re-scope as a branded experience or drop.", retired:true},
     {section:"Networking and experiential"},
-    {product:"Pre-Registration Drinks", rebook:"€25K", list:"€27K", change:"+8%", floor:"€22K", actual:"4 @ avg €19.2K", notes:"Real demand around €20K. Yield discipline first."},
+    {product:"Pre-Registration Drinks", rebook:"€25K", list:"€27K", change:"+8%", floor:"€22K", qty:"4", targetRevenue:"€108K", actual:"4 @ avg €19.2K", notes:"Real demand around €20K. Yield discipline first."},
     {product:"Rooftop Day 1 / Day 2 Exclusive", rebook:"€100K", list:"POA", change:"N/A", floor:"Cost + margin", actual:"0 genuine paid", notes:"Failed list price retired. Bespoke takeover only, costed and approved.", retired:true},
-    {product:"Rooftop Day 1 Non-Exclusive", rebook:"€25K", list:"€28K", change:"+12%", floor:"€25K", actual:"3 paid @ avg €23K", notes:"Healthy demand at this level."},
-    {product:"Rooftop Day 2 Non-Exclusive", rebook:"€25K", list:"Cost-led", change:"N/A", floor:"Cost + margin", actual:"0 sold", notes:"Quote cost-led until demand proves out."},
-    {product:"Terrace Branding and Drinks", rebook:"€40K", list:"€44K", change:"+10%", floor:"€40K", actual:"1 @ €40K", notes:"Sold at full list. Increase earned."},
-    {product:"Rave Cave", rebook:"€50K", list:"€60K", change:"+20%", floor:"€50K", actual:"1 @ €50K", notes:"Signature closing party. Increase earned."},
+    {product:"Rooftop Day 1 Non-Exclusive", rebook:"€25K", list:"€28K", change:"+12%", floor:"€25K", qty:"3", targetRevenue:"€84K", actual:"HubSpot: 6 raw 2026 line items, 5 paid and 1 zero-value", notes:"Healthy demand at this level, but target remains conservative because raw line items are not clean closed-won sold quantity."},
+    {product:"Rooftop Day 2 Non-Exclusive", rebook:"N/A", list:"€22K", change:"N/A", floor:"€19K", qty:"2", targetRevenue:"€44K", actual:"HubSpot: no clean 2026 non-exclusive line item found", notes:"Lower than Day 1 because Day 1 is busier. This is still worth packaging if positioned as the closing relationship moment, not the main party."},
+    {product:"Terrace Branding and Drinks", rebook:"€40K", list:"€44K", change:"+10%", floor:"€40K", qty:"1", targetRevenue:"€44K", actual:"1 @ €40K", notes:"Sold at full list. Increase earned."},
+    {product:"Rave Cave", rebook:"€50K", list:"€60K", change:"+20%", floor:"€50K", qty:"1", targetRevenue:"€60K", actual:"1 @ €50K", notes:"Signature closing party. Increase earned."},
     {product:"Shisha Lounge", rebook:"€50K", list:"€50K", change:"0%", floor:"€40K", actual:"Ledger €25K", notes:"Reconcile ledger vs brochure before final price. Premium rebuild required."},
-    {product:"Golf Tournament", rebook:"€35K", list:"€40K", change:"+14%", floor:"€35K", actual:"1 @ €35K", notes:"Sold at full list."},
-    {product:"Padel Tournament", rebook:"€12K", list:"€16K", change:"+33%", floor:"€12K", actual:"1 @ €12.35K", notes:"Sold above list. Lock better venue."},
+    {product:"Golf Tournament", rebook:"€35K", list:"€40K", change:"+14%", floor:"€35K", qty:"1", targetRevenue:"€40K", actual:"1 @ €35K", notes:"Sold at full list."},
+    {product:"Padel Tournament", rebook:"€12K", list:"€16K", change:"+33%", floor:"€12K", qty:"1", targetRevenue:"€16K", actual:"1 @ €12.35K", notes:"Sold above list. Lock better venue."},
     {product:"Ice Bath and Yoga", rebook:"€19K", list:"€19K", change:"0%", floor:"€15K", actual:"1 @ €15K", notes:"Held. Ledger shows one paid at €15K."},
     {product:"Run Club", rebook:"€15K", list:"€18K", change:"+20%", floor:"€15K", actual:"1 @ €15K", notes:"Side-event budget source."},
-    {product:"Side Event Party", rebook:"POA", list:"Cost-led", change:"N/A", floor:"Cost + margin", actual:"6 sales, €258K total", notes:"Strongest genuine demand pool. Quote cost-led every time."},
+    {product:"Side Event Party", rebook:"POA", list:"Cost-led", change:"N/A", floor:"Cost + margin", qty:"6 guide", targetRevenue:"Cost-led", actual:"6 sales, €258K total", notes:"Strongest genuine demand pool. Quote cost-led every time."},
     {product:"Slots Competition", rebook:"N/A", list:"€12K", change:"N/A", floor:"€10K", actual:"1 @ €11K", notes:"Was POA. Real sale found."},
-    {product:"Affiliate and Operator Dinner", rebook:"€30K", list:"€38K", change:"+27%", floor:"€30K", actual:"Brochure €30K", notes:"Confirm relationship with bespoke side-event party pricing."},
+    {product:"Affiliate and Operator Dinner", rebook:"N/A", list:"Removed", change:"N/A", floor:"N/A", actual:"Brochure €30K", notes:"Removed from active plan. Replace with Noma Island VIP event or generic side-event logic.", retired:true},
     {product:"Outdoor Activation Zone", rebook:"€50K", list:"€55K", change:"+10%", floor:"€50K", actual:"Brochure €50K", notes:"Ops cost around €25K. Cost-led until Ops confirms."},
     {product:"Entertainment Zone", rebook:"€40K", list:"€40K", change:"0%", floor:"€40K", actual:"0 sold", notes:"Hold only if Ops confirms feasibility."},
     {section:"New and reinvented inventory"},
     {product:"Expo Floor Takeover Activation", rebook:"N/A", list:"Cost-led (€45K-€60K guide)", change:"N/A", floor:"Cost + margin", actual:"SoftSwiss-style €10K", notes:"Cleaner, more controlled version of 2026 activation."},
     {product:"Operator / Affiliate Segment Badges", rebook:"N/A", list:"€18K", change:"N/A", floor:"€15K", actual:"N/A", notes:"Only if attendee data supports the split."},
-    {product:"Main Entrance / Arrival Partner", rebook:"N/A", list:"€60K", change:"N/A", floor:"€50K", actual:"N/A", notes:"Entrance, arrival, wayfinding and welcome packaged."},
-    {product:"Community Side Events", rebook:"N/A", list:"Cost-led", change:"N/A", floor:"Cost + margin", actual:"N/A", notes:"Sub-community gatherings by segment."},
-    {product:"Noma Island Floating Venue", rebook:"N/A", list:"~€50K + F&B", change:"N/A", floor:"Cost + margin", actual:"N/A", notes:"Ops feasibility and full costing first."},
-    {product:"Speakers Lounge Sponsorship", rebook:"N/A", list:"TBC", change:"N/A", floor:"TBC", actual:"N/A", notes:"Price after deliverables are fixed."},
-    {product:"Custom Activation", rebook:"N/A", list:"Min €15K", change:"N/A", floor:"€15K", actual:"Misc lines in 2026", notes:"Replaces vague Misc lines. Needs commercial approval and HubSpot naming."}
+    {product:"Main Entrance / Arrival Partner", rebook:"N/A", list:"Excluded", change:"N/A", floor:"N/A", qty:"0", targetRevenue:"Excluded", actual:"SoftSwiss-style €10K", notes:"Greyed out and not included in the revenue target. Keep as a future welcome activation only after Ops costing and buyer demand are proven.", retired:true},
+    {product:"Noma Island VIP Event", rebook:"N/A", list:"€80K all-in guide / €50K + F&B", change:"N/A", floor:"Cost + margin", qty:"1 scenario", targetRevenue:"€80K scenario", actual:"N/A", notes:"Replacement for operator / affiliate dinner. Provisional cost ~€60K all-in. Easier sales story if logistics and F&B are included, but sponsor-covered F&B remains an option."},
+    {product:"Speakers Lounge Sponsorship", rebook:"N/A", list:"€24K", change:"N/A", floor:"€20K", qty:"1", targetRevenue:"€24K", actual:"HubSpot: NYC 2026 €30K list, NYC 2027 stock 1; user benchmark €35K", notes:"Reasonable Valletta price. NYC benchmark is €35K, but NYC includes a stronger venue setting and broader lounge value. Valletta deliverables: shared pre-event welcome post, Silver status, logo placement, welcome banner, photowall, merch option, logo in guide and online agenda, after movie credit and 2 full event passes."}
   ];
   return <ProductPricingTable title="Product Pricing: Branding, Networking & New Inventory" subtitle="This is the long tail. Cut weak SKUs, hold yield where demand was soft and quote cost-led wherever delivery cost moves." rows={rows} />;
 }
@@ -1045,6 +1183,8 @@ const slides = [
   SlideContributionWaterfall,
   SlideTicketing,
   SlideRevenueRoutes,
+  SlideSponsorshipTiers,
+  SlideQuantityBenchmarks,
   SlideDealDesk,
   SlidePacing,
   SlideMarketingSalesPlan,
@@ -1054,6 +1194,7 @@ const slides = [
   SlideDataGate,
   SlideCalibrationLoop,
   SlidePreMortem,
+  SlideTranscriptAlignment,
   SlideApproval,
   SlideProductPricingPremium,
   SlideProductPricingContent,
