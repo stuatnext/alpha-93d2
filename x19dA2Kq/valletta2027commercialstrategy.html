@@ -77,15 +77,15 @@ function SlideTitle(){
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-7xl w-full px-4 mb-8">
         <Metric label="Sales target" value="€2.20M" tone="text-amber-400" sub="Single official number. +16.8% on 2026 achieved, level with the 2026 target." className="border-amber-900/60" />
         <Metric label="Ticket target" value="€272K" tone="text-indigo-400" sub="Marketing-owned, unchanged. James from 1 July, delegated interim if needed." className="border-indigo-900/60" />
-        <Metric label="Total plan" value="€2.47M" tone="text-emerald-400" sub="Sales plus tickets. Clears the contribution hurdle with ~€200K headroom." className="border-emerald-900/60" />
-        <Metric label="Projected contribution" value="€1.04M" tone="text-cyan-300" sub="Total plan minus €1.433M cost base incl. commission." className="border-cyan-900/60" />
-        <Metric label="Contribution margin" value="~42%" tone="text-cyan-300" sub="Projected contribution as a share of total plan." className="border-cyan-900/60" />
+        <Metric label="Total plan" value="€2.47M" tone="text-emerald-400" sub="Sales plus tickets. Clears the contribution hurdle with €149K-€185K headroom." className="border-emerald-900/60" />
+        <Metric label="Projected contribution" value="€994K" tone="text-cyan-300" sub="Total plan minus Desi budget view of €1.478M incl. commission." className="border-cyan-900/60" />
+        <Metric label="Contribution margin" value="~40%" tone="text-cyan-300" sub="Projected contribution as a share of total plan." className="border-cyan-900/60" />
         <Metric label="YoY increase needed" value="+€316K" tone="text-slate-200" sub="From €1.884M. Sourced route by route, not assumed." />
       </div>
       <div className="max-w-5xl bg-slate-950 border border-amber-900/50 rounded-2xl p-5 text-left mx-4">
         <div className="text-xs uppercase tracking-widest text-amber-400 font-black mb-2">Summary</div>
         <p className="text-sm md:text-base text-slate-300 leading-relaxed">
-          €2.20M is the sales target. It holds the bar already set for 2026 rather than raising it. With tickets, this is a €2.47M total revenue plan and a projected €1.04M contribution plan, with an estimated 42% contribution margin. Noma Island and government-contract treatment are shown as sign-off items rather than quietly changing the headline model. Value retention of 80-85% is the diagnostic that confirms the number reflects healthy renewals rather than backfill of churned accounts.
+          €2.20M is the sales target. It holds the bar already set for 2026 rather than raising it. With tickets, this is a €2.47M total revenue plan and a projected €994K contribution plan using Desi’s €1.478M all-in budget view. That implies a ~40% contribution margin. Noma Island is reflected in the budget view as a new option, while government-contract treatment remains a sign-off item before it changes revenue or commission logic. Value retention of 80-85% is the diagnostic that confirms the number reflects healthy renewals rather than backfill of churned accounts.
         </p>
       </div>
     </div>
@@ -296,45 +296,48 @@ function SlideSalesCapacity(){
 function SlideCostBase(){
   return (
     <div className="flex-1 flex flex-col overflow-y-auto pb-8">
-      <h2 className="text-2xl md:text-3xl font-bold mb-2">Cost Base &amp; Margin Hurdle</h2>
-      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">The contribution-coverage check. This is not a second target, it is the floor the single target must clear. Keep the presentation view at total cost level, with Noma Island shown as a pending cost scenario.</p>
+      <h2 className="text-2xl md:text-3xl font-bold mb-2">Cost Base &amp; Budget Reconciliation</h2>
+      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">Desi’s budget view belongs here. It should replace the loose cost assumption in the financial model, while still keeping Finance sign-off visible.</p>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <Card>
-          <h3 className="text-lg font-bold text-slate-100 mb-4">2027 event cost base</h3>
+          <h3 className="text-lg font-bold text-slate-100 mb-4">Desi budget slide, all-in cost view</h3>
           <div className="space-y-3 text-sm">
-            <div className="flex justify-between border-b border-slate-800 pb-2"><span className="text-slate-400">2025 actual event costs</span><span className="font-mono text-slate-200">€955,816</span></div>
-            <div className="flex justify-between border-b border-slate-800 pb-2"><span className="text-slate-400">2026 budget event costs</span><span className="font-mono text-slate-200">€1,173,700</span></div>
-            <div className="flex justify-between border-b border-slate-800 pb-2"><span className="text-slate-400">2027 projection, +8%</span><span className="font-mono text-slate-200">€1,267,998</span></div>
-            <div className="flex justify-between border-b border-slate-800 pb-2"><span className="text-slate-400">Sales commission estimate</span><span className="font-mono text-slate-200">€165,000</span></div>
-            <div className="flex justify-between border-b border-slate-800 pb-2"><span className="text-slate-400">Noma Island scenario</span><span className="font-mono text-amber-300">+€60,000 pending</span></div>
-            <div className="flex justify-between border-b border-slate-800 pb-2 text-amber-400 font-bold"><span>Cost base incl. commission</span><span className="font-mono">€1,432,998</span></div>
-            <div className="flex justify-between pt-2 text-cyan-300 font-bold"><span>Projected contribution after targets</span><span className="font-mono">€1,039,002</span></div>
+            <div className="flex justify-between border-b border-slate-800 pb-2"><span className="text-slate-400">2026 total for NEXT incl. commission</span><span className="font-mono text-slate-200">€1,323,700</span></div>
+            <div className="flex justify-between border-b border-slate-800 pb-2"><span className="text-slate-400">2027 total for NEXT incl. commission</span><span className="font-mono text-amber-300">€1,477,998</span></div>
+            <div className="flex justify-between border-b border-slate-800 pb-2"><span className="text-slate-400">Absolute increase</span><span className="font-mono text-slate-200">+€154,298</span></div>
+            <div className="flex justify-between border-b border-slate-800 pb-2"><span className="text-slate-400">YoY budget increase</span><span className="font-mono text-amber-300">+11.66%</span></div>
+            <div className="flex justify-between border-b border-slate-800 pb-2"><span className="text-slate-400">Prior working cost model</span><span className="font-mono text-slate-500">€1,432,998</span></div>
+            <div className="flex justify-between pt-2 text-amber-400 font-bold"><span>Budget bridge vs prior model</span><span className="font-mono">+€45,000</span></div>
           </div>
-          <p className="text-[10px] text-slate-500 mt-4 leading-relaxed">Commission is a planning estimate and needs Finance confirmation before final sign-off. Noma Island adds a provisional €60K cost if approved as an all-in VIP event, so it should be paired with an €80K guide price or kept as €50K plus sponsor-covered F&amp;B.</p>
+          <p className="text-[10px] text-slate-500 mt-4 leading-relaxed">Use Desi’s all-in figure as the presentation cost view unless Finance changes it. Do not add a separate commission row on top of this figure, because the slide already includes commission.</p>
         </Card>
         <Card>
-          <h3 className="text-lg font-bold text-slate-100 mb-4">Contribution-growth requirement</h3>
-          <div className="space-y-4">
-            <Metric label="2026 contribution baseline" value="~€735K" tone="text-slate-300" sub="Subject to Finance reconciliation." />
-            <Metric label="Required 2027 contribution" value="€809K to €845K" tone="text-amber-400" sub="+10% to +15% contribution growth." />
-            <Metric label="Total revenue needed" value="€2.24M to €2.28M" tone="text-emerald-400" sub="Against the current cost base." />
+          <h3 className="text-lg font-bold text-slate-100 mb-4">What changed operationally</h3>
+          <div className="grid grid-cols-2 gap-3 mb-4">
+            <Metric label="Focus events" value="4" tone="text-indigo-300" sub="Included in the budget view." />
+            <Metric label="Sport events" value="4" tone="text-emerald-300" sub="Included in the budget view." />
+            <Metric label="Side / VIP events" value="6" tone="text-amber-300" sub="Includes floating Noma option." />
+            <Metric label="Cost increase" value="11.66%" tone="text-amber-300" sub="Above 10% due to added event scope." />
+          </div>
+          <div className="bg-amber-950/20 border border-amber-900/50 rounded-xl p-4 text-sm text-amber-100 leading-relaxed">
+            The narrative should be simple: costs rise because the 2027 week is bigger, not because the base event became uncontrolled. The new cost is defensible if the extra event scope converts into sellable inventory, especially Noma, sport, VIP and Focus formats.
           </div>
         </Card>
       </div>
       <Card className="border-emerald-900/50">
-        <h3 className="text-xl font-bold text-emerald-300 mb-4">The single target clears the hurdle</h3>
+        <h3 className="text-xl font-bold text-emerald-300 mb-4">The single target still clears the hurdle</h3>
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           <Metric label="Sales target" value="€2.20M" tone="text-amber-400" sub="The one number the sales org owns." />
           <Metric label="Plus tickets" value="€272K" tone="text-indigo-400" sub="Marketing-owned, unchanged." />
-          <Metric label="Total plan" value="€2.47M" tone="text-emerald-400" sub="~€190K-€230K above the contribution hurdle." />
-          <Metric label="Projected contribution" value="€1.04M" tone="text-cyan-300" sub="After event costs and estimated sales commission." />
-          <Metric label="Contribution margin" value="~42%" tone="text-cyan-300" sub="Projected contribution divided by total plan." />
+          <Metric label="Total plan" value="€2.47M" tone="text-emerald-400" sub="€2.472M combined revenue." />
+          <Metric label="Projected contribution" value="€994K" tone="text-cyan-300" sub="After Desi’s all-in budget view." />
+          <Metric label="Contribution margin" value="~40.2%" tone="text-cyan-300" sub="€994K divided by €2.472M." />
         </div>
-        <p className="text-xs text-slate-500 mt-4 leading-relaxed">This is why the sales number does not need to chase €2.30M for the contribution story: €2.20M plus tickets projects ~€1.04M contribution after the current event cost base and estimated sales commission. That is roughly €194K-€230K above the +10-15% contribution-growth hurdle before adding the Noma Island cost scenario.</p>
+        <p className="text-xs text-slate-500 mt-4 leading-relaxed">The higher budget reduces the contribution story by €45K versus the prior working model, but it does not break the strategy. Against the current ~€735K contribution baseline, the plan still sits roughly €149K-€185K above the +10-15% contribution-growth hurdle.</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-          <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-xs text-slate-400 leading-relaxed"><strong className="text-slate-200">Exclusions:</strong> central overhead, salary allocation beyond sales commission, tax, FX movement, late supplier invoices and unconfirmed incremental delivery costs.</div>
-          <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-xs text-slate-400 leading-relaxed"><strong className="text-slate-200">Commission:</strong> €165K is a planning estimate. Finance should confirm the basis before final margin sign-off.</div>
-          <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-xs text-slate-400 leading-relaxed"><strong className="text-slate-200">Cost-led activations:</strong> bespoke activations count toward contribution forecast only after Ops cost approval.</div>
+          <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-xs text-slate-400 leading-relaxed"><strong className="text-slate-200">Finance read:</strong> present €1.478M as the current all-in cost view, pending final reconciliation.</div>
+          <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-xs text-slate-400 leading-relaxed"><strong className="text-slate-200">Commercial read:</strong> Noma and expanded VIP / sport / Focus formats need sellable packages, not vague cost absorption.</div>
+          <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-xs text-slate-400 leading-relaxed"><strong className="text-slate-200">Decision read:</strong> no change to the €2.20M sales target is needed from this budget update alone.</div>
         </div>
       </Card>
     </div>
@@ -344,15 +347,15 @@ function SlideCostBase(){
 function SlideContributionWaterfall(){
   const rows = [
     ["Total plan", "€2,472,000", "€2.20M sales target plus €272K ticket target.", "text-emerald-300"],
-    ["Less projected event costs", "-€1,267,998", "2027 event cost base, based on 2026 budget plus 8%.", "text-rose-300"],
-    ["Less sales commission estimate", "-€165,000", "Planning estimate pending Finance confirmation.", "text-rose-300"],
-    ["Projected contribution", "€1,039,002", "Contribution before central overhead, tax, FX and unconfirmed incremental costs.", "text-cyan-300"],
-    ["Contribution margin", "~42%", "Projected contribution divided by total plan.", "text-cyan-300"],
+    ["Less Desi 2027 budget", "-€1,477,998", "Total for NEXT incl. commission. This replaces the prior working cost base in the presentation view.", "text-rose-300"],
+    ["Projected contribution", "€994,002", "Contribution before central overhead, tax, FX and unconfirmed late supplier movements.", "text-cyan-300"],
+    ["Contribution margin", "~40.2%", "Projected contribution divided by total plan.", "text-cyan-300"],
+    ["Bridge vs prior model", "-€45,000", "Prior working model showed €1.433M incl. commission and €1.039M contribution. Desi budget is the cleaner current view.", "text-amber-300"],
   ];
   return (
     <div className="flex-1 flex flex-col overflow-y-auto pb-8">
       <h2 className="text-2xl md:text-3xl font-bold mb-2">Contribution Waterfall</h2>
-      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">The cleanest read of the money logic. One target, one total plan, one contribution output.</p>
+      <p className="text-slate-400 mb-6 md:mb-8 text-base md:text-lg">The cleanest read of the money logic after adding Desi’s budget slide. One target, one total plan, one all-in cost line.</p>
       <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl mb-6">
         <div className="overflow-x-auto table-container">
           <table className="w-full text-left text-xs md:text-sm min-w-[760px]">
@@ -365,7 +368,7 @@ function SlideContributionWaterfall(){
             </thead>
             <tbody className="divide-y divide-slate-800/50">
               {rows.map((r,i)=>(
-                <tr key={i} className={i >= 3 ? "bg-cyan-950/10" : ""}>
+                <tr key={i} className={i >= 2 && i <= 3 ? "bg-cyan-950/10" : ""}>
                   <td className="p-4 font-bold text-slate-200">{r[0]}</td>
                   <td className={cn("p-4 text-right font-mono font-bold whitespace-nowrap", r[3])}>{r[1]}</td>
                   <td className="p-4 text-slate-400 leading-relaxed">{r[2]}</td>
@@ -378,15 +381,15 @@ function SlideContributionWaterfall(){
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="border-cyan-900/50">
           <h3 className="text-lg font-bold text-cyan-300 mb-3">Board-level read</h3>
-          <p className="text-sm text-slate-400 leading-relaxed">This is a €2.47M total revenue plan and a projected €1.04M contribution plan. The margin read is ~42% before exclusions.</p>
-        </Card>
-        <Card>
-          <h3 className="text-lg font-bold text-slate-100 mb-3">Finance caveat</h3>
-          <p className="text-sm text-slate-400 leading-relaxed">Contribution excludes central overhead, salary allocation beyond sales commission, tax, FX movement, late supplier invoices and unconfirmed incremental delivery costs.</p>
+          <p className="text-sm text-slate-400 leading-relaxed">The target survives the higher budget. The margin story becomes ~40%, not ~42%, which is still healthy enough if the added event scope is monetised properly.</p>
         </Card>
         <Card className="border-amber-900/50">
-          <h3 className="text-lg font-bold text-amber-300 mb-3">Commercial control</h3>
-          <p className="text-sm text-slate-400 leading-relaxed">Bespoke activations should count toward contribution forecast only after Ops confirms cost and delivery scope. Otherwise revenue hides margin risk.</p>
+          <h3 className="text-lg font-bold text-amber-300 mb-3">Where Ana may challenge</h3>
+          <p className="text-sm text-slate-400 leading-relaxed">She will ask why costs rise 11.66%. The answer is scope: 4 Focus events, 4 sport events and 6 Side / VIP events, including floating Noma as a new option.</p>
+        </Card>
+        <Card className="border-emerald-900/50">
+          <h3 className="text-lg font-bold text-emerald-300 mb-3">What sales must do</h3>
+          <p className="text-sm text-slate-400 leading-relaxed">Protect yield on the incremental event products. Noma, VIP, sport and Focus inventory must be priced as commercial access, not filler inventory.</p>
         </Card>
       </div>
     </div>
@@ -767,8 +770,8 @@ function SlideScorecard(){
         <Metric label="Sales target" value="€2.20M" tone="text-amber-400" sub="Sales partnerships." className="border-amber-900/60" />
         <Metric label="Ticket target" value="€272K" tone="text-indigo-400" sub="Marketing-owned." />
         <Metric label="Total plan" value="€2.47M" tone="text-emerald-400" sub="Clears the margin hurdle." />
-        <Metric label="Projected contribution" value="€1.04M" tone="text-cyan-300" sub="After event costs and commission." />
-        <Metric label="Contribution margin" value="~42%" tone="text-cyan-300" sub="Before exclusions." />
+        <Metric label="Projected contribution" value="€994K" tone="text-cyan-300" sub="After Desi budget view incl. commission." />
+        <Metric label="Contribution margin" value="~40%" tone="text-cyan-300" sub="Before exclusions." />
         <Metric label="Diagnostic" value="80-85%" tone="text-slate-300" sub="Value retention." />
       </div>
       <Card>
@@ -802,7 +805,7 @@ function SlideDataGate(){
     ["2025 baseline", "€1.678M (prior reporting) vs €1.625M (restated). ~3% gap; side events also moved between CXO and Valletta views, so the YoY headline is not apples-to-apples yet.", "Finance confirms the final 2025 figure and side-event allocation used in the trend."],
     ["Shisha Lounge", "€25K ledger entry vs €50K brochure price.", "Product owner reconciles actual sold scope and price before 2027 pricing."],
     ["Focus Crypto", "Main ledger shows 1 sale; CRM or focus sheets suggest 3.", "Sales ops reconciles main ledger, CRM and focus-event budget sheets."],
-    ["2026 contribution base", "Budgeted costs, late invoices, salary and overhead allocation not fully closed.", "Finance signs the contribution baseline used for 2027 contribution targets."],
+    ["Budget and contribution base", "Desi budget slide now gives a clearer 2027 all-in cost view of €1.478M, but late invoices, salary allocation and final 2026 contribution still need reconciliation.", "Finance signs the final baseline and confirms whether the ~40.2% margin view is the number used for leadership."],
     ["Premium-asset history", "Several premium assets (lanyard, media, badge) sold below list in 2026, the recovery assumption needs a clean base.", "Confirm 2026 realised price per premium asset before sizing the €250K route."],
     ["Government contract treatment", "Malta Enterprise, Gaming Malta and other public-sector support carried deliverables and cost. Team consensus is to raise inclusion in the target, but commission treatment is unresolved.", "Take to Ana and Pierre before changing revenue target treatment or commission basis."],
   ];
@@ -895,7 +898,7 @@ function SlideTranscriptAlignment(){
   ];
   const held = [
     ["Government contracts", "Raise with Ana and Pierre before deciding whether these count inside the target and how commission works."],
-    ["Headline margin", "Do not recalculate the 42% contribution story until the Noma cost and revenue treatment are approved."],
+    ["Headline margin", "Desi budget view now gives the cleaner presented margin: ~40.2%, with Noma included as a budgeted new option."],
     ["Monthly sales targets", "Build after the €2.20M target is confirmed."],
     ["Maximum inventory revenue", "Do not present. It is not useful because inventory overlaps and full sell-through is unrealistic."],
   ];
