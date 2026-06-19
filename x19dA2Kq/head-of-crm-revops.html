@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Commercial RevOps Briefing Pack</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --card: #ffffff;
+      --ink: #172033;
+      --muted: #5d6678;
+      --line: #dde2ea;
+      --accent: #101827;
+      --soft: #eef2f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+    }
+    .page {
+      max-width: 980px;
+      margin: 28px auto;
+      padding: 0 18px 36px;
+    }
+    .hero {
+      background: var(--accent);
+      color: #fff;
+      border-radius: 18px;
+      padding: 28px 32px;
+      margin-bottom: 16px;
+    }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 12px;
+      color: #c8d0dc;
+      margin: 0 0 8px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      line-height: 1.15;
+    }
+    .hero p {
+      max-width: 800px;
+      margin: 0;
+      color: #e8edf5;
+      font-size: 16px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px 22px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+    }
+    .card.full { grid-column: 1 / -1; }
+    h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+    p { margin: 0 0 10px; }
+    ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+    }
+    li { margin: 6px 0; }
+    .muted { color: var(--muted); }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .pill {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 13px;
+      color: var(--ink);
+    }
+    .structure {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .box {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      min-height: 88px;
+    }
+    .box strong { display: block; margin-bottom: 6px; }
+    .decision {
+      background: #fff7ed;
+      border-color: #fed7aa;
+    }
+    .footer {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 14px;
+      text-align: center;
+    }
+    @media print {
+      body { background: #fff; }
+      .page { margin: 0; max-width: none; padding: 0; }
+      .card { box-shadow: none; break-inside: avoid; }
+      .hero { border-radius: 0; }
+    }
+    @media (max-width: 760px) {
+      .grid, .structure { grid-template-columns: 1fr; }
+      .hero { padding: 22px; }
+      h1 { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <p class="eyebrow">Briefing for Monday</p>
+      <h1>Commercial RevOps Team, Scope and Role Clarity</h1>
+      <p>This briefing explains the intended strategy, structure and role scope. The aim is to align on wording without weakening the role already offered.</p>
+    </section>
+
+    <section class="grid">
+      <div class="card full decision">
+        <h2>Recommended decision</h2>
+        <p><strong>Keep the role scope intact.</strong> If the term RevOps creates concern, adjust the wording. Do not reduce the role to a narrow Head of CRM position after offer.</p>
+        <p class="muted">Preferred title: Head of CRM & Revenue Operations. Acceptable fallback: Head of CRM & Commercial Operations.</p>
+      </div>
+
+      <div class="card">
+        <h2>The strategy in simple terms</h2>
+        <p>Commercial already contains Sales, Marketing and CRM. The RevOps team is the operating layer that makes those teams work as one system.</p>
+        <p>It is not a separate department. It is not a new company-wide strategy. It is commercial infrastructure.</p>
+      </div>
+
+      <div class="card">
+        <h2>Why this matters</h2>
+        <p>Without clear ownership, HubSpot, data, reporting, lead routing, attribution, integrations and handoffs stay fragmented.</p>
+        <p>The result is more manual chasing, weaker reporting, slower follow-up and lower confidence in commercial decisions.</p>
+      </div>
+
+      <div class="card full">
+        <h2>Proposed operating structure</h2>
+        <div class="structure">
+          <div class="box">
+            <strong>Sales</strong>
+            Owns pipeline, sponsor conversations, deal progression and revenue closure.
+          </div>
+          <div class="box">
+            <strong>Marketing</strong>
+            Owns demand generation, campaigns, content, audience growth and marketing performance.
+          </div>
+          <div class="box">
+            <strong>CRM and RevOps</strong>
+            Owns HubSpot, data quality, integrations, lifecycle stages, attribution, dashboards, lead routing and commercial process hygiene.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>What the Head of RevOps does</h2>
+        <ul>
+          <li>Turns HubSpot into a trusted commercial source of truth.</li>
+          <li>Defines lifecycle stages such as lead, MQL, SQL, opportunity and customer.</li>
+          <li>Builds lead routing so qualified leads reach the right owner quickly.</li>
+          <li>Owns Sales and Marketing handoffs.</li>
+          <li>Maintains dashboards for pipeline, campaigns, attribution and forecasting.</li>
+          <li>Manages integrations between HubSpot, registration, website forms and email tools.</li>
+          <li>Flags stale deals, broken workflows, missing fields and reporting risks.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>What it does not do</h2>
+        <ul>
+          <li>It does not replace Sales leadership.</li>
+          <li>It does not replace Marketing leadership.</li>
+          <li>It does not create a new company-wide department.</li>
+          <li>It does not take operational control away from the COO.</li>
+          <li>It does not change company strategy.</li>
+          <li>It does not add bureaucracy for its own sake.</li>
+        </ul>
+      </div>
+
+      <div class="card full">
+        <h2>Candidate risk</h2>
+        <p>The offer was made for a senior, cross-functional commercial systems role. Changing the title to Head of CRM after offer could look like a downgrade or a narrowing of the mandate.</p>
+        <p>A title that keeps the wider operating scope protects candidate confidence and reflects the real business need.</p>
+      </div>
+
+      <div class="card full">
+        <h2>Suggested alignment for Monday</h2>
+        <p><strong>Agree the principle:</strong> this is a RevOps capability inside Commercial, not a RevOps department.</p>
+        <p><strong>Agree the scope:</strong> CRM, data, integrations, dashboards, lifecycle stages, attribution, lead routing and Sales and Marketing handoffs.</p>
+        <p><strong>Agree the title:</strong> keep Head of CRM & Revenue Operations, or use Head of CRM & Commercial Operations if the RevOps label creates concern.</p>
+      </div>
+    </section>
+
+    <p class="footer">Prepared for internal alignment. Brief version for Monday discussion.</p>
+  </main>
+</body>
+</html>
