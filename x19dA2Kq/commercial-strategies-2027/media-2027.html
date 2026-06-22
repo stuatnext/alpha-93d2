@@ -5,288 +5,311 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NEXT.io Media 2027 Revenue Target Brief</title>
 <style>
-:root{
-  --bg:#0b0f14; --panel:#121923; --panel2:#172231; --ink:#eef3f7; --muted:#aab8c5;
-  --line:#2a394a; --accent:#f5d34d; --accent2:#58c7ff; --ok:#8be28b; --risk:#ff9c7a; --warn:#ffd18a;
-}
+:root{--bg:#0b0f14;--panel:#121923;--panel2:#172231;--ink:#eef3f7;--muted:#aab8c5;--line:#2a394a;--accent:#f5d34d;--accent2:#58c7ff;--ok:#8be28b;--risk:#ff9c7a;}
 *{box-sizing:border-box}
 body{margin:0;background:linear-gradient(180deg,#081018,#0b0f14 42%,#0d1117);color:var(--ink);font-family:Inter,Arial,sans-serif;line-height:1.48}
-.wrap{max-width:1240px;margin:0 auto;padding:42px 26px 80px}
-.hero{border:1px solid var(--line);background:radial-gradient(circle at 18% 0%,rgba(88,199,255,.18),transparent 30%),radial-gradient(circle at 82% 0%,rgba(245,211,77,.12),transparent 30%),var(--panel);border-radius:24px;padding:36px 38px;margin-bottom:24px}
+.wrap{max-width:1180px;margin:0 auto;padding:42px 26px 80px}
+.hero{border:1px solid var(--line);background:radial-gradient(circle at 18% 0%,rgba(88,199,255,.18),transparent 30%),radial-gradient(circle at 82% 0%,rgba(245,211,77,.12),transparent 30%),var(--panel);border-radius:24px;padding:34px 36px;margin-bottom:22px}
 .eyebrow{color:var(--accent);text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:800;margin-bottom:10px}
-h1{font-size:40px;line-height:1.07;margin:0 0 14px;letter-spacing:-.03em}
-.hero p{max-width:900px;color:#d7e0ea;font-size:17px;margin:0}
-.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.meta span{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);border-radius:999px;padding:7px 12px;font-size:12.5px;font-weight:700;color:#dfe8f1}
-section{background:rgba(18,25,35,.92);border:1px solid var(--line);border-radius:20px;padding:28px 30px;margin:20px 0}
-h2{font-size:25px;margin:0 0 6px;letter-spacing:-.02em}
-h3{font-size:18px;margin:22px 0 8px;color:#fff}
-.sub{color:var(--muted);margin:0 0 18px;max-width:940px}
-.bignum{display:flex;gap:18px;flex-wrap:wrap;margin:14px 0 4px}
-.kpi{flex:1;min-width:205px;border:1px solid var(--line);background:linear-gradient(180deg,var(--panel2),rgba(23,34,49,.72));border-radius:16px;padding:18px 20px}
-.kpi .n{font-size:34px;font-weight:900;color:var(--accent);line-height:1}
-.kpi .n.blue{color:var(--accent2)} .kpi .n.risk{color:var(--risk)} .kpi .n.ok{color:var(--ok)}
-.kpi .l{font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:8px;font-weight:700}
-table{width:100%;border-collapse:collapse;margin-top:14px;font-size:13.5px}
-th,td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
-th{color:#fff;background:#101722;font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+h1{font-size:36px;line-height:1.07;margin:0 0 12px;letter-spacing:-.03em}
+.hero p{max-width:900px;color:#d7e0ea;font-size:16px;margin:0 0 8px}
+section{background:rgba(18,25,35,.92);border:1px solid var(--line);border-radius:20px;padding:26px 28px;margin:18px 0}
+.appx{background:rgba(14,20,28,.85)}
+h2{font-size:23px;margin:0 0 6px;letter-spacing:-.02em}
+h3{font-size:16px;margin:18px 0 4px;color:#fff}
+.sub{color:var(--muted);margin:0 0 16px;max-width:920px}
+.bignum{display:flex;gap:14px;flex-wrap:wrap;margin:12px 0 4px}
+.kpi{flex:1;min-width:185px;border:1px solid var(--line);background:linear-gradient(180deg,var(--panel2),rgba(23,34,49,.72));border-radius:16px;padding:16px 18px}
+.kpi .n{font-size:28px;font-weight:900;color:var(--accent);line-height:1}
+.kpi .n.blue{color:var(--accent2)} .kpi .n.risk{color:var(--risk)}
+.kpi .l{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-top:7px;font-weight:700}
+table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px}
+th,td{padding:8px 10px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{color:#fff;background:#101722;font-size:11px;text-transform:uppercase;letter-spacing:.05em}
 td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 tr:last-child td{border-bottom:0}
 .tot td{background:rgba(245,211,77,.10);font-weight:800;color:#fff}
 .sub2 td{background:rgba(88,199,255,.07);font-weight:700;color:#cfe9ff}
-.sect td{background:#16202c;font-weight:800;color:var(--accent2);text-transform:uppercase;letter-spacing:.06em;font-size:11.5px}
-.callout{border-left:4px solid var(--accent);background:rgba(245,211,77,.08);padding:14px 16px;border-radius:10px;margin:16px 0;color:#f4f0d5}
+.sect td{background:#16202c;font-weight:800;color:var(--accent2);text-transform:uppercase;letter-spacing:.06em;font-size:11px}
+.callout{border-left:4px solid var(--accent);background:rgba(245,211,77,.08);padding:13px 15px;border-radius:10px;margin:14px 0;color:#f4f0d5}
 .callout.risk{border-left-color:var(--risk);background:rgba(255,156,122,.08);color:#ffe1d5}
 .callout.blue{border-left-color:var(--accent2);background:rgba(88,199,255,.08);color:#dcefff}
-.callout.ok{border-left-color:var(--ok);background:rgba(139,226,139,.08);color:#e0ffe0}
 .callout strong{color:#fff}
-ul{margin:8px 0 0;padding-left:20px;color:#d8e2ea} li{margin:7px 0}
-.pill{display:inline-block;border-radius:999px;padding:3px 9px;font-size:11.5px;font-weight:800;border:1px solid rgba(255,255,255,.16)}
-.pill.up{color:var(--ok)} .pill.down{color:var(--risk)} .pill.flat{color:var(--accent)} .pill.blue{color:var(--accent2)}
-.small{font-size:12.5px;color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:12px}
-.card{border:1px solid var(--line);background:linear-gradient(180deg,var(--panel2),rgba(23,34,49,.65));border-radius:16px;padding:18px 20px}
-.card h3{margin-top:0}
-.footer{color:#8fa1b2;text-align:center;margin-top:34px;font-size:12.5px}
-@media(max-width:850px){.grid{grid-template-columns:1fr}h1{font-size:32px}.wrap{padding:28px 16px 60px}section,.hero{padding:24px 20px}table{font-size:12.5px}}
-@media print{
-  body{background:#fff;color:#111}
-  .wrap{max-width:none;padding:14px}
-  .hero,section{box-shadow:none;background:#fff;color:#111;border-color:#bbb;break-inside:avoid}
-  h1,h2,h3,th{color:#111}.sub,.small,.kpi .l,.footer{color:#444}.kpi .n{color:#a87f00}
-  .hero p,td,li{color:#222}.meta span,.pill{border-color:#999;color:#111}
-  table{font-size:11px}th{background:#eee}
-}
+.dl{color:#c3d0db;font-size:12px;line-height:1.4}
+ul,ol{margin:6px 0 0;padding-left:20px;color:#d8e2ea} li{margin:5px 0}
+.pill{display:inline-block;border-radius:999px;padding:3px 9px;font-size:11px;font-weight:800;border:1px solid rgba(255,255,255,.16)}
+.pill.up{color:var(--ok)} .pill.down{color:var(--risk)} .pill.flat{color:var(--accent)}
+.small{font-size:12px;color:var(--muted)}
+.footer{color:#8fa1b2;text-align:center;margin-top:30px;font-size:12px}
+@media(max-width:850px){h1{font-size:28px}.wrap{padding:26px 16px 60px}section,.hero{padding:20px 16px}table{font-size:12px}}
+@media print{body{background:#fff;color:#111}.wrap{max-width:none;padding:14px}.hero,section{box-shadow:none;background:#fff;color:#111;border-color:#bbb;break-inside:avoid}h1,h2,h3,th{color:#111}.sub,.small,.dl,.kpi .l,.footer{color:#444}.kpi .n{color:#a87f00}.hero p,td,li{color:#222}.pill{border-color:#999;color:#111}table{font-size:10.5px}th{background:#eee}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <div class="hero">
-    <div class="eyebrow">NEXT.io Media 2027 Planning | Internal</div>
+    <div class="eyebrow">NEXT.io Media · 2027 Revenue Target · Decision document for Ana</div>
     <h1>2027 Media Revenue Target Brief</h1>
-    <p>This version keeps the traditional revenue structure for like-for-like planning: <strong>News</strong>, <strong>Podcast</strong>, <strong>Spotlight</strong>, and <strong>Research Reports</strong>. Event sponsorship, ticket revenue, affiliate revenue and Growth Leads revenue stay outside this target.</p>
-    <div class="meta">
-      <span>Recommended official target: EUR 2.595M, rounded to EUR 2.60M</span>
-      <span>Projected 2026 base: EUR 2.17M</span>
-      <span>Growth from 2026 projection: +19.6%</span>
-      <span>No separate stretch target</span>
-      <span>Priced model included</span>
-    </div>
+    <p>Recommended 2027 Media target: <strong>EUR 2.60M</strong>, one official number, no stretch. The growth is News-led and investment-backed, reflecting the recent News trajectory and the 2027 investment in people, AI and new media surfaces.</p>
+    <p class="small">Reporting lines: News, Podcast, Spotlight, Research Reports. All products priced annually (can be sold monthly). Events, tickets, affiliate, Growth Leads, HR Connect, Marketing NEXT and retreats sit outside this target. Working detail is in the Appendix.</p>
   </div>
 
   <section>
-    <h2>Executive read</h2>
-    <p class="sub">The target needs to satisfy three tests: it must be data-led, it must show ambition, and it must not pretend every new product is already proven.</p>
+    <h2>1 · Executive read</h2>
     <div class="bignum">
-      <div class="kpi"><div class="n">EUR 2.595M</div><div class="l">Recommended 2027 official target, rounded to EUR 2.60M</div></div>
-      <div class="kpi"><div class="n blue">+19.6%</div><div class="l">Growth vs projected 2026</div></div>
-      <div class="kpi"><div class="n ok">9.4%</div><div class="l">Cost ratio using Kim's EUR 258k cost view</div></div>
-      <div class="kpi"><div class="n risk">TBC</div><div class="l">New vertical target treatment</div></div>
+      <div class="kpi"><div class="n">EUR 2.60M</div><div class="l">Recommended target (one number)</div></div>
+      <div class="kpi"><div class="n blue">+19.8%</div><div class="l">Growth vs projected 2026</div></div>
+      <div class="kpi"><div class="n">60%+</div><div class="l">All-in margin guardrail (salary-incl.)</div></div>
+      <div class="kpi"><div class="n risk">38</div><div class="l">Banner clients to migrate, EUR 865k</div></div>
     </div>
-    <div class="callout"><strong>Recommendation:</strong> set one official 2027 Media target of <strong>EUR 2.595M</strong>, rounded to <strong>EUR 2.60M</strong>. Do not show a stretch target. The target is built from the projected 2026 end-of-year base of <strong>EUR 2.17M</strong>, then applies a healthy <strong>+19.6%</strong> growth rate. This keeps the ambition, but removes confusing legacy renewal mapping and corrects the product pricing logic.</div>
+    <div class="callout"><strong>Recommendation:</strong> approve <strong>EUR 2,600,000</strong>, +19.8% on the projected EUR 2.17M base. The uplift is concentrated in News (+20.7%) and scalable, premiumised inventory. Podcast is kept cautious; Spotlight and Research are ambitious and capacity-controlled. Approve alongside a salary-inclusive cost envelope and the 60%+ margin guardrail.</div>
   </section>
 
   <section>
-    <h2>1. Scope of the 2027 Media target</h2>
-    <p class="sub">Keep the structure familiar. Change the product architecture underneath it, not the top-line reporting view.</p>
+    <h2>2 · Target by line</h2>
     <table>
-      <thead><tr><th>Included in Media target</th><th>Definition for target setting</th><th>Status</th></tr></thead>
+      <thead><tr><th>Line</th><th class="num">2025</th><th class="num">2026 achieved</th><th class="num">2026 projected</th><th class="num">2027 target</th><th class="num">Growth</th></tr></thead>
       <tbody>
-        <tr><td><strong>News</strong></td><td>Ad banners, sticky banner replacements, category sponsorships, promoted content, PR support, PR placements, newsletter inventory and content packages.</td><td><span class="pill blue">Traditional line</span></td></tr>
-        <tr><td><strong>Podcast</strong></td><td>Pierre's NEXT.io podcast, confirmed podcast sponsorships, added distribution and any confirmed new show revenue once products are live.</td><td><span class="pill blue">Traditional line</span></td></tr>
-        <tr><td><strong>Spotlight</strong></td><td>Standard Spotlights, annual series, premium host-led interviews and paid guest demand moved out of Podcast.</td><td><span class="pill blue">Traditional line</span></td></tr>
-        <tr><td><strong>Research Reports</strong></td><td>Research reports, white papers and similar sponsored research products.</td><td><span class="pill up">Standalone in 2027</span></td></tr>
+        <tr><td><strong>News</strong></td><td class="num">1,170,232</td><td class="num">1,433,927</td><td class="num">1,553,927</td><td class="num">1,876,000</td><td class="num"><span class="pill up">+20.7%</span></td></tr>
+        <tr><td><strong>Podcast</strong></td><td class="num">239,875</td><td class="num">214,580</td><td class="num">264,580</td><td class="num">224,000</td><td class="num"><span class="pill down">-15.3%</span></td></tr>
+        <tr><td><strong>Spotlight</strong></td><td class="num">198,650</td><td class="num">182,900</td><td class="num">232,900</td><td class="num">300,000</td><td class="num"><span class="pill up">+28.8%</span></td></tr>
+        <tr><td><strong>Research</strong></td><td class="num">81,000</td><td class="num">118,200</td><td class="num">118,200</td><td class="num">200,000</td><td class="num"><span class="pill up">+69.2%</span></td></tr>
+        <tr class="tot"><td>Total Media</td><td class="num">1,608,757</td><td class="num">1,949,607</td><td class="num">2,169,607</td><td class="num">2,600,000</td><td class="num"><span class="pill up">+19.8%</span></td></tr>
       </tbody>
     </table>
-    <div class="callout blue"><strong>Excluded:</strong> event sponsorship, ticket revenue, CXO, retreats, HR Connect, Marketing NEXT, affiliate revenue, Growth Leads revenue and any revenue owned outside the Media target.</div>
-    <div class="callout"><strong>Mixed deals rule:</strong> if a deal has a media line item, the media value should be attributed to the relevant media revenue line. If the split is not visible in HubSpot, flag it as an allocation risk rather than treating the full deal as clean media revenue.</div>
   </section>
 
   <section>
-    <h2>2. 2026 exit base</h2>
-    <p class="sub">Use projected full-year 2026 as the base, not only achieved-to-date. This avoids under-setting 2027 because H2 still has realistic revenue to close.</p>
+    <h2>3 · Why EUR 2.60M is justified</h2>
+    <p class="sub">The case is News-led and investment-backed: News has grown strongly for two years, and NEXT.io is investing in more team, AI and new media surfaces.</p>
     <table>
-      <thead><tr><th>Revenue line</th><th class="num">2025 achieved</th><th class="num">2026 achieved now</th><th class="num">Forecast add</th><th class="num">Projected 2026</th><th>Notes</th></tr></thead>
+      <thead><tr><th>Period</th><th class="num">News revenue</th><th>YoY</th></tr></thead>
       <tbody>
-        <tr><td><strong>News</strong></td><td class="num">EUR 1,170,232</td><td class="num">EUR 1,433,927</td><td class="num">EUR 120,000</td><td class="num">EUR 1,553,927</td><td>Includes EUR 100k extra News and EUR 20k Newsletter. PR and promoted content sit here.</td></tr>
-        <tr><td><strong>Podcast</strong></td><td class="num">EUR 239,875</td><td class="num">EUR 214,580</td><td class="num">EUR 50,000</td><td class="num">EUR 264,580</td><td>H2 forecast assumes further podcast revenue from current product structure.</td></tr>
-        <tr><td><strong>Spotlight</strong></td><td class="num">EUR 198,650</td><td class="num">EUR 182,900</td><td class="num">EUR 50,000</td><td class="num">EUR 232,900</td><td>Should absorb paid guest demand removed from Podcast.</td></tr>
-        <tr><td><strong>Research Reports</strong></td><td class="num">EUR 81,000</td><td class="num">EUR 118,200</td><td class="num">EUR 0</td><td class="num">EUR 118,200</td><td>2025 was bundled into News. 2026 is standalone.</td></tr>
-        <tr class="tot"><td><strong>Total</strong></td><td class="num">EUR 1,608,757</td><td class="num">EUR 1,949,607</td><td class="num">EUR 220,000</td><td class="num">EUR 2,169,607</td><td>Projected 2026 base used for 2027 target growth.</td></tr>
+        <tr><td>2024 achieved</td><td class="num">535,810</td><td>Baseline</td></tr>
+        <tr><td>2025 achieved</td><td class="num">~1.17M</td><td>~+118%</td></tr>
+        <tr><td>2026 achieved so far</td><td class="num">~1.476M</td><td>~+26% already</td></tr>
+        <tr><td>2026 projected</td><td class="num">~1.554M</td><td>Exit base</td></tr>
+        <tr class="tot"><td>2027 News target</td><td class="num">1,876,000</td><td>~+20.7% vs projected 2026</td></tr>
       </tbody>
     </table>
-    <p class="small">2025 total avoids double-counting Research because Research was inside News in 2025.</p>
-  </section>
-
-  <section>
-    <h2>3. Recommended 2027 target by revenue line</h2>
-    <p class="sub">This is the official target structure. It is not a stretch case.</p>
-    <table>
-      <thead><tr><th>Revenue line</th><th class="num">Projected 2026</th><th class="num">2027 target</th><th class="num">Growth</th><th>Target logic</th></tr></thead>
-      <tbody>
-        <tr><td><strong>News</strong></td><td class="num">EUR 1,553,927</td><td class="num">EUR 1,795,000</td><td class="num"><span class="pill up">+15.5%</span></td><td>Growth is driven by a premium site-wide sticky product, tiered category sponsorships, newsletter, PR support and promoted content bundles. Legacy banner renewals are not mapped as a client-facing product.</td></tr>
-        <tr><td><strong>Podcast</strong></td><td class="num">EUR 264,580</td><td class="num">EUR 300,000</td><td class="num"><span class="pill up">+13.4%</span></td><td>Protect Pragmatic at EUR 110k with added distribution. New shows add upside only once launch, cadence and sponsor deck are confirmed.</td></tr>
-        <tr><td><strong>Spotlight</strong></td><td class="num">EUR 232,900</td><td class="num">EUR 300,000</td><td class="num"><span class="pill up">+28.8%</span></td><td>Higher target because paid guest demand moves out of Podcast. Annual series and premium host-led formats support the increase.</td></tr>
-        <tr><td><strong>Research Reports</strong></td><td class="num">EUR 118,200</td><td class="num">EUR 200,000</td><td class="num"><span class="pill up">+69.2%</span></td><td>Standalone target. Ambitious, but it has proof from 2025 and 2026 sales. Needs capacity confirmation from Kim.</td></tr>
-        <tr class="tot"><td><strong>Total Media</strong></td><td class="num">EUR 2,169,607</td><td class="num">EUR 2,595,000</td><td class="num"><span class="pill up">+19.6%</span></td><td>One official target. No stretch target. Rounded presentation number: EUR 2.60M.</td></tr>
-      </tbody>
-    </table>
-    <div class="callout"><strong>Why EUR 2.595M works:</strong> it is a 19.6% increase on projected 2026. The model corrects the sticky and category pricing hierarchy, removes legacy renewals from the client-facing product map, and does not force unproven new verticals or new podcast formats into the base target.</div>
-  </section>
-
-
-
-  <section>
-    <h2>4. Price, quantity and deliverables model</h2>
-    <p class="sub">This is the working commercial build behind the EUR 2.595M target, rounded to EUR 2.60M. The model now includes what each product should include, so the number can be tested against delivery capacity and actual sellability. Podcast products do not include paid episodes or paid guest access.</p>
-    <table>
-      <thead><tr><th>Revenue line</th><th>Product</th><th class="num">Unit price</th><th class="num">Qty</th><th class="num">Revenue</th><th>Core deliverables</th></tr></thead>
-      <tbody>
-        <tr class="sect"><td colspan="6">News target: EUR 1,795,000</td></tr>
-        <tr><td>News</td><td>Site-wide sticky banner, annual rotation sponsor</td><td class="num">EUR 180,000</td><td class="num">4</td><td class="num">EUR 720,000</td><td><ul><li>Annual sponsor position within the site-wide sticky banner rotation.</li><li>Rotation capped at 4 sponsors.</li><li>Premium site-wide visibility, priced above pop-up inventory and category sponsorship because it carries broader branding exposure.</li><li>Monthly equivalent of EUR 15,000 per sponsor.</li><li>Clickable creative with UTM tracking.</li><li>Quarterly performance reporting.</li></ul></td></tr>
-        <tr><td>News</td><td>Tier 1 category sponsorship, annual exclusive</td><td class="num">EUR 75,000</td><td class="num">3</td><td class="num">EUR 225,000</td><td><ul><li>Exclusive sponsorship of one high-traffic category for 12 months.</li><li>Brand placement on the category page and relevant category environment.</li><li>Two promoted content placements or editorial-adjacent commercial features across the year.</li><li>Newsletter inclusion tied to the category.</li><li>Social distribution for agreed category-linked assets.</li><li>Quarterly reporting, including category performance where available.</li><li>No supporting sponsors sold in the same category and period.</li></ul></td></tr>
-        <tr><td>News</td><td>Tier 2 category sponsorship, annual exclusive</td><td class="num">EUR 50,000</td><td class="num">2</td><td class="num">EUR 100,000</td><td><ul><li>Exclusive sponsorship of one lower-traffic or emerging category for 12 months.</li><li>Brand placement on the category page and relevant category environment.</li><li>One promoted content placement or editorial-adjacent commercial feature across the year.</li><li>Newsletter inclusion tied to the category.</li><li>Quarterly reporting, including category performance where available.</li><li>No supporting sponsors sold in the same category and period.</li></ul></td></tr>
-        <tr><td>News</td><td>Tier 1 category sponsorship, quarterly supporting package</td><td class="num">EUR 20,000</td><td class="num">6</td><td class="num">EUR 120,000</td><td><ul><li>Supporting sponsor position in one high-traffic category for one quarter.</li><li>Brand placement within the category environment.</li><li>One PR support placement or agreed commercial content inclusion.</li><li>Newsletter inclusion and social distribution.</li><li>Quarterly reporting.</li><li>Only available where the category has not been sold exclusively for that period.</li></ul></td></tr>
-        <tr><td>News</td><td>Tier 2 category sponsorship, quarterly supporting package</td><td class="num">EUR 15,000</td><td class="num">6</td><td class="num">EUR 90,000</td><td><ul><li>Supporting sponsor position in one lower-traffic or emerging category for one quarter.</li><li>Brand placement within the category environment.</li><li>One PR support placement or agreed commercial content inclusion.</li><li>Newsletter inclusion or social distribution.</li><li>Quarterly reporting.</li><li>Only available where the category has not been sold exclusively for that period.</li></ul></td></tr>
-        <tr><td>News</td><td>Newsletter headline package</td><td class="num">EUR 30,000</td><td class="num">4</td><td class="num">EUR 120,000</td><td><ul><li>Headline sponsor position for an agreed newsletter campaign period.</li><li>Top creative position or lead commercial placement.</li><li>CTA link with tracking.</li><li>Open, click and placement reporting.</li><li>Revenue stays inside News for like-for-like reporting.</li></ul></td></tr>
-        <tr><td>News</td><td>Newsletter supporting package</td><td class="num">EUR 9,000</td><td class="num">10</td><td class="num">EUR 90,000</td><td><ul><li>Supporting commercial placement in newsletter inventory.</li><li>CTA link with tracking.</li><li>Basic performance report.</li><li>Lower-friction product for smaller media buyers.</li></ul></td></tr>
-        <tr><td>News</td><td>Promoted content bundle</td><td class="num">EUR 7,500</td><td class="num">12</td><td class="num">EUR 90,000</td><td><ul><li>Bundle of up to nine promoted content articles or agreed commercial content placements.</li><li>Publication on NEXT.io or relevant media property.</li><li>Live links and basic placement confirmation.</li><li>Newsletter or social inclusion only where specified in the package.</li><li>Not priced as EUR 7,500 for one article.</li></ul></td></tr>
-        <tr><td>News</td><td>PR support or placement package</td><td class="num">EUR 3,000</td><td class="num">80</td><td class="num">EUR 240,000</td><td><ul><li>PR support, press release placement or agreed announcement format.</li><li>Editorial processing and publication support.</li><li>Link inclusion where appropriate and approved.</li><li>Basic live link confirmation and reporting.</li><li>Needs strict process control so it does not overload editorial.</li></ul></td></tr>
-        <tr class="sub2"><td colspan="4">News subtotal</td><td class="num">EUR 1,795,000</td><td></td></tr>
-
-        <tr class="sect"><td colspan="6">Podcast target: EUR 300,000</td></tr>
-        <tr><td>Podcast</td><td>NEXT.io Podcast headline sponsorship renewal</td><td class="num">EUR 110,000</td><td class="num">1</td><td class="num">EUR 110,000</td><td><ul><li>Annual headline sponsor position for Pierre's confirmed NEXT.io podcast output.</li><li>Brand placement on the podcast hub.</li><li>Sponsor credit across agreed show distribution assets.</li><li>Newsletter and social distribution around published episodes.</li><li>Campaign reporting.</li><li>No paid episode, no paid guest access and no guaranteed editorial appearance.</li></ul></td></tr>
-        <tr><td>Podcast</td><td>NEXT.io Podcast supporting sponsorship</td><td class="num">EUR 38,000</td><td class="num">5</td><td class="num">EUR 190,000</td><td><ul><li>Supporting sponsor position for the confirmed NEXT.io podcast environment.</li><li>Brand placement on the podcast hub or agreed distribution assets.</li><li>Sponsor credit in agreed episode distribution assets where appropriate.</li><li>Newsletter or social inclusion tied to published episodes.</li><li>Basic campaign report.</li><li>This merges the previous podcast category partner and podcast supporting sponsorship products into one clearer product.</li><li>Designed as sponsorship of the media property, not paid participation.</li></ul></td></tr>
-        <tr class="sub2"><td colspan="4">Podcast subtotal</td><td class="num">EUR 300,000</td><td></td></tr>
-
-        <tr class="sect"><td colspan="6">Spotlight target: EUR 300,000</td></tr>
-        <tr><td>Spotlight</td><td>Standard Spotlight session</td><td class="num">EUR 7,500</td><td class="num">12</td><td class="num">EUR 90,000</td><td><ul><li>One Spotlight interview or partner feature session.</li><li>Production, editing and publication.</li><li>Published video or feature asset.</li><li>Newsletter inclusion.</li><li>Social distribution.</li><li>Basic performance report.</li></ul></td></tr>
-        <tr><td>Spotlight</td><td>Premium host-led Spotlight</td><td class="num">EUR 15,000</td><td class="num">4</td><td class="num">EUR 60,000</td><td><ul><li>One premium Spotlight using Pierre, Stuart or another specialist host where appropriate.</li><li>Editorial preparation and higher-touch production.</li><li>Published video or feature asset.</li><li>Two short-form social clips.</li><li>Newsletter inclusion and performance report.</li></ul></td></tr>
-        <tr><td>Spotlight</td><td>Annual Spotlight series</td><td class="num">EUR 60,000</td><td class="num">2</td><td class="num">EUR 120,000</td><td><ul><li>Six Spotlight sessions across the year.</li><li>Series planning and narrative structure.</li><li>Production, editing and publication for each session.</li><li>Newsletter and social distribution for each published asset.</li><li>Quarterly performance summary.</li><li>Designed for Pragmatic Solutions style long-form partner storytelling.</li></ul></td></tr>
-        <tr><td>Spotlight</td><td>Event-based Spotlight add-on</td><td class="num">EUR 5,000</td><td class="num">6</td><td class="num">EUR 30,000</td><td><ul><li>Event-linked Spotlight or interview add-on.</li><li>Capture or remote production depending on event format.</li><li>Published asset after the event.</li><li>Social distribution and basic reporting.</li><li>Used around Valletta, New York or relevant vertical events.</li></ul></td></tr>
-        <tr class="sub2"><td colspan="4">Spotlight subtotal</td><td class="num">EUR 300,000</td><td></td></tr>
-
-        <tr class="sect"><td colspan="6">Research Reports target: EUR 200,000</td></tr>
-        <tr><td>Research Reports</td><td>Flagship research report</td><td class="num">EUR 40,000</td><td class="num">3</td><td class="num">EUR 120,000</td><td><ul><li>One flagship sponsored research report.</li><li>Research planning, writing and editing.</li><li>Designed report asset.</li><li>Landing page or download page.</li><li>Newsletter, social and relevant media distribution.</li><li>Performance report.</li><li>Editorial boundaries to be confirmed in the SOW.</li></ul></td></tr>
-        <tr><td>Research Reports</td><td>Sponsored white paper</td><td class="num">EUR 25,000</td><td class="num">2</td><td class="num">EUR 50,000</td><td><ul><li>One sponsored white paper or commercial education asset.</li><li>Partner thesis and subject-matter input.</li><li>Writing, editing and design.</li><li>Landing page or hosted asset.</li><li>Newsletter and social distribution.</li><li>Performance report.</li></ul></td></tr>
-        <tr><td>Research Reports</td><td>Data-led article or mini report</td><td class="num">EUR 5,000</td><td class="num">6</td><td class="num">EUR 30,000</td><td><ul><li>One smaller data-led article, insight piece or mini report.</li><li>Light research and editorial production.</li><li>Publication on the relevant media property.</li><li>Newsletter or social distribution.</li><li>Basic performance report.</li></ul></td></tr>
-        <tr class="sub2"><td colspan="4">Research Reports subtotal</td><td class="num">EUR 200,000</td><td></td></tr>
-
-        <tr class="tot"><td colspan="4">Total priced model</td><td class="num">EUR 2,595,000</td><td>Matches the official 2027 Media target. Rounded presentation number: EUR 2.60M.</td></tr>
-      </tbody>
-    </table>
-    <div class="callout blue"><strong>Important rule:</strong> category inventory is capacity-led. NEXT.io has 10 news categories, but they should not be priced equally. Tier 1 and Tier 2 pricing should be confirmed using traffic, commercial demand and category value. Category sponsorship must remain cheaper than site-wide sticky because it gives less total branding exposure. An exclusive category sponsor and a supporting category sponsor cannot occupy the same category during the same period. Sales sequencing matters.</div>
-    <div class="callout"><strong>Podcast rule:</strong> podcast sponsorship sells access to the audience and distribution environment. It does not sell paid episodes, paid guests or guaranteed editorial appearances. The previous podcast category partner and supporting sponsorship have been merged into one clearer supporting sponsorship. Any buyer wanting to appear on camera or be interviewed should be routed into Spotlight.</div>
-    <div class="callout"><strong>Commercial use:</strong> this gives Will a real sales plan, not a top-line wish. If a price feels too high, the discussion must move to quantity, replacement products or account coverage, not to lowering the total target by default.</div>
-  </section>
-
-  <section>
-    <h2>5. Product assumptions behind the target</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>News: EUR 1.96M</h3>
-        <ul>
-                    <li>Megabanner and Skyscraper need bridge products first because they are the proven sellers.</li>
-          <li>Sticky banner and category sponsorships are promising, but not yet proven products.</li><li>Category sponsorships now use Tier 1 and Tier 2 pricing because the 10 news categories do not carry equal traffic or commercial value.</li><li>Legacy banner renewals are deliberately not mapped as a product because that would confuse the sales team and clients.</li>
-          <li>Newsletter, PR placements and promoted content stay inside News.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Podcast: EUR 300k</h3>
-        <ul>
-          <li>Pragmatic Play and Pragmatic Solutions renewal should be modelled at EUR 110k with added distribution.</li>
-          <li>Paid guests move out of Podcast and into Spotlight.</li>
-          <li>NEXTPredict Podcast and Conor's show should not carry heavy revenue until launch, cadence, ownership and sponsor decks are confirmed.</li>
-          <li>No podcast product should include paid episode access or paid guest access.</li>
-          <li>Pierre's capacity is a constraint. Do not build the number on wishful output.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Spotlight: EUR 300k</h3>
-        <ul>
-          <li>Spotlight absorbs paid guest demand from Podcast.</li>
-          <li>Annual series should be sold as a year-long story package, not one-off video inventory.</li>
-          <li>Pragmatic Solutions gives proof that higher-volume series are deliverable, with 24 episodes sold.</li>
-          <li>Kim needs to confirm delivery capacity before this target is final.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Research Reports: EUR 200k</h3>
-        <ul>
-          <li>Research gets its own target in 2027.</li>
-          <li>2025 had EUR 81k bundled into News.</li>
-          <li>2026 has EUR 118.2k achieved already.</li>
-          <li>Target depends on production capacity and clear pricing for reports, white papers and data-led articles.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>6. New verticals treatment</h2>
-    <p class="sub">The new verticals matter, but they should not distort the traditional reporting lines until Kim confirms launch dates, costs and ownership.</p>
-    <table>
-      <thead><tr><th>Vertical</th><th>2027 target treatment</th><th>Reason</th><th>Decision needed</th></tr></thead>
-      <tbody>
-        <tr><td><strong>NEXTPredict media</strong></td><td>Included only through product lines once sold</td><td>Media inventory is not proven yet. Event sponsorship remains outside Media.</td><td>Confirm whether media sold alongside the event is split into Media or event revenue.</td></tr>
-        <tr><td><strong>NEXTBrazil</strong></td><td>Break-even plus upside, TBC</td><td>Kevin is ready to sell, but the site inventory and traffic need proof.</td><td>Agree whether this gets a standalone launch target.</td></tr>
-        <tr><td><strong>NEXTLATAM</strong></td><td>Upside only unless Kim confirms launch readiness</td><td>Commercial opportunity exists, but operational readiness is not yet proven.</td><td>Confirm launch date and first sellable products.</td></tr>
-        <tr><td><strong>NEXTCrypto</strong></td><td>Upside only for now</td><td>Kim sounded cautious on 2027 readiness.</td><td>Confirm whether it has a revenue target or only a cost recovery goal.</td></tr>
-      </tbody>
-    </table>
-    <div class="callout blue"><strong>Working rule:</strong> if a new vertical sells a media product, credit it to the relevant product line. Example: a NEXTPredict newsletter sponsorship goes into News unless Kim creates a separate reporting structure.</div>
-  </section>
-
-  <section>
-    <h2>7. Sales performance reality</h2>
-    <p class="sub">HubSpot supports Ana's concern that performance is uneven. The caveat is that mixed media and event deals make the owner view imperfect.</p>
-    <table>
-      <thead><tr><th>Observation</th><th>What it means</th><th>Action</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Revenue is concentrated</strong></td><td>A small number of owners carry most of the closed-won media-named value.</td><td>Use the target to force clearer account plans, not only a top-down number.</td></tr>
-        <tr><td><strong>Some sellers contribute very little</strong></td><td>A higher target alone will not fix performance. Will needs to coach deal creation, renewal planning and product confidence.</td><td>Track seller-level media pipeline and renewal coverage from September.</td></tr>
-        <tr><td><strong>Deal allocation is messy</strong></td><td>Deals with both event and media value distort reporting unless line items are split cleanly.</td><td>Agree a 2027 rule: media line items must map to News, Podcast, Spotlight or Research.</td></tr>
-        <tr><td><strong>Product confidence is a sales risk</strong></td><td>Sticky banners and category sponsorships need mock-ups, proof and migration scripts.</td><td>Kim to provide mock-ups and traffic data by category. Stuart and Will to produce sales guardrails.</td></tr>
-      </tbody>
-    </table>
-    <div class="callout risk"><strong>Commercial point:</strong> Will's conservatism should not set the target. The target should come from the data, product capacity and growth expectation. Then Will needs to manage the sales team to the number.</div>
-  </section>
-
-  <section>
-    <h2>8. Cost view</h2>
-    <p class="sub">Kim's cost model still needs final confirmation, but the revenue target gives enough room to justify the media cost base if the target lands.</p>
-    <table>
-      <thead><tr><th>Cost view</th><th class="num">Cost</th><th class="num">Cost ratio at EUR 2.595M</th><th>Comment</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Kim high-cost view</strong></td><td class="num">EUR 258,156</td><td class="num">10.0%</td><td>Use this as the conservative cost ratio until Kim confirms the final workbook number.</td></tr>
-        <tr><td><strong>Lower workbook view</strong></td><td class="num">EUR 216,820</td><td class="num">8.4%</td><td>There is a mismatch in the workbook or previous extraction. Needs confirmation.</td></tr>
-      </tbody>
-    </table>
-    <div class="callout"><strong>Cost implication:</strong> at EUR 2.595M, Kim's higher cost view sits at about 10% of revenue. That gives Ana a cleaner cost justification story, but only if the revenue target remains official and sales-owned.</div>
-  </section>
-
-  <section>
-    <h2>9. Decisions needed with Kim and Will</h2>
     <ul>
-      <li><strong>Confirm target:</strong> EUR 2.595M official 2027 Media target, rounded to EUR 2.60M, with no separate stretch target.</li>
-      <li><strong>Confirm product lines:</strong> News, Podcast, Spotlight and Research Reports remain the reporting lines for 2027.</li>
-      <li><strong>Confirm price and quantity:</strong> validate each product unit price and sell-through quantity before the presentation.</li>
-      <li><strong>Confirm Research:</strong> EUR 200k standalone target.</li>
-      <li><strong>Confirm new verticals:</strong> decide whether NEXTPredict, Brazil, LATAM and Crypto should aim for break-even, controlled upside or named targets.</li>
-      <li><strong>Confirm Pragmatic plan:</strong> model EUR 110k for the podcast renewal with added distribution and a wider package bridge.</li>
-      <li><strong>Confirm Spotlight capacity:</strong> Kim needs to validate whether EUR 300k is deliverable across standard sessions, annual series and premium formats.</li>
-      <li><strong>Confirm banner transition:</strong> Kim needs to give the realistic launch date for sticky banners, category sponsorships and legacy product removal.</li><li><strong>Confirm category tiering:</strong> Kim needs to validate which of the 10 categories are Tier 1 versus Tier 2 using traffic and commercial demand.</li>
-      <li><strong>Confirm line-item allocation:</strong> mixed event and media deals need clean product splits in HubSpot.</li>
+      <li><strong>News</strong> is the growth engine, on premiumised, scalable inventory.</li>
+      <li><strong>Podcast</strong> stays cautious because the product surface is reducing.</li>
+      <li><strong>Spotlight</strong> grows because paid-visibility demand moves there, but capacity must be confirmed.</li>
+      <li><strong>Research</strong> grows, but only with clear scope boundaries.</li>
     </ul>
   </section>
 
   <section>
-    <h2>10. Suggested message to Ana</h2>
-    <div class="callout blue"><strong>Suggested positioning:</strong> We recommend setting the 2027 Media target at <strong>EUR 2.595M</strong>, rounded to <strong>EUR 2.60M</strong>. This is a <strong>19.6% increase</strong> on our projected 2026 exit base of <strong>EUR 2.17M</strong>. The target keeps the traditional reporting structure of News, Podcast, Spotlight and Research Reports, while allowing Kim's new product architecture to sit underneath those lines. It is ambitious enough to push the sales team, but it does not rely on unproven new verticals, confusing legacy renewal mapping or paid podcast appearances to make the base number work.</div>
+    <h2>4 · Product model and deliverables</h2>
+    <p class="sub">All annual prices (can be sold monthly). News growth comes mainly from scalable, margin-friendly inventory, not heavier production.</p>
+    <table>
+      <thead><tr><th>Product</th><th class="num">Annual price</th><th class="num">Qty</th><th class="num">Rev</th><th>Deliverables</th></tr></thead>
+      <tbody>
+        <tr class="sect"><td colspan="5">News: 1,876,000</td></tr>
+        <tr><td>Site-wide Sticky Banner</td><td class="num">144,000</td><td class="num">4</td><td class="num">576,000</td><td class="dl">Always-in-view, follows the scroll. EUR 12k/mo per rotation position. Creative + UTM + report.</td></tr>
+        <tr><td>Category Exclusive, Tier 1</td><td class="num">90,000</td><td class="num">3</td><td class="num">270,000</td><td class="dl">Page branding + category articles + 3 promoted content + website link. Regulation / Casino / Investment.</td></tr>
+        <tr><td>Category Exclusive, Tier 2</td><td class="num">65,000</td><td class="num">3</td><td class="num">195,000</td><td class="dl">Same deliverables, mid-traffic category.</td></tr>
+        <tr><td>Category Exclusive, Tier 3</td><td class="num">30,000</td><td class="num">2</td><td class="num">60,000</td><td class="dl">Same deliverables, low-traffic category (Technology, Marketing).</td></tr>
+        <tr><td>Category Headline + 2 Supporting (Tier 2)</td><td class="num">55,000</td><td class="num">1</td><td class="num">55,000</td><td class="dl">One Headline (EUR 35k) + two Supporting (EUR 10k each) where a single exclusive advertiser isn't available.</td></tr>
+        <tr><td>Newsletter Headline, Daily</td><td class="num">60,000</td><td class="num">1</td><td class="num">60,000</td><td class="dl">One exclusive headline sponsor (EUR 5k/mo). ~15k subs / ~4k engaged.</td></tr>
+        <tr><td>Newsletter Headline, Weekly America</td><td class="num">36,000</td><td class="num">1</td><td class="num">36,000</td><td class="dl">One exclusive headline sponsor (EUR 3k/mo).</td></tr>
+        <tr><td>Newsletter Supporting</td><td class="num">18,000</td><td class="num">3</td><td class="num">54,000</td><td class="dl">Supporting newsletter placement (EUR 1.5k/mo).</td></tr>
+        <tr><td>Content &amp; PR, Annual Partner</td><td class="num">72,000</td><td class="num">3</td><td class="num">216,000</td><td class="dl">One combined product. EUR 6k/mo: 1 promoted article + 3 PR/news items per month + newsletter/social.</td></tr>
+        <tr><td>Content &amp; PR, Quarterly Sprint</td><td class="num">18,000</td><td class="num">8</td><td class="num">144,000</td><td class="dl">3 content pieces + 6 PR/news items per quarter.</td></tr>
+        <tr><td>Content &amp; PR, Individual</td><td class="num">3,000</td><td class="num">60</td><td class="num">180,000</td><td class="dl">1 article or 1 PR/news item. Ad-hoc buyers.</td></tr>
+        <tr><td>New-site sponsorship packages</td><td class="num">15,000</td><td class="num">2</td><td class="num">30,000</td><td class="dl"><strong>EUR 30k validation-dependent base assumption.</strong> A small, controlled amount of founding sponsorship on a launched foreign-language site, not full new-site upside.</td></tr>
+        <tr class="sub2"><td colspan="3">News subtotal</td><td class="num">1,876,000</td><td></td></tr>
+
+        <tr class="sect"><td colspan="5">Podcast: 224,000 (cautious; no paid episodes / guests)</td></tr>
+        <tr><td>Podcast Headline renewal + distribution</td><td class="num">110,000</td><td class="num">1</td><td class="num">110,000</td><td class="dl">Annual headline sponsor of Pierre's podcast. Hub branding + sponsor credit + distribution + newsletter/social.</td></tr>
+        <tr><td>Podcast Supporting sponsorship</td><td class="num">57,000</td><td class="num">2</td><td class="num">114,000</td><td class="dl">Full-year brand-association package (hub branding, show-notes/end-card credit, social and YouTube/Spotify/LinkedIn distribution, newsletter promotion, quarterly report). Priced at EUR 57k as an annual sponsorship (about half the headline); held to 2 sponsors to keep Podcast cautious.</td></tr>
+        <tr class="sub2"><td colspan="3">Podcast subtotal</td><td class="num">224,000</td><td></td></tr>
+
+        <tr class="sect"><td colspan="5">Spotlight: 300,000 (home for paid visibility)</td></tr>
+        <tr><td>Standard Spotlight session</td><td class="num">7,500</td><td class="num">12</td><td class="num">90,000</td><td class="dl">Production + edit + publish + newsletter + social + report.</td></tr>
+        <tr><td>Premium host-led Spotlight</td><td class="num">15,000</td><td class="num">4</td><td class="num">60,000</td><td class="dl">Pierre/Stuart/specialist host + 2 social clips.</td></tr>
+        <tr><td>Annual Spotlight Series (6 sessions)</td><td class="num">60,000</td><td class="num">2</td><td class="num">120,000</td><td class="dl">6 sessions/year + planning + distribution + quarterly summary.</td></tr>
+        <tr><td>Event-based Spotlight add-on</td><td class="num">5,000</td><td class="num">6</td><td class="num">30,000</td><td class="dl">Event-linked Spotlight (Valletta/NYC).</td></tr>
+        <tr class="sub2"><td colspan="3">Spotlight subtotal</td><td class="num">300,000</td><td></td></tr>
+
+        <tr class="sect"><td colspan="5">Research Reports: 200,000 (standalone)</td></tr>
+        <tr><td>Flagship research report</td><td class="num">40,000</td><td class="num">3</td><td class="num">120,000</td><td class="dl">Planning + writing + design + landing page + distribution. SOW boundaries.</td></tr>
+        <tr><td>Sponsored white paper</td><td class="num">25,000</td><td class="num">2</td><td class="num">50,000</td><td class="dl">Thesis input + writing/design + hosted asset + distribution.</td></tr>
+        <tr><td>Data-led article / mini report</td><td class="num">5,000</td><td class="num">6</td><td class="num">30,000</td><td class="dl">Light research + publication + newsletter/social.</td></tr>
+        <tr class="sub2"><td colspan="3">Research subtotal</td><td class="num">200,000</td><td></td></tr>
+        <tr class="tot"><td colspan="3">TOTAL</td><td class="num">2,600,000</td><td></td></tr>
+      </tbody>
+    </table>
+    <p class="small">Category exclusivity, the rate card, the Podcast-to-Spotlight buyer migration and the new-shows upside lines are in the Appendix. Research Reports are standalone in 2027, following their standalone 2026 target (in 2025 they sat inside News).</p>
   </section>
 
-  <div class="footer">Prepared for NEXT.io internal media planning. Figures use Stuart's 2025 and 2026 revenue snapshots, HubSpot closed-won checks and Kim's 2027 cost projection context. Final sign-off requires Kim's cost confirmation and Will's sales capacity review.</div>
+  <section>
+    <h2>5 · Key risks and dependencies</h2>
+    <div class="callout risk"><strong>Foreign-language sites:</strong> the EUR 2.60M target assumes NEXT.io's added resources, AI investment and new foreign-language sites create more sellable media surface. If Brazil, LATAM/Spanish and Brazilian Portuguese are delayed, not packaged, not measurable or not owned commercially, EUR 2.45M remains the conservative fallback.</div>
+    <ul>
+      <li><strong>Spotlight capacity:</strong> EUR 300k assumes ~34 outputs across the year. Kim to confirm deliverable at quality and margin; if not, raise pricing, narrow deliverables, or lower the target.</li>
+      <li><strong>Podcast supporting demand:</strong> supporting sponsorship has historically been harder to sell. If demand for the two EUR 57k packages isn't there, Podcast sits nearer EUR 110-150k (headline-led).</li>
+      <li><strong>Banner-client churn:</strong> 38 advertisers worth ~EUR 865k must migrate to premium inventory. Premiumisation will mean fewer, higher-value sponsors over time; the goal is to retain the right clients, not every buyer. Migration plan in the Appendix.</li>
+      <li><strong>Sales capacity:</strong> media sales is not currently a dedicated hire. Confirm whether existing capacity supports EUR 2.60M or whether dedicated ownership / a hire is needed.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>6 · Costs, salaries and margin guardrail</h2>
+    <ul>
+      <li>2025 is a margin benchmark, not a cost benchmark. 2027 costs will be materially higher (team has grown; more hiring possible).</li>
+      <li>Salaries must be included. EUR 258k is only a direct-cost view until Kim and Finance confirm the full basis.</li>
+      <li>Approve EUR 2.60M with a salary-inclusive cost envelope and a 60%+ all-in margin guardrail.</li>
+    </ul>
+    <h3>2025 profitability benchmark (salary-inclusive)</h3>
+    <table>
+      <thead><tr><th>Project</th><th class="num">Revenue</th><th class="num">Total CoS</th><th class="num">Net Profit</th><th class="num">Margin</th></tr></thead>
+      <tbody>
+        <tr><td>News</td><td class="num">1,071,873</td><td class="num">384,834</td><td class="num">687,039</td><td class="num">64%</td></tr>
+        <tr><td>Podcast</td><td class="num">249,275</td><td class="num">61,431</td><td class="num">187,844</td><td class="num">75%</td></tr>
+        <tr><td>Spotlight</td><td class="num">160,317</td><td class="num">53,366</td><td class="num">106,951</td><td class="num">67%</td></tr>
+        <tr class="tot"><td>Blended</td><td class="num">1,481,465</td><td class="num">499,631</td><td class="num">981,834</td><td class="num">~66%</td></tr>
+      </tbody>
+    </table>
+    <h3>2027 cost scenarios (revenue held at EUR 2.60M)</h3>
+    <table>
+      <thead><tr><th>Scenario</th><th class="num">Cost</th><th class="num">Profit</th><th class="num">Margin</th></tr></thead>
+      <tbody>
+        <tr><td>Direct-cost view only (partial)</td><td class="num">258k</td><td class="num">2.34M</td><td class="num">~90%</td></tr>
+        <tr><td>Strong all-in (in line with 2025)</td><td class="num">884k</td><td class="num">1.72M</td><td class="num">66%</td></tr>
+        <tr><td>Acceptable investment</td><td class="num">1.04M</td><td class="num">1.56M</td><td class="num">60%</td></tr>
+        <tr><td>Margin risk (review)</td><td class="num">1.17M+</td><td class="num">&le;1.43M</td><td class="num">&le;55%</td></tr>
+      </tbody>
+    </table>
+    <p class="small">Guardrail: keep salary-inclusive margin in the low-to-mid 60s; below 55% triggers a review. News-specific: at EUR 1.876M and a 64% margin, all-in News costs should stay below ~EUR 675k. Full cost checklist in the Appendix.</p>
+  </section>
+
+  <section>
+    <h2>7 · Decisions for Ana</h2>
+    <ul>
+      <li>Approve <strong>EUR 2.60M</strong> as the official 2027 Media target, no stretch.</li>
+      <li>Confirm the <strong>EUR 30k new-site base assumption</strong> is acceptable.</li>
+      <li>Confirm the <strong>salary-inclusive cost envelope and 60%+ margin guardrail</strong>.</li>
+      <li>Confirm <strong>Spotlight capacity</strong> (~34 outputs at quality and margin).</li>
+      <li>Confirm <strong>Podcast supporting sponsorship demand</strong>.</li>
+      <li>Confirm <strong>38-client migration ownership</strong>.</li>
+      <li>Confirm whether Will needs <strong>dedicated media-sales ownership or hiring</strong>.</li>
+    </ul>
+  </section>
+
+  <section class="appx">
+    <h2>Appendix</h2>
+
+    <h3>A · Category tiering (2025 traffic) and rate card</h3>
+    <table>
+      <thead><tr><th>Category</th><th class="num">2025 views</th><th>Tier</th></tr></thead>
+      <tbody>
+        <tr><td>Regulation</td><td class="num">281,608</td><td>Tier 1</td></tr>
+        <tr><td>Casino</td><td class="num">202,431</td><td>Tier 1</td></tr>
+        <tr><td>Investment</td><td class="num">133,410</td><td>Tier 1</td></tr>
+        <tr><td>Betting</td><td class="num">81,523</td><td>Tier 2</td></tr>
+        <tr><td>People</td><td class="num">78,991</td><td>Tier 2</td></tr>
+        <tr><td>Features</td><td class="num">63,165</td><td>Tier 2</td></tr>
+        <tr><td>Promoted</td><td class="num">56,045</td><td>Content &amp; PR</td></tr>
+        <tr><td>B2B News</td><td class="num">53,906</td><td>Tier 2</td></tr>
+        <tr><td>Results</td><td class="num">39,621</td><td>Tier 2</td></tr>
+        <tr><td>Marketing</td><td class="num">10,979</td><td>Tier 3</td></tr>
+        <tr><td>Technology</td><td class="num">10,898</td><td>Tier 3</td></tr>
+      </tbody>
+    </table>
+    <table>
+      <thead><tr><th>Tier</th><th class="num">Exclusive</th><th class="num">Headline</th><th class="num">Supporting (each)</th><th class="num">Max non-exclusive stack</th></tr></thead>
+      <tbody>
+        <tr><td>Tier 1</td><td class="num">90,000</td><td class="num">45,000</td><td class="num">15,000</td><td class="num">75,000</td></tr>
+        <tr><td>Tier 2</td><td class="num">65,000</td><td class="num">35,000</td><td class="num">10,000</td><td class="num">55,000</td></tr>
+        <tr><td>Tier 3</td><td class="num">30,000</td><td class="num">18,000</td><td class="num">5,000</td><td class="num">28,000</td></tr>
+      </tbody>
+    </table>
+    <p class="small">A category is sold as Exclusive or as Headline + Supporting, never both. Exclusive is priced above the full Headline + 2-Supporting stack in every tier, so exclusivity stays genuinely premium. Tiering is set by traffic. Category sponsorship sits below the EUR 144k site-wide sticky.</p>
+
+    <h3>B · Podcast to Spotlight shift</h3>
+    <table>
+      <thead><tr><th>Multimedia line</th><th class="num">2025</th><th class="num">2026 proj</th><th class="num">2027</th><th class="num">Change</th></tr></thead>
+      <tbody>
+        <tr><td>Podcast</td><td class="num">239,875</td><td class="num">264,580</td><td class="num">224,000</td><td class="num"><span class="pill down">-40,580</span></td></tr>
+        <tr><td>Spotlight</td><td class="num">198,650</td><td class="num">232,900</td><td class="num">300,000</td><td class="num"><span class="pill up">+67,100</span></td></tr>
+        <tr class="tot"><td>Combined</td><td class="num">438,525</td><td class="num">497,480</td><td class="num">524,000</td><td class="num"><span class="pill up">+5.3%</span></td></tr>
+      </tbody>
+    </table>
+    <p class="small">Spotlight more than offsets the Podcast reduction (+EUR 67k vs -EUR 41k), so combined multimedia grows ~5.3%, provided paid-visibility demand migrates and ~34 Spotlight outputs are delivered.</p>
+    <table>
+      <thead><tr><th>Client need</th><th>Do not sell as</th><th>Sell as</th></tr></thead>
+      <tbody>
+        <tr><td>Wants to be interviewed</td><td>Podcast paid guest</td><td>Standard Spotlight</td></tr>
+        <tr><td>Wants senior executive visibility</td><td>Podcast guest slot</td><td>Premium host-led Spotlight</td></tr>
+        <tr><td>Wants recurring thought leadership</td><td>Podcast series</td><td>Annual Spotlight Series</td></tr>
+        <tr><td>Wants event-linked content</td><td>Podcast episode</td><td>Event-based Spotlight</td></tr>
+        <tr><td>Wants brand association with the show</td><td>Paid guest episode</td><td>Podcast headline or supporting</td></tr>
+      </tbody>
+    </table>
+
+    <h3>C · Banner-client migration (top accounts; full 38 in the model)</h3>
+    <table>
+      <thead><tr><th>Client</th><th class="num">2026 spend</th><th>Recommended 2027 home</th><th>Churn</th></tr></thead>
+      <tbody>
+        <tr><td>BetConstruct</td><td class="num">129,400</td><td>Sticky / Category Exclusive</td><td>High</td></tr>
+        <tr><td>Playson</td><td class="num">81,600</td><td>Sticky / Category Exclusive</td><td>Med</td></tr>
+        <tr><td>Evolution</td><td class="num">66,000</td><td>Category Exclusive / Spotlight</td><td>Med</td></tr>
+        <tr><td>Playtech</td><td class="num">66,000</td><td>Sticky / Category Exclusive</td><td>Low</td></tr>
+        <tr><td>Play'n GO</td><td class="num">62,900</td><td>Category / Content &amp; PR</td><td>Med</td></tr>
+        <tr><td>Pragmatic</td><td class="num">60,000</td><td>Category Exclusive + Podcast + Spotlight</td><td>High</td></tr>
+        <tr class="sub2"><td>32 more</td><td class="num">~398k</td><td>Category / Content &amp; PR</td><td>Low-Med</td></tr>
+        <tr class="tot"><td>38 clients</td><td class="num">864,625</td><td colspan="2"></td></tr>
+      </tbody>
+    </table>
+    <p class="small">Internal account-management plan (not a public product map). Complete renewal value, churn risk, owner and next-action per account before lock. Pragmatic + BetConstruct are ~40% of the book and get bespoke bridges first.</p>
+
+    <h3>D · Content &amp; PR: workload to validate</h3>
+    <table>
+      <thead><tr><th>Source</th><th class="num">Content / yr</th><th class="num">PR / yr</th></tr></thead>
+      <tbody>
+        <tr><td>Annual Partner (x3)</td><td class="num">36</td><td class="num">108</td></tr>
+        <tr><td>Quarterly Sprint (x8)</td><td class="num">24</td><td class="num">48</td></tr>
+        <tr><td>Individual (x60)</td><td class="num">~30</td><td class="num">~30</td></tr>
+        <tr class="tot"><td>Total</td><td class="num">~90</td><td class="num">~186</td></tr>
+      </tbody>
+    </table>
+    <p class="small">Roughly 90 content pieces and 186 PR/news support items a year. This may be deliverable, but Kim must confirm capacity and margin before lock. PR/news items are lighter to produce than full articles.</p>
+
+    <h3>E · Cost confirmation checklist (what is inside EUR 258,156)</h3>
+    <table>
+      <thead><tr><th>Cost item</th><th>In EUR 258k?</th><th>Owner</th></tr></thead>
+      <tbody>
+        <tr><td>Direct production costs</td><td>TBC</td><td>Kim</td></tr>
+        <tr><td>Freelancers</td><td>TBC</td><td>Kim</td></tr>
+        <tr><td>Software, hosting, platforms</td><td>TBC</td><td>Kim / Finance</td></tr>
+        <tr><td>Commission</td><td>TBC</td><td>Finance / Will</td></tr>
+        <tr><td>Salaries</td><td>TBC</td><td>Kim / Finance</td></tr>
+        <tr><td>2026 new hires (5-10 more)</td><td>TBC</td><td>Kim / Finance</td></tr>
+        <tr><td>Planned 2027 hires</td><td>TBC</td><td>Kim / Ana</td></tr>
+        <tr><td>Delivery support (Spotlight/Research/Content)</td><td>TBC</td><td>Kim</td></tr>
+        <tr><td>New vertical costs</td><td>TBC</td><td>Kim / Finance</td></tr>
+      </tbody>
+    </table>
+    <p class="small">Workbook also shows EUR 216,820 on the methodology tab; reconcile before the review.</p>
+
+    <h3>F · Investment surfaces and upside (outside the EUR 2.60M base)</h3>
+    <table>
+      <thead><tr><th>Surface</th><th>Dependency before it counts</th></tr></thead>
+      <tbody>
+        <tr><td>Brazil / LATAM / Brazilian Portuguese sites</td><td>Launch date, audience, products, costs and owner confirmed</td></tr>
+        <tr><td>NEXTPredict Podcast (Robin Reed)</td><td>Launch, cadence and sponsor confirmed; ~EUR 100k discussed, unconfirmed</td></tr>
+        <tr><td>New Podcast (TBD)</td><td>Format and show unconfirmed</td></tr>
+        <tr><td>Mid-year Quarterly Fill (regional)</td><td>Sites live and sellable</td></tr>
+        <tr><td>AI-enabled delivery</td><td>Should improve fulfilment and margin, not add unmanaged work</td></tr>
+      </tbody>
+    </table>
+    <p class="small">These are held as upside, not in the base. The only new-site amount in the base is the EUR 30k validation-dependent assumption in News.</p>
+  </section>
+
+  <div class="footer">Prepared for NEXT.io internal media planning. Figures: June sales tracker, HubSpot closed-won (project = Media), 2025 category traffic, 2025 project profitability, Kim's product and cost context.</div>
 
 </div>
 </body>
