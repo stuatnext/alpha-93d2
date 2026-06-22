@@ -178,45 +178,65 @@ ul,ol{margin:6px 0 0;padding-left:20px;color:#d8e2ea} li{margin:5px 0}
   </section>
 
   <section>
-    <h2>7 · Costs, salaries and margin guardrail</h2>
-    <p class="sub">Cost of sales is confirmed at <strong>EUR 258,156</strong> (Kim's 2027 budget: direct production and platform cost, salaries not included), up from EUR 112,460 in 2026. The two tables below show the profit margin for each 2027 revenue line, first before salaries, then with salaries included.</p>
+  <section>
+    <h2>7 · Costs, salaries and profit margin</h2>
+    <p class="sub">Cost of sales is confirmed at <strong>EUR 258,156</strong>. This is Kim's 2027 direct production and platform budget. It does <strong>not</strong> include salaries. The key question is therefore the profit margin after salaries are added.</p>
 
-    <h3>Profit margin by line, before salaries (confirmed cost of sales)</h3>
-    <table>
-      <thead><tr><th>Line</th><th class="num">2027 revenue</th><th class="num">Direct COS</th><th class="num">Gross profit</th><th class="num">Gross margin</th></tr></thead>
-      <tbody>
-        <tr><td>News</td><td class="num">1,876,000</td><td class="num">186,380</td><td class="num">1,689,620</td><td class="num">90%</td></tr>
-        <tr><td>Podcast</td><td class="num">224,000</td><td class="num">26,500</td><td class="num">197,500</td><td class="num">88%</td></tr>
-        <tr><td>Spotlight</td><td class="num">300,000</td><td class="num">22,836</td><td class="num">277,164</td><td class="num">92%</td></tr>
-        <tr><td>Research</td><td class="num">200,000</td><td class="num">22,440</td><td class="num">177,560</td><td class="num">89%</td></tr>
-        <tr class="tot"><td>Blended</td><td class="num">2,600,000</td><td class="num">258,156</td><td class="num">2,341,844</td><td class="num">90%</td></tr>
-      </tbody>
-    </table>
-    <p class="small">Direct COS is allocated by line. News carries the shared editorial, newsletter, website and banner-platform budgets, including roughly EUR 65k of investment in new sites (Brazil, LATAM, Crypto and two new-publication reserves) whose revenue is held as upside, which is why its COS is the largest.</p>
+```
+<h3>Simple 2027 profit view</h3>
+<table>
+  <thead><tr><th>Metric</th><th class="num">Amount</th><th>Explanation</th></tr></thead>
+  <tbody>
+    <tr><td>2027 revenue target</td><td class="num">EUR 2,600,000</td><td>Recommended Media target</td></tr>
+    <tr><td>Confirmed cost of sales</td><td class="num">EUR 258,156</td><td>Direct production and platform costs. Salaries excluded.</td></tr>
+    <tr><td>Profit before salaries</td><td class="num">EUR 2,341,844</td><td>Revenue minus confirmed cost of sales</td></tr>
+    <tr><td>Gross margin before salaries</td><td class="num">~90%</td><td>Useful, but not the final profitability view</td></tr>
+    <tr><td>Working salary and overhead projection</td><td class="num">~EUR 644,000</td><td>To be confirmed with Kim and Finance</td></tr>
+    <tr><td>Total projected cost after salaries</td><td class="num">~EUR 902,000</td><td>Cost of sales plus salary and overhead projection</td></tr>
+    <tr><td>Projected profit after salaries</td><td class="num">~EUR 1,698,000</td><td>Revenue minus total projected cost</td></tr>
+    <tr class="tot"><td>Projected profit margin after salaries</td><td class="num">~65%</td><td>Slightly below the 2025 blended Media benchmark, but above the 60% guardrail</td></tr>
+  </tbody>
+</table>
+<div class="callout"><strong>Plain-English read:</strong> the 2027 plan can carry roughly <strong>EUR 644k</strong> of salary and overhead on top of the confirmed <strong>EUR 258k</strong> cost of sales and still produce about <strong>EUR 1.70M</strong> profit after salaries, at roughly a <strong>65%</strong> profit margin.</div>
 
-    <h3>Profit margin by line, salaries included (projection)</h3>
-    <table>
-      <thead><tr><th>Line</th><th class="num">2027 revenue</th><th class="num">All-in cost</th><th class="num">Net profit</th><th class="num">Net margin</th></tr></thead>
-      <tbody>
-        <tr><td>News</td><td class="num">1,876,000</td><td class="num">~675,000</td><td class="num">~1,201,000</td><td class="num">~64%</td></tr>
-        <tr><td>Podcast</td><td class="num">224,000</td><td class="num">~56,000</td><td class="num">~168,000</td><td class="num">~75%</td></tr>
-        <tr><td>Spotlight</td><td class="num">300,000</td><td class="num">~99,000</td><td class="num">~201,000</td><td class="num">~67%</td></tr>
-        <tr><td>Research</td><td class="num">200,000</td><td class="num">~72,000</td><td class="num">~128,000</td><td class="num">~64%</td></tr>
-        <tr class="tot"><td>Blended</td><td class="num">2,600,000</td><td class="num">~902,000</td><td class="num">~1,698,000</td><td class="num">~65%</td></tr>
-      </tbody>
-    </table>
-    <p class="small">This applies each line's 2025 salary-inclusive margin (News 64%, Podcast 75%, Spotlight 67%; Research ~64% as an assumption, since it sat inside News in 2025) to the 2027 target. Of the ~EUR 902k all-in cost, EUR 258,156 is confirmed COS and ~EUR 644k is the salary and overhead overlay Kim and Finance still need to size. The blended ~65% sits just above the 60% guardrail; below 55% triggers a review.</p>
+<h3>Profit margin by project line, salaries included (working projection)</h3>
+<table>
+  <thead><tr><th>Line</th><th class="num">2027 revenue</th><th class="num">Confirmed direct COS</th><th class="num">Salary / overhead projection</th><th class="num">Total projected cost</th><th class="num">Profit after salaries</th><th class="num">Profit margin after salaries</th></tr></thead>
+  <tbody>
+    <tr><td>News</td><td class="num">EUR 1,876,000</td><td class="num">EUR 186,380</td><td class="num">~EUR 489,000</td><td class="num">~EUR 675,000</td><td class="num">~EUR 1,201,000</td><td class="num">~64%</td></tr>
+    <tr><td>Podcast</td><td class="num">EUR 224,000</td><td class="num">EUR 26,500</td><td class="num">~EUR 29,500</td><td class="num">~EUR 56,000</td><td class="num">~EUR 168,000</td><td class="num">~75%</td></tr>
+    <tr><td>Spotlight</td><td class="num">EUR 300,000</td><td class="num">EUR 22,836</td><td class="num">~EUR 76,000</td><td class="num">~EUR 99,000</td><td class="num">~EUR 201,000</td><td class="num">~67%</td></tr>
+    <tr><td>Research Reports</td><td class="num">EUR 200,000</td><td class="num">EUR 22,440</td><td class="num">~EUR 49,500</td><td class="num">~EUR 72,000</td><td class="num">~EUR 128,000</td><td class="num">~64%</td></tr>
+    <tr class="tot"><td>Total Media</td><td class="num">EUR 2,600,000</td><td class="num">EUR 258,156</td><td class="num">~EUR 644,000</td><td class="num">~EUR 902,000</td><td class="num">~EUR 1,698,000</td><td class="num">~65%</td></tr>
+  </tbody>
+</table>
+<p class="small">These salary and overhead figures are a working projection, not a confirmed Finance allocation. They show what the salary load could look like if Media protects a profit margin broadly in line with historical project performance. Kim and Finance still need to confirm the actual salary allocation. Research is modelled at ~64% as a working assumption because it sat inside News in the 2025 profitability benchmark.</p>
 
-    <h3>2025 profitability benchmark (basis for the salary-included view)</h3>
-    <table>
-      <thead><tr><th>Project</th><th class="num">Revenue</th><th class="num">Total CoS</th><th class="num">Net Profit</th><th class="num">Margin</th></tr></thead>
-      <tbody>
-        <tr><td>News</td><td class="num">1,071,873</td><td class="num">384,834</td><td class="num">687,039</td><td class="num">64%</td></tr>
-        <tr><td>Podcast</td><td class="num">249,275</td><td class="num">61,431</td><td class="num">187,844</td><td class="num">75%</td></tr>
-        <tr><td>Spotlight</td><td class="num">160,317</td><td class="num">53,366</td><td class="num">106,951</td><td class="num">67%</td></tr>
-        <tr class="tot"><td>Blended</td><td class="num">1,481,465</td><td class="num">499,631</td><td class="num">981,834</td><td class="num">~66%</td></tr>
-      </tbody>
-    </table>
+<h3>Salary and overhead sensitivity</h3>
+<table>
+  <thead><tr><th>Scenario</th><th class="num">Salary and overhead</th><th class="num">Total cost</th><th class="num">Profit after salaries</th><th class="num">Profit margin after salaries</th><th>Interpretation</th></tr></thead>
+  <tbody>
+    <tr><td>Strong margin case</td><td class="num">~EUR 626k</td><td class="num">~EUR 884k</td><td class="num">~EUR 1.716M</td><td class="num">66%</td><td class="dl">Matches the 2025 blended Media benchmark.</td></tr>
+    <tr><td>Recommended working case</td><td class="num">~EUR 644k</td><td class="num">~EUR 902k</td><td class="num">~EUR 1.698M</td><td class="num">~65%</td><td class="dl">Practical working projection, still strong.</td></tr>
+    <tr><td>60% margin floor</td><td class="num">~EUR 782k</td><td class="num">~EUR 1.040M</td><td class="num">~EUR 1.560M</td><td class="num">60%</td><td class="dl">Maximum salary/overhead envelope before margin becomes uncomfortable.</td></tr>
+    <tr><td>Review trigger</td><td class="num">~EUR 912k+</td><td class="num">~EUR 1.170M+</td><td class="num">EUR 1.430M or lower</td><td class="num">55% or lower</td><td class="dl">Margin erosion. Review product mix, headcount and delivery workload.</td></tr>
+  </tbody>
+</table>
+<div class="callout risk"><strong>Guardrail:</strong> keep profit margin after salaries above <strong>60%</strong>. If salary and overhead rises toward <strong>EUR 912k+</strong>, profit margin falls toward <strong>55%</strong> and the plan should be reviewed.</div>
+
+<h3>2025 profitability benchmark (salary-inclusive)</h3>
+<table>
+  <thead><tr><th>Project</th><th class="num">Revenue</th><th class="num">Total cost</th><th class="num">Net profit</th><th class="num">Profit margin</th></tr></thead>
+  <tbody>
+    <tr><td>News</td><td class="num">EUR 1,071,873</td><td class="num">EUR 384,834</td><td class="num">EUR 687,039</td><td class="num">64%</td></tr>
+    <tr><td>Podcast</td><td class="num">EUR 249,275</td><td class="num">EUR 61,431</td><td class="num">EUR 187,844</td><td class="num">75%</td></tr>
+    <tr><td>Spotlight</td><td class="num">EUR 160,317</td><td class="num">EUR 53,366</td><td class="num">EUR 106,951</td><td class="num">67%</td></tr>
+    <tr class="tot"><td>Blended</td><td class="num">EUR 1,481,465</td><td class="num">EUR 499,631</td><td class="num">EUR 981,834</td><td class="num">~66%</td></tr>
+  </tbody>
+</table>
+<p class="small">The 2025 benchmark includes salaries, so it is the right comparison point for the projected profit margin after salaries. It is a margin benchmark, not a cost benchmark: 2027 costs will be higher, but the plan should still protect the historical profitability profile of Media.</p>
+```
+
   </section>
 
   <section>
