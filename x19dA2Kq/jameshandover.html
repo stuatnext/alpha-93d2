@@ -155,6 +155,9 @@
   .org .tier .node{font-size:13.5px;font-weight:600;}
   .org .parallel{margin-top:14px;font-size:13px;color:var(--muted);font-family:var(--font-mono);
     background:var(--surface-2);border:1px dashed var(--line);border-radius:9px;padding:9px 14px;}
+  .org .satlabel{font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted-2);margin:14px 0 8px;}
+  .org .tier.sat .node{background:var(--surface-2);border-style:dashed;font-weight:600;}
 
   /* table */
   .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:13px;margin-top:8px;background:var(--surface);}
@@ -335,7 +338,7 @@
 <section id="commercial"><div class="wrap reveal">
   <div class="eyebrow"><span class="nchip">02</span> Where marketing sits · the Commercial Charter</div>
   <h2>Marketing is the growth engine inside Commercial.</h2>
-  <p class="lede">The Commercial Department owns the complete revenue engine of NEXT.io: it unifies Marketing, Sales and Commercial Operations into one performance-driven system that converts brand influence into predictable, scalable growth. Marketing reports into Commercial so the whole engine is accountable as one.</p>
+  <p class="lede">The Commercial Department owns the complete revenue engine of NEXT.io: it unifies Marketing, Sales and Revenue Operations into one performance-driven system that converts brand influence into predictable, scalable growth. Marketing reports into Commercial so the whole engine is accountable as one.</p>
 
   <div class="grid g3">
     <div class="card">
@@ -494,6 +497,26 @@
     </div>
   </div>
 
+  <h4 class="sub">Satellite teams · specialist support</h4>
+  <p class="muted" style="font-size:14.5px;max-width:62ch">Around the core team sit specialist satellite teams that support every project and plug into the functions above. Some of this is delivered today through <a href="#work">HPL</a>; bringing it under clear, named ownership is part of the build.</p>
+  <div class="grid g3">
+    <div class="card">
+      <div class="role">Social Media · Head of Social Media</div>
+      <h3>Social Media</h3>
+      <p>Organic social strategy and execution across channels: audience growth, engagement and community-building, and amplifying the brand, event and content narratives. Led by a <b>Head of Social Media</b>, this team turns positioning into reach and reach into qualified attention.</p>
+    </div>
+    <div class="card">
+      <div class="role">Digital PR</div>
+      <h3>Digital PR</h3>
+      <p>Earned media and authority-building: coverage, commentary and thought-leadership placement in the titles your audience reads, plus the backlinks and share of voice that compound NEXT.io's influence over time.</p>
+    </div>
+    <div class="card">
+      <div class="role">Paid Marketing</div>
+      <h3>Paid Marketing</h3>
+      <p>Paid media strategy and performance across paid social, search, display and retargeting: turning budget into qualified traffic and conversions against campaign goals, with channel-level ROI reporting.</p>
+    </div>
+  </div>
+
   <h4 class="sub">The structure, today</h4>
   <div class="org">
     <div class="node lead">Stuart Crowley<small>Commercial Director</small></div>
@@ -506,7 +529,13 @@
       <div class="node">Akash<small>Digital Marketing Manager</small></div>
       <div class="node">Alina<small>Community Manager</small></div>
     </div>
-    <div class="parallel">Commercial Operations runs as a parallel pillar within Commercial, serving both Marketing and Sales.</div>
+    <div class="satlabel">Satellite teams</div>
+    <div class="tier sat">
+      <div class="node">Social Media<small>Head of Social Media</small></div>
+      <div class="node">Digital PR</div>
+      <div class="node">Paid Marketing</div>
+    </div>
+    <div class="parallel">Revenue Operations runs as a parallel pillar within Commercial, serving both Marketing and Sales.</div>
   </div>
   <p class="muted" style="font-size:14px;margin-top:14px">As the business scales (especially with NEXTPredict as a second brand), the plan splits Brand from Events: Nico moves toward a dedicated Head of Brand / Creative Director, and a Head of Event Marketing is hired or promoted from within. Specialist and campaign-manager roles expand per pillar only as revenue justifies them.</p>
 
@@ -697,9 +726,9 @@
 
 <script>
   (function(){
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var els = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in');}); return; }
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in');}); return; }
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
     }, {threshold:0.06, rootMargin:'0px 0px -6% 0px'});
