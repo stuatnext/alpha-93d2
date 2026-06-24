@@ -1,4 +1,4 @@
-<title>Handover Pack — James Clark, Director of Marketing · NEXT.io</title>
+<title>Handover Pack: James Clark, Director of Marketing · NEXT.io</title>
 <style>
   :root{
     --paper:#F5F4EF; --surface:#FFFFFF; --surface-2:#FAFAF6;
@@ -27,12 +27,11 @@
   strong{font-weight:650;color:var(--ink);}
   .chev{color:var(--yellow);font-weight:800;}
 
-  /* number chip — black square, yellow digit */
   .nchip{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--yellow);
     background:var(--black);min-width:24px;height:24px;border-radius:6px;
     display:inline-flex;align-items:center;justify-content:center;padding:0 6px;}
 
-  /* ---------- sticky nav ---------- */
+  /* sticky nav */
   nav.bar{position:sticky;top:0;z-index:50;background:rgba(245,244,239,.88);
     backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line);}
   nav.bar .wrap{display:flex;align-items:center;gap:20px;min-height:54px;}
@@ -44,7 +43,7 @@
   nav.bar .links a{color:var(--muted);border:0;white-space:nowrap;padding:4px 0;}
   nav.bar .links a:hover{color:var(--ink);background:none;border-bottom:2px solid var(--yellow);}
 
-  /* ---------- cover ---------- */
+  /* cover */
   .cover{background:var(--black);color:#F4F3EE;padding:74px 0 64px;position:relative;overflow:hidden;}
   .cover::after{content:"❯";position:absolute;right:-5%;top:4%;font-size:48vw;line-height:1;
     color:var(--yellow);opacity:.07;font-weight:800;pointer-events:none;}
@@ -64,14 +63,17 @@
     text-transform:uppercase;color:var(--black);background:var(--yellow);
     border-radius:3px;padding:5px 10px;margin-bottom:26px;font-weight:700;}
 
-  /* ---------- sections ---------- */
+  /* sections */
   section{padding:62px 0;border-top:1px solid var(--line);scroll-margin-top:64px;}
   section:first-of-type{border-top:0;}
+  h3[id]{scroll-margin-top:70px;}
   .eyebrow{display:flex;align-items:center;gap:12px;font-family:var(--font-mono);font-size:12px;
     letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 18px;font-weight:600;}
   h2{font-size:clamp(26px,3.6vw,36px);line-height:1.1;font-weight:800;letter-spacing:-.02em;
     margin:0 0 18px;max-width:20ch;text-wrap:balance;}
   h3{font-size:19px;font-weight:700;letter-spacing:-.01em;margin:0 0 6px;}
+  h4.sub{font-size:13px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.08em;
+    color:var(--muted);margin:26px 0 10px;font-weight:600;border-left:3px solid var(--yellow);padding-left:10px;}
   .lede{font-size:19.5px;line-height:1.55;color:var(--ink-soft);max-width:60ch;}
   .muted{color:var(--muted);}
 
@@ -92,12 +94,14 @@
     color:var(--ink-soft);margin-bottom:11px;border-left:3px solid var(--yellow);padding-left:9px;font-weight:600;}
   .card p{font-size:14.5px;line-height:1.55;color:var(--muted);margin:0;}
   .card p + p{margin-top:10px;}
+  .card ul{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:14px;line-height:1.5;}
+  .card ul li{margin-bottom:4px;}
   .card .tag{display:inline-block;margin-top:13px;font-size:12px;font-family:var(--font-mono);
     color:var(--ink-soft);background:var(--surface-2);border:1px solid var(--line);
     border-radius:999px;padding:3px 11px;}
   .card .tag.now{color:var(--black);background:var(--yellow);border-color:var(--yellow-deep);font-weight:600;}
 
-  /* meet list (leadership) */
+  /* meet list */
   .meet{display:grid;gap:0;margin-top:10px;border:1px solid var(--line);border-radius:13px;
     overflow:hidden;background:var(--surface);}
   .meet .row{display:grid;grid-template-columns:210px 1fr;gap:18px;padding:18px 22px;border-top:1px solid var(--line-soft);}
@@ -108,15 +112,42 @@
   .meet .why{color:var(--muted);font-size:15px;line-height:1.55;}
   .meet .why b{color:var(--ink-soft);}
 
+  /* checks list */
+  .checks{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px;grid-template-columns:1fr 1fr;}
+  .checks li{position:relative;padding-left:24px;font-size:15px;color:var(--ink-soft);line-height:1.5;}
+  .checks li::before{content:"❯";position:absolute;left:0;top:0;color:var(--ink);font-weight:800;font-size:13px;}
+  .checks li b{font-weight:650;}
+
+  /* lifecycle */
+  .lifecycle{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px;}
+  .lifecycle span{font-family:var(--font-mono);font-size:12.5px;font-weight:600;color:var(--ink-soft);
+    background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 12px;}
+  .lifecycle i{color:var(--yellow-deep);font-style:normal;font-weight:800;}
+
   /* process flow */
-  .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:8px;
-    counter-reset:step;}
+  .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:8px;counter-reset:step;}
   .flow .step{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:16px 16px 15px;}
   .flow .step::before{counter-increment:step;content:counter(step);font-family:var(--font-mono);
     font-size:12px;font-weight:700;color:var(--yellow);background:var(--black);width:24px;height:24px;
     border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:11px;}
+  .flow .step.lab::before{content:counter(step) " · " attr(data-lab);width:auto;padding:0 9px;letter-spacing:.04em;}
   .flow .step h4{margin:0 0 4px;font-size:14.5px;font-weight:700;}
   .flow .step p{margin:0;font-size:13px;line-height:1.5;color:var(--muted);}
+
+  /* org chart */
+  .org{margin-top:14px;display:flex;flex-direction:column;align-items:center;text-align:center;}
+  .org .node{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:11px 18px;font-weight:650;font-size:15px;max-width:340px;}
+  .org .node small{display:block;font-weight:400;color:var(--muted);font-family:var(--font-mono);
+    font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;margin-top:3px;}
+  .org .node.lead{background:var(--black);color:#fff;border-color:var(--black);}
+  .org .node.lead small{color:var(--yellow);}
+  .org .node.you{background:var(--yellow);border-color:var(--yellow-deep);color:var(--black);}
+  .org .node.you small{color:#5c4d00;}
+  .org .conn{width:2px;height:18px;background:var(--line);}
+  .org .tier{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+  .org .tier .node{font-size:13.5px;font-weight:600;}
+  .org .parallel{margin-top:14px;font-size:13px;color:var(--muted);font-family:var(--font-mono);
+    background:var(--surface-2);border:1px dashed var(--line);border-radius:9px;padding:9px 14px;}
 
   /* table */
   .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:13px;margin-top:8px;background:var(--surface);}
@@ -151,15 +182,16 @@
   /* callout */
   .callout{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;
     background:var(--yellow-wash);border:1px solid var(--yellow-edge);border-left:5px solid var(--black);
-    border-radius:13px;padding:20px 24px;margin-top:8px;}
+    border-radius:13px;padding:20px 24px;margin-top:16px;}
   .callout .mk{font-size:26px;line-height:1;color:var(--black);font-weight:800;}
   .callout p{margin:0;font-size:15px;line-height:1.58;color:var(--ink-soft);max-width:none;}
+  .callout p + p{margin-top:10px;}
   .callout.warm{background:var(--black);border-color:var(--black);}
   .callout.warm .mk{color:var(--yellow);}
   .callout.warm p{color:#E6E4DA;}
   .callout.warm p b{color:var(--yellow);}
 
-  /* GTM cascade */
+  /* cascade */
   .cascade{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;margin-top:10px;}
   .cascade .box{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:20px 22px;}
   .cascade .box .role{font-family:var(--font-mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;
@@ -172,11 +204,18 @@
   .cascade .box.you p{color:#C7C5BB;}
   .cascade .arrow{display:flex;align-items:center;font-size:28px;color:var(--yellow-deep);font-weight:800;}
 
-  /* chips row */
+  /* chips + buttons */
   .chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px;}
   .chips span{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);
     background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:7px 12px;}
   .chips span b{color:var(--black);font-weight:700;box-shadow:inset 0 -.5em 0 var(--yellow-wash);}
+  .linkrow{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:16px;}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--black);color:#fff;
+    border-radius:10px;padding:12px 18px;font-weight:650;font-size:15px;border-bottom:0;}
+  .btn .chev{color:var(--yellow);}
+  .btn:hover{background:var(--black-2);}
+  .wip{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--black);background:var(--yellow);border-radius:999px;padding:4px 10px;}
 
   /* footer */
   footer{background:var(--black);color:#B7B5AB;padding:46px 0;}
@@ -194,6 +233,7 @@
     nav.bar .mark{display:none;}
     nav.bar .links{margin-left:0;}
     .meet .row{grid-template-columns:1fr;gap:6px;}
+    .checks{grid-template-columns:1fr;}
     .cascade{grid-template-columns:1fr;}
     .cascade .arrow{transform:rotate(90deg);justify-content:center;}
   }
@@ -204,10 +244,11 @@
   <div class="links">
     <a href="#welcome">Welcome</a>
     <a href="#weeks">First weeks</a>
-    <a href="#where">Where you sit</a>
+    <a href="#commercial">Commercial</a>
+    <a href="#role">The role</a>
     <a href="#team">Your team</a>
-    <a href="#meet">People to meet</a>
-    <a href="#drive">September Drive</a>
+    <a href="#meet">People</a>
+    <a href="#drive">Sep Drive</a>
     <a href="#work">The work</a>
     <a href="#rhythm">Rhythm</a>
   </div>
@@ -218,7 +259,7 @@
   <span class="conf">Confidential · Internal</span>
   <p class="kicker">Handover Pack</p>
   <h1>Welcome aboard, <em>James.</em></h1>
-  <p class="sub">Everything you need for your first weeks as Director of Marketing — the team, the people, and where you plug in.</p>
+  <p class="sub">Everything you need for your first weeks as Director of Marketing: the team, the people, and where you plug in.</p>
   <div class="meta">
     <span><b>For</b> &nbsp;James Clark · Director of Marketing</span>
     <span><b>From</b> &nbsp;Stuart Crowley · Commercial Director</span>
@@ -232,131 +273,258 @@
 <section id="welcome"><div class="wrap reveal">
   <div class="eyebrow"><span class="nchip">00</span> A note to start</div>
   <div class="welcome">
-    <p>James — so excited to have you with us. <strong>Genuinely.</strong> We've spent months deliberately designing the marketing operating system this company needs for the next three-to-five years, and you're the person we built the role around.</p>
-    <p>This pack is your map for the first few weeks. None of it is a test. The early job is simple: <strong>get to know the team, get to know the leadership group, and understand how we work</strong> — not to change anything yet. The strategic building starts around mid-July, and you'll never start from a blank page; I'll hand you the commercial direction to build from.</p>
-    <p>We'll cover the people side properly in our 1:1s — I'll give you my candid read on every member of the team. For now, read, meet, and ask me anything. No stress. Let's go.</p>
-    <p class="sig">— <b>Stuart</b></p>
+    <p>James, so excited to have you with us. <strong>Genuinely.</strong> We've spent months deliberately designing the marketing operating system this company needs for the next three-to-five years, and you're the person we built the role around.</p>
+    <p>This pack is your map for the first few weeks. None of it is a test. The early job is simple: <strong>get to know the team, get to know the leadership group, and understand how we work</strong>, not to change anything yet. The strategic building starts around mid-July, and you'll never start from a blank page; I'll hand you the commercial direction to build from.</p>
+    <p>We'll cover the people side properly in our 1:1s; I'll give you my candid read on every member of the team. For now, read, meet, and ask me anything. No stress. Let's go.</p>
+    <p class="sig"><b>Stuart</b></p>
   </div>
 </div></section>
 
 <section id="weeks"><div class="wrap reveal">
   <div class="eyebrow"><span class="nchip">01</span> The shape of your first weeks</div>
   <h2>Land, learn, then build.</h2>
-  <p class="lede">Three phases. The first two are about people and context. The third — from mid-July — is where you start shaping strategy. Everything below this section is the detail behind these steps.</p>
+  <p class="lede">Three phases. The first two are about people and context. The third, from mid-July, is where you start shaping strategy. Everything below this section is the detail behind these steps.</p>
 
   <div class="timeline">
     <div class="tl live">
       <div class="dot"></div>
       <div class="when">Week 1 · Land &amp; read</div>
       <h3>Meet your team and read the foundations</h3>
-      <p>Settle in with me first to set our cadence. Read the two charters and the <b>NEXTPredict GTM</b> — that's your worked example of how strategy reaches you. Have a first 1:1 with each of your four direct reports: <b>Nico, Oli, Akash and Alina</b>. Nico is back from a month of leave the same week you arrive and is your bridge into the team and culture.</p>
+      <p>Settle in with me first to set our cadence. Read the two foundational documents (<a href="#commercial">the Commercial Charter</a> and <a href="#why">the marketing restructure</a>) and the <a href="#work">NEXTPredict GTM</a>, which is your worked example of how strategy reaches you. Have a first 1:1 with each of your four direct reports: <b>Nico, Oli, Akash and Alina</b>. Nico is back from a month of leave the same week you arrive and is your bridge into the team and culture.</p>
     </div>
     <div class="tl">
       <div class="dot"></div>
       <div class="when">Week 2 · Meet the leadership group</div>
       <h3>Introduce yourself across the leadership team</h3>
-      <p>Short intro calls with <b>Pierre</b> (you know him already), <b>Ana, Gerda, Rory, Kim and Will</b>. Ana will brief you properly on the September Drive. Sit in on the Monday team meeting and the Thursday leadership meeting, and get close to <b>NEXTPredict</b> — it's live and it's Oli's number-one right now.</p>
+      <p>Short intro calls with <a href="#meet">Pierre, Ana, Gerda, Rory, Kim and Will</a>. You know Pierre already; Ana will brief you properly on the September Drive. Sit in on the Monday team meeting and the Thursday leadership meeting, and get close to <a href="#work">NEXTPredict</a>, which is live and is Oli's number-one right now.</p>
     </div>
     <div class="tl">
       <div class="dot"></div>
       <div class="when">From mid-July · Start building</div>
       <h3>Turn the GTMs into granular marketing plans</h3>
-      <p>I'll be building the commercial strategy and go-to-market for each project; you build the <b>granular critical paths and marketing strategies</b> beneath them, then direct your team from there. Start with NEXTPredict — the GTM is already written, so you're building the execution calendar from it, not from scratch.</p>
+      <p>I'll be building the commercial strategy and go-to-market for each project; you build the <b>granular critical paths and marketing strategies</b> beneath them, then direct your team from there. Start with NEXTPredict: <a href="#work">the GTM is already written</a>, so you're building the execution calendar from it, not from scratch.</p>
     </div>
     <div class="tl">
       <div class="dot"></div>
       <div class="when">By 31 July · First formal deliverable</div>
       <h3>Marketing Strategy into the 2027 briefs</h3>
-      <p>Your section — <b>Marketing Strategy</b> — is due in each 2027 project brief (Brief Stage 2). This is the September Drive's biggest content milestone; see that section for exactly where you sit in it.</p>
+      <p>Your section, <b>Marketing Strategy</b>, is due in each 2027 project brief (Brief Stage 2). This is the September Drive's biggest content milestone; see <a href="#plug-in">where you plug in</a> for exactly where you sit in it.</p>
     </div>
     <div class="tl">
       <div class="dot"></div>
       <div class="when">First week of August · Present</div>
       <h3>Present the marketing slot</h3>
-      <p>You present the Marketing Strategy section in the 2027 strategy presentations, approved by Pierre. If you're not ready yet, I cover it — no pressure to be fully up to speed.</p>
+      <p>You present the Marketing Strategy section in the 2027 strategy presentations, approved by Pierre. If you're not ready yet, I cover it. No pressure to be fully up to speed.</p>
     </div>
     <div class="tl">
       <div class="dot"></div>
       <div class="when">Later · We'll get there</div>
       <h3>Team processes, tracking &amp; KPIs</h3>
-      <p>Marketing processes, progress tracking and the right KPIs for the team are the next layer — we'll build them together once you've found your feet. The restructure plan does ask the Director to set baseline metrics in the first 30 days, so it's worth knowing it's there, but honestly: no stress.</p>
+      <p>Marketing processes, progress tracking and the right KPIs for the team are the next layer, and we'll build them together once you've found your feet. <a href="#role">The restructure plan</a> does ask the Director to set baseline metrics in the first 30 days, so it's worth knowing it's there, but honestly: no stress.</p>
     </div>
   </div>
 </div></section>
 
-<section id="where"><div class="wrap reveal">
-  <div class="eyebrow"><span class="nchip">02</span> Where marketing sits</div>
+<section id="commercial"><div class="wrap reveal">
+  <div class="eyebrow"><span class="nchip">02</span> Where marketing sits · the Commercial Charter</div>
   <h2>Marketing is the growth engine inside Commercial.</h2>
-  <p class="lede">Marketing reports into the Commercial Department alongside Sales and Revenue Operations, so the whole revenue engine is accountable as one system. Your job is to make marketing a strategic engine, not a service desk.</p>
+  <p class="lede">The Commercial Department owns the complete revenue engine of NEXT.io: it unifies Marketing, Sales and Revenue Operations into one performance-driven system that converts brand influence into predictable, scalable growth. Marketing reports into Commercial so the whole engine is accountable as one.</p>
 
   <div class="grid g3">
     <div class="card">
       <div class="role">Pillar · Marketing</div>
       <h3>Influence &amp; demand</h3>
-      <p>Brand authority, demand generation, qualified audience growth, and marketing-sourced &amp; marketing-influenced pipeline. <b>This is yours.</b></p>
+      <p>Brand positioning and authority, demand generation, audience growth within target segments, marketing-sourced &amp; influenced pipeline, campaign ROI and distribution across owned and paid channels. <b>This is yours.</b></p>
     </div>
     <div class="card">
       <div class="role">Pillar · Sales</div>
       <h3>Revenue closure</h3>
-      <p>Pipeline progression, forecast accuracy, margin discipline, expansion and retention. Led by Will.</p>
+      <p>Revenue closure, forecast accuracy, pipeline progression, margin discipline, and client expansion and retention. Sales converts qualified demand into revenue. Led by Will.</p>
     </div>
     <div class="card">
       <div class="role">Pillar · RevOps</div>
       <h3>The infrastructure</h3>
-      <p>CRM architecture, lifecycle stages, attribution, dashboards and data hygiene. RevOps owns the system; marketing uses it well.</p>
+      <p>CRM architecture and integrity, lifecycle &amp; funnel-stage governance, attribution, dashboards, forecasting, marketing automation and data hygiene. RevOps owns the system; marketing uses it well.</p>
     </div>
   </div>
 
-  <div class="callout" style="margin-top:18px">
+  <h4 class="sub">The revenue lifecycle Commercial owns</h4>
+  <div class="lifecycle">
+    <span>Market awareness</span><i>❯</i>
+    <span>Audience engagement</span><i>❯</i>
+    <span>Lead generation</span><i>❯</i>
+    <span>Qualification &amp; progression</span><i>❯</i>
+    <span>Sales conversion</span><i>❯</i>
+    <span>Expansion &amp; retention</span>
+  </div>
+
+  <h4 class="sub">How we operate · performance principles</h4>
+  <ul class="checks">
+    <li><b>Revenue impact</b> is the primary measure of success.</li>
+    <li><b>Influence and revenue</b> must compound together.</li>
+    <li>Campaigns require <b>defined objectives</b> and measurable outcomes.</li>
+    <li><b>Data</b> informs decision-making.</li>
+    <li><b>Underperformance</b> is addressed promptly.</li>
+    <li><b>Ownership</b> is explicit and measurable.</li>
+    <li><b>Cross-functional alignment</b> is mandatory.</li>
+    <li>Execution is delegated; <b>outcome accountability</b> sits with commercial leadership.</li>
+  </ul>
+
+  <div class="callout">
     <span class="mk">❯</span>
-    <p><b>The principle that runs through everything:</b> influence is treated as a measurable commercial asset — it lowers acquisition cost, strengthens retention and pricing power, and compounds over time. Revenue growth that isn't backed by strengthening influence is considered fragile. Your role is leadership, strategy and systems — owning the strategy across events, media and brand — not hands-on campaign execution.</p>
+    <p><b>The principle that runs through everything:</b> influence is treated as a measurable commercial asset. It lowers acquisition cost, strengthens sponsor and partner retention and pricing power, shortens the sales cycle and builds long-term resilience. Revenue growth that isn't backed by strengthening influence is considered fragile and unsustainable.</p>
+  </div>
+</div></section>
+
+<section id="why"><div class="wrap reveal">
+  <div class="eyebrow"><span class="nchip">03</span> Why this role exists</div>
+  <h2>Marketing as an engine, not a support function.</h2>
+  <p class="lede">The catalyst for the restructure was Nico stepping away from the Marketing Director role proposed to him in September 2025. He was honest about where his strengths lie. Rather than hire into the old setup, we treated it as a chance to design the architecture properly, so we scale deliberately rather than reactively.</p>
+
+  <p>Marketing at NEXT.io cannot run as a reactive service desk. It must be a strategic growth engine that sets the narrative, drives visibility, spots opportunities, builds authority systematically and converts influence into revenue. We sell marketing and growth services to the industry, so we should be demonstrating the gold standard ourselves.</p>
+
+  <h4 class="sub">The principles the structure is built on</h4>
+  <ul class="checks">
+    <li>Marketing reports into <b>Commercial</b> for unified revenue accountability.</li>
+    <li>Sales, Marketing and RevOps operate as <b>one aligned system</b>.</li>
+    <li>Influence is a <b>measurable asset</b> that compounds over time.</li>
+    <li>Brand authority and commercial performance <b>strengthen each other</b>.</li>
+    <li>Designed around <b>functional excellence</b>, not product silos, to scale.</li>
+    <li>Ownership is explicit; <b>underperformance is addressed promptly</b>.</li>
+  </ul>
+
+  <div class="callout warm">
+    <span class="mk">❝</span>
+    <p><b>On Nico:</b> he was offered this Director role and, after real reflection, declined in February 2026, because the strategic and process-driven side isn't where he does his best work. He moves to Head of Event Marketing &amp; Brand and becomes your bridge in: helping you settle, read the culture and navigate the team, and covering marketing leadership when you're away. This isn't a step backwards; it's putting people where they deliver the most value.</p>
+  </div>
+</div></section>
+
+<section id="role"><div class="wrap reveal">
+  <div class="eyebrow"><span class="nchip">04</span> Your role, defined</div>
+  <h2>A strategic operator who could grow into a CMO.</h2>
+  <p class="lede">You own the full marketing strategy across events, media, brand and commercial campaigns: comfortable presenting and defending strategy, owning budget and ROI, setting performance standards, managing the team functions and bridging influence and revenue. This is a leadership role focused on strategy, systems and team performance, not hands-on campaign execution.</p>
+
+  <h4 class="sub">Core responsibilities</h4>
+  <ul class="checks">
+    <li>Own the <b>annual marketing strategy</b> across events, media, research and future verticals.</li>
+    <li>Define <b>positioning themes</b> aligned to company objectives.</li>
+    <li>Build the <b>marketing calendar</b> in coordination with sales priorities.</li>
+    <li>Drive <b>marketing-sourced and influenced pipeline</b> growth.</li>
+    <li>Align campaigns with <b>revenue targets</b>; monitor conversion.</li>
+    <li>Oversee <b>channel strategy</b>: social, email, SEO, paid, PR.</li>
+    <li><b>Lead and develop the team</b> with clear accountability.</li>
+    <li>Own the <b>budget</b> and resource allocation.</li>
+    <li>Champion <b>AI-enabled</b> marketing efficiency and intelligence.</li>
+  </ul>
+
+  <h4 class="sub">How success is measured</h4>
+  <div class="grid g3">
+    <div class="card">
+      <div class="role">Commercial impact</div>
+      <p>Marketing-sourced pipeline, ticket-sales contribution, conversion-rate improvements and paid-channel ROI.</p>
+    </div>
+    <div class="card">
+      <div class="role">Influence &amp; authority</div>
+      <p>Qualified audience growth, repeat sponsors and partners, share of voice, direct &amp; branded-search growth, inbound commercial enquiries.</p>
+    </div>
+    <div class="card">
+      <div class="role">Operational excellence</div>
+      <p>On-time campaign execution, reporting discipline, team performance uplift, and a reduction in reactive work.</p>
+    </div>
+  </div>
+
+  <h4 class="sub">The accountability framework</h4>
+  <p>The role is a senior hire, so the plan ties it to measurable return. Three mechanisms are worth knowing about now:</p>
+  <div class="grid g3">
+    <div class="card">
+      <div class="role">Break-even</div>
+      <p>Generate a verifiable increase in marketing-sourced pipeline that offsets the role's fully loaded cost within the first two quarters. Reviewed at the end of Q2.</p>
+    </div>
+    <div class="card">
+      <div class="role">LTV / CAC</div>
+      <p>Establish and improve lifetime value vs acquisition cost by segment and channel, reported quarterly. The proof that influence is a commercial asset, not a vanity metric.</p>
+    </div>
+    <div class="card">
+      <div class="role">EBITDA protection</div>
+      <p>Scaling (specialist hires, splitting Brand from Events) is gated by performance. Your bonus is tied to commercial KPIs and company EBITDA.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="mk">❯</span>
+    <p><b>The one early, formal deliverable:</b> within your first 30 days the plan asks you to define a set of baselines with Sales and RevOps: current marketing-sourced and marketing-influenced pipeline, delegate &amp; ticket volume attributable to campaigns, and cost per acquisition by channel. That's what the break-even target is calculated from.</p>
+    <p><b>My steer:</b> that's the formal frame. In practice we'll build it together and there's no rush in week one. I'm flagging it so nothing here is a surprise, not to put a clock on you.</p>
   </div>
 </div></section>
 
 <section id="team"><div class="wrap reveal">
-  <div class="eyebrow"><span class="nchip">03</span> Your team</div>
+  <div class="eyebrow"><span class="nchip">05</span> Your team &amp; how it's built</div>
   <h2>Four direct reports, three functional pillars.</h2>
-  <p class="lede">The structure is built around functional excellence rather than product silos — Brand defines positioning, Growth distributes it, Commercial converts it. Events, media and research all plug into the same system. Here's who owns what, and where their heads are right now.</p>
+  <p class="lede">The structure is built around functional excellence rather than product silos: Brand defines positioning, Growth distributes it, Commercial converts it, and RevOps measures it. The current job titles don't yet map cleanly onto these functions, and tightening that up is part of what you're here to do. Here's who owns what, and where their heads are right now.</p>
 
   <div class="grid g2">
     <div class="card">
-      <div class="role">Brand &amp; Authority · returning from leave</div>
-      <h3>Nicolas Jonasson <span class="muted" style="font-weight:400;font-size:15px">— Nico</span></h3>
-      <p>Head of Event Marketing &amp; Brand. Owns positioning, narrative and creative direction across the company. Nico was offered this Director role and chose, candidly, to play to his strengths in brand and creative instead — so he's your <b>bridge into the team</b>, not a rival for the seat.</p>
-      <p><b>Focus as you join:</b> the next wave of events — NEXT Retreats, NEXT New York 2027 and NEXT Valletta 2027. Getting the websites in ship-shape and a full plan to start making noise, so he covers <b>top of funnel</b> and Oli covers the middle with ticket sales.</p>
+      <div class="role">Head of Event Marketing &amp; Brand</div>
+      <h3>Nicolas Jonasson <span class="muted" style="font-weight:400;font-size:15px">(Nico)</span></h3>
+      <p>Head of Event Marketing &amp; Brand. Owns brand positioning and messaging, annual narrative themes, creative direction across the company (with the creative team), visual-identity governance and event/media positioning. The job: make NEXT.io's influence compound over time.</p>
+      <p><b>Focus as you join:</b> the next wave of events (NEXT Retreats, NEXT New York 2027 and NEXT Valletta 2027). Getting the websites in ship-shape and a full plan to start making noise, so he covers <b>top of funnel</b> and Oli covers the middle with ticket sales.</p>
       <span class="tag now">Back from a month's leave as you start</span>
     </div>
     <div class="card">
-      <div class="role">Commercial Marketing</div>
-      <h3>Oliver <span class="muted" style="font-weight:400;font-size:15px">— Oli</span></h3>
-      <p>Converts attention into revenue: ticket-sales campaigns, sponsorship &amp; lead generation, landing-page conversion, nurture and retargeting sequences aligned directly to sales targets.</p>
-      <p><b>Focus right now:</b> ticket sales and pipeline generation for <b>NEXTPredict</b> — his single biggest priority. I've been heavily involved in direct outreach alongside him.</p>
+      <div class="role">Growth Marketing Manager</div>
+      <h3>Oliver <span class="muted" style="font-weight:400;font-size:15px">(Oli)</span></h3>
+      <p>Converts attention into revenue: ticket-sales and sponsorship campaigns, lead generation and nurture (MQL to SAL to SQL), landing-page conversion, offer positioning and urgency mechanics, and his own bottom-of-funnel retargeting and sales sequences, aligned to sales targets.</p>
+      <p><b>Focus right now:</b> ticket sales and pipeline generation for <b>NEXTPredict</b>, his single biggest priority. I've been heavily involved in direct outreach alongside him.</p>
       <span class="tag now">Owns the NEXTPredict ticket engine</span>
     </div>
     <div class="card">
-      <div class="role">Growth &amp; Distribution</div>
+      <div class="role">Digital Marketing Manager</div>
       <h3>Akash</h3>
-      <p>Performance-first reach: social, email &amp; newsletter, SEO, paid media and PR, plus distribution of news, reports, podcast and spotlight content. Turns narrative into traffic and traffic into measurable funnel movement.</p>
-      <p><b>Worth knowing:</b> the plan deliberately leaves it to you to set clearer KPIs for this function and assess performance against them — so you own the standards from day one.</p>
-      <span class="tag">Channels &amp; audience growth</span>
+      <p>In practice his remit spans report and whitepaper marketing, lead generation through gated content, and some of the marketing for the podcast and spotlights (an area shared with Lorena). It's the broadest and least clearly defined patch on the team.</p>
+      <p><b>Worth knowing:</b> this function needs the most structure. The plan deliberately leaves it to you to set clear KPIs and standards here and assess performance against them, so forming your own read early is a priority.</p>
+      <span class="tag">Reports, gated content, podcast &amp; spotlight</span>
     </div>
     <div class="card">
-      <div class="role">Community</div>
-      <h3>Alina <span class="muted" style="font-weight:400;font-size:15px">— Alina Moskalova</span></h3>
-      <p>Owns Community &amp; Marketing NEXT — community build and distribution, and the market-signal feedback loop (objections, named accounts, competitor sightings flowing back to the team).</p>
+      <div class="role">Community Manager</div>
+      <h3>Alina <span class="muted" style="font-weight:400;font-size:15px">(Alina Moskalova)</span></h3>
+      <p>Owns Community &amp; Marketing NEXT: community build and distribution, and the market-signal feedback loop (objections, named accounts, competitor sightings flowing back to the team).</p>
       <p>She's also the project owner for the Community &amp; Marketing NEXT brief in the September Drive.</p>
       <span class="tag">Community &amp; market signal</span>
     </div>
   </div>
 
-  <div class="callout warm" style="margin-top:18px">
+  <h4 class="sub">The structure, today</h4>
+  <div class="org">
+    <div class="node lead">Stuart Crowley<small>Commercial Director</small></div>
+    <div class="conn"></div>
+    <div class="node you">James Clark<small>Director of Marketing</small></div>
+    <div class="conn"></div>
+    <div class="tier">
+      <div class="node">Nico<small>Head of Event Mktg &amp; Brand</small></div>
+      <div class="node">Oli<small>Growth Marketing Manager</small></div>
+      <div class="node">Akash<small>Digital Marketing Manager</small></div>
+      <div class="node">Alina<small>Community Manager</small></div>
+    </div>
+    <div class="parallel">Revenue Operations runs as a parallel pillar within Commercial, serving both Marketing and Sales.</div>
+  </div>
+  <p class="muted" style="font-size:14px;margin-top:14px">As the business scales (especially with NEXTPredict as a second brand), the plan splits Brand from Events: Nico moves toward a dedicated Head of Brand / Creative Director, and a Head of Event Marketing is hired or promoted from within. Specialist and campaign-manager roles expand per pillar only as revenue justifies them.</p>
+
+  <h4 class="sub">How it gets built · phased, not all at once</h4>
+  <div class="flow">
+    <div class="step lab" data-lab="Now"><h4>Stabilise</h4><p>Nico's transition confirmed, processes documented, clean accountability, Stuart leading strategy in the interim.</p></div>
+    <div class="step lab" data-lab="Done"><h4>Recruit</h4><p>The Director search: you. Interview criteria aligned to this architecture.</p></div>
+    <div class="step lab" data-lab="You"><h4>Build</h4><p>You onboard and take strategic ownership; pillars formalise; hiring decisions made against real gaps; the calendar and planning processes get established.</p></div>
+    <div class="step lab" data-lab="Next"><h4>Scale</h4><p>Specialist roles expand as revenue justifies; Head of Brand and Head of Event Marketing emerge.</p></div>
+  </div>
+
+  <div class="callout warm">
     <span class="mk">❝</span>
-    <p>I'll give you my honest take on each person's strengths and development areas in our 1:1s — that's a conversation, not a document. Use your first weeks to form your own read first; then we'll compare notes.</p>
+    <p>I'll give you my honest take on each person's strengths and development areas in our 1:1s; that's a conversation, not a document. Use your first weeks to form your own read first, then we'll compare notes.</p>
   </div>
 </div></section>
 
 <section id="meet"><div class="wrap reveal">
-  <div class="eyebrow"><span class="nchip">04</span> People to meet</div>
+  <div class="eyebrow"><span class="nchip">06</span> People to meet</div>
   <h2>Introduce yourself to the leadership team.</h2>
   <p class="lede">A round of short intro calls in your first couple of weeks. You already know Pierre well; the rest are the people you'll plan, present and deliver alongside through the September Drive and beyond.</p>
 
@@ -366,52 +534,52 @@
       <div class="why">You two already know each other well. Pierre is the <b>final approver</b> on every project brief and strategy presentation, so your August marketing slot ultimately lands with him.</div>
     </div>
     <div class="row">
-      <div class="who">Ana Maria Hitzfitz<span>Revenue &amp; cost sign-off</span></div>
-      <div class="why">Ana owns <b>Revenue &amp; Cost-of-Sales approval</b> across the company's 2027 projects. <b>She'll brief you properly on the September Drive</b> — treat her as your primary guide to how the planning cycle really works.</div>
+      <div class="who">Ana Maria Hitzfitz<span>Chief Operating Officer</span></div>
+      <div class="why">Ana is <b>COO</b> and owns <b>Revenue &amp; Cost-of-Sales approval</b> across the company's 2027 projects. <b>She'll brief you properly on the September Drive</b>, so treat her as your primary guide to how the planning cycle really works.</div>
     </div>
     <div class="row">
-      <div class="who">Gerda Meltti<span>Across planning &amp; approvals</span></div>
-      <div class="why">Gerda is on the approval and distribution list for every project in the Drive. Worth an early call to understand what she signs off and how she likes information presented.</div>
+      <div class="who">Gerda Meltti<span>Group Events Director</span></div>
+      <div class="why">Gerda runs <b>event operations</b> across the portfolio (and into media), and is on every project's approval and distribution list. A key partner on the operational side of every in-person event your campaigns support.</div>
     </div>
     <div class="row">
       <div class="who">Rory Credland<span>Head of Global Relationships</span></div>
-      <div class="why">Owns operator relationships, speakers and the relationships strategy on events. For NEXTPredict he guards content and sensitive operator/speaker approvals — a key partner when your campaigns touch the agenda.</div>
+      <div class="why">Owns operator relationships, speakers and the relationships strategy on events. For NEXTPredict he guards content and sensitive operator/speaker approvals, so he's a key partner when your campaigns touch the agenda.</div>
     </div>
     <div class="row">
-      <div class="who">Kim Yuhl<span>Media</span></div>
-      <div class="why">Leads the media &amp; community side — Multimedia (Podcast &amp; Spotlights) and News, NEXT Win &amp; Reports. Your marketing strategies and her editorial output need to pull together, especially on content-as-proof.</div>
+      <div class="who">Kim Yuhl<span>Media Director</span></div>
+      <div class="why">Leads the media &amp; community side: Multimedia (Podcast &amp; Spotlights) and News, NEXT Win &amp; Reports. Your marketing strategies and her editorial output need to pull together, especially on content-as-proof.</div>
     </div>
     <div class="row">
       <div class="who">William Purchase<span>Sales Director · Will</span></div>
-      <div class="why">Runs sales and B2B partnership revenue. You and Will are the two halves of the same engine — your marketing-sourced pipeline feeds his close. Get aligned early on what "qualified" means.</div>
+      <div class="why">Runs sales and B2B partnership revenue. You and Will are the two halves of the same engine: your marketing-sourced pipeline feeds his close. Get aligned early on what "qualified" means.</div>
     </div>
   </div>
 </div></section>
 
 <section id="drive"><div class="wrap reveal">
-  <div class="eyebrow"><span class="nchip">05</span> The September Drive</div>
-  <h2>The yearly planning cycle — getting 2027 ready before everyone else.</h2>
-  <p class="lede">Every year we plan ahead for the next. The goal: have all 2027 strategies and budgets — every department, every project — ready by the first week of September 2026, so we're ahead of every other company's budget decisions. Ten projects, five deadlines, one shared hub. Ana will give you the full picture.</p>
+  <div class="eyebrow"><span class="nchip">07</span> The September Drive</div>
+  <h2>The yearly planning cycle: getting 2027 ready before everyone else.</h2>
+  <p class="lede">Every year we plan ahead for the next. The goal: have all 2027 strategies and budgets, every department and every project, ready by the first week of September 2026, so we're ahead of every other company's budget decisions. Ten projects, five deadlines, one shared hub. Ana will give you the full picture.</p>
 
   <div class="flow">
     <div class="step"><h4>Kickoff</h4><p>Define each project's 2027 vision, audience and high-level targets.</p></div>
     <div class="step"><h4>Product &amp; COS</h4><p>Revise products line by line; set preliminary revenue and cost of sales.</p></div>
     <div class="step"><h4>Rev &amp; COS approval</h4><p>Present to Pierre &amp; Ana; get sign-off by email.</p></div>
-    <div class="step"><h4>Strategy &amp; brief</h4><p>Build the full brief and go-to-market — your marketing strategy lives here.</p></div>
+    <div class="step"><h4>Strategy &amp; brief</h4><p>Build the full brief and go-to-market; your marketing strategy lives here.</p></div>
     <div class="step"><h4>Approve &amp; share</h4><p>Final brief approved by Pierre; shared with the whole company.</p></div>
   </div>
 
-  <h3 style="margin-top:34px">Where you plug in</h3>
-  <p>Each project has a <b>Project Owner</b> who builds the brief, but every department lead fills in their own section. <b>Marketing Strategy is yours</b> in every brief — objectives, channels, messaging, positioning, campaign goals, KPIs — and on in-person events you also own the <b>Campaign Timeline</b>, <b>Sales Collateral</b> and <b>monthly ticket-sales targets</b>. You then present the marketing slot in the early-August strategy presentations (I'll cover it if you're not ready).</p>
+  <h3 id="plug-in" style="margin-top:34px">Where you plug in</h3>
+  <p>Each project has a <b>Project Owner</b> who builds the brief, but every department lead fills in their own section. <b>Marketing Strategy is yours</b> in every brief: objectives, channels, messaging, positioning, campaign goals and KPIs. On in-person events you also own the <b>Campaign Timeline</b>, <b>Sales Collateral</b> and <b>monthly ticket-sales targets</b>. You then present the marketing slot in the early-August strategy presentations (I cover it if you're not ready). Note the cascade: the <a href="#work">Commercial Strategy / GTM</a> is mine to provide; your Marketing Strategy builds on top of it.</p>
 
   <h3 style="margin-top:28px">The deadline calendar</h3>
   <div class="tablewrap">
     <table>
       <thead><tr><th>Date</th><th>Milestone</th><th>What it means for you</th></tr></thead>
       <tbody>
-        <tr><td class="num">30 Jun</td><td><b>Brief Stage 1</b></td><td class="muted">In flight as you arrive — observe, don't own.</td></tr>
+        <tr><td class="num">30 Jun</td><td><b>Brief Stage 1</b></td><td class="muted">In flight as you arrive; observe, don't own.</td></tr>
         <tr><td class="num">10 Jul</td><td><b>Preliminary Rev &amp; COS</b></td><td class="muted">Later-cycle projects lock preliminary financials.</td></tr>
-        <tr><td class="num">31 Jul</td><td><b>Brief Stage 2 — dept strategies</b></td><td><span class="pill you">Your first deliverable</span> Marketing Strategy in each brief.</td></tr>
+        <tr><td class="num">31 Jul</td><td><b>Brief Stage 2: dept strategies</b></td><td><span class="pill you">Your first deliverable</span> Marketing Strategy in each brief.</td></tr>
         <tr><td class="num">1st wk Aug</td><td><b>Strategy presentation</b></td><td><span class="pill you">You present</span> the marketing slot, approved by Pierre.</td></tr>
         <tr><td class="num">9 Sep</td><td><b>Brief Stage 3 · shared</b></td><td class="muted">Final briefs shared with the whole company.</td></tr>
       </tbody>
@@ -430,7 +598,7 @@
         <tr><td><b>NEXT Predict</b></td><td>Desi Zlatkova</td><td class="num">N/A</td><td><span class="pill a">In progress</span></td></tr>
         <tr><td><b>External projects</b></td><td>Angelica Leon</td><td class="num">3 Aug</td><td><span class="pill a">In progress</span></td></tr>
         <tr><td><b>HR Connect</b></td><td>Heidi Lofthus</td><td class="num">3 Aug</td><td><span class="pill r">Behind</span></td></tr>
-        <tr><td><b>Multimedia — Podcast &amp; Spotlights</b></td><td>Kim Yuhl</td><td class="num">4 Aug</td><td><span class="pill a">In progress</span></td></tr>
+        <tr><td><b>Multimedia: Podcast &amp; Spotlights</b></td><td>Kim Yuhl</td><td class="num">4 Aug</td><td><span class="pill a">In progress</span></td></tr>
         <tr><td><b>News, NEXT Win &amp; Reports</b></td><td>Kim Yuhl</td><td class="num">6 Aug</td><td><span class="pill a">In progress</span></td></tr>
         <tr><td><b>Community &amp; Marketing NEXT</b></td><td>Alina Moskalova</td><td class="num">31 Jul</td><td><span class="pill r">Behind</span></td></tr>
       </tbody>
@@ -440,7 +608,7 @@
 </div></section>
 
 <section id="work"><div class="wrap reveal">
-  <div class="eyebrow"><span class="nchip">06</span> The work that reaches you</div>
+  <div class="eyebrow"><span class="nchip">08</span> The work that reaches you</div>
   <h2>You build granular marketing strategy on top of the commercial GTM.</h2>
   <p class="lede">This is the single most important thing to understand about the role. I build the commercial strategy and go-to-market per project; you build the granular critical paths and marketing strategies beneath them; you direct your team from there. You never start from a blank brief.</p>
 
@@ -454,16 +622,26 @@
     <div class="box you">
       <div class="role">James · Marketing</div>
       <h4>Granular marketing plans</h4>
-      <p>Critical paths, campaign calendars, channel and messaging strategy — then direct Nico, Oli, Akash &amp; Alina.</p>
+      <p>Critical paths, campaign calendars, channel and messaging strategy, then direct Nico, Oli, Akash &amp; Alina.</p>
     </div>
   </div>
 
   <h3 style="margin-top:32px">Your worked example: the NEXTPredict GTM</h3>
-  <p>NEXTPredict 2026 (the institutional prediction-markets summit, NYC, 22–23 Oct) already has a full execution GTM written — mission and positioning, the commercial scoreboard, decision rights, the week-by-week critical path from launch to rebooking, and the pricing ladder. It names you directly: <b>once onboarded, build the marketing execution calendar from this GTM — not from a blank brief.</b> Read it as the template for how every project's strategy will reach you.</p>
+  <p>NEXTPredict 2026 (the institutional prediction-markets summit, NYC, 22&ndash;23 Oct) already has a full execution GTM written: mission and positioning, the commercial scoreboard, decision rights, the week-by-week critical path from launch to rebooking, and the pricing ladder. It names you directly: <b>once onboarded, build the marketing execution calendar from this GTM, not from a blank brief.</b> Read it as the template for how every project's strategy will reach you.</p>
 
-  <div class="callout" style="margin-top:16px">
+  <div class="linkrow">
+    <a class="btn" href="https://stuatnext.github.io/alpha-93d2/x19dA2Kq/NEXTPredict-GTM.html" target="_blank" rel="noopener">Open the NEXTPredict GTM <span class="chev">❯</span></a>
+    <span class="wip">Work in progress</span>
+  </div>
+
+  <div class="callout">
     <span class="mk">❯</span>
-    <p><b>A live, ramping partner to know:</b> <b>Hot Paper Lantern (HPL)</b> is our US agency — social media, partnership-building through their American network, paid marketing and PR. They're performing okay as things ramp up, but we need to be doing more — an early area where your direction will matter.</p>
+    <p><b>A note on the GTMs:</b> these are still works in progress. We're new to running go-to-markets in this format at NEXT, so expect them to evolve. That's the point: these formal processes are exactly what we've been missing and what we need as we grow. Building them out properly, and the granular marketing plans beneath them, is a big part of why you're here.</p>
+  </div>
+
+  <div class="callout">
+    <span class="mk">❯</span>
+    <p><b>A live, ramping partner to know:</b> <b>Hot Paper Lantern (HPL)</b> is our US agency, covering social media, partnership-building through their American network, paid marketing and PR. They're performing okay as things ramp up, but we need to be doing more, and it's an early area where your direction will matter.</p>
   </div>
 
   <h3 style="margin-top:30px">The projects you'll build marketing strategy for</h3>
@@ -471,9 +649,9 @@
     <span><b>Live now ·</b> NEXTPredict 2026</span>
     <span>NEXT Summit New York 2027</span>
     <span>NEXT Summit Valletta 2027</span>
-    <span>NEXT Retreats — Europe &amp; LATAM</span>
+    <span>NEXT Retreats: Europe &amp; LATAM</span>
     <span>News, NEXT Win &amp; Reports</span>
-    <span>Multimedia — Podcast &amp; Spotlights</span>
+    <span>Multimedia: Podcast &amp; Spotlights</span>
     <span>Community &amp; Marketing NEXT</span>
     <span>HR Connect</span>
     <span>External projects</span>
@@ -481,7 +659,7 @@
 </div></section>
 
 <section id="rhythm"><div class="wrap reveal">
-  <div class="eyebrow"><span class="nchip">07</span> Your operating rhythm</div>
+  <div class="eyebrow"><span class="nchip">09</span> Your operating rhythm</div>
   <h2>The meetings that anchor the week.</h2>
   <p class="lede">All times UK. These three are your standing commitments; the September Drive deadlines above sit on top of them.</p>
 
@@ -489,7 +667,7 @@
     <div class="card">
       <div class="role">Weekly</div>
       <h3>Team meeting</h3>
-      <p><b>Mondays · 13:30 UK.</b> The regular marketing team sync — your standing slot with the people you lead.</p>
+      <p><b>Mondays · 13:30 UK.</b> The regular marketing team sync, your standing slot with the people you lead.</p>
     </div>
     <div class="card">
       <div class="role">Monthly</div>
@@ -499,13 +677,13 @@
     <div class="card">
       <div class="role">Weekly</div>
       <h3>Leadership / executive</h3>
-      <p><b>Thursdays · 15:00 UK.</b> The exec &amp; leadership team meeting — where you'll connect with Pierre, Ana, Will, Rory, Kim and Gerda.</p>
+      <p><b>Thursdays · 15:00 UK.</b> The exec &amp; leadership team meeting, where you'll connect with Pierre, Ana, Will, Rory, Kim and Gerda.</p>
     </div>
   </div>
 
-  <div class="callout warm" style="margin-top:20px">
+  <div class="callout warm">
     <span class="mk">❝</span>
-    <p>That's the pack. The processes, KPIs and progress tracking will come — we'll build them together, and there's no rush on day one. For now: read this, meet everyone, lean on Nico and on me, and enjoy the start. Welcome to NEXT. So glad you're here.</p>
+    <p>That's the pack. The processes, KPIs and progress tracking will come; we'll build them together, and there's no rush on day one. For now: read this, meet everyone, lean on Nico and on me, and enjoy the start. Welcome to NEXT. So glad you're here.</p>
   </div>
 </div></section>
 
@@ -513,7 +691,7 @@
 
 <footer><div class="wrap">
   <div class="mark">NEXT<span class="chev">❯</span>io</div>
-  <p>Handover Pack · James Clark, Director of Marketing · Prepared by Stuart Crowley, June 2026 · Confidential — internal use only.</p>
+  <p>Handover Pack · James Clark, Director of Marketing · Prepared by Stuart Crowley, June 2026 · Confidential, internal use only.</p>
 </div></footer>
 
 <script>
@@ -523,7 +701,7 @@
     if (!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in');}); return; }
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
-    }, {threshold:0.08, rootMargin:'0px 0px -8% 0px'});
+    }, {threshold:0.06, rootMargin:'0px 0px -6% 0px'});
     els.forEach(function(e){ io.observe(e); });
   })();
 </script>
