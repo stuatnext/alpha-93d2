@@ -1,0 +1,295 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ICE FIDS · Strategic Event Briefing</title>
+<style>
+  :root{
+    --black:#050505;
+    --panel:#101010;
+    --panel2:#151515;
+    --yellow:#ffd400;
+    --yellowSoft:#fff1a3;
+    --iceBlue:#0057a8;
+    --iceCyan:#00a7e1;
+    --white:#f4f4f0;
+    --muted:#babbb6;
+    --dim:#7f807a;
+    --line:rgba(255,212,0,.28);
+    --blueLine:rgba(0,167,225,.42);
+    --max:1080px;
+  }
+  *{box-sizing:border-box}
+  html{background:var(--black); scroll-behavior:smooth}
+  body{
+    margin:0;
+    color:var(--white);
+    font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background:
+      radial-gradient(circle at 86% 0%, rgba(0,167,225,.22), transparent 340px),
+      radial-gradient(circle at 8% 4%, rgba(255,212,0,.18), transparent 300px),
+      linear-gradient(180deg,#050505 0%,#080808 52%,#050505 100%);
+  }
+  body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.026) 1px, transparent 1px);
+    background-size:58px 58px;
+    opacity:.6;
+    mask-image:linear-gradient(180deg,rgba(0,0,0,.95),rgba(0,0,0,.22));
+  }
+  .page{position:relative; z-index:1}
+  .topbar{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:rgba(5,5,5,.88);
+    backdrop-filter:blur(16px);
+    border-bottom:1px solid rgba(255,212,0,.2);
+  }
+  .topbar-inner{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:15px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+  }
+  .brand{display:flex; align-items:center; gap:10px; font-weight:950; letter-spacing:-.03em; white-space:nowrap}
+  .dot{width:14px; height:14px; border-radius:50%; background:linear-gradient(135deg,var(--yellow),var(--iceCyan)); box-shadow:0 0 26px rgba(255,212,0,.5)}
+  .meta{color:var(--muted); font-size:13px; text-align:right}
+  main{max-width:var(--max); margin:0 auto; padding:48px 24px 86px}
+  section{padding:54px 0; border-bottom:1px solid rgba(255,255,255,.1)}
+  section:last-child{border-bottom:0}
+  .hero{padding-top:46px}
+  .eyebrow{margin:0 0 16px; color:var(--yellow); text-transform:uppercase; letter-spacing:.18em; font-size:12px; font-weight:950}
+  h1,h2,h3,p{margin-top:0}
+  h1{font-size:clamp(48px,8vw,88px); line-height:.96; letter-spacing:-.075em; margin-bottom:24px; max-width:980px}
+  h2{font-size:clamp(38px,6.2vw,70px); line-height:1; letter-spacing:-.07em; margin-bottom:24px; max-width:940px}
+  h3{font-size:clamp(22px,3vw,30px); line-height:1.08; letter-spacing:-.045em; margin-bottom:12px}
+  .lead{font-size:clamp(22px,3.3vw,36px); line-height:1.24; color:var(--white); max-width:900px; letter-spacing:-.035em}
+  .copy p{font-size:20px; line-height:1.55; color:var(--muted); max-width:780px}
+  .accent{width:82px; height:6px; border-radius:999px; background:linear-gradient(90deg,var(--yellow),var(--iceCyan)); margin:28px 0 34px}
+  .hero-grid,.stats,.matrix,.partners,.cards{display:grid; gap:18px}
+  .hero-grid{grid-template-columns:repeat(4,1fr)}
+  .hero-card,.stat,.company,.card,.partner,.note,.callout{
+    background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:28px;
+    padding:28px;
+    box-shadow:0 24px 80px rgba(0,0,0,.22);
+  }
+  .hero-card:nth-child(odd),.stat:nth-child(odd),.company:nth-child(odd),.card.yellow,.partner:nth-child(odd){border-color:var(--line); background:linear-gradient(180deg,rgba(255,212,0,.1),rgba(255,255,255,.025))}
+  .hero-card:nth-child(even),.stat:nth-child(even),.company:nth-child(even),.card.blue,.partner:nth-child(even){border-color:var(--blueLine); background:linear-gradient(180deg,rgba(0,167,225,.1),rgba(255,255,255,.025))}
+  .hero-card b{display:block; color:var(--yellow); font-size:24px; letter-spacing:-.04em; margin-bottom:8px}
+  .hero-card span,.stat span,.card p,.partner li,.note{color:var(--muted); font-size:18px; line-height:1.45}
+  
+  /* Matrix company block specific styles */
+  .company b.title{display:block; font-size:20px; letter-spacing:-.02em; margin-bottom:4px; color:var(--yellow)}
+  .company:nth-child(even) b.title{color:var(--iceCyan)}
+  
+  .speaker-item { margin-top:14px; border-top:1px solid rgba(255,255,255,.06); padding-top:14px }
+  .speaker-item:first-of-type { border-top:0; padding-top:0; margin-top:18px }
+  .speaker-item b { display:block; font-size:16px; color:var(--white); letter-spacing:-.01em; margin-bottom:3px; font-weight:600 }
+  .speaker-item span { display:block; font-size:14px; color:var(--muted); line-height:1.3 }
+
+  .two{display:grid; grid-template-columns:1.1fr .9fr; gap:42px; align-items:start}
+  .cards{grid-template-columns:1fr}
+  .card h3,.partner h3{color:var(--white)}
+  .card.yellow h3,.partner h3{color:var(--yellow)}
+  .stats{grid-template-columns:repeat(4,1fr); margin:32px 0 24px}
+  .stat b{display:block; color:var(--yellow); font-size:clamp(46px,6vw,76px); line-height:1; letter-spacing:-.06em; margin-bottom:12px}
+  .matrix{grid-template-columns:repeat(3,1fr); margin-top:28px}
+  .note{margin-top:24px; color:var(--yellowSoft); border-color:var(--line)}
+  .partners{grid-template-columns:repeat(2,1fr); margin-top:30px}
+  .partner p {color:var(--muted); font-size:18px; line-height:1.45;}
+  .partner ul{padding-left:21px; margin:10px 0 0}
+  .partner li{margin:8px 0}
+  .callout{font-size:clamp(26px,4vw,44px); line-height:1.18; letter-spacing:-.05em; border-left:8px solid var(--yellow); border-color:rgba(255,255,255,.16) rgba(255,255,255,.16) rgba(255,255,255,.16) var(--yellow); color:var(--white); padding-left:24px; margin-top:24px;}
+  .tags{display:flex; flex-wrap:wrap; gap:14px; margin-top:30px}
+  .tag{border:1px solid var(--line); background:rgba(255,212,0,.07); color:var(--white); border-radius:999px; padding:12px 18px; font-size:16px}
+  .tag:nth-child(even){border-color:var(--blueLine); background:rgba(0,167,225,.08)}
+  @media (max-width:820px){
+    .topbar-inner{padding:13px 18px}.meta{display:none}main{padding:36px 18px 72px}section{padding:42px 0}.hero{padding-top:34px}
+    h1{font-size:clamp(44px,12vw,62px); line-height:.98} h2{font-size:clamp(36px,10vw,54px); line-height:1.02}.lead{font-size:24px; line-height:1.32}.copy p{font-size:18px}
+    .two,.hero-grid,.stats,.matrix,.partners{grid-template-columns:1fr!important}.hero-card,.stat,.company,.card,.partner,.note,.callout{padding:23px; border-radius:24px}.company b.title{font-size:19px}.stat span,.card p,.partner li,.note,.partner p{font-size:17px}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><span class="dot"></span><span>NEXTPredict x ICE</span></div>
+      <div class="meta">Strategic Event Briefing · 2026</div>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Strategic Event Partnership</div>
+      <h1>The institutional prediction markets conversation is forming now.</h1>
+      <p class="lead">NEXTPredict brings together the companies shaping how event contracts, prediction-market data, and market infrastructure scale responsibly.</p>
+      <div class="accent"></div>
+      <div class="hero-grid">
+        <div class="hero-card"><b>New York</b><span>Convene, Hudson Yards</span></div>
+        <div class="hero-card"><b>22 to 23 Oct 2026</b><span>Two days of senior market discussion</span></div>
+        <div class="hero-card"><b>2,500 attendees</b><span>Operators, fixed-income clients, regulators, and market infrastructure</span></div>
+        <div class="hero-card"><b>200 speakers</b><span>Finance, macro research, regulation, data and media</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="two">
+        <div>
+          <div class="eyebrow">Why this matters to ICE FIDS</div>
+          <h2>Prediction markets are becoming a data and infrastructure conversation.</h2>
+          <div class="copy">
+            <p>Public attention is growing quickly, but the durable opportunity sits underneath the surface: indices, liquidity, execution, surveillance, and institutional data distribution.</p>
+            <p>ICE's rollout of <b>Polymarket Signals</b> proves you see the horizon. NEXTPredict provides the focused room to educate buy-side clients on how event probabilities can become usable market intelligence in their workflows.</p>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card yellow"><h3>Data Services & Intelligence</h3><p>Event probabilities are becoming required inputs for macro research, trading, and risk-modelling.</p></div>
+          <div class="card blue"><h3>Infrastructure and Trust</h3><p>Institutional adoption relies entirely on the architecture ICE already owns: reliable methodology, clearing, and surveillance.</p></div>
+          <div class="card"><h3>Client Education Pipeline</h3><p>Buy-side firms see the opportunity, but need ICE’s authority to understand how these signals integrate into their existing mandates.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="eyebrow">Event scale</div>
+      <h2>The World’s Prediction Markets Summit.</h2>
+      <div class="stats">
+        <div class="stat"><b>2,500</b><span>target attendees mapping the PM ecosystem</span></div>
+        <div class="stat"><b>200</b><span>speakers across finance, policy, and infrastructure</span></div>
+        <div class="stat"><b>2</b><span>days in New York focused on institutional adoption</span></div>
+        <div class="stat"><b>1</b><span>definitive room for market structure and data</span></div>
+      </div>
+      <p class="lead">The ambition is to move the conversation from "product novelty" into institutional market structure and commercial data utility.</p>
+    </section>
+
+    <section>
+      <div class="eyebrow">Speaker ecosystem</div>
+      <h2>Selected speakers reflecting the institutionalisation of the category.</h2>
+      <div class="matrix">
+        <div class="company">
+          <b class="title">Regulatory & Policy Oversight</b>
+          <div class="speaker-item"><b>David Miller</b><span>Director of Enforcement, CFTC</span></div>
+          <div class="speaker-item"><b>Duncan Hennes</b><span>Director, Market Participants Division, CFTC</span></div>
+          <div class="speaker-item"><b>Josh Sterling</b><span>Partner (former CFTC Division Director), Milbank</span></div>
+        </div>
+        <div class="company">
+          <b class="title">Institutional Research</b>
+          <div class="speaker-item"><b>Shaun Kelley</b><span>MD & Senior Research Analyst, Bank of America</span></div>
+          <div class="speaker-item"><b>Julie Hoover</b><span>VP, Equity Research, Bank of America</span></div>
+          <div class="speaker-item"><b>Adam Rosenberg</b><span>Senior Advisor, Blackstone</span></div>
+        </div>
+        <div class="company">
+          <b class="title">Market Makers & Liquidity</b>
+          <div class="speaker-item"><b>Joe Grubb</b><span>Head of BD, Susquehanna Predictions</span></div>
+          <div class="speaker-item"><b>Larry Burns</b><span>Managing Director, Greenlight Commodities</span></div>
+          <div class="speaker-item"><b>John Conlon</b><span>Director, Greenlight Commodities</span></div>
+        </div>
+        <div class="company">
+          <b class="title">Regulated PM Infrastructure</b>
+          <div class="speaker-item"><b>Jason Robins</b><span>CEO, DraftKings</span></div>
+          <div class="speaker-item"><b>Jeanine Hightower-Sellitto</b><span>SVP & GM, DraftKings Predictions</span></div>
+          <div class="speaker-item"><b>Alex Kane</b><span>CEO, Sporttrade</span></div>
+        </div>
+        <div class="company">
+          <b class="title">Digital Asset Networks</b>
+          <div class="speaker-item"><b>Toni Gemayel</b><span>Head of Prediction Markets, Coinbase</span></div>
+          <div class="speaker-item"><b>Joe Anzures</b><span>Chief Business Officer, Crypto.com</span></div>
+        </div>
+        <div class="company">
+          <b class="title">Financial Data & Intelligence</b>
+          <div class="speaker-item"><b>Brian Egger</b><span>Global Head of Financial Modeling, Bloomberg Intelligence</span></div>
+          <div class="speaker-item"><b>Contessa Brewer</b><span>Correspondent, CNBC</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="eyebrow">Audience Mix</div>
+      <h2>The overlap with ICE’s core data clients is exceptionally clean.</h2>
+      <div class="copy">
+        <p>The room is curated to ensure the buy-side desks, analysts, and operators who will actually consume and trade on ICE's prediction market data are heavily represented.</p>
+      </div>
+      <div class="matrix">
+        <div class="company">
+          <b class="title">Capital Markets & Investment</b>
+          <div class="speaker-item"><b>Analyst</b><span>Macquarie Capital</span></div>
+          <div class="speaker-item"><b>CEO</b><span>Acadia Hill</span></div>
+        </div>
+        <div class="company">
+          <b class="title">Global Operators & Associations</b>
+          <div class="speaker-item"><b>CEO</b><span>Rush Street Interactive</span></div>
+          <div class="speaker-item"><b>Executive Director</b><span>World Lottery Association</span></div>
+          <div class="speaker-item"><b>VP, Innovation Hub</b><span>Rush Street Interactive</span></div>
+        </div>
+        <div class="company">
+          <b class="title">Prediction Market Builders</b>
+          <div class="speaker-item"><b>Founder & CEO</b><span>Predictive Labs</span></div>
+          <div class="speaker-item"><b>CEO</b><span>Vault Network</span></div>
+          <div class="speaker-item"><b>Chief Commercial Officer</b><span>Approvely</span></div>
+        </div>
+        <div class="company">
+          <b class="title">Information & Ecosystem</b>
+          <div class="speaker-item"><b>VP, Sports Betting & iGaming</b><span>Advance Local</span></div>
+          <div class="speaker-item"><b>SVP Sales & Commercial</b><span>SBC</span></div>
+          <div class="speaker-item"><b>Founder</b><span>Illumin</span></div>
+        </div>
+        <div class="company">
+          <b class="title">Payments & Financial Risk</b>
+          <div class="speaker-item"><b>Director of Gaming & Gambling</b><span>Beyond Bancard</span></div>
+          <div class="speaker-item"><b>Director</b><span>Eurasia Sports Limited</span></div>
+        </div>
+        <div class="company">
+          <b class="title">New Platforms & Tech</b>
+          <div class="speaker-item"><b>Co-Founder</b><span>Balh Group</span></div>
+          <div class="speaker-item"><b>Co-founder</b><span>veryinterestingcompany</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="eyebrow">Partnership Opportunities for FIDS</div>
+      <h2>How ICE leverages the event for pipeline and positioning.</h2>
+      <p class="copy" style="max-width: 900px; margin-bottom: 24px;">This isn't about brand visibility; it's about building an institutional pipeline. We structure partnerships to give ICE private access to the funds and operators shaping the category.</p>
+      <div class="partners">
+        <div class="partner"><h3>Client Access & Deal Rooms</h3><ul><li>Curated, closed-door roundtables with senior macro funds and proprietary trading desks.</li><li>Private meeting rooms for advancing specific Polymarket Signals and data licensing conversations.</li></ul></div>
+        <div class="partner"><h3>Market Structure Authority</h3><ul><li>Main stage leadership anchoring discussions on fixed income crossovers, settlement, and regulatory compliance.</li><li>Framework-setting for the future of PM indices.</li></ul></div>
+        <div class="partner"><h3>Category Ownership</h3><ul><li>Headline positioning as the "Institutional Market Intelligence Partner."</li><li>Own the overarching narrative around data quality and institutional benchmarks throughout the summit.</li></ul></div>
+        <div class="partner"><h3>Targeted Client Education</h3><ul><li>Hosted workshop formats designed specifically to train buy-side clients on integrating PM data into existing fixed-income workflows.</li></ul></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="two">
+        <div>
+          <div class="eyebrow">Conversation Themes</div>
+          <h2>Owning the high-ground on market intelligence.</h2>
+          <p class="callout">ICE can use this platform to define the standard for how large firms consume and trust prediction market data.</p>
+        </div>
+        <div class="cards">
+          <div class="card yellow"><h3>Signals in Institutional Workflow</h3><p>How PM data sits beside rates, credit, equities, and energy in macro research.</p></div>
+          <div class="card blue"><h3>From Retail Attention to Institutional Trust</h3><p>The necessary evolutions in surveillance, methodology, and controls required for enterprise-grade adoption.</p></div>
+          <div class="card"><h3>Event Contracts as Risk-Transfer</h3><p>Why fixed-income and derivatives clients may become important users of event-based market intelligence.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>
+
+
+```
