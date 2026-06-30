@@ -5,63 +5,409 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Josh Brown x NEXTPredict | 22 October Proposal</title>
 <style>
-:root { --black:#080808; --panel:#151515; --panel2:#101010; --line:#303030; --yellow:#FFCF33; --text:#F5F5F5; --muted:#A7A7A7; }
-* { box-sizing:border-box; }
-body { margin:0; background:var(--black); color:var(--text); font-family:Inter, Arial, Helvetica, sans-serif; line-height:1.48; }
-.wrap { max-width:1180px; margin:0 auto; padding:34px 22px 72px; }
-.hero { border:1px solid var(--line); border-radius:30px; background:radial-gradient(circle at 88% 10%, rgba(255,207,51,.22), transparent 32%), linear-gradient(135deg,#090909,#171717 56%,#0A0A0A); overflow:hidden; box-shadow:0 34px 90px rgba(0,0,0,.42); }
-.hero-inner { padding:48px; }
-.eyebrow { display:inline-flex; background:var(--yellow); color:#090909; border-radius:999px; padding:8px 13px; font-weight:900; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
-h1 { max-width:940px; margin:24px 0 12px; font-size:58px; line-height:.98; letter-spacing:-.055em; }
-.sub { max-width:900px; font-size:21px; color:#E6E6E6; margin:0; }
-.meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
-.pill { border:1px solid #4A4A4A; background:rgba(255,255,255,.04); border-radius:999px; padding:9px 13px; color:#D9D9D9; font-size:14px; }
-.nav { display:flex; flex-wrap:wrap; gap:9px; margin:22px 0 24px; }
-.nav a { color:#F0F0F0; text-decoration:none; border:1px solid var(--line); border-radius:999px; padding:9px 12px; background:#101010; font-size:13px; }
-.grid { display:grid; grid-template-columns:repeat(12,1fr); gap:18px; }
-.card { background:var(--panel); border:1px solid var(--line); border-radius:22px; padding:24px; }
-.span-12 { grid-column:span 12; } .span-8 { grid-column:span 8; } .span-7 { grid-column:span 7; } .span-6 { grid-column:span 6; } .span-5 { grid-column:span 5; } .span-4 { grid-column:span 4; }
-h2 { margin:0 0 14px; font-size:30px; letter-spacing:-.035em; }
-h3 { margin:0 0 10px; font-size:21px; letter-spacing:-.02em; }
-p { margin:0 0 14px; color:#DADADA; }
-ul { margin:10px 0 0 20px; padding:0; } li { margin:8px 0; color:#DADADA; }
-strong { color:#FFF; }
-.yellow { color:var(--yellow); }
-.quote { font-size:25px; line-height:1.25; letter-spacing:-.03em; border-left:6px solid var(--yellow); padding:24px; border-radius:18px; background:#101010; }
-.kpi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
-.kpi { background:#101010; border:1px solid #343434; border-radius:18px; padding:18px; }
-.kpi b { display:block; font-size:34px; color:var(--yellow); letter-spacing:-.04em; }
-.kpi span { color:#CFCFCF; font-size:13px; }
-.mix-row { margin:15px 0; }
-.mix-top { display:flex; justify-content:space-between; gap:16px; font-size:15px; }
-.mix-top span { color:var(--yellow); font-weight:900; }
-.bar { height:9px; background:#252525; border-radius:999px; overflow:hidden; margin:8px 0; }
-.bar i { display:block; height:100%; background:var(--yellow); border-radius:999px; }
-.mix-row small { color:var(--muted); }
-.person-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
-.person { min-height:112px; border:1px solid #333; background:#101010; border-radius:16px; padding:14px; display:flex; flex-direction:column; gap:4px; }
-.person strong { font-size:15px; } .person span { color:#D0D0D0; font-size:13px; } .person small { color:#929292; font-size:12px; line-height:1.35; }
-.package { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-.box { background:#101010; border:1px solid #343434; border-radius:18px; padding:18px; }
-.box h3 { color:var(--yellow); font-size:18px; }
-.timeline { display:grid; gap:12px; }
-.time { display:grid; grid-template-columns:110px 1fr; gap:14px; background:#101010; border:1px solid #343434; border-radius:16px; padding:15px; }
-.time b:first-child { color:var(--yellow); }
-.deal { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
-.deal .box { min-height:190px; }
-.tag { display:inline-flex; padding:5px 9px; border-radius:999px; background:#242424; color:#D9D9D9; border:1px solid #3B3B3B; font-size:12px; margin:0 6px 6px 0; }
-.footer { text-align:center; color:#777; font-size:12px; margin-top:34px; }
-@media (max-width:920px) { h1 { font-size:42px; } .hero-inner { padding:30px; } .span-8,.span-7,.span-6,.span-5,.span-4 { grid-column:span 12; } .kpi-grid,.person-grid,.package,.deal { grid-template-columns:1fr; } .time { grid-template-columns:1fr; } }
-@media print { body { background:#fff; color:#111; } .nav { display:none; } .hero,.card { break-inside:avoid; box-shadow:none; } }
+:root {
+  --black:#080808;
+  --panel:#151515;
+  --panel2:#101010;
+  --line:#303030;
+  --yellow:#FFCF33;
+  --text:#F5F5F5;
+  --muted:#A7A7A7;
+}
+
+* {
+  box-sizing:border-box;
+}
+
+body {
+  margin:0;
+  background:var(--black);
+  color:var(--text);
+  font-family:Inter, Arial, Helvetica, sans-serif;
+  line-height:1.48;
+}
+
+.wrap {
+  max-width:1180px;
+  margin:0 auto;
+  padding:34px 22px 72px;
+}
+
+.hero {
+  border:1px solid var(--line);
+  border-radius:30px;
+  background:radial-gradient(circle at 88% 10%, rgba(255,207,51,.22), transparent 32%), linear-gradient(135deg,#090909,#171717 56%,#0A0A0A);
+  overflow:hidden;
+  box-shadow:0 34px 90px rgba(0,0,0,.42);
+}
+
+.hero-inner {
+  padding:48px;
+}
+
+.eyebrow {
+  display:inline-flex;
+  background:var(--yellow);
+  color:#090909;
+  border-radius:999px;
+  padding:8px 13px;
+  font-weight:900;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+h1 {
+  max-width:940px;
+  margin:24px 0 12px;
+  font-size:58px;
+  line-height:.98;
+  letter-spacing:-.055em;
+}
+
+.sub {
+  max-width:900px;
+  font-size:21px;
+  color:#E6E6E6;
+  margin:0;
+}
+
+.meta {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:28px;
+}
+
+.pill {
+  border:1px solid #4A4A4A;
+  background:rgba(255,255,255,.04);
+  border-radius:999px;
+  padding:9px 13px;
+  color:#D9D9D9;
+  font-size:14px;
+}
+
+.nav {
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin:22px 0 24px;
+}
+
+.nav a {
+  color:#F0F0F0;
+  text-decoration:none;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:9px 12px;
+  background:#101010;
+  font-size:13px;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:18px;
+}
+
+.card {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:24px;
+}
+
+.span-12 {
+  grid-column:span 12;
+}
+
+.span-8 {
+  grid-column:span 8;
+}
+
+.span-7 {
+  grid-column:span 7;
+}
+
+.span-6 {
+  grid-column:span 6;
+}
+
+.span-5 {
+  grid-column:span 5;
+}
+
+.span-4 {
+  grid-column:span 4;
+}
+
+h2 {
+  margin:0 0 14px;
+  font-size:30px;
+  letter-spacing:-.035em;
+}
+
+h3 {
+  margin:0 0 10px;
+  font-size:21px;
+  letter-spacing:-.02em;
+}
+
+p {
+  margin:0 0 14px;
+  color:#DADADA;
+}
+
+ul {
+  margin:10px 0 0 20px;
+  padding:0;
+}
+
+li {
+  margin:8px 0;
+  color:#DADADA;
+}
+
+strong {
+  color:#FFF;
+}
+
+.yellow {
+  color:var(--yellow);
+}
+
+.quote {
+  font-size:25px;
+  line-height:1.25;
+  letter-spacing:-.03em;
+  border-left:6px solid var(--yellow);
+  padding:24px;
+  border-radius:18px;
+  background:#101010;
+}
+
+.note {
+  border:1px solid #3E3E3E;
+  background:#111;
+  border-radius:16px;
+  padding:16px 18px;
+  color:#DADADA;
+}
+
+.kpi-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.kpi {
+  background:#101010;
+  border:1px solid #343434;
+  border-radius:18px;
+  padding:18px;
+}
+
+.kpi b {
+  display:block;
+  font-size:34px;
+  color:var(--yellow);
+  letter-spacing:-.04em;
+}
+
+.kpi span {
+  color:#CFCFCF;
+  font-size:13px;
+}
+
+.mix-row {
+  margin:15px 0;
+}
+
+.mix-top {
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  font-size:15px;
+}
+
+.mix-top span {
+  color:var(--yellow);
+  font-weight:900;
+}
+
+.bar {
+  height:9px;
+  background:#252525;
+  border-radius:999px;
+  overflow:hidden;
+  margin:8px 0;
+}
+
+.bar i {
+  display:block;
+  height:100%;
+  background:var(--yellow);
+  border-radius:999px;
+}
+
+.mix-row small {
+  color:var(--muted);
+}
+
+.person-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.person {
+  min-height:112px;
+  border:1px solid #333;
+  background:#101010;
+  border-radius:16px;
+  padding:14px;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.person strong {
+  font-size:15px;
+}
+
+.person span {
+  color:#D0D0D0;
+  font-size:13px;
+}
+
+.person small {
+  color:#929292;
+  font-size:12px;
+  line-height:1.35;
+}
+
+.package {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.box {
+  background:#101010;
+  border:1px solid #343434;
+  border-radius:18px;
+  padding:18px;
+}
+
+.box h3 {
+  color:var(--yellow);
+  font-size:18px;
+}
+
+.timeline {
+  display:grid;
+  gap:12px;
+}
+
+.time {
+  display:grid;
+  grid-template-columns:110px 1fr;
+  gap:14px;
+  background:#101010;
+  border:1px solid #343434;
+  border-radius:16px;
+  padding:15px;
+}
+
+.time b:first-child {
+  color:var(--yellow);
+}
+
+.deal {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.deal .box {
+  min-height:190px;
+}
+
+.tag {
+  display:inline-flex;
+  padding:5px 9px;
+  border-radius:999px;
+  background:#242424;
+  color:#D9D9D9;
+  border:1px solid #3B3B3B;
+  font-size:12px;
+  margin:0 6px 6px 0;
+}
+
+.footer {
+  text-align:center;
+  color:#777;
+  font-size:12px;
+  margin-top:34px;
+}
+
+@media (max-width:920px) {
+  h1 {
+    font-size:42px;
+  }
+
+  .hero-inner {
+    padding:30px;
+  }
+
+  .span-8,
+  .span-7,
+  .span-6,
+  .span-5,
+  .span-4 {
+    grid-column:span 12;
+  }
+
+  .kpi-grid,
+  .person-grid,
+  .package,
+  .deal {
+    grid-template-columns:1fr;
+  }
+
+  .time {
+    grid-template-columns:1fr;
+  }
+}
+
+@media print {
+  body {
+    background:#fff;
+    color:#111;
+  }
+
+  .nav {
+    display:none;
+  }
+
+  .hero,
+  .card {
+    break-inside:avoid;
+    box-shadow:none;
+  }
+}
 </style>
 </head>
+
 <body>
 <div class="wrap">
+
 <header class="hero">
   <div class="hero-inner">
     <span class="eyebrow">NEXTPredict proposal for Josh Brown</span>
     <h1>A Day 1 finance and markets role built around the economics of prediction markets.</h1>
-    <p class="sub">A proposed Day 1 role on 22 October at 30 Hudson Yards, focused on Robinhood, retail flow, public-market narratives, distribution, liquidity and the brass-tacks question underneath the category: if prediction markets scale, who actually makes the money?</p>
+    <p class="sub">A proposed Day 1 role on 22 October at 30 Hudson Yards, focused on retail flow, public-market narratives, distribution, liquidity, market structure and the brass-tacks question underneath the category: if prediction markets scale, who actually makes the money?</p>
     <div class="meta">
       <span class="pill">NEXTPredict</span>
       <span class="pill">22 to 23 October 2026</span>
@@ -71,17 +417,38 @@ strong { color:#FFF; }
     </div>
   </div>
 </header>
+
 <nav class="nav">
-  <a href="#offer">The role</a><a href="#market">Market context</a><a href="#session">Session</a><a href="#panel">Panel input</a><a href="#room">Who is attending</a><a href="#speakers">Confirmed speakers</a><a href="#commercials">Commercials</a>
+  <a href="#offer">The role</a>
+  <a href="#market">Market context</a>
+  <a href="#session">Session</a>
+  <a href="#panel">Panel input</a>
+  <a href="#room">Who is attending</a>
+  <a href="#speakers">Confirmed speakers</a>
+  <a href="#commercials">Commercials</a>
 </nav>
+
 <main class="grid">
+
   <section id="offer" class="card span-12">
     <h2>The ask</h2>
     <div class="package">
-      <div class="box"><h3>Role</h3><p>A featured Day 1 conversation on 22 October, with the option to also moderate a marquee panel if the line-up is strong enough.</p></div>
-      <div class="box"><h3>Angle</h3><p>Robinhood, retail flow, public-market narratives and who captures the economics if prediction markets become a serious financial category.</p></div>
-      <div class="box"><h3>Audience value</h3><p>The room already includes national media, operators, founders, public-market analysts, regulators, legal voices, data companies and market infrastructure.</p></div>
-      <div class="box"><h3>Commercial structure</h3><p>We agree the role and scope first, then structure terms around time, travel, access, session contribution and any additional commercial value created.</p></div>
+      <div class="box">
+        <h3>Role</h3>
+        <p>A featured Day 1 conversation on 22 October, with the option to also moderate a high-value panel if the line-up is strong enough.</p>
+      </div>
+      <div class="box">
+        <h3>Angle</h3>
+        <p>Retail flow, public-market narratives and who captures the economics if prediction markets become a serious financial category.</p>
+      </div>
+      <div class="box">
+        <h3>Audience value</h3>
+        <p>The room already includes national media, operators, founders, public-market analysts, regulators, legal voices, data companies and market infrastructure.</p>
+      </div>
+      <div class="box">
+        <h3>Commercial structure</h3>
+        <p>We agree the role and scope first, then structure terms around time, travel, access, session contribution and any additional commercial value created.</p>
+      </div>
     </div>
   </section>
 
@@ -89,45 +456,84 @@ strong { color:#FFF; }
     <h2>The market context for the session</h2>
     <p>Prediction markets are no longer a niche betting or crypto conversation. They are being pulled into public-market analysis, broker strategy, listed operator strategy, media distribution, risk controls and regulatory debate.</p>
     <div class="kpi-grid">
-      <div class="kpi"><b>Robinhood</b><span>Has publicly described prediction markets as its fastest-growing product line by revenue.</span></div>
-      <div class="kpi"><b>Retail flow</b><span>Event contracts are now part of the same attention economy as options, crypto, sports and financial media.</span></div>
-      <div class="kpi"><b>Market structure</b><span>The serious money question is about distribution, liquidity, market making, data, clearing, compliance and trust.</span></div>
+      <div class="kpi">
+        <b>Brokerage distribution</b>
+        <span>Robinhood is one visible example of prediction markets moving into retail finance and public-market analysis.</span>
+      </div>
+      <div class="kpi">
+        <b>Retail flow</b>
+        <span>Event contracts are now part of the same attention economy as options, crypto, sports and financial media.</span>
+      </div>
+      <div class="kpi">
+        <b>Market structure</b>
+        <span>The serious money question is about distribution, liquidity, market making, data, clearing, compliance and trust.</span>
+      </div>
     </div>
     <p style="margin-top:16px;">This gives the session a cleaner angle than a generic discussion about whether prediction markets are interesting. The better question is whether the business model survives once the first wave of attention, sports volume and novelty pricing settles down.</p>
   </section>
 
   <section id="session" class="card span-8">
-    <h2>Recommended headline session</h2>
-    <h3 class="yellow">The Prediction Markets Trade: Robinhood, Retail Attention and Who Captures the Economics</h3>
+    <h2>Recommended session</h2>
+    <h3 class="yellow">The Prediction Markets Trade: Retail Flow, Market Structure and Who Captures the Economics</h3>
     <p><strong>Format:</strong> 25-minute featured fireside on 22 October.</p>
     <p><strong>Core angle:</strong> prediction markets are being pulled into public-market narratives, broker strategy, sports distribution and retail attention. The useful question is whether this becomes a durable revenue pool or a temporary market story while the category is hot.</p>
-    <p><strong>Why this works:</strong> it connects directly to Robinhood, retail trading, investor psychology, market structure and media attention without treating prediction markets as a closed insider conversation.</p>
+    <p><strong>Why this works:</strong> it connects retail trading, investor psychology, broker strategy, market structure and media attention, with Robinhood as one useful example rather than the whole story.</p>
   </section>
 
   <section class="card span-4">
     <h2>What is included</h2>
-    <span class="tag">Main stage</span><span class="tag">Panel input</span><span class="tag">Curated meetings</span><span class="tag">National media</span><span class="tag">Senior audience</span><span class="tag">Terms to discuss</span>
+    <span class="tag">Main stage</span>
+    <span class="tag">Panel input</span>
+    <span class="tag">Curated meetings</span>
+    <span class="tag">National media</span>
+    <span class="tag">Senior audience</span>
+    <span class="tag">Terms to discuss</span>
     <p style="margin-top:12px;">The value is the combination of role, room and access. Commercial terms should follow the scope, not the other way round.</p>
   </section>
 
   <section id="role" class="card span-12">
     <h2>Recommended Day 1 package</h2>
     <div class="timeline">
-      <div class="time"><b>Morning</b><div><strong>Featured fireside:</strong> Robinhood, retail trading behaviour, public-market pricing and where the economics may accrue if prediction markets scale.</div></div>
-      <div class="time"><b>Midday</b><div><strong>Private briefing or curated lunch:</strong> selected conversations with operators, investors, analysts, market makers and media. NEXTPredict handles prep and calendar coordination.</div></div>
-      <div class="time"><b>Afternoon</b><div><strong>Moderated marquee panel:</strong> Who Captures the Economics? Distribution, exchanges, market makers, data, brokers, media and liquidity.</div></div>
-      <div class="time"><b>Optional</b><div><strong>Content extension:</strong> an approved on-site conversation, post-event segment or sponsor-backed investor briefing, subject to format, disclosure and your approval preferences.</div></div>
+      <div class="time">
+        <b>Morning</b>
+        <div><strong>Featured fireside:</strong> retail trading behaviour, broker strategy, public-market pricing and where the economics may accrue if prediction markets scale.</div>
+      </div>
+      <div class="time">
+        <b>Midday</b>
+        <div><strong>Private briefing or curated lunch:</strong> selected conversations with operators, investors, analysts, market makers and media. NEXTPredict handles prep and calendar coordination.</div>
+      </div>
+      <div class="time">
+        <b>Afternoon</b>
+        <div><strong>Moderated panel:</strong> Who Captures the Economics? Distribution, exchanges, market makers, data, brokers, media and liquidity.</div>
+      </div>
+      <div class="time">
+        <b>Optional</b>
+        <div><strong>Content extension:</strong> an approved on-site conversation, post-event segment or sponsor-backed investor briefing, subject to format, disclosure and your approval preferences.</div>
+      </div>
     </div>
   </section>
 
   <section id="panel" class="card span-12">
     <h2>If you moderate, you should have input on the panel</h2>
     <p>If you are putting your name on a moderated session, the panel needs to be worth moderating. We would involve you before the line-up is locked.</p>
+    <p class="note"><strong>Content process:</strong> all conference sessions, including any fireside chat or moderated panel, are developed in collaboration with our conference content team. The aim is to give you meaningful input while keeping the overall programme coherent, balanced and commercially useful for the room.</p>
     <div class="package">
-      <div class="box"><h3>How we would approach it</h3><p>We build the shortlist with you, agree the balance and avoid a panel that depends on you carrying weak guests.</p></div>
-      <div class="box"><h3>Operationally</h3><p>NEXTPredict sends a proposed shortlist. You give a straight view on who belongs, who does not and what the session needs. We handle invitations, briefing notes, prep calls and logistics.</p></div>
-      <div class="box"><h3>Ideal panel construction</h3><p>One platform with distribution. One market maker or liquidity voice. One public-market analyst or investor. One operator or exchange builder. Optional legal or regulatory voice if the discussion needs friction.</p></div>
-      <div class="box"><h3>Potential organisations</h3><p>Robinhood, DraftKings Predictions, Susquehanna Predictions, Bloomberg Intelligence, Bank of America, Blackstone, Underdog, Novig, Crypto.com or Sporttrade, subject to availability and your view.</p></div>
+      <div class="box">
+        <h3>How we would approach it</h3>
+        <p>We build the shortlist with you, agree the balance and avoid a panel that depends on you carrying weak guests.</p>
+      </div>
+      <div class="box">
+        <h3>Operationally</h3>
+        <p>NEXTPredict sends a proposed shortlist. You give a straight view on who belongs, who does not and what the session needs. We handle invitations, briefing notes, prep calls and logistics.</p>
+      </div>
+      <div class="box">
+        <h3>Ideal panel construction</h3>
+        <p>One platform with distribution. One market maker or liquidity voice. One public-market analyst or investor. One operator or exchange builder. Optional legal or regulatory voice if the discussion needs friction.</p>
+      </div>
+      <div class="box">
+        <h3>Potential organisations</h3>
+        <p>DraftKings Predictions, Susquehanna Predictions, Bloomberg Intelligence, Bank of America, Blackstone, Underdog, Novig, Crypto.com, Sporttrade or Robinhood, subject to availability and your view.</p>
+      </div>
     </div>
   </section>
 
@@ -135,34 +541,48 @@ strong { color:#FFF; }
     <h2>Who is attending so far</h2>
     <p>Based on current registrations with usable company data, the room already has senior representation across operators, prediction platforms, finance, media, legal, compliance, risk, identity and market infrastructure.</p>
     <div class="kpi-grid">
-      <div class="kpi"><b>41%</b><span>Operators, exchanges, prediction platforms and gaming operators</span></div>
-      <div class="kpi"><b>20%</b><span>Finance, investment, research and market analysis</span></div>
-      <div class="kpi"><b>57%</b><span>Founder, C-suite, partner, president, SVP or executive director level</span></div>
+      <div class="kpi">
+        <b>41%</b>
+        <span>Operators, exchanges, prediction platforms and gaming operators</span>
+      </div>
+      <div class="kpi">
+        <b>20%</b>
+        <span>Finance, investment, research and market analysis</span>
+      </div>
+      <div class="kpi">
+        <b>57%</b>
+        <span>Founder, C-suite, partner, president, SVP or executive director level</span>
+      </div>
     </div>
   </section>
 
   <section class="card span-6">
     <h2>Company mix</h2>
+
     <div class="mix-row">
       <div class="mix-top"><strong>Operators, exchanges, prediction platforms and gaming operators</strong><span>41%</span></div>
       <div class="bar"><i style="width:41%"></i></div>
       <small>DraftKings, Rush Street Interactive, Betr, Novig, Crypto.com, Underdog, ProphetX, Sporttrade, High Roller, Predictive Labs</small>
     </div>
+
     <div class="mix-row">
       <div class="mix-top"><strong>Finance, investment, research and market analysis</strong><span>20%</span></div>
       <div class="bar"><i style="width:20%"></i></div>
       <small>Bank of America, Citi, Macquarie Capital, Blackstone, Acies Investment, Bloomberg Intelligence, White Swan Data</small>
     </div>
+
     <div class="mix-row">
       <div class="mix-top"><strong>Legal, regulatory, risk, identity and payments</strong><span>16%</span></div>
       <div class="bar"><i style="width:16%"></i></div>
       <small>CFTC, Milbank, TransUnion, LexisNexis Risk Solutions, WLA, Beyond Bancard, Approvely, Stripe</small>
     </div>
+
     <div class="mix-row">
       <div class="mix-top"><strong>Media, publishing and events</strong><span>14%</span></div>
       <div class="bar"><i style="width:14%"></i></div>
-      <small>The Wall Street Journal, CNBC, Advance Local, Headline Group, SBC, NEXT.io</small>
+      <small>The Wall Street Journal, CNBC, Advance Local, SBC, NEXT.io</small>
     </div>
+
     <div class="mix-row">
       <div class="mix-top"><strong>Technology, data and infrastructure</strong><span>9%</span></div>
       <div class="bar"><i style="width:9%"></i></div>
@@ -172,16 +592,19 @@ strong { color:#FFF; }
 
   <section class="card span-6">
     <h2>Seniority mix</h2>
+
     <div class="mix-row">
       <div class="mix-top"><strong>Founder, CEO, C-suite, partner, president, SVP or executive director</strong><span>57%</span></div>
       <div class="bar"><i style="width:57%"></i></div>
       <small>Includes founders, CEOs, chief officers, partners, presidents, senior advisors, SVPs and executive directors.</small>
     </div>
+
     <div class="mix-row">
       <div class="mix-top"><strong>VP, director, head, managing director, senior analyst, reporter or correspondent</strong><span>35%</span></div>
       <div class="bar"><i style="width:35%"></i></div>
       <small>Includes senior commercial, research, media, legal, innovation and market-facing roles.</small>
     </div>
+
     <div class="mix-row">
       <div class="mix-top"><strong>Specialist, technical or role not yet provided</strong><span>8%</span></div>
       <div class="bar"><i style="width:8%"></i></div>
@@ -192,42 +615,51 @@ strong { color:#FFF; }
   <section id="speakers" class="card span-12">
     <h2>Confirmed speaker strength</h2>
     <p>Confirmed speakers include a serious mix across operators, finance, enforcement, legal, market making, analytics and media. That gives a moderated session enough substance to move beyond the usual prediction-markets talking points.</p>
+
     <h3 class="yellow">Operators and product leaders</h3>
-    <div class="person-grid"><div class="person"><strong>Jason Robins</strong><span>DraftKings</span><small>CEO</small></div>
-<div class="person"><strong>Jeanine Hightower-Sellitto</strong><span>DraftKings Predictions</span><small>SVP and GM</small></div>
-<div class="person"><strong>Jeremy Levine</strong><span>Underdog Fantasy</span><small>Founder, Chairman and President</small></div>
-<div class="person"><strong>Joey Levy</strong><span>Betr</span><small>Founder and CEO</small></div>
-<div class="person"><strong>Joe Anzures</strong><span>Crypto.com</span><small>Chief Business Officer</small></div>
-<div class="person"><strong>Aaron Champagne</strong><span>FanDuel</span><small>Vice President, New Ventures</small></div>
-<div class="person"><strong>Jacob Fortinsky</strong><span>Novig</span><small>Chief Executive Officer</small></div>
-<div class="person"><strong>Jake Benzaquen</strong><span>Prophet</span><small>Co-Founder</small></div>
-<div class="person"><strong>Alex Kane</strong><span>Sporttrade</span><small>CEO</small></div>
-<div class="person"><strong>Seth Young</strong><span>High Roller Technologies</span><small>CEO</small></div></div>
+    <div class="person-grid">
+      <div class="person"><strong>Jason Robins</strong><span>DraftKings</span><small>CEO</small></div>
+      <div class="person"><strong>Jeanine Hightower-Sellitto</strong><span>DraftKings Predictions</span><small>SVP and GM</small></div>
+      <div class="person"><strong>Jeremy Levine</strong><span>Underdog Fantasy</span><small>Founder, Chairman and President</small></div>
+      <div class="person"><strong>Joey Levy</strong><span>Betr</span><small>Founder and CEO</small></div>
+      <div class="person"><strong>Joe Anzures</strong><span>Crypto.com</span><small>Chief Business Officer</small></div>
+      <div class="person"><strong>Aaron Champagne</strong><span>FanDuel</span><small>Vice President, New Ventures</small></div>
+      <div class="person"><strong>Jacob Fortinsky</strong><span>Novig</span><small>Chief Executive Officer</small></div>
+      <div class="person"><strong>Jake Benzaquen</strong><span>Prophet</span><small>Co-Founder</small></div>
+      <div class="person"><strong>Alex Kane</strong><span>Sporttrade</span><small>CEO</small></div>
+      <div class="person"><strong>Seth Young</strong><span>High Roller Technologies</span><small>CEO</small></div>
+    </div>
+
     <h3 class="yellow" style="margin-top:24px;">Finance, liquidity and market analysis</h3>
-    <div class="person-grid"><div class="person"><strong>Adam Rosenberg</strong><span>Blackstone</span><small>Senior Advisor, Gaming and Leisure</small></div>
-<div class="person"><strong>Brian Egger</strong><span>Bloomberg Intelligence</span><small>Senior Industry Analyst and Global Head of Financial Modeling</small></div>
-<div class="person"><strong>Shaun Kelley</strong><span>Bank of America</span><small>Managing Director and Senior Research Analyst</small></div>
-<div class="person"><strong>Julie Hoover</strong><span>Bank of America</span><small>Vice President, Equity Research</small></div>
-<div class="person"><strong>Chris Grove</strong><span>Acies Investments</span><small>Co-Founding Partner</small></div>
-<div class="person"><strong>Joe Grubb</strong><span>Susquehanna Predictions</span><small>Head of Business Development</small></div>
-<div class="person"><strong>Larry Burns</strong><span>Greenlight Commodities</span><small>Managing Director</small></div>
-<div class="person"><strong>John Conlon</strong><span>Greenlight Commodities</span><small>Director</small></div></div>
+    <div class="person-grid">
+      <div class="person"><strong>Adam Rosenberg</strong><span>Blackstone</span><small>Senior Advisor, Gaming and Leisure</small></div>
+      <div class="person"><strong>Brian Eggar</strong><span>Bloomberg Intelligence</span><small>Senior Industry Analyst and Global Head of Financial Modeling</small></div>
+      <div class="person"><strong>Shaun Kelley</strong><span>Bank of America</span><small>Managing Director and Senior Research Analyst</small></div>
+      <div class="person"><strong>Julie Hoover</strong><span>Bank of America</span><small>Vice President, Equity Research</small></div>
+      <div class="person"><strong>Chris Grove</strong><span>Acies Investments</span><small>Co-Founding Partner</small></div>
+      <div class="person"><strong>Joe Grubb</strong><span>Susquehanna Predictions</span><small>Head of Business Development</small></div>
+      <div class="person"><strong>Larry Burns</strong><span>Greenlight Commodities</span><small>Managing Director</small></div>
+      <div class="person"><strong>John Conlon</strong><span>Greenlight Commodities</span><small>Director</small></div>
+    </div>
+
     <h3 class="yellow" style="margin-top:24px;">Regulation, legal, media and integrity</h3>
-    <div class="person-grid"><div class="person"><strong>David Miller</strong><span>CFTC</span><small>Director of Enforcement</small></div>
-<div class="person"><strong>Duncan Hennes</strong><span>CFTC</span><small>Director, Market Participants Division</small></div>
-<div class="person"><strong>Josh Sterling</strong><span>Milbank</span><small>Partner at Milbank and Former CFTC Division Director</small></div>
-<div class="person"><strong>Matthew Wein</strong><span>National Security Policy</span><small>Policy expert</small></div>
-<div class="person"><strong>Contessa Brewer</strong><span>CNBC</span><small>Correspondent</small></div>
-<div class="person"><strong>Kate Knibbs</strong><span>Wired</span><small>Senior Writer</small></div>
-<div class="person"><strong>Dustin Gouker</strong><span>Closing Line Consulting</span><small>Owner</small></div>
-<div class="person"><strong>Jon Russell</strong><span>Trading and integrity</span><small>Senior advisor</small></div></div>
+    <div class="person-grid">
+      <div class="person"><strong>David Miller</strong><span>CFTC</span><small>Director of Enforcement</small></div>
+      <div class="person"><strong>Duncan Hennes</strong><span>CFTC</span><small>Director, Market Participants Division</small></div>
+      <div class="person"><strong>Josh Sterling</strong><span>Milbank</span><small>Partner at Milbank and Former CFTC Division Director</small></div>
+      <div class="person"><strong>Matthew Wein</strong><span>National Security Policy</span><small>Policy expert</small></div>
+      <div class="person"><strong>Contessa Brewer</strong><span>CNBC</span><small>Correspondent</small></div>
+      <div class="person"><strong>Kate Knibbs</strong><span>Wired</span><small>Senior Writer</small></div>
+      <div class="person"><strong>Dustin Gouker</strong><span>Closing Line Consulting</span><small>Owner</small></div>
+      <div class="person"><strong>Jon Russell</strong><span>Trading and integrity</span><small>Senior advisor</small></div>
+    </div>
   </section>
 
   <section class="card span-6">
     <h2>Questions the session can own</h2>
     <ul>
       <li>Is prediction-market revenue durable, or event-driven attention with a better multiple?</li>
-      <li>Does Robinhood-style distribution win, or do exchanges and market makers keep the economics?</li>
+      <li>Does broker-led distribution win, or do exchanges and market makers keep the economics?</li>
       <li>Are sports contracts the adoption engine or the perception trap?</li>
       <li>What should investors watch before believing the category thesis?</li>
       <li>Where does pricing power sit: users, liquidity, data, clearing, compliance or media?</li>
@@ -240,7 +672,7 @@ strong { color:#FFF; }
     <ul>
       <li>Direct access to founders, listed-company operators, finance analysts, enforcement and legal voices, market makers and infrastructure companies.</li>
       <li>National media is already in the room, including The Wall Street Journal and CNBC, with Bloomberg Intelligence also represented.</li>
-      <li>The topic sits directly across Robinhood, retail behaviour, broker strategy, public-market narratives and event-contract economics.</li>
+      <li>The topic sits directly across retail behaviour, broker strategy, public-market narratives and event-contract economics, with Robinhood as one example of why public-market investors are now paying attention.</li>
       <li>If you moderate, you help shape who is on the panel and what the conversation avoids.</li>
       <li>If you can open doors to additional tier-1 speakers, media or strategic sponsors, we can structure a separate commercial discussion around that contribution.</li>
     </ul>
@@ -250,10 +682,22 @@ strong { color:#FFF; }
     <h2>Commercial structure</h2>
     <p>We want this to be worth your time, and we want the structure to be tied to the role we build together rather than treated as a generic conference appearance.</p>
     <div class="deal">
-      <div class="box"><h3>Role first</h3><p>We agree the right Day 1 role: a focused fireside, a moderated panel, or both. The structure follows the scope.</p></div>
-      <div class="box"><h3>Value of the room</h3><p>NEXTPredict already brings together national media, institutional finance, senior operators, regulators, founders, analysts and infrastructure companies.</p></div>
-      <div class="box"><h3>Additional access</h3><p>If you can help bring in tier-1 speakers, national media, strategic sponsors or financial-market participants who should be in the room, we can discuss a separate commercial structure for that contribution.</p></div>
-      <div class="box"><h3>Written scope</h3><p>Once the role is clear, we put the agreed format, deliverables, approval points, travel expectations and commercial terms into a simple written agreement.</p></div>
+      <div class="box">
+        <h3>Role first</h3>
+        <p>We agree the right Day 1 role: a focused fireside, a moderated panel, or both. The structure follows the scope.</p>
+      </div>
+      <div class="box">
+        <h3>Value of the room</h3>
+        <p>NEXTPredict already brings together national media, institutional finance, senior operators, regulators, founders, analysts and infrastructure companies.</p>
+      </div>
+      <div class="box">
+        <h3>Additional access</h3>
+        <p>If you can help bring in tier-1 speakers, national media, strategic sponsors or financial-market participants who should be in the room, we can discuss a separate commercial structure for that contribution.</p>
+      </div>
+      <div class="box">
+        <h3>Written scope</h3>
+        <p>Once the role is clear, we put the agreed format, content-team process, deliverables, approval points, travel expectations and commercial terms into a simple written agreement.</p>
+      </div>
     </div>
     <p style="margin-top:16px;"><strong>Bottom line:</strong> we are open to making this worthwhile, but we should agree the scope first and make sure the structure reflects the role, the value of the room and any additional access or commercial contribution you bring.</p>
   </section>
@@ -261,14 +705,29 @@ strong { color:#FFF; }
   <section class="card span-12">
     <h2>What we would need from you</h2>
     <div class="package">
-      <div class="box"><h3>Preferred format</h3><p>Fireside only, moderated panel only, or the full Day 1 package.</p></div>
-      <div class="box"><h3>Panel guardrails</h3><p>Who you would want on stage, who you would avoid and what would make the session too soft.</p></div>
-      <div class="box"><h3>Additional access</h3><p>Whether there are tier-1 speakers, media, sponsors or financial-market participants you could help us bring into the room.</p></div>
-      <div class="box"><h3>Next step</h3><p>If the direction is interesting, we agree the format, shape the shortlist and turn the scope into a simple written agreement.</p></div>
+      <div class="box">
+        <h3>Preferred format</h3>
+        <p>Fireside only, moderated panel only, or the full Day 1 package.</p>
+      </div>
+      <div class="box">
+        <h3>Panel guardrails</h3>
+        <p>Who you would want on stage, who you would avoid and what would make the session too soft.</p>
+      </div>
+      <div class="box">
+        <h3>Additional access</h3>
+        <p>Whether there are tier-1 speakers, media, sponsors or financial-market participants you could help us bring into the room.</p>
+      </div>
+      <div class="box">
+        <h3>Next step</h3>
+        <p>If the direction is interesting, we agree the format, shape the shortlist and turn the scope into a simple written agreement.</p>
+      </div>
     </div>
   </section>
+
 </main>
+
 <p class="footer">NEXTPredict | 22 to 23 October 2026 | Convene, 30 Hudson Yards, New York</p>
+
 </div>
 </body>
 </html>
