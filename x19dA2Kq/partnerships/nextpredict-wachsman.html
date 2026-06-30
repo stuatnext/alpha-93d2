@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEXTPredict x Wachsman | Client Opportunity Brief</title>
+<style>
+:root {
+  --black:#080808;
+  --panel:#151515;
+  --panel2:#101010;
+  --line:#303030;
+  --yellow:#FFCF33;
+  --text:#F5F5F5;
+  --muted:#A8A8A8;
+  --soft:#DADADA;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  background:var(--black);
+  color:var(--text);
+  font-family:Inter, Arial, Helvetica, sans-serif;
+  line-height:1.48;
+}
+a { color:inherit; }
+.wrap {
+  max-width:1180px;
+  margin:0 auto;
+  padding:34px 22px 76px;
+}
+.hero {
+  border:1px solid var(--line);
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 84% 8%, rgba(255,207,51,.24), transparent 34%),
+    radial-gradient(circle at 8% 100%, rgba(255,207,51,.08), transparent 34%),
+    linear-gradient(135deg,#090909,#171717 56%,#0A0A0A);
+  overflow:hidden;
+  box-shadow:0 34px 90px rgba(0,0,0,.42);
+}
+.hero-inner { padding:48px; }
+.eyebrow {
+  display:inline-flex;
+  background:var(--yellow);
+  color:#090909;
+  border-radius:999px;
+  padding:8px 13px;
+  font-weight:900;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+h1 {
+  max-width:970px;
+  margin:24px 0 12px;
+  font-size:58px;
+  line-height:.98;
+  letter-spacing:-.055em;
+}
+.sub {
+  max-width:910px;
+  font-size:21px;
+  color:#E6E6E6;
+  margin:0;
+}
+.meta {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:28px;
+}
+.pill {
+  border:1px solid #4A4A4A;
+  background:rgba(255,255,255,.04);
+  border-radius:999px;
+  padding:9px 13px;
+  color:#D9D9D9;
+  font-size:14px;
+}
+.cta-row {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:30px;
+}
+.cta {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  text-decoration:none;
+  border-radius:999px;
+  padding:12px 18px;
+  font-weight:800;
+  font-size:14px;
+  border:1px solid #555;
+}
+.cta.primary {
+  background:var(--yellow);
+  color:#090909;
+  border-color:var(--yellow);
+}
+.cta.secondary {
+  color:#F0F0F0;
+  background:rgba(255,255,255,.04);
+}
+.nav {
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin:22px 0 24px;
+}
+.nav a {
+  color:#F0F0F0;
+  text-decoration:none;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:9px 12px;
+  background:#101010;
+  font-size:13px;
+}
+.grid {
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:18px;
+}
+.card {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:24px;
+}
+.span-12 { grid-column:span 12; }
+.span-8 { grid-column:span 8; }
+.span-7 { grid-column:span 7; }
+.span-6 { grid-column:span 6; }
+.span-5 { grid-column:span 5; }
+.span-4 { grid-column:span 4; }
+h2 {
+  margin:0 0 14px;
+  font-size:30px;
+  letter-spacing:-.035em;
+}
+h3 {
+  margin:0 0 10px;
+  font-size:21px;
+  letter-spacing:-.02em;
+}
+p { margin:0 0 14px; color:var(--soft); }
+ul { margin:10px 0 0 20px; padding:0; }
+li { margin:8px 0; color:var(--soft); }
+strong { color:#FFF; }
+.yellow { color:var(--yellow); }
+.note {
+  border:1px solid #3E3E3E;
+  background:#111;
+  border-radius:16px;
+  padding:16px 18px;
+  color:#DADADA;
+}
+.package {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.box {
+  background:#101010;
+  border:1px solid #343434;
+  border-radius:18px;
+  padding:18px;
+}
+.box h3 { color:var(--yellow); font-size:18px; }
+.kpi-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.kpi {
+  background:#101010;
+  border:1px solid #343434;
+  border-radius:18px;
+  padding:18px;
+}
+.kpi b {
+  display:block;
+  font-size:29px;
+  color:var(--yellow);
+  letter-spacing:-.045em;
+  line-height:1.05;
+}
+.kpi span { color:#CFCFCF; font-size:13px; }
+.path-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+.path {
+  background:#101010;
+  border:1px solid #343434;
+  border-radius:22px;
+  padding:22px;
+}
+.path .label {
+  display:inline-flex;
+  border-radius:999px;
+  padding:6px 10px;
+  background:var(--yellow);
+  color:#080808;
+  font-weight:900;
+  font-size:12px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
+.tag {
+  display:inline-flex;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#242424;
+  color:#D9D9D9;
+  border:1px solid #3B3B3B;
+  font-size:12px;
+  margin:0 6px 6px 0;
+}
+.fit-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.fit {
+  border:1px solid #343434;
+  background:#101010;
+  border-radius:18px;
+  padding:18px;
+  min-height:178px;
+}
+.fit h3 { color:#FFF; font-size:18px; }
+.fit p { font-size:14px; }
+.no-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.no {
+  border:1px solid #3B3B3B;
+  background:#101010;
+  border-radius:16px;
+  padding:16px;
+}
+.no h3 { color:#FFF; font-size:17px; }
+
+.speaker-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.speaker {
+  min-height:116px;
+  border:1px solid #333;
+  background:#101010;
+  border-radius:16px;
+  padding:14px;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.speaker strong { font-size:15px; color:#FFF; }
+.speaker span { color:#D0D0D0; font-size:13px; }
+.speaker small { color:#929292; font-size:12px; line-height:1.35; }
+.mix-row { margin:15px 0; }
+.mix-top {
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  font-size:15px;
+}
+.mix-top span { color:var(--yellow); font-weight:900; }
+.bar {
+  height:9px;
+  background:#252525;
+  border-radius:999px;
+  overflow:hidden;
+  margin:8px 0;
+}
+.bar i {
+  display:block;
+  height:100%;
+  background:var(--yellow);
+  border-radius:999px;
+}
+.mix-row small { color:var(--muted); }
+.process {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  counter-reset:step;
+}
+.step {
+  background:#101010;
+  border:1px solid #343434;
+  border-radius:18px;
+  padding:18px;
+  position:relative;
+}
+.step:before {
+  counter-increment:step;
+  content:counter(step);
+  display:inline-flex;
+  width:28px;
+  height:28px;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:var(--yellow);
+  color:#090909;
+  font-weight:900;
+  margin-bottom:12px;
+}
+.step h3 { font-size:18px; }
+.footer {
+  text-align:center;
+  color:#777;
+  font-size:12px;
+  margin-top:34px;
+}
+@media (max-width:920px) {
+  h1 { font-size:42px; }
+  .hero-inner { padding:30px; }
+  .span-8,.span-7,.span-6,.span-5,.span-4 { grid-column:span 12; }
+  .package,.path-grid,.kpi-grid,.fit-grid,.no-grid,.process,.speaker-grid { grid-template-columns:1fr; }
+}
+@media print {
+  body { background:#fff; color:#111; }
+  .nav,.cta-row { display:none; }
+  .hero,.card { break-inside:avoid; box-shadow:none; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">NEXTPredict x Wachsman client briefing</span>
+    <h1>The World’s Prediction Markets Summit is coming to New York.</h1>
+    <p class="sub">NEXTPredict brings together the operators, exchanges, investors, regulators, founders, suppliers, infrastructure companies, media and analysts shaping the next phase of prediction markets.</p>
+    <div class="meta">
+      <span class="pill">22 to 23 October 2026</span>
+      <span class="pill">Convene, 30 Hudson Yards, New York</span>
+      <span class="pill">Target audience: 2,500</span>
+      <span class="pill">Three-stage content programme</span>
+      <span class="pill">Speaking and sponsorship pathways</span>
+    </div>
+    <div class="cta-row">
+      <a class="cta primary" href="https://nextpredict-2026-sales-deck-1069296223957.us-west1.run.app/" target="_blank" rel="noopener">View the NEXTPredict prospectus</a>
+      <a class="cta secondary" href="#fit">Check client fit</a>
+      <a class="cta secondary" href="#routes">Speaking and sponsorship routes</a>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="#overview">Overview</a>
+  <a href="#why-now">Why now</a>
+  <a href="#routes">Routes for clients</a>
+  <a href="#fit">Who fits</a>
+  <a href="#quality">Quality bar</a>
+  <a href="#speakers">Speakers</a>
+  <a href="#audience">Audience</a>
+  <a href="#tier-one">Tier-one access</a>
+  <a href="#process">How to introduce</a>
+</nav>
+
+<main class="grid">
+
+<section id="overview" class="card span-12">
+  <h2>What NEXTPredict is</h2>
+  <div class="package">
+    <div class="box">
+      <h3>The room</h3>
+      <p>NEXTPredict is a senior, category-forming event for prediction markets and event contracts. The event is built for the people operating, funding, regulating, analysing and supplying the market.</p>
+    </div>
+    <div class="box">
+      <h3>The subject</h3>
+      <p>Prediction markets now touch finance, fintech, Web3, sports, media, compliance, market data, trading infrastructure, legal classification and consumer trust.</p>
+    </div>
+    <div class="box">
+      <h3>The format</h3>
+      <p>No exhibition floor this year. The event is led by content, networking, curated meetings, brand positioning and senior discussion across three stages.</p>
+    </div>
+    <div class="box">
+      <h3>The opportunity</h3>
+      <p>For the right Wachsman clients, this can be a speaking opportunity, sponsorship opportunity, relationship-building platform or category-positioning moment.</p>
+    </div>
+  </div>
+</section>
+
+<section id="why-now" class="card span-12">
+  <h2>Why this matters now</h2>
+  <p>Prediction markets are moving faster than the language around them. The category is no longer one clean lane. It is splitting across consumer distribution, institutional infrastructure, compliance, data, settlement, sports integrity, market making, media, regulation and public perception.</p>
+  <div class="kpi-grid">
+    <div class="kpi"><b>Finance</b><span>Event contracts are entering public-market analysis, brokerage strategy and institutional workflow conversations.</span></div>
+    <div class="kpi"><b>Web3</b><span>Crypto wallets, on-chain markets, token communities and settlement infrastructure remain central to parts of the category.</span></div>
+    <div class="kpi"><b>Sport</b><span>Sports may be the fastest adoption route, but it also raises serious questions around integrity, data rights and consumer perception.</span></div>
+    <div class="kpi"><b>Trust</b><span>The market is short of trust architecture: surveillance, compliance, identity, resolution, data quality and responsible scaling.</span></div>
+  </div>
+</section>
+
+<section id="routes" class="card span-12">
+  <h2>Two routes for Wachsman clients</h2>
+  <div class="path-grid">
+    <div class="path">
+      <span class="label">Speaking</span>
+      <h3>For senior people with a real point of view</h3>
+      <p>We are looking for C-level executives, founders, senior decision makers and recognised category experts who can move the conversation forward.</p>
+      <ul>
+        <li>Founder, CEO, C-suite or key commercial decision maker</li>
+        <li>Direct relevance to prediction markets, event contracts or adjacent infrastructure</li>
+        <li>Clear expertise across regulation, market structure, data, compliance, media, Web3, finance, sport or consumer product</li>
+        <li>All proposed speakers are reviewed by the NEXTPredict conference content team</li>
+      </ul>
+    </div>
+    <div class="path">
+      <span class="label">Sponsorship</span>
+      <h3>For companies that want visibility in the room</h3>
+      <p>Sponsorship is best suited to companies that want strategic positioning, senior meetings, brand visibility and direct access to an emerging category while it is still being shaped.</p>
+      <ul>
+        <li>Market infrastructure, data, identity, payments, risk or compliance providers</li>
+        <li>Web3, fintech, trading, brokerage or exchange-adjacent companies</li>
+        <li>Sports integrity, official data, media intelligence or research firms</li>
+        <li>Clients with a clear commercial reason to be seen by prediction-market operators, investors and regulators</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="fit" class="card span-12">
+  <h2>Best-fit client categories</h2>
+  <div class="fit-grid">
+    <div class="fit"><h3>Prediction market platforms</h3><p>Operators, exchanges, social prediction products, sports-led event contract platforms and market builders.</p></div>
+    <div class="fit"><h3>Web3 and crypto infrastructure</h3><p>Wallets, custody, settlement, analytics, on-chain compliance, oracle, data and tokenised-market infrastructure.</p></div>
+    <div class="fit"><h3>Fintech and brokerage</h3><p>Retail trading platforms, broker infrastructure, clearing, custody, market data and investor education companies.</p></div>
+    <div class="fit"><h3>Market makers and trading firms</h3><p>Liquidity providers, quant firms, pricing specialists, execution platforms and derivatives infrastructure.</p></div>
+    <div class="fit"><h3>Compliance, surveillance and risk</h3><p>Companies focused on KYC, fraud, wallet intelligence, employee trading, market abuse monitoring and audit controls.</p></div>
+    <div class="fit"><h3>Sports, media and data</h3><p>Sports data, official feeds, integrity, media intelligence, creator risk, audience analytics and event-resolution specialists.</p></div>
+  </div>
+</section>
+
+<section id="quality" class="card span-12">
+  <h2>The quality bar</h2>
+  <p>NEXTPredict is being built carefully. The aim is to put the right people in the right rooms, not collect easy logos.</p>
+  <div class="no-grid">
+    <div class="no"><h3>Seniority matters</h3><p>Speaking roles are reserved for C-level executives, founders, senior decision makers or genuinely credible subject-matter experts.</p></div>
+    <div class="no"><h3>Fit matters</h3><p>Every client should connect to the event’s core themes: market structure, regulation, infrastructure, data, compliance, media, sports or Web3.</p></div>
+    <div class="no"><h3>Substance matters</h3><p>We will not place speakers simply because a company wants stage time. The content team must see a strong editorial reason.</p></div>
+  </div>
+  <p class="note" style="margin-top:16px;"><strong>Speaking rule:</strong> all sessions, including panels, firesides and workshops, are developed with the NEXTPredict conference content team. The team will review speaker relevance, session balance and programme fit before anything is confirmed.</p>
+</section>
+
+
+<section id="speakers" class="card span-12">
+  <h2>Selected confirmed speaker strength</h2>
+  <p>The programme already includes senior names across operators, finance, enforcement, legal, market making, analytics and media. For Wachsman clients, this matters because the event is already attracting the people serious companies want to be around.</p>
+
+  <h3 class="yellow">Operators and product leaders</h3>
+  <div class="speaker-grid">
+    <div class="speaker"><strong>Jason Robins</strong><span>DraftKings</span><small>Co-Founder and CEO</small></div>
+    <div class="speaker"><strong>Jeanine Hightower-Sellitto</strong><span>DraftKings Predictions</span><small>SVP and GM</small></div>
+    <div class="speaker"><strong>Jeremy Levine</strong><span>Underdog</span><small>Founder, Chairman and President</small></div>
+    <div class="speaker"><strong>Joey Levy</strong><span>Betr</span><small>Founder and CEO</small></div>
+    <div class="speaker"><strong>Joe Anzures</strong><span>Crypto.com</span><small>Chief Business Officer</small></div>
+    <div class="speaker"><strong>Aaron Champagne</strong><span>FanDuel</span><small>Vice President, New Ventures</small></div>
+    <div class="speaker"><strong>Jacob Fortinsky</strong><span>Novig</span><small>Chief Executive Officer</small></div>
+    <div class="speaker"><strong>Alex Kane</strong><span>Sporttrade</span><small>Founder</small></div>
+  </div>
+
+  <h3 class="yellow" style="margin-top:24px;">Finance, market analysis and liquidity</h3>
+  <div class="speaker-grid">
+    <div class="speaker"><strong>Adam Rosenberg</strong><span>Blackstone</span><small>Senior Advisor, Gaming and Leisure</small></div>
+    <div class="speaker"><strong>Brian Eggar</strong><span>Bloomberg Intelligence</span><small>Senior Industry Analyst and Global Head of Financial Modeling</small></div>
+    <div class="speaker"><strong>Shaun Kelley</strong><span>Bank of America</span><small>Managing Director and Senior Research Analyst</small></div>
+    <div class="speaker"><strong>Julie Hoover</strong><span>Bank of America</span><small>Vice President, Equity Research</small></div>
+    <div class="speaker"><strong>Chris Grove</strong><span>Acies Investments</span><small>Co-Founding Partner</small></div>
+    <div class="speaker"><strong>Joe Grubb</strong><span>Susquehanna Predictions</span><small>Head of Business Development</small></div>
+    <div class="speaker"><strong>Larry Burns</strong><span>Greenlight Commodities</span><small>Managing Director</small></div>
+    <div class="speaker"><strong>John Conlon</strong><span>Greenlight Commodities</span><small>Director</small></div>
+  </div>
+
+  <h3 class="yellow" style="margin-top:24px;">Regulation, legal, media and integrity</h3>
+  <div class="speaker-grid">
+    <div class="speaker"><strong>David Miller</strong><span>CFTC</span><small>Director of Enforcement</small></div>
+    <div class="speaker"><strong>Duncan Hennes</strong><span>CFTC</span><small>Director, Market Participants Division</small></div>
+    <div class="speaker"><strong>Josh Sterling</strong><span>Milbank</span><small>Partner and Former CFTC Division Director</small></div>
+    <div class="speaker"><strong>Contessa Brewer</strong><span>CNBC</span><small>Correspondent</small></div>
+    <div class="speaker"><strong>Kate Knibbs</strong><span>Wired</span><small>Senior Writer</small></div>
+    <div class="speaker"><strong>Dustin Gouker</strong><span>The Closing Line</span><small>Founder</small></div>
+    <div class="speaker"><strong>Matthew Wein</strong><span>National Security Policy</span><small>Policy expert</small></div>
+    <div class="speaker"><strong>Jon Russell</strong><span>Trading and integrity</span><small>Senior advisor</small></div>
+  </div>
+</section>
+
+<section id="audience" class="card span-12">
+  <h2>Who the event is built for</h2>
+  <p>NEXTPredict is designed for the commercial, regulatory and infrastructure layer around prediction markets.</p>
+  <div class="package">
+    <div class="box"><h3>Operators and exchanges</h3><p>Prediction market platforms, exchanges, sportsbook operators, event-contract venues and product teams exploring the category.</p></div>
+    <div class="box"><h3>Finance and investment</h3><p>Investors, analysts, brokers, trading firms, market makers, clearing, risk and institutional workflow companies.</p></div>
+    <div class="box"><h3>Policy and trust</h3><p>Regulators, legal counsel, compliance leaders, surveillance providers, identity firms and risk infrastructure companies.</p></div>
+    <div class="box"><h3>Media and data</h3><p>Business media, sports data, official feeds, market data, research, analytics and settlement infrastructure.</p></div>
+  </div>
+</section>
+
+<section class="card span-6">
+  <h2>Current attendee mix</h2>
+  <div class="mix-row">
+    <div class="mix-top"><strong>Operators, exchanges, prediction platforms and gaming operators</strong><span>41%</span></div>
+    <div class="bar"><i style="width:41%"></i></div>
+    <small>Examples include DraftKings, Rush Street Interactive, Betr, Novig, Crypto.com, Underdog, ProphetX, Sporttrade and High Roller.</small>
+  </div>
+  <div class="mix-row">
+    <div class="mix-top"><strong>Finance, investment, research and market analysis</strong><span>20%</span></div>
+    <div class="bar"><i style="width:20%"></i></div>
+    <small>Examples include Bank of America, Citi, Macquarie Capital, Blackstone, Acies Investment and Bloomberg Intelligence.</small>
+  </div>
+  <div class="mix-row">
+    <div class="mix-top"><strong>Legal, regulatory, risk, identity and payments</strong><span>16%</span></div>
+    <div class="bar"><i style="width:16%"></i></div>
+    <small>Examples include CFTC, Milbank, TransUnion, LexisNexis Risk Solutions, WLA, Approvely and Stripe.</small>
+  </div>
+</section>
+
+<section class="card span-6">
+  <h2>Seniority mix</h2>
+  <div class="mix-row">
+    <div class="mix-top"><strong>Founder, CEO, C-suite, partner, president, SVP or executive director</strong><span>57%</span></div>
+    <div class="bar"><i style="width:57%"></i></div>
+    <small>A strong base of decision makers and senior commercial leaders.</small>
+  </div>
+  <div class="mix-row">
+    <div class="mix-top"><strong>VP, director, head, managing director, senior analyst, reporter or correspondent</strong><span>35%</span></div>
+    <div class="bar"><i style="width:35%"></i></div>
+    <small>Senior market-facing, media, research, legal and innovation roles.</small>
+  </div>
+  <div class="mix-row">
+    <div class="mix-top"><strong>Specialist, technical or role not yet provided</strong><span>8%</span></div>
+    <div class="bar"><i style="width:8%"></i></div>
+    <small>A small remainder across specialist, technical and pending-title registrations.</small>
+  </div>
+</section>
+
+<section class="card span-12">
+  <h2>Example organisations already in or around the room</h2>
+  <span class="tag">The Wall Street Journal</span>
+  <span class="tag">CNBC</span>
+  <span class="tag">Bloomberg Intelligence</span>
+  <span class="tag">Bank of America</span>
+  <span class="tag">CFTC</span>
+  <span class="tag">DraftKings</span>
+  <span class="tag">Crypto.com</span>
+  <span class="tag">Blackstone</span>
+  <span class="tag">Macquarie Capital</span>
+  <span class="tag">Rush Street Interactive</span>
+  <span class="tag">Underdog</span>
+  <span class="tag">Novig</span>
+  <span class="tag">Sporttrade</span>
+  <span class="tag">Betr</span>
+  <span class="tag">Milbank</span>
+  <span class="tag">TransUnion</span>
+  <span class="tag">LexisNexis Risk Solutions</span>
+  <span class="tag">White Swan Data</span>
+  <p style="margin-top:14px;">More names are being added as the programme develops.</p>
+</section>
+
+
+<section id="tier-one" class="card span-12">
+  <h2>Where Wachsman can add tier-one value</h2>
+  <p>Wachsman does not need to send a long list of possible names. The strongest value is access to the few people who genuinely strengthen the room.</p>
+  <div class="package">
+    <div class="box">
+      <h3>Tier-one speakers</h3>
+      <p>C-level executives, founders and senior decision makers from clients with a clear role in prediction markets, Web3, fintech, market infrastructure, compliance, sports data, media or regulated trading.</p>
+    </div>
+    <div class="box">
+      <h3>Strategic sponsors</h3>
+      <p>Clients that want to own a serious category conversation, meet senior buyers, and position themselves before prediction markets become a more crowded commercial lane.</p>
+    </div>
+    <div class="box">
+      <h3>Media and visibility</h3>
+      <p>Relevant financial, technology, crypto, business and policy media that can help frame prediction markets as a market-structure story rather than a narrow gambling story.</p>
+    </div>
+    <div class="box">
+      <h3>Curated introductions</h3>
+      <p>If Wachsman can open the right doors to senior clients, media, sponsors or category leaders, we can discuss a broader partnership structure around that contribution.</p>
+    </div>
+  </div>
+</section>
+
+<section id="process" class="card span-12">
+  <h2>How Wachsman can introduce clients</h2>
+  <div class="process">
+    <div class="step"><h3>Send the client name</h3><p>Include company, senior contact, role, market relevance and whether the interest is speaking, sponsorship or both.</p></div>
+    <div class="step"><h3>Explain the fit</h3><p>One short paragraph is enough: why this client belongs in a prediction-markets room and what they can add.</p></div>
+    <div class="step"><h3>NEXTPredict reviews</h3><p>The commercial and content teams assess seniority, category fit, programme relevance and whether sponsorship makes sense.</p></div>
+    <div class="step"><h3>Agree the route</h3><p>Strong fits move into a speaking discussion, sponsorship discussion, curated meeting opportunity or attendee recommendation.</p></div>
+  </div>
+</section>
+
+<section class="card span-7">
+  <h2>Suggested note Wachsman can send internally</h2>
+  <p class="note">NEXTPredict is a new senior summit in New York focused on prediction markets and event contracts. The event is looking for C-level executives, founders and senior decision makers from companies relevant to market structure, Web3, fintech, trading, compliance, data, sports, media and infrastructure. There are potential speaking and sponsorship routes, but the bar for speaking is high and every session is reviewed by the NEXTPredict content team. The strongest introductions will be C-level clients, credible subject-matter experts, strategic sponsors or tier-one media and industry relationships that can strengthen the room.</p>
+</section>
+
+<section class="card span-5">
+  <h2>Prospectus</h2>
+  <p>The sponsorship prospectus is available here. This is the best next step for clients interested in brand visibility, senior meetings, hosted activity or strategic positioning.</p>
+  <a class="cta primary" href="https://nextpredict-2026-sales-deck-1069296223957.us-west1.run.app/" target="_blank" rel="noopener">Open the prospectus</a>
+</section>
+
+</main>
+
+<p class="footer">NEXTPredict | The World’s Prediction Markets Summit | 22 to 23 October 2026 | Convene, 30 Hudson Yards, New York</p>
+
+</div>
+</body>
+</html>
