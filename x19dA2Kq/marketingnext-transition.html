@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>marketingNEXT Transition & Simplification Plan</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --card: #ffffff;
+      --ink: #18202a;
+      --muted: #5f6b7a;
+      --line: #d9dee7;
+      --accent: #111827;
+      --accent-soft: #eef2ff;
+      --risk: #fff1f2;
+      --risk-line: #fecdd3;
+      --success: #ecfdf5;
+      --success-line: #bbf7d0;
+      --warn: #fffbeb;
+      --warn-line: #fde68a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+      color: var(--ink);
+      background: var(--bg);
+    }
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 28px 64px;
+    }
+    header {
+      background: var(--accent);
+      color: white;
+      padding: 36px 40px;
+      border-radius: 18px;
+      margin-bottom: 24px;
+    }
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 34px;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+    header p {
+      margin: 0;
+      max-width: 850px;
+      color: #e5e7eb;
+      font-size: 16px;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0 0;
+    }
+    .meta div {
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.16);
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 13px;
+    }
+    .meta strong {
+      display: block;
+      color: white;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin: 18px 0;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+    }
+    h2 {
+      margin: 0 0 14px;
+      font-size: 23px;
+      letter-spacing: -0.02em;
+    }
+    h3 {
+      margin: 26px 0 10px;
+      font-size: 18px;
+    }
+    h4 {
+      margin: 18px 0 8px;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+    p { margin: 0 0 12px; }
+    ul, ol { margin-top: 8px; padding-left: 22px; }
+    li { margin: 5px 0; }
+    .callout {
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      background: #f8fafc;
+    }
+    .callout strong { color: var(--accent); }
+    .callout.warn {
+      background: var(--warn);
+      border-color: var(--warn-line);
+    }
+    .callout.risk {
+      background: var(--risk);
+      border-color: var(--risk-line);
+    }
+    .callout.success {
+      background: var(--success);
+      border-color: var(--success-line);
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .box {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      background: #ffffff;
+    }
+    .box h3, .box h4 { margin-top: 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 4px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 12px 13px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f3f4f6;
+      color: #111827;
+      font-weight: 700;
+    }
+    .tag {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #3730a3;
+      font-size: 12px;
+      font-weight: 700;
+      margin-right: 5px;
+      white-space: nowrap;
+    }
+    .draft {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px 20px;
+      background: #fbfdff;
+      margin: 14px 0;
+    }
+    .draft .subject {
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #111827;
+    }
+    .small {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .divider {
+      height: 1px;
+      background: var(--line);
+      margin: 20px 0;
+    }
+    .decision-list li strong { display: inline-block; min-width: 175px; }
+    footer {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+      margin-top: 26px;
+    }
+    @media print {
+      body { background: white; }
+      .page { max-width: none; padding: 0; }
+      section, header { break-inside: avoid; box-shadow: none; }
+    }
+    @media (max-width: 820px) {
+      .meta, .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .page { padding: 22px 14px; }
+      header, section { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>marketingNEXT Transition &amp; Simplification Plan</h1>
+      <p>A practical transition plan to move marketingNEXT from an overextended external-led model into a lean, internally managed community format centred on monthly campaign surgeries.</p>
+      <div class="meta">
+        <div><strong>Prepared for</strong>NEXT.io internal use</div>
+        <div><strong>Working date</strong>1 July 2026</div>
+        <div><strong>Working assumption</strong>Contracts signed November 2025</div>
+        <div><strong>Recommended transition</strong>6-8 weeks</div>
+      </div>
+    </header>
+
+    <section>
+      <h2>1. Executive Summary</h2>
+      <p>marketingNEXT should be moved into a simpler, internally managed format. The current model has become too complicated for the level of member traction and commercial maturity: multiple workstreams, fragmented channels, unclear member value, and a cost base that is not yet justified by paying-member outcomes.</p>
+      <p>The recommended reset is to position marketingNEXT as a monthly peer-led marketing surgery for iGaming marketers. Members submit real campaigns, activations, funnels or marketing challenges, and the group reviews them in a structured, practical session.</p>
+      <div class="callout success">
+        <strong>Recommended position:</strong> Move to a dignified transition with Tara and Ulrich stepping back from day-to-day management, while remaining welcome as members of the community and potential occasional contributors where appropriate.
+      </div>
+      <p>This approach avoids public drama, gives Tara a respectful landing, recognises Ulrich's written step-back, protects member confidence, and gives Alina a manageable operating model rather than inheriting the current complexity.</p>
+      <p><strong>Pierre should now lead the second Tara conversation.</strong> As Managing Director and someone involved in the creation of marketingNEXT, he is best placed to reset the relationship, acknowledge that the first call landed abruptly, and frame the transition as a leadership decision rather than a personal judgement on Tara.</p>
+    </section>
+
+    <section>
+      <h2>2. Working Assumptions</h2>
+      <ul>
+        <li>The service provider arrangements with Tara and Ulrich were signed in or around November 2025.</li>
+        <li>On that basis, the six-month review point likely fell around May 2026 and has now passed.</li>
+        <li>The overall term likely runs to around November 2026, subject to the exact signed date and any separate termination clause in the final signed agreement.</li>
+        <li>Ulrich has already confirmed his decision to step back in writing.</li>
+        <li>Tara felt blindsided after the first call and should be handled delicately in a second conversation.</li>
+        <li>Pierre, as Managing Director and an involved stakeholder in marketingNEXT, should lead the second Tara call as the senior relationship-reset voice.</li>
+        <li>NEXT.io wants to scale back the community, simplify operations, and bring day-to-day management in-house under Alina.</li>
+        <li>Tara and Ulrich should be offered the option to remain part of marketingNEXT as members, not as managers.</li>
+      </ul>
+      <div class="callout warn">
+        <strong>Important:</strong> Before sending any formal exit or transition letter, check the final signed agreements for termination language, payment obligations, notice period, IP/confidentiality provisions and any specific dispute process. The six-month review should not be treated as a break clause unless the signed agreement says so.
+      </div>
+    </section>
+
+    <section>
+      <h2>3. Strategic Decision</h2>
+      <div class="grid-2">
+        <div class="box">
+          <h3>What changes</h3>
+          <ul>
+            <li>External-led project management ends after a transition period.</li>
+            <li>marketingNEXT becomes internally managed by NEXT.io.</li>
+            <li>Multiple workstreams are paused or archived.</li>
+            <li>Member communications are simplified into one primary channel.</li>
+            <li>The programme is centred on one monthly marketing surgery.</li>
+            <li>Paid membership growth is paused until value and cadence are proven.</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>What stays</h3>
+          <ul>
+            <li>The marketingNEXT brand and member community remain active.</li>
+            <li>Members continue receiving practical peer-learning value.</li>
+            <li>Tara and Ulrich remain welcome as community members.</li>
+            <li>Marketing campaign review and industry knowledge-sharing remain the core purpose.</li>
+            <li>NEXT.io can still commercialise the community later once the format is proven.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout">
+        <strong>Core proposition:</strong> marketingNEXT is a monthly peer-led marketing surgery for iGaming marketers reviewing real campaigns, launches, event activations and marketing challenges.
+      </div>
+    </section>
+
+    <section>
+      <h2>4. Future Operating Model</h2>
+      <h3>Monthly Session: Marketing Surgery</h3>
+      <p>The new format should be practical, repeatable and easy to explain. Each month, members submit a campaign or marketing challenge. Alina selects one or two submissions and facilitates a structured peer review.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Session Segment</th>
+            <th>Timing</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Welcome and framing</td>
+            <td>5 minutes</td>
+            <td>Set the topic, explain the format, remind members that feedback should be practical and respectful.</td>
+          </tr>
+          <tr>
+            <td>Campaign context</td>
+            <td>10 minutes</td>
+            <td>Campaign owner explains objective, audience, constraints, budget range, channels and results where possible.</td>
+          </tr>
+          <tr>
+            <td>Peer review</td>
+            <td>25 minutes</td>
+            <td>Members critique strategy, creative, channel mix, messaging, funnel, measurement and missed opportunities.</td>
+          </tr>
+          <tr>
+            <td>Recommended next steps</td>
+            <td>10 minutes</td>
+            <td>Group agrees the most useful actions the campaign owner could take next.</td>
+          </tr>
+          <tr>
+            <td>Close and next submission callout</td>
+            <td>5 minutes</td>
+            <td>Confirm next date, invite submissions and capture feedback.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>What Alina Owns</h3>
+      <ul>
+        <li>Member list and community channel.</li>
+        <li>Monthly campaign submission process.</li>
+        <li>Session scheduling and reminders.</li>
+        <li>Selection of campaigns for review.</li>
+        <li>Basic moderation and follow-up recap.</li>
+        <li>Attendance, feedback and engagement tracking.</li>
+        <li>Escalation of commercial opportunities to Sales where relevant.</li>
+      </ul>
+      <p><strong>Recommended time allocation:</strong> 4-6 hours per month, excluding the live session. If the model requires materially more time than this, it is becoming overcomplicated again.</p>
+    </section>
+
+    <section>
+      <h2>5. Transition Principles</h2>
+      <div class="callout warn">
+        <strong>Important context:</strong> The first call with Tara has already happened and landed as a surprise. The next conversation should not simply repeat the decision. It should acknowledge the emotional impact, explain the business rationale calmly, and invite Tara into a controlled transition rather than leaving her feeling pushed out.
+      </div>
+      <div class="grid-3">
+        <div class="box">
+          <h3>Protect dignity</h3>
+          <p>Tara should not be made to feel publicly removed or blamed. The public message should recognise both Tara and Ulrich for helping shape the initial community.</p>
+        </div>
+        <div class="box">
+          <h3>Protect NEXT.io</h3>
+          <p>The transition should be documented, commercially clear and aligned with the signed agreements. Avoid language that implies breach, failure or blame unless advised by legal counsel.</p>
+        </div>
+        <div class="box">
+          <h3>Protect members</h3>
+          <p>Members should experience the change as a simplification and improvement, not a retreat. Do not use phrases such as "scaling back" in member-facing communications.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>6. Recommended 8-Week Transition Plan</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>Timing</th>
+            <th>Owner</th>
+            <th>Actions</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag">Phase 1</span> Internal alignment</td>
+            <td>Week 1</td>
+            <td>NEXT.io leadership, Legal/Finance, Alina</td>
+            <td>
+              <ul>
+                <li>Confirm signed agreement dates and exact contract terms.</li>
+                <li>Confirm Ulrich's written step-back is saved and acknowledged.</li>
+                <li>Decide the proposed transition end date for Tara.</li>
+                <li>Agree any final payment, notice or reduced-scope transition payment position.</li>
+                <li>Confirm Alina's monthly capacity.</li>
+              </ul>
+            </td>
+            <td>Approved internal transition position and decision log.</td>
+          </tr>
+          <tr>
+            <td><span class="tag">Phase 2</span> Pierre relationship-reset call with Tara</td>
+            <td>Week 1-2</td>
+            <td>Pierre, supported by [Name] for follow-up</td>
+            <td>
+              <ul>
+                <li>Hold a second private call with Tara before any wider announcement.</li>
+                <li>Acknowledge that the first call was difficult and may have landed abruptly.</li>
+                <li>Frame the decision as a NEXT.io leadership decision about sustainability, ownership and focus.</li>
+                <li>Offer a dignified transition period with clear handover expectations.</li>
+                <li>Confirm she remains welcome in the community as a member and potential occasional contributor.</li>
+                <li>Avoid blame-led framing around missed KPIs unless legally required.</li>
+              </ul>
+            </td>
+            <td>Tara feels heard, understands the decision is final, and has a clear path into a professional transition.</td>
+          </tr>
+          <tr>
+            <td><span class="tag">Phase 3</span> Ulrich confirmation</td>
+            <td>Week 2</td>
+            <td>Senior NEXT.io lead</td>
+            <td>
+              <ul>
+                <li>Reply to Ulrich's written step-back.</li>
+                <li>Thank him for helping shape the launch phase.</li>
+                <li>Confirm transition/handover expectations.</li>
+                <li>Confirm he remains welcome as a community member.</li>
+              </ul>
+            </td>
+            <td>Written confirmation of Ulrich's role ending and handover support.</td>
+          </tr>
+          <tr>
+            <td><span class="tag">Phase 4</span> Handover</td>
+            <td>Weeks 2-4</td>
+            <td>Alina, Tara, Ulrich</td>
+            <td>
+              <ul>
+                <li>Transfer member lists, channel access, documents, content plans and open conversations.</li>
+                <li>Clarify any member expectations or promises.</li>
+                <li>Consolidate WhatsApp or community channels.</li>
+                <li>Archive inactive workstreams.</li>
+                <li>Prepare first monthly marketing surgery.</li>
+              </ul>
+            </td>
+            <td>Complete handover pack and simplified operating structure.</td>
+          </tr>
+          <tr>
+            <td><span class="tag">Phase 5</span> Member announcement</td>
+            <td>Week 3-4</td>
+            <td>NEXT.io team</td>
+            <td>
+              <ul>
+                <li>Announce the simplified monthly surgery format.</li>
+                <li>Thank Tara and Ulrich for their launch-phase contribution.</li>
+                <li>Confirm Alina/NEXT.io team will manage the community directly.</li>
+                <li>Invite members to submit campaigns for review.</li>
+              </ul>
+            </td>
+            <td>Members understand the next phase and know how to participate.</td>
+          </tr>
+          <tr>
+            <td><span class="tag">Phase 6</span> First new-format session</td>
+            <td>Week 5</td>
+            <td>Alina</td>
+            <td>
+              <ul>
+                <li>Run first Marketing Surgery session.</li>
+                <li>Use one strong campaign example rather than multiple loose topics.</li>
+                <li>Collect immediate feedback.</li>
+                <li>Promote the next session date.</li>
+              </ul>
+            </td>
+            <td>Proof point for the reset and initial member feedback.</td>
+          </tr>
+          <tr>
+            <td><span class="tag">Phase 7</span> Close transition</td>
+            <td>Weeks 6-8</td>
+            <td>NEXT.io leadership, Alina</td>
+            <td>
+              <ul>
+                <li>Complete final handover actions.</li>
+                <li>Remove unnecessary admin access.</li>
+                <li>Close payment/admin points.</li>
+                <li>Update public copy, internal docs and onboarding material.</li>
+                <li>Send final thanks to Tara and Ulrich.</li>
+              </ul>
+            </td>
+            <td>marketingNEXT fully operating under NEXT.io's internal community model.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>7. Handover Checklist</h2>
+      <div class="grid-2">
+        <div class="box">
+          <h3>Community &amp; Member Assets</h3>
+          <ul>
+            <li>Full member list and member status.</li>
+            <li>Founding member list.</li>
+            <li>Any paying member or commercial pipeline.</li>
+            <li>Open member conversations.</li>
+            <li>Member feedback, complaints or unresolved expectations.</li>
+            <li>WhatsApp, Slack, email group or platform access.</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>Programme &amp; Commercial Assets</h3>
+          <ul>
+            <li>Upcoming session ideas.</li>
+            <li>Event activation ideas or promises.</li>
+            <li>Speaker/contributor lists.</li>
+            <li>Supplier recommendations or introductions.</li>
+            <li>Budget summary and known costs.</li>
+            <li>Lead attribution records.</li>
+            <li>Decks, copy, templates and working documents.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>8. Communication Plan</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Audience</th>
+            <th>Objective</th>
+            <th>Message</th>
+            <th>Channel</th>
+            <th>Timing</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tara</td>
+            <td>Reset the relationship after the difficult first call, preserve dignity, and agree handover.</td>
+            <td>The first call may have landed abruptly, but the decision is a NEXT.io leadership decision about focus and sustainability. Her launch contribution is valued. A transition period is proposed. She remains welcome as a member and potential occasional contributor.</td>
+            <td>Second private call led by Pierre, followed by written recap.</td>
+            <td>Before member announcement.</td>
+          </tr>
+          <tr>
+            <td>Ulrich</td>
+            <td>Document his written step-back and confirm handover.</td>
+            <td>Thanks for helping shape the launch phase. NEXT.io accepts the step-back and will move to internal management. He remains welcome as a member.</td>
+            <td>Email confirmation.</td>
+            <td>Before or alongside Tara transition recap.</td>
+          </tr>
+          <tr>
+            <td>Alina / internal team</td>
+            <td>Give clear ownership and prevent scope creep.</td>
+            <td>One monthly surgery, one channel, one submission process, light-touch recap, simple metrics.</td>
+            <td>Internal brief / project doc.</td>
+            <td>Before handover starts.</td>
+          </tr>
+          <tr>
+            <td>Members</td>
+            <td>Maintain confidence and explain the new format.</td>
+            <td>marketingNEXT is moving into a sharper monthly marketing surgery format. Tara and Ulrich are stepping back from management after helping launch the community. NEXT.io will manage it directly.</td>
+            <td>Email and community channel post.</td>
+            <td>Once Tara and Ulrich have been informed.</td>
+          </tr>
+          <tr>
+            <td>External/public, if asked</td>
+            <td>Avoid speculation and keep message simple.</td>
+            <td>marketingNEXT is now being managed directly by NEXT.io as part of its next phase, with a stronger focus on practical member-led sessions.</td>
+            <td>Reactive only.</td>
+            <td>Only if needed.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Language to Use</h3>
+      <ul>
+        <li>"Next phase"</li>
+        <li>"Sharper monthly format"</li>
+        <li>"Practical campaign surgeries"</li>
+        <li>"Managed directly by NEXT.io"</li>
+        <li>"Tara and Ulrich remain welcome as members of the community"</li>
+      </ul>
+
+      <h3>Language to Avoid</h3>
+      <ul>
+        <li>"Scaling back" in member-facing communications.</li>
+        <li>"Contract ending" in member-facing communications.</li>
+        <li>"Failure to hit KPIs" unless used privately with legal advice.</li>
+        <li>"Blindsided" in written communication.</li>
+        <li>"Cost cutting" or "resource problem" in public/member messaging.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>9. Draft Communications</h2>
+
+      <h3>9.1 Pierre Call Agenda for Tara</h3>
+      <div class="draft">
+        <p><strong>Purpose:</strong> This is not a negotiation of whether marketingNEXT changes direction. It is a senior relationship-reset call to acknowledge how the first conversation landed, protect Tara's dignity, and move her into a clear transition.</p>
+        <ol>
+          <li><strong>Open with acknowledgement:</strong> Pierre should recognise that the first call was difficult and that Tara may have felt blindsided.</li>
+          <li><strong>Reinforce respect:</strong> Make clear that NEXT.io values the energy and credibility she brought to the launch phase.</li>
+          <li><strong>Explain the business decision:</strong> The current model is too complex and resource-heavy for where the community is today, so NEXT.io is simplifying it and bringing management in-house.</li>
+          <li><strong>Make the decision clear:</strong> The day-to-day management role will transition away from Tara and Ulrich. This should not be left ambiguous.</li>
+          <li><strong>Offer the dignified path:</strong> Agree a practical handover period, respectful public wording, and the option for Tara to remain in the community as a member and potential contributor.</li>
+          <li><strong>Close with next steps:</strong> Confirm that a written recap will follow, including handover items, timing and proposed member communication.</li>
+        </ol>
+      </div>
+
+      <h3>9.2 Pierre Talking Points for Tara Call</h3>
+      <div class="draft">
+        <p>Hi Tara, I wanted to speak with you directly because I know the previous conversation was difficult, and I understand it may have felt abrupt.</p>
+        <p>I want to say clearly that we value the work and energy you have put into helping shape marketingNEXT. This is not about dismissing that contribution.</p>
+        <p>From a NEXT.io leadership point of view, we have had to look at the community honestly. The current model has become too complex and too resource-heavy for where the community is today. We need to simplify it, bring the management back inside NEXT.io, and focus the format around one clear monthly marketing surgery.</p>
+        <p>That means Tara and Ulrich will be stepping back from day-to-day management. I appreciate that this is not easy to hear, especially given the work that has gone into the launch phase, but I do want us to handle this properly and respectfully.</p>
+        <p>What we would like to agree with you is a dignified transition: a clear handover, respectful member-facing wording, and a smooth shift into the new model. We would also like you to remain welcome in the marketingNEXT community as a member, and where there is a natural fit, potentially as an occasional contributor.</p>
+        <p>Our priority is that members experience this as a sharper next phase for marketingNEXT, not as a public break or failure. We will follow up in writing with the proposed handover steps and member communication so everything is clear.</p>
+      </div>
+
+      <h3>9.3 Private Follow-Up to Tara After Pierre Call</h3>
+      <div class="draft">
+        <div class="subject">Subject: marketingNEXT transition</div>
+        <p>Hi Tara,</p>
+        <p>Thank you again for taking the time to speak with us. I appreciate that the conversation was difficult, and I want to reiterate that we value the work and energy you have put into helping shape marketingNEXT.</p>
+        <p>As discussed, we have decided to move marketingNEXT into a leaner operating model managed directly by the NEXT.io team. The community will be simplified around a monthly marketing surgery format, with fewer workstreams and a more focused cadence.</p>
+        <p>We would like to agree a professional transition phase so that the handover is smooth for members and clear for everyone involved. This would include handing over member information, current plans, channel access, upcoming ideas, open conversations, and recommendations for the next phase.</p>
+        <p>We also want to make sure the member-facing communication is respectful and recognises your contribution to launching the community.</p>
+        <p>Our proposed public message is that marketingNEXT is moving into its next phase under NEXT.io management, with you and Ulrich stepping back from day-to-day management after helping shape the initial community.</p>
+        <p>We would also like to make clear that you remain very welcome to continue as part of the marketingNEXT community as a member, and potentially as an occasional contributor where there is a natural fit.</p>
+        <p>Please let us know any practical handover items you think should be included so we can make the transition as smooth as possible.</p>
+        <p>Best,<br />[Name]</p>
+      </div>
+
+      <h3>9.4 Confirmation Note to Ulrich</h3>
+      <div class="draft">
+        <div class="subject">Subject: marketingNEXT transition and handover</div>
+        <p>Hi Ulrich,</p>
+        <p>Thank you for confirming your decision to step back from marketingNEXT in writing. We appreciate the role you have played in helping shape the initial phase of the community.</p>
+        <p>We are now moving marketingNEXT into a leaner operating model managed directly by the NEXT.io team, with a simpler monthly format focused on practical marketing surgeries for members.</p>
+        <p>As part of the transition, we would appreciate your support in handing over any relevant member information, open conversations, programme ideas, commercial context, documents and recommendations for the next phase.</p>
+        <p>We also want to make clear that you remain welcome to continue as part of the marketingNEXT community as a member, and potentially as an occasional contributor where there is a natural fit.</p>
+        <p>We will keep the member-facing message positive and simple: marketingNEXT is moving into its next phase under NEXT.io management, and both you and Tara are stepping back from day-to-day management after helping shape the launch phase.</p>
+        <p>Best,<br />[Name]</p>
+      </div>
+
+      <h3>9.5 Member Announcement</h3>
+      <div class="draft">
+        <div class="subject">Subject: marketingNEXT: a sharper monthly format</div>
+        <p>Hi everyone,</p>
+        <p>We are making a few changes to marketingNEXT as we move into the next phase of the community.</p>
+        <p>The goal is simple: make the format more practical, more focused and easier for members to get value from consistently.</p>
+        <p>Going forward, marketingNEXT will centre around one monthly session: a live marketing surgery where members can submit real campaigns, launches, activations or marketing challenges for peer review and discussion.</p>
+        <p>The format will be deliberately hands-on. Each session will focus on what worked, what did not, what could be improved, and what other marketers in the industry can learn from it.</p>
+        <p>As part of this next phase, Tara and Ulrich will be stepping back from the day-to-day management of marketingNEXT. We want to thank them for their role in helping shape and launch the community.</p>
+        <p>They both remain welcome as part of the marketingNEXT community, and we hope they will continue to contribute to the conversation as members.</p>
+        <p>Alina and the NEXT.io team will now manage the community directly, with a simpler cadence and clearer focus.</p>
+        <p>We will share the date and submission details for the next marketing surgery shortly.</p>
+        <p>Thanks again for being part of marketingNEXT. We are looking forward to making this next chapter more useful, practical and focused for everyone involved.</p>
+        <p>Best,<br />The NEXT.io team</p>
+      </div>
+
+      <h3>9.6 Short Community Channel Post</h3>
+      <div class="draft">
+        <p>Hi everyone - a quick update on marketingNEXT.</p>
+        <p>We are moving into a sharper monthly format focused on practical marketing surgeries. Members will be able to submit real campaigns, activations or marketing challenges for peer review and discussion.</p>
+        <p>As part of this next phase, Tara and Ulrich are stepping back from day-to-day management after helping shape the launch of the community. They remain welcome as part of marketingNEXT, and Alina/NEXT.io will now manage the community directly.</p>
+        <p>Next session date and submission details coming shortly.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>10. Internal Talking Points for Tara Conversation</h2>
+      <div class="callout">
+        <strong>Recommended speaker:</strong> Pierre should lead this conversation as Managing Director. His role is to steady the relationship, not to relitigate the previous call or over-explain every operational issue.
+      </div>
+      <h3>Open with acknowledgement and respect</h3>
+      <ul>
+        <li>"I know the first conversation was difficult, and I understand it may have felt abrupt."</li>
+        <li>"I wanted to speak with you directly because I have been involved in marketingNEXT and I care about how this lands."</li>
+        <li>"We value the work you put into getting marketingNEXT started."</li>
+        <li>"This is not about undermining your contribution."</li>
+      </ul>
+
+      <h3>Explain the business decision</h3>
+      <ul>
+        <li>"The current model has become too heavy for where the community is today."</li>
+        <li>"We need to simplify the format and bring management inside NEXT.io."</li>
+        <li>"The next phase needs to be lighter, clearer and easier for members to understand."</li>
+      </ul>
+
+      <h3>Offer the dignified transition</h3>
+      <ul>
+        <li>"We would like to agree a professional transition period rather than make this abrupt."</li>
+        <li>"We want the member-facing message to recognise your contribution."</li>
+        <li>"You would remain welcome in the community as a member, and where relevant, as an occasional contributor."</li>
+      </ul>
+
+      <h3>Avoid saying</h3>
+      <ul>
+        <li>"You failed to deliver the KPIs."</li>
+        <li>"The money has been wasted."</li>
+        <li>"Members are not getting value because of you."</li>
+        <li>"Ulrich stepped down, so you need to as well."</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>11. Risk Register</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Risk</th>
+            <th>Likelihood</th>
+            <th>Impact</th>
+            <th>Mitigation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tara feels blindsided and becomes resistant.</td>
+            <td>High</td>
+            <td>Medium/High</td>
+            <td>Second private call led by Pierre, acknowledgement that the first call landed abruptly, respectful written recap, dignified transition language, invite her to remain part of the community.</td>
+          </tr>
+          <tr>
+            <td>Contractual disagreement over early exit.</td>
+            <td>Medium</td>
+            <td>High</td>
+            <td>Review signed agreement before formalising exit. Use mutual transition language rather than unilateral termination language where possible.</td>
+          </tr>
+          <tr>
+            <td>Members interpret the change as failure.</td>
+            <td>Medium</td>
+            <td>Medium</td>
+            <td>Communicate as a sharper next phase. Lead with the new value proposition, not the management change.</td>
+          </tr>
+          <tr>
+            <td>Old workstreams continue informally and create confusion.</td>
+            <td>Medium</td>
+            <td>Medium</td>
+            <td>Archive inactive channels, consolidate communication, publish one simple operating cadence.</td>
+          </tr>
+          <tr>
+            <td>Alina inherits too much work.</td>
+            <td>High</td>
+            <td>High</td>
+            <td>Limit the model to one session per month, one channel, one recap and one submission form. No extra workstreams without leadership approval.</td>
+          </tr>
+          <tr>
+            <td>Commercial expectations are unclear.</td>
+            <td>Medium</td>
+            <td>Medium</td>
+            <td>Pause aggressive paid membership push until 3 months of attendance, submissions and feedback data are available.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>12. 30/60/90-Day Success Measures</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Period</th>
+            <th>Goal</th>
+            <th>Success Measures</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>First 30 days</td>
+            <td>Stabilise the transition.</td>
+            <td>Handover completed, channels simplified, member announcement sent, first surgery scheduled.</td>
+          </tr>
+          <tr>
+            <td>First 60 days</td>
+            <td>Prove the simplified format.</td>
+            <td>First surgery delivered, attendance tracked, member feedback collected, next submissions secured.</td>
+          </tr>
+          <tr>
+            <td>First 90 days</td>
+            <td>Decide whether the format has commercial potential.</td>
+            <td>15-25 attendees per session, 3+ campaign submissions per month, repeat attendance, clear member feedback, at least one useful commercial insight per session.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        <strong>Recommendation:</strong> Do not push paid membership hard until the monthly surgery model has been proven for three sessions. First prove that members show up, submit campaigns and come back. Then commercialise.
+      </div>
+    </section>
+
+    <section>
+      <h2>13. Campaign Submission Form</h2>
+      <p>Use a simple form to avoid overcomplication. Suggested fields:</p>
+      <ol>
+        <li>Name, company and role.</li>
+        <li>Campaign, activation or marketing challenge title.</li>
+        <li>What was the objective?</li>
+        <li>Who was the target audience?</li>
+        <li>What channels were used?</li>
+        <li>What was the rough budget range? Optional.</li>
+        <li>What worked?</li>
+        <li>What did not work?</li>
+        <li>What feedback do you most want from the group?</li>
+        <li>Can this be discussed openly in the session, or should any details be anonymised?</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>14. Immediate Decision Checklist</h2>
+      <ul class="decision-list">
+        <li><strong>Legal:</strong> Confirm exact contract dates and termination/payment terms.</li>
+        <li><strong>Finance:</strong> Confirm outstanding fees and proposed transition payment position.</li>
+        <li><strong>People:</strong> Pierre leads the second Tara call; [Name] sends the written follow-up and manages the handover documentation.</li>
+        <li><strong>Operations:</strong> Confirm Alina's capacity and ownership.</li>
+        <li><strong>Community:</strong> Decide the date of the first Marketing Surgery.</li>
+        <li><strong>Comms:</strong> Approve member-facing announcement copy.</li>
+        <li><strong>Access:</strong> Prepare channel/admin transfer checklist.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>15. Final Recommendation</h2>
+      <p>NEXT.io should proceed with a respectful 6-8 week transition, with Tara and Ulrich stepping back from day-to-day management while remaining welcome as members of marketingNEXT. Pierre should lead the second Tara conversation to acknowledge the difficult first call, reset the relationship and give the transition the senior, respectful handling it needs.</p>
+      <p>The member message should not be that marketingNEXT is being reduced. The message should be that marketingNEXT is entering a sharper, more practical phase under direct NEXT.io management.</p>
+      <div class="callout success">
+        <strong>Bottom line:</strong> One monthly campaign surgery. One channel. One submission form. One recap. No more community spaghetti.
+      </div>
+    </section>
+
+    <footer>
+      Prepared for internal planning purposes. This document is not legal advice and should be checked against the final signed agreements before formal notices are issued.
+    </footer>
+  </main>
+</body>
+</html>
